@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-10sOHFnyytweH8+ZK5oFp0u36LpMHRkbeM-VH1nrWjdM1E6EPC1ZStUAAAAoY7mlyNhQoRFIMaaEHfQP3KnWvQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-XomtEwREHTwEcNhBIayQ9cE7WaUAE1iKW+LGJyFhAuREBT9i4GJSfOT4R+HsqGk5l9CC+YrCx+Z9LExOOIR8Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
 
 :root {
@@ -635,8 +635,8 @@
   .categories-bar::-webkit-scrollbar { display:none; }
   .cat-btn { display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; padding:5px 16px; border-radius:4px; border:1px solid rgba(163,25,25,0.18); background:#F8F8F8; color:#1F1F1F; cursor:pointer; font-size:.8rem; white-space:nowrap; transition:all .2s; font-family:inherit; font-weight:600; }
   .cat-btn.active, .cat-btn:hover { background:#A31919; color:#FFFFFF; border-color:#A31919; }
-  .lang-en { display:inline; }
-  .lang-np { display:none; }
+
+  .page-container { max-width:1200px; margin:0 auto; padding:0 16px; }
 </style>
 <style>@keyframes popupIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}} #ad-popup-overlay.active{display:flex!important}</style>
 <style>
@@ -965,6 +965,7 @@
   
   
 
+  <!-- TOP SECTION: multi-column links -->
   <div class="footer-top">
     <div class="footer-top-inner">
 
@@ -1352,7 +1353,7 @@
 <script>
   function filterByCategory(el, cat) {
     // filter news sections by category
-    // this function is not implemented as it depends on the news data structure
+    // update UI accordingly
   }
 </script>
 <script>(function(){function show(){var o=document.getElementById('ad-popup-overlay');if(!o)return;o.classList.add('active');o.style.display='flex';function cl(){o.style.display='none';o.classList.remove('active');}document.getElementById('ad-popup-close').addEventListener('click',cl);o.addEventListener('click',function(e){if(e.target===o)cl();});document.addEventListener('keydown',function kh(e){if(e.key==='Escape'){cl();document.removeEventListener('keydown',kh);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(show,200);});}else{setTimeout(show,200);}})();</script>
