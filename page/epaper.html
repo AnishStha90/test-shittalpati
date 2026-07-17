@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Paper Archive</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:#f0f2f5; color:#222; overflow-x:hidden; }
+    .page-wrapper { min-height:100vh; display:flex; flex-direction:column; }
+
+    #site-header .fm-data,
+    #site-header .social-icons { display:none !important; }
+
+    .lang-en { display:inline; }
+    .lang-np { display:none; }
+    body.lang-active .lang-en { display:none; }
+    body.lang-active .lang-np { display:inline; }
+
+    .main-content {
+      flex:1;
+      display:grid;
+      grid-template-columns:300px 1fr 220px;
+      grid-template-areas:"list viewer ads";
+      gap:18px;
+      max-width:1380px;
+      margin:0 auto;
+      padding:24px 16px;
+      width:100%;
+      align-items:start;
+    }
+
+    .pdf-list-panel { grid-area:list; }
+    .panel-heading {
+      display:flex; align-items:center; gap:10px;
+      padding:14px 16px;
+      background:#1a1a2e; color:white;
+      border-radius:10px 10px 0 0;
+      font-size:.9rem; font-weight:700;
+    }
+    .panel-heading i { color:#e74c3c; }
+    .count-badge {
+      margin-left:auto;
+      background:#e74c3c; color:white;
+      font-size:.72rem; padding:2px 10px;
+      border-radius:20px; font-weight:700;
+    }
+    .pdf-list {
+      background:white;
+      display:flex; flex-direction:column;
+      overflow:hidden;
+      box-shadow:0 2px 10px rgba(0,0,0,.07);
+    }
+    .pdf-card {
+      display:flex; align-items:center; gap:12px;
+      padding:13px 14px;
+      border-bottom:1px solid #f0f0f0;
+      cursor:pointer;
+      transition:background .18s, border-left-color .18s;
+      border-left:4px solid transparent;
+    }
+    .pdf-card:last-child { border-bottom:none; }
+    .pdf-card:hover { background:#fdf2f2; border-left-color:#e74c3c; }
+    .pdf-card.active { background:#fdf2f2; border-left-color:#c0392b; }
+    .pdf-thumb {
+      flex-shrink:0; width:48px; height:62px;
+      background:#f7eded; border-radius:6px;
+      display:flex; align-items:center; justify-content:center;
+      overflow:hidden; border:1px solid #e8e8e8;
+    }
+    .pdf-thumb img { width:100%; height:100%; object-fit:cover; }
+    .pdf-icon-fallback { color:#e74c3c; font-size:24px; }
+    .pdf-meta { flex:1; min-width:0; }
+    .pdf-title { font-size:.82rem; font-weight:700; color:#1a1a2e; margin-bottom:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .pdf-date-label { font-size:.74rem; color:#999; }
+    .pdf-chevron { color:#ccc; font-size:11px; flex-shrink:0; transition:color .2s, transform .2s; }
+    .pdf-card:hover .pdf-chevron,
+    .pdf-card.active .pdf-chevron { color:#e74c3c; transform:translateX(3px); }
+    .no-pdf { padding:60px 20px; text-align:center; color:#bbb; }
+    .no-pdf i { font-size:42px; margin-bottom:12px; display:block; }
+
+    .pdf-pagination {
+      display:flex; align-items:center; justify-content:center;
+      gap:6px; flex-wrap:wrap;
+      padding:14px 10px;
+      background:white;
+      border-top:1px solid #f0f0f0;
+      border-radius:0 0 10px 10px;
+    }
+    .pdf-pagination button {
+      min-width:32px; height:32px;
+      padding:0 8px;
+      border:1px solid #e0e0e0;
+      background:white;
+      color:#555;
+      border-radius:6px;
+      font-size:.82rem;
+      font-weight:600;
+      cursor:pointer;
+      transition:background .15s, border-color .15s, color .15s;
+    }
+    .pdf-pagination button:hover:not(:disabled):not(.active) {
+      background:#fdf2f2; border-color:#e74c3c; color:#c0392b;
+    }
+    .pdf-pagination button.active {
+      background:#c0392b; border-color:#c0392b; color:white;
+      cursor:default;
+    }
+    .pdf-pagination button:disabled {
+      opacity:.35; cursor:not-allowed;
+    }
+    .pdf-pagination .pg-ellipsis {
+      padding:0 4px; color:#bbb; font-size:.82rem; user-select:none;
+    }
+
+    .pdf-viewer-panel { grid-area:viewer; position:sticky; top:16px; min-width:0; }
+    .viewer-placeholder {
+      background:white; border-radius:10px;
+      border:2px dashed #ddd; padding:70px 20px;
+      text-align:center; color:#bbb;
+    }
+    .viewer-placeholder i { font-size:44px; margin-bottom:12px; display:block; }
+    .viewer-placeholder p { font-size:.9rem; }
+    .viewer-container { display:none; background:white; border-radius:10px; overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,.10); }
+    .viewer-container.active { display:block; }
+    .viewer-topbar { display:flex; align-items:center; gap:10px; padding:11px 14px; background:#1a1a2e; color:white; }
+    .viewer-topbar i { color:#e74c3c; }
+    .viewer-title { flex:1; font-size:.85rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .close-btn {
+      background:rgba(255,255,255,.12); border:none; color:white; cursor:pointer;
+      width:26px; height:26px; border-radius:6px; font-size:.85rem;
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink:0; transition:background .2s;
+    }
+    .close-btn:hover { background:#e74c3c; }
+    .viewer-body { height:78vh; min-height:440px; position:relative; }
+    .viewer-body iframe { width:100%; height:100%; border:none; display:block; }
+    .viewer-loading {
+      position:absolute; inset:0;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      background:white; color:#bbb; gap:10px; font-size:.88rem;
+    }
+    .viewer-loading i { font-size:32px; }
+
+    .ads-panel { grid-area:ads; position:sticky; top:16px; display:flex; flex-direction:column; gap:14px; }
+    .ads-label {
+      font-size:.68rem; font-weight:700; color:#bbb;
+      text-transform:uppercase; letter-spacing:.08em;
+      text-align:center; padding-bottom:6px;
+      border-bottom:1px solid #e5e5e5;
+    }
+    .ad-card {
+      background:white; border-radius:8px;
+      overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.07);
+    }
+    .ad-card img { width:100%; height:auto; display:block; }
+    .ad-card a { display:block; }
+    .ad-card a img { transition:opacity .2s; }
+    .ad-card a:hover img { opacity:.88; }
+
+    @media (max-width:1100px) {
+      .main-content { grid-template-columns:260px 1fr 200px; }
+    }
+    @media (max-width:860px) {
+      .main-content { grid-template-columns:1fr; grid-template-areas:"list" "viewer" "ads"; }
+      .pdf-viewer-panel, .ads-panel { position:relative; top:0; }
+      .viewer-body { height:58vh; min-height:340px; }
+    }
+    @media (max-width:480px) {
+      .main-content { padding:14px 10px; }
+      .viewer-body { height:48vh; min-height:260px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <header id="site-header">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+
+:root {
+  --hdr-accent:      #D4A017;
+  --hdr-primary:     #A31919;
+  --hdr-primary-on:  #FFFFFF;
+  --hdr-accent-on:   #1F1F1F;
+  --hdr-bg:          #FFFFFF;
+  --hdr-surface:     #F8F8F8;
+  --hdr-text:        #1F1F1F;
+  --hdr-muted:       rgba(31,31,31,0.55);
+  --hdr-border:      rgba(163,25,25,0.18);
+  --hdr-font-body:   sans-serif;
+  --hdr-font-heading:Noto Serif, Georgia, serif;
+}
+
+/* === FIX 1: Header must be position:relative so mobile menu anchors to it === */
+#site-header {
+  position: relative !important;
+  display: block !important;
+}
+
+/* === RESET inside header only — excludes icon elements === */
+#site-header *, #site-header *::before, #site-header *::after {
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: normal !important;
+}
+
+/* Apply font-family only to non-icon elements so Font Awesome is never overridden */
+#site-header *:not(i):not([class*="fa-"]) {
+  font-family: var(--hdr-font-body, sans-serif) !important;
+}
+
+/* === FONT AWESOME ICON PROTECTION === */
+#site-header i[class*="fa-"] {
+  font-style: normal !important;
+  font-variant: normal !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  display: inline-block !important;
+  line-height: 1 !important;
+}
+#site-header i.fa-brands,
+#site-header i[class*="fa-brands"] {
+  font-family: "Font Awesome 6 Brands" !important;
+  font-weight: 400 !important;
+}
+#site-header i.fa-solid,
+#site-header i[class*="fa-solid"] {
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 900 !important;
+}
+#site-header i.fa-regular,
+#site-header i[class*="fa-regular"] {
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 400 !important;
+}
+
+/* === FIX 3: Header-internal lang toggle via .hdr-np class === */
+#site-header .lang-en { display: inline !important; }
+#site-header .lang-np { display: none !important; }
+#site-header.hdr-np .lang-en { display: none !important; }
+#site-header.hdr-np .lang-np { display: inline !important; }
+
+/* === TOP BAR === */
+#site-header .top-bar {
+  background: var(--hdr-surface) !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  overflow: hidden !important;
+  transition: height .3s ease, opacity .3s ease !important;
+}
+#site-header .top-bar-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  height: 38px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+
+/* === SOCIAL ICONS === */
+#site-header .top-social {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  flex-shrink: 0 !important;
+}
+#site-header .top-social a {
+  color: var(--hdr-text) !important;
+  font-size: 1.1rem !important;
+  text-decoration: none !important;
+  transition: color .2s !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 1.4rem !important;
+  height: 1.4rem !important;
+}
+#site-header .top-social a:hover {
+  color: var(--hdr-accent) !important;
+}
+#site-header .top-social a i {
+  font-size: 1.1rem !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* === TOP CENTER === */
+#site-header .top-center {
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  font-size: .8rem !important;
+  color: var(--hdr-text) !important;
+}
+#site-header .top-date,
+#site-header .top-clock {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  white-space: nowrap !important;
+}
+#site-header .top-date i,
+#site-header .top-clock i { opacity: .6 !important; font-size: .78rem !important; }
+#site-header .top-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-shrink: 0 !important;
+}
+
+/* === PLAYER === */
+#site-header .header-player {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  border: 1px solid var(--hdr-border) !important;
+  border-radius: 6px !important;
+  padding: 4px 10px !important;
+  background: var(--hdr-bg) !important;
+}
+#site-header .player-live-badge {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  font-size: .62rem !important;
+  font-weight: 800 !important;
+  color: var(--hdr-accent) !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+#site-header .live-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: #e74c3c !important;
+  animation: hdrLivePulse 1.5s ease-in-out infinite !important;
+  flex-shrink: 0 !important;
+}
+@keyframes hdrLivePulse {
+  0%,100%{ opacity:1; transform:scale(1); }
+  50%{ opacity:.3; transform:scale(.65); }
+}
+#site-header .player-waveform {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+  height: 16px !important;
+}
+#site-header .player-waveform span {
+  display: block !important;
+  width: 2px !important;
+  border-radius: 1px !important;
+  background: var(--hdr-accent) !important;
+  opacity: .65 !important;
+  animation: hdrWaveAnim 1.2s ease-in-out infinite !important;
+}
+#site-header .player-waveform span:nth-child(1){height:4px !important;animation-delay:0s !important;}
+#site-header .player-waveform span:nth-child(2){height:10px !important;animation-delay:.15s !important;}
+#site-header .player-waveform span:nth-child(3){height:14px !important;animation-delay:.3s !important;}
+#site-header .player-waveform span:nth-child(4){height:8px !important;animation-delay:.45s !important;}
+#site-header .player-waveform span:nth-child(5){height:11px !important;animation-delay:.6s !important;}
+@keyframes hdrWaveAnim {
+  0%,100%{ transform:scaleY(.35); }
+  50%{ transform:scaleY(1); }
+}
+#site-header .player-waveform.paused span {
+  animation-play-state: paused !important;
+  opacity: .2 !important;
+}
+#site-header .player-play-btn {
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background: var(--hdr-accent) !important;
+  color: var(--hdr-accent-on) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  transition: opacity .2s, transform .1s !important;
+}
+#site-header .player-play-btn:hover { opacity: .85 !important; }
+#site-header .player-play-btn:active { transform: scale(.9) !important; }
+#site-header .player-vol-wrap {
+  display: flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+}
+#site-header .vol-btn {
+  background: none !important;
+  border: none !important;
+  color: var(--hdr-muted) !important;
+  cursor: pointer !important;
+  padding: 2px !important;
+  display: flex !important;
+  align-items: center !important;
+  transition: color .2s !important;
+  flex-shrink: 0 !important;
+}
+#site-header .vol-btn:hover { color: var(--hdr-accent) !important; }
+#site-header .vol-slider {
+  -webkit-appearance: none !important;
+  width: 56px !important;
+  height: 3px !important;
+  border-radius: 2px !important;
+  outline: none !important;
+  cursor: pointer !important;
+  background: linear-gradient(to right, var(--hdr-accent) 70%, var(--hdr-border) 70%) !important;
+}
+#site-header .vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 50% !important;
+  background: var(--hdr-accent) !important;
+  cursor: pointer !important;
+}
+#site-header .vol-slider::-moz-range-thumb {
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 50% !important;
+  background: var(--hdr-accent) !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+#site-header .lang-toggle {
+  background: var(--hdr-accent) !important;
+  color: var(--hdr-accent-on) !important;
+  border: none !important;
+  border-radius: 3px !important;
+  padding: 3px 10px !important;
+  font-weight: 700 !important;
+  font-size: .72rem !important;
+  cursor: pointer !important;
+  letter-spacing: .05em !important;
+  transition: opacity .2s !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+#site-header .lang-toggle:hover { opacity: .85 !important; }
+
+/* === LOGO BAR === */
+#site-header .logo-bar {
+  background: var(--hdr-surface) !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  padding: 10px 0 !important;
+  transition: padding .3s ease !important;
+}
+#site-header .logo-bar-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: justify-content .3s ease !important;
+}
+#site-header .logo-link {
+  display: flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+}
+#site-header .header-logo {
+  height: 90px !important;
+  width: auto !important;
+  max-width: min(520px, 80vw) !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  display: block !important;
+  transition: height .3s ease, object-position .3s ease !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* === MAIN NAV === */
+#site-header .main-nav {
+  background: var(--hdr-primary) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.22) !important;
+}
+#site-header .main-nav-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+#site-header .nav-list {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  overflow: visible !important;
+}
+#site-header .nav-list li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  display: flex !important;
+  align-items: stretch !important;
+}
+#site-header .nav-list li > a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: .72rem .85rem !important;
+  color: var(--hdr-primary-on) !important;
+  text-decoration: none !important;
+  font-size: .82rem !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  border-bottom: 3px solid transparent !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  transition: background .2s, border-color .2s !important;
+  background: transparent !important;
+}
+#site-header .nav-list li > a:hover,
+#site-header .nav-list li.active > a {
+  background: rgba(0,0,0,.18) !important;
+  border-bottom-color: #fff !important;
+}
+
+/* === DROPDOWN === */
+#site-header .has-dropdown { position: relative !important; }
+#site-header .dropdown-arrow {
+  font-size: .65rem !important;
+  transition: transform .25s !important;
+  margin-left: 2px !important;
+}
+#site-header .has-dropdown:hover .dropdown-arrow,
+#site-header .has-dropdown.open .dropdown-arrow { transform: rotate(180deg) !important; }
+#site-header .dropdown-menu {
+  display: none !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  background: var(--hdr-surface) !important;
+  border: 1px solid var(--hdr-border) !important;
+  border-top: 2px solid var(--hdr-accent) !important;
+  border-radius: 0 0 6px 6px !important;
+  min-width: 220px !important;
+  z-index: 2000 !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.15) !important;
+  list-style: none !important;
+  padding: 4px 0 !important;
+}
+@media (min-width: 961px) {
+  #site-header .has-dropdown:hover .dropdown-menu { display: block !important; }
+}
+@media (max-width: 960px) {
+  #site-header .has-dropdown.open .dropdown-menu { display: block !important; }
+}
+#site-header .dropdown-menu li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+#site-header .dropdown-menu li a {
+  display: block !important;
+  padding: .6rem 1.1rem !important;
+  color: var(--hdr-text) !important;
+  text-decoration: none !important;
+  font-size: .84rem !important;
+  font-weight: 500 !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  transition: background .15s, color .15s !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+}
+#site-header .dropdown-menu li:last-child a { border-bottom: none !important; }
+#site-header .dropdown-menu li a:hover {
+  background: var(--hdr-primary) !important;
+  color: var(--hdr-primary-on) !important;
+}
+
+/* === HAMBURGER === */
+#site-header .nav-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  flex-shrink: 0 !important;
+}
+#site-header .hamburger {
+  display: none !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 6px !important;
+  cursor: pointer !important;
+  width: 40px !important;
+  height: 40px !important;
+  flex-shrink: 0 !important;
+}
+#site-header .bar {
+  display: block !important;
+  width: 20px !important;
+  height: 2px !important;
+  background: var(--hdr-primary-on) !important;
+  border-radius: 2px !important;
+  transition: transform .3s, opacity .3s !important;
+  transform-origin: center !important;
+}
+#site-header .hamburger[aria-expanded="true"] .bar:nth-child(1){transform:translateY(7px) rotate(45deg) !important;}
+#site-header .hamburger[aria-expanded="true"] .bar:nth-child(2){opacity:0 !important;transform:scaleX(0) !important;}
+#site-header .hamburger[aria-expanded="true"] .bar:nth-child(3){transform:translateY(-7px) rotate(-45deg) !important;}
+
+/* === MOBILE MENU === */
+#site-header .mobile-menu {
+  display: none !important;
+  background: var(--hdr-surface) !important;
+  border-top: 2px solid var(--hdr-primary) !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 999 !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.18) !important;
+}
+#site-header .mobile-menu.open { display: block !important; }
+#site-header .mobile-menu ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: .5rem 0 !important;
+}
+#site-header .mobile-menu ul li { margin: 0 !important; padding: 0 !important; }
+#site-header .mobile-menu ul li a {
+  display: block !important;
+  padding: .72rem 1.5rem !important;
+  color: var(--hdr-text) !important;
+  text-decoration: none !important;
+  font-size: .9rem !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  transition: background .2s, color .2s !important;
+  background: transparent !important;
+}
+#site-header .mobile-menu ul li a:hover {
+  background: var(--hdr-primary) !important;
+  color: var(--hdr-primary-on) !important;
+}
+#site-header .mobile-province-list li a {
+  padding-left: 2.5rem !important;
+  font-size: .85rem !important;
+  background: var(--hdr-bg) !important;
+}
+
+/* === SCROLL SHRINK === */
+#site-header.scrolled .top-bar {
+  height: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  border: none !important;
+}
+#site-header.scrolled .logo-bar { padding: 5px 0 !important; }
+#site-header.scrolled .logo-bar-inner { justify-content: flex-start !important; }
+#site-header.scrolled .header-logo { height: 42px !important; object-position: left center !important; }
+
+/* === RESPONSIVE === */
+@media (max-width: 960px) {
+  #site-header .nav-list { display: none !important; }
+  #site-header .hamburger { display: flex !important; }
+  #site-header .top-center { display: none !important; }
+  #site-header .player-vol-wrap { display: none !important; }
+  #site-header .top-bar-inner { padding: 0 12px !important; }
+}
+@media (max-width: 600px) {
+  #site-header .header-logo { height: 58px !important; max-width: 70vw !important; }
+  #site-header .header-player { padding: 3px 7px !important; gap: 4px !important; }
+  #site-header .top-social { gap: 10px !important; }
+  #site-header .logo-bar-inner,
+  #site-header .main-nav-inner { padding: 0 12px !important; }
+  #site-header .top-right { gap: 6px !important; }
+}
+@media (min-width: 961px) {
+  #site-header .hamburger { display: none !important; }
+  #site-header .mobile-menu { display: none !important; }
+  #site-header .nav-list { display: flex !important; }
+}
+@media (max-width: 480px) {
+  #site-header .player-live-badge .live-label { display: none !important; }
+  #site-header .player-waveform { display: none !important; }
+  #site-header .header-player { padding: 2px 5px !important; }
+}
+
+</style>
+
+  <!-- TIER 1: Top utility bar -->
+  <div class="top-bar" id="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-social">
+          <a href="https://www.facebook.com/nawajanachetana/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/shittalpationline/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+      <div class="top-center">
+        <span class="top-date"><i class="fa-regular fa-calendar"></i> <span id="np-datetime">Loading...</span></span>
+        <span class="top-clock"><i class="fa-regular fa-clock"></i> <span id="np-clock">00:00:00 AM</span></span>
+      </div>
+      <div class="top-right">
+        <div class="header-player" id="header-player">
+          <div class="player-live-badge">
+            <span class="live-dot"></span>
+            <span class="live-label">LIVE</span>
+          </div>
+          <div class="player-waveform" id="player-waveform">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <button class="player-play-btn" id="play-btn" aria-label="Play stream">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path id="play-path" d="M8 5v14l11-7z"/></svg>
+          </button>
+          <div class="player-vol-wrap">
+            <button class="vol-btn" id="vol-down-btn"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z"/></svg></button>
+            <input type="range" class="vol-slider" id="vol-slider" min="0" max="100" value="70">
+            <button class="vol-btn" id="vol-up-btn"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
+          </div>
+        </div>
+        <button class="lang-toggle" id="lang-toggle">NP</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIER 2: Logo bar -->
+  <div class="logo-bar" id="logo-bar">
+    <div class="logo-bar-inner">
+      <a href="../index.html" class="logo-link" aria-label="Home">
+        <img src="../images/logo.png" alt="Logo" class="header-logo" id="header-logo" onerror="this.style.display='none'">
+      </a>
+    </div>
+  </div>
+
+  <!-- TIER 3: Sticky nav -->
+  <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+    <div class="main-nav-inner">
+      <ul class="nav-list" id="nav-list">
+        <li class="active"><a href="../index.html"><span class="lang-en">Homepage</span><span class="lang-np">गृहपृष्ठ</span></a></li>
+        <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
+        <li><a href="../index.html#economy-section"><span class="lang-en">Economy</span><span class="lang-np">अर्थ</span></a></li>
+        <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
+        <li><a href="../index.html#entertainment-section"><span class="lang-en">Entertainment</span><span class="lang-np">मनोरञ्जन</span></a></li>
+        <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
+        <li><a href="../index.html#international-section"><span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span></a></li>
+        <li class="has-dropdown" id="province-nav">
+          <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            <span class="lang-en">Province</span><span class="lang-np">प्रदेश</span>
+            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+          </a>
+          <ul class="dropdown-menu" id="province-dropdown">
+            <li><a href="../province/koshi.html"><span class="lang-en">Koshi Province</span><span class="lang-np">कोशी प्रदेश</span></a></li>
+            <li><a href="../province/madhesh.html"><span class="lang-en">Madhesh Province</span><span class="lang-np">मधेश प्रदेश</span></a></li>
+            <li><a href="../province/bagmati.html"><span class="lang-en">Bagmati Province</span><span class="lang-np">बागमती प्रदेश</span></a></li>
+            <li><a href="../province/gandaki.html"><span class="lang-en">Gandaki Province</span><span class="lang-np">गण्डकी प्रदेश</span></a></li>
+            <li><a href="../province/lumbini.html"><span class="lang-en">Lumbini Province</span><span class="lang-np">लुम्बिनी प्रदेश</span></a></li>
+            <li><a href="../province/karnali.html"><span class="lang-en">Karnali Province</span><span class="lang-np">कर्णाली प्रदेश</span></a></li>
+            <li><a href="../province/sudurpashchim.html"><span class="lang-en">Sudurpashchim Province</span><span class="lang-np">सुदूरपश्चिम प्रदेश</span></a></li>
+          </ul>
+        </li>
+        <li><a href="epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
+        <li><a href="about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
+        <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+        <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडिय</span></a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul>
+      <li><a href="../index.html"><span class="lang-en">Homepage</span><span class="lang-np">गृहपृष्ठ</span></a></li>
+      <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
+      <li><a href="../index.html#economy-section"><span class="lang-en">Economy</span><span class="lang-np">अर्थतन्त्र</span></a></li>
+      <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
+      <li><a href="../index.html#entertainment-section"><span class="lang-en">Entertainment</span><span class="lang-np">मनोरञ्जन</span></a></li>
+      <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
+      <li><a href="../index.html#international-section"><span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span></a></li>
+<li><a href="../index.html#latest-section"><span class="lang-en">Latest News</span><span class="lang-np">ताजा समाचार</span></a></li>
+<li><a href="../index.html#feature-section"><span class="lang-en">Feature News</span><span class="lang-np">विशेष समाचार</span></a></li>
+<li class="mobile-province-parent">
+        <a href="#" id="mobile-province-toggle"><span class="lang-en">Province</span><span class="lang-np">प्रदेश</span> <i class="fa-solid fa-chevron-down"></i></a>
+        <ul class="mobile-province-list" id="mobile-province-list" style="display:none;">
+          <li><a href="../province/koshi.html"><span class="lang-en">Koshi Province</span><span class="lang-np">कोशी प्रदेश</span></a></li>
+          <li><a href="../province/madhesh.html"><span class="lang-en">Madhesh Province</span><span class="lang-np">मधेश प्रदेश</span></a></li>
+          <li><a href="../province/bagmati.html"><span class="lang-en">Bagmati Province</span><span class="lang-np">बागमती प्रदेश</span></a></li>
+          <li><a href="../province/gandaki.html"><span class="lang-en">Gandaki Province</span><span class="lang-np">गण्डकी प्रदेश</span></a></li>
+          <li><a href="../province/lumbini.html"><span class="lang-en">Lumbini Province</span><span class="lang-np">लुम्बिनी प्रदेश</span></a></li>
+          <li><a href="../province/karnali.html"><span class="lang-en">Karnali Province</span><span class="lang-np">कर्णाली प्रदेश</span></a></li>
+          <li><a href="../province/sudurpashchim.html"><span class="lang-en">Sudurpashchim Province</span><span class="lang-np">सुदूरपश्चिम प्रदेश</span></a></li>
+        </ul>
+      </li>
+      <li><a href="epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
+      <li><a href="about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
+      <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+     <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
+    </ul>
+  </div>
+
+<script>
+
+(function () {
+
+  /* ── Load Font Awesome if not already on page ── */
+  (function(){
+    if(!document.querySelector('link[href*="font-awesome"],link[href*="fontawesome"]')){
+      var fa=document.createElement('link');
+      fa.rel='stylesheet';
+      fa.href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+      fa.crossOrigin='anonymous';
+      document.head.appendChild(fa);
+    }
+  })();
+
+  /* ── BS/AD conversion data ── */
+  var _NP_DAYS   = ['आइतबार','सोमबार','मंगलबार','बुधबार','बिहिबार','शुक्रबार','शनिबार'];
+  var _BS_MONTHS = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
+  var _NP_NUMS   = ['०','१','२','३','४','५','६','७','८','९'];
+  var _EN_MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var _EN_DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var _BS_TBL    = {2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],2004:[366,30,32,31,32,31,30,30,30,29,30,29,31],2005:[365,31,31,32,31,31,31,30,29,30,29,30,30],2006:[365,31,31,32,32,31,30,30,29,30,29,30,30],2007:[366,31,32,31,32,31,30,30,30,29,29,30,31],2008:[365,31,31,32,31,31,31,30,29,30,29,30,30],2009:[365,31,31,32,31,31,31,30,29,30,29,30,30],2010:[365,31,31,32,32,31,30,30,29,30,29,30,30],2011:[366,31,32,31,32,31,30,30,30,29,29,30,31],2012:[365,31,31,32,31,31,31,30,29,30,29,30,30],2013:[365,31,31,32,31,31,31,30,29,30,29,30,30],2014:[365,31,31,32,32,31,30,30,29,30,29,30,30],2015:[366,31,32,31,32,31,30,30,30,29,29,30,31],2016:[366,31,31,32,31,31,31,30,29,30,29,30,31],2017:[365,31,31,32,31,31,31,30,29,30,29,30,30],2018:[365,31,31,32,32,31,30,30,29,30,29,30,30],2019:[366,31,32,31,32,31,30,30,30,29,29,30,31],2020:[366,31,31,32,31,31,30,30,29,30,29,30,31],2021:[365,31,31,32,31,31,31,30,29,30,29,30,30],2022:[365,31,31,32,32,31,30,30,29,30,29,30,30],2023:[366,31,32,31,32,31,30,30,30,29,29,30,31],2024:[366,31,31,32,31,31,30,30,29,30,29,30,31],2025:[365,31,31,32,31,31,31,30,29,30,29,30,30],2026:[365,31,31,32,32,31,30,30,29,30,29,30,30],2027:[366,31,32,31,32,31,30,30,30,29,29,30,31],2028:[366,31,32,31,32,31,30,30,30,29,30,29,31],2029:[365,31,31,32,31,31,31,30,29,30,29,30,30],2030:[365,31,31,32,31,31,31,30,29,30,29,30,30],2031:[365,31,31,32,32,31,30,30,29,30,29,30,30],2032:[366,31,32,31,32,31,30,30,30,29,29,30,31],2033:[366,31,31,32,31,31,30,30,29,30,29,30,31],2034:[365,31,31,32,31,31,31,30,29,30,29,30,30],2035:[365,31,31,32,32,31,30,30,29,30,29,30,30],2036:[366,31,32,31,32,31,30,30,30,29,29,30,31],2037:[366,31,32,31,32,31,30,30,30,29,30,29,31],2038:[365,31,31,32,31,31,31,30,29,30,29,30,30],2039:[365,31,31,32,31,31,31,30,29,30,29,30,30],2040:[365,31,31,32,32,31,30,30,29,30,29,30,30],2041:[366,31,32,31,32,31,30,30,30,29,29,30,31],2042:[366,31,31,32,31,31,30,30,29,30,29,30,31],2043:[365,31,31,32,31,31,31,30,29,30,29,30,30],2044:[365,31,31,32,31,31,31,30,29,30,29,30,30],2045:[366,31,32,31,32,31,30,30,30,29,29,30,31],2046:[366,31,32,31,32,31,30,30,30,29,30,29,31],2047:[365,31,31,32,31,31,31,30,29,30,29,30,30],2048:[365,31,31,32,32,31,30,30,29,30,29,30,30],2049:[366,31,32,31,32,31,30,30,30,29,29,30,31],2050:[366,31,32,31,32,31,30,30,30,29,30,29,31],2051:[365,31,31,32,31,31,31,30,29,30,29,30,30],2052:[365,31,31,32,32,31,30,30,29,30,29,30,30],2053:[366,31,32,31,32,31,30,30,30,29,29,30,31],2054:[366,31,32,31,32,31,30,30,30,29,30,29,31],2055:[365,31,31,32,31,31,31,30,29,30,29,30,30],2056:[366,31,31,32,31,31,31,30,29,30,29,30,31],2057:[366,31,31,32,32,31,30,30,29,30,29,30,31],2058:[365,30,32,31,32,31,30,30,30,29,29,30,30],2059:[366,31,32,31,32,31,30,30,30,29,30,29,31],2060:[365,31,31,32,31,31,31,30,29,30,29,30,30],2061:[365,31,31,32,31,31,31,30,29,30,29,30,30],2062:[365,31,31,32,32,31,30,30,29,30,29,30,30],2063:[366,31,32,31,32,31,30,30,30,29,29,30,31],2064:[366,31,31,32,31,31,30,30,29,30,29,30,31],2065:[365,31,31,32,31,31,31,30,29,30,29,30,30],2066:[365,31,31,32,31,31,31,30,29,30,29,30,30],2067:[366,31,32,31,32,31,30,30,30,29,29,30,31],2068:[366,31,32,31,32,31,30,30,30,29,30,29,31],2069:[365,31,31,32,31,31,31,30,29,30,29,30,30],2070:[365,31,31,32,32,31,30,30,29,30,29,30,30],2071:[366,31,32,31,32,31,30,30,30,29,29,30,31],2072:[366,31,32,31,32,31,30,30,30,29,30,29,31],2073:[365,31,31,32,31,31,31,30,29,30,29,30,30],2074:[365,31,31,32,32,31,30,30,29,30,29,30,30],2075:[366,31,32,31,32,31,30,30,30,29,29,30,31],2076:[365,31,32,31,32,31,30,30,30,29,30,29,31],2077:[365,31,31,32,31,31,31,30,29,30,29,30,30],2078:[365,31,31,32,31,31,31,30,29,30,29,30,30],2079:[366,31,32,31,32,31,30,30,30,29,29,30,31],2080:[365,31,32,31,32,31,30,30,30,29,30,29,31],2081:[365,31,31,32,31,31,31,30,29,30,29,30,30],2082:[365,31,31,32,32,31,30,30,29,30,29,30,30],2083:[365,31,31,32,31,31,31,30,29,30,29,30,30],2084:[366,31,32,31,32,31,30,30,30,29,30,29,31],2085:[365,31,31,32,31,31,31,30,29,30,29,30,30],2086:[365,31,31,32,32,31,30,30,29,30,29,30,30],2087:[366,31,32,31,32,31,30,30,30,29,29,30,31],2088:[366,31,32,31,32,31,30,30,30,29,30,29,31],2089:[365,31,31,32,31,31,31,30,29,30,29,30,30],2090:[365,31,31,32,32,31,30,30,29,30,29,30,30]};
+  var _EPOCH = Date.UTC(1943,2,31);
+
+  function _toNp(n){return String(n).split('').map(function(d){var i=parseInt(d,10);return isNaN(i)?d:_NP_NUMS[i];}).join('');}
+  function _adToBs(d){
+    var days=Math.floor((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())-_EPOCH)/86400000);
+    if(days<0)return '';
+    var y=2000;
+    while(true){var yr=_BS_TBL[y];if(!yr||days<yr[0])break;days-=yr[0];y++;}
+    var yr2=_BS_TBL[y];if(!yr2)return '';
+    var mo=1,dy=1;
+    for(var m=1;m<=12;m++){if(days<yr2[m]){mo=m;dy=days+1;break;}days-=yr2[m];}
+    return _NP_DAYS[d.getDay()]+', '+_BS_MONTHS[mo-1]+' '+_toNp(dy)+', '+_toNp(y);
+  }
+
+  function _tick(){
+    var now=new Date();
+    var dtEl=document.getElementById('np-datetime');
+    var clEl=document.getElementById('np-clock');
+    if(dtEl){
+      var bsStr=_adToBs(now);
+      var enStr=_EN_DAYS[now.getDay()]+', '+_EN_MONTHS[now.getMonth()]+' '+now.getDate()+', '+now.getFullYear();
+      dtEl.setAttribute('data-en',enStr);
+      dtEl.setAttribute('data-np',bsStr);
+      var _lang='en';try{_lang=localStorage.getItem('fm_lang')||'en';}catch(e){}
+      dtEl.textContent=(_lang==='np')?bsStr:enStr;
+    }
+    if(clEl){
+      var h=now.getHours(),mi=now.getMinutes(),s=now.getSeconds(),ap=h>=12?'PM':'AM';
+      h=h%12;if(h===0)h=12;
+      clEl.textContent=String(h).padStart(2,'0')+':'+String(mi).padStart(2,'0')+':'+String(s).padStart(2,'0')+' '+ap;
+    }
+  }
+
+  function _init(){
+    var _audio=null,_playing=false,_SK='fmPlayer',_stream='https://live.itech.host:2440/stream';
+    var _playBtn=document.getElementById('play-btn');
+    var _playPath=document.getElementById('play-path');
+    var _waveform=document.getElementById('player-waveform');
+    var _volSlider=document.getElementById('vol-slider');
+    var _volDown=document.getElementById('vol-down-btn');
+    var _volUp=document.getElementById('vol-up-btn');
+    var _hamburger=document.getElementById('hamburger-btn');
+    var _mobMenu=document.getElementById('mobile-menu');
+    var _langBtn=document.getElementById('lang-toggle');
+    var _siteHdr=document.getElementById('site-header');
+    var _provNav=document.getElementById('province-nav');
+    var _provDrop=document.getElementById('province-dropdown');
+    var _mobPTog=document.getElementById('mobile-province-toggle');
+    var _mobPList=document.getElementById('mobile-province-list');
+
+    _tick();
+    setInterval(_tick,1000);
+
+    /* ── Apply stored lang on load ── */
+    (function(){
+      var saved='en';try{saved=localStorage.getItem('fm_lang')||'en';}catch(e){}
+      if(saved==='np'){
+        if(_siteHdr)_siteHdr.classList.add('hdr-np');
+        if(_langBtn)_langBtn.textContent='EN';
+        var dtEl=document.getElementById('np-datetime');
+        if(dtEl&&dtEl.getAttribute('data-np'))dtEl.textContent=dtEl.getAttribute('data-np');
+      }
+    })();
+
+    /* ── Lang toggle ── */
+    if(_langBtn && !_langBtn._hdrBound){
+      _langBtn._hdrBound = true;
+      _langBtn.addEventListener('click',function(){
+        var isNp=_langBtn.textContent.trim()==='NP';
+        var newLang=isNp?'np':'en';
+        try{localStorage.setItem('fm_lang',newLang);}catch(e){}
+        _langBtn.textContent=isNp?'EN':'NP';
+        if(_siteHdr)_siteHdr.classList.toggle('hdr-np',isNp);
+        var dtEl=document.getElementById('np-datetime');
+        if(dtEl)dtEl.textContent=isNp?(dtEl.getAttribute('data-np')||''):(dtEl.getAttribute('data-en')||'');
+        window.dispatchEvent(new CustomEvent('langChange',{detail:{lang:newLang}}));
+      });
+    }
+
+    /* ── Sync lang from external events ── */
+    window.addEventListener('langChange',function(e){
+      if(!e||!e.detail||!e.detail.lang)return;
+      var isNp=e.detail.lang==='np';
+      if(_siteHdr)_siteHdr.classList.toggle('hdr-np',isNp);
+      if(_langBtn)_langBtn.textContent=isNp?'EN':'NP';
+      var dtEl=document.getElementById('np-datetime');
+      if(dtEl)dtEl.textContent=isNp?(dtEl.getAttribute('data-np')||''):(dtEl.getAttribute('data-en')||'');
+    });
+
+    /* ── Scroll shrink ── */
+    window.addEventListener('scroll',function(){
+      if(_siteHdr)_siteHdr.classList.toggle('scrolled',window.scrollY>120);
+    },{passive:true});
+
+    /* ── Hamburger ── */
+    if(_hamburger&&_mobMenu){
+      _hamburger.addEventListener('click',function(){
+        var exp=_hamburger.getAttribute('aria-expanded')==='true';
+        _hamburger.setAttribute('aria-expanded',String(!exp));
+        _mobMenu.classList.toggle('open',!exp);
+        _mobMenu.setAttribute('aria-hidden',String(exp));
+      });
+      _mobMenu.querySelectorAll('a:not(#mobile-province-toggle)').forEach(function(a){
+        a.addEventListener('click',function(){
+          _hamburger.setAttribute('aria-expanded','false');
+          _mobMenu.classList.remove('open');
+          _mobMenu.setAttribute('aria-hidden','true');
+        });
+      });
+    }
+
+    /* ── Province dropdown ── */
+    if(_provNav){
+      var _togLink=_provNav.querySelector('.dropdown-toggle');
+      if(_togLink){
+        _togLink.addEventListener('click',function(e){
+          e.preventDefault();
+          if(window.innerWidth<=960){
+            var isOpen=_provNav.classList.toggle('open');
+            _togLink.setAttribute('aria-expanded',String(isOpen));
+          }
+        });
+      }
+      document.addEventListener('click',function(e){
+        if(!_provNav.contains(e.target)){
+          _provNav.classList.remove('open');
+          if(_togLink)_togLink.setAttribute('aria-expanded','false');
+        }
+      });
+      if(_provDrop){
+        _provDrop.querySelectorAll('a').forEach(function(a){
+          a.addEventListener('click',function(){
+            _provNav.classList.remove('open');
+            if(_togLink)_togLink.setAttribute('aria-expanded','false');
+          });
+        });
+      }
+    }
+
+    /* ── Mobile province sub-list toggle ── */
+    if(_mobPTog&&_mobPList){
+      _mobPTog.addEventListener('click',function(e){
+        e.preventDefault();
+        var hidden=_mobPList.style.display==='none';
+        _mobPList.style.display=hidden?'block':'none';
+        var ico=_mobPTog.querySelector('i');
+        if(ico)ico.style.transform=hidden?'rotate(180deg)':'';
+      });
+    }
+
+    /* ── Volume controls ── */
+    function _updateSlider(v){
+      if(_volSlider)_volSlider.style.background='linear-gradient(to right,var(--hdr-accent) '+v+'%,var(--hdr-border) '+v+'%)';
+    }
+    function _setVol(v){
+      v=Math.max(0,Math.min(100,v));
+      if(_volSlider){_volSlider.value=v;_updateSlider(v);}
+      if(_audio)_audio.volume=v/100;
+      try{var s=JSON.parse(localStorage.getItem(_SK)||'{}');s.vol=v;localStorage.setItem(_SK,JSON.stringify(s));}catch(e){}
+    }
+    function _setPlayingUI(on){
+      if(_playPath)_playPath.setAttribute('d',on?'M6 6h12v12H6z':'M8 5v14l11-7z');
+      if(_playBtn)_playBtn.setAttribute('aria-label',on?'Stop stream':'Play stream');
+      if(_waveform)_waveform.classList.toggle('paused',!on);
+    }
+    function _startPlay(){
+      if(!_audio){
+        _audio=new Audio(_stream);
+        _audio.volume=(_volSlider?_volSlider.value:70)/100;
+        _audio.addEventListener('error',function(){_stopPlay();});
+      }
+      _audio.play().catch(function(e){console.warn('Stream:',e);_stopPlay();});
+      _playing=true;_setPlayingUI(true);
+      try{localStorage.setItem(_SK,JSON.stringify({playing:true,vol:_volSlider?parseInt(_volSlider.value):70}));}catch(e){}
+    }
+    function _stopPlay(){
+      if(_audio){_audio.pause();_audio.src='';_audio=null;}
+      _playing=false;_setPlayingUI(false);
+      try{var s=JSON.parse(localStorage.getItem(_SK)||'{}');s.playing=false;localStorage.setItem(_SK,JSON.stringify(s));}catch(e){}
+    }
+
+    if(_playBtn)_playBtn.addEventListener('click',function(){_playing?_stopPlay():_startPlay();});
+    if(_volDown)_volDown.addEventListener('click',function(){_setVol(parseInt(_volSlider.value)-10);});
+    if(_volUp)_volUp.addEventListener('click',function(){_setVol(parseInt(_volSlider.value)+10);});
+    if(_volSlider)_volSlider.addEventListener('input',function(){
+      _updateSlider(this.value);
+      if(_audio)_audio.volume=this.value/100;
+      try{var s=JSON.parse(localStorage.getItem(_SK)||'{}');s.vol=parseInt(this.value);localStorage.setItem(_SK,JSON.stringify(s));}catch(e){}
+    });
+
+    var _saved={};try{_saved=JSON.parse(localStorage.getItem(_SK)||'{}');}catch(e){}
+    var _initVol=(_saved.vol!=null)?_saved.vol:70;
+    if(_volSlider)_volSlider.value=_initVol;
+    _updateSlider(_initVol);
+    if(_saved.playing){_startPlay();}else{if(_waveform)_waveform.classList.add('paused');}
+  }
+
+  setTimeout(_init, 0);
+
+})();
+
+</script>
+</header>
+
+  <main class="main-content" id="mainContent">
+
+    <!-- COL 1: PDF LIST -->
+    <div class="pdf-list-panel">
+      <div class="panel-heading">
+        <i class="fas fa-newspaper"></i>
+        <span class="lang-en">E-Paper Archive</span>
+        <span class="lang-np">ई-पेपर संग्रह</span>
+        <span class="count-badge">7 <span class="lang-en">Editions</span><span class="lang-np">संस्करण</span></span>
+      </div>
+      <div class="pdf-list" id="pdfList">
+        
+      <div class="pdf-card"
+           data-title="July 14, 2026"
+           onclick="openPDF('https://drive.google.com/file/d/1MLYYDCckRaavJ6LPUOtrJtMfMxcnnMi7/preview', 'July 14, 2026', 'file_1')">
+        <div class="pdf-thumb"><i class="fas fa-file-pdf pdf-icon-fallback"></i></div>
+        <div class="pdf-meta">
+          <div class="pdf-title" data-date-ad="2026-07-14">
+            <span class="date-display">July 14, 2026</span>
+          </div>
+          <div class="pdf-date-label">file_1</div>
+        </div>
+        <div class="pdf-chevron"><i class="fas fa-chevron-right"></i></div>
+      </div>
+      <div class="pdf-card"
+           data-title="July 2, 2026"
+           onclick="openPDF('https://drive.google.com/file/d/11_bL5ZxUqLYCyd8nD1FxRvy1f6EPz5sn/preview', 'July 2, 2026', 'inf0.pdf')">
+        <div class="pdf-thumb"><i class="fas fa-file-pdf pdf-icon-fallback"></i></div>
+        <div class="pdf-meta">
+          <div class="pdf-title" data-date-ad="2026-07-02">
+            <span class="date-display">July 2, 2026</span>
+          </div>
+          <div class="pdf-date-label">inf0.pdf</div>
+        </div>
+        <div class="pdf-chevron"><i class="fas fa-chevron-right"></i></div>
+      </div>
+      <div class="pdf-card"
+           data-title="July 1, 2026"
+           onclick="openPDF('https://drive.google.com/file/d/1ZHhuuCIcAIpdj-ikKT7ufxJkQ9OAj8nB/preview', 'July 1, 2026', '2026-july-01.pdf')">
+        <div class="pdf-thumb"><i class="fas fa-file-pdf pdf-icon-fallback"></i></div>
+        <div class="pdf-meta">
+          <div class="pdf-title" data-date-ad="2026-07-01">
+            <span class="date-display">July 1, 2026</span>
+          </div>
+          <div class="pdf-date-label">2026-july-01.pdf</div>
+        </div>
+        <div class="pdf-chevron"><i class="fas fa-chevron-right"></i></div>
+      </div>
+      <div class="pdf-card"
+           data-title="July 1, 2026"
+           onclick="openPDF('https://drive.google.com/file/d/1E05MbqceHeDE1y_aMMYzuv_Xp14sOulV/preview', 'July 1, 2026', 'setup.pdf')">
+        <div class="pdf-thumb"><i class="fas fa-file-pdf pdf-icon-fallback"></i></div>
+        <div class="pdf-meta">
+          <div class="pdf-title" data-date-ad="2026-07-01">
+            <span class="date-display">July 1, 2026</span>
+          </div>
+          <div class="pdf-date-label">setup.pdf</div>
+        </div>
+        <div class="pdf-chevron"><i class="fas fa-chevron-right"></i></div>
+      </div>
+      <div class="pdf-card"
+           data-title="June 26, 2026"
+           onclick="openPDF('https://drive.google.com/file/d/1Fy3QnpruHrOmt8tLQAsmW9rCEfi6MV1K/preview', 'June 26, 2026', '2026-june-26.pdf')">
+        <div class="pdf-thumb"><i class="fas fa-file-pdf pdf-icon-fallback"></i></div>
+        <div class="pdf-meta">
+          <div class="pdf-title" data-date-ad="2026-06-26">
+            <span class="date-display">June 26, 2026</span>
+          </div>
+          <div class="pdf-date-label">2026-june-26.pdf</div>
+        </div>
+        <div class="pdf-chevron"><i class="fas fa-chevron-right"></i></div>
+      </div>
+      <div class="pdf-card"
+           data-title="June 26, 2026"
+           onclick="openPDF('https://drive.google.com/file/d/18biC4j3Lo9_ZIWLSZElAjmn1U2achuj-/preview', 'June 26, 2026', '2026-june-26.pdf')">
+        <div class="pdf-thumb"><i class="fas fa-file-pdf pdf-icon-fallback"></i></div>
+        <div class="pdf-meta">
+          <div class="pdf-title" data-date-ad="2026-06-26">
+            <span class="date-display">June 26, 2026</span>
+          </div>
+          <div class="pdf-date-label">2026-june-26.pdf</div>
+        </div>
+        <div class="pdf-chevron"><i class="fas fa-chevron-right"></i></div>
+      </div>
+      <div class="pdf-card"
+           data-title="June 26, 2026"
+           onclick="openPDF('https://drive.google.com/file/d/18biC4j3Lo9_ZIWLSZElAjmn1U2achuj-/preview', 'June 26, 2026', 'today')">
+        <div class="pdf-thumb"><i class="fas fa-file-pdf pdf-icon-fallback"></i></div>
+        <div class="pdf-meta">
+          <div class="pdf-title" data-date-ad="2026-06-26">
+            <span class="date-display">June 26, 2026</span>
+          </div>
+          <div class="pdf-date-label">today</div>
+        </div>
+        <div class="pdf-chevron"><i class="fas fa-chevron-right"></i></div>
+      </div>
+      </div>
+      <div class="pdf-pagination" id="pdfPagination"></div>
+    </div>
+
+    <!-- COL 2: PDF VIEWER -->
+    <div class="pdf-viewer-panel" id="pdfViewerPanel">
+      <div class="viewer-placeholder" id="viewerPlaceholder">
+        <i class="fas fa-hand-pointer"></i>
+        <p><span class="lang-en">Select an edition from the list to read it here</span><span class="lang-np">पढ्नको लागि सूचीबाट संस्करण छान्नुहोस्</span></p>
+      </div>
+      <div class="viewer-container" id="viewerContainer">
+        <div class="viewer-topbar">
+          <i class="fas fa-file-pdf"></i>
+          <span class="viewer-title" id="viewerTitle">—</span>
+          <button class="close-btn" onclick="closePDF()" title="Close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="viewer-body" id="viewerBody">
+          <div class="viewer-loading" id="viewerLoading">
+            <i class="fas fa-spinner fa-spin"></i>
+            <span><span class="lang-en">Loading edition…</span><span class="lang-np">लोड हुँदैछ…</span></span>
+          </div>
+          <iframe id="pdfFrame" src="" title="PDF Viewer"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- COL 3: ADS SIDEBAR -->
+    
+    <aside class="ads-panel" id="adsPanel">
+      <div class="ads-label"><span class="lang-en">Advertisement</span><span class="lang-np">विज्ञापन</span></div>
+      
+          <div class="ad-card" data-ad-number="1">
+            <img src="../images/sideads_1.jpg" alt="sideads_1.jpg" loading="lazy" style="pointer-events:none;"
+                 onerror="this.closest('.ad-card').style.display='none'">
+          </div>
+
+          <div class="ad-card" data-ad-number="2">
+            <img src="../images/sideads_2.jpg" alt="sideads_2.jpg" loading="lazy" style="pointer-events:none;"
+                 onerror="this.closest('.ad-card').style.display='none'">
+          </div>
+
+          <div class="ad-card" data-ad-number="3">
+            <img src="../images/sideads_3.jpg" alt="sideads_3.jpg" loading="lazy" style="pointer-events:none;"
+                 onerror="this.closest('.ad-card').style.display='none'">
+          </div>
+
+          <div class="ad-card" data-ad-number="4">
+            <img src="../images/sideads_4.jpg" alt="sideads_4.jpg" loading="lazy" style="pointer-events:none;"
+                 onerror="this.closest('.ad-card').style.display='none'">
+          </div>
+    </aside>
+
+  </main>
+
+  <!-- ADS DEBUG
+  fetchError:        (none)
+  totalRowsFetched:  10
+  allRowNames:       ["section_2.jpg","sideads_2.jpg","sideads_1.jpg","section_3.jpg","section_1.jpg","sideads_3.jpg","sideads_4.jpg","popup.jpg","insection_1.png","insection_2.jpg"]
+  sideadsMatched:    4
+  hasAds:            true
+-->
+
+  <footer id="site-footer">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ALL CSS from PART D */
+    #site-footer { font-family:var(--font-body); }
+
+    /* TOP SECTION */
+    .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
+    .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
+    .footer-col { display:flex; flex-direction:column; gap:10px; }
+    .footer-col-heading { font-size:.82rem; font-weight:800; color:#111; margin:0 0 6px; padding-bottom:8px; border-bottom:2px solid var(--primary); text-transform:uppercase; letter-spacing:.06em; }
+    .footer-company-name { font-weight:700; font-size:.9rem; color:#111; margin:0; }
+    .footer-addr { font-size:.82rem; color:#444; margin:0; line-height:1.6; }
+    .footer-contact-line { font-size:.82rem; color:#444; margin:0; }
+    .footer-link-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+    .footer-link-list li a { font-size:.85rem; color:#333; text-decoration:none; transition:color .2s; display:block; padding:2px 0; }
+    .footer-link-list li a:hover { color:var(--primary); }
+
+    /* BOTTOM BAR */
+    .footer-bottom { background:#d8d8d8; border-top:1px solid #bbb; padding:18px 0; }
+    .footer-bottom-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+    .footer-bottom-brand { display:flex; flex-direction:column; gap:3px; flex-shrink:0; }
+    .footer-site-name { font-size:1rem; font-weight:800; color:#111; }
+    .footer-copy { font-size:.74rem; color:#555; display:flex; align-items:center; gap:4px; }
+    .footer-copy i { font-size:.72rem; }
+    .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { display:flex; flex-direction:column; gap:2px; }
+    .editor-label { font-size:.74rem; color:#555; }
+    .editor-name { font-size:.9rem; font-weight:800; color:#111; display:block; }
+    .editor-phone { font-size:.8rem; color:#333; display:block; margin-top:1px; }
+    .footer-bottom-info { font-size:.78rem; color:#555; max-width:200px; line-height:1.5; }
+    .footer-bottom-social { display:flex; flex-direction:column; gap:6px; align-items:flex-end; }
+    .connect-label { font-size:.78rem; font-weight:700; color:#333; }
+    .footer-social-row { display:flex; gap:10px; align-items:center; }
+    .footer-social-row a { color:#333; font-size:1.1rem; text-decoration:none; transition:color .2s; }
+    .footer-social-row a:hover { color:var(--primary); }
+
+    /* Language */
+    .lang-en { display:inline; }
+    .lang-np { display:none; }
+    body.lang-active .lang-en { display:none; }
+    body.lang-active .lang-np { display:inline; }
+
+    /* Responsive */
+    @media(max-width:1000px){
+      .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; }
+    }
+    @media(max-width:640px){
+      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; }
+      .footer-bottom-inner { flex-direction:column; align-items:flex-start; gap:12px; }
+      .footer-bottom-social { align-items:flex-start; }
+    }
+    @media(max-width:400px){
+      .footer-top-inner { grid-template-columns:1fr; }
+    }
+
+    /* WhatsApp */
+    .wa-widget { position:fixed; bottom:90px; right:24px; z-index:9999; display:flex; align-items:center; gap:10px; flex-direction:row; }
+    .wa-fab { width:52px; height:52px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.7rem; text-decoration:none; box-shadow:0 4px 16px rgba(37,211,102,.4),0 2px 8px rgba(0,0,0,.2); transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; animation:waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both; position:relative; }
+    .wa-fab:hover { transform:scale(1.12) rotate(-6deg); }
+    .wa-fab::after { content:''; position:absolute; inset:0; border-radius:50%; border:3px solid #25D366; animation:waRing 2s ease-out 2s infinite; }
+    .wa-tooltip { background:#fff; color:#111; font-size:.78rem; font-weight:600; padding:5px 12px; border-radius:14px; white-space:nowrap; box-shadow:0 3px 12px rgba(0,0,0,.15); opacity:0; pointer-events:none; transform:translateX(-6px); transition:opacity .2s,transform .2s; }
+    .wa-widget:hover .wa-tooltip { opacity:1; transform:translateX(0); }
+    @keyframes waIn { from{opacity:0;transform:scale(.4) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    @keyframes waRing { 0%{transform:scale(1);opacity:.8} 70%,100%{transform:scale(1.5);opacity:0} }
+    @media(max-width:480px){ .wa-widget{bottom:90px;right:14px;} .wa-fab{width:46px;height:46px;font-size:1.5rem;} }
+
+    /* Add these responsive styles for footer mobile view */
+    @media(max-width:640px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-inner { 
+        flex-direction: column; 
+        align-items: center;
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-social { 
+        align-items: center;
+        width: 100%;
+      }
+      .footer-social-row {
+        justify-content: center;
+      }
+      .footer-col {
+        align-items: center;
+        text-align: center;
+      }
+      .footer-link-list {
+        align-items: center;
+      }
+      .footer-col-heading {
+        text-align: center;
+        width: 100%;
+      }
+      .footer-bottom-brand {
+        align-items: center;
+      }
+      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq {
+        align-items: center;
+      }
+      .footer-bottom-info {
+        max-width: 100%;
+        text-align: center;
+      }
+    }
+    @media(max-width:400px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr; 
+        text-align: center;
+      }
+    }
+  </style>
+
+  <!-- TOP SECTION: multi-column links -->
+  <div class="footer-top">
+    <div class="footer-top-inner">
+
+      <!-- Col 1: Contact -->
+      <div class="footer-col footer-contact-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Contact Address</span>
+          <span class="lang-np">सम्पर्क ठेगाना</span>
+        </h4>
+        <p class="footer-company-name">Shittal Pati</p>
+        <p class="footer-addr">
+          <span class="lang-en">Bhagwati Tole-3, Tansen Palpa, Nepal</span>
+          <span class="lang-np">भगवती टोल-३, तानसेन पाल्पा, नेपाल</span>
+        </p>
+        <p class="footer-contact-line">
+          <span class="lang-en">Phone: +977 9847492226</span>
+          <span class="lang-np">फोन: +९७७ ९८४७४९२२२६</span>
+        </p>
+        <p class="footer-contact-line">
+          <span class="lang-en">Email:</span><span class="lang-np">इमेल:</span> njdnews@gmail.com
+        </p>
+      </div>
+
+      <!-- Col 2: News links -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">News</span>
+          <span class="lang-np">समाचार</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
+          <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
+          <li><a href="../index.html#economy-section"><span class="lang-en">Economy</span><span class="lang-np">अर्थतन्त्र</span></a></li>
+          <li><a href="../index.html#international-section"><span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span></a></li>
+          <li><a href="../index.html#education-section"><span class="lang-en">Education</span><span class="lang-np">शिक्षा</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Entertainment -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Entertainment</span>
+          <span class="lang-np">मनोरञ्जन</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="#entertainment-section"><span class="lang-en">Movies & Music</span><span class="lang-np">चलचित्र र संगीत</span></a></li>
+          <li><a href="#entertainment-section"><span class="lang-en">Arts</span><span class="lang-np">कला</span></a></li>
+          <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Feature -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Feature</span>
+          <span class="lang-np">विशेष</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="../index.html#feature-section"><span class="lang-en">Feature News</span><span class="lang-np">विशेष समाचार</span></a></li>
+          <li><a href="../index.html#latest-section"><span class="lang-en">Latest</span><span class="lang-np">ताजा</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 5: Specials -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Specials</span>
+          <span class="lang-np">विशेष</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 6: About -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">About Us</span>
+          <span class="lang-np">हाम्रोबारे</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="about.html"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></a></li>
+          <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+
+      <div class="footer-bottom-brand">
+        <span class="footer-site-name">Shittal Pati</span>
+        <span class="footer-copy">
+          <i class="fa-regular fa-copyright"></i>
+          <span class="lang-en" id="footer-year-en"></span>
+          <span class="lang-np" id="footer-year-np"></span>
+          Shittal Pati.
+          <span class="lang-en">All Rights Reserved.</span>
+          <span class="lang-np">सर्वाधिकार सुरक्षित।</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-editor">
+        <span class="editor-label"><span class="lang-en">Editor</span><span class="lang-np">सम्पादक</span></span>
+        <span class="editor-name">
+          <span class="lang-en">Jagdish Bhattarai</span>
+          <span class="lang-np">जगदीश भट्टराई</span>
+        </span>
+        <span class="editor-phone">
+          <span class="lang-en">9857060301</span>
+          <span class="lang-np">९८५७०६०३०१</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-sub">
+        <span class="editor-label"><span class="lang-en">Sub-Editor</span><span class="lang-np">सह-सम्पादक</span></span>
+        <span class="editor-name">
+          <span class="lang-en">Ramchandra Rayamajhi</span>
+          <span class="lang-np">रामचन्द्र रायमाझी</span>
+        </span>
+        <span class="editor-phone">
+          <span class="lang-en">9847492226</span>
+          <span class="lang-np">९८४७४९२२२६</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-freq">
+        <span class="editor-label"><span class="lang-en">Frequency</span><span class="lang-np">फ्रिक्वेन्सी</span></span>
+        <span class="editor-name">
+          <span class="lang-en">103.5 MHZ FM</span>
+          <span class="lang-np">१०३.५ मेगाहर्ज एफएम</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-info">
+        <span class="lang-en">Official Website of Janavedana Daily</span>
+        <span class="lang-np">जनवेदना दैनिकको आधिकारिक वेबसाइट</span>
+      </div>
+
+      <div class="footer-bottom-social">
+        <span class="connect-label"><span class="lang-en">Connect with Us</span><span class="lang-np">जोडिनुहोस्</span></span>
+        <div class="footer-social-row">
+          <a href="https://www.facebook.com/nawajanachetana/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/shittalpationline/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded',function(){
+      var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
+      var adYear=new Date().getFullYear();
+      var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
+      var eyEn=document.getElementById('footer-year-en');
+      var eyNp=document.getElementById('footer-year-np');
+      if(eyEn)eyEn.textContent=adYear;
+      if(eyNp)eyNp.textContent=npYear;
+      window.addEventListener('langChange',function(e){
+        if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
+      });
+      var stored=localStorage.getItem('fm_lang')||'en';
+      if(stored==='np')document.body.classList.add('lang-active');
+    });
+  </script>
+
+    <div class="wa-widget">
+    <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
+    <a class="wa-fab" href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20today's%20edition" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+  </div>
+</footer>
+</div>
+
+<script>
+  var pdfData = [{"id":7,"pdf_name":"file_1","pdf_url":"https://drive.google.com/uc?id=1MLYYDCckRaavJ6LPUOtrJtMfMxcnnMi7&export=download","deploy_status":"pending","created_at":"2026-07-14T12:58:00.539Z","upload_date":"2026-07-14T00:00:00.000Z","uploaded_at":"2026-07-14T12:58:00.539Z","updated_at":"2026-07-14T12:58:00.539Z"},{"id":6,"pdf_name":"inf0.pdf","pdf_url":"https://drive.google.com/uc?id=11_bL5ZxUqLYCyd8nD1FxRvy1f6EPz5sn&export=download","deploy_status":"pending","created_at":"2026-07-02T05:35:39.926Z","upload_date":"2026-07-02T00:00:00.000Z","uploaded_at":"2026-07-02T11:20:39.988Z","updated_at":"2026-07-10T17:15:59.269Z"},{"id":4,"pdf_name":"2026-july-01.pdf","pdf_url":"https://drive.google.com/uc?id=1ZHhuuCIcAIpdj-ikKT7ufxJkQ9OAj8nB&export=download","deploy_status":"pending","created_at":"2026-07-01T05:36:50.650Z","upload_date":"2026-07-01T00:00:00.000Z","uploaded_at":"2026-07-01T11:21:50.772Z","updated_at":"2026-07-01T11:21:50.772Z"},{"id":5,"pdf_name":"setup.pdf","pdf_url":"https://drive.google.com/uc?id=1E05MbqceHeDE1y_aMMYzuv_Xp14sOulV&export=download","deploy_status":"pending","created_at":"2026-07-01T05:46:17.614Z","upload_date":"2026-07-01T00:00:00.000Z","uploaded_at":"2026-07-01T11:31:17.660Z","updated_at":"2026-07-01T11:31:17.660Z"},{"id":1,"pdf_name":"2026-june-26.pdf","pdf_url":"https://drive.google.com/uc?id=1Fy3QnpruHrOmt8tLQAsmW9rCEfi6MV1K&export=download","deploy_status":"pending","created_at":"2026-06-26T11:37:26.246Z","upload_date":"2026-06-26T00:00:00.000Z","uploaded_at":"2026-06-26T17:29:12.963Z","updated_at":"2026-06-26T17:29:12.963Z"},{"id":0,"pdf_name":"2026-june-26.pdf","pdf_url":"https://drive.google.com/file/d/18biC4j3Lo9_ZIWLSZElAjmn1U2achuj-/view?usp=drivesdk","deploy_status":"pending","created_at":"2026-06-26T11:56:22.618Z","upload_date":"2026-06-26T00:00:00.000Z","uploaded_at":"2026-06-26T17:41:28.206Z","updated_at":"2026-06-26T17:41:28.206Z"},{"id":2,"pdf_name":"today","pdf_url":"https://drive.google.com/uc?id=18biC4j3Lo9_ZIWLSZElAjmn1U2achuj-&export=download","deploy_status":"pending","created_at":"2026-06-26T11:53:35.743Z","upload_date":"2026-06-26T00:00:00.000Z","uploaded_at":"2026-06-26T17:38:35.794Z","updated_at":"2026-07-12T15:15:13.455Z"}];
+
+  function getEmbeddableUrl(url) {
+    if (!url) return '';
+    var fileId = null;
+    var m = url.match(/[?&]id=([^&]+)/);
+    if (m) fileId = m[1];
+    if (!fileId) {
+      m = url.match(/\/file\/d\/([^/]+)/);
+      if (m) fileId = m[1];
+    }
+    return fileId ? 'https://drive.google.com/file/d/' + fileId + '/preview' : url;
+  }
+
+  function openPDF(url, title, fileName) {
+    var placeholder = document.getElementById('viewerPlaceholder');
+    var container   = document.getElementById('viewerContainer');
+    var frame       = document.getElementById('pdfFrame');
+    var loading     = document.getElementById('viewerLoading');
+    var titleEl     = document.getElementById('viewerTitle');
+
+    titleEl.textContent = title + (fileName ? ' — ' + fileName : '');
+    placeholder.style.display = 'none';
+    container.classList.add('active');
+    frame.src = '';
+    frame.style.opacity = '0';
+    loading.style.display = 'flex';
+
+    setTimeout(function() {
+      frame.src = getEmbeddableUrl(url);
+      frame.onload = function() {
+        loading.style.display = 'none';
+        frame.style.opacity = '1';
+      };
+    }, 250);
+
+    document.querySelectorAll('.pdf-card').forEach(function(card) {
+      card.classList.toggle('active', card.dataset.title === title);
+    });
+
+    if (window.innerWidth <= 860) {
+      document.getElementById('pdfViewerPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  function closePDF() {
+    var placeholder = document.getElementById('viewerPlaceholder');
+    var container   = document.getElementById('viewerContainer');
+    var frame       = document.getElementById('pdfFrame');
+    frame.src = '';
+    container.classList.remove('active');
+    placeholder.style.display = '';
+    document.querySelectorAll('.pdf-card').forEach(function(c) {
+      c.classList.remove('active');
+    });
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closePDF();
+  });
+
+  // ── AD→BS date conversion + language toggle sync (mirrors index page) ──
+  (function(){
+    var BS_MONTHS=['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
+    var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
+    var BS_TBL = {"2000":[365,30,32,31,32,31,30,30,30,29,30,29,31],"2001":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2002":[365,31,31,32,32,31,30,30,29,30,29,30,30],"2003":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2004":[366,30,32,31,32,31,30,30,30,29,30,29,31],"2005":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2006":[365,31,31,32,32,31,30,30,29,30,29,30,30],"2007":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2008":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2009":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2010":[365,31,31,32,32,31,30,30,29,30,29,30,30],"2011":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2012":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2013":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2014":[365,31,31,32,32,31,30,30,29,30,29,30,30],"2015":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2016":[366,31,31,32,31,31,31,30,29,30,29,30,31],"2017":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2018":[365,31,31,32,32,31,30,30,29,30,29,30,30],"2019":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2020":[366,31,31,32,31,31,30,30,29,30,29,30,31],"2021":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2022":[365,31,31,32,32,31,30,30,29,30,29,30,30],"2023":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2024":[366,31,31,32,31,31,30,30,29,30,29,30,31],"2025":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2026":[365,31,31,32,32,31,30,30,29,30,29,30,30],"2027":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2028":[366,31,32,31,32,31,30,30,30,29,30,29,31],"2029":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2030":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2031":[365,31,31,32,32,31,30,30,29,30,29,30,30],"2032":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2033":[366,31,31,32,31,31,30,30,29,30,29,30,31],"2034":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2035":[365,31,31,32,32,31,30,30,29,30,29,30,30],"2036":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2037":[366,31,32,31,32,31,30,30,30,29,30,29,31],"2038":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2039":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2040":[365,31,31,32,32,31,30,30,29,30,29,30,30],"2041":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2042":[366,31,31,32,31,31,30,30,29,30,29,30,31],"2043":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2044":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2045":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2046":[366,31,32,31,32,31,30,30,30,29,30,29,31],"2047":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2048":[365,31,31,32,32,31,30,30,29,30,29,30,30],"2049":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2050":[366,31,32,31,32,31,30,30,30,29,30,29,31],"2051":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2052":[365,31,31,32,32,31,30,30,29,30,29,30,30],"2053":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2054":[366,31,32,31,32,31,30,30,30,29,30,29,31],"2055":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2056":[366,31,31,32,31,31,31,30,29,30,29,30,31],"2057":[366,31,31,32,32,31,30,30,29,30,29,30,31],"2058":[365,30,32,31,32,31,30,30,30,29,29,30,30],"2059":[366,31,32,31,32,31,30,30,30,29,30,29,31],"2060":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2061":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2062":[365,31,31,32,32,31,30,30,29,30,29,30,30],"2063":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2064":[366,31,31,32,31,31,30,30,29,30,29,30,31],"2065":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2066":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2067":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2068":[366,31,32,31,32,31,30,30,30,29,30,29,31],"2069":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2070":[365,31,31,32,32,31,30,30,29,30,29,30,30],"2071":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2072":[366,31,32,31,32,31,30,30,30,29,30,29,31],"2073":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2074":[365,31,31,32,32,31,30,30,29,30,29,30,30],"2075":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2076":[365,31,32,31,32,31,30,30,30,29,30,29,31],"2077":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2078":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2079":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2080":[365,31,32,31,32,31,30,30,30,29,30,29,31],"2081":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2082":[365,31,31,32,32,31,30,30,29,30,29,30,30],"2083":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2084":[366,31,32,31,32,31,30,30,30,29,30,29,31],"2085":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2086":[365,31,31,32,32,31,30,30,29,30,29,30,30],"2087":[366,31,32,31,32,31,30,30,30,29,29,30,31],"2088":[366,31,32,31,32,31,30,30,30,29,30,29,31],"2089":[365,31,31,32,31,31,31,30,29,30,29,30,30],"2090":[365,31,31,32,32,31,30,30,29,30,29,30,30]};
+    var EPOCH=Date.UTC(1943,2,31);
+
+    function toNp(n){return String(n).split('').map(function(d){var i=parseInt(d,10);return isNaN(i)?d:NP_NUMS[i];}).join('');}
+
+    function adToBs(s){
+      if(!s) return '';
+      var d=new Date(s + 'T00:00:00Z');
+      if(isNaN(d.getTime())) return s;
+      var days=Math.floor((Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate())-EPOCH)/86400000);
+      if(days<0) return s;
+      var y=2000;
+      while(true){var yr=BS_TBL[y];if(!yr||days<yr[0])break;days-=yr[0];y++;}
+      var yr2=BS_TBL[y]; if(!yr2) return s;
+      var mo=1,dy=1;
+      for(var m=1;m<=12;m++){if(days<yr2[m]){mo=m;dy=days+1;break;}days-=yr2[m];}
+      return BS_MONTHS[mo-1]+' '+toNp(dy)+', '+toNp(y);
+    }
+
+    var EN_MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    function adDisplay(s){
+      var d=new Date(s + 'T00:00:00Z');
+      if(isNaN(d.getTime())) return s;
+      return EN_MONTHS[d.getUTCMonth()]+' '+d.getUTCDate()+', '+d.getUTCFullYear();
+    }
+
+    function updateDates(isNp){
+      document.querySelectorAll('[data-date-ad]').forEach(function(el){
+        var adStr=el.getAttribute('data-date-ad');
+        var display=el.querySelector('.date-display');
+        if(!display) return;
+        display.textContent = isNp ? adToBs(adStr) : adDisplay(adStr);
+      });
+    }
+
+    // Keep in sync with header's toggle, which dispatches this event
+    window.addEventListener('langChange', function(e){
+      if(e.detail && e.detail.lang){
+        var isNp = e.detail.lang === 'np';
+        updateDates(isNp);
+        document.body.classList.toggle('lang-active', isNp);
+      }
+    });
+
+    var storedLang='en';
+    try{ storedLang = localStorage.getItem('fm_lang') || 'en'; }catch(e){}
+    var initialIsNp = storedLang === 'np';
+    updateDates(initialIsNp);
+    document.body.classList.toggle('lang-active', initialIsNp);
+  })();
+
+  // ── PDF list pagination (5 per page, Google-style) ──
+  (function(){
+    var PAGE_SIZE = 5;
+    var listEl = document.getElementById('pdfList');
+    var pagEl  = document.getElementById('pdfPagination');
+    if (!listEl || !pagEl) return;
+
+    var NP_NUMS = ['०','१','२','३','४','५','६','७','८','९'];
+    function toNpDigits(str){
+      return String(str).split('').map(function(ch){
+        var i = parseInt(ch, 10);
+        return isNaN(i) ? ch : NP_NUMS[i];
+      }).join('');
+    }
+
+    var cards = Array.prototype.slice.call(listEl.querySelectorAll('.pdf-card'));
+    var totalPages = Math.ceil(cards.length / PAGE_SIZE);
+    var currentPage = 1;
+    var isNpActive = document.body.classList.contains('lang-active');
+
+    if (cards.length <= PAGE_SIZE) {
+      pagEl.style.display = 'none';
+      return;
+    }
+
+    function renderPage(page){
+      currentPage = Math.min(Math.max(page, 1), totalPages);
+      cards.forEach(function(card, i){
+        var cardPage = Math.floor(i / PAGE_SIZE) + 1;
+        card.style.display = (cardPage === currentPage) ? '' : 'none';
+      });
+      renderPagination();
+      var listPanel = document.querySelector('.pdf-list-panel');
+      if (listPanel) listPanel.scrollIntoView({ behavior:'smooth', block:'start' });
+    }
+
+    // label = canonical (English-digit) label, e.g. '1', '‹', '›'
+    function pageButton(label, page, opts){
+      opts = opts || {};
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.dataset.enLabel = label;
+      btn.textContent = isNpActive ? toNpDigits(label) : label;
+      if (opts.active) btn.classList.add('active');
+      if (opts.disabled) btn.disabled = true;
+      if (!opts.disabled && !opts.active) {
+        btn.addEventListener('click', function(){ renderPage(page); });
+      }
+      return btn;
+    }
+
+    function ellipsis(){
+      var span = document.createElement('span');
+      span.className = 'pg-ellipsis';
+      span.textContent = '…';
+      return span;
+    }
+
+    function renderPagination(){
+      pagEl.innerHTML = '';
+
+      pagEl.appendChild(pageButton('‹', currentPage - 1, { disabled: currentPage === 1 }));
+
+      var pages = [];
+      var delta = 1;
+      for (var p = 1; p <= totalPages; p++) {
+        if (p === 1 || p === totalPages || (p >= currentPage - delta && p <= currentPage + delta)) {
+          pages.push(p);
+        }
+      }
+
+      var lastShown = 0;
+      pages.forEach(function(p){
+        if (lastShown && p - lastShown > 1) pagEl.appendChild(ellipsis());
+        pagEl.appendChild(pageButton(String(p), p, { active: p === currentPage }));
+        lastShown = p;
+      });
+
+      pagEl.appendChild(pageButton('›', currentPage + 1, { disabled: currentPage === totalPages }));
+    }
+
+    // Keep pagination digits in sync with the header's language toggle
+    window.addEventListener('langChange', function(e){
+      if (!e.detail || !e.detail.lang) return;
+      isNpActive = e.detail.lang === 'np';
+      pagEl.querySelectorAll('button').forEach(function(btn){
+        var label = btn.dataset.enLabel;
+        if (label) btn.textContent = isNpActive ? toNpDigits(label) : label;
+      });
+    });
+
+    renderPage(1);
+  })();
+</script>
+</body>
+</html>

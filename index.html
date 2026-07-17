@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Shittal Pati 103.5 MHZ FM - News</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-10soQD0NlOpd0XQTnfF8spEBdU6F9BiMorT1/Evsqig9w0UecgAnzyJDsbtfpvAC2AMtpRRNDPeXySmxdxjWsw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+
+:root {
+  --hdr-accent:      #D4A017;
+  --hdr-primary:     #A31919;
+  --hdr-primary-on:  #FFFFFF;
+  --hdr-accent-on:   #1F1F1F;
+  --hdr-bg:          #FFFFFF;
+  --hdr-surface:     #F8F8F8;
+  --hdr-text:        #1F1F1F;
+  --hdr-muted:       rgba(31,31,31,0.55);
+  --hdr-border:      rgba(163,25,25,0.18);
+  --hdr-font-body:   sans-serif;
+  --hdr-font-heading:Noto Serif, Georgia, serif;
+}
+
+/* === FIX 1: Header must be position:relative so mobile menu anchors to it === */
+#site-header {
+  position: relative !important;
+  display: block !important;
+}
+
+/* === RESET inside header only — excludes icon elements === */
+#site-header *, #site-header *::before, #site-header *::after {
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: normal !important;
+}
+
+/* Apply font-family only to non-icon elements so Font Awesome is never overridden */
+#site-header *:not(i):not([class*="fa-"]) {
+  font-family: var(--hdr-font-body, sans-serif) !important;
+}
+
+/* === FONT AWESOME ICON PROTECTION === */
+#site-header i[class*="fa-"] {
+  font-style: normal !important;
+  font-variant: normal !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  display: inline-block !important;
+  line-height: 1 !important;
+}
+#site-header i.fa-brands,
+#site-header i[class*="fa-brands"] {
+  font-family: "Font Awesome 6 Brands" !important;
+  font-weight: 400 !important;
+}
+#site-header i.fa-solid,
+#site-header i[class*="fa-solid"] {
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 900 !important;
+}
+#site-header i.fa-regular,
+#site-header i[class*="fa-regular"] {
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 400 !important;
+}
+
+/* === FIX 3: Header-internal lang toggle via .hdr-np class === */
+#site-header .lang-en { display: inline !important; }
+#site-header .lang-np { display: none !important; }
+#site-header.hdr-np .lang-en { display: none !important; }
+#site-header.hdr-np .lang-np { display: inline !important; }
+
+/* === TOP BAR === */
+#site-header .top-bar {
+  background: var(--hdr-surface) !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  overflow: hidden !important;
+  transition: height .3s ease, opacity .3s ease !important;
+}
+#site-header .top-bar-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  height: 38px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+
+/* === SOCIAL ICONS === */
+#site-header .top-social {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  flex-shrink: 0 !important;
+}
+#site-header .top-social a {
+  color: var(--hdr-text) !important;
+  font-size: 1.1rem !important;
+  text-decoration: none !important;
+  transition: color .2s !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 1.4rem !important;
+  height: 1.4rem !important;
+}
+#site-header .top-social a:hover {
+  color: var(--hdr-accent) !important;
+}
+#site-header .top-social a i {
+  font-size: 1.1rem !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* === TOP CENTER === */
+#site-header .top-center {
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  font-size: .8rem !important;
+  color: var(--hdr-text) !important;
+}
+#site-header .top-date,
+#site-header .top-clock {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  white-space: nowrap !important;
+}
+#site-header .top-date i,
+#site-header .top-clock i { opacity: .6 !important; font-size: .78rem !important; }
+#site-header .top-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-shrink: 0 !important;
+}
+
+/* === PLAYER === */
+#site-header .header-player {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  border: 1px solid var(--hdr-border) !important;
+  border-radius: 6px !important;
+  padding: 4px 10px !important;
+  background: var(--hdr-bg) !important;
+}
+#site-header .player-live-badge {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  font-size: .62rem !important;
+  font-weight: 800 !important;
+  color: var(--hdr-accent) !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+#site-header .live-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: #e74c3c !important;
+  animation: hdrLivePulse 1.5s ease-in-out infinite !important;
+  flex-shrink: 0 !important;
+}
+@keyframes hdrLivePulse {
+  0%,100%{ opacity:1; transform:scale(1); }
+  50%{ opacity:.3; transform:scale(.65); }
+}
+#site-header .player-waveform {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+  height: 16px !important;
+}
+#site-header .player-waveform span {
+  display: block !important;
+  width: 2px !important;
+  border-radius: 1px !important;
+  background: var(--hdr-accent) !important;
+  opacity: .65 !important;
+  animation: hdrWaveAnim 1.2s ease-in-out infinite !important;
+}
+#site-header .player-waveform span:nth-child(1){height:4px !important;animation-delay:0s !important;}
+#site-header .player-waveform span:nth-child(2){height:10px !important;animation-delay:.15s !important;}
+#site-header .player-waveform span:nth-child(3){height:14px !important;animation-delay:.3s !important;}
+#site-header .player-waveform span:nth-child(4){height:8px !important;animation-delay:.45s !important;}
+#site-header .player-waveform span:nth-child(5){height:11px !important;animation-delay:.6s !important;}
+@keyframes hdrWaveAnim {
+  0%,100%{ transform:scaleY(.35); }
+  50%{ transform:scaleY(1); }
+}
+#site-header .player-waveform.paused span {
+  animation-play-state: paused !important;
+  opacity: .2 !important;
+}
+#site-header .player-play-btn {
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background: var(--hdr-accent) !important;
+  color: var(--hdr-accent-on) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  transition: opacity .2s, transform .1s !important;
+}
+#site-header .player-play-btn:hover { opacity: .85 !important; }
+#site-header .player-play-btn:active { transform: scale(.9) !important; }
+#site-header .player-vol-wrap {
+  display: flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+}
+#site-header .vol-btn {
+  background: none !important;
+  border: none !important;
+  color: var(--hdr-muted) !important;
+  cursor: pointer !important;
+  padding: 2px !important;
+  display: flex !important;
+  align-items: center !important;
+  transition: color .2s !important;
+  flex-shrink: 0 !important;
+}
+#site-header .vol-btn:hover { color: var(--hdr-accent) !important; }
+#site-header .vol-slider {
+  -webkit-appearance: none !important;
+  width: 56px !important;
+  height: 3px !important;
+  border-radius: 2px !important;
+  outline: none !important;
+  cursor: pointer !important;
+  background: linear-gradient(to right, var(--hdr-accent) 70%, var(--hdr-border) 70%) !important;
+}
+#site-header .vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 50% !important;
+  background: var(--hdr-accent) !important;
+  cursor: pointer !important;
+}
+#site-header .vol-slider::-moz-range-thumb {
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 50% !important;
+  background: var(--hdr-accent) !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+#site-header .lang-toggle {
+  background: var(--hdr-accent) !important;
+  color: var(--hdr-accent-on) !important;
+  border: none !important;
+  border-radius: 3px !important;
+  padding: 3px 10px !important;
+  font-weight: 700 !important;
+  font-size: .72rem !important;
+  cursor: pointer !important;
+  letter-spacing: .05em !important;
+  transition: opacity .2s !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+#site-header .lang-toggle:hover { opacity: .85 !important; }
+
+/* === LOGO BAR === */
+#site-header .logo-bar {
+  background: var(--hdr-surface) !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  padding: 10px 0 !important;
+  transition: padding .3s ease !important;
+}
+#site-header .logo-bar-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: justify-content .3s ease !important;
+}
+#site-header .logo-link {
+  display: flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+}
+#site-header .header-logo {
+  height: 90px !important;
+  width: auto !important;
+  max-width: min(520px, 80vw) !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  display: block !important;
+  transition: height .3s ease, object-position .3s ease !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* === MAIN NAV === */
+#site-header .main-nav {
+  background: var(--hdr-primary) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.22) !important;
+}
+#site-header .main-nav-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+#site-header .nav-list {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  overflow: visible !important;
+}
+#site-header .nav-list li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  display: flex !important;
+  align-items: stretch !important;
+}
+#site-header .nav-list li > a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: .72rem .85rem !important;
+  color: var(--hdr-primary-on) !important;
+  text-decoration: none !important;
+  font-size: .82rem !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  border-bottom: 3px solid transparent !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  transition: background .2s, border-color .2s !important;
+  background: transparent !important;
+}
+#site-header .nav-list li > a:hover,
+#site-header .nav-list li.active > a {
+  background: rgba(0,0,0,.18) !important;
+  border-bottom-color: #fff !important;
+}
+
+/* === DROPDOWN === */
+#site-header .has-dropdown { position: relative !important; }
+#site-header .dropdown-arrow {
+  font-size: .65rem !important;
+  transition: transform .25s !important;
+  margin-left: 2px !important;
+}
+#site-header .has-dropdown:hover .dropdown-arrow,
+#site-header .has-dropdown.open .dropdown-arrow { transform: rotate(180deg) !important; }
+#site-header .dropdown-menu {
+  display: none !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  background: var(--hdr-surface) !important;
+  border: 1px solid var(--hdr-border) !important;
+  border-top: 2px solid var(--hdr-accent) !important;
+  border-radius: 0 0 6px 6px !important;
+  min-width: 220px !important;
+  z-index: 2000 !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.15) !important;
+  list-style: none !important;
+  padding: 4px 0 !important;
+}
+@media (min-width: 961px) {
+  #site-header .has-dropdown:hover .dropdown-menu { display: block !important; }
+}
+@media (max-width: 960px) {
+  #site-header .has-dropdown.open .dropdown-menu { display: block !important; }
+}
+#site-header .dropdown-menu li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+#site-header .dropdown-menu li a {
+  display: block !important;
+  padding: .6rem 1.1rem !important;
+  color: var(--hdr-text) !important;
+  text-decoration: none !important;
+  font-size: .84rem !important;
+  font-weight: 500 !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  transition: background .15s, color .15s !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+}
+#site-header .dropdown-menu li:last-child a { border-bottom: none !important; }
+#site-header .dropdown-menu li a:hover {
+  background: var(--hdr-primary) !important;
+  color: var(--hdr-primary-on) !important;
+}
+
+/* === HAMBURGER === */
+#site-header .nav-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  flex-shrink: 0 !important;
+}
+#site-header .hamburger {
+  display: none !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 6px !important;
+  cursor: pointer !important;
+  width: 40px !important;
+  height: 40px !important;
+  flex-shrink: 0 !important;
+}
+#site-header .bar {
+  display: block !important;
+  width: 20px !important;
+  height: 2px !important;
+  background: var(--hdr-primary-on) !important;
+  border-radius: 2px !important;
+  transition: transform .3s, opacity .3s !important;
+  transform-origin: center !important;
+}
+#site-header .hamburger[aria-expanded="true"] .bar:nth-child(1){transform:translateY(7px) rotate(45deg) !important;}
+#site-header .hamburger[aria-expanded="true"] .bar:nth-child(2){opacity:0 !important;transform:scaleX(0) !important;}
+#site-header .hamburger[aria-expanded="true"] .bar:nth-child(3){transform:translateY(-7px) rotate(-45deg) !important;}
+
+/* === MOBILE MENU === */
+#site-header .mobile-menu {
+  display: none !important;
+  background: var(--hdr-surface) !important;
+  border-top: 2px solid var(--hdr-primary) !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 999 !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.18) !important;
+}
+#site-header .mobile-menu.open { display: block !important; }
+#site-header .mobile-menu ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: .5rem 0 !important;
+}
+#site-header .mobile-menu ul li { margin: 0 !important; padding: 0 !important; }
+#site-header .mobile-menu ul li a {
+  display: block !important;
+  padding: .72rem 1.5rem !important;
+  color: var(--hdr-text) !important;
+  text-decoration: none !important;
+  font-size: .9rem !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  transition: background .2s, color .2s !important;
+  background: transparent !important;
+}
+#site-header .mobile-menu ul li a:hover {
+  background: var(--hdr-primary) !important;
+  color: var(--hdr-primary-on) !important;
+}
+#site-header .mobile-province-list li a {
+  padding-left: 2.5rem !important;
+  font-size: .85rem !important;
+  background: var(--hdr-bg) !important;
+}
+
+/* === SCROLL SHRINK === */
+#site-header.scrolled .top-bar {
+  height: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  border: none !important;
+}
+#site-header.scrolled .logo-bar { padding: 5px 0 !important; }
+#site-header.scrolled .logo-bar-inner { justify-content: flex-start !important; }
+#site-header.scrolled .header-logo { height: 42px !important; object-position: left center !important; }
+
+/* === RESPONSIVE === */
+@media (max-width: 960px) {
+  #site-header .nav-list { display: none !important; }
+  #site-header .hamburger { display: flex !important; }
+  #site-header .top-center { display: none !important; }
+  #site-header .player-vol-wrap { display: none !important; }
+  #site-header .top-bar-inner { padding: 0 12px !important; }
+}
+@media (max-width: 600px) {
+  #site-header .header-logo { height: 58px !important; max-width: 70vw !important; }
+  #site-header .header-player { padding: 3px 7px !important; gap: 4px !important; }
+  #site-header .top-social { gap: 10px !important; }
+  #site-header .logo-bar-inner,
+  #site-header .main-nav-inner { padding: 0 12px !important; }
+  #site-header .top-right { gap: 6px !important; }
+}
+@media (min-width: 961px) {
+  #site-header .hamburger { display: none !important; }
+  #site-header .mobile-menu { display: none !important; }
+  #site-header .nav-list { display: flex !important; }
+}
+@media (max-width: 480px) {
+  #site-header .player-live-badge .live-label { display: none !important; }
+  #site-header .player-waveform { display: none !important; }
+  #site-header .header-player { padding: 2px 5px !important; }
+}
+
+</style>
+<style>
+  /* Global layout resets */
+  * { box-sizing:border-box; }
+  .index-page { background:#FFFFFF; color:#1F1F1F; font-family:Noto Serif, Georgia, serif; min-height:100vh; }
+  .lang-np { display:none; }
+  .lang-en { display:inline; }
+
+  /* ─── SECTION LAYOUT — Shittalpati 2-column style ─────────────────────────────
+     Each named category section = left column (large featured card) + right column (stacked list cards)
+     Latest News section = full-width grid of small cards
+     ─────────────────────────────────────────────────────────────────────────── */
+
+  .news-section { margin:28px 0; border-bottom:1px solid rgba(163,25,25,0.18); padding-bottom:24px; }
+  .news-section:last-child { border-bottom:none; }
+
+  /* Section header with red left-border accent (Shittalpati style) */
+  .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; padding-bottom:8px; border-bottom:2px solid #A31919; }
+  .section-title { font-size:1.15rem; margin:0; color:#A31919; font-family:Noto Serif, Georgia, serif; font-weight:800; display:flex; align-items:center; gap:8px; }
+  .section-title::before { content:''; display:inline-block; width:4px; height:1.1em; background:#D4A017; border-radius:2px; flex-shrink:0; }
+  .view-all-link { font-size:.78rem; font-weight:700; color:#A31919; text-decoration:none; padding:4px 12px; border:1px solid #A31919; border-radius:3px; transition:all .2s; white-space:nowrap; }
+  .view-all-link:hover { background:#A31919; color:#FFFFFF; }
+
+  /* ─── FEATURED + LIST layout for named category sections ─── */
+  /* Left: 1 large featured card | Right: stacked small list cards */
+  .section-grid { display:grid; grid-template-columns:1fr; gap:16px; }
+  .section-grid.has-featured { grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); gap:20px; align-items:start; }
+  @media(max-width:700px) { .section-grid.has-featured { grid-template-columns:1fr; } }
+
+  /* Large featured card (left slot in named sections) */
+  .news-card.featured {
+    background:#F8F8F8;
+    border-radius:4px;
+    overflow:hidden;
+    box-shadow:0 1px 4px rgba(0,0,0,.08);
+    display:block;
+    width:100%;
+    transition:box-shadow .2s;
+  }
+  .news-card.featured:hover { box-shadow:0 4px 16px rgba(0,0,0,.14); }
+  .news-card.featured > a { text-decoration:none; color:#1F1F1F; display:block; }
+  .news-card.featured .card-img { display:block; width:100%; height:220px; position:relative; overflow:hidden; }
+  .news-card.featured .card-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+  .news-card.featured .card-body { padding:12px 14px 14px; }
+  .news-card.featured .card-title { font-size:1.05rem; margin:6px 0 8px; line-height:1.5; color:#1F1F1F; font-family:Noto Serif, Georgia, serif; font-weight:700; }
+  .news-card.featured .card-meta-desc { font-size:.82rem; color:rgba(31,31,31,0.55); margin:0 0 8px; line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+
+  /* Small list card (right stacked slot) */
+  .section-list { display:flex; flex-direction:column; gap:0; }
+  .news-card.latest {
+    background:#F8F8F8;
+    border-bottom:1px solid rgba(163,25,25,0.18);
+    display:block;
+    width:100%;
+    transition:background .15s;
+  }
+  .news-card.latest:last-child { border-bottom:none; }
+  .news-card.latest:hover { background:#f9f9f7; }
+  .news-card.latest > a { text-decoration:none; color:#1F1F1F; display:flex; gap:10px; align-items:flex-start; padding:10px 0; }
+  .news-card.latest .card-img { width:90px; min-width:90px; height:68px; position:relative; overflow:hidden; border-radius:3px; flex-shrink:0; }
+  .news-card.latest .card-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+  .news-card.latest .card-body { flex:1; padding:0; }
+  .news-card.latest .card-title { font-size:.85rem; margin:0 0 5px; line-height:1.45; color:#1F1F1F; font-family:Noto Serif, Georgia, serif; font-weight:700; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+
+  /* Latest News section — full-width grid of list cards */
+  .section-grid.latest-grid { grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:0; }
+  .section-grid.latest-grid .news-card.latest > a { flex-direction:column; padding:0; }
+  .section-grid.latest-grid .news-card.latest .card-img { width:100%; height:160px; min-width:unset; margin-bottom:8px; }
+  .section-grid.latest-grid .news-card.latest .card-body { padding:0 10px 12px; }
+  .section-grid.latest-grid .news-card.latest { border:1px solid rgba(163,25,25,0.18); border-radius:4px; margin:0 0 16px; overflow:hidden; }
+  @media(max-width:600px) { .section-grid.latest-grid { grid-template-columns:1fr 1fr; } }
+  @media(max-width:400px) { .section-grid.latest-grid { grid-template-columns:1fr; } }
+
+  /* Shared card elements */
+  .cat-badge { display:inline-block; background:#A31919; color:#FFFFFF; font-size:.65rem; font-weight:800; padding:2px 8px; border-radius:2px; margin-bottom:6px; text-transform:uppercase; letter-spacing:.06em; }
+  .card-date { font-size:.72rem; color:rgba(31,31,31,0.55); display:flex; align-items:center; gap:4px; margin-top:6px; }
+  .card-read-more { display:inline-flex; align-items:center; gap:4px; font-size:.76rem; font-weight:700; color:#A31919; text-decoration:none; margin-top:8px; }
+  .card-read-more i { font-size:.65rem; transition:transform .15s; }
+  .card-read-more:hover i { transform:translateX(3px); }
+
+  /* ─── BREAKING NEWS TICKER ───────────────────────────────────────────────── */
+  .breaking-bar { background:#A31919; color:#FFFFFF; display:flex; align-items:center; overflow:hidden; height:38px; }
+  .breaking-label { font-weight:800; font-size:.75rem; padding:0 14px; white-space:nowrap; letter-spacing:.1em; border-right:2px solid rgba(255,255,255,0.2); flex-shrink:0; display:flex; align-items:center; gap:6px; background:#D4A017; color:#1F1F1F; height:100%; }
+  .ticker-track { flex:1; overflow:hidden; white-space:nowrap; height:100%; display:flex; align-items:center; }
+  .ticker-inner { display:inline-block; white-space:nowrap; animation:tickerScroll 40s linear infinite; }
+  .ticker-inner:hover { animation-play-state:paused; cursor:pointer; }
+  .ticker-item { display:inline-block; padding:0 28px; font-size:.85rem; font-weight:500; }
+  .ticker-item::before { content:'▶  '; opacity:0.5; font-size:.65rem; }
+  @keyframes tickerScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+  /* ─── CATEGORY FILTER BAR ─────────────────────────────────────────────── */
+  .categories-wrap { background:#F8F8F8; border-bottom:2px solid rgba(163,25,25,0.18); padding:8px 0; overflow:hidden; }
+  .categories-bar { display:flex; flex-direction:row; flex-wrap:nowrap; gap:8px; overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding:4px 16px; width:100%; box-sizing:border-box; }
+  .categories-bar::-webkit-scrollbar { display:none; }
+  .cat-btn { display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; padding:5px 16px; border-radius:4px; border:1px solid rgba(163,25,25,0.18); background:#F8F8F8; color:#1F1F1F; cursor:pointer; font-size:.8rem; white-space:nowrap; transition:all .2s; font-family:inherit; font-weight:600; }
+  .cat-btn.active, .cat-btn:hover { background:#A31919; color:#FFFFFF; border-color:#A31919; }
+
+  /* ─── PAGE CONTAINER ───────────────────────────────────────────────── */
+  .page-container { max-width:1200px; margin:0 auto; padding:0 16px; }
+</style>
+<style>@keyframes popupIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}} #ad-popup-overlay.active{display:flex!important}</style>
+<style>
+    /* ALL CSS from PART D */
+    #site-footer { font-family:var(--font-body); }
+
+    /* TOP SECTION */
+    .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
+    .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
+    .footer-col { display:flex; flex-direction:column; gap:10px; }
+    .footer-col-heading { font-size:.82rem; font-weight:800; color:#111; margin:0 0 6px; padding-bottom:8px; border-bottom:2px solid var(--primary); text-transform:uppercase; letter-spacing:.06em; }
+    .footer-company-name { font-weight:700; font-size:.9rem; color:#111; margin:0; }
+    .footer-addr { font-size:.82rem; color:#444; margin:0; line-height:1.6; }
+    .footer-contact-line { font-size:.82rem; color:#444; margin:0; }
+    .footer-link-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+    .footer-link-list li a { font-size:.85rem; color:#333; text-decoration:none; transition:color .2s; display:block; padding:2px 0; }
+    .footer-link-list li a:hover { color:var(--primary); }
+
+    /* BOTTOM BAR */
+    .footer-bottom { background:#d8d8d8; border-top:1px solid #bbb; padding:18px 0; }
+    .footer-bottom-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+    .footer-bottom-brand { display:flex; flex-direction:column; gap:3px; flex-shrink:0; }
+    .footer-site-name { font-size:1rem; font-weight:800; color:#111; }
+    .footer-copy { font-size:.74rem; color:#555; display:flex; align-items:center; gap:4px; }
+    .footer-copy i { font-size:.72rem; }
+    .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { display:flex; flex-direction:column; gap:2px; }
+    .editor-label { font-size:.74rem; color:#555; }
+    .editor-name { font-size:.9rem; font-weight:800; color:#111; display:block; }
+    .editor-phone { font-size:.8rem; color:#333; display:block; margin-top:1px; }
+    .footer-bottom-info { font-size:.78rem; color:#555; max-width:200px; line-height:1.5; }
+    .footer-bottom-social { display:flex; flex-direction:column; gap:6px; align-items:flex-end; }
+    .connect-label { font-size:.78rem; font-weight:700; color:#333; }
+    .footer-social-row { display:flex; gap:10px; align-items:center; }
+    .footer-social-row a { color:#333; font-size:1.1rem; text-decoration:none; transition:color .2s; }
+    .footer-social-row a:hover { color:var(--primary); }
+
+    /* Language */
+    .lang-en { display:inline; }
+    .lang-np { display:none; }
+    body.lang-active .lang-en { display:none; }
+    body.lang-active .lang-np { display:inline; }
+
+    /* Responsive */
+    @media(max-width:1000px){
+      .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; }
+    }
+    @media(max-width:640px){
+      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; }
+      .footer-bottom-inner { flex-direction:column; align-items:flex-start; gap:12px; }
+      .footer-bottom-social { align-items:flex-start; }
+    }
+    @media(max-width:400px){
+      .footer-top-inner { grid-template-columns:1fr; }
+    }
+
+    /* WhatsApp */
+    .wa-widget { position:fixed; bottom:90px; right:24px; z-index:9999; display:flex; align-items:center; gap:10px; flex-direction:row; }
+    .wa-fab { width:52px; height:52px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.7rem; text-decoration:none; box-shadow:0 4px 16px rgba(37,211,102,.4),0 2px 8px rgba(0,0,0,.2); transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; animation:waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both; position:relative; }
+    .wa-fab:hover { transform:scale(1.12) rotate(-6deg); }
+    .wa-fab::after { content:''; position:absolute; inset:0; border-radius:50%; border:3px solid #25D366; animation:waRing 2s ease-out 2s infinite; }
+    .wa-tooltip { background:#fff; color:#111; font-size:.78rem; font-weight:600; padding:5px 12px; border-radius:14px; white-space:nowrap; box-shadow:0 3px 12px rgba(0,0,0,.15); opacity:0; pointer-events:none; transform:translateX(-6px); transition:opacity .2s,transform .2s; }
+    .wa-widget:hover .wa-tooltip { opacity:1; transform:translateX(0); }
+    @keyframes waIn { from{opacity:0;transform:scale(.4) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    @keyframes waRing { 0%{transform:scale(1);opacity:.8} 70%,100%{transform:scale(1.5);opacity:0} }
+    @media(max-width:480px){ .wa-widget{bottom:90px;right:14px;} .wa-fab{width:46px;height:46px;font-size:1.5rem;} }
+
+    /* Add these responsive styles for footer mobile view */
+    @media(max-width:640px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-inner { 
+        flex-direction: column; 
+        align-items: center;
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-social { 
+        align-items: center;
+        width: 100%;
+      }
+      .footer-social-row {
+        justify-content: center;
+      }
+      .footer-col {
+        align-items: center;
+        text-align: center;
+      }
+      .footer-link-list {
+        align-items: center;
+      }
+      .footer-col-heading {
+        text-align: center;
+        width: 100%;
+      }
+      .footer-bottom-brand {
+        align-items: center;
+      }
+      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq {
+        align-items: center;
+      }
+      .footer-bottom-info {
+        max-width: 100%;
+        text-align: center;
+      }
+    }
+    @media(max-width:400px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr; 
+        text-align: center;
+      }
+    }
+  </style>
+  <style>
+    *,*::before,*::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; padding: 0;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      overflow-x: hidden;
+      background: #FFFFFF;
+      color: #1F1F1F;
+      font-family: 'Hind Siliguri',sans-serif;
+    }
+    main { flex: 1; }
+    img, video, iframe { max-width: 100%; height: auto; }
+
+    /* ── Language system — body.lang-active class drives everything ── */
+    /* Default: EN visible, NP hidden */
+    .lang-en { display: inline !important; }
+    .lang-np { display: none !important; }
+    div.lang-en, p.lang-en, section.lang-en,
+    h1.lang-en, h2.lang-en, h3.lang-en, h4.lang-en,
+    li.lang-en { display: block !important; }
+    div.lang-np, p.lang-np, section.lang-np,
+    h1.lang-np, h2.lang-np, h3.lang-np, h4.lang-np,
+    li.lang-np { display: none !important; }
+
+    /* When Nepali active — flip */
+    body.lang-active .lang-en { display: none !important; }
+    body.lang-active .lang-np { display: inline !important; }
+    body.lang-active div.lang-np, body.lang-active p.lang-np,
+    body.lang-active section.lang-np, body.lang-active h1.lang-np,
+    body.lang-active h2.lang-np, body.lang-active h3.lang-np,
+    body.lang-active h4.lang-np, body.lang-active li.lang-np { display: block !important; }
+    body.lang-active div.lang-en, body.lang-active p.lang-en,
+    body.lang-active section.lang-en, body.lang-active h1.lang-en,
+    body.lang-active h2.lang-en, body.lang-active h3.lang-en,
+    body.lang-active h4.lang-en, body.lang-active li.lang-en { display: none !important; }
+
+  </style>
+</head>
+<body>
+  <header id="site-header">
+
+
+
+  <!-- TIER 1: Top utility bar -->
+  <div class="top-bar" id="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-social">
+          <a href="https://www.facebook.com/nawajanachetana/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/shittalpationline/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+      <div class="top-center">
+        <span class="top-date"><i class="fa-regular fa-calendar"></i> <span id="np-datetime">Loading...</span></span>
+        <span class="top-clock"><i class="fa-regular fa-clock"></i> <span id="np-clock">00:00:00 AM</span></span>
+      </div>
+      <div class="top-right">
+        <div class="header-player" id="header-player">
+          <div class="player-live-badge">
+            <span class="live-dot"></span>
+            <span class="live-label">LIVE</span>
+          </div>
+          <div class="player-waveform" id="player-waveform">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <button class="player-play-btn" id="play-btn" aria-label="Play stream">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path id="play-path" d="M8 5v14l11-7z"/></svg>
+          </button>
+          <div class="player-vol-wrap">
+            <button class="vol-btn" id="vol-down-btn"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z"/></svg></button>
+            <input type="range" class="vol-slider" id="vol-slider" min="0" max="100" value="70">
+            <button class="vol-btn" id="vol-up-btn"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
+          </div>
+        </div>
+        <button class="lang-toggle" id="lang-toggle">NP</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIER 2: Logo bar -->
+  <div class="logo-bar" id="logo-bar">
+    <div class="logo-bar-inner">
+      <a href="index.html" class="logo-link" aria-label="Home">
+        <img src="images/logo.png" alt="Logo" class="header-logo" id="header-logo" onerror="this.style.display='none'">
+      </a>
+    </div>
+  </div>
+
+  <!-- TIER 3: Sticky nav -->
+  <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+    <div class="main-nav-inner">
+      <ul class="nav-list" id="nav-list">
+        <li class="active"><a href="index.html"><span class="lang-en">Homepage</span><span class="lang-np">गृहपृष्ठ</span></a></li>
+        <li><a href="#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
+        <li><a href="#economy-section"><span class="lang-en">Economy</span><span class="lang-np">अर्थ</span></a></li>
+        <li><a href="#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
+        <li><a href="#entertainment-section"><span class="lang-en">Entertainment</span><span class="lang-np">मनोरञ्जन</span></a></li>
+        <li><a href="#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
+        <li><a href="#international-section"><span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span></a></li>
+        <li class="has-dropdown" id="province-nav">
+          <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            <span class="lang-en">Province</span><span class="lang-np">प्रदेश</span>
+            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+          </a>
+          <ul class="dropdown-menu" id="province-dropdown">
+            <li><a href="province/koshi.html"><span class="lang-en">Koshi Province</span><span class="lang-np">कोशी प्रदेश</span></a></li>
+            <li><a href="province/madhesh.html"><span class="lang-en">Madhesh Province</span><span class="lang-np">मधेश प्रदेश</span></a></li>
+            <li><a href="province/bagmati.html"><span class="lang-en">Bagmati Province</span><span class="lang-np">बागमती प्रदेश</span></a></li>
+            <li><a href="province/gandaki.html"><span class="lang-en">Gandaki Province</span><span class="lang-np">गण्डकी प्रदेश</span></a></li>
+            <li><a href="province/lumbini.html"><span class="lang-en">Lumbini Province</span><span class="lang-np">लुम्बिनी प्रदेश</span></a></li>
+            <li><a href="province/karnali.html"><span class="lang-en">Karnali Province</span><span class="lang-np">कर्णाली प्रदेश</span></a></li>
+            <li><a href="province/sudurpashchim.html"><span class="lang-en">Sudurpashchim Province</span><span class="lang-np">सुदूरपश्चिम प्रदेश</span></a></li>
+          </ul>
+        </li>
+        <li><a href="page/epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
+        <li><a href="page/about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
+        <li><a href="page/contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+        <li><a href="page/video.html"><span class="lang-en">Video</span><span class="lang-np">भिडिय</span></a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul>
+      <li><a href="index.html"><span class="lang-en">Homepage</span><span class="lang-np">गृहपृष्ठ</span></a></li>
+      <li><a href="#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
+      <li><a href="#economy-section"><span class="lang-en">Economy</span><span class="lang-np">अर्थतन्त्र</span></a></li>
+      <li><a href="#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
+      <li><a href="#entertainment-section"><span class="lang-en">Entertainment</span><span class="lang-np">मनोरञ्जन</span></a></li>
+      <li><a href="#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
+      <li><a href="#international-section"><span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span></a></li>
+<li><a href="#latest-section"><span class="lang-en">Latest News</span><span class="lang-np">ताजा समाचार</span></a></li>
+<li><a href="#feature-section"><span class="lang-en">Feature News</span><span class="lang-np">विशेष समाचार</span></a></li>
+<li class="mobile-province-parent">
+        <a href="#" id="mobile-province-toggle"><span class="lang-en">Province</span><span class="lang-np">प्रदेश</span> <i class="fa-solid fa-chevron-down"></i></a>
+        <ul class="mobile-province-list" id="mobile-province-list" style="display:none;">
+          <li><a href="province/koshi.html"><span class="lang-en">Koshi Province</span><span class="lang-np">कोशी प्रदेश</span></a></li>
+          <li><a href="province/madhesh.html"><span class="lang-en">Madhesh Province</span><span class="lang-np">मधेश प्रदेश</span></a></li>
+          <li><a href="province/bagmati.html"><span class="lang-en">Bagmati Province</span><span class="lang-np">बागमती प्रदेश</span></a></li>
+          <li><a href="province/gandaki.html"><span class="lang-en">Gandaki Province</span><span class="lang-np">गण्डकी प्रदेश</span></a></li>
+          <li><a href="province/lumbini.html"><span class="lang-en">Lumbini Province</span><span class="lang-np">लुम्बिनी प्रदेश</span></a></li>
+          <li><a href="province/karnali.html"><span class="lang-en">Karnali Province</span><span class="lang-np">कर्णाली प्रदेश</span></a></li>
+          <li><a href="province/sudurpashchim.html"><span class="lang-en">Sudurpashchim Province</span><span class="lang-np">सुदूरपश्चिम प्रदेश</span></a></li>
+        </ul>
+      </li>
+      <li><a href="page/epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
+      <li><a href="page/about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
+      <li><a href="page/contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+     <li><a href="page/video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
+    </ul>
+  </div>
+
+
+</header>
+  <main><div class="breaking-bar">
+  <span class="breaking-label">
+    <i class="fas fa-bolt"></i>
+    <span class="lang-en">BREAKING</span>
+    <span class="lang-np">ताजा</span>
+  </span>
+  <div class="ticker-track">
+    <div id="breaking-ticker" class="ticker-inner">
+      <span class="ticker-item">Loading...</span>
+    </div>
+  </div>
+</div>
+
+<div class="categories-wrap">
+  <div class="categories-bar" id="cat-bar">
+    <button class="cat-btn active" data-cat="All" type="button">
+      <span class="lang-en">All</span><span class="lang-np">सबै</span>
+    </button>
+    <button class="cat-btn" data-cat="Politics" type="button">
+      <span class="lang-en">Politics</span><span class="lang-np">राजनीति</span>
+    </button>
+    <button class="cat-btn" data-cat="Sports" type="button">
+      <span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span>
+    </button>
+    <button class="cat-btn" data-cat="Economy" type="button">
+      <span class="lang-en">Economy</span><span class="lang-np">अर्थतन्त्र</span>
+    </button>
+    <button class="cat-btn" data-cat="Entertainment" type="button">
+      <span class="lang-en">Entertainment</span><span class="lang-np">मनोरञ्जन</span>
+    </button>
+    <button class="cat-btn" data-cat="Technology" type="button">
+      <span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span>
+    </button>
+    <button class="cat-btn" data-cat="Education" type="button">
+      <span class="lang-en">Education</span><span class="lang-np">शिक्षा</span>
+    </button>
+    <button class="cat-btn" data-cat="International" type="button">
+      <span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span>
+    </button>
+    <button class="cat-btn" data-cat="Feature News" type="button">
+      <span class="lang-en">Feature</span><span class="lang-np">विशेष</span>
+    </button>
+  </div>
+</div>
+
+<div id="sections-container" class="page-container">
+  <!-- news sections injected here by downstream script -->
+</div>
+
+
+<!-- POPUP AD -->
+<div id="ad-popup-overlay" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:16px;box-sizing:border-box;"><div style="position:relative;max-width:740px;width:100%;border-radius:10px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.7);animation:popupIn .3s ease both;"><button id="ad-popup-close" style="position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;border:2px solid rgba(255,255,255,.4);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;">&#x2715;</button><img src="images/popup.jpg" alt="Advertisement" style="display:block;width:100%;height:auto;max-height:86vh;object-fit:contain;"></div></div></main>
+  <footer id="site-footer">
+  
+  
+
+  <!-- TOP SECTION: multi-column links -->
+  <div class="footer-top">
+    <div class="footer-top-inner">
+
+      <!-- Col 1: Contact -->
+      <div class="footer-col footer-contact-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Contact Address</span>
+          <span class="lang-np">सम्पर्क ठेगाना</span>
+        </h4>
+        <p class="footer-company-name">Shittal Pati</p>
+        <p class="footer-addr">
+          <span class="lang-en">Bhagwati Tole-3, Tansen Palpa, Nepal</span>
+          <span class="lang-np">भगवती टोल-३, तानसेन पाल्पा, नेपाल</span>
+        </p>
+        <p class="footer-contact-line">
+          <span class="lang-en">Phone: +977 9847492226</span>
+          <span class="lang-np">फोन: +९७७ ९८४७४९२२२६</span>
+        </p>
+        <p class="footer-contact-line">
+          <span class="lang-en">Email:</span><span class="lang-np">इमेल:</span> njdnews@gmail.com
+        </p>
+      </div>
+
+      <!-- Col 2: News links -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">News</span>
+          <span class="lang-np">समाचार</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
+          <li><a href="#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
+          <li><a href="#economy-section"><span class="lang-en">Economy</span><span class="lang-np">अर्थतन्त्र</span></a></li>
+          <li><a href="#international-section"><span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span></a></li>
+          <li><a href="#education-section"><span class="lang-en">Education</span><span class="lang-np">शिक्षा</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Entertainment -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Entertainment</span>
+          <span class="lang-np">मनोरञ्जन</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="#entertainment-section"><span class="lang-en">Movies & Music</span><span class="lang-np">चलचित्र र संगीत</span></a></li>
+          <li><a href="#entertainment-section"><span class="lang-en">Arts</span><span class="lang-np">कला</span></a></li>
+          <li><a href="#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Feature -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Feature</span>
+          <span class="lang-np">विशेष</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="#feature-section"><span class="lang-en">Feature News</span><span class="lang-np">विशेष समाचार</span></a></li>
+          <li><a href="#latest-section"><span class="lang-en">Latest</span><span class="lang-np">ताजा</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 5: Specials -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Specials</span>
+          <span class="lang-np">विशेष</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="page/video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 6: About -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">About Us</span>
+          <span class="lang-np">हाम्रोबारे</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="page/about.html"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></a></li>
+          <li><a href="page/contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+
+      <div class="footer-bottom-brand">
+        <span class="footer-site-name">Shittal Pati</span>
+        <span class="footer-copy">
+          <i class="fa-regular fa-copyright"></i>
+          <span class="lang-en" id="footer-year-en"></span>
+          <span class="lang-np" id="footer-year-np"></span>
+          Shittal Pati.
+          <span class="lang-en">All Rights Reserved.</span>
+          <span class="lang-np">सर्वाधिकार सुरक्षित।</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-editor">
+        <span class="editor-label"><span class="lang-en">Editor</span><span class="lang-np">सम्पादक</span></span>
+        <span class="editor-name">
+          <span class="lang-en">Jagdish Bhattarai</span>
+          <span class="lang-np">जगदीश भट्टराई</span>
+        </span>
+        <span class="editor-phone">
+          <span class="lang-en">9857060301</span>
+          <span class="lang-np">९८५७०६०३०१</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-sub">
+        <span class="editor-label"><span class="lang-en">Sub-Editor</span><span class="lang-np">सह-सम्पादक</span></span>
+        <span class="editor-name">
+          <span class="lang-en">Ramchandra Rayamajhi</span>
+          <span class="lang-np">रामचन्द्र रायमाझी</span>
+        </span>
+        <span class="editor-phone">
+          <span class="lang-en">9847492226</span>
+          <span class="lang-np">९८४७४९२२२६</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-freq">
+        <span class="editor-label"><span class="lang-en">Frequency</span><span class="lang-np">फ्रिक्वेन्सी</span></span>
+        <span class="editor-name">
+          <span class="lang-en">103.5 MHZ FM</span>
+          <span class="lang-np">१०३.५ मेगाहर्ज एफएम</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-info">
+        <span class="lang-en">Official Website of Janavedana Daily</span>
+        <span class="lang-np">जनवेदना दैनिकको आधिकारिक वेबसाइट</span>
+      </div>
+
+      <div class="footer-bottom-social">
+        <span class="connect-label"><span class="lang-en">Connect with Us</span><span class="lang-np">जोडिनुहोस्</span></span>
+        <div class="footer-social-row">
+          <a href="https://www.facebook.com/nawajanachetana/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/shittalpationline/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  
+
+  <div class="wa-widget">
+    <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
+    <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  </div>
+</footer>
+  <script>
+
+(function () {
+
+  /* ── Load Font Awesome if not already on page ── */
+  (function(){
+    if(!document.querySelector('link[href*="font-awesome"],link[href*="fontawesome"]')){
+      var fa=document.createElement('link');
+      fa.rel='stylesheet';
+      fa.href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+      fa.crossOrigin='anonymous';
+      document.head.appendChild(fa);
+    }
+  })();
+
+  /* ── BS/AD conversion data ── */
+  var _NP_DAYS   = ['आइतबार','सोमबार','मंगलबार','बुधबार','बिहिबार','शुक्रबार','शनिबार'];
+  var _BS_MONTHS = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
+  var _NP_NUMS   = ['०','१','२','३','४','५','६','७','८','९'];
+  var _EN_MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var _EN_DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var _BS_TBL    = {2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],2004:[366,30,32,31,32,31,30,30,30,29,30,29,31],2005:[365,31,31,32,31,31,31,30,29,30,29,30,30],2006:[365,31,31,32,32,31,30,30,29,30,29,30,30],2007:[366,31,32,31,32,31,30,30,30,29,29,30,31],2008:[365,31,31,32,31,31,31,30,29,30,29,30,30],2009:[365,31,31,32,31,31,31,30,29,30,29,30,30],2010:[365,31,31,32,32,31,30,30,29,30,29,30,30],2011:[366,31,32,31,32,31,30,30,30,29,29,30,31],2012:[365,31,31,32,31,31,31,30,29,30,29,30,30],2013:[365,31,31,32,31,31,31,30,29,30,29,30,30],2014:[365,31,31,32,32,31,30,30,29,30,29,30,30],2015:[366,31,32,31,32,31,30,30,30,29,29,30,31],2016:[366,31,31,32,31,31,31,30,29,30,29,30,31],2017:[365,31,31,32,31,31,31,30,29,30,29,30,30],2018:[365,31,31,32,32,31,30,30,29,30,29,30,30],2019:[366,31,32,31,32,31,30,30,30,29,29,30,31],2020:[366,31,31,32,31,31,30,30,29,30,29,30,31],2021:[365,31,31,32,31,31,31,30,29,30,29,30,30],2022:[365,31,31,32,32,31,30,30,29,30,29,30,30],2023:[366,31,32,31,32,31,30,30,30,29,29,30,31],2024:[366,31,31,32,31,31,30,30,29,30,29,30,31],2025:[365,31,31,32,31,31,31,30,29,30,29,30,30],2026:[365,31,31,32,32,31,30,30,29,30,29,30,30],2027:[366,31,32,31,32,31,30,30,30,29,29,30,31],2028:[366,31,32,31,32,31,30,30,30,29,30,29,31],2029:[365,31,31,32,31,31,31,30,29,30,29,30,30],2030:[365,31,31,32,31,31,31,30,29,30,29,30,30],2031:[365,31,31,32,32,31,30,30,29,30,29,30,30],2032:[366,31,32,31,32,31,30,30,30,29,29,30,31],2033:[366,31,31,32,31,31,30,30,29,30,29,30,31],2034:[365,31,31,32,31,31,31,30,29,30,29,30,30],2035:[365,31,31,32,32,31,30,30,29,30,29,30,30],2036:[366,31,32,31,32,31,30,30,30,29,29,30,31],2037:[366,31,32,31,32,31,30,30,30,29,30,29,31],2038:[365,31,31,32,31,31,31,30,29,30,29,30,30],2039:[365,31,31,32,31,31,31,30,29,30,29,30,30],2040:[365,31,31,32,32,31,30,30,29,30,29,30,30],2041:[366,31,32,31,32,31,30,30,30,29,29,30,31],2042:[366,31,31,32,31,31,30,30,29,30,29,30,31],2043:[365,31,31,32,31,31,31,30,29,30,29,30,30],2044:[365,31,31,32,31,31,31,30,29,30,29,30,30],2045:[366,31,32,31,32,31,30,30,30,29,29,30,31],2046:[366,31,32,31,32,31,30,30,30,29,30,29,31],2047:[365,31,31,32,31,31,31,30,29,30,29,30,30],2048:[365,31,31,32,32,31,30,30,29,30,29,30,30],2049:[366,31,32,31,32,31,30,30,30,29,29,30,31],2050:[366,31,32,31,32,31,30,30,30,29,30,29,31],2051:[365,31,31,32,31,31,31,30,29,30,29,30,30],2052:[365,31,31,32,32,31,30,30,29,30,29,30,30],2053:[366,31,32,31,32,31,30,30,30,29,29,30,31],2054:[366,31,32,31,32,31,30,30,30,29,30,29,31],2055:[365,31,31,32,31,31,31,30,29,30,29,30,30],2056:[366,31,31,32,31,31,31,30,29,30,29,30,31],2057:[366,31,31,32,32,31,30,30,29,30,29,30,31],2058:[365,30,32,31,32,31,30,30,30,29,29,30,30],2059:[366,31,32,31,32,31,30,30,30,29,30,29,31],2060:[365,31,31,32,31,31,31,30,29,30,29,30,30],2061:[365,31,31,32,31,31,31,30,29,30,29,30,30],2062:[365,31,31,32,32,31,30,30,29,30,29,30,30],2063:[366,31,32,31,32,31,30,30,30,29,29,30,31],2064:[366,31,31,32,31,31,30,30,29,30,29,30,31],2065:[365,31,31,32,31,31,31,30,29,30,29,30,30],2066:[365,31,31,32,31,31,31,30,29,30,29,30,30],2067:[366,31,32,31,32,31,30,30,30,29,29,30,31],2068:[366,31,32,31,32,31,30,30,30,29,30,29,31],2069:[365,31,31,32,31,31,31,30,29,30,29,30,30],2070:[365,31,31,32,32,31,30,30,29,30,29,30,30],2071:[366,31,32,31,32,31,30,30,30,29,29,30,31],2072:[366,31,32,31,32,31,30,30,30,29,30,29,31],2073:[365,31,31,32,31,31,31,30,29,30,29,30,30],2074:[365,31,31,32,32,31,30,30,29,30,29,30,30],2075:[366,31,32,31,32,31,30,30,30,29,29,30,31],2076:[365,31,32,31,32,31,30,30,30,29,30,29,31],2077:[365,31,31,32,31,31,31,30,29,30,29,30,30],2078:[365,31,31,32,31,31,31,30,29,30,29,30,30],2079:[366,31,32,31,32,31,30,30,30,29,29,30,31],2080:[365,31,32,31,32,31,30,30,30,29,30,29,31],2081:[365,31,31,32,31,31,31,30,29,30,29,30,30],2082:[365,31,31,32,32,31,30,30,29,30,29,30,30],2083:[365,31,31,32,31,31,31,30,29,30,29,30,30],2084:[366,31,32,31,32,31,30,30,30,29,30,29,31],2085:[365,31,31,32,31,31,31,30,29,30,29,30,30],2086:[365,31,31,32,32,31,30,30,29,30,29,30,30],2087:[366,31,32,31,32,31,30,30,30,29,29,30,31],2088:[366,31,32,31,32,31,30,30,30,29,30,29,31],2089:[365,31,31,32,31,31,31,30,29,30,29,30,30],2090:[365,31,31,32,32,31,30,30,29,30,29,30,30]};
+  var _EPOCH = Date.UTC(1943,2,31);
+
+  function _toNp(n){return String(n).split('').map(function(d){var i=parseInt(d,10);return isNaN(i)?d:_NP_NUMS[i];}).join('');}
+  function _adToBs(d){
+    var days=Math.floor((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())-_EPOCH)/86400000);
+    if(days<0)return '';
+    var y=2000;
+    while(true){var yr=_BS_TBL[y];if(!yr||days<yr[0])break;days-=yr[0];y++;}
+    var yr2=_BS_TBL[y];if(!yr2)return '';
+    var mo=1,dy=1;
+    for(var m=1;m<=12;m++){if(days<yr2[m]){mo=m;dy=days+1;break;}days-=yr2[m];}
+    return _NP_DAYS[d.getDay()]+', '+_BS_MONTHS[mo-1]+' '+_toNp(dy)+', '+_toNp(y);
+  }
+
+  function _tick(){
+    var now=new Date();
+    var dtEl=document.getElementById('np-datetime');
+    var clEl=document.getElementById('np-clock');
+    if(dtEl){
+      var bsStr=_adToBs(now);
+      var enStr=_EN_DAYS[now.getDay()]+', '+_EN_MONTHS[now.getMonth()]+' '+now.getDate()+', '+now.getFullYear();
+      dtEl.setAttribute('data-en',enStr);
+      dtEl.setAttribute('data-np',bsStr);
+      var _lang='en';try{_lang=localStorage.getItem('fm_lang')||'en';}catch(e){}
+      dtEl.textContent=(_lang==='np')?bsStr:enStr;
+    }
+    if(clEl){
+      var h=now.getHours(),mi=now.getMinutes(),s=now.getSeconds(),ap=h>=12?'PM':'AM';
+      h=h%12;if(h===0)h=12;
+      clEl.textContent=String(h).padStart(2,'0')+':'+String(mi).padStart(2,'0')+':'+String(s).padStart(2,'0')+' '+ap;
+    }
+  }
+
+  function _init(){
+    var _audio=null,_playing=false,_SK='fmPlayer',_stream='https://live.itech.host:2440/stream';
+    var _playBtn=document.getElementById('play-btn');
+    var _playPath=document.getElementById('play-path');
+    var _waveform=document.getElementById('player-waveform');
+    var _volSlider=document.getElementById('vol-slider');
+    var _volDown=document.getElementById('vol-down-btn');
+    var _volUp=document.getElementById('vol-up-btn');
+    var _hamburger=document.getElementById('hamburger-btn');
+    var _mobMenu=document.getElementById('mobile-menu');
+    var _langBtn=document.getElementById('lang-toggle');
+    var _siteHdr=document.getElementById('site-header');
+    var _provNav=document.getElementById('province-nav');
+    var _provDrop=document.getElementById('province-dropdown');
+    var _mobPTog=document.getElementById('mobile-province-toggle');
+    var _mobPList=document.getElementById('mobile-province-list');
+
+    _tick();
+    setInterval(_tick,1000);
+
+    /* ── Apply stored lang on load ── */
+    (function(){
+      var saved='en';try{saved=localStorage.getItem('fm_lang')||'en';}catch(e){}
+      if(saved==='np'){
+        if(_siteHdr)_siteHdr.classList.add('hdr-np');
+        if(_langBtn)_langBtn.textContent='EN';
+        var dtEl=document.getElementById('np-datetime');
+        if(dtEl&&dtEl.getAttribute('data-np'))dtEl.textContent=dtEl.getAttribute('data-np');
+      }
+    })();
+
+    /* ── Lang toggle ── */
+    if(_langBtn && !_langBtn._hdrBound){
+      _langBtn._hdrBound = true;
+      _langBtn.addEventListener('click',function(){
+        var isNp=_langBtn.textContent.trim()==='NP';
+        var newLang=isNp?'np':'en';
+        try{localStorage.setItem('fm_lang',newLang);}catch(e){}
+        _langBtn.textContent=isNp?'EN':'NP';
+        if(_siteHdr)_siteHdr.classList.toggle('hdr-np',isNp);
+        var dtEl=document.getElementById('np-datetime');
+        if(dtEl)dtEl.textContent=isNp?(dtEl.getAttribute('data-np')||''):(dtEl.getAttribute('data-en')||'');
+        window.dispatchEvent(new CustomEvent('langChange',{detail:{lang:newLang}}));
+      });
+    }
+
+    /* ── Sync lang from external events ── */
+    window.addEventListener('langChange',function(e){
+      if(!e||!e.detail||!e.detail.lang)return;
+      var isNp=e.detail.lang==='np';
+      if(_siteHdr)_siteHdr.classList.toggle('hdr-np',isNp);
+      if(_langBtn)_langBtn.textContent=isNp?'EN':'NP';
+      var dtEl=document.getElementById('np-datetime');
+      if(dtEl)dtEl.textContent=isNp?(dtEl.getAttribute('data-np')||''):(dtEl.getAttribute('data-en')||'');
+    });
+
+    /* ── Scroll shrink ── */
+    window.addEventListener('scroll',function(){
+      if(_siteHdr)_siteHdr.classList.toggle('scrolled',window.scrollY>120);
+    },{passive:true});
+
+    /* ── Hamburger ── */
+    if(_hamburger&&_mobMenu){
+      _hamburger.addEventListener('click',function(){
+        var exp=_hamburger.getAttribute('aria-expanded')==='true';
+        _hamburger.setAttribute('aria-expanded',String(!exp));
+        _mobMenu.classList.toggle('open',!exp);
+        _mobMenu.setAttribute('aria-hidden',String(exp));
+      });
+      _mobMenu.querySelectorAll('a:not(#mobile-province-toggle)').forEach(function(a){
+        a.addEventListener('click',function(){
+          _hamburger.setAttribute('aria-expanded','false');
+          _mobMenu.classList.remove('open');
+          _mobMenu.setAttribute('aria-hidden','true');
+        });
+      });
+    }
+
+    /* ── Province dropdown ── */
+    if(_provNav){
+      var _togLink=_provNav.querySelector('.dropdown-toggle');
+      if(_togLink){
+        _togLink.addEventListener('click',function(e){
+          e.preventDefault();
+          if(window.innerWidth<=960){
+            var isOpen=_provNav.classList.toggle('open');
+            _togLink.setAttribute('aria-expanded',String(isOpen));
+          }
+        });
+      }
+      document.addEventListener('click',function(e){
+        if(!_provNav.contains(e.target)){
+          _provNav.classList.remove('open');
+          if(_togLink)_togLink.setAttribute('aria-expanded','false');
+        }
+      });
+      if(_provDrop){
+        _provDrop.querySelectorAll('a').forEach(function(a){
+          a.addEventListener('click',function(){
+            _provNav.classList.remove('open');
+            if(_togLink)_togLink.setAttribute('aria-expanded','false');
+          });
+        });
+      }
+    }
+
+    /* ── Mobile province sub-list toggle ── */
+    if(_mobPTog&&_mobPList){
+      _mobPTog.addEventListener('click',function(e){
+        e.preventDefault();
+        var hidden=_mobPList.style.display==='none';
+        _mobPList.style.display=hidden?'block':'none';
+        var ico=_mobPTog.querySelector('i');
+        if(ico)ico.style.transform=hidden?'rotate(180deg)':'';
+      });
+    }
+
+    /* ── Volume controls ── */
+    function _updateSlider(v){
+      if(_volSlider)_volSlider.style.background='linear-gradient(to right,var(--hdr-accent) '+v+'%,var(--hdr-border) '+v+'%)';
+    }
+    function _setVol(v){
+      v=Math.max(0,Math.min(100,v));
+      if(_volSlider){_volSlider.value=v;_updateSlider(v);}
+      if(_audio)_audio.volume=v/100;
+      try{var s=JSON.parse(localStorage.getItem(_SK)||'{}');s.vol=v;localStorage.setItem(_SK,JSON.stringify(s));}catch(e){}
+    }
+    function _setPlayingUI(on){
+      if(_playPath)_playPath.setAttribute('d',on?'M6 6h12v12H6z':'M8 5v14l11-7z');
+      if(_playBtn)_playBtn.setAttribute('aria-label',on?'Stop stream':'Play stream');
+      if(_waveform)_waveform.classList.toggle('paused',!on);
+    }
+    function _startPlay(){
+      if(!_audio){
+        _audio=new Audio(_stream);
+        _audio.volume=(_volSlider?_volSlider.value:70)/100;
+        _audio.addEventListener('error',function(){_stopPlay();});
+      }
+      _audio.play().catch(function(e){console.warn('Stream:',e);_stopPlay();});
+      _playing=true;_setPlayingUI(true);
+      try{localStorage.setItem(_SK,JSON.stringify({playing:true,vol:_volSlider?parseInt(_volSlider.value):70}));}catch(e){}
+    }
+    function _stopPlay(){
+      if(_audio){_audio.pause();_audio.src='';_audio=null;}
+      _playing=false;_setPlayingUI(false);
+      try{var s=JSON.parse(localStorage.getItem(_SK)||'{}');s.playing=false;localStorage.setItem(_SK,JSON.stringify(s));}catch(e){}
+    }
+
+    if(_playBtn)_playBtn.addEventListener('click',function(){_playing?_stopPlay():_startPlay();});
+    if(_volDown)_volDown.addEventListener('click',function(){_setVol(parseInt(_volSlider.value)-10);});
+    if(_volUp)_volUp.addEventListener('click',function(){_setVol(parseInt(_volSlider.value)+10);});
+    if(_volSlider)_volSlider.addEventListener('input',function(){
+      _updateSlider(this.value);
+      if(_audio)_audio.volume=this.value/100;
+      try{var s=JSON.parse(localStorage.getItem(_SK)||'{}');s.vol=parseInt(this.value);localStorage.setItem(_SK,JSON.stringify(s));}catch(e){}
+    });
+
+    var _saved={};try{_saved=JSON.parse(localStorage.getItem(_SK)||'{}');}catch(e){}
+    var _initVol=(_saved.vol!=null)?_saved.vol:70;
+    if(_volSlider)_volSlider.value=_initVol;
+    _updateSlider(_initVol);
+    if(_saved.playing){_startPlay();}else{if(_waveform)_waveform.classList.add('paused');}
+  }
+
+  setTimeout(_init, 0);
+
+})();
+
+</script>
+<script>
+  function filterByCategory(el, cat) {
+    const catBtns = document.querySelectorAll('.cat-btn');
+    catBtns.forEach(btn => btn.classList.remove('active'));
+    const catBtn = el.querySelector(`[data-cat="${cat}"]`);
+    catBtn.classList.add('active');
+  }
+</script>
+<script>(function(){function show(){var o=document.getElementById('ad-popup-overlay');if(!o)return;o.classList.add('active');o.style.display='flex';function cl(){o.style.display='none';o.classList.remove('active');}document.getElementById('ad-popup-close').addEventListener('click',cl);o.addEventListener('click',function(e){if(e.target===o)cl();});document.addEventListener('keydown',function kh(e){if(e.key==='Escape'){cl();document.removeEventListener('keydown',kh);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(show,200);});}else{setTimeout(show,200);}})();</script>
+<script>
+(function(){
+'use strict';
+
+var SECTIONS_HTML = "\n<section id=\"latest-section\" class=\"news-section\"><div class=\"section-header\"><h2 class=\"section-title\"><span class=\"lang-en\">Latest News</span><span class=\"lang-np\" style=\"display:none\">ताजा समाचार</span></h2></div><div id=\"latest-grid\" class=\"section-grid latest-grid\"></div><div style=\"width:100%;margin:12px 0;text-align:center;\"><a href=\"#\"><img src=\"images/section_1.jpg\" alt=\"Advertisement\" style=\"width:100%;height:auto;display:block;border-radius:4px;\"></a><span class=\"lang-en\" style=\"display:block;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">Advertisement</span><span class=\"lang-np\" style=\"display:none;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">विज्ञापन</span></div></section>\n<section id=\"politics-section\" class=\"news-section\"><div class=\"section-header\"><h2 class=\"section-title\"><span class=\"lang-en\">Politics</span><span class=\"lang-np\" style=\"display:none\">राजनीति</span></h2><a href=\"category/politics.html\" class=\"view-all-link\"><span class=\"lang-en\">More Politics <i class=\"fas fa-arrow-right\" style=\"font-size:.65rem\"></i></span><span class=\"lang-np\" style=\"display:none\">सबै राजनीति <i class=\"fas fa-arrow-right\" style=\"font-size:.65rem\"></i></span></a></div><div id=\"politics-grid\" class=\"section-grid has-featured\"><article class=\"news-card featured\" data-cat=\"Politics\"><a href=\"page/jaybir-deubas-company-is-under-investigation-regarding-the-25-crore-rupees-provided-by-deepak-bhatt.html\"><div class=\"card-img\"><img src=\"images/jaybir-deubas-company-is-under-investigation-regarding-the-25-crore-rupees-provided-by-deepak-bhatt.jpg\" alt=\"Jaybir Deuba&#39;s company is under investigation regarding the 2.5 crore rupees provided by Deepak Bhatt.\" loading=\"lazy\"></div><div class=\"card-body\"><span class=\"cat-badge\"><span class=\"lang-en\">Politics</span><span class=\"lang-np\" style=\"display:none\">राजनीति</span></span><h2 class=\"card-title lang-en\">Jaybir Deuba&#39;s company is under investigation regarding the 2.5 crore rupees provided by Deepak Bhatt.</h2><h2 class=\"card-title lang-np\" style=\"display:none\">जयवीर देउवाको कम्पनीलाई दीपक भट्टले दिएको साढे २ करोडबारे अनुसन्धान जारी</h2><p class=\"card-meta-desc lang-en\">The Assets Investigation Department is investigating the payment of 26 million rupees made by Deepak Bhatt to Jayveer Deuba&#39;s company and is also probing Vishnu Paudel for abuse of position and tax evasion.</p><p class=\"card-meta-desc lang-np\" style=\"display:none\">सम्पत्ति शुद्धीकरण अनुसन्धान विभागले दीपक भट्टले जयवीर देउवाको कम्पनीलाई दिएको २ करोड ६० लाख रुपैयाँ भुक्तानी र विष्णु पौडेलमाथि पद दुरुपयोग तथा कर छुटमा अनुसन्धान गरिरहेको छ।</p><span class=\"card-date\" data-date-ad=\"2026-07-17T00:00:00.000Z\" data-time=\"4:49 PM\"><i class=\"fas fa-clock\"></i><span class=\"date-display\">July 17, 2026, 4:49 PM</span></span><span class=\"card-read-more lang-en\">Read more <i class=\"fas fa-arrow-right\"></i></span><span class=\"card-read-more lang-np\" style=\"display:none\">पूरा पढ्नुहोस् <i class=\"fas fa-arrow-right\"></i></span></div></a></article><div class=\"section-list\"><article class=\"news-card latest\" data-cat=\"Politics\"><a href=\"page/green-card-applicants-may-face-a-100000-deposit-requirement-in-the-us.html\"><div class=\"card-img\"><img src=\"images/green-card-applicants-may-face-a-100000-deposit-requirement-in-the-us.jpg\" alt=\"Green card applicants may face a $100,000 deposit requirement in the US.\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Green card applicants may face a $100,000 deposit requirement in the US.</h3><h3 class=\"card-title lang-np\" style=\"display:none\">ग्रिनकार्ड आवेदकसँग १ लाख डलर धरौटी लिनेबारे अमेरिकामा छलफल</h3><span class=\"card-date\" data-date-ad=\"2026-07-17T00:00:00.000Z\" data-time=\"4:46 PM\"><i class=\"fas fa-clock\"></i><span class=\"date-display\">July 17, 2026, 4:46 PM</span></span></div></a></article></div></div><div style=\"width:100%;margin:12px 0;text-align:center;\"><a href=\"#\"><img src=\"images/section_2.jpg\" alt=\"Advertisement\" style=\"width:100%;height:auto;display:block;border-radius:4px;\"></a><span class=\"lang-en\" style=\"display:block;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">Advertisement</span><span class=\"lang-np\" style=\"display:none;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">विज्ञापन</span></div></section><section id=\"sports-section\" class=\"news-section\" style=\"display:none\"></section><section id=\"economy-section\" class=\"news-section\" style=\"display:none\"></section>\n<section id=\"entertainment-section\" class=\"news-section\"><div class=\"section-header\"><h2 class=\"section-title\"><span class=\"lang-en\">Entertainment</span><span class=\"lang-np\" style=\"display:none\">मनोरञ्जन</span></h2><a href=\"category/entertainment.html\" class=\"view-all-link\"><span class=\"lang-en\">More Entertainment <i class=\"fas fa-arrow-right\" style=\"font-size:.65rem\"></i></span><span class=\"lang-np\" style=\"display:none\">सबै मनोरञ्जन <i class=\"fas fa-arrow-right\" style=\"font-size:.65rem\"></i></span></a></div><div id=\"entertainment-grid\" class=\"section-grid has-featured\"><article class=\"news-card featured\" data-cat=\"Entertainment\"><a href=\"page/the-odyssey-review-a-masterclass-in-sound-and-music.html\"><div class=\"card-img\"><img src=\"images/the-odyssey-review-a-masterclass-in-sound-and-music.jpg\" alt=\"The Odyssey Review: A &#39;Masterclass&#39; in Sound and Music\" loading=\"lazy\"></div><div class=\"card-body\"><span class=\"cat-badge\"><span class=\"lang-en\">Entertainment</span><span class=\"lang-np\" style=\"display:none\">मनोरञ्जन</span></span><h2 class=\"card-title lang-en\">The Odyssey Review: A &#39;Masterclass&#39; in Sound and Music</h2><h2 class=\"card-title lang-np\" style=\"display:none\">द ओडिसी समीक्षा : ध्वनि र संगीतमा ‘मास्टरक्लास’</h2><p class=\"card-meta-desc lang-en\">Christopher Nolan&#39;s directed film &#39;The Odyssey&#39; presents Homer&#39;s Greek epic in a modern style, depicting post-war PTSD and Odysseus&#39; psychological journey.</p><p class=\"card-meta-desc lang-np\" style=\"display:none\">क्रिस्टोफर नोलनद्वारा निर्देशित &#39;द ओडिसी&#39; फिल्मले होमरको ग्रीक महाकाव्यलाई आधुनिक शैलीमा प्रस्तुत गर्दै युद्धपछिको पीटीएसडी र ओडिसियसको मनोवैज्ञानिक यात्रालाई चित्रण गरेको छ।</p><span class=\"card-date\" data-date-ad=\"2026-07-17T00:00:00.000Z\" data-time=\"4:52 PM\"><i class=\"fas fa-clock\"></i><span class=\"date-display\">July 17, 2026, 4:52 PM</span></span><span class=\"card-read-more lang-en\">Read more <i class=\"fas fa-arrow-right\"></i></span><span class=\"card-read-more lang-np\" style=\"display:none\">पूरा पढ्नुहोस् <i class=\"fas fa-arrow-right\"></i></span></div></a></article></div></section><section id=\"technology-section\" class=\"news-section\" style=\"display:none\"></section><section id=\"education-section\" class=\"news-section\" style=\"display:none\"></section><section id=\"international-section\" class=\"news-section\" style=\"display:none\"></section><section id=\"feature-section\" class=\"news-section\" style=\"display:none\"></section>";
+var TICKER_HTML   = "<span class=\"ticker-item\"><span class=\"lang-en\">The Odyssey Review: A &#39;Masterclass&#39; in Sound and Music</span><span class=\"lang-np\" style=\"display:none\">द ओडिसी समीक्षा : ध्वनि र संगीतमा ‘मास्टरक्लास’</span></span><span class=\"ticker-item\"><span class=\"lang-en\">Jaybir Deuba&#39;s company is under investigation regarding the 2.5 crore rupees provided by Deepak Bhatt.</span><span class=\"lang-np\" style=\"display:none\">जयवीर देउवाको कम्पनीलाई दीपक भट्टले दिएको साढे २ करोडबारे अनुसन्धान जारी</span></span><span class=\"ticker-item\"><span class=\"lang-en\">Green card applicants may face a $100,000 deposit requirement in the US.</span><span class=\"lang-np\" style=\"display:none\">ग्रिनकार्ड आवेदकसँग १ लाख डलर धरौटी लिनेबारे अमेरिकामा छलफल</span></span><span class=\"ticker-item\"><span class=\"lang-en\">The Odyssey Review: A &#39;Masterclass&#39; in Sound and Music</span><span class=\"lang-np\" style=\"display:none\">द ओडिसी समीक्षा : ध्वनि र संगीतमा ‘मास्टरक्लास’</span></span><span class=\"ticker-item\"><span class=\"lang-en\">Jaybir Deuba&#39;s company is under investigation regarding the 2.5 crore rupees provided by Deepak Bhatt.</span><span class=\"lang-np\" style=\"display:none\">जयवीर देउवाको कम्पनीलाई दीपक भट्टले दिएको साढे २ करोडबारे अनुसन्धान जारी</span></span><span class=\"ticker-item\"><span class=\"lang-en\">Green card applicants may face a $100,000 deposit requirement in the US.</span><span class=\"lang-np\" style=\"display:none\">ग्रिनकार्ड आवेदकसँग १ लाख डलर धरौटी लिनेबारे अमेरिकामा छलफल</span></span>";
+var CAT_BUTTONS   = "<button class=\"cat-btn active\" data-cat=\"All\" type=\"button\"><span class=\"lang-en\">All</span><span class=\"lang-np\" style=\"display:none\">सबै</span></button><button class=\"cat-btn\" data-cat=\"Politics\" type=\"button\"><span class=\"lang-en\">Politics</span><span class=\"lang-np\" style=\"display:none\">राजनीति</span></button><button class=\"cat-btn\" data-cat=\"Sports\" type=\"button\"><span class=\"lang-en\">Sports</span><span class=\"lang-np\" style=\"display:none\">खेलकुद</span></button><button class=\"cat-btn\" data-cat=\"Economy\" type=\"button\"><span class=\"lang-en\">Economy</span><span class=\"lang-np\" style=\"display:none\">अर्थतन्त्र</span></button><button class=\"cat-btn\" data-cat=\"Entertainment\" type=\"button\"><span class=\"lang-en\">Entertainment</span><span class=\"lang-np\" style=\"display:none\">मनोरञ्जन</span></button><button class=\"cat-btn\" data-cat=\"Technology\" type=\"button\"><span class=\"lang-en\">Technology</span><span class=\"lang-np\" style=\"display:none\">प्रविधि</span></button><button class=\"cat-btn\" data-cat=\"Education\" type=\"button\"><span class=\"lang-en\">Education</span><span class=\"lang-np\" style=\"display:none\">शिक्षा</span></button><button class=\"cat-btn\" data-cat=\"International\" type=\"button\"><span class=\"lang-en\">International</span><span class=\"lang-np\" style=\"display:none\">अन्तर्राष्ट्रिय</span></button><button class=\"cat-btn\" data-cat=\"Feature News\" type=\"button\"><span class=\"lang-en\">Feature News</span><span class=\"lang-np\" style=\"display:none\">विशेष समाचार</span></button>";
+
+// ── AD→BS converter ──────────────────────────────────────────────────────────
+var BS_MONTHS = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
+var NP_NUMS   = ['०','१','२','३','४','५','६','७','८','९'];
+var BS = {
+  2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2004:[366,30,32,31,32,31,30,30,30,29,30,29,31],2005:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2006:[365,31,31,32,32,31,30,30,29,30,29,30,30],2007:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2008:[365,31,31,32,31,31,31,30,29,30,29,30,30],2009:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2010:[365,31,31,32,32,31,30,30,29,30,29,30,30],2011:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2012:[365,31,31,32,31,31,31,30,29,30,29,30,30],2013:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2014:[365,31,31,32,32,31,30,30,29,30,29,30,30],2015:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2016:[366,31,31,32,31,31,31,30,29,30,29,30,31],2017:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2018:[365,31,31,32,32,31,30,30,29,30,29,30,30],2019:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2020:[366,31,31,32,31,31,30,30,29,30,29,30,31],2021:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2022:[365,31,31,32,32,31,30,30,29,30,29,30,30],2023:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2024:[366,31,31,32,31,31,30,30,29,30,29,30,31],2025:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2026:[365,31,31,32,32,31,30,30,29,30,29,30,30],2027:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2028:[366,31,32,31,32,31,30,30,30,29,30,29,31],2029:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2030:[365,31,31,32,31,31,31,30,29,30,29,30,30],2031:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2032:[366,31,32,31,32,31,30,30,30,29,29,30,31],2033:[366,31,31,32,31,31,30,30,29,30,29,30,31],
+  2034:[365,31,31,32,31,31,31,30,29,30,29,30,30],2035:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2036:[366,31,32,31,32,31,30,30,30,29,29,30,31],2037:[366,31,32,31,32,31,30,30,30,29,30,29,31],
+  2038:[365,31,31,32,31,31,31,30,29,30,29,30,30],2039:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2040:[365,31,31,32,32,31,30,30,29,30,29,30,30],2041:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2042:[366,31,31,32,31,31,30,30,29,30,29,30,31],2043:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2044:[365,31,31,32,31,31,31,30,29,30,29,30,30],2045:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2046:[366,31,32,31,32,31,30,30,30,29,30,29,31],2047:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2048:[365,31,31,32,32,31,30,30,29,30,29,30,30],2049:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2050:[366,31,32,31,32,31,30,30,30,29,30,29,31],2051:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2052:[365,31,31,32,32,31,30,30,29,30,29,30,30],2053:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2054:[366,31,32,31,32,31,30,30,30,29,30,29,31],2055:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2056:[366,31,31,32,31,31,31,30,29,30,29,30,31],2057:[366,31,31,32,32,31,30,30,29,30,29,30,31],
+  2058:[365,30,32,31,32,31,30,30,30,29,29,30,30],2059:[366,31,32,31,32,31,30,30,30,29,30,29,31],
+  2060:[365,31,31,32,31,31,31,30,29,30,29,30,30],2061:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2062:[365,31,31,32,32,31,30,30,29,30,29,30,30],2063:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2064:[366,31,31,32,31,31,30,30,29,30,29,30,31],2065:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2066:[365,31,31,32,31,31,31,30,29,30,29,30,30],2067:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2068:[366,31,32,31,32,31,30,30,30,29,30,29,31],2069:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2070:[365,31,31,32,32,31,30,30,29,30,29,30,30],2071:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2072:[366,31,32,31,32,31,30,30,30,29,30,29,31],2073:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2074:[365,31,31,32,32,31,30,30,29,30,29,30,30],2075:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2076:[365,31,32,31,32,31,30,30,30,29,30,29,31],2077:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2078:[365,31,31,32,31,31,31,30,29,30,29,30,30],2079:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2080:[365,31,32,31,32,31,30,30,30,29,30,29,31],2081:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2082:[365,31,31,32,32,31,30,30,29,30,29,30,30],2083:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2084:[366,31,32,31,32,31,30,30,30,29,30,29,31],2085:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2086:[365,31,31,32,32,31,30,30,29,30,29,30,30],2087:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2088:[366,31,32,31,32,31,30,30,30,29,30,29,31],2089:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2090:[365,31,31,32,32,31,30,30,29,30,29,30,30]
+};
+var EPOCH=Date.UTC(1943,2,31);
+function toNp(n){return String(n).split('').map(function(d){var i=parseInt(d,10);return isNaN(i)?d:NP_NUMS[i];}).join('');}
+function adToBs(s){
+  if(!s)return '';
+  var d=new Date(s);
+  if(isNaN(d.getTime()))return s;
+  var days=Math.floor((Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate())-EPOCH)/86400000);
+  if(days<0)return s;
+  var y=2000;
+  while(true){var yr=BS[y];if(!yr||days<yr[0])break;days-=yr[0];y++;}
+  var yr2=BS[y];if(!yr2)return s;
+  var mo=1,dy=1;
+  for(var m=1;m<=12;m++){if(days<yr2[m]){mo=m;dy=days+1;break;}days-=yr2[m];}
+  return toNp(y)+' '+BS_MONTHS[mo-1]+' '+toNp(dy);
+}
+var EN_MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+function updateDates(isNp){
+  document.querySelectorAll('[data-date-ad]').forEach(function(el){
+    var adStr=el.getAttribute('data-date-ad');
+    var rawTime=el.getAttribute('data-time')||'';
+    var display=el.querySelector('.date-display');
+    if(!display)return;
+    if(isNp){
+      display.textContent=adToBs(adStr)+(rawTime?', '+rawTime:'');
+    }else{
+      var d=new Date(adStr);
+      var dateStr=!isNaN(d.getTime())?EN_MONTHS[d.getUTCMonth()]+' '+d.getUTCDate()+', '+d.getUTCFullYear():adStr;
+      display.textContent=dateStr+(rawTime?', '+rawTime:'');
+    }
+  });
+}
+
+// ── Language switcher ─────────────────────────────────────────────────────────
+function applyLang(lang){
+  var np=lang==='np';
+  document.querySelectorAll('.lang-en,.lang-np').forEach(function(el){
+    var isNpEl=el.classList.contains('lang-np');
+    var show=np?isNpEl:!isNpEl;
+    if(!show){el.style.display='none';return;}
+    var tag=el.tagName?el.tagName.toLowerCase():'';
+    var inlineTags=['span','a','i','b','strong','em','label','button','small'];
+    if(el.classList.contains('card-meta-desc')){el.style.display='-webkit-box';}
+    else if(el.classList.contains('card-read-more')){el.style.display='inline-flex';}
+    else if(inlineTags.indexOf(tag)!==-1){el.style.display='inline';}
+    else{el.style.display='block';}
+  });
+  updateDates(np);
+  document.body.classList.toggle('lang-active',np);
+}
+window.addEventListener('langChange',function(e){if(e.detail&&e.detail.lang)applyLang(e.detail.lang);});
+
+// ── Category filter ───────────────────────────────────────────────────────────
+var CAT_TO_SECTION={
+  'Politics':'politics','Sports':'sports','Economy':'economy',
+  'Entertainment':'entertainment','Technology':'technology',
+  'Education':'education','International':'international','Feature News':'feature'
+};
+function stickyHeaderHeight(){
+  var hdr=document.getElementById('site-header')||document.querySelector('header');
+  return hdr?hdr.getBoundingClientRect().height:0;
+}
+function scrollToSection(sectionId){
+  var el=document.getElementById(sectionId+'-section');
+  if(!el)return;
+  var top=el.getBoundingClientRect().top+window.pageYOffset-stickyHeaderHeight()-12;
+  window.scrollTo({top:top,behavior:'smooth'});
+}
+function setupCatFilter(bar){
+  bar.addEventListener('click',function(e){
+    var btn=e.target.closest('.cat-btn');
+    if(!btn)return;
+    bar.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active');});
+    btn.classList.add('active');
+    var cat=btn.dataset.cat;
+    if(cat==='All'){
+      document.querySelectorAll('.news-section').forEach(function(s){s.style.display='';});
+      var sc=document.getElementById('sections-container');
+      if(sc){var top=sc.getBoundingClientRect().top+window.pageYOffset-stickyHeaderHeight()-12;window.scrollTo({top:top,behavior:'smooth'});}
+    }else{
+      var targetSid=CAT_TO_SECTION[cat];
+      document.querySelectorAll('.news-section').forEach(function(s){
+        var sid=s.id?s.id.replace('-section',''):'';
+        s.style.display=(sid===targetSid)?'':'none';
+      });
+      scrollToSection(targetSid);
+    }
+  });
+}
+
+// ── DOM injection ─────────────────────────────────────────────────────────────
+function inject(){
+  var sc=document.getElementById('sections-container');
+  if(sc){
+    sc.innerHTML=SECTIONS_HTML;
+  }else{
+    var wrap=document.createElement('div');
+    wrap.id='sections-container';
+    wrap.className='page-container';
+    wrap.innerHTML=SECTIONS_HTML;
+    (document.querySelector('main')||document.body).appendChild(wrap);
+  }
+
+  var ticker=document.getElementById('breaking-ticker');
+  if(ticker)ticker.innerHTML=TICKER_HTML;
+
+  var sc2=document.getElementById('sections-container');
+  document.querySelectorAll('.categories-wrap,.categories-bar,#cat-bar').forEach(function(el){
+    if(sc2&&sc2.contains(el))return;
+    el.style.display='none';
+    el.setAttribute('aria-hidden','true');
+  });
+
+  var barWrap=document.createElement('div');
+  barWrap.className='categories-wrap';
+  barWrap.style.cssText='background:inherit;border-bottom:2px solid rgba(0,0,0,.08);padding:8px 0;overflow:hidden;';
+  var bar=document.createElement('div');
+  bar.id='categories-bar';
+  bar.className='categories-bar';
+  bar.style.cssText='display:flex;flex-direction:row;flex-wrap:nowrap;gap:8px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 16px;width:100%;box-sizing:border-box;';
+  bar.innerHTML=CAT_BUTTONS;
+  barWrap.appendChild(bar);
+  if(sc2&&sc2.parentNode){sc2.parentNode.insertBefore(barWrap,sc2);}
+  else{var m=document.querySelector('main')||document.body;m.insertBefore(barWrap,m.firstChild);}
+
+  bar.querySelectorAll('.cat-btn').forEach(function(btn){
+    var cat=btn.dataset.cat;
+    if(cat==='All')return;
+    var sid=CAT_TO_SECTION[cat];
+    if(!sid)return;
+    var grid=document.getElementById(sid+'-grid');
+    if(!grid||grid.querySelectorAll('article').length===0){btn.style.display='none';}
+  });
+
+  var styleEl=document.createElement('style');
+  styleEl.textContent='#categories-bar::-webkit-scrollbar{display:none!important}';
+  document.head.appendChild(styleEl);
+
+  setupCatFilter(bar);
+
+var storedLang='np';
+try{storedLang=localStorage.getItem('fm_lang')||localStorage.getItem('siteLang')||'np';}catch(e){}
+applyLang(storedLang);
+}
+
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',inject);}else{inject();}
+})();
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+      var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
+      var adYear=new Date().getFullYear();
+      var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
+      var eyEn=document.getElementById('footer-year-en');
+      var eyNp=document.getElementById('footer-year-np');
+      if(eyEn)eyEn.textContent=adYear;
+      if(eyNp)eyNp.textContent=npYear;
+      window.addEventListener('langChange',function(e){
+        if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
+      });
+      var stored=localStorage.getItem('fm_lang')||'en';
+      if(stored==='np')document.body.classList.add('lang-active');
+    });
+  </script>
+  <script>
+(function () {
+  'use strict';
+
+  var STORAGE_KEY = 'fm_lang';
+  var _applying = false;
+
+  function getCurrentLang() {
+    return localStorage.getItem(STORAGE_KEY) || 'np';
+  }
+
+  // ── Core: toggle body class + sync button text + persist ──
+  // Does NOT touch el.style.display — CSS drives .lang-en/.lang-np
+  // via body.lang-active with !important, which can't be beaten by
+  // inline styles and never needs DOM traversal.
+  function applyLang(lang) {
+    if (_applying) return;
+    _applying = true;
+
+    var isNp = (lang === 'np');
+
+    // 1. Body class drives ALL .lang-en/.lang-np via CSS
+    document.body.classList.toggle('lang-active', isNp);
+
+    // 2. Sync button text
+    var btn = document.querySelector('.lang-toggle');
+    if (btn) btn.textContent = isNp ? 'EN' : 'NP';
+
+    // 3. Persist to all known storage keys
+    ['fm_lang', 'language', 'siteLang'].forEach(function(k) {
+      try { localStorage.setItem(k, lang); } catch(e) {}
+    });
+
+    _applying = false;
+  }
+
+  // ── Listen for langChange fired by the header script's toggle ──
+  // Never add a click listener here — the header already owns it.
+  window.addEventListener('langChange', function(e) {
+    if (_applying) return;
+    if (e && e.detail && e.detail.lang) {
+      applyLang(e.detail.lang);
+    }
+  });
+
+  // ── On page load: apply stored language ──
+  function init() {
+    applyLang(getCurrentLang());
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    setTimeout(init, 0);
+  }
+
+})();
+</script>
+</body>
+</html>

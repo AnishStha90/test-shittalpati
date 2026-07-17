@@ -1,0 +1,2091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Contact | Radio Station </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <style>
+
+:root {
+  --hdr-accent:      #D4A017;
+  --hdr-primary:     #A31919;
+  --hdr-primary-on:  #FFFFFF;
+  --hdr-accent-on:   #1F1F1F;
+  --hdr-bg:          #FFFFFF;
+  --hdr-surface:     #F8F8F8;
+  --hdr-text:        #1F1F1F;
+  --hdr-muted:       rgba(31,31,31,0.55);
+  --hdr-border:      rgba(163,25,25,0.18);
+  --hdr-font-body:   sans-serif;
+  --hdr-font-heading:Noto Serif, Georgia, serif;
+}
+
+/* === FIX 1: Header must be position:relative so mobile menu anchors to it === */
+#site-header {
+  position: relative !important;
+  display: block !important;
+}
+
+/* === RESET inside header only — excludes icon elements === */
+#site-header *, #site-header *::before, #site-header *::after {
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: normal !important;
+}
+
+/* Apply font-family only to non-icon elements so Font Awesome is never overridden */
+#site-header *:not(i):not([class*="fa-"]) {
+  font-family: var(--hdr-font-body, sans-serif) !important;
+}
+
+/* === FONT AWESOME ICON PROTECTION === */
+#site-header i[class*="fa-"] {
+  font-style: normal !important;
+  font-variant: normal !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  display: inline-block !important;
+  line-height: 1 !important;
+}
+#site-header i.fa-brands,
+#site-header i[class*="fa-brands"] {
+  font-family: "Font Awesome 6 Brands" !important;
+  font-weight: 400 !important;
+}
+#site-header i.fa-solid,
+#site-header i[class*="fa-solid"] {
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 900 !important;
+}
+#site-header i.fa-regular,
+#site-header i[class*="fa-regular"] {
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 400 !important;
+}
+
+/* === FIX 3: Header-internal lang toggle via .hdr-np class === */
+#site-header .lang-en { display: inline !important; }
+#site-header .lang-np { display: none !important; }
+#site-header.hdr-np .lang-en { display: none !important; }
+#site-header.hdr-np .lang-np { display: inline !important; }
+
+/* === TOP BAR === */
+#site-header .top-bar {
+  background: var(--hdr-surface) !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  overflow: hidden !important;
+  transition: height .3s ease, opacity .3s ease !important;
+}
+#site-header .top-bar-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  height: 38px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+
+/* === SOCIAL ICONS === */
+#site-header .top-social {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  flex-shrink: 0 !important;
+}
+#site-header .top-social a {
+  color: var(--hdr-text) !important;
+  font-size: 1.1rem !important;
+  text-decoration: none !important;
+  transition: color .2s !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 1.4rem !important;
+  height: 1.4rem !important;
+}
+#site-header .top-social a:hover {
+  color: var(--hdr-accent) !important;
+}
+#site-header .top-social a i {
+  font-size: 1.1rem !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* === TOP CENTER === */
+#site-header .top-center {
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  font-size: .8rem !important;
+  color: var(--hdr-text) !important;
+}
+#site-header .top-date,
+#site-header .top-clock {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  white-space: nowrap !important;
+}
+#site-header .top-date i,
+#site-header .top-clock i { opacity: .6 !important; font-size: .78rem !important; }
+#site-header .top-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-shrink: 0 !important;
+}
+
+/* === PLAYER === */
+#site-header .header-player {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  border: 1px solid var(--hdr-border) !important;
+  border-radius: 6px !important;
+  padding: 4px 10px !important;
+  background: var(--hdr-bg) !important;
+}
+#site-header .player-live-badge {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  font-size: .62rem !important;
+  font-weight: 800 !important;
+  color: var(--hdr-accent) !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+#site-header .live-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: #e74c3c !important;
+  animation: hdrLivePulse 1.5s ease-in-out infinite !important;
+  flex-shrink: 0 !important;
+}
+@keyframes hdrLivePulse {
+  0%,100%{ opacity:1; transform:scale(1); }
+  50%{ opacity:.3; transform:scale(.65); }
+}
+#site-header .player-waveform {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+  height: 16px !important;
+}
+#site-header .player-waveform span {
+  display: block !important;
+  width: 2px !important;
+  border-radius: 1px !important;
+  background: var(--hdr-accent) !important;
+  opacity: .65 !important;
+  animation: hdrWaveAnim 1.2s ease-in-out infinite !important;
+}
+#site-header .player-waveform span:nth-child(1){height:4px !important;animation-delay:0s !important;}
+#site-header .player-waveform span:nth-child(2){height:10px !important;animation-delay:.15s !important;}
+#site-header .player-waveform span:nth-child(3){height:14px !important;animation-delay:.3s !important;}
+#site-header .player-waveform span:nth-child(4){height:8px !important;animation-delay:.45s !important;}
+#site-header .player-waveform span:nth-child(5){height:11px !important;animation-delay:.6s !important;}
+@keyframes hdrWaveAnim {
+  0%,100%{ transform:scaleY(.35); }
+  50%{ transform:scaleY(1); }
+}
+#site-header .player-waveform.paused span {
+  animation-play-state: paused !important;
+  opacity: .2 !important;
+}
+#site-header .player-play-btn {
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background: var(--hdr-accent) !important;
+  color: var(--hdr-accent-on) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  transition: opacity .2s, transform .1s !important;
+}
+#site-header .player-play-btn:hover { opacity: .85 !important; }
+#site-header .player-play-btn:active { transform: scale(.9) !important; }
+#site-header .player-vol-wrap {
+  display: flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+}
+#site-header .vol-btn {
+  background: none !important;
+  border: none !important;
+  color: var(--hdr-muted) !important;
+  cursor: pointer !important;
+  padding: 2px !important;
+  display: flex !important;
+  align-items: center !important;
+  transition: color .2s !important;
+  flex-shrink: 0 !important;
+}
+#site-header .vol-btn:hover { color: var(--hdr-accent) !important; }
+#site-header .vol-slider {
+  -webkit-appearance: none !important;
+  width: 56px !important;
+  height: 3px !important;
+  border-radius: 2px !important;
+  outline: none !important;
+  cursor: pointer !important;
+  background: linear-gradient(to right, var(--hdr-accent) 70%, var(--hdr-border) 70%) !important;
+}
+#site-header .vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 50% !important;
+  background: var(--hdr-accent) !important;
+  cursor: pointer !important;
+}
+#site-header .vol-slider::-moz-range-thumb {
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 50% !important;
+  background: var(--hdr-accent) !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+#site-header .lang-toggle {
+  background: var(--hdr-accent) !important;
+  color: var(--hdr-accent-on) !important;
+  border: none !important;
+  border-radius: 3px !important;
+  padding: 3px 10px !important;
+  font-weight: 700 !important;
+  font-size: .72rem !important;
+  cursor: pointer !important;
+  letter-spacing: .05em !important;
+  transition: opacity .2s !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+#site-header .lang-toggle:hover { opacity: .85 !important; }
+
+/* === LOGO BAR === */
+#site-header .logo-bar {
+  background: var(--hdr-surface) !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  padding: 10px 0 !important;
+  transition: padding .3s ease !important;
+}
+#site-header .logo-bar-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: justify-content .3s ease !important;
+}
+#site-header .logo-link {
+  display: flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+}
+#site-header .header-logo {
+  height: 90px !important;
+  width: auto !important;
+  max-width: min(520px, 80vw) !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  display: block !important;
+  transition: height .3s ease, object-position .3s ease !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* === MAIN NAV === */
+#site-header .main-nav {
+  background: var(--hdr-primary) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.22) !important;
+}
+#site-header .main-nav-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+#site-header .nav-list {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  overflow: visible !important;
+}
+#site-header .nav-list li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  display: flex !important;
+  align-items: stretch !important;
+}
+#site-header .nav-list li > a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: .72rem .85rem !important;
+  color: var(--hdr-primary-on) !important;
+  text-decoration: none !important;
+  font-size: .82rem !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  border-bottom: 3px solid transparent !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  transition: background .2s, border-color .2s !important;
+  background: transparent !important;
+}
+#site-header .nav-list li > a:hover,
+#site-header .nav-list li.active > a {
+  background: rgba(0,0,0,.18) !important;
+  border-bottom-color: #fff !important;
+}
+
+/* === DROPDOWN === */
+#site-header .has-dropdown { position: relative !important; }
+#site-header .dropdown-arrow {
+  font-size: .65rem !important;
+  transition: transform .25s !important;
+  margin-left: 2px !important;
+}
+#site-header .has-dropdown:hover .dropdown-arrow,
+#site-header .has-dropdown.open .dropdown-arrow { transform: rotate(180deg) !important; }
+#site-header .dropdown-menu {
+  display: none !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  background: var(--hdr-surface) !important;
+  border: 1px solid var(--hdr-border) !important;
+  border-top: 2px solid var(--hdr-accent) !important;
+  border-radius: 0 0 6px 6px !important;
+  min-width: 220px !important;
+  z-index: 2000 !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.15) !important;
+  list-style: none !important;
+  padding: 4px 0 !important;
+}
+@media (min-width: 961px) {
+  #site-header .has-dropdown:hover .dropdown-menu { display: block !important; }
+}
+@media (max-width: 960px) {
+  #site-header .has-dropdown.open .dropdown-menu { display: block !important; }
+}
+#site-header .dropdown-menu li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+#site-header .dropdown-menu li a {
+  display: block !important;
+  padding: .6rem 1.1rem !important;
+  color: var(--hdr-text) !important;
+  text-decoration: none !important;
+  font-size: .84rem !important;
+  font-weight: 500 !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  transition: background .15s, color .15s !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+}
+#site-header .dropdown-menu li:last-child a { border-bottom: none !important; }
+#site-header .dropdown-menu li a:hover {
+  background: var(--hdr-primary) !important;
+  color: var(--hdr-primary-on) !important;
+}
+
+/* === HAMBURGER === */
+#site-header .nav-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  flex-shrink: 0 !important;
+}
+#site-header .hamburger {
+  display: none !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 6px !important;
+  cursor: pointer !important;
+  width: 40px !important;
+  height: 40px !important;
+  flex-shrink: 0 !important;
+}
+#site-header .bar {
+  display: block !important;
+  width: 20px !important;
+  height: 2px !important;
+  background: var(--hdr-primary-on) !important;
+  border-radius: 2px !important;
+  transition: transform .3s, opacity .3s !important;
+  transform-origin: center !important;
+}
+#site-header .hamburger[aria-expanded="true"] .bar:nth-child(1){transform:translateY(7px) rotate(45deg) !important;}
+#site-header .hamburger[aria-expanded="true"] .bar:nth-child(2){opacity:0 !important;transform:scaleX(0) !important;}
+#site-header .hamburger[aria-expanded="true"] .bar:nth-child(3){transform:translateY(-7px) rotate(-45deg) !important;}
+
+/* === MOBILE MENU === */
+#site-header .mobile-menu {
+  display: none !important;
+  background: var(--hdr-surface) !important;
+  border-top: 2px solid var(--hdr-primary) !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 999 !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.18) !important;
+}
+#site-header .mobile-menu.open { display: block !important; }
+#site-header .mobile-menu ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: .5rem 0 !important;
+}
+#site-header .mobile-menu ul li { margin: 0 !important; padding: 0 !important; }
+#site-header .mobile-menu ul li a {
+  display: block !important;
+  padding: .72rem 1.5rem !important;
+  color: var(--hdr-text) !important;
+  text-decoration: none !important;
+  font-size: .9rem !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  transition: background .2s, color .2s !important;
+  background: transparent !important;
+}
+#site-header .mobile-menu ul li a:hover {
+  background: var(--hdr-primary) !important;
+  color: var(--hdr-primary-on) !important;
+}
+#site-header .mobile-province-list li a {
+  padding-left: 2.5rem !important;
+  font-size: .85rem !important;
+  background: var(--hdr-bg) !important;
+}
+
+/* === SCROLL SHRINK === */
+#site-header.scrolled .top-bar {
+  height: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  border: none !important;
+}
+#site-header.scrolled .logo-bar { padding: 5px 0 !important; }
+#site-header.scrolled .logo-bar-inner { justify-content: flex-start !important; }
+#site-header.scrolled .header-logo { height: 42px !important; object-position: left center !important; }
+
+/* === RESPONSIVE === */
+@media (max-width: 960px) {
+  #site-header .nav-list { display: none !important; }
+  #site-header .hamburger { display: flex !important; }
+  #site-header .top-center { display: none !important; }
+  #site-header .player-vol-wrap { display: none !important; }
+  #site-header .top-bar-inner { padding: 0 12px !important; }
+}
+@media (max-width: 600px) {
+  #site-header .header-logo { height: 58px !important; max-width: 70vw !important; }
+  #site-header .header-player { padding: 3px 7px !important; gap: 4px !important; }
+  #site-header .top-social { gap: 10px !important; }
+  #site-header .logo-bar-inner,
+  #site-header .main-nav-inner { padding: 0 12px !important; }
+  #site-header .top-right { gap: 6px !important; }
+}
+@media (min-width: 961px) {
+  #site-header .hamburger { display: none !important; }
+  #site-header .mobile-menu { display: none !important; }
+  #site-header .nav-list { display: flex !important; }
+}
+@media (max-width: 480px) {
+  #site-header .player-live-badge .live-label { display: none !important; }
+  #site-header .player-waveform { display: none !important; }
+  #site-header .header-player { padding: 2px 5px !important; }
+}
+
+</style>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap');
+
+  :root {
+    --accent:       #D4A017;
+    --primary:      #A31919;
+    --primary-on:   #FFFFFF;
+    --accent-on:    #1F1F1F;
+    --bg:           #FFFFFF;
+    --surface:      #F8F8F8;
+    --text:         #1F1F1F;
+    --muted:        rgba(31,31,31,0.55);
+    --border:       rgba(163,25,25,0.18);
+    --font-body:    ;
+    --font-heading: ;
+    --radius:       12px;
+    --shadow:       0 8px 32px rgba(0,0,0,0.3);
+  }
+
+  *, *::before, *::after { box-sizing: border-box }
+  html { scroll-behavior: smooth }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 1.05rem; line-height: 1.7; margin: 0; padding: 0 }
+
+  .contact-container { max-width: 1200px; margin: 0 auto }
+
+  .contact-hero { background: var(--primary); color: var(--primary-on); padding: 4.5rem 2rem 3.5rem; text-align: center; position: relative; overflow: hidden }
+  .contact-hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(0,0,0,0.04) 40px, rgba(0,0,0,0.04) 41px); pointer-events: none }
+  .contact-hero h1 { font-family: var(--font-heading); font-size: clamp(2.2rem,5vw,3.5rem); font-weight: 600; letter-spacing: 0.02em; margin: 0 0 0.5rem; position: relative }
+  .contact-hero p  { font-size: 1.15rem; opacity: 0.85; margin: 0; font-style: italic; position: relative }
+
+  .contact-content { padding: 3rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: stretch }
+  .contact-info { order: 1; display: flex; flex-direction: column; text-align: center; align-items: center; }
+  .info-cards-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; flex: 1; width: 100%; }
+  .contact-form-wrapper { order: 2; display: flex; flex-direction: column }
+  .contact-form { flex-shrink: 0 }
+  .map-section { margin-top: 2rem; flex: 1; display: flex; flex-direction: column; min-height: 0 }
+  .contact-map-container { flex: 1; min-height: 240px }
+
+  .info-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; position: relative; overflow: hidden; text-align: center; }
+  .info-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--primary); transform: scaleX(0); transform-origin: left; transition: transform .3s ease }
+  .info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(192,160,48,0.55) }
+  .info-card:hover::after { transform: scaleX(1) }
+  .info-card i    { font-size: 1.75rem; color: var(--primary); margin-bottom: 0.75rem; display: block; text-align: center; }
+  .info-card h3   { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 0.75rem; color: var(--primary) }
+  .info-card p    { margin: 0.35rem 0; line-height: 1.65; font-size: 1rem }
+  .info-card small { color: var(--muted); font-size: 0.85rem; font-style: italic }
+
+  .social-section { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--border); text-align: center; width: 100%; }
+  .social-section h3 { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 1rem; color: var(--primary) }
+  .social-links { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+  .social-link { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-size: 1.2rem; text-decoration: none; transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease }
+  .social-link:hover { transform: scale(1.12) }
+  .social-link[data-social="facebook"]:hover { background:#1877F2;color:#fff;border-color:#1877F2 }
+  .social-link[data-social="instagram"]:hover { background:#E4405F;color:#fff;border-color:#E4405F }
+
+  .stream-link { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.25rem; padding: .7rem 1.5rem; background: var(--primary); color: var(--primary-on); border-radius: 8px; text-decoration: none; font-weight: 600; font-size: .95rem; letter-spacing: .03em; transition: opacity .2s ease, transform .2s ease; align-self: center; }
+  .stream-link:hover { opacity: .85; transform: translateX(3px) }
+
+  .contact-form { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem 2.25rem }
+  .form-group   { margin-bottom: 1.3rem }
+  .form-group label { display: block; margin-bottom: .45rem; font-weight: 600; font-size: .9rem; letter-spacing: .03em; text-transform: uppercase }
+  .required { color: var(--primary) }
+  .optional { color: var(--muted); font-weight: 400; text-transform: none; letter-spacing: 0 }
+  .form-group input,
+  .form-group textarea { width: 100%; padding: .7rem 1rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 1rem; line-height: 1.5; transition: border-color .2s ease, box-shadow .2s ease; -webkit-appearance: none }
+  .form-group textarea { resize: vertical; min-height: 120px }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--muted) }
+  .form-group input:focus,
+  .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(192,160,48,0.18) }
+
+  .form-honey { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none }
+
+  .submit-btn { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 2.25rem; background: var(--primary); color: var(--primary-on); border: none; border-radius: 6px; font-family: var(--font-body); font-size: 1rem; font-weight: 700; letter-spacing: .04em; cursor: pointer; transition: opacity .2s ease, transform .15s ease }
+  .submit-btn:hover:not(:disabled) { opacity: .88; transform: translateY(-1px) }
+  .submit-btn:active:not(:disabled) { transform: translateY(0) }
+  .submit-btn:disabled { opacity: .45; cursor: not-allowed }
+
+  .form-status { margin-top: 1rem; padding: .8rem 1rem; border-radius: 6px; text-align: center; font-size: .95rem; line-height: 1.5; display: none }
+  .form-status.error   { background: rgba(220,60,60,0.18); border: 1px solid rgba(220,60,60,0.4); color: var(--text) }
+  .form-status.success { background: rgba(60,160,60,0.18); border: 1px solid rgba(60,160,60,0.4); color: var(--text) }
+
+  .map-section h3 { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 1rem; color: var(--primary) }
+  .contact-map-container { width: 100%; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: var(--surface) }
+  .contact-map-container iframe { width: 100%; height: 100%; border: 0; display: block }
+  .map-placeholder { width: 100%; height: 100%; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; color: var(--muted); font-style: italic }
+  .map-placeholder i { font-size: 2.5rem; color: var(--border) }
+
+  .contact-anim { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease }
+  .contact-anim.visible { opacity: 1; transform: translateY(0) }
+  .contact-anim:nth-child(2) { transition-delay: .08s }
+  .contact-anim:nth-child(3) { transition-delay: .16s }
+  .contact-anim:nth-child(4) { transition-delay: .24s }
+
+  .lang-np { display: none }
+  .lang-en { display: inline }
+
+  @media (max-width: 1024px) {
+    .contact-content { grid-template-columns: 1fr; align-items: start; padding: 2rem 1.25rem }
+    .contact-info         { order: 1; display: block; text-align: center; }
+    .contact-form-wrapper { order: 2; display: block }
+    .info-cards-grid { flex: none }
+    .map-section { flex: none; display: block }
+    .contact-map-container { height: 320px }
+    .contact-hero { padding: 3rem 1.5rem 2.5rem }
+  }
+  @media (max-width: 640px) {
+    .contact-hero h1 { font-size: 1.9rem }
+    .contact-form { padding: 1.5rem }
+    .info-card { padding: 1.2rem }
+    .contact-map-container { height: 260px }
+    .social-link { width: 40px; height: 40px; font-size: 1.05rem }
+    .submit-btn { width: 100%; justify-content: center }
+  }
+</style>
+<style>
+  .contact-container,
+  .info-card,
+  .contact-form,
+  .map-section,
+  .contact-anim {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: none !important;
+  }
+  #contact-form {
+    display: block !important;
+    visibility: visible !important;
+  }
+  .contact-content {
+    display: grid !important;
+  }
+</style>
+<style>
+    /* ALL CSS from PART D */
+    #site-footer { font-family:var(--font-body); }
+
+    /* TOP SECTION */
+    .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
+    .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
+    .footer-col { display:flex; flex-direction:column; gap:10px; }
+    .footer-col-heading { font-size:.82rem; font-weight:800; color:#111; margin:0 0 6px; padding-bottom:8px; border-bottom:2px solid var(--primary); text-transform:uppercase; letter-spacing:.06em; }
+    .footer-company-name { font-weight:700; font-size:.9rem; color:#111; margin:0; }
+    .footer-addr { font-size:.82rem; color:#444; margin:0; line-height:1.6; }
+    .footer-contact-line { font-size:.82rem; color:#444; margin:0; }
+    .footer-link-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+    .footer-link-list li a { font-size:.85rem; color:#333; text-decoration:none; transition:color .2s; display:block; padding:2px 0; }
+    .footer-link-list li a:hover { color:var(--primary); }
+
+    /* BOTTOM BAR */
+    .footer-bottom { background:#d8d8d8; border-top:1px solid #bbb; padding:18px 0; }
+    .footer-bottom-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+    .footer-bottom-brand { display:flex; flex-direction:column; gap:3px; flex-shrink:0; }
+    .footer-site-name { font-size:1rem; font-weight:800; color:#111; }
+    .footer-copy { font-size:.74rem; color:#555; display:flex; align-items:center; gap:4px; }
+    .footer-copy i { font-size:.72rem; }
+    .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { display:flex; flex-direction:column; gap:2px; }
+    .editor-label { font-size:.74rem; color:#555; }
+    .editor-name { font-size:.9rem; font-weight:800; color:#111; display:block; }
+    .editor-phone { font-size:.8rem; color:#333; display:block; margin-top:1px; }
+    .footer-bottom-info { font-size:.78rem; color:#555; max-width:200px; line-height:1.5; }
+    .footer-bottom-social { display:flex; flex-direction:column; gap:6px; align-items:flex-end; }
+    .connect-label { font-size:.78rem; font-weight:700; color:#333; }
+    .footer-social-row { display:flex; gap:10px; align-items:center; }
+    .footer-social-row a { color:#333; font-size:1.1rem; text-decoration:none; transition:color .2s; }
+    .footer-social-row a:hover { color:var(--primary); }
+
+    /* Language */
+    .lang-en { display:inline; }
+    .lang-np { display:none; }
+    body.lang-active .lang-en { display:none; }
+    body.lang-active .lang-np { display:inline; }
+
+    /* Responsive */
+    @media(max-width:1000px){
+      .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; }
+    }
+    @media(max-width:640px){
+      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; }
+      .footer-bottom-inner { flex-direction:column; align-items:flex-start; gap:12px; }
+      .footer-bottom-social { align-items:flex-start; }
+    }
+    @media(max-width:400px){
+      .footer-top-inner { grid-template-columns:1fr; }
+    }
+
+    /* WhatsApp */
+    .wa-widget { position:fixed; bottom:90px; right:24px; z-index:9999; display:flex; align-items:center; gap:10px; flex-direction:row; }
+    .wa-fab { width:52px; height:52px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.7rem; text-decoration:none; box-shadow:0 4px 16px rgba(37,211,102,.4),0 2px 8px rgba(0,0,0,.2); transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; animation:waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both; position:relative; }
+    .wa-fab:hover { transform:scale(1.12) rotate(-6deg); }
+    .wa-fab::after { content:''; position:absolute; inset:0; border-radius:50%; border:3px solid #25D366; animation:waRing 2s ease-out 2s infinite; }
+    .wa-tooltip { background:#fff; color:#111; font-size:.78rem; font-weight:600; padding:5px 12px; border-radius:14px; white-space:nowrap; box-shadow:0 3px 12px rgba(0,0,0,.15); opacity:0; pointer-events:none; transform:translateX(-6px); transition:opacity .2s,transform .2s; }
+    .wa-widget:hover .wa-tooltip { opacity:1; transform:translateX(0); }
+    @keyframes waIn { from{opacity:0;transform:scale(.4) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    @keyframes waRing { 0%{transform:scale(1);opacity:.8} 70%,100%{transform:scale(1.5);opacity:0} }
+    @media(max-width:480px){ .wa-widget{bottom:90px;right:14px;} .wa-fab{width:46px;height:46px;font-size:1.5rem;} }
+
+    /* Add these responsive styles for footer mobile view */
+    @media(max-width:640px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-inner { 
+        flex-direction: column; 
+        align-items: center;
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-social { 
+        align-items: center;
+        width: 100%;
+      }
+      .footer-social-row {
+        justify-content: center;
+      }
+      .footer-col {
+        align-items: center;
+        text-align: center;
+      }
+      .footer-link-list {
+        align-items: center;
+      }
+      .footer-col-heading {
+        text-align: center;
+        width: 100%;
+      }
+      .footer-bottom-brand {
+        align-items: center;
+      }
+      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq {
+        align-items: center;
+      }
+      .footer-bottom-info {
+        max-width: 100%;
+        text-align: center;
+      }
+    }
+    @media(max-width:400px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr; 
+        text-align: center;
+      }
+    }
+  </style>
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{overflow-x:hidden;margin:0;padding:0;min-height:100vh;display:flex;flex-direction:column;
+         background:#FFFFFF;color:#1F1F1F;font-family:'Cormorant Garamond',serif}
+    main{flex:1} img,video{max-width:100%;height:auto}
+    /* Keep iframes inside map container from triggering max-width:100% body rule */
+    main iframe { max-width:100% }
+  </style>
+  <style id="contact-guaranteed">
+  /* ── GUARANTEED: contact split layout ── */
+  .contact-container { max-width: 1200px; margin: 0 auto }
+
+  .contact-hero {
+    background: var(--primary);
+    color: var(--primary-on);
+    padding: 4.5rem 2rem 3.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(0,0,0,0.04) 40px, rgba(0,0,0,0.04) 41px);
+    pointer-events: none;
+  }
+  .contact-hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin: 0 0 0.5rem;
+    position: relative;
+  }
+  .contact-hero p { font-size: 1.15rem; opacity: 0.85; margin: 0; font-style: italic; position: relative }
+
+  /* Split: equal-height 2 columns */
+  .contact-content {
+    padding: 3rem 2rem;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: stretch;
+  }
+
+  /* Left column */
+  .contact-info {
+    order: 1;
+    display: flex !important;
+    flex-direction: column;
+  }
+  .info-cards-grid {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    flex: 1;
+  }
+
+  /* Right column */
+  .contact-form-wrapper {
+    order: 2;
+    display: flex !important;
+    flex-direction: column;
+  }
+  .contact-form { flex-shrink: 0 }
+
+  /* Map fills remaining right-column height */
+  .map-section {
+    margin-top: 2rem;
+    flex: 1;
+    display: flex !important;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .map-section h3 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin: 0 0 1rem;
+    color: var(--primary);
+  }
+  .contact-map-container {
+    width: 100%;
+    flex: 1;
+    min-height: 240px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .contact-map-container iframe { width: 100%; height: 100%; border: 0; display: block }
+  .map-placeholder {
+    width: 100%; height: 100%; min-height: 200px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: .5rem; color: var(--muted); font-style: italic;
+  }
+  .map-placeholder i { font-size: 2.5rem; color: var(--border) }
+
+  /* Info card styling */
+  .info-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .info-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 2px; background: var(--primary);
+    transform: scaleX(0); transform-origin: left; transition: transform .3s ease;
+  }
+  .info-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,.3); border-color: rgba(192,160,48,0.55) }
+  .info-card:hover::after { transform: scaleX(1) }
+  .info-card i    { font-size: 1.75rem; color: var(--primary); margin-bottom: 0.75rem; display: block }
+  .info-card h3   { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 0.75rem; color: var(--primary) }
+  .info-card p    { margin: 0.35rem 0; line-height: 1.65; font-size: 1rem }
+  .info-card small { color: var(--muted); font-size: 0.85rem; font-style: italic }
+
+  /* Social */
+  .social-section { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--border) }
+  .social-section h3 { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 1rem; color: var(--primary) }
+  .social-links { display: flex; gap: 0.75rem; flex-wrap: wrap }
+  .social-link {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); font-size: 1.2rem; text-decoration: none;
+    transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
+  }
+  .social-link:hover { transform: scale(1.12) }
+  .social-link[data-social="facebook"]:hover  { background: #1877F2; color:#fff; border-color:#1877F2 }
+  .social-link[data-social="twitter"]:hover   { background: #000;    color:#fff; border-color:#000 }
+  .social-link[data-social="youtube"]:hover   { background: #FF0000; color:#fff; border-color:#FF0000 }
+  .social-link[data-social="instagram"]:hover { background: #E4405F; color:#fff; border-color:#E4405F }
+
+  .stream-link {
+    display: inline-flex; align-items: center; gap: .5rem;
+    margin-top: 1.25rem; padding: .7rem 1.5rem;
+    background: var(--primary); color: var(--primary-on);
+    border-radius: 8px; text-decoration: none; font-weight: 600;
+    font-size: .95rem; letter-spacing: .03em;
+    transition: opacity .2s ease, transform .2s ease;
+  }
+  .stream-link:hover { opacity: .85; transform: translateX(3px) }
+
+  /* Form */
+  .contact-form {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem 2.25rem;
+  }
+  .form-group { margin-bottom: 1.3rem }
+  .form-group label { display: block; margin-bottom: .45rem; font-weight: 600; font-size: .9rem; letter-spacing: .03em; text-transform: uppercase }
+  .required { color: var(--primary) }
+  .optional  { color: var(--muted); font-weight: 400; text-transform: none; letter-spacing: 0 }
+  .form-group input,
+  .form-group textarea {
+    width: 100%; padding: .7rem 1rem;
+    border: 1px solid var(--border); border-radius: 6px;
+    background: var(--bg); color: var(--text);
+    font-family: var(--font-body); font-size: 1rem; line-height: 1.5;
+    transition: border-color .2s ease, box-shadow .2s ease;
+    -webkit-appearance: none; box-sizing: border-box;
+  }
+  .form-group textarea { resize: vertical; min-height: 120px }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--muted) }
+  .form-group input:focus,
+  .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(192,160,48,0.18) }
+
+  .form-honey { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none }
+
+  .submit-btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .75rem 2.25rem; background: var(--primary); color: var(--primary-on);
+    border: none; border-radius: 6px; font-family: var(--font-body);
+    font-size: 1rem; font-weight: 700; letter-spacing: .04em;
+    cursor: pointer; transition: opacity .2s ease, transform .15s ease;
+  }
+  .submit-btn:hover:not(:disabled) { opacity: .88; transform: translateY(-1px) }
+  .submit-btn:active:not(:disabled) { transform: translateY(0) }
+  .submit-btn:disabled { opacity: .45; cursor: not-allowed }
+
+  .form-status { margin-top: 1rem; padding: .8rem 1rem; border-radius: 6px; text-align: center; font-size: .95rem; line-height: 1.5; display: none }
+  .form-status.error   { background: rgba(220,60,60,0.18); border: 1px solid rgba(220,60,60,0.4); color: var(--text) }
+  .form-status.success { background: rgba(60,160,60,0.18); border: 1px solid rgba(60,160,60,0.4); color: var(--text) }
+
+  /* FIX-B: .contact-anim — visible immediately (no scroll-trigger needed) */
+  /* Elements are in viewport on page load; observer rootMargin was cutting them off */
+  .contact-anim {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: none !important;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .contact-content { grid-template-columns: 1fr !important; align-items: start; padding: 2rem 1.25rem }
+    .contact-info         { display: block !important }
+    .contact-form-wrapper { display: block !important }
+    .info-cards-grid { flex: none }
+    .map-section { flex: none !important; display: block !important }
+    .contact-map-container { height: 320px; flex: none }
+    .contact-hero { padding: 3rem 1.5rem 2.5rem }
+  }
+  @media (max-width: 640px) {
+    .contact-hero h1 { font-size: 1.9rem }
+    .contact-form { padding: 1.5rem }
+    .info-card { padding: 1.2rem }
+    .contact-map-container { height: 260px }
+    .social-link { width: 40px; height: 40px; font-size: 1.05rem }
+    .submit-btn { width: 100%; justify-content: center }
+  }
+  /* ── Language visibility — driven by body.lang-active class ── */
+  /* Default: EN visible, NP hidden */
+  .lang-en { display: inline !important; }
+  .lang-np { display: none !important; }
+  div.lang-en, p.lang-en, h1.lang-en, h2.lang-en, h3.lang-en,
+  h4.lang-en, li.lang-en, section.lang-en { display: block !important; }
+  div.lang-np, p.lang-np, h1.lang-np, h2.lang-np, h3.lang-np,
+  h4.lang-np, li.lang-np, section.lang-np { display: none !important; }
+/* When Nepali active — flip */
+  body.lang-active .lang-en { display: none !important; }
+  body.lang-active .lang-np { display: inline !important; }
+  body.lang-active div.lang-np, body.lang-active p.lang-np,
+  body.lang-active h1.lang-np, body.lang-active h2.lang-np,
+  body.lang-active h3.lang-np, body.lang-active h4.lang-np,
+  body.lang-active li.lang-np, body.lang-active section.lang-np { display: block !important; }
+  body.lang-active div.lang-en, body.lang-active p.lang-en,
+  body.lang-active h1.lang-en, body.lang-active h2.lang-en,
+  body.lang-active h3.lang-en, body.lang-active h4.lang-en,
+  body.lang-active li.lang-en, body.lang-active section.lang-en { display: none !important; }
+
+</style>
+</head>
+<body>
+  <header id="site-header">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+  <!-- TIER 1: Top utility bar -->
+  <div class="top-bar" id="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-social">
+          <a href="https://www.facebook.com/nawajanachetana/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/shittalpationline/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+      <div class="top-center">
+        <span class="top-date"><i class="fa-regular fa-calendar"></i> <span id="np-datetime">Loading...</span></span>
+        <span class="top-clock"><i class="fa-regular fa-clock"></i> <span id="np-clock">00:00:00 AM</span></span>
+      </div>
+      <div class="top-right">
+        <div class="header-player" id="header-player">
+          <div class="player-live-badge">
+            <span class="live-dot"></span>
+            <span class="live-label">LIVE</span>
+          </div>
+          <div class="player-waveform" id="player-waveform">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <button class="player-play-btn" id="play-btn" aria-label="Play stream">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path id="play-path" d="M8 5v14l11-7z"/></svg>
+          </button>
+          <div class="player-vol-wrap">
+            <button class="vol-btn" id="vol-down-btn"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z"/></svg></button>
+            <input type="range" class="vol-slider" id="vol-slider" min="0" max="100" value="70">
+            <button class="vol-btn" id="vol-up-btn"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
+          </div>
+        </div>
+        <button class="lang-toggle" id="lang-toggle">NP</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIER 2: Logo bar -->
+  <div class="logo-bar" id="logo-bar">
+    <div class="logo-bar-inner">
+      <a href="../index.html" class="logo-link" aria-label="Home">
+        <img src="../images/logo.png" alt="Logo" class="header-logo" id="header-logo" onerror="this.style.display='none'">
+      </a>
+    </div>
+  </div>
+
+  <!-- TIER 3: Sticky nav -->
+  <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+    <div class="main-nav-inner">
+      <ul class="nav-list" id="nav-list">
+        <li class="active"><a href="../index.html"><span class="lang-en">Homepage</span><span class="lang-np">गृहपृष्ठ</span></a></li>
+        <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
+        <li><a href="../index.html#economy-section"><span class="lang-en">Economy</span><span class="lang-np">अर्थ</span></a></li>
+        <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
+        <li><a href="../index.html#entertainment-section"><span class="lang-en">Entertainment</span><span class="lang-np">मनोरञ्जन</span></a></li>
+        <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
+        <li><a href="../index.html#international-section"><span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span></a></li>
+        <li class="has-dropdown" id="province-nav">
+          <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            <span class="lang-en">Province</span><span class="lang-np">प्रदेश</span>
+            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+          </a>
+          <ul class="dropdown-menu" id="province-dropdown">
+            <li><a href="../province/koshi.html"><span class="lang-en">Koshi Province</span><span class="lang-np">कोशी प्रदेश</span></a></li>
+            <li><a href="../province/madhesh.html"><span class="lang-en">Madhesh Province</span><span class="lang-np">मधेश प्रदेश</span></a></li>
+            <li><a href="../province/bagmati.html"><span class="lang-en">Bagmati Province</span><span class="lang-np">बागमती प्रदेश</span></a></li>
+            <li><a href="../province/gandaki.html"><span class="lang-en">Gandaki Province</span><span class="lang-np">गण्डकी प्रदेश</span></a></li>
+            <li><a href="../province/lumbini.html"><span class="lang-en">Lumbini Province</span><span class="lang-np">लुम्बिनी प्रदेश</span></a></li>
+            <li><a href="../province/karnali.html"><span class="lang-en">Karnali Province</span><span class="lang-np">कर्णाली प्रदेश</span></a></li>
+            <li><a href="../province/sudurpashchim.html"><span class="lang-en">Sudurpashchim Province</span><span class="lang-np">सुदूरपश्चिम प्रदेश</span></a></li>
+          </ul>
+        </li>
+        <li><a href="epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
+        <li><a href="about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
+        <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+        <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडिय</span></a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul>
+      <li><a href="../index.html"><span class="lang-en">Homepage</span><span class="lang-np">गृहपृष्ठ</span></a></li>
+      <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
+      <li><a href="../index.html#economy-section"><span class="lang-en">Economy</span><span class="lang-np">अर्थतन्त्र</span></a></li>
+      <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
+      <li><a href="../index.html#entertainment-section"><span class="lang-en">Entertainment</span><span class="lang-np">मनोरञ्जन</span></a></li>
+      <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
+      <li><a href="../index.html#international-section"><span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span></a></li>
+<li><a href="../index.html#latest-section"><span class="lang-en">Latest News</span><span class="lang-np">ताजा समाचार</span></a></li>
+<li><a href="../index.html#feature-section"><span class="lang-en">Feature News</span><span class="lang-np">विशेष समाचार</span></a></li>
+<li class="mobile-province-parent">
+        <a href="#" id="mobile-province-toggle"><span class="lang-en">Province</span><span class="lang-np">प्रदेश</span> <i class="fa-solid fa-chevron-down"></i></a>
+        <ul class="mobile-province-list" id="mobile-province-list" style="display:none;">
+          <li><a href="../province/koshi.html"><span class="lang-en">Koshi Province</span><span class="lang-np">कोशी प्रदेश</span></a></li>
+          <li><a href="../province/madhesh.html"><span class="lang-en">Madhesh Province</span><span class="lang-np">मधेश प्रदेश</span></a></li>
+          <li><a href="../province/bagmati.html"><span class="lang-en">Bagmati Province</span><span class="lang-np">बागमती प्रदेश</span></a></li>
+          <li><a href="../province/gandaki.html"><span class="lang-en">Gandaki Province</span><span class="lang-np">गण्डकी प्रदेश</span></a></li>
+          <li><a href="../province/lumbini.html"><span class="lang-en">Lumbini Province</span><span class="lang-np">लुम्बिनी प्रदेश</span></a></li>
+          <li><a href="../province/karnali.html"><span class="lang-en">Karnali Province</span><span class="lang-np">कर्णाली प्रदेश</span></a></li>
+          <li><a href="../province/sudurpashchim.html"><span class="lang-en">Sudurpashchim Province</span><span class="lang-np">सुदूरपश्चिम प्रदेश</span></a></li>
+        </ul>
+      </li>
+      <li><a href="epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
+      <li><a href="about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
+      <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+     <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
+    </ul>
+  </div>
+
+
+</header>
+  <main class="contact-page-main">
+
+
+
+
+
+
+<div class="contact-container">
+
+  <div class="contact-hero">
+    <h1>
+      <span class="lang-en">Contact Us</span>
+      <span class="lang-np">सम्पर्क गर्नुहोस्</span>
+    </h1>
+    <p>
+      <span class="lang-en">Get in touch with our team</span>
+      <span class="lang-np">हाम्रो टोलीसँग सम्पर्क गर्नुहोस्</span>
+    </p>
+  </div>
+
+  <div class="contact-content">
+
+    <div class="contact-info">
+      <div class="info-cards-grid">
+
+        <div class="info-card contact-anim">
+          <i class="fas fa-clock"></i>
+          <h3 class="lang-en">Hours of Operation</h3>
+          <h3 class="lang-np">सञ्चालन समय</h3>
+          <p><span class="lang-en">Monday – Friday:</span><span class="lang-np">सोमबार – शुक्रबार:</span>&nbsp;9:00 AM – 6:00 PM</p>
+          <p><span class="lang-en">Saturday:</span><span class="lang-np">शनिबार:</span>&nbsp;10:00 AM – 2:00 PM</p>
+          <p><span class="lang-en">Sunday: Closed</span><span class="lang-np">आइतबार: बन्द</span></p>
+        </div>
+
+        <div class="info-card contact-anim">
+          <i class="fas fa-phone"></i>
+          <h3 class="lang-en">Phone</h3>
+          <h3 class="lang-np">फोन</h3>
+          <p>
+            <span id="contact-phone-en" class="lang-en">—</span>
+            <span id="contact-phone-np" class="lang-np">—</span>
+          </p>
+          <small class="lang-en">Available during business hours</small>
+          <small class="lang-np">व्यापारिक समयमा उपलब्ध</small>
+        </div>
+
+        <div class="info-card contact-anim">
+          <i class="fas fa-envelope"></i>
+          <h3 class="lang-en">Email</h3>
+          <h3 class="lang-np">इमेल</h3>
+          <p><span id="contact-email">—</span></p>
+          <small class="lang-en">We'll respond within 24 hours</small>
+          <small class="lang-np">हामी २४ घण्टा भित्र जवाफ दिनेछौं</small>
+        </div>
+
+        <div class="info-card contact-anim">
+          <i class="fas fa-location-dot"></i>
+          <h3 class="lang-en">Address</h3>
+          <h3 class="lang-np">ठेगाना</h3>
+          <p>
+            <span id="contact-addr-en" class="lang-en">—</span>
+            <span id="contact-addr-np" class="lang-np">—</span>
+          </p>
+        </div>
+
+      </div>
+
+      <div class="social-section">
+        <h3 class="lang-en">Follow Us</h3>
+        <h3 class="lang-np">हामीलाई पछ्याउनुहोस्</h3>
+        <div class="social-links">
+          <a id="sl-facebook" class="social-link" data-social="facebook" href="https://www.facebook.com/nawajanachetana/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a id="sl-instagram" class="social-link" data-social="instagram" href="https://www.instagram.com/shittalpationline/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-wrapper">
+
+      <form id="contact-form" class="contact-form contact-anim"
+            action="https://formsubmit.co/njdnews@gmail.com"
+            method="POST"
+            novalidate>
+
+        <div class="form-honey" aria-hidden="true">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" value="">
+        </div>
+
+        <div class="form-group">
+          <label for="form-name">
+            <span class="lang-en">Full Name</span><span class="lang-np">पुरा नाम</span>
+            <span class="required"> *</span>
+          </label>
+          <input type="text" id="form-name" name="name" autocomplete="name" required placeholder="John Doe">
+        </div>
+
+        <div class="form-group">
+          <label for="form-email">
+            <span class="lang-en">Email Address</span><span class="lang-np">इमेल ठेगाना</span>
+            <span class="required"> *</span>
+          </label>
+          <input type="email" id="form-email" name="email" autocomplete="email" required placeholder="you@example.com">
+        </div>
+
+        <div class="form-group">
+          <label for="form-phone">
+            <span class="lang-en">Phone Number</span><span class="lang-np">फोन नम्बर</span>
+            <span class="optional">(<span class="lang-en">Optional</span><span class="lang-np">वैकल्पिक</span>)</span>
+          </label>
+          <input type="tel" id="form-phone" name="phone" autocomplete="tel" placeholder="+977 98XXXXXXXX">
+        </div>
+
+        <div class="form-group">
+          <label for="form-subject">
+            <span class="lang-en">Subject</span><span class="lang-np">विषय</span>
+            <span class="required"> *</span>
+          </label>
+          <input type="text" id="form-subject" name="subject" required>
+        </div>
+
+        <div class="form-group">
+          <label for="form-message">
+            <span class="lang-en">Message</span><span class="lang-np">सन्देश</span>
+            <span class="required"> *</span>
+          </label>
+          <textarea id="form-message" name="message" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" id="form-submit" class="submit-btn">
+          <span class="lang-en">Send Message</span>
+          <span class="lang-np">सन्देश पठाउनुहोस्</span>
+          <i class="fas fa-paper-plane"></i>
+        </button>
+
+        <div id="form-status" class="form-status" role="alert"></div>
+      </form>
+
+      <div class="map-section contact-anim">
+        <h3 class="lang-en">Find Us</h3>
+        <h3 class="lang-np">हामीलाई भेट्नुहोस्</h3>
+        <div id="contact-map" class="contact-map-container">
+          <div class="map-placeholder">
+            <i class="fas fa-map-pin"></i>
+            <span class="lang-en">Map loading…</span>
+            <span class="lang-np">नक्सा लोड हुँदैछ…</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- DATA-DEBUG: phone=+977 9847492226 email=njdnews@gmail.com addr=Bhagwati Tole-3, Tansen Palpa, Nepal -->
+</main>
+  <footer id="site-footer">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+
+  <!-- TOP SECTION: multi-column links -->
+  <div class="footer-top">
+    <div class="footer-top-inner">
+
+      <!-- Col 1: Contact -->
+      <div class="footer-col footer-contact-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Contact Address</span>
+          <span class="lang-np">सम्पर्क ठेगाना</span>
+        </h4>
+        <p class="footer-company-name">Shittal Pati</p>
+        <p class="footer-addr">
+          <span class="lang-en">Bhagwati Tole-3, Tansen Palpa, Nepal</span>
+          <span class="lang-np">भगवती टोल-३, तानसेन पाल्पा, नेपाल</span>
+        </p>
+        <p class="footer-contact-line">
+          <span class="lang-en">Phone: +977 9847492226</span>
+          <span class="lang-np">फोन: +९७७ ९८४७४९२२२६</span>
+        </p>
+        <p class="footer-contact-line">
+          <span class="lang-en">Email:</span><span class="lang-np">इमेल:</span> njdnews@gmail.com
+        </p>
+      </div>
+
+      <!-- Col 2: News links -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">News</span>
+          <span class="lang-np">समाचार</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
+          <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
+          <li><a href="../index.html#economy-section"><span class="lang-en">Economy</span><span class="lang-np">अर्थतन्त्र</span></a></li>
+          <li><a href="../index.html#international-section"><span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span></a></li>
+          <li><a href="../index.html#education-section"><span class="lang-en">Education</span><span class="lang-np">शिक्षा</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Entertainment -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Entertainment</span>
+          <span class="lang-np">मनोरञ्जन</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="#entertainment-section"><span class="lang-en">Movies & Music</span><span class="lang-np">चलचित्र र संगीत</span></a></li>
+          <li><a href="#entertainment-section"><span class="lang-en">Arts</span><span class="lang-np">कला</span></a></li>
+          <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Feature -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Feature</span>
+          <span class="lang-np">विशेष</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="../index.html#feature-section"><span class="lang-en">Feature News</span><span class="lang-np">विशेष समाचार</span></a></li>
+          <li><a href="../index.html#latest-section"><span class="lang-en">Latest</span><span class="lang-np">ताजा</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 5: Specials -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Specials</span>
+          <span class="lang-np">विशेष</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 6: About -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">About Us</span>
+          <span class="lang-np">हाम्रोबारे</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="about.html"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></a></li>
+          <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+
+      <div class="footer-bottom-brand">
+        <span class="footer-site-name">Shittal Pati</span>
+        <span class="footer-copy">
+          <i class="fa-regular fa-copyright"></i>
+          <span class="lang-en" id="footer-year-en"></span>
+          <span class="lang-np" id="footer-year-np"></span>
+          Shittal Pati.
+          <span class="lang-en">All Rights Reserved.</span>
+          <span class="lang-np">सर्वाधिकार सुरक्षित।</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-editor">
+        <span class="editor-label"><span class="lang-en">Editor</span><span class="lang-np">सम्पादक</span></span>
+        <span class="editor-name">
+          <span class="lang-en">Jagdish Bhattarai</span>
+          <span class="lang-np">जगदीश भट्टराई</span>
+        </span>
+        <span class="editor-phone">
+          <span class="lang-en">9857060301</span>
+          <span class="lang-np">९८५७०६०३०१</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-sub">
+        <span class="editor-label"><span class="lang-en">Sub-Editor</span><span class="lang-np">सह-सम्पादक</span></span>
+        <span class="editor-name">
+          <span class="lang-en">Ramchandra Rayamajhi</span>
+          <span class="lang-np">रामचन्द्र रायमाझी</span>
+        </span>
+        <span class="editor-phone">
+          <span class="lang-en">9847492226</span>
+          <span class="lang-np">९८४७४९२२२६</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-freq">
+        <span class="editor-label"><span class="lang-en">Frequency</span><span class="lang-np">फ्रिक्वेन्सी</span></span>
+        <span class="editor-name">
+          <span class="lang-en">103.5 MHZ FM</span>
+          <span class="lang-np">१०३.५ मेगाहर्ज एफएम</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-info">
+        <span class="lang-en">Official Website of Janavedana Daily</span>
+        <span class="lang-np">जनवेदना दैनिकको आधिकारिक वेबसाइट</span>
+      </div>
+
+      <div class="footer-bottom-social">
+        <span class="connect-label"><span class="lang-en">Connect with Us</span><span class="lang-np">जोडिनुहोस्</span></span>
+        <div class="footer-social-row">
+          <a href="https://www.facebook.com/nawajanachetana/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/shittalpationline/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  
+
+  <div class="wa-widget">
+    <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
+    <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  </div>
+</footer>
+  <script>
+(function () {
+  'use strict';
+
+  var STORAGE_KEY = 'fm_lang';
+  var _applying = false; // guard against re-entrant calls
+
+ function getCurrentLang() {
+  return localStorage.getItem(STORAGE_KEY) || 'np';
+}
+  // ── Core: toggle body class + sync button text + persist ──
+  // Does NOT touch el.style.display — CSS handles visibility via
+  // body.lang-active .lang-en / .lang-np rules with !important
+  function applyLang(lang) {
+    if (_applying) return;
+    _applying = true;
+
+    var isNp = (lang === 'np');
+
+    // 1. Body class drives ALL .lang-en / .lang-np via CSS
+    document.body.classList.toggle('lang-active', isNp);
+
+    // 2. Sync button text
+    var btn = document.querySelector('.lang-toggle');
+    if (btn) btn.textContent = isNp ? 'EN' : 'NP';
+
+    // 3. Persist
+    try { localStorage.setItem(STORAGE_KEY, lang); } catch(e) {}
+
+    // 4. Notify contact page's own script (it uses style.display
+    //    for dynamically injected elements not covered by CSS)
+    if (typeof window.setContactLang === 'function') {
+      window.setContactLang(lang);
+    }
+
+    _applying = false;
+  }
+
+  // ── Listen for langChange from the header script's toggle ──
+  // The header script already owns the click → fires langChange.
+  // This bridge just reacts to that event — never adds its own
+  // click listener (that would cause double-fire).
+  window.addEventListener('langChange', function(e) {
+    if (_applying) return;
+    if (e && e.detail && e.detail.lang) {
+      applyLang(e.detail.lang);
+    }
+  });
+
+  // ── On page load: apply stored language ──────────────────
+  function init() {
+    applyLang(getCurrentLang());
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    setTimeout(init, 0);
+  }
+
+})();
+</script>
+  <script>
+
+(function () {
+
+  /* ── Load Font Awesome if not already on page ── */
+  (function(){
+    if(!document.querySelector('link[href*="font-awesome"],link[href*="fontawesome"]')){
+      var fa=document.createElement('link');
+      fa.rel='stylesheet';
+      fa.href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+      fa.crossOrigin='anonymous';
+      document.head.appendChild(fa);
+    }
+  })();
+
+  /* ── BS/AD conversion data ── */
+  var _NP_DAYS   = ['आइतबार','सोमबार','मंगलबार','बुधबार','बिहिबार','शुक्रबार','शनिबार'];
+  var _BS_MONTHS = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
+  var _NP_NUMS   = ['०','१','२','३','४','५','६','७','८','९'];
+  var _EN_MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var _EN_DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var _BS_TBL    = {2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],2004:[366,30,32,31,32,31,30,30,30,29,30,29,31],2005:[365,31,31,32,31,31,31,30,29,30,29,30,30],2006:[365,31,31,32,32,31,30,30,29,30,29,30,30],2007:[366,31,32,31,32,31,30,30,30,29,29,30,31],2008:[365,31,31,32,31,31,31,30,29,30,29,30,30],2009:[365,31,31,32,31,31,31,30,29,30,29,30,30],2010:[365,31,31,32,32,31,30,30,29,30,29,30,30],2011:[366,31,32,31,32,31,30,30,30,29,29,30,31],2012:[365,31,31,32,31,31,31,30,29,30,29,30,30],2013:[365,31,31,32,31,31,31,30,29,30,29,30,30],2014:[365,31,31,32,32,31,30,30,29,30,29,30,30],2015:[366,31,32,31,32,31,30,30,30,29,29,30,31],2016:[366,31,31,32,31,31,31,30,29,30,29,30,31],2017:[365,31,31,32,31,31,31,30,29,30,29,30,30],2018:[365,31,31,32,32,31,30,30,29,30,29,30,30],2019:[366,31,32,31,32,31,30,30,30,29,29,30,31],2020:[366,31,31,32,31,31,30,30,29,30,29,30,31],2021:[365,31,31,32,31,31,31,30,29,30,29,30,30],2022:[365,31,31,32,32,31,30,30,29,30,29,30,30],2023:[366,31,32,31,32,31,30,30,30,29,29,30,31],2024:[366,31,31,32,31,31,30,30,29,30,29,30,31],2025:[365,31,31,32,31,31,31,30,29,30,29,30,30],2026:[365,31,31,32,32,31,30,30,29,30,29,30,30],2027:[366,31,32,31,32,31,30,30,30,29,29,30,31],2028:[366,31,32,31,32,31,30,30,30,29,30,29,31],2029:[365,31,31,32,31,31,31,30,29,30,29,30,30],2030:[365,31,31,32,31,31,31,30,29,30,29,30,30],2031:[365,31,31,32,32,31,30,30,29,30,29,30,30],2032:[366,31,32,31,32,31,30,30,30,29,29,30,31],2033:[366,31,31,32,31,31,30,30,29,30,29,30,31],2034:[365,31,31,32,31,31,31,30,29,30,29,30,30],2035:[365,31,31,32,32,31,30,30,29,30,29,30,30],2036:[366,31,32,31,32,31,30,30,30,29,29,30,31],2037:[366,31,32,31,32,31,30,30,30,29,30,29,31],2038:[365,31,31,32,31,31,31,30,29,30,29,30,30],2039:[365,31,31,32,31,31,31,30,29,30,29,30,30],2040:[365,31,31,32,32,31,30,30,29,30,29,30,30],2041:[366,31,32,31,32,31,30,30,30,29,29,30,31],2042:[366,31,31,32,31,31,30,30,29,30,29,30,31],2043:[365,31,31,32,31,31,31,30,29,30,29,30,30],2044:[365,31,31,32,31,31,31,30,29,30,29,30,30],2045:[366,31,32,31,32,31,30,30,30,29,29,30,31],2046:[366,31,32,31,32,31,30,30,30,29,30,29,31],2047:[365,31,31,32,31,31,31,30,29,30,29,30,30],2048:[365,31,31,32,32,31,30,30,29,30,29,30,30],2049:[366,31,32,31,32,31,30,30,30,29,29,30,31],2050:[366,31,32,31,32,31,30,30,30,29,30,29,31],2051:[365,31,31,32,31,31,31,30,29,30,29,30,30],2052:[365,31,31,32,32,31,30,30,29,30,29,30,30],2053:[366,31,32,31,32,31,30,30,30,29,29,30,31],2054:[366,31,32,31,32,31,30,30,30,29,30,29,31],2055:[365,31,31,32,31,31,31,30,29,30,29,30,30],2056:[366,31,31,32,31,31,31,30,29,30,29,30,31],2057:[366,31,31,32,32,31,30,30,29,30,29,30,31],2058:[365,30,32,31,32,31,30,30,30,29,29,30,30],2059:[366,31,32,31,32,31,30,30,30,29,30,29,31],2060:[365,31,31,32,31,31,31,30,29,30,29,30,30],2061:[365,31,31,32,31,31,31,30,29,30,29,30,30],2062:[365,31,31,32,32,31,30,30,29,30,29,30,30],2063:[366,31,32,31,32,31,30,30,30,29,29,30,31],2064:[366,31,31,32,31,31,30,30,29,30,29,30,31],2065:[365,31,31,32,31,31,31,30,29,30,29,30,30],2066:[365,31,31,32,31,31,31,30,29,30,29,30,30],2067:[366,31,32,31,32,31,30,30,30,29,29,30,31],2068:[366,31,32,31,32,31,30,30,30,29,30,29,31],2069:[365,31,31,32,31,31,31,30,29,30,29,30,30],2070:[365,31,31,32,32,31,30,30,29,30,29,30,30],2071:[366,31,32,31,32,31,30,30,30,29,29,30,31],2072:[366,31,32,31,32,31,30,30,30,29,30,29,31],2073:[365,31,31,32,31,31,31,30,29,30,29,30,30],2074:[365,31,31,32,32,31,30,30,29,30,29,30,30],2075:[366,31,32,31,32,31,30,30,30,29,29,30,31],2076:[365,31,32,31,32,31,30,30,30,29,30,29,31],2077:[365,31,31,32,31,31,31,30,29,30,29,30,30],2078:[365,31,31,32,31,31,31,30,29,30,29,30,30],2079:[366,31,32,31,32,31,30,30,30,29,29,30,31],2080:[365,31,32,31,32,31,30,30,30,29,30,29,31],2081:[365,31,31,32,31,31,31,30,29,30,29,30,30],2082:[365,31,31,32,32,31,30,30,29,30,29,30,30],2083:[365,31,31,32,31,31,31,30,29,30,29,30,30],2084:[366,31,32,31,32,31,30,30,30,29,30,29,31],2085:[365,31,31,32,31,31,31,30,29,30,29,30,30],2086:[365,31,31,32,32,31,30,30,29,30,29,30,30],2087:[366,31,32,31,32,31,30,30,30,29,29,30,31],2088:[366,31,32,31,32,31,30,30,30,29,30,29,31],2089:[365,31,31,32,31,31,31,30,29,30,29,30,30],2090:[365,31,31,32,32,31,30,30,29,30,29,30,30]};
+  var _EPOCH = Date.UTC(1943,2,31);
+
+  function _toNp(n){return String(n).split('').map(function(d){var i=parseInt(d,10);return isNaN(i)?d:_NP_NUMS[i];}).join('');}
+  function _adToBs(d){
+    var days=Math.floor((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())-_EPOCH)/86400000);
+    if(days<0)return '';
+    var y=2000;
+    while(true){var yr=_BS_TBL[y];if(!yr||days<yr[0])break;days-=yr[0];y++;}
+    var yr2=_BS_TBL[y];if(!yr2)return '';
+    var mo=1,dy=1;
+    for(var m=1;m<=12;m++){if(days<yr2[m]){mo=m;dy=days+1;break;}days-=yr2[m];}
+    return _NP_DAYS[d.getDay()]+', '+_BS_MONTHS[mo-1]+' '+_toNp(dy)+', '+_toNp(y);
+  }
+
+  function _tick(){
+    var now=new Date();
+    var dtEl=document.getElementById('np-datetime');
+    var clEl=document.getElementById('np-clock');
+    if(dtEl){
+      var bsStr=_adToBs(now);
+      var enStr=_EN_DAYS[now.getDay()]+', '+_EN_MONTHS[now.getMonth()]+' '+now.getDate()+', '+now.getFullYear();
+      dtEl.setAttribute('data-en',enStr);
+      dtEl.setAttribute('data-np',bsStr);
+      var _lang='en';try{_lang=localStorage.getItem('fm_lang')||'en';}catch(e){}
+      dtEl.textContent=(_lang==='np')?bsStr:enStr;
+    }
+    if(clEl){
+      var h=now.getHours(),mi=now.getMinutes(),s=now.getSeconds(),ap=h>=12?'PM':'AM';
+      h=h%12;if(h===0)h=12;
+      clEl.textContent=String(h).padStart(2,'0')+':'+String(mi).padStart(2,'0')+':'+String(s).padStart(2,'0')+' '+ap;
+    }
+  }
+
+  function _init(){
+    var _audio=null,_playing=false,_SK='fmPlayer',_stream='https://live.itech.host:2440/stream';
+    var _playBtn=document.getElementById('play-btn');
+    var _playPath=document.getElementById('play-path');
+    var _waveform=document.getElementById('player-waveform');
+    var _volSlider=document.getElementById('vol-slider');
+    var _volDown=document.getElementById('vol-down-btn');
+    var _volUp=document.getElementById('vol-up-btn');
+    var _hamburger=document.getElementById('hamburger-btn');
+    var _mobMenu=document.getElementById('mobile-menu');
+    var _langBtn=document.getElementById('lang-toggle');
+    var _siteHdr=document.getElementById('site-header');
+    var _provNav=document.getElementById('province-nav');
+    var _provDrop=document.getElementById('province-dropdown');
+    var _mobPTog=document.getElementById('mobile-province-toggle');
+    var _mobPList=document.getElementById('mobile-province-list');
+
+    _tick();
+    setInterval(_tick,1000);
+
+    /* ── Apply stored lang on load ── */
+    (function(){
+      var saved='en';try{saved=localStorage.getItem('fm_lang')||'en';}catch(e){}
+      if(saved==='np'){
+        if(_siteHdr)_siteHdr.classList.add('hdr-np');
+        if(_langBtn)_langBtn.textContent='EN';
+        var dtEl=document.getElementById('np-datetime');
+        if(dtEl&&dtEl.getAttribute('data-np'))dtEl.textContent=dtEl.getAttribute('data-np');
+      }
+    })();
+
+    /* ── Lang toggle ── */
+    if(_langBtn && !_langBtn._hdrBound){
+      _langBtn._hdrBound = true;
+      _langBtn.addEventListener('click',function(){
+        var isNp=_langBtn.textContent.trim()==='NP';
+        var newLang=isNp?'np':'en';
+        try{localStorage.setItem('fm_lang',newLang);}catch(e){}
+        _langBtn.textContent=isNp?'EN':'NP';
+        if(_siteHdr)_siteHdr.classList.toggle('hdr-np',isNp);
+        var dtEl=document.getElementById('np-datetime');
+        if(dtEl)dtEl.textContent=isNp?(dtEl.getAttribute('data-np')||''):(dtEl.getAttribute('data-en')||'');
+        window.dispatchEvent(new CustomEvent('langChange',{detail:{lang:newLang}}));
+      });
+    }
+
+    /* ── Sync lang from external events ── */
+    window.addEventListener('langChange',function(e){
+      if(!e||!e.detail||!e.detail.lang)return;
+      var isNp=e.detail.lang==='np';
+      if(_siteHdr)_siteHdr.classList.toggle('hdr-np',isNp);
+      if(_langBtn)_langBtn.textContent=isNp?'EN':'NP';
+      var dtEl=document.getElementById('np-datetime');
+      if(dtEl)dtEl.textContent=isNp?(dtEl.getAttribute('data-np')||''):(dtEl.getAttribute('data-en')||'');
+    });
+
+    /* ── Scroll shrink ── */
+    window.addEventListener('scroll',function(){
+      if(_siteHdr)_siteHdr.classList.toggle('scrolled',window.scrollY>120);
+    },{passive:true});
+
+    /* ── Hamburger ── */
+    if(_hamburger&&_mobMenu){
+      _hamburger.addEventListener('click',function(){
+        var exp=_hamburger.getAttribute('aria-expanded')==='true';
+        _hamburger.setAttribute('aria-expanded',String(!exp));
+        _mobMenu.classList.toggle('open',!exp);
+        _mobMenu.setAttribute('aria-hidden',String(exp));
+      });
+      _mobMenu.querySelectorAll('a:not(#mobile-province-toggle)').forEach(function(a){
+        a.addEventListener('click',function(){
+          _hamburger.setAttribute('aria-expanded','false');
+          _mobMenu.classList.remove('open');
+          _mobMenu.setAttribute('aria-hidden','true');
+        });
+      });
+    }
+
+    /* ── Province dropdown ── */
+    if(_provNav){
+      var _togLink=_provNav.querySelector('.dropdown-toggle');
+      if(_togLink){
+        _togLink.addEventListener('click',function(e){
+          e.preventDefault();
+          if(window.innerWidth<=960){
+            var isOpen=_provNav.classList.toggle('open');
+            _togLink.setAttribute('aria-expanded',String(isOpen));
+          }
+        });
+      }
+      document.addEventListener('click',function(e){
+        if(!_provNav.contains(e.target)){
+          _provNav.classList.remove('open');
+          if(_togLink)_togLink.setAttribute('aria-expanded','false');
+        }
+      });
+      if(_provDrop){
+        _provDrop.querySelectorAll('a').forEach(function(a){
+          a.addEventListener('click',function(){
+            _provNav.classList.remove('open');
+            if(_togLink)_togLink.setAttribute('aria-expanded','false');
+          });
+        });
+      }
+    }
+
+    /* ── Mobile province sub-list toggle ── */
+    if(_mobPTog&&_mobPList){
+      _mobPTog.addEventListener('click',function(e){
+        e.preventDefault();
+        var hidden=_mobPList.style.display==='none';
+        _mobPList.style.display=hidden?'block':'none';
+        var ico=_mobPTog.querySelector('i');
+        if(ico)ico.style.transform=hidden?'rotate(180deg)':'';
+      });
+    }
+
+    /* ── Volume controls ── */
+    function _updateSlider(v){
+      if(_volSlider)_volSlider.style.background='linear-gradient(to right,var(--hdr-accent) '+v+'%,var(--hdr-border) '+v+'%)';
+    }
+    function _setVol(v){
+      v=Math.max(0,Math.min(100,v));
+      if(_volSlider){_volSlider.value=v;_updateSlider(v);}
+      if(_audio)_audio.volume=v/100;
+      try{var s=JSON.parse(localStorage.getItem(_SK)||'{}');s.vol=v;localStorage.setItem(_SK,JSON.stringify(s));}catch(e){}
+    }
+    function _setPlayingUI(on){
+      if(_playPath)_playPath.setAttribute('d',on?'M6 6h12v12H6z':'M8 5v14l11-7z');
+      if(_playBtn)_playBtn.setAttribute('aria-label',on?'Stop stream':'Play stream');
+      if(_waveform)_waveform.classList.toggle('paused',!on);
+    }
+    function _startPlay(){
+      if(!_audio){
+        _audio=new Audio(_stream);
+        _audio.volume=(_volSlider?_volSlider.value:70)/100;
+        _audio.addEventListener('error',function(){_stopPlay();});
+      }
+      _audio.play().catch(function(e){console.warn('Stream:',e);_stopPlay();});
+      _playing=true;_setPlayingUI(true);
+      try{localStorage.setItem(_SK,JSON.stringify({playing:true,vol:_volSlider?parseInt(_volSlider.value):70}));}catch(e){}
+    }
+    function _stopPlay(){
+      if(_audio){_audio.pause();_audio.src='';_audio=null;}
+      _playing=false;_setPlayingUI(false);
+      try{var s=JSON.parse(localStorage.getItem(_SK)||'{}');s.playing=false;localStorage.setItem(_SK,JSON.stringify(s));}catch(e){}
+    }
+
+    if(_playBtn)_playBtn.addEventListener('click',function(){_playing?_stopPlay():_startPlay();});
+    if(_volDown)_volDown.addEventListener('click',function(){_setVol(parseInt(_volSlider.value)-10);});
+    if(_volUp)_volUp.addEventListener('click',function(){_setVol(parseInt(_volSlider.value)+10);});
+    if(_volSlider)_volSlider.addEventListener('input',function(){
+      _updateSlider(this.value);
+      if(_audio)_audio.volume=this.value/100;
+      try{var s=JSON.parse(localStorage.getItem(_SK)||'{}');s.vol=parseInt(this.value);localStorage.setItem(_SK,JSON.stringify(s));}catch(e){}
+    });
+
+    var _saved={};try{_saved=JSON.parse(localStorage.getItem(_SK)||'{}');}catch(e){}
+    var _initVol=(_saved.vol!=null)?_saved.vol:70;
+    if(_volSlider)_volSlider.value=_initVol;
+    _updateSlider(_initVol);
+    if(_saved.playing){_startPlay();}else{if(_waveform)_waveform.classList.add('paused');}
+  }
+
+  setTimeout(_init, 0);
+
+})();
+
+</script>
+<script>
+(function () {
+  'use strict';
+
+  var INLINE_TAGS = new Set(['SPAN','A','I','B','STRONG','SMALL','EM','BUTTON']);
+
+  window.setContactLang = function (lang) {
+    lang = (lang === 'np') ? 'np' : 'en';
+    document.querySelectorAll('.lang-en').forEach(function (el) {
+      el.style.display = (lang === 'en') ? (INLINE_TAGS.has(el.tagName) ? 'inline' : 'block') : 'none';
+    });
+    document.querySelectorAll('.lang-np').forEach(function (el) {
+      el.style.display = (lang === 'np') ? (INLINE_TAGS.has(el.tagName) ? 'inline' : 'block') : 'none';
+    });
+    try { localStorage.setItem('fm_lang', lang); } catch (e) {}
+  };
+
+  window.populateContactData = function (data) {
+    if (!data) return;
+
+    function setText(id, val) {
+      var el = document.getElementById(id);
+      if (el && val) el.textContent = val;
+    }
+    setText('contact-phone-en', data.phoneEn);
+    setText('contact-phone-np', data.phoneNp);
+    setText('contact-email',    data.email);
+    setText('contact-addr-en',  data.addrEn);
+    setText('contact-addr-np',  data.addrNp);
+
+    // Map
+    var mapEl = document.getElementById('contact-map');
+    if (mapEl && data.mapUrl) {
+      var raw = data.mapUrl.trim();
+      if (raw.toLowerCase().startsWith('<iframe')) {
+        mapEl.innerHTML = raw;
+        var fi = mapEl.querySelector('iframe');
+        if (fi) { fi.style.cssText = 'width:100%;height:100%;border:0;display:block'; fi.removeAttribute('width'); fi.removeAttribute('height'); }
+      } else if (raw) {
+        mapEl.innerHTML = '<iframe src="' + raw + '" width="100%" height="100%" frameborder="0" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+      }
+    }
+
+    // Stream link
+    var sl = document.getElementById('stream-link');
+    if (sl && data.streamUrl && data.streamUrl.trim()) {
+      sl.href = data.streamUrl.trim();
+      sl.style.display = 'inline-flex';
+    }
+
+    var lang = 'en';
+    try { lang = localStorage.getItem('fm_lang') || 'en'; } catch (e) {}
+    window.setContactLang(lang);
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+
+    var lang = 'en';
+    try { lang = localStorage.getItem('fm_lang') || 'en'; } catch (e) {}
+    window.setContactLang(lang);
+
+    window.addEventListener('langChange', function (e) {
+      if (e && e.detail && e.detail.lang) window.setContactLang(e.detail.lang);
+    });
+
+    // Intersection Observer — fade-in
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+      document.querySelectorAll('.contact-anim').forEach(function (el) { io.observe(el); });
+    } else {
+      document.querySelectorAll('.contact-anim').forEach(function (el) { el.classList.add('visible'); });
+    }
+
+    // Social link guard — prevent navigation if href still #
+    document.querySelectorAll('.social-link').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        if (!link.getAttribute('href') || link.getAttribute('href') === '#') e.preventDefault();
+      });
+    });
+
+  });
+})();
+</script>
+<script>
+(function () {
+
+  // ── 1. Fix CSS visibility immediately ──────────────────────
+  function ensureCSSApplied() {
+    var container = document.querySelector('.contact-container');
+    if (container) {
+      container.style.opacity   = '1';
+      container.style.transform = 'translateY(0)';
+    }
+    document.querySelectorAll('.info-card, .contact-form, .map-section, .contact-anim').forEach(function(el) {
+      el.style.opacity   = '1';
+      el.style.transform = 'translateY(0)';
+    });
+  }
+
+  // ── 2. Resolved data (with fallback, injected server-side) ──
+  var data = {
+    phoneEn:     "+977 9847492226",
+    phoneNp:     "+९७७ ९८४७४९२२२६",
+    email:       "njdnews@gmail.com",
+    addrEn:      "Bhagwati Tole-3, Tansen Palpa, Nepal",
+    addrNp:      "भगवती टोल-३, तानसेन पाल्पा, नेपाल",
+    mapUrl:      "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3516.7763265638823!2d82.50197502473429!3d28.183717104321644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3997ebe3e4eb6ead%3A0xb25a393b1bcf5e34!2sRadio%20Holeri!5e0!3m2!1sen!2snp!4v1779263353316!5m2!1sen!2snp\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+    streamUrl:   "",
+    socialLinks: {
+      facebook:  "https://www.facebook.com/nawajanachetana/",
+      twitter:   "",
+      youtube:   "",
+      instagram: "https://www.instagram.com/shittalpationline/"
+    }
+  };
+
+  // ── 3. Console-log data for browser debugging ───────────────
+  console.log('[contact-inject] data:', JSON.stringify(data));
+
+  // ── 4. Populate all contact fields ─────────────────────────
+  function populateAll() {
+
+    // Phone — handle single-id and dual-id variants
+    var phoneSingle = document.getElementById('contact-phone');
+    var phoneEnEl   = document.getElementById('contact-phone-en');
+    var phoneNpEl   = document.getElementById('contact-phone-np');
+    var phoneVal    = data.phoneEn || data.phoneNp;
+
+    // Always set — use empty string if no value (shows nothing, not "—")
+    if (phoneSingle) phoneSingle.textContent = phoneVal || phoneSingle.textContent;
+    if (phoneEnEl)   phoneEnEl.textContent   = data.phoneEn || phoneEnEl.textContent;
+    if (phoneNpEl)   phoneNpEl.textContent   = data.phoneNp || phoneNpEl.textContent;
+
+    // Email
+    var emailEl = document.getElementById('contact-email');
+    if (emailEl) emailEl.textContent = data.email || emailEl.textContent;
+
+    // Address
+    var addrEnEl = document.getElementById('contact-addr-en');
+    var addrNpEl = document.getElementById('contact-addr-np');
+    if (addrEnEl) addrEnEl.textContent = data.addrEn || addrEnEl.textContent;
+    if (addrNpEl) addrNpEl.textContent = data.addrNp || addrNpEl.textContent;
+
+    // Map — accepts raw iframe HTML or a plain URL
+    var mapEl = document.getElementById('contact-map');
+    if (mapEl && data.mapUrl) {
+      var raw = data.mapUrl.trim();
+      if (raw.toLowerCase().startsWith('<iframe')) {
+        mapEl.innerHTML = raw;
+        var iframe = mapEl.querySelector('iframe');
+        if (iframe) {
+          iframe.style.width   = '100%';
+          iframe.style.height  = '100%';
+          iframe.style.border  = '0';
+          iframe.style.display = 'block';
+          iframe.removeAttribute('width');
+          iframe.removeAttribute('height');
+        }
+      } else if (raw.startsWith('http')) {
+        mapEl.innerHTML =
+          '<iframe src="' + raw + '" width="100%" height="100%" frameborder="0"'
+          + ' allowfullscreen loading="lazy"'
+          + ' referrerpolicy="no-referrer-when-downgrade"></iframe>';
+      }
+    }
+
+    // Stream link
+    var streamEl = document.getElementById('stream-link');
+    if (streamEl && data.streamUrl) {
+      streamEl.href          = data.streamUrl;
+      streamEl.style.display = 'inline-flex';
+    }
+
+    // Social links
+    ['facebook', 'twitter', 'youtube', 'instagram'].forEach(function(key) {
+      var url = data.socialLinks[key];
+      var el  = document.getElementById('sl-' + key);
+      if (el && url && url !== '#') el.href = url;
+    });
+  }
+
+  // ── 5. Fetch-based form handler ─────────────────────────────
+  function attachFormHandler() {
+    var oldForm = document.getElementById('contact-form');
+    if (!oldForm) return;
+
+    var form = oldForm.cloneNode(true);
+    oldForm.parentNode.replaceChild(form, oldForm);
+
+    form.removeAttribute('action');
+    form.setAttribute('data-action', 'https://formspree.io/f/mvzygdvj');
+
+    ['input[name="_next"]', 'input[name="_captcha"]'].forEach(function(sel) {
+      var el = form.querySelector(sel);
+      if (el) el.parentNode.removeChild(el);
+    });
+
+    var submitBtn = form.querySelector('#form-submit');
+    var statusDiv = form.querySelector('#form-status');
+    if (!submitBtn || !statusDiv) return;
+
+    var origHTML = submitBtn.innerHTML;
+
+    function getLang() {
+      try { return localStorage.getItem('fm_lang') || 'en'; } catch(e) { return 'en'; }
+    }
+    function applyLang(l) {
+      if (typeof window.setContactLang === 'function') window.setContactLang(l);
+    }
+    function showStatus(msgHtml, type) {
+      statusDiv.innerHTML     = msgHtml;
+      statusDiv.className     = 'form-status ' + (type || '');
+      statusDiv.style.display = 'block';
+      applyLang(getLang());
+      if (type === 'error') {
+        setTimeout(function() { statusDiv.style.display = 'none'; }, 6000);
+      }
+    }
+
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    function isValidEmail(v) { return emailRegex.test(v); }
+    function val(id) {
+      var el = form.querySelector('#' + id);
+      return el ? el.value.trim() : '';
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+
+      var l       = getLang();
+      var name    = val('form-name');
+      var email   = val('form-email');
+      var subject = val('form-subject');
+      var message = val('form-message');
+
+      if (!name || !email || !subject || !message) {
+        showStatus(
+          '<span class="lang-en">Please fill in all required fields.</span>'
+          + '<span class="lang-np">कृपया सबै आवश्यक फिल्डहरू भर्नुहोस्।</span>',
+          'error'
+        );
+        applyLang(l); return;
+      }
+      if (!isValidEmail(email)) {
+        showStatus(
+          '<span class="lang-en">Please enter a valid email address.</span>'
+          + '<span class="lang-np">कृपया मान्य इमेल ठेगाना प्रविष्ट गर्नुहोस्।</span>',
+          'error'
+        );
+        applyLang(l); return;
+      }
+
+      var honey = form.querySelector('input[name="_honey"]');
+      if (honey && honey.value) return;
+
+      submitBtn.innerHTML =
+        '<span class="lang-en">Sending...</span>'
+        + '<span class="lang-np">पठाउँदै...</span>'
+        + '<i class="fas fa-spinner fa-spin"></i>';
+      submitBtn.disabled = true;
+      applyLang(l);
+
+      fetch(form.getAttribute('data-action'), {
+        method: 'POST',
+        body:   new FormData(form),
+        mode:   'no-cors'
+      })
+      .then(function() {
+        form.reset();
+        showStatus(
+          '<strong>'
+            + '<span class="lang-en">Message sent successfully!</span>'
+            + '<span class="lang-np">सन्देश सफलतापूर्वक पठाइयो!</span>'
+          + '</strong><br>'
+          + '<span class="lang-en">Thank you for reaching out. We\'ll get back to you within 24 hours.</span>'
+          + '<span class="lang-np">हामीलाई सम्पर्क गर्नुभएकोमा धन्यवाद। हामी २४ घण्टा भित्र तपाईंलाई जवाफ दिनेछौं।</span>',
+          'success'
+        );
+      })
+      .catch(function() {
+        showStatus(
+          '<span class="lang-en">Something went wrong. Please try again or email us directly.</span>'
+          + '<span class="lang-np">केही गडबडी भयो। कृपया पुनः प्रयास गर्नुहोस् वा हामीलाई सिधै इमेल गर्नुहोस्।</span>',
+          'error'
+        );
+      })
+      .finally(function() {
+        submitBtn.innerHTML = origHTML;
+        submitBtn.disabled  = false;
+        applyLang(l);
+      });
+    });
+  }
+
+  // ── 6. Run ─────────────────────────────────────────────────
+  function run() {
+    ensureCSSApplied();
+    window.populateContactData = function() {};
+    populateAll();
+    var lang = 'en';
+    try { lang = localStorage.getItem('fm_lang') || 'en'; } catch(e) {}
+    if (typeof window.setContactLang === 'function') window.setContactLang(lang);
+    attachFormHandler();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+
+})();
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+      var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
+      var adYear=new Date().getFullYear();
+      var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
+      var eyEn=document.getElementById('footer-year-en');
+      var eyNp=document.getElementById('footer-year-np');
+      if(eyEn)eyEn.textContent=adYear;
+      if(eyNp)eyNp.textContent=npYear;
+      window.addEventListener('langChange',function(e){
+        if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
+      });
+      var stored=localStorage.getItem('fm_lang')||'en';
+      if(stored==='np')document.body.classList.add('lang-active');
+    });
+  </script>
+</body>
+</html>

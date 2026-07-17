@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Butwal Today Online TV - News</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+  <style>
+
+:root {
+  --hdr-accent:      #D4A017;
+  --hdr-primary:     #A31919;
+  --hdr-primary-on:  #FFFFFF;
+  --hdr-accent-on:   #1F1F1F;
+  --hdr-bg:          #FFFFFF;
+  --hdr-surface:     #F8F8F8;
+  --hdr-text:        #1F1F1F;
+  --hdr-muted:       rgba(31,31,31,0.55);
+  --hdr-border:      rgba(163,25,25,0.18);
+  --hdr-font-body:   sans-serif;
+  --hdr-font-heading:Noto Serif, Georgia, serif;
+}
+
+/* === FIX 1: Header must be position:relative so mobile menu anchors to it === */
+#site-header {
+  position: relative !important;
+  display: block !important;
+}
+
+/* === RESET inside header only — excludes icon elements === */
+#site-header *, #site-header *::before, #site-header *::after {
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: normal !important;
+}
+
+/* Apply font-family only to non-icon elements so Font Awesome is never overridden */
+#site-header *:not(i):not([class*="fa-"]) {
+  font-family: var(--hdr-font-body, sans-serif) !important;
+}
+
+/* === FONT AWESOME ICON PROTECTION === */
+#site-header i[class*="fa-"] {
+  font-style: normal !important;
+  font-variant: normal !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  display: inline-block !important;
+  line-height: 1 !important;
+}
+#site-header i.fa-brands,
+#site-header i[class*="fa-brands"] {
+  font-family: "Font Awesome 6 Brands" !important;
+  font-weight: 400 !important;
+}
+#site-header i.fa-solid,
+#site-header i[class*="fa-solid"] {
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 900 !important;
+}
+#site-header i.fa-regular,
+#site-header i[class*="fa-regular"] {
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 400 !important;
+}
+
+/* === FIX 3: Header-internal lang toggle via .hdr-np class === */
+#site-header .lang-en { display: inline !important; }
+#site-header .lang-np { display: none !important; }
+#site-header.hdr-np .lang-en { display: none !important; }
+#site-header.hdr-np .lang-np { display: inline !important; }
+
+/* === TOP BAR === */
+#site-header .top-bar {
+  background: var(--hdr-surface) !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  overflow: hidden !important;
+  transition: height .3s ease, opacity .3s ease !important;
+}
+#site-header .top-bar-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  height: 38px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+
+/* === SOCIAL ICONS === */
+#site-header .top-social {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  flex-shrink: 0 !important;
+}
+#site-header .top-social a {
+  color: var(--hdr-text) !important;
+  font-size: 1.1rem !important;
+  text-decoration: none !important;
+  transition: color .2s !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 1.4rem !important;
+  height: 1.4rem !important;
+}
+#site-header .top-social a:hover {
+  color: var(--hdr-accent) !important;
+}
+#site-header .top-social a i {
+  font-size: 1.1rem !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* === TOP CENTER === */
+#site-header .top-center {
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  font-size: .8rem !important;
+  color: var(--hdr-text) !important;
+}
+#site-header .top-date,
+#site-header .top-clock {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  white-space: nowrap !important;
+}
+#site-header .top-date i,
+#site-header .top-clock i { opacity: .6 !important; font-size: .78rem !important; }
+#site-header .top-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-shrink: 0 !important;
+}
+
+/* === PLAYER === */
+#site-header .header-player {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  border: 1px solid var(--hdr-border) !important;
+  border-radius: 6px !important;
+  padding: 4px 10px !important;
+  background: var(--hdr-bg) !important;
+}
+#site-header .player-live-badge {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  font-size: .62rem !important;
+  font-weight: 800 !important;
+  color: var(--hdr-accent) !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+#site-header .live-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: #e74c3c !important;
+  animation: hdrLivePulse 1.5s ease-in-out infinite !important;
+  flex-shrink: 0 !important;
+}
+@keyframes hdrLivePulse {
+  0%,100%{ opacity:1; transform:scale(1); }
+  50%{ opacity:.3; transform:scale(.65); }
+}
+#site-header .player-waveform {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+  height: 16px !important;
+}
+#site-header .player-waveform span {
+  display: block !important;
+  width: 2px !important;
+  border-radius: 1px !important;
+  background: var(--hdr-accent) !important;
+  opacity: .65 !important;
+  animation: hdrWaveAnim 1.2s ease-in-out infinite !important;
+}
+#site-header .player-waveform span:nth-child(1){height:4px !important;animation-delay:0s !important;}
+#site-header .player-waveform span:nth-child(2){height:10px !important;animation-delay:.15s !important;}
+#site-header .player-waveform span:nth-child(3){height:14px !important;animation-delay:.3s !important;}
+#site-header .player-waveform span:nth-child(4){height:8px !important;animation-delay:.45s !important;}
+#site-header .player-waveform span:nth-child(5){height:11px !important;animation-delay:.6s !important;}
+@keyframes hdrWaveAnim {
+  0%,100%{ transform:scaleY(.35); }
+  50%{ transform:scaleY(1); }
+}
+#site-header .player-waveform.paused span {
+  animation-play-state: paused !important;
+  opacity: .2 !important;
+}
+#site-header .player-play-btn {
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background: var(--hdr-accent) !important;
+  color: var(--hdr-accent-on) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  transition: opacity .2s, transform .1s !important;
+}
+#site-header .player-play-btn:hover { opacity: .85 !important; }
+#site-header .player-play-btn:active { transform: scale(.9) !important; }
+#site-header .player-vol-wrap {
+  display: flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+}
+#site-header .vol-btn {
+  background: none !important;
+  border: none !important;
+  color: var(--hdr-muted) !important;
+  cursor: pointer !important;
+  padding: 2px !important;
+  display: flex !important;
+  align-items: center !important;
+  transition: color .2s !important;
+  flex-shrink: 0 !important;
+}
+#site-header .vol-btn:hover { color: var(--hdr-accent) !important; }
+#site-header .vol-slider {
+  -webkit-appearance: none !important;
+  width: 56px !important;
+  height: 3px !important;
+  border-radius: 2px !important;
+  outline: none !important;
+  cursor: pointer !important;
+  background: linear-gradient(to right, var(--hdr-accent) 70%, var(--hdr-border) 70%) !important;
+}
+#site-header .vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 50% !important;
+  background: var(--hdr-accent) !important;
+  cursor: pointer !important;
+}
+#site-header .vol-slider::-moz-range-thumb {
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 50% !important;
+  background: var(--hdr-accent) !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+#site-header .lang-toggle {
+  background: var(--hdr-accent) !important;
+  color: var(--hdr-accent-on) !important;
+  border: none !important;
+  border-radius: 3px !important;
+  padding: 3px 10px !important;
+  font-weight: 700 !important;
+  font-size: .72rem !important;
+  cursor: pointer !important;
+  letter-spacing: .05em !important;
+  transition: opacity .2s !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+#site-header .lang-toggle:hover { opacity: .85 !important; }
+
+/* === LOGO BAR === */
+#site-header .logo-bar {
+  background: var(--hdr-surface) !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  padding: 10px 0 !important;
+  transition: padding .3s ease !important;
+}
+#site-header .logo-bar-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: justify-content .3s ease !important;
+}
+#site-header .logo-link {
+  display: flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+}
+#site-header .header-logo {
+  height: 90px !important;
+  width: auto !important;
+  max-width: min(520px, 80vw) !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  display: block !important;
+  transition: height .3s ease, object-position .3s ease !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* === MAIN NAV === */
+#site-header .main-nav {
+  background: var(--hdr-primary) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.22) !important;
+}
+#site-header .main-nav-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+#site-header .nav-list {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  overflow: visible !important;
+}
+#site-header .nav-list li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  display: flex !important;
+  align-items: stretch !important;
+}
+#site-header .nav-list li > a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: .72rem .85rem !important;
+  color: var(--hdr-primary-on) !important;
+  text-decoration: none !important;
+  font-size: .82rem !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  border-bottom: 3px solid transparent !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  transition: background .2s, border-color .2s !important;
+  background: transparent !important;
+}
+#site-header .nav-list li > a:hover,
+#site-header .nav-list li.active > a {
+  background: rgba(0,0,0,.18) !important;
+  border-bottom-color: #fff !important;
+}
+
+/* === DROPDOWN === */
+#site-header .has-dropdown { position: relative !important; }
+#site-header .dropdown-arrow {
+  font-size: .65rem !important;
+  transition: transform .25s !important;
+  margin-left: 2px !important;
+}
+#site-header .has-dropdown:hover .dropdown-arrow,
+#site-header .has-dropdown.open .dropdown-arrow { transform: rotate(180deg) !important; }
+#site-header .dropdown-menu {
+  display: none !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  background: var(--hdr-surface) !important;
+  border: 1px solid var(--hdr-border) !important;
+  border-top: 2px solid var(--hdr-accent) !important;
+  border-radius: 0 0 6px 6px !important;
+  min-width: 220px !important;
+  z-index: 2000 !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.15) !important;
+  list-style: none !important;
+  padding: 4px 0 !important;
+}
+@media (min-width: 961px) {
+  #site-header .has-dropdown:hover .dropdown-menu { display: block !important; }
+}
+@media (max-width: 960px) {
+  #site-header .has-dropdown.open .dropdown-menu { display: block !important; }
+}
+#site-header .dropdown-menu li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+#site-header .dropdown-menu li a {
+  display: block !important;
+  padding: .6rem 1.1rem !important;
+  color: var(--hdr-text) !important;
+  text-decoration: none !important;
+  font-size: .84rem !important;
+  font-weight: 500 !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  transition: background .15s, color .15s !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+}
+#site-header .dropdown-menu li:last-child a { border-bottom: none !important; }
+#site-header .dropdown-menu li a:hover {
+  background: var(--hdr-primary) !important;
+  color: var(--hdr-primary-on) !important;
+}
+
+/* === HAMBURGER === */
+#site-header .nav-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  flex-shrink: 0 !important;
+}
+#site-header .hamburger {
+  display: none !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 6px !important;
+  cursor: pointer !important;
+  width: 40px !important;
+  height: 40px !important;
+  flex-shrink: 0 !important;
+}
+#site-header .bar {
+  display: block !important;
+  width: 20px !important;
+  height: 2px !important;
+  background: var(--hdr-primary-on) !important;
+  border-radius: 2px !important;
+  transition: transform .3s, opacity .3s !important;
+  transform-origin: center !important;
+}
+#site-header .hamburger[aria-expanded="true"] .bar:nth-child(1){transform:translateY(7px) rotate(45deg) !important;}
+#site-header .hamburger[aria-expanded="true"] .bar:nth-child(2){opacity:0 !important;transform:scaleX(0) !important;}
+#site-header .hamburger[aria-expanded="true"] .bar:nth-child(3){transform:translateY(-7px) rotate(-45deg) !important;}
+
+/* === MOBILE MENU === */
+#site-header .mobile-menu {
+  display: none !important;
+  background: var(--hdr-surface) !important;
+  border-top: 2px solid var(--hdr-primary) !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 999 !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.18) !important;
+}
+#site-header .mobile-menu.open { display: block !important; }
+#site-header .mobile-menu ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: .5rem 0 !important;
+}
+#site-header .mobile-menu ul li { margin: 0 !important; padding: 0 !important; }
+#site-header .mobile-menu ul li a {
+  display: block !important;
+  padding: .72rem 1.5rem !important;
+  color: var(--hdr-text) !important;
+  text-decoration: none !important;
+  font-size: .9rem !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  transition: background .2s, color .2s !important;
+  background: transparent !important;
+}
+#site-header .mobile-menu ul li a:hover {
+  background: var(--hdr-primary) !important;
+  color: var(--hdr-primary-on) !important;
+}
+#site-header .mobile-province-list li a {
+  padding-left: 2.5rem !important;
+  font-size: .85rem !important;
+  background: var(--hdr-bg) !important;
+}
+
+/* === SCROLL SHRINK === */
+#site-header.scrolled .top-bar {
+  height: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  border: none !important;
+}
+#site-header.scrolled .logo-bar { padding: 5px 0 !important; }
+#site-header.scrolled .logo-bar-inner { justify-content: flex-start !important; }
+#site-header.scrolled .header-logo { height: 42px !important; object-position: left center !important; }
+
+/* === RESPONSIVE === */
+@media (max-width: 960px) {
+  #site-header .nav-list { display: none !important; }
+  #site-header .hamburger { display: flex !important; }
+  #site-header .top-center { display: none !important; }
+  #site-header .player-vol-wrap { display: none !important; }
+  #site-header .top-bar-inner { padding: 0 12px !important; }
+}
+@media (max-width: 600px) {
+  #site-header .header-logo { height: 58px !important; max-width: 70vw !important; }
+  #site-header .header-player { padding: 3px 7px !important; gap: 4px !important; }
+  #site-header .top-social { gap: 10px !important; }
+  #site-header .logo-bar-inner,
+  #site-header .main-nav-inner { padding: 0 12px !important; }
+  #site-header .top-right { gap: 6px !important; }
+}
+@media (min-width: 961px) {
+  #site-header .hamburger { display: none !important; }
+  #site-header .mobile-menu { display: none !important; }
+  #site-header .nav-list { display: flex !important; }
+}
+@media (max-width: 480px) {
+  #site-header .player-live-badge .live-label { display: none !important; }
+  #site-header .player-waveform { display: none !important; }
+  #site-header .header-player { padding: 2px 5px !important; }
+}
+
+</style>
+<style>
+  .page-container { max-width:1200px; margin:0 auto; padding:0 16px; }
+  * { box-sizing:border-box; }
+  .index-page { background:#FFFFFF; color:#1F1F1F; font-family:Noto Serif, Georgia, serif; min-height:100vh; }
+  .lang-np { display:none; }
+  .lang-en { display:inline; }
+
+  /* Global layout resets */
+  * { box-sizing:border-box; }
+  .index-page { background:#FFFFFF; color:#1F1F1F; font-family:Noto Serif, Georgia, serif; min-height:100vh; }
+  .lang-np { display:none; }
+  .lang-en { display:inline; }
+
+  /* ─── SECTION LAYOUT — uniform thumbnail-grid style (matches butwaltodayonlinetv.com) ─────
+     butwaltodayonlinetv.com does NOT use a "1 big featured card + narrow list" split.
+     Every section — including named category sections — renders as a single row/grid of
+     EQUAL-SIZE thumbnail cards: image on top, short 1-2 line title below, small relative
+     time ("6 days अगाडि") with a clock icon. No excerpt text, no "read more" link — the
+     whole card is the link. Only the top-level "Latest News" section and named category
+     sections share this exact same card treatment; nothing is visually "featured" larger
+     than the rest.
+     ───────────────────────────────────────────────────────────────────────────── */
+
+  .news-section { margin:28px 0; border-bottom:1px solid rgba(163,25,25,0.18); padding-bottom:24px; }
+  .news-section:last-child { border-bottom:none; }
+
+  /* Section header with accent left-border */
+  .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; padding-bottom:8px; border-bottom:2px solid #A31919; }
+  .section-title { font-size:1.15rem; margin:0; color:#A31919; font-family:Noto Serif, Georgia, serif; font-weight:800; display:flex; align-items:center; gap:8px;}
+  
+   /* Section title with accent left-border */
+   .section-title::before { content:'' ; display:inline-block ; width :4px ; height :1.1em ; background :#D4A017 ; border-radius :2px ; flex-shrink :0 ;}
+   
+   /* View all link */
+   .view-all-link{font-size:.78rem;font-weight :700;color :#A31919;text-decoration:none;padding :4px12px;border :1px solid #A31919;border-radius :3px ;transition :all .2s ;white-space nowrap;}
+   
+   /* View all link hover effect */
+   .view-all-link:hover{background:#A31919;color:#FFFFFF;}
+   
+   /* ─── UNIFORM GRID (every section, no special "featured" column) ─── */
+   .section-grid,.section-grid.has-featured,.section-grid.latest-grid{
+    display :grid;
+    grid-template-columns :repeat(auto-fill,minmax(220px ,1fr));
+    gap :18px;
+    align-items:start;
+}
+/* The "list" wrapper becomes transparent so its cards join the same grid
+   as the "featured" card — instead of being boxed into a separate column. */
+.section-list{display :contents;}
+
+@media(max-width :480px){
+    /* Grid template columns for smaller screens */
+    .section-grid,.section-grid.has-featured,.section-grid.latest-grid{
+        grid-template-columns :repeat(2 ,1fr);
+        gap :12px;
+    }
+}
+
+/* Unified thumbnail card — used for every card, "featured" or "latest" alike */
+.news-card.featured,.news-card.latest{
+    background:#F8F8F8;
+    border :1px solid rgba(163 ,25 ,25 ,0.18);
+    border-radius :6px;
+    overflow:hidden;
+    display:block;
+    width:100%;
+    transition.box-shadow:.2s ease , transform:.2s ease ;
+}
+.news-card.featured:hover,.news-card.latest:hover{
+    box-shadow:0 4px16px rgba(0 ,0 ,0 ,.14);
+transform.translateY(-2px);
+}
+.news-card.featured>a,.news-card.latest>a{
+text-decoration:none;color:#1F1F1F;display:block ;
+}
+.news-card.featured.card-img,.news-card.latest.card-img{
+display:block;width:100%;height170px[position:relative]overflow:hidden;background#000 ;
+}
+.news-card.featured.card-img>img,.news-card.latest.card-img>img{
+position:absolute[inset]width100%height100%object-fitcoverobject-position:center;display:block ;
+}
+/* Play-icon overlay on hover like YouTube-thumbnail-driven news grids */
+.news-card.featured.card-img::after,.news-card.latest.card-img::after{
+content:'\f04b';
+font-family:'Font Awesome6 Free';font-weight900 ;
+position:absolute[inset]displayflexalign-itemscenterjustify-contentcenter ;
+font-size:.5rem;color#fff;backgroundrgba(00000000.18);opacity00 ;
+transition.opacity:.2s ;
+}
+.news-card.featured:hover.card-img::after,.news-card.latest:hover.card-img::after{opacity11;}
+.news-card.featured.card-body,.news-card.latest.card-body{padding10 px12 px12 px12;}
+.news-card.featured.card-title,.news-card.latest.card-title{
+font-size:.9rem;margin4 px00margin6px;line-height145;color#1F1F1F;font-familyNoto SerifGeorgia-serif;font-weight700;display-webkit-boxwebkit-line-clamp20webkit-box-orientverticaloverflowhidden ;
+}
+
+/* Real site shows only thumbnail+title+time—no excerpt,no read-more link*/
+.news-card.featured.card-meta-desc{displaynone;}
+.card-read-more{displaynone;}
+
+/* Shared card elements*/
+.cat-badge{displayinline-block;background#A31919;color#FFFFFF;font-size:.62rem;font-weight800;padding24 pxborder-radius2 pxmarginbottom6 pxtextransformuppercaseletter-spacing06em;}
+.card-date{font-size:.72rem;colorrgba31313155;displayflexalign-itemscentergap4 pmmargin-top4 pxyx;}
+
+</style>
+<style>
+    /* ALL CSS from PART D */
+    #site-footer { font-family:var(--font-body); }
+
+    /* TOP SECTION */
+    .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
+    .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
+    .footer-col { display:flex; flex-direction:column; gap:10px; }
+    .footer-col-heading { font-size:.82rem; font-weight:800; color:#111; margin:0 0 6px; padding-bottom:8px; border-bottom:2px solid var(--primary); text-transform:uppercase; letter-spacing:.06em; }
+    .footer-company-name { font-weight:700; font-size:.9rem; color:#111; margin:0; }
+    .footer-addr { font-size:.82rem; color:#444; margin:0; line-height:1.6; }
+    .footer-contact-line { font-size:.82rem; color:#444; margin:0; }
+    .footer-link-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+    .footer-link-list li a { font-size:.85rem; color:#333; text-decoration:none; transition:color .2s; display:block; padding:2px 0; }
+    .footer-link-list li a:hover { color:var(--primary); }
+
+    /* BOTTOM BAR */
+    .footer-bottom { background:#d8d8d8; border-top:1px solid #bbb; padding:18px 0; }
+    .footer-bottom-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+    .footer-bottom-brand { display:flex; flex-direction:column; gap:3px; flex-shrink:0; }
+    .footer-site-name { font-size:1rem; font-weight:800; color:#111; }
+    .footer-copy { font-size:.74rem; color:#555; display:flex; align-items:center; gap:4px; }
+    .footer-copy i { font-size:.72rem; }
+    .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { display:flex; flex-direction:column; gap:2px; }
+    .editor-label { font-size:.74rem; color:#555; }
+    .editor-name { font-size:.9rem; font-weight:800; color:#111; display:block; }
+    .editor-phone { font-size:.8rem; color:#333; display:block; margin-top:1px; }
+    .footer-bottom-info { font-size:.78rem; color:#555; max-width:200px; line-height:1.5; }
+    .footer-bottom-social { display:flex; flex-direction:column; gap:6px; align-items:flex-end; }
+    .connect-label { font-size:.78rem; font-weight:700; color:#333; }
+    .footer-social-row { display:flex; gap:10px; align-items:center; }
+    .footer-social-row a { color:#333; font-size:1.1rem; text-decoration:none; transition:color .2s; }
+    .footer-social-row a:hover { color:var(--primary); }
+
+    /* Language */
+    .lang-en { display:inline; }
+    .lang-np { display:none; }
+    body.lang-active .lang-en { display:none; }
+    body.lang-active .lang-np { display:inline; }
+
+    /* Responsive */
+    @media(max-width:1000px){
+      .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; }
+    }
+    @media(max-width:640px){
+      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; }
+      .footer-bottom-inner { flex-direction:column; align-items:flex-start; gap:12px; }
+      .footer-bottom-social { align-items:flex-start; }
+    }
+    @media(max-width:400px){
+      .footer-top-inner { grid-template-columns:1fr; }
+    }
+
+    /* WhatsApp */
+    .wa-widget { position:fixed; bottom:90px; right:24px; z-index:9999; display:flex; align-items:center; gap:10px; flex-direction:row; }
+    .wa-fab { width:52px; height:52px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.7rem; text-decoration:none; box-shadow:0 4px 16px rgba(37,211,102,.4),0 2px 8px rgba(0,0,0,.2); transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; animation:waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both; position:relative; }
+    .wa-fab:hover { transform:scale(1.12) rotate(-6deg); }
+    .wa-fab::after { content:''; position:absolute; inset:0; border-radius:50%; border:3px solid #25D366; animation:waRing 2s ease-out 2s infinite; }
+    .wa-tooltip { background:#fff; color:#111; font-size:.78rem; font-weight:600; padding:5px 12px; border-radius:14px; white-space:nowrap; box-shadow:0 3px 12px rgba(0,0,0,.15); opacity:0; pointer-events:none; transform:translateX(-6px); transition:opacity .2s,transform .2s; }
+    .wa-widget:hover .wa-tooltip { opacity:1; transform:translateX(0); }
+    @keyframes waIn { from{opacity:0;transform:scale(.4) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    @keyframes waRing { 0%{transform:scale(1);opacity:.8} 70%,100%{transform:scale(1.5);opacity:0} }
+    @media(max-width:480px){ .wa-widget{bottom:90px;right:14px;} .wa-fab{width:46px;height:46px;font-size:1.5rem;} }
+
+    /* Add these responsive styles for footer mobile view */
+    @media(max-width:640px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-inner { 
+        flex-direction: column; 
+        align-items: center;
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-social { 
+        align-items: center;
+        width: 100%;
+      }
+      .footer-social-row {
+        justify-content: center;
+      }
+      .footer-col {
+        align-items: center;
+        text-align: center;
+      }
+      .footer-link-list {
+        align-items: center;
+      }
+      .footer-col-heading {
+        text-align: center;
+        width: 100%;
+      }
+      .footer-bottom-brand {
+        align-items: center;
+      }
+      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq {
+        align-items: center;
+      }
+      .footer-bottom-info {
+        max-width: 100%;
+        text-align: center;
+      }
+    }
+    @media(max-width:400px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr; 
+        text-align: center;
+      }
+    }
+  </style>
+  <style>
+    *,*::before,*::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; padding: 0;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      overflow-x: hidden;
+      background: #FFFFFF;
+      color: #1F1F1F;
+      font-family: 'Hind Siliguri',sans-serif;
+    }
+    img, video, iframe { max-width: 100%; height: auto; }
+
+    main {
+      flex: 1;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    footer#site-footer {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .lang-en { display: inline !important; }
+    .lang-np { display: none !important; }
+    div.lang-en, p.lang-en, section.lang-en,
+    h1.lang-en, h2.lang-en, h3.lang-en, h4.lang-en,
+    li.lang-en { display: block !important; }
+    div.lang-np, p.lang-np, section.lang-np,
+    h1.lang-np, h2.lang-np, h3.lang-np, h4.lang-np,
+    li.lang-np { display: none !important; }
+
+    body.lang-active .lang-en { display: none !important; }
+    body.lang-active .lang-np { display: inline !important; }
+    body.lang-active div.lang-np, body.lang-active p.lang-np,
+    body.lang-active section.lang-np, body.lang-active h1.lang-np,
+    body.lang-active h2.lang-np, body.lang-active h3.lang-np,
+    body.lang-active h4.lang-np, body.lang-active li.lang-np { display: block !important; }
+    body.lang-active div.lang-en, body.lang-active p.lang-en,
+    body.lang-active section.lang-en, body.lang-active h1.lang-en,
+    body.lang-active h2.lang-en, body.lang-active h3.lang-en,
+    body.lang-active h4.lang-en, body.lang-active li.lang-en { display: none !important; }
+
+    body.lang-active #bt-header .lang-np,
+    body.lang-active #bt-header span.lang-np,
+    body.lang-active #bt-header div.lang-np { display: inline !important; }
+    body.lang-active #bt-header .lang-en,
+    body.lang-active #bt-header span.lang-en,
+    body.lang-active #bt-header div.lang-en { display: none !important; }
+    #bt-header .lang-np,
+    #bt-header span.lang-np,
+    #bt-header div.lang-np { display: none !important; }
+    #bt-header .lang-en,
+    #bt-header span.lang-en,
+    #bt-header div.lang-en { display: inline !important; }
+
+    .section-grid,
+    .section-grid.has-featured,
+    .section-grid.latest-grid {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 20px !important;
+    }
+    @media (max-width: 900px) {
+      .section-grid, .section-grid.has-featured, .section-grid.latest-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 16px !important;
+      }
+    }
+    @media (max-width: 480px) {
+      .section-grid, .section-grid.has-featured, .section-grid.latest-grid {
+        grid-template-columns: repeat(1, 1fr) !important;
+        gap: 14px !important;
+      }
+    }
+    .news-card.featured,
+    .news-card.latest {
+      display: flex !important;
+      flex-direction: column !important;
+      height: 100% !important;
+    }
+    .news-card.featured > a,
+    .news-card.latest > a {
+      display: flex !important;
+      flex-direction: column !important;
+      height: 100% !important;
+    }
+    .news-card.featured .card-body,
+    .news-card.latest .card-body {
+      display: flex !important;
+      flex-direction: column !important;
+      flex: 1 1 auto !important;
+    }
+    body:not(.lang-active) .news-card.featured .card-title.lang-en,
+    body:not(.lang-active) .news-card.latest .card-title.lang-en,
+    body.lang-active .news-card.featured .card-title.lang-np,
+    body.lang-active .news-card.latest .card-title.lang-np {
+      display: -webkit-box !important;
+      min-height: 2.9em !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+    }
+    body:not(.lang-active) .news-card.featured .card-title.lang-np,
+    body:not(.lang-active) .news-card.latest .card-title.lang-np,
+    body.lang-active .news-card.featured .card-title.lang-en,
+    body.lang-active .news-card.latest .card-title.lang-en {
+      display: none !important;
+    }
+    .news-card.featured .card-date,
+    .news-card.latest .card-date {
+      margin-top: auto !important;
+    }
+
+    .card-date {
+      font-size: .72rem !important;
+      color: rgba(31,31,31,.55) !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 4px !important;
+    }
+    .cat-badge {
+      display: inline-block !important;
+      background: #A31919 !important;
+      color: #FFFFFF !important;
+      font-size: .62rem !important;
+      font-weight: 800 !important;
+      padding: 2px 8px !important;
+      border-radius: 2px !important;
+      margin-bottom: 6px !important;
+      text-transform: uppercase !important;
+      letter-spacing: .06em !important;
+    }
+
+    .news-card.featured,
+    .news-card.latest {
+      background: #FFFFFF !important;
+      border: 1px solid #E0E0E0 !important;
+      border-radius: 6px !important;
+      overflow: hidden !important;
+      width: 100% !important;
+    }
+    .news-card.featured > a,
+    .news-card.latest > a {
+      text-decoration: none !important;
+      color: inherit !important;
+    }
+    .news-card.featured .card-img,
+    .news-card.latest .card-img {
+      display: block !important;
+      width: 100% !important;
+      height: 170px !important;
+      position: relative !important;
+      overflow: hidden !important;
+      background: #000 !important;
+      flex-shrink: 0 !important;
+    }
+    .news-card.featured .card-img img,
+    .news-card.latest .card-img img {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
+      max-width: 100% !important;
+    }
+    .news-card.featured .card-img::after,
+    .news-card.latest .card-img::after {
+      content: '\f04b' !important;
+      font-family: 'Font Awesome 6 Free' !important;
+      font-weight: 900 !important;
+      position: absolute !important;
+      inset: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 1.5rem !important;
+      color: #fff !important;
+      background: rgba(0,0,0,0.18) !important;
+      opacity: 0 !important;
+      transition: opacity .2s !important;
+    }
+    .news-card.featured:hover .card-img::after,
+    .news-card.latest:hover .card-img::after {
+      opacity: 1 !important;
+    }
+    .news-card.featured .card-body,
+    .news-card.latest .card-body {
+      padding: 10px 12px 12px !important;
+    }
+    .news-card.featured .card-title,
+    .news-card.latest .card-title {
+      font-size: .9rem !important;
+      margin: 4px 0 6px !important;
+      line-height: 1.45 !important;
+      font-weight: 700 !important;
+    }
+
+    #bt-hero-bg,
+    .hero-bg,
+    #bt-hero {
+      background-image: none !important;
+    }
+  </style>
+</head>
+<body>
+  <header id="site-header">
+
+
+
+  <!-- TIER 1: Top utility bar -->
+  <div class="top-bar" id="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-social">
+          <a href="https://www.facebook.com/nawajanachetana/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/shittalpationline/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+      <div class="top-center">
+        <span class="top-date"><i class="fa-regular fa-calendar"></i> <span id="np-datetime">Loading...</span></span>
+        <span class="top-clock"><i class="fa-regular fa-clock"></i> <span id="np-clock">00:00:00 AM</span></span>
+      </div>
+      <div class="top-right">
+        <div class="header-player" id="header-player">
+          <div class="player-live-badge">
+            <span class="live-dot"></span>
+            <span class="live-label">LIVE</span>
+          </div>
+          <div class="player-waveform" id="player-waveform">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <button class="player-play-btn" id="play-btn" aria-label="Play stream">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path id="play-path" d="M8 5v14l11-7z"/></svg>
+          </button>
+          <div class="player-vol-wrap">
+            <button class="vol-btn" id="vol-down-btn"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z"/></svg></button>
+            <input type="range" class="vol-slider" id="vol-slider" min="0" max="100" value="70">
+            <button class="vol-btn" id="vol-up-btn"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
+          </div>
+        </div>
+        <button class="lang-toggle" id="lang-toggle">NP</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIER 2: Logo bar -->
+  <div class="logo-bar" id="logo-bar">
+    <div class="logo-bar-inner">
+      <a href="index.html" class="logo-link" aria-label="Home">
+        <img src="../images/logo.png" alt="Logo" class="header-logo" id="header-logo" onerror="this.style.display='none'">
+      </a>
+    </div>
+  </div>
+
+  <!-- TIER 3: Sticky nav -->
+  <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+    <div class="main-nav-inner">
+      <ul class="nav-list" id="nav-list">
+        <li class="active"><a href="../index.html"><span class="lang-en">Homepage</span><span class="lang-np">गृहपृष्ठ</span></a></li>
+        <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
+        <li><a href="../index.html#economy-section"><span class="lang-en">Economy</span><span class="lang-np">अर्थ</span></a></li>
+        <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
+        <li><a href="../index.html#entertainment-section"><span class="lang-en">Entertainment</span><span class="lang-np">मनोरञ्जन</span></a></li>
+        <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
+        <li><a href="../index.html#international-section"><span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span></a></li>
+        <li class="has-dropdown" id="province-nav">
+          <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            <span class="lang-en">Province</span><span class="lang-np">प्रदेश</span>
+            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+          </a>
+          <ul class="dropdown-menu" id="province-dropdown">
+            <li><a href="../province/koshi.html"><span class="lang-en">Koshi Province</span><span class="lang-np">कोशी प्रदेश</span></a></li>
+            <li><a href="../province/madhesh.html"><span class="lang-en">Madhesh Province</span><span class="lang-np">मधेश प्रदेश</span></a></li>
+            <li><a href="../province/bagmati.html"><span class="lang-en">Bagmati Province</span><span class="lang-np">बागमती प्रदेश</span></a></li>
+            <li><a href="../province/gandaki.html"><span class="lang-en">Gandaki Province</span><span class="lang-np">गण्डकी प्रदेश</span></a></li>
+            <li><a href="../province/lumbini.html"><span class="lang-en">Lumbini Province</span><span class="lang-np">लुम्बिनी प्रदेश</span></a></li>
+            <li><a href="../province/karnali.html"><span class="lang-en">Karnali Province</span><span class="lang-np">कर्णाली प्रदेश</span></a></li>
+            <li><a href="../province/sudurpashchim.html"><span class="lang-en">Sudurpashchim Province</span><span class="lang-np">सुदूरपश्चिम प्रदेश</span></a></li>
+          </ul>
+        </li>
+        <li><a href="epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
+        <li><a href="about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
+        <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+        <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडिय</span></a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul>
+      <li><a href="../index.html"><span class="lang-en">Homepage</span><span class="lang-np">गृहपृष्ठ</span></a></li>
+      <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
+      <li><a href="../index.html#economy-section"><span class="lang-en">Economy</span><span class="lang-np">अर्थतन्त्र</span></a></li>
+      <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
+      <li><a href="../index.html#entertainment-section"><span class="lang-en">Entertainment</span><span class="lang-np">मनोरञ्जन</span></a></li>
+      <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
+      <li><a href="../index.html#international-section"><span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span></a></li>
+<li><a href="../index.html#latest-section"><span class="lang-en">Latest News</span><span class="lang-np">ताजा समाचार</span></a></li>
+<li><a href="../index.html#feature-section"><span class="lang-en">Feature News</span><span class="lang-np">विशेष समाचार</span></a></li>
+<li class="mobile-province-parent">
+        <a href="#" id="mobile-province-toggle"><span class="lang-en">Province</span><span class="lang-np">प्रदेश</span> <i class="fa-solid fa-chevron-down"></i></a>
+        <ul class="mobile-province-list" id="mobile-province-list" style="display:none;">
+          <li><a href="../province/koshi.html"><span class="lang-en">Koshi Province</span><span class="lang-np">कोशी प्रदेश</span></a></li>
+          <li><a href="../province/madhesh.html"><span class="lang-en">Madhesh Province</span><span class="lang-np">मधेश प्रदेश</span></a></li>
+          <li><a href="../province/bagmati.html"><span class="lang-en">Bagmati Province</span><span class="lang-np">बागमती प्रदेश</span></a></li>
+          <li><a href="../province/gandaki.html"><span class="lang-en">Gandaki Province</span><span class="lang-np">गण्डकी प्रदेश</span></a></li>
+          <li><a href="../province/lumbini.html"><span class="lang-en">Lumbini Province</span><span class="lang-np">लुम्बिनी प्रदेश</span></a></li>
+          <li><a href="../province/karnali.html"><span class="lang-en">Karnali Province</span><span class="lang-np">कर्णाली प्रदेश</span></a></li>
+          <li><a href="../province/sudurpashchim.html"><span class="lang-en">Sudurpashchim Province</span><span class="lang-np">सुदूरपश्चिम प्रदेश</span></a></li>
+        </ul>
+      </li>
+      <li><a href="epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
+      <li><a href="about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
+      <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+     <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
+    </ul>
+  </div>
+
+
+</header>
+  <main><div id="sections-container" class="page-container">
+<!-- injected -->
+</div></main>
+  <footer id="site-footer">
+  
+  
+
+  <!-- TOP SECTION: multi-column links -->
+  <div class="footer-top">
+    <div class="footer-top-inner">
+
+      <!-- Col 1: Contact -->
+      <div class="footer-col footer-contact-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Contact Address</span>
+          <span class="lang-np">सम्पर्क ठेगाना</span>
+        </h4>
+        <p class="footer-company-name">Shittal Pati</p>
+        <p class="footer-addr">
+          <span class="lang-en">Bhagwati Tole-3, Tansen Palpa, Nepal</span>
+          <span class="lang-np">भगवती टोल-३, तानसेन पाल्पा, नेपाल</span>
+        </p>
+        <p class="footer-contact-line">
+          <span class="lang-en">Phone: +977 9847492226</span>
+          <span class="lang-np">फोन: +९७७ ९८४७४९२२२६</span>
+        </p>
+        <p class="footer-contact-line">
+          <span class="lang-en">Email:</span><span class="lang-np">इमेल:</span> njdnews@gmail.com
+        </p>
+      </div>
+
+      <!-- Col 2: News links -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">News</span>
+          <span class="lang-np">समाचार</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
+          <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
+          <li><a href="../index.html#economy-section"><span class="lang-en">Economy</span><span class="lang-np">अर्थतन्त्र</span></a></li>
+          <li><a href="../index.html#international-section"><span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span></a></li>
+          <li><a href="../index.html#education-section"><span class="lang-en">Education</span><span class="lang-np">शिक्षा</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Entertainment -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Entertainment</span>
+          <span class="lang-np">मनोरञ्जन</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="#entertainment-section"><span class="lang-en">Movies & Music</span><span class="lang-np">चलचित्र र संगीत</span></a></li>
+          <li><a href="#entertainment-section"><span class="lang-en">Arts</span><span class="lang-np">कला</span></a></li>
+          <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Feature -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Feature</span>
+          <span class="lang-np">विशेष</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="../index.html#feature-section"><span class="lang-en">Feature News</span><span class="lang-np">विशेष समाचार</span></a></li>
+          <li><a href="../index.html#latest-section"><span class="lang-en">Latest</span><span class="lang-np">ताजा</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 5: Specials -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Specials</span>
+          <span class="lang-np">विशेष</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 6: About -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">About Us</span>
+          <span class="lang-np">हाम्रोबारे</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="about.html"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></a></li>
+          <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+
+      <div class="footer-bottom-brand">
+        <span class="footer-site-name">Shittal Pati</span>
+        <span class="footer-copy">
+          <i class="fa-regular fa-copyright"></i>
+          <span class="lang-en" id="footer-year-en"></span>
+          <span class="lang-np" id="footer-year-np"></span>
+          Shittal Pati.
+          <span class="lang-en">All Rights Reserved.</span>
+          <span class="lang-np">सर्वाधिकार सुरक्षित।</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-editor">
+        <span class="editor-label"><span class="lang-en">Editor</span><span class="lang-np">सम्पादक</span></span>
+        <span class="editor-name">
+          <span class="lang-en">Jagdish Bhattarai</span>
+          <span class="lang-np">जगदीश भट्टराई</span>
+        </span>
+        <span class="editor-phone">
+          <span class="lang-en">9857060301</span>
+          <span class="lang-np">९८५७०६०३०१</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-sub">
+        <span class="editor-label"><span class="lang-en">Sub-Editor</span><span class="lang-np">सह-सम्पादक</span></span>
+        <span class="editor-name">
+          <span class="lang-en">Ramchandra Rayamajhi</span>
+          <span class="lang-np">रामचन्द्र रायमाझी</span>
+        </span>
+        <span class="editor-phone">
+          <span class="lang-en">9847492226</span>
+          <span class="lang-np">९८४७४९२२२६</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-freq">
+        <span class="editor-label"><span class="lang-en">Frequency</span><span class="lang-np">फ्रिक्वेन्सी</span></span>
+        <span class="editor-name">
+          <span class="lang-en">103.5 MHZ FM</span>
+          <span class="lang-np">१०३.५ मेगाहर्ज एफएम</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-info">
+        <span class="lang-en">Official Website of Janavedana Daily</span>
+        <span class="lang-np">जनवेदना दैनिकको आधिकारिक वेबसाइट</span>
+      </div>
+
+      <div class="footer-bottom-social">
+        <span class="connect-label"><span class="lang-en">Connect with Us</span><span class="lang-np">जोडिनुहोस्</span></span>
+        <div class="footer-social-row">
+          <a href="https://www.facebook.com/nawajanachetana/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/shittalpationline/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  
+
+  <div class="wa-widget">
+    <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
+    <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  </div>
+</footer>
+  <script>
+
+(function () {
+
+  /* ── Load Font Awesome if not already on page ── */
+  (function(){
+    if(!document.querySelector('link[href*="font-awesome"],link[href*="fontawesome"]')){
+      var fa=document.createElement('link');
+      fa.rel='stylesheet';
+      fa.href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+      fa.crossOrigin='anonymous';
+      document.head.appendChild(fa);
+    }
+  })();
+
+  /* ── BS/AD conversion data ── */
+  var _NP_DAYS   = ['आइतबार','सोमबार','मंगलबार','बुधबार','बिहिबार','शुक्रबार','शनिबार'];
+  var _BS_MONTHS = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
+  var _NP_NUMS   = ['०','१','२','३','४','५','६','७','८','९'];
+  var _EN_MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var _EN_DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var _BS_TBL    = {2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],2004:[366,30,32,31,32,31,30,30,30,29,30,29,31],2005:[365,31,31,32,31,31,31,30,29,30,29,30,30],2006:[365,31,31,32,32,31,30,30,29,30,29,30,30],2007:[366,31,32,31,32,31,30,30,30,29,29,30,31],2008:[365,31,31,32,31,31,31,30,29,30,29,30,30],2009:[365,31,31,32,31,31,31,30,29,30,29,30,30],2010:[365,31,31,32,32,31,30,30,29,30,29,30,30],2011:[366,31,32,31,32,31,30,30,30,29,29,30,31],2012:[365,31,31,32,31,31,31,30,29,30,29,30,30],2013:[365,31,31,32,31,31,31,30,29,30,29,30,30],2014:[365,31,31,32,32,31,30,30,29,30,29,30,30],2015:[366,31,32,31,32,31,30,30,30,29,29,30,31],2016:[366,31,31,32,31,31,31,30,29,30,29,30,31],2017:[365,31,31,32,31,31,31,30,29,30,29,30,30],2018:[365,31,31,32,32,31,30,30,29,30,29,30,30],2019:[366,31,32,31,32,31,30,30,30,29,29,30,31],2020:[366,31,31,32,31,31,30,30,29,30,29,30,31],2021:[365,31,31,32,31,31,31,30,29,30,29,30,30],2022:[365,31,31,32,32,31,30,30,29,30,29,30,30],2023:[366,31,32,31,32,31,30,30,30,29,29,30,31],2024:[366,31,31,32,31,31,30,30,29,30,29,30,31],2025:[365,31,31,32,31,31,31,30,29,30,29,30,30],2026:[365,31,31,32,32,31,30,30,29,30,29,30,30],2027:[366,31,32,31,32,31,30,30,30,29,29,30,31],2028:[366,31,32,31,32,31,30,30,30,29,30,29,31],2029:[365,31,31,32,31,31,31,30,29,30,29,30,30],2030:[365,31,31,32,31,31,31,30,29,30,29,30,30],2031:[365,31,31,32,32,31,30,30,29,30,29,30,30],2032:[366,31,32,31,32,31,30,30,30,29,29,30,31],2033:[366,31,31,32,31,31,30,30,29,30,29,30,31],2034:[365,31,31,32,31,31,31,30,29,30,29,30,30],2035:[365,31,31,32,32,31,30,30,29,30,29,30,30],2036:[366,31,32,31,32,31,30,30,30,29,29,30,31],2037:[366,31,32,31,32,31,30,30,30,29,30,29,31],2038:[365,31,31,32,31,31,31,30,29,30,29,30,30],2039:[365,31,31,32,31,31,31,30,29,30,29,30,30],2040:[365,31,31,32,32,31,30,30,29,30,29,30,30],2041:[366,31,32,31,32,31,30,30,30,29,29,30,31],2042:[366,31,31,32,31,31,30,30,29,30,29,30,31],2043:[365,31,31,32,31,31,31,30,29,30,29,30,30],2044:[365,31,31,32,31,31,31,30,29,30,29,30,30],2045:[366,31,32,31,32,31,30,30,30,29,29,30,31],2046:[366,31,32,31,32,31,30,30,30,29,30,29,31],2047:[365,31,31,32,31,31,31,30,29,30,29,30,30],2048:[365,31,31,32,32,31,30,30,29,30,29,30,30],2049:[366,31,32,31,32,31,30,30,30,29,29,30,31],2050:[366,31,32,31,32,31,30,30,30,29,30,29,31],2051:[365,31,31,32,31,31,31,30,29,30,29,30,30],2052:[365,31,31,32,32,31,30,30,29,30,29,30,30],2053:[366,31,32,31,32,31,30,30,30,29,29,30,31],2054:[366,31,32,31,32,31,30,30,30,29,30,29,31],2055:[365,31,31,32,31,31,31,30,29,30,29,30,30],2056:[366,31,31,32,31,31,31,30,29,30,29,30,31],2057:[366,31,31,32,32,31,30,30,29,30,29,30,31],2058:[365,30,32,31,32,31,30,30,30,29,29,30,30],2059:[366,31,32,31,32,31,30,30,30,29,30,29,31],2060:[365,31,31,32,31,31,31,30,29,30,29,30,30],2061:[365,31,31,32,31,31,31,30,29,30,29,30,30],2062:[365,31,31,32,32,31,30,30,29,30,29,30,30],2063:[366,31,32,31,32,31,30,30,30,29,29,30,31],2064:[366,31,31,32,31,31,30,30,29,30,29,30,31],2065:[365,31,31,32,31,31,31,30,29,30,29,30,30],2066:[365,31,31,32,31,31,31,30,29,30,29,30,30],2067:[366,31,32,31,32,31,30,30,30,29,29,30,31],2068:[366,31,32,31,32,31,30,30,30,29,30,29,31],2069:[365,31,31,32,31,31,31,30,29,30,29,30,30],2070:[365,31,31,32,32,31,30,30,29,30,29,30,30],2071:[366,31,32,31,32,31,30,30,30,29,29,30,31],2072:[366,31,32,31,32,31,30,30,30,29,30,29,31],2073:[365,31,31,32,31,31,31,30,29,30,29,30,30],2074:[365,31,31,32,32,31,30,30,29,30,29,30,30],2075:[366,31,32,31,32,31,30,30,30,29,29,30,31],2076:[365,31,32,31,32,31,30,30,30,29,30,29,31],2077:[365,31,31,32,31,31,31,30,29,30,29,30,30],2078:[365,31,31,32,31,31,31,30,29,30,29,30,30],2079:[366,31,32,31,32,31,30,30,30,29,29,30,31],2080:[365,31,32,31,32,31,30,30,30,29,30,29,31],2081:[365,31,31,32,31,31,31,30,29,30,29,30,30],2082:[365,31,31,32,32,31,30,30,29,30,29,30,30],2083:[365,31,31,32,31,31,31,30,29,30,29,30,30],2084:[366,31,32,31,32,31,30,30,30,29,30,29,31],2085:[365,31,31,32,31,31,31,30,29,30,29,30,30],2086:[365,31,31,32,32,31,30,30,29,30,29,30,30],2087:[366,31,32,31,32,31,30,30,30,29,29,30,31],2088:[366,31,32,31,32,31,30,30,30,29,30,29,31],2089:[365,31,31,32,31,31,31,30,29,30,29,30,30],2090:[365,31,31,32,32,31,30,30,29,30,29,30,30]};
+  var _EPOCH = Date.UTC(1943,2,31);
+
+  function _toNp(n){return String(n).split('').map(function(d){var i=parseInt(d,10);return isNaN(i)?d:_NP_NUMS[i];}).join('');}
+  function _adToBs(d){
+    var days=Math.floor((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())-_EPOCH)/86400000);
+    if(days<0)return '';
+    var y=2000;
+    while(true){var yr=_BS_TBL[y];if(!yr||days<yr[0])break;days-=yr[0];y++;}
+    var yr2=_BS_TBL[y];if(!yr2)return '';
+    var mo=1,dy=1;
+    for(var m=1;m<=12;m++){if(days<yr2[m]){mo=m;dy=days+1;break;}days-=yr2[m];}
+    return _NP_DAYS[d.getDay()]+', '+_BS_MONTHS[mo-1]+' '+_toNp(dy)+', '+_toNp(y);
+  }
+
+  function _tick(){
+    var now=new Date();
+    var dtEl=document.getElementById('np-datetime');
+    var clEl=document.getElementById('np-clock');
+    if(dtEl){
+      var bsStr=_adToBs(now);
+      var enStr=_EN_DAYS[now.getDay()]+', '+_EN_MONTHS[now.getMonth()]+' '+now.getDate()+', '+now.getFullYear();
+      dtEl.setAttribute('data-en',enStr);
+      dtEl.setAttribute('data-np',bsStr);
+      var _lang='en';try{_lang=localStorage.getItem('fm_lang')||'en';}catch(e){}
+      dtEl.textContent=(_lang==='np')?bsStr:enStr;
+    }
+    if(clEl){
+      var h=now.getHours(),mi=now.getMinutes(),s=now.getSeconds(),ap=h>=12?'PM':'AM';
+      h=h%12;if(h===0)h=12;
+      clEl.textContent=String(h).padStart(2,'0')+':'+String(mi).padStart(2,'0')+':'+String(s).padStart(2,'0')+' '+ap;
+    }
+  }
+
+  function _init(){
+    var _audio=null,_playing=false,_SK='fmPlayer',_stream='https://live.itech.host:2440/stream';
+    var _playBtn=document.getElementById('play-btn');
+    var _playPath=document.getElementById('play-path');
+    var _waveform=document.getElementById('player-waveform');
+    var _volSlider=document.getElementById('vol-slider');
+    var _volDown=document.getElementById('vol-down-btn');
+    var _volUp=document.getElementById('vol-up-btn');
+    var _hamburger=document.getElementById('hamburger-btn');
+    var _mobMenu=document.getElementById('mobile-menu');
+    var _langBtn=document.getElementById('lang-toggle');
+    var _siteHdr=document.getElementById('site-header');
+    var _provNav=document.getElementById('province-nav');
+    var _provDrop=document.getElementById('province-dropdown');
+    var _mobPTog=document.getElementById('mobile-province-toggle');
+    var _mobPList=document.getElementById('mobile-province-list');
+
+    _tick();
+    setInterval(_tick,1000);
+
+    /* ── Apply stored lang on load ── */
+    (function(){
+      var saved='en';try{saved=localStorage.getItem('fm_lang')||'en';}catch(e){}
+      if(saved==='np'){
+        if(_siteHdr)_siteHdr.classList.add('hdr-np');
+        if(_langBtn)_langBtn.textContent='EN';
+        var dtEl=document.getElementById('np-datetime');
+        if(dtEl&&dtEl.getAttribute('data-np'))dtEl.textContent=dtEl.getAttribute('data-np');
+      }
+    })();
+
+    /* ── Lang toggle ── */
+    if(_langBtn && !_langBtn._hdrBound){
+      _langBtn._hdrBound = true;
+      _langBtn.addEventListener('click',function(){
+        var isNp=_langBtn.textContent.trim()==='NP';
+        var newLang=isNp?'np':'en';
+        try{localStorage.setItem('fm_lang',newLang);}catch(e){}
+        _langBtn.textContent=isNp?'EN':'NP';
+        if(_siteHdr)_siteHdr.classList.toggle('hdr-np',isNp);
+        var dtEl=document.getElementById('np-datetime');
+        if(dtEl)dtEl.textContent=isNp?(dtEl.getAttribute('data-np')||''):(dtEl.getAttribute('data-en')||'');
+        window.dispatchEvent(new CustomEvent('langChange',{detail:{lang:newLang}}));
+      });
+    }
+
+    /* ── Sync lang from external events ── */
+    window.addEventListener('langChange',function(e){
+      if(!e||!e.detail||!e.detail.lang)return;
+      var isNp=e.detail.lang==='np';
+      if(_siteHdr)_siteHdr.classList.toggle('hdr-np',isNp);
+      if(_langBtn)_langBtn.textContent=isNp?'EN':'NP';
+      var dtEl=document.getElementById('np-datetime');
+      if(dtEl)dtEl.textContent=isNp?(dtEl.getAttribute('data-np')||''):(dtEl.getAttribute('data-en')||'');
+    });
+
+    /* ── Scroll shrink ── */
+    window.addEventListener('scroll',function(){
+      if(_siteHdr)_siteHdr.classList.toggle('scrolled',window.scrollY>120);
+    },{passive:true});
+
+    /* ── Hamburger ── */
+    if(_hamburger&&_mobMenu){
+      _hamburger.addEventListener('click',function(){
+        var exp=_hamburger.getAttribute('aria-expanded')==='true';
+        _hamburger.setAttribute('aria-expanded',String(!exp));
+        _mobMenu.classList.toggle('open',!exp);
+        _mobMenu.setAttribute('aria-hidden',String(exp));
+      });
+      _mobMenu.querySelectorAll('a:not(#mobile-province-toggle)').forEach(function(a){
+        a.addEventListener('click',function(){
+          _hamburger.setAttribute('aria-expanded','false');
+          _mobMenu.classList.remove('open');
+          _mobMenu.setAttribute('aria-hidden','true');
+        });
+      });
+    }
+
+    /* ── Province dropdown ── */
+    if(_provNav){
+      var _togLink=_provNav.querySelector('.dropdown-toggle');
+      if(_togLink){
+        _togLink.addEventListener('click',function(e){
+          e.preventDefault();
+          if(window.innerWidth<=960){
+            var isOpen=_provNav.classList.toggle('open');
+            _togLink.setAttribute('aria-expanded',String(isOpen));
+          }
+        });
+      }
+      document.addEventListener('click',function(e){
+        if(!_provNav.contains(e.target)){
+          _provNav.classList.remove('open');
+          if(_togLink)_togLink.setAttribute('aria-expanded','false');
+        }
+      });
+      if(_provDrop){
+        _provDrop.querySelectorAll('a').forEach(function(a){
+          a.addEventListener('click',function(){
+            _provNav.classList.remove('open');
+            if(_togLink)_togLink.setAttribute('aria-expanded','false');
+          });
+        });
+      }
+    }
+
+    /* ── Mobile province sub-list toggle ── */
+    if(_mobPTog&&_mobPList){
+      _mobPTog.addEventListener('click',function(e){
+        e.preventDefault();
+        var hidden=_mobPList.style.display==='none';
+        _mobPList.style.display=hidden?'block':'none';
+        var ico=_mobPTog.querySelector('i');
+        if(ico)ico.style.transform=hidden?'rotate(180deg)':'';
+      });
+    }
+
+    /* ── Volume controls ── */
+    function _updateSlider(v){
+      if(_volSlider)_volSlider.style.background='linear-gradient(to right,var(--hdr-accent) '+v+'%,var(--hdr-border) '+v+'%)';
+    }
+    function _setVol(v){
+      v=Math.max(0,Math.min(100,v));
+      if(_volSlider){_volSlider.value=v;_updateSlider(v);}
+      if(_audio)_audio.volume=v/100;
+      try{var s=JSON.parse(localStorage.getItem(_SK)||'{}');s.vol=v;localStorage.setItem(_SK,JSON.stringify(s));}catch(e){}
+    }
+    function _setPlayingUI(on){
+      if(_playPath)_playPath.setAttribute('d',on?'M6 6h12v12H6z':'M8 5v14l11-7z');
+      if(_playBtn)_playBtn.setAttribute('aria-label',on?'Stop stream':'Play stream');
+      if(_waveform)_waveform.classList.toggle('paused',!on);
+    }
+    function _startPlay(){
+      if(!_audio){
+        _audio=new Audio(_stream);
+        _audio.volume=(_volSlider?_volSlider.value:70)/100;
+        _audio.addEventListener('error',function(){_stopPlay();});
+      }
+      _audio.play().catch(function(e){console.warn('Stream:',e);_stopPlay();});
+      _playing=true;_setPlayingUI(true);
+      try{localStorage.setItem(_SK,JSON.stringify({playing:true,vol:_volSlider?parseInt(_volSlider.value):70}));}catch(e){}
+    }
+    function _stopPlay(){
+      if(_audio){_audio.pause();_audio.src='';_audio=null;}
+      _playing=false;_setPlayingUI(false);
+      try{var s=JSON.parse(localStorage.getItem(_SK)||'{}');s.playing=false;localStorage.setItem(_SK,JSON.stringify(s));}catch(e){}
+    }
+
+    if(_playBtn)_playBtn.addEventListener('click',function(){_playing?_stopPlay():_startPlay();});
+    if(_volDown)_volDown.addEventListener('click',function(){_setVol(parseInt(_volSlider.value)-10);});
+    if(_volUp)_volUp.addEventListener('click',function(){_setVol(parseInt(_volSlider.value)+10);});
+    if(_volSlider)_volSlider.addEventListener('input',function(){
+      _updateSlider(this.value);
+      if(_audio)_audio.volume=this.value/100;
+      try{var s=JSON.parse(localStorage.getItem(_SK)||'{}');s.vol=parseInt(this.value);localStorage.setItem(_SK,JSON.stringify(s));}catch(e){}
+    });
+
+    var _saved={};try{_saved=JSON.parse(localStorage.getItem(_SK)||'{}');}catch(e){}
+    var _initVol=(_saved.vol!=null)?_saved.vol:70;
+    if(_volSlider)_volSlider.value=_initVol;
+    _updateSlider(_initVol);
+    if(_saved.playing){_startPlay();}else{if(_waveform)_waveform.classList.add('paused');}
+  }
+
+  setTimeout(_init, 0);
+
+})();
+
+</script>
+<script>
+(function(){
+'use strict';
+
+var SECTIONS_HTML = "\n<section id=\"latest-section\" class=\"news-section\"><div class=\"section-header\"><h2 class=\"section-title\"><span class=\"lang-en\">Latest</span><span class=\"lang-np\" style=\"display:none\">ताजा</span></h2></div><div id=\"latest-grid-0\" class=\"section-grid\"><article class=\"news-card latest\" data-cat=\"General\"><a href=\"/page/detailvideo.html?id=58\" class=\"video-open-link\" data-id=\"58\" data-title=\"Question to Prof. Dr. Bhola Thapa – Your appointment was through meritocracy, but others’ how?\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/d6NpcOJDLEA/hqdefault.jpg\" alt=\"Question to Prof. Dr. Bhola Thapa – Your appointment was through meritocracy, but others’ how?\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Question to Prof. Dr. Bhola Thapa – Your appointment was through meritocracy, but others’ how?</h3><h3 class=\"card-title lang-np\" style=\"display:none\">प्राध्यापक डा. भोला थापालाई प्रश्न – तपाईँको नियुक्ति मेरिटोक्रेसीमार्फत्, अरूको चाहिँ कसरी ?</h3><span class=\"card-date\" data-date-ad=\"2026-07-13\" data-time=\"17:28\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=54\" class=\"video-open-link\" data-id=\"54\" data-title=\"Today news | nepali news | aaja ka mukhya samachar | 28 ashar 2083 | Butwal Today News#news\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/dJzFzv9-eWo/hqdefault.jpg\" alt=\"Today news | nepali news | aaja ka mukhya samachar | 28 ashar 2083 | Butwal Today News#news\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Today news | nepali news | aaja ka mukhya samachar | 28 ashar 2083 | Butwal Today News#news</h3><h3 class=\"card-title lang-np\" style=\"display:none\">आजको समाचार | नेपाली समाचार | आजको मुख्य समाचार | २८ असार २०८३ | बुटवल टुडे समाचार#news</h3><span class=\"card-date\" data-date-ad=\"2026-07-12\" data-time=\"19:18\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Highlights\"><a href=\"/page/detailvideo.html?id=53\" class=\"video-open-link\" data-id=\"53\" data-title=\"HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/PUpKAtiOY9Q/hqdefault.jpg\" alt=\"HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy</h3><h3 class=\"card-title lang-np\" style=\"display:none\">हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र</h3><span class=\"card-date\" data-date-ad=\"2026-07-12\" data-time=\"19:17\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Highlights\"><a href=\"/page/detailvideo.html?id=52\" class=\"video-open-link\" data-id=\"52\" data-title=\"HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/PUpKAtiOY9Q/hqdefault.jpg\" alt=\"HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy</h3><h3 class=\"card-title lang-np\" style=\"display:none\">हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र</h3><span class=\"card-date\" data-date-ad=\"2026-07-12\" data-time=\"19:17\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Sport\"><a href=\"/page/detailvideo.html?id=51\" class=\"video-open-link\" data-id=\"51\" data-title=\"FIFA World Cup: Semi-finals to feature clash of former champions #fifaworldcup2026\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/Cb4KlL1LJlE/hqdefault.jpg\" alt=\"FIFA World Cup: Semi-finals to feature clash of former champions #fifaworldcup2026\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">FIFA World Cup: Semi-finals to feature clash of former champions #fifaworldcup2026</h3><h3 class=\"card-title lang-np\" style=\"display:none\">फिफा विश्वकप : सेमिफाइनलमा पूर्व विजेता टोलीकै भिडन्त हुने #fifaworldcup2026</h3><span class=\"card-date\" data-date-ad=\"2026-07-12\" data-time=\"19:15\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=46\" class=\"video-open-link\" data-id=\"46\" data-title=\"Today news | nepali news | aaja ka mukhya samachar | 25 ashar 2083 | बुटवल टुडे समाचार#news\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/cpYsJvT5Tik/hqdefault.jpg\" alt=\"Today news | nepali news | aaja ka mukhya samachar | 25 ashar 2083 | बुटवल टुडे समाचार#news\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Today news | nepali news | aaja ka mukhya samachar | 25 ashar 2083 | बुटवल टुडे समाचार#news</h3><h3 class=\"card-title lang-np\" style=\"display:none\">आजको समाचार | नेपाली समाचार | आजका मुख्य समाचार | २५ असार २०८३ | बुटवल टुडे समाचार#news</h3><span class=\"card-date\" data-date-ad=\"2026-07-09\" data-time=\"13:38\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Business\"><a href=\"/page/detailvideo.html?id=45\" class=\"video-open-link\" data-id=\"45\" data-title=\"Nepal Requests Saudi Arabia to Halt Skill Testing Program\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/LuRTewN9QbE/hqdefault.jpg\" alt=\"Nepal Requests Saudi Arabia to Halt Skill Testing Program\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Nepal Requests Saudi Arabia to Halt Skill Testing Program</h3><h3 class=\"card-title lang-np\" style=\"display:none\">सीप परीक्षण कार्यक्रम रोक्न नेपालले गर्यो साउदी अरबलाई अनुरोध</h3><span class=\"card-date\" data-date-ad=\"2026-07-08\" data-time=\"13:36\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Politics\"><a href=\"/page/detailvideo.html?id=44\" class=\"video-open-link\" data-id=\"44\" data-title=\"What did Balen Government do in 100 days? #balensarkar #balenshah #balen\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/WBSdckq6-b0/hqdefault.jpg\" alt=\"What did Balen Government do in 100 days? #balensarkar #balenshah #balen\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">What did Balen Government do in 100 days? #balensarkar #balenshah #balen</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बालेन सरकारले १०० दिनमा के गर्‍यो ?#balensarkar #balenshah #balen</h3><span class=\"card-date\" data-date-ad=\"2026-07-08\" data-time=\"13:34\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=43\" class=\"video-open-link\" data-id=\"43\" data-title=\"Today news | nepali news | aaja ka mukhya samachar | 24 ashar 2083 | Butwal Today News#news\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/GQINE1XPn78/hqdefault.jpg\" alt=\"Today news | nepali news | aaja ka mukhya samachar | 24 ashar 2083 | Butwal Today News#news\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Today news | nepali news | aaja ka mukhya samachar | 24 ashar 2083 | Butwal Today News#news</h3><h3 class=\"card-title lang-np\" style=\"display:none\">आजको समाचार | नेपाली समाचार | आजको मुख्य समाचार | २४ असार २०८३ | बुटवल टुडे समाचार#news</h3><span class=\"card-date\" data-date-ad=\"2026-07-08\" data-time=\"13:30\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article></div><div style=\"width:100%;margin:12px 0;text-align:center;\"><a href=\"#\"><img src=\"../images/section_1.jpg\" alt=\"Advertisement\" style=\"width:100%;height:auto;display:block;border-radius:4px;\"></a><span class=\"lang-en\" style=\"display:block;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">Advertisement</span><span class=\"lang-np\" style=\"display:none;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">विज्ञापन</span></div><div id=\"latest-grid-9\" class=\"section-grid\"><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=42\" class=\"video-open-link\" data-id=\"42\" data-title=\"Nepalese also injured in Qatar&#39;s Ras Laffan explosion!\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/tVMG89oJuNI/hqdefault.jpg\" alt=\"Nepalese also injured in Qatar&#39;s Ras Laffan explosion!\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Nepalese also injured in Qatar&#39;s Ras Laffan explosion!</h3><h3 class=\"card-title lang-np\" style=\"display:none\">कतारको रस लाफान विष्फोटमा नेपालीहरु पनि घाइते भए !</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"17:33\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=40\" class=\"video-open-link\" data-id=\"40\" data-title=\"Thakali Sewa Samaj Butwal Engaged in Preserving Tradition | #NewsUpdate #newsfeed #socialwork\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/MdAfTBbsPng/hqdefault.jpg\" alt=\"Thakali Sewa Samaj Butwal Engaged in Preserving Tradition | #NewsUpdate #newsfeed #socialwork\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Thakali Sewa Samaj Butwal Engaged in Preserving Tradition | #NewsUpdate #newsfeed #socialwork</h3><h3 class=\"card-title lang-np\" style=\"display:none\">परम्परा संरक्षणमा जुट्दै थकाली सेवा समाज बुटवल ।।। #NewsUpdate #newsfeed #socialwork</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"17:32\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=39\" class=\"video-open-link\" data-id=\"39\" data-title=\"Oli, Prachanda, and Nepal on same stage at Madan Bhandari birth anniversary program\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/3GAggDJqZsI/hqdefault.jpg\" alt=\"Oli, Prachanda, and Nepal on same stage at Madan Bhandari birth anniversary program\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Oli, Prachanda, and Nepal on same stage at Madan Bhandari birth anniversary program</h3><h3 class=\"card-title lang-np\" style=\"display:none\">मदन भण्डारीको जन्मजयन्ती कार्यक्रममा ओली, प्रचण्ड र नेपाल एउटै मञ्चमा</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"15:53\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=38\" class=\"video-open-link\" data-id=\"38\" data-title=\"Opium and cannabis cultivation destroyed on 56 ropani of land in Rolpa #CrimeNews\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/oNFQ_ms9WS0/hqdefault.jpg\" alt=\"Opium and cannabis cultivation destroyed on 56 ropani of land in Rolpa #CrimeNews\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Opium and cannabis cultivation destroyed on 56 ropani of land in Rolpa #CrimeNews</h3><h3 class=\"card-title lang-np\" style=\"display:none\">रोल्पामा ५६ रोपनी जग्गामा लगाइएको अफिम र गाँजा खेती नष्ट #CrimeNews</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"15:53\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=37\" class=\"video-open-link\" data-id=\"37\" data-title=\"CPN-UML lawmaker Koiri sentenced to 5 years in prison\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/jY5BoX6R3WI/hqdefault.jpg\" alt=\"CPN-UML lawmaker Koiri sentenced to 5 years in prison\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">CPN-UML lawmaker Koiri sentenced to 5 years in prison</h3><h3 class=\"card-title lang-np\" style=\"display:none\">एमाले सांसद कोइरीलाई ५ वर्ष कैद सजाय</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"15:52\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=36\" class=\"video-open-link\" data-id=\"36\" data-title=\"Madheshi parties unite against repealing Provincial Assembly, warn of protest ! #PoliticalNews\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/fjVIksJogBc/hqdefault.jpg\" alt=\"Madheshi parties unite against repealing Provincial Assembly, warn of protest ! #PoliticalNews\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Madheshi parties unite against repealing Provincial Assembly, warn of protest ! #PoliticalNews</h3><h3 class=\"card-title lang-np\" style=\"display:none\">प्रदेशसभा खारेजविरुद्ध मधेशवादी दल एकजुट, प्रतिवादको चेतावनी ! #PoliticalNews</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"14:32\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Health Tip\"><a href=\"/page/detailvideo.html?id=35\" class=\"video-open-link\" data-id=\"35\" data-title=\"Benefits of Eating Guava | HEALTH TIPS |#healthtips #healthylifestyle #guava #healthbenefits\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/ZhcGzqkpOcA/hqdefault.jpg\" alt=\"Benefits of Eating Guava | HEALTH TIPS |#healthtips #healthylifestyle #guava #healthbenefits\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Benefits of Eating Guava | HEALTH TIPS |#healthtips #healthylifestyle #guava #healthbenefits</h3><h3 class=\"card-title lang-np\" style=\"display:none\">अम्बा खानुका फाइदाहरू | स्वास्थ्य सुझावहरू |#स्वास्थ्य सुझावहरू #स्वस्थ जीवनशैली #अम्बा #स्वास्थ्य फाइदाहरू</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:49\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Health Matters\"><a href=\"/page/detailvideo.html?id=34\" class=\"video-open-link\" data-id=\"34\" data-title=\"Meditech&#39;s Journey: Commitment to Quality Healthcare - Chairman JP Kandel || SWASTHYA KA KURA\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/x8UCPKceTBc/hqdefault.jpg\" alt=\"Meditech&#39;s Journey: Commitment to Quality Healthcare - Chairman JP Kandel || SWASTHYA KA KURA\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Meditech&#39;s Journey: Commitment to Quality Healthcare - Chairman JP Kandel || SWASTHYA KA KURA</h3><h3 class=\"card-title lang-np\" style=\"display:none\">मेडिटेकको यात्रा गुणस्तरीय स्वास्थ्य सेवाको प्रतिबद्धता - अध्यक्ष जेपी कँडेल ।। स्वास्थ्यका कुरा</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:44\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Public Dialogue\"><a href=\"/page/detailvideo.html?id=33\" class=\"video-open-link\" data-id=\"33\" data-title=\"Youth&#39;s Hard Work Makes the Nation Prosperous | Kamal Jung Kunwar, Owner of Daddy&#39;s Kitchen | Samriddhi Samvad\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/o0o7N7-sCQ0/hqdefault.jpg\" alt=\"Youth&#39;s Hard Work Makes the Nation Prosperous | Kamal Jung Kunwar, Owner of Daddy&#39;s Kitchen | Samriddhi Samvad\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Youth&#39;s Hard Work Makes the Nation Prosperous | Kamal Jung Kunwar, Owner of Daddy&#39;s Kitchen | Samriddhi Samvad</h3><h3 class=\"card-title lang-np\" style=\"display:none\">युवाले परिश्रम गरे देश समृद्ध बन्छ । ड्याडीज किचनका संचालक कमल जंग कुँवर | समृद्धि संवाद ।</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:44\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article></div><div style=\"width:100%;margin:12px 0;text-align:center;\"><a href=\"#\"><img src=\"../images/section_2.jpg\" alt=\"Advertisement\" style=\"width:100%;height:auto;display:block;border-radius:4px;\"></a><span class=\"lang-en\" style=\"display:block;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">Advertisement</span><span class=\"lang-np\" style=\"display:none;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">विज्ञापन</span></div><div id=\"latest-grid-18\" class=\"section-grid\"><article class=\"news-card latest\" data-cat=\"Cooperative Journey\"><a href=\"/page/detailvideo.html?id=32\" class=\"video-open-link\" data-id=\"32\" data-title=\"Cooperatives must be able to secure members&#39; savings: Ram Prasad Paudel | #interview #sahakari #business\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/V4VS-mWytdU/hqdefault.jpg\" alt=\"Cooperatives must be able to secure members&#39; savings: Ram Prasad Paudel | #interview #sahakari #business\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Cooperatives must be able to secure members&#39; savings: Ram Prasad Paudel | #interview #sahakari #business</h3><h3 class=\"card-title lang-np\" style=\"display:none\">सहकारीले सदस्यकाे बचत सुरक्षित गर्न सक्नु पर्छ : रामप्रसाद पाैडेल | #interview #sahakari #business</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:43\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Co-development\"><a href=\"/page/detailvideo.html?id=31\" class=\"video-open-link\" data-id=\"31\" data-title=\"To sustain in business, long-term planning and patience are needed: Shanta Thapa, Managing Director of De Crown\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/xhsBMyCXPjM/hqdefault.jpg\" alt=\"To sustain in business, long-term planning and patience are needed: Shanta Thapa, Managing Director of De Crown\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">To sustain in business, long-term planning and patience are needed: Shanta Thapa, Managing Director of De Crown</h3><h3 class=\"card-title lang-np\" style=\"display:none\">व्यवसायमा टिक्न दीर्घकालीन योजना र समयलाई कुर्न सक्नुपर्छ : शान्ता थापा, दी क्राउन प्रबन्ध निर्देशक</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:42\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Women Power\"><a href=\"/page/detailvideo.html?id=29\" class=\"video-open-link\" data-id=\"29\" data-title=\"Let’s Be Self-Reliant, Not Dependent on Others: Savina Amatya Shrestha ||| #interview\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/HCFDyRr0vCA/hqdefault.jpg\" alt=\"Let’s Be Self-Reliant, Not Dependent on Others: Savina Amatya Shrestha ||| #interview\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Let’s Be Self-Reliant, Not Dependent on Others: Savina Amatya Shrestha ||| #interview</h3><h3 class=\"card-title lang-np\" style=\"display:none\">परनिर्भरता होइन आत्मनिर्भर बनौं : सविना अमात्य श्रेष्ठ ||| #interview</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:39\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Butwal Debate\"><a href=\"/page/detailvideo.html?id=28\" class=\"video-open-link\" data-id=\"28\" data-title=\"I am a servant, vote after seeing my work: Basudev Ghimire | Butwal Debate\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/JX65hepjy4A/hqdefault.jpg\" alt=\"I am a servant, vote after seeing my work: Basudev Ghimire | Butwal Debate\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">I am a servant, vote after seeing my work: Basudev Ghimire | Butwal Debate</h3><h3 class=\"card-title lang-np\" style=\"display:none\">म सेवक हुँ, काम हेरेर भोट दिनुस् : वासुदेव घिमिरे । बुटवल बहसमा ।</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:38\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Monitoring\"><a href=\"/page/detailvideo.html?id=27\" class=\"video-open-link\" data-id=\"27\" data-title=\"Who lives in the buildings of the Butwal Road Division? | NIGRANI | #rupandehi #butwal #governmentoffice\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/9v_zwcIzbDA/hqdefault.jpg\" alt=\"Who lives in the buildings of the Butwal Road Division? | NIGRANI | #rupandehi #butwal #governmentoffice\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Who lives in the buildings of the Butwal Road Division? | NIGRANI | #rupandehi #butwal #governmentoffice</h3><h3 class=\"card-title lang-np\" style=\"display:none\">को बस्छ सडक डिभिजन बुटवलका भवनमा ? | NIGRANI | #rupandehi #butwal #governmentoffice</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:37\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Life Story\"><a href=\"/page/detailvideo.html?id=26\" class=\"video-open-link\" data-id=\"26\" data-title=\"Ticket to Modeling Journey: Grishma Paudel | JIVAN KATHA | #interview\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/AS-u4BhF3aw/hqdefault.jpg\" alt=\"Ticket to Modeling Journey: Grishma Paudel | JIVAN KATHA | #interview\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Ticket to Modeling Journey: Grishma Paudel | JIVAN KATHA | #interview</h3><h3 class=\"card-title lang-np\" style=\"display:none\">टिकटबाट मोडलिङ यात्रामा ग्रीष्मा पौडेल | जीवन कथा | #interview</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:36\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Butwal Khabar\"><a href=\"/page/detailvideo.html?id=25\" class=\"video-open-link\" data-id=\"25\" data-title=\"Extreme torture at Butwal reform home, girl in ventilator, 4 accused arrested | BUTWAL KHABAR |\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/d61Hm4CINSE/hqdefault.jpg\" alt=\"Extreme torture at Butwal reform home, girl in ventilator, 4 accused arrested | BUTWAL KHABAR |\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Extreme torture at Butwal reform home, girl in ventilator, 4 accused arrested | BUTWAL KHABAR |</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बुटवलको सुधार गृहमा चरम यातना, युवती भेन्टिलेटरमा, ४ आरोपी पक्राउ | बुटवल खबर |</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:31\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Horoscope\"><a href=\"/page/detailvideo.html?id=24\" class=\"video-open-link\" data-id=\"24\" data-title=\"Today&#39;s Horoscope for These Zodiac Signs | July 06, 2026 | Monday | Jul 06, 2026 | #rashifal\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/eSp65pTgHzk/hqdefault.jpg\" alt=\"Today&#39;s Horoscope for These Zodiac Signs | July 06, 2026 | Monday | Jul 06, 2026 | #rashifal\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Today&#39;s Horoscope for These Zodiac Signs | July 06, 2026 | Monday | Jul 06, 2026 | #rashifal</h3><h3 class=\"card-title lang-np\" style=\"display:none\">आज यी राशिहरुकाे लागि शुभ, हेर्नुहाेस् राशिफल | २०८३ असार २२ गते सोमबार | Jul 06, 2026 | #rashifal</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:22\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Highlights\"><a href=\"/page/detailvideo.html?id=23\" class=\"video-open-link\" data-id=\"23\" data-title=\"HILIGHTS NEWS | Butwal Highlight | 20 Asar 2083, Saturday | #NewsUpdate #PoliticalNews #economy\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/zwBQ7fQjKZ0/hqdefault.jpg\" alt=\"HILIGHTS NEWS | Butwal Highlight | 20 Asar 2083, Saturday | #NewsUpdate #PoliticalNews #economy\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">HILIGHTS NEWS | Butwal Highlight | 20 Asar 2083, Saturday | #NewsUpdate #PoliticalNews #economy</h3><h3 class=\"card-title lang-np\" style=\"display:none\">हाइलाइट्स न्युज | बुटवल हाइलाइट | २० असार २०८३, शनिवार | #NewsUpdate #PoliticalNews #economy</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:20\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article></div><div style=\"width:100%;margin:12px 0;text-align:center;\"><a href=\"#\"><img src=\"../images/section_3.jpg\" alt=\"Advertisement\" style=\"width:100%;height:auto;display:block;border-radius:4px;\"></a><span class=\"lang-en\" style=\"display:block;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">Advertisement</span><span class=\"lang-np\" style=\"display:none;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">विज्ञापन</span></div><div id=\"latest-grid-27\" class=\"section-grid\"><article class=\"news-card latest\" data-cat=\"health\"><a href=\"/page/detailvideo.html?id=22\" class=\"video-open-link\" data-id=\"22\" data-title=\"Triage system introduced at Butwal&#39;s Lumbini Provincial Hospital #butwaltodaytv #lumbini_nepal #hospital\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/K09NrWJEfLg/hqdefault.jpg\" alt=\"Triage system introduced at Butwal&#39;s Lumbini Provincial Hospital #butwaltodaytv #lumbini_nepal #hospital\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Triage system introduced at Butwal&#39;s Lumbini Provincial Hospital #butwaltodaytv #lumbini_nepal #hospital</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बुटवलको लुम्बिनी प्रादेशिक अस्पतालमा ‘ट्रयाज प्रणाली’ सुरु #butwaltodaytv #lumbini_nepal #hospital</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:50\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"culture\"><a href=\"/page/detailvideo.html?id=21\" class=\"video-open-link\" data-id=\"21\" data-title=\"Why Jitgadhi Festival in Butwal? #butwaltoday #report #news #update #newpost\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/rE3WjESe7uU/hqdefault.jpg\" alt=\"Why Jitgadhi Festival in Butwal? #butwaltoday #report #news #update #newpost\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Why Jitgadhi Festival in Butwal? #butwaltoday #report #news #update #newpost</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बुटवलमा जीतगढी उत्सव किन ? #butwaltoday #report #news #update #newpost</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:48\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"education\"><a href=\"/page/detailvideo.html?id=20\" class=\"video-open-link\" data-id=\"20\" data-title=\"Shikshyalaya | Nayagaun School excels in Sajitama\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/d8toB0cpIvY/hqdefault.jpg\" alt=\"Shikshyalaya | Nayagaun School excels in Sajitama\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Shikshyalaya | Nayagaun School excels in Sajitama</h3><h3 class=\"card-title lang-np\" style=\"display:none\">शिक्षालय | नजितामा अब्बल बन्दै नयाँगाउँ मा.वि बुटवल</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:47\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"entertainment\"><a href=\"/page/detailvideo.html?id=19\" class=\"video-open-link\" data-id=\"19\" data-title=\"Jitgadhi Victory Celebration#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/QWb4um_E6To/hqdefault.jpg\" alt=\"Jitgadhi Victory Celebration#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Jitgadhi Victory Celebration#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police</h3><h3 class=\"card-title lang-np\" style=\"display:none\">जितगढीमा विजय उत्सव#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:47\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"tourism\"><a href=\"/page/detailvideo.html?id=18\" class=\"video-open-link\" data-id=\"18\" data-title=\"Mardi Himal | Tourist Destination | #mardihimal #marditrek #mountaineering #nature #placetovisit\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/CfB4mU8GbWQ/hqdefault.jpg\" alt=\"Mardi Himal | Tourist Destination | #mardihimal #marditrek #mountaineering #nature #placetovisit\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Mardi Himal | Tourist Destination | #mardihimal #marditrek #mountaineering #nature #placetovisit</h3><h3 class=\"card-title lang-np\" style=\"display:none\">मर्दी हिमाल | पर्यटकीय स्थल | #mardihimal #marditrek #mountaineering #nature #placetovisit</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:46\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Sport\"><a href=\"/page/detailvideo.html?id=17\" class=\"video-open-link\" data-id=\"17\" data-title=\"FIFA suspends ANFA while World Cup is ongoing\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/0OaAsIW7MRM/hqdefault.jpg\" alt=\"FIFA suspends ANFA while World Cup is ongoing\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">FIFA suspends ANFA while World Cup is ongoing</h3><h3 class=\"card-title lang-np\" style=\"display:none\">विश्वकप चलिरहँदा फिफाले गर्यो एन्फालाई निलम्बन</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:44\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"international\"><a href=\"/page/detailvideo.html?id=16\" class=\"video-open-link\" data-id=\"16\" data-title=\"Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Funeral Ceremony\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/g-wcfgJwj7Q/hqdefault.jpg\" alt=\"Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Funeral Ceremony\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Funeral Ceremony</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बुवाको शोक समारोहमा समेत सहभागी भएनन् इरानी सर्वोच्च नेता मोज्तबा खामेनी</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:44\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Highlights\"><a href=\"/page/detailvideo.html?id=15\" class=\"video-open-link\" data-id=\"15\" data-title=\"HILIGHTS NEWS | Butwal Highlights | 21 Asar 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/g8FW28-dG2s/hqdefault.jpg\" alt=\"HILIGHTS NEWS | Butwal Highlights | 21 Asar 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">HILIGHTS NEWS | Butwal Highlights | 21 Asar 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy</h3><h3 class=\"card-title lang-np\" style=\"display:none\">हाइलाइट्स न्युज | बुटवल हाइलाइट | २१ असार २०८३, आइतवार | #NewsUpdate #hilights #PoliticalNews #economy</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"22:26\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Shorts\"><a href=\"/page/detailvideo.html?id=14\" class=\"video-open-link\" data-id=\"14\" data-title=\"Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Mourning Ceremony\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/g-wcfgJwj7Q/hqdefault.jpg\" alt=\"Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Mourning Ceremony\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Mourning Ceremony</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बुवाको शोक समारोहमा समेत सहभागी भएनन् इरानी सर्वोच्च नेता मोज्तबा खामेनी</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"18:29\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article></div><div style=\"width:100%;margin:12px 0;text-align:center;\"><a href=\"#\"><img src=\"../images/section_1.jpg\" alt=\"Advertisement\" style=\"width:100%;height:auto;display:block;border-radius:4px;\"></a><span class=\"lang-en\" style=\"display:block;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">Advertisement</span><span class=\"lang-np\" style=\"display:none;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">विज्ञापन</span></div><div id=\"latest-grid-36\" class=\"section-grid\"><article class=\"news-card latest\" data-cat=\"Shorts\"><a href=\"/page/detailvideo.html?id=12\" class=\"video-open-link\" data-id=\"12\" data-title=\"Claim: The Slope of Daunne Road Will Last More Than 30 Years\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/OcnhVrVb6yE/hqdefault.jpg\" alt=\"Claim: The Slope of Daunne Road Will Last More Than 30 Years\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Claim: The Slope of Daunne Road Will Last More Than 30 Years</h3><h3 class=\"card-title lang-np\" style=\"display:none\">दाबी: डाउन्ने सडकको ढलान ३० वर्षभन्दा बढी टिक्नेछ</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"17:18\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Highlights\"><a href=\"/page/detailvideo.html?id=9\" class=\"video-open-link\" data-id=\"9\" data-title=\"HIGHLIGHTS NEWS | बुटवल हाइलाइट | २० Asar 2083, Saturday\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/zwBQ7fQjKZ0/hqdefault.jpg\" alt=\"HIGHLIGHTS NEWS | बुटवल हाइलाइट | २० Asar 2083, Saturday\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">HIGHLIGHTS NEWS | बुटवल हाइलाइट | २० Asar 2083, Saturday</h3><h3 class=\"card-title lang-np\" style=\"display:none\">हाइलाइट्स समाचार | बुटवल हाइलाइट | २० असार २०८३, शनिवार</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"16:35\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Butwal News\"><a href=\"/page/detailvideo.html?id=8\" class=\"video-open-link\" data-id=\"8\" data-title=\"Extreme Torture in Butwal Correctional Home, Young Woman on Ventilator, 4 Suspects Arrested | BUTWAL KHABAR |\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/d61Hm4CINSE/hqdefault.jpg\" alt=\"Extreme Torture in Butwal Correctional Home, Young Woman on Ventilator, 4 Suspects Arrested | BUTWAL KHABAR |\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Extreme Torture in Butwal Correctional Home, Young Woman on Ventilator, 4 Suspects Arrested | BUTWAL KHABAR |</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बुटवलको सुधार गृहमा चरम यातना, युवती भेन्टिलेटरमा, ४ आरोपी पक्राउ | बुटवल खबर |</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"16:33\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=\" class=\"video-open-link\" data-id=\"\" data-title=\"Today&#39;s News | Nepali News | Today&#39;s Main News | 21 Ashar 2083 | Butwal Today News\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/NqfOzqN6KqA/hqdefault.jpg\" alt=\"Today&#39;s News | Nepali News | Today&#39;s Main News | 21 Ashar 2083 | Butwal Today News\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Today&#39;s News | Nepali News | Today&#39;s Main News | 21 Ashar 2083 | Butwal Today News</h3><h3 class=\"card-title lang-np\" style=\"display:none\">आजको समाचार | नेपाली समाचार | आजको मुख्य समाचार | २१ असार २०८३ | बुटवल टुडे समाचार</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"16:30\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Newspapers\"><a href=\"/page/detailvideo.html?id=7\" class=\"video-open-link\" data-id=\"7\" data-title=\"Today&#39;s Newspaper News | 21 Asar 2083, Sunday | published from Butwal |\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/FdAJHTmq9Zs/hqdefault.jpg\" alt=\"Today&#39;s Newspaper News | 21 Asar 2083, Sunday | published from Butwal |\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Today&#39;s Newspaper News | 21 Asar 2083, Sunday | published from Butwal |</h3><h3 class=\"card-title lang-np\" style=\"display:none\">आजका पत्रपत्रिका | २१ असार २०८३, आइतवार | बुटवलबाट प्रकाशित |</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"16:28\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Nepal Update\"><a href=\"/page/detailvideo.html?id=6\" class=\"video-open-link\" data-id=\"6\" data-title=\"WEATHER UPDATE | Weather Forecast | 2083 Asar 21 Aaitabaar | 5 Jul, 2026 |\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/rsW3LF4IgdM/hqdefault.jpg\" alt=\"WEATHER UPDATE | Weather Forecast | 2083 Asar 21 Aaitabaar | 5 Jul, 2026 |\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">WEATHER UPDATE | Weather Forecast | 2083 Asar 21 Aaitabaar | 5 Jul, 2026 |</h3><h3 class=\"card-title lang-np\" style=\"display:none\">मौसम अपडेट | आजको मौसम पूर्वानुमान | २०८३ असार २१ आइतबार | 5 Jul, 2026 |</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"16:27\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article></div><div style=\"width:100%;margin:12px 0;text-align:center;\"><a href=\"#\"><img src=\"../images/section_2.jpg\" alt=\"Advertisement\" style=\"width:100%;height:auto;display:block;border-radius:4px;\"></a><span class=\"lang-en\" style=\"display:block;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">Advertisement</span><span class=\"lang-np\" style=\"display:none;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">विज्ञापन</span></div></section>";
+var HERO_DATA = {"id":"58","title":"Question to Prof. Dr. Bhola Thapa – Your appointment was through meritocracy, but others’ how?","titleNp":"प्राध्यापक डा. भोला थापालाई प्रश्न – तपाईँको नियुक्ति मेरिटोक्रेसीमार्फत्, अरूको चाहिँ कसरी ?","embed":"https://www.youtube.com/embed/d6NpcOJDLEA","bg":"https://img.youtube.com/vi/d6NpcOJDLEA/hqdefault.jpg","strip":[{"id":"54","title":"Today news | nepali news | aaja ka mukhya samachar | 28 ashar 2083 | Butwal Today News#news","titleNp":"आजको समाचार | नेपाली समाचार | आजको मुख्य समाचार | २८ असार २०८३ | बुटवल टुडे समाचार#news","embed":"https://www.youtube.com/embed/dJzFzv9-eWo","img":"https://img.youtube.com/vi/dJzFzv9-eWo/hqdefault.jpg","cat":"News"},{"id":"53","title":"HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy","titleNp":"हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र","embed":"https://www.youtube.com/embed/PUpKAtiOY9Q","img":"https://img.youtube.com/vi/PUpKAtiOY9Q/hqdefault.jpg","cat":"Highlights"},{"id":"52","title":"HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy","titleNp":"हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र","embed":"https://www.youtube.com/embed/PUpKAtiOY9Q","img":"https://img.youtube.com/vi/PUpKAtiOY9Q/hqdefault.jpg","cat":"Highlights"},{"id":"51","title":"FIFA World Cup: Semi-finals to feature clash of former champions #fifaworldcup2026","titleNp":"फिफा विश्वकप : सेमिफाइनलमा पूर्व विजेता टोलीकै भिडन्त हुने #fifaworldcup2026","embed":"https://www.youtube.com/embed/Cb4KlL1LJlE","img":"https://img.youtube.com/vi/Cb4KlL1LJlE/hqdefault.jpg","cat":"Sport"},{"id":"46","title":"Today news | nepali news | aaja ka mukhya samachar | 25 ashar 2083 | बुटवल टुडे समाचार#news","titleNp":"आजको समाचार | नेपाली समाचार | आजका मुख्य समाचार | २५ असार २०८३ | बुटवल टुडे समाचार#news","embed":"https://www.youtube.com/embed/cpYsJvT5Tik","img":"https://img.youtube.com/vi/cpYsJvT5Tik/hqdefault.jpg","cat":"News"},{"id":"45","title":"Nepal Requests Saudi Arabia to Halt Skill Testing Program","titleNp":"सीप परीक्षण कार्यक्रम रोक्न नेपालले गर्यो साउदी अरबलाई अनुरोध","embed":"https://www.youtube.com/embed/LuRTewN9QbE","img":"https://img.youtube.com/vi/LuRTewN9QbE/hqdefault.jpg","cat":"Business"},{"id":"44","title":"What did Balen Government do in 100 days? #balensarkar #balenshah #balen","titleNp":"बालेन सरकारले १०० दिनमा के गर्‍यो ?#balensarkar #balenshah #balen","embed":"https://www.youtube.com/embed/WBSdckq6-b0","img":"https://img.youtube.com/vi/WBSdckq6-b0/hqdefault.jpg","cat":"Politics"},{"id":"43","title":"Today news | nepali news | aaja ka mukhya samachar | 24 ashar 2083 | Butwal Today News#news","titleNp":"आजको समाचार | नेपाली समाचार | आजको मुख्य समाचार | २४ असार २०८३ | बुटवल टुडे समाचार#news","embed":"https://www.youtube.com/embed/GQINE1XPn78","img":"https://img.youtube.com/vi/GQINE1XPn78/hqdefault.jpg","cat":"News"}]};
+
+var EN_MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+var BS_MONTHS_NP=['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
+var BS_MONTHS_EN=['Baisakh','Jestha','Ashadh','Shrawan','Bhadra','Ashwin','Kartik','Mangsir','Poush','Magh','Falgun','Chaitra'];
+
+var BS_DATA = {
+  2075:[31,31,32,32,31,30,30,30,29,29,30,31],
+  2076:[31,32,31,32,31,30,30,29,30,29,30,31],
+  2077:[31,31,32,32,31,30,30,29,30,29,30,31],
+  2078:[31,32,31,32,31,30,30,29,30,29,30,31],
+  2079:[31,31,32,32,31,30,30,29,30,29,30,31],
+  2080:[31,32,31,32,31,30,30,29,30,29,30,31],
+  2081:[31,31,32,32,31,30,30,29,30,29,30,31],
+  2082:[31,32,31,32,31,30,30,29,30,29,30,31],
+  2083:[31,31,32,32,31,30,30,29,30,29,30,31],
+  2084:[31,32,31,32,31,30,30,29,30,29,30,31],
+  2085:[31,31,32,32,31,30,30,29,30,29,30,31],
+  2086:[31,32,31,32,31,30,30,29,30,29,30,31],
+  2087:[31,31,32,32,31,30,30,29,30,29,30,31]
+};
+var BS_REF_AD = Date.UTC(2018,3,14);
+var BS_REF_Y  = 2075;
+
+var NP_DIGITS = ['०','१','२','३','४','५','६','७','८','९'];
+function toNpDigits(input){
+  return String(input).replace(/[0-9]/g, function(d){ return NP_DIGITS[+d]; });
+}
+
+function adToBs(adDate){
+  var diffDays = Math.floor((Date.UTC(adDate.getUTCFullYear(),adDate.getUTCMonth(),adDate.getUTCDate()) - BS_REF_AD) / 86400000);
+  if (diffDays < 0) return null;
+  var y = BS_REF_Y, m = 0;
+  while (true){
+    var monthsArr = BS_DATA[y];
+    if (!monthsArr) return null;
+    var daysInMonth = monthsArr[m];
+    if (diffDays < daysInMonth) break;
+    diffDays -= daysInMonth;
+    m++;
+    if (m === 12){ m = 0; y++; }
+  }
+  return { year:y, month:m, day:diffDays+1 };
+}
+
+function formatTime12(hh, mm){
+  var h = parseInt(hh,10);
+  if (isNaN(h)) return '';
+  var period = h >= 12 ? 'PM' : 'AM';
+  var h12 = h % 12; if (h12 === 0) h12 = 12;
+  var mmStr = String(mm).padStart(2, '0');
+  return h12 + ':' + mmStr + ' ' + period;
+}
+
+function updateDates(isNp){
+  document.querySelectorAll('[data-date-ad]').forEach(function(el){
+    var adStr=el.getAttribute('data-date-ad');
+    var rawTime=el.getAttribute('data-time')||'';
+    var display=el.querySelector('.date-display');
+    if(!display)return;
+
+    // Time is ALWAYS English, regardless of language toggle
+    var timeParts = rawTime.split(':');
+    var timeStr = (timeParts.length===2) ? formatTime12(timeParts[0], timeParts[1]) : rawTime;
+
+    var d=new Date(adStr);
+    var dateStr;
+    if (isNaN(d.getTime())){
+      dateStr = isNp ? toNpDigits(adStr) : adStr;
+    } else if (isNp){
+      var bs = adToBs(d);
+      dateStr = bs
+        ? (toNpDigits(bs.day) + ' ' + BS_MONTHS_NP[bs.month] + ' ' + toNpDigits(bs.year))
+        : toNpDigits(EN_MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear());
+    } else {
+      dateStr = EN_MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
+    }
+
+    display.textContent = dateStr + (timeStr ? ', ' + timeStr : '');
+  });
+}
+
+function applyLang(lang){
+  var np=lang==='np';
+  document.querySelectorAll('.lang-en,.lang-np').forEach(function(el){
+    var isNpEl=el.classList.contains('lang-np');
+    var show=np?isNpEl:!isNpEl;
+    if(!show){el.style.display='none';return;}
+    var tag=el.tagName?el.tagName.toLowerCase():'';
+    var inlineTags=['span','a','i','b','strong','em','label','button','small'];
+    if(inlineTags.indexOf(tag)!==-1){el.style.display='inline';}
+    else{el.style.display='block';}
+  });
+  updateDates(np);
+  document.body.classList.toggle('lang-active',np);
+  var btn=document.querySelector('.lang-toggle');
+  if(btn)btn.textContent=np?'EN':'NP';
+}
+window.addEventListener('langChange',function(e){if(e.detail&&e.detail.lang)applyLang(e.detail.lang);});
+
+function populateHero(){
+  if(!HERO_DATA.embed) return;
+  var titleEl = document.getElementById('bt-hero-title');
+  var bgEl    = document.getElementById('bt-hero-bg');
+  var watchBtn= document.getElementById('bt-hero-watch-btn');
+  var heroEl  = document.getElementById('bt-hero');
+  var detailUrl = '/page/detailvideo.html?id=' + HERO_DATA.id;
+
+  if(titleEl){
+    titleEl.innerHTML =
+      '<span class="lang-en">'+HERO_DATA.title+'</span>'+
+      '<span class="lang-np" style="display:none">'+HERO_DATA.titleNp+'</span>';
+    titleEl.style.cursor='pointer';
+    titleEl.addEventListener('click', function(){ window.location.href = detailUrl; });
+  }
+  if(heroEl){ heroEl.setAttribute('data-id', HERO_DATA.id); }
+
+  if(bgEl){
+    var sep = HERO_DATA.embed.indexOf('?') > -1 ? '&' : '?';
+    var autoplaySrc = HERO_DATA.embed + sep + 'autoplay=1&mute=1&playsinline=1&controls=0&rel=0&modestbranding=1';
+    bgEl.style.backgroundImage = 'none';
+    bgEl.innerHTML = '<iframe src="'+autoplaySrc+'" title="hero-video" ' +
+      'style="position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none;" ' +
+      'allow="autoplay; encrypted-media; picture-in-picture"></iframe>';
+  }
+
+  if(watchBtn){
+    watchBtn.addEventListener('click', function(){
+      window.location.href = detailUrl;
+    });
+  }
+}
+
+function buildStripHtml(){
+  return HERO_DATA.strip.map(function(n){
+    return '<a href="/page/detailvideo.html?id='+n.id+'" class="hero-strip-card" data-cat="'+n.cat+'">'+
+      '<div class="strip-thumb"><img src="'+n.img+'" alt="'+n.title+'" loading="lazy"></div>'+
+      '<div class="strip-title lang-en">'+n.title+'</div>'+
+      '<div class="strip-title lang-np" style="display:none">'+n.titleNp+'</div>'+
+      '</a>';
+  }).join('');
+}
+
+function insertStrip(){
+  var catBar = document.getElementById('bt-category-bar');
+  if(!catBar || document.getElementById('bt-hero-strip')) return;
+  var strip = document.createElement('div');
+  strip.id = 'bt-hero-strip';
+  strip.className = 'bt-hero-strip';
+  strip.innerHTML = buildStripHtml();
+  catBar.insertAdjacentElement('afterend', strip);
+
+  var style = document.createElement('style');
+  style.textContent =
+    '.bt-hero-strip{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,auto);gap:12px;padding:4px 28px 18px;}'+
+    '.hero-strip-card{text-decoration:none;color:inherit;}'+
+    '.strip-thumb{width:100%;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:#eee;}'+
+    '.strip-thumb img{width:100%;height:100%;object-fit:cover;display:block;}'+
+    '.strip-title{font-size:.78rem;margin-top:4px;line-height:1.25;max-height:2.5em;overflow:hidden;}'+
+    '@media(max-width:900px){.bt-hero-strip{grid-template-columns:repeat(2,1fr);}}';
+  document.head.appendChild(style);
+}
+
+function wireCategoryFilter(){
+  window.addEventListener('btCategoryChange', function(e){
+    var cat = (e.detail && e.detail.category) || 'all';
+    document.querySelectorAll('.hero-strip-card').forEach(function(c){
+      var show = (cat==='all') || (c.getAttribute('data-cat')===cat);
+      c.style.display = show ? '' : 'none';
+    });
+  });
+}
+
+function inject(){
+  var sc=document.getElementById('sections-container');
+  if(sc){
+    sc.innerHTML=SECTIONS_HTML;
+  }else{
+    var wrap=document.createElement('div');
+    wrap.id='sections-container';
+    wrap.className='page-container';
+    wrap.innerHTML=SECTIONS_HTML;
+    (document.querySelector('main')||document.body).appendChild(wrap);
+  }
+
+  populateHero();
+  insertStrip();
+  wireCategoryFilter();
+
+  var storedLang='np';
+  try{storedLang=localStorage.getItem('fm_lang')||localStorage.getItem('siteLang')||'np';}catch(e){}
+  applyLang(storedLang);
+}
+
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',inject);}else{inject();}
+})();
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+      var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
+      var adYear=new Date().getFullYear();
+      var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
+      var eyEn=document.getElementById('footer-year-en');
+      var eyNp=document.getElementById('footer-year-np');
+      if(eyEn)eyEn.textContent=adYear;
+      if(eyNp)eyNp.textContent=npYear;
+      window.addEventListener('langChange',function(e){
+        if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
+      });
+      var stored=localStorage.getItem('fm_lang')||'en';
+      if(stored==='np')document.body.classList.add('lang-active');
+    });
+  </script>
+</body>
+</html>
