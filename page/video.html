@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-50oBUHEmVmNS+0GU7Wg4rCBWIBu72exhg0yVUsmcte8XtA4uGBIftqpuWfGKDc+yduYJTBraHiWI5KJNDN2daQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-50oBUheMVFYGapuBdpx4M0C7EIDppwMocFuIIec2Mx5FiWNs2FwZJM4MHUJRVlWa9DNhmEuwVTAyeKz9GKR Lak=" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
 
 :root {
@@ -558,196 +558,59 @@
   /* Section header with accent left-border */
   .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; padding-bottom:8px; border-bottom:2px solid #A31919; }
   .section-title { font-size:1.15rem; margin:0; color:#A31919; font-family:Noto Serif, Georgia, serif; font-weight:800; display:flex; align-items:center; gap:8px; }
-  .section-title::before { content:''; display:inline-block; width:4px; height:1.1em; background:#D4A017; border-radius:2px; flex-shrink:0; }
-  .view-all-link { font-size:.78rem; font-weight:700; color:#A31919; text-decoration:none; padding:4px 12px; border:1px solid #A31919; border-radius:3px;
-    transition:all .2s;
-    white-space:nowrap;
-    position:relative;
-    top:-2px;
-    z-index:-1;
-   }
-   .view-all-link:hover { background:#A31919;
-     color:#FFFFFF;
-     z-index:auto;
-     top:auto;
-     position:relative;
-   }
+  .section-title::before { content:''; display:inline-block; width:4px; height:1.1em; background:#D4A017; border-radius:2px; flex-shrink:0;}
+  
+  .view-all-link { font-size:.78rem;font-weight:700;color:#A31919;text-decoration:none;padding:4px 12px;border-radius:3px;border-color:#A31919;}
+  
+  .view-all-link:hover{background:#A31919;color:#FFFFFF;}
 
+  
    /* ─── UNIFORM GRID (every section, no special "featured" column) ─── */
    .section-grid,
    .section-grid.has-featured,
    .section-grid.latest-grid {
-     display:flex !important;
-     flex-wrap.wrap !important;
-
+     display:grid;
+     grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+     gap:18px;
+     align-items:start;
+   }
+   
+   /* The "list" wrapper becomes transparent so its cards join the same grid
+      as the "featured" card — instead of being boxed into a separate column. */
+   .section-list { display:contents;}
+   
+   @media(max-width:480px) {
+     .section-grid,.section-grid.has-featured,.section-grid.latest-grid {
+       grid-template-columns:repeat(2,1fr);
+       gap:12px;
+     }
    }
 
-   @media(max-width:480px) {
-     /* No grid on small screens */
-     .section-grid,
-     .section-grid.has-featured,
-     .section-grid.latest-grid {
-       display:block !important;
-       flex-wrap:no-wrap !important;
+    /* Unified thumbnail card — used for every card, "featured" or "latest" alike */
+    .news-card.featured,.news-card.latest {
+      background:#F8F8F8;
+      border-radius:.5rem;
+      overflow:hidden;
+      display:block;
+      width:auto;
+      transition:border-color ease-in-out,border-radius ease-in-out,.2s ease-in-out
+    }
+    
+    .news-card.featured:hover,.news-card.latest:hover {
+      box-shadow:-10rem -10rem -10rem -10rem rgba(31,31,31,.14);
+    }
+    
+    .news-card.featured > a,.news-card.latest > a {
+      text-decoration:none;color:#1F1F1F;display:block
+    }
+    
+    .news-card.featured.card-date>.card-date,.news-card.latest.card-date>.card-date{
+        color:#fff
+    }
 
-       grid-template-columns:none !important;
-
-       gap:none !important;
-
-       align-items:start !important;
-
-       justify-content:center !important;
-
-       width:auto !important;
-
-       margin-left:-16px !important;
-
-       margin-right:-16px !important;
-
-      }
-
-      /* Make cards full-width on small screens */
-      .news-card.featured,
-      .news-card.latest {
-        width:auto !important;
-
-        max-width:none !important;
-
-        margin-left:-16px !important;
-
-        margin-right:-16px !important;
-
-      }
-
-      /* Make cards full-height on small screens */
-      @supports (aspect-ratio:sqrt(9/16)) {
-        @media(max-width:(480*3/4)) {
-          /* On smaller screens than the one where we switch to a single column layout,
-             make the cards take up the full height of their container so they're not
-             cut off by the bottom of the screen.
-          */
-          html:not(.is-mobile) ~ html > body > div:nth-child(3) > div:nth-child(3) > div:nth-child(3) > div:nth-child(3) > div:nth-child(3),
-          html:not(.is-mobile) ~ html > body > div:nth-child(3) > div:nth-child(3) > div:nth-child(3) > div:nth-child(3) > div:nth-child(3),
-          html:not(.is-mobile) ~ html > body > div:nth-child(3) > div:nth-child(3) > div:nth-child(3) > div:nth-child(2),
-          html:not(.is-mobile) ~ html > body > div:nth-child(2),
-          html:not(.is-mobile):not(:root):not([class~='has-scrollbar']) ~ html[dir=ltr] :not(:focus-visible):not([tabindex='-1']) :not([class^='has-scrollbar']) :not([class^='has-scrollbar']) :not([class^='has-scrollbar']) :not([class^='has-scrollbar']),
-          html:not(.is-mobile):not(:root):not([class~='has-scrollbar']) ~ html[dir=ltr] :focus-visible :focus-visible,
-          html:not(.is-mobile):not(:root):not([class~='has-scrollbar']) ~ html[dir=ltr] :focus-visible [tabindex='-1']:focus-visible [tabindex='-1'],
-          html:not(.is-mobile):not(:root):not([class~='has-scrollbar']) ~ html[dir=ltr] :focus-visible [tabindex='-1']:focus-visible [tabindex='-1'] ::slotted(div[slot])::slotted(div[slot]),
-          body[dir=ltr]:hover ::slotted(div[slot])::slotted(div[slot]),
-          body[dir=ltr]:hover ::slotted(div[slot])::slotted(div[slot])::slotted(div[slot]),
-         } {
-
-           @supports (aspect-ratio:sqrt(9/16)) {
-
-             @media(max-width:(480*7/8)) {
-
-               /* On smaller screens than the one where we switch to a single column layout,
-                  make the cards take up the full height of their container so they're not
-                  cut off by the bottom of the screen.
-               */
-               #sections-container {
-                 height:auto !important;
-                 overflow-y:hidden;
-               }
-
-               #sections-container::-webkit-scrollbar {
-                 width:.5rem;
-                 height:.5rem;
-               }
-
-               #sections-container::-webkit-scrollbar-thumb {
-                 background-color:hsla(var(--primary), var(--scrollbar-alpha));
-                 border-radius:.25rem;.5rem;.5rem;.25rem
-               }
-
-               #sections-container::-webkit-scrollbar-thumb:hover {
-                 background-color:hsla(var(--primary), var(--scrollbar-alpha-hover));
-               }
-
-               #sections-container::-webkit-scrollbar-track-piece:start,.#sections-container::-webkit-scrollbar-track-piece:end,.#sections-container::-webkit-scrollbar-track-piece:before,.#sections-container::-webkit-scrollbar-track-piece:before,.#sections-container::-webkit-scrollbar-track-piece:before,.#sections-container::-webkit-scrollbar-track-piece:before,.#sections-container::-webkit-scrollbar-track-piece:before,.#sections-container::-webkit-scrollbar-track-piece:before{
-                 background-color:hsla(var(--primary), var(--scrollbar-alpha));
-                 border-radius:.25rem;.5rem;.5rem;.25rem
-               }
-
-             }/* End of media query for smaller screens than the one where we switch to a single column layout */
-
-           }/* End of supports for aspect-ratio property */
-
-         }/* End of media query for smaller screens than the one where we switch to a single column layout */
-
-       }/* End of media query for smaller screens than the one where we switch to a single column layout */
-
-     }/* End of media query for smaller screens than the one where we switch to a single column layout */
-
-   }/* End of media query for smaller screens than the one where we switch to a single column layout */
-
-   /* Unified thumbnail card — used for every card, "featured" or "latest" alike */
-   .news-card.featured,
-   .news-card.latest {
-     background:#F8F8F8;
-     border-radius:.75em;.75em;.75em;.75em
-     ;
-border-style:solid solid none none
-border-width:.125em
-border-color:
-rgba(
-163,25,25,.18)
- ;
-display:block;width:;
-height:;
-position:relative;;
-overflow:hidden;;
-flex-grow:;
-flex-shrink:;
-flex-basis:;
-align-self:;
-justify-self:;
-margin-top:;
-margin-right:;
-margin-bottom:;
-margin-left:;
-padding-top:;
-padding-right:;
-padding-bottom:;
-padding-left:;
-transition:
-box-shadow
-.ease
-.s
-transform
-.ease
-.s
-
-}
-.news-card.featured:hover,
-.news-card.latest:hover {
-box-shadow:
-0
-4
-16
-rgba(
-0,
-0,
-.14)
-transform:
-translateY(-2)
-}
-.news-card.featured>a,
-.news-card.latest>a{
-text-decoration:none;color:#fff;display:block;}
-.news-card.featured>.card-img,
-.news-card.latest>.card-img{
-display:block;width:%height:%position:relative;;overflow:hidden;background:%background-color;}
-.news-card.featured>.card-img>img ,
-.news-card.latest>.card-img>img{
-position:absolute;;inset:%width:%height:%object-fit:center;;object-position:center;display:block;}
-.card-img::after{
-content:'\f04b';
-font-family:'Font Awesome6 Free';font-weight:bold;color:%color;;background:%background;;opacity:%opacity;;transition:%transition;}
-.card-read-more{display:none;}
-.card-date{font-size:.72rem;color:%color;;display:flex;;align-items:center;;gap:%gap;margin-top:%margin-top;}
-.cat-badge{display:inline-block;background:%background;;color:%color;;font-size:.62rem;font-weight:bold;padding:%padding;margin-bottom:%margin-bottom;text-transform uppercaseletter-spacing:.06em;}
+    /* Shared card elements */
+.cat-badge{display:inline-block;background:#A31919;color:#FFFFFF;font-size:.62rem;font-weight:bold;padding:.5em;.5em;border-radius:.5em;margin-bottom:.5em;text-transform uppercase}
+.card-date{font-size:.72rem;color:muted;display:flex	align-items:center	gap:.5em	margin-top:.5em}
 
 </style>
 <style>
@@ -1188,9 +1051,7 @@ font-family:'Font Awesome6 Free';font-weight:bold;color:%color;;background:%back
 
 
 </header>
-  <main><div id="sections-container" class="page-container">
-<!-- injected -->
-</div></main>
+  <main><div id="sections-container" class="page-container"><!-- injected --></div></main>
   <footer id="site-footer">
   
   

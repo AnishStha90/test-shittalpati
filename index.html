@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
   <style>
 
 :root {
@@ -619,6 +619,7 @@
   .card-read-more i { font-size:.65rem; transition:transform .15s; }
   .card-read-more:hover i { transform:translateX(3px); }
 
+  /* ─── BREAKING NEWS TICKER ────────────────────────────────────────────── */
   .breaking-bar { background:#A31919; color:#FFFFFF; display:flex; align-items:center; overflow:hidden; height:38px; }
   .breaking-label { font-weight:800; font-size:.75rem; padding:0 14px; white-space:nowrap; letter-spacing:.1em; border-right:2px solid rgba(255,255,255,0.2); flex-shrink:0; display:flex; align-items:center; gap:6px; background:#D4A017; color:#1F1F1F; height:100%; }
   .ticker-track { flex:1; overflow:hidden; white-space:nowrap; height:100%; display:flex; align-items:center; }
@@ -628,12 +629,14 @@
   .ticker-item::before { content:'▶  '; opacity:0.5; font-size:.65rem; }
   @keyframes tickerScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
+  /* ─── CATEGORY FILTER BAR ───────────────────────────────────────────── */
   .categories-wrap { background:#F8F8F8; border-bottom:2px solid rgba(163,25,25,0.18); padding:8px 0; overflow:hidden; }
   .categories-bar { display:flex; flex-direction:row; flex-wrap:nowrap; gap:8px; overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding:4px 16px; width:100%; box-sizing:border-box; }
   .categories-bar::-webkit-scrollbar { display:none; }
   .cat-btn { display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; padding:5px 16px; border-radius:4px; border:1px solid rgba(163,25,25,0.18); background:#F8F8F8; color:#1F1F1F; cursor:pointer; font-size:.8rem; white-space:nowrap; transition:all .2s; font-family:inherit; font-weight:600; }
   .cat-btn.active, .cat-btn:hover { background:#A31919; color:#FFFFFF; border-color:#A31919; }
 
+  /* ─── PAGE CONTAINER ─────────────────────────────────────────────── */
   .page-container { max-width:1200px; margin:0 auto; padding:0 16px; }
 </style>
 <style>@keyframes popupIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}} #ad-popup-overlay.active{display:flex!important}</style>
@@ -1350,8 +1353,7 @@
 </script>
 <script>
   function filterByCategory(el, cat) {
-    // filter news sections by category
-    // implement your logic here
+    // implement filterByCategory logic here
   }
 </script>
 <script>(function(){function show(){var o=document.getElementById('ad-popup-overlay');if(!o)return;o.classList.add('active');o.style.display='flex';function cl(){o.style.display='none';o.classList.remove('active');}document.getElementById('ad-popup-close').addEventListener('click',cl);o.addEventListener('click',function(e){if(e.target===o)cl();});document.addEventListener('keydown',function kh(e){if(e.key==='Escape'){cl();document.removeEventListener('keydown',kh);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(show,200);});}else{setTimeout(show,200);}})();</script>
