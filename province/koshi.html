@@ -751,6 +751,7 @@
     gap: 2rem; margin-bottom: 3rem;
   }
 
+  /* Article Card Styles */
   .article-card {
     background: var(--surface); border-radius: 12px; overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -827,12 +828,13 @@
 
   #back-to-top {
     position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent);
-    color: var(--accent-on); border: none; border-radius: 50%; width: 42px;
-    height: 42px; cursor: pointer; font-size: 1rem; display: none;
-    align-items: center; justify-content: center; z-index: 999;
+    color: var(--accent-on); border: none; border-radius: 50%;
+    width: 42px; height: 42px; cursor: pointer; font-size: 1rem;
+    display: none; align-items: center; justify-content: center; z-index: 999;
     transition: opacity 0.2s;
   }
 
+  /* Empty State */
   .empty-state {
     text-align: center; padding: 4rem 2rem; background: var(--surface);
     border-radius: 12px; color: var(--muted);
@@ -841,17 +843,18 @@
     font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;
   }
 
+  /* Responsive */
   @media (max-width: 768px) {
     .province-container { padding: 1rem; }
     .news-grid { gap: 1rem; grid-template-columns: 1fr; }
     .card-image { height: 180px; }
   }
-
   @media (max-width: 480px) {
     h1 { font-size: 1.5rem; }
     .card-title { font-size: 1rem; }
   }
 
+  /* Language Visibility */
   .lang-np { display: none; }
   .lang-en { display: inline; }
   body.lang-active .lang-en { display: none !important; }
@@ -859,10 +862,6 @@
   body.lang-active p.lang-np, body.lang-active span.lang-np { display: inline !important; }
 </style>
 <style>
-    /* ALL CSS from PART D */
-
-    #site-footer { font-family:var(--font-body); }
-
     /* TOP SECTION */
     .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
     .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
@@ -969,14 +968,6 @@
       .footer-top-inner { 
         grid-template-columns: 1fr; 
         text-align: center;
-      }
-    }
-
-    /* Add these styles for footer desktop view */
-    @media(min-width:1000px){
-      .footer-top-inner { 
-        grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; 
-        gap: 24px;
       }
     }
   </style>
@@ -2111,20 +2102,20 @@
 })();
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded',function(){
-      var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
-      var adYear=new Date().getFullYear();
-      var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
-      var eyEn=document.getElementById('footer-year-en');
-      var eyNp=document.getElementById('footer-year-np');
-      if(eyEn)eyEn.textContent=adYear;
-      if(eyNp)eyNp.textContent=npYear;
-      window.addEventListener('langChange',function(e){
-        if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
-      });
-      var stored=localStorage.getItem('fm_lang')||'en';
-      if(stored==='np')document.body.classList.add('lang-active');
+  document.addEventListener('DOMContentLoaded',function(){
+    var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
+    var adYear=new Date().getFullYear();
+    var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
+    var eyEn=document.getElementById('footer-year-en');
+    var eyNp=document.getElementById('footer-year-np');
+    if(eyEn)eyEn.textContent=adYear;
+    if(eyNp)eyNp.textContent=npYear;
+    window.addEventListener('langChange',function(e){
+      if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
     });
+    var stored=localStorage.getItem('fm_lang')||'en';
+    if(stored==='np')document.body.classList.add('lang-active');
+  });
   </script>
 
   <!-- ════ Province card AD→BS date conversion ════ -->

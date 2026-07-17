@@ -555,10 +555,6 @@
 
 </style>
   <style>
-    /* ALL CSS from PART D */
-
-    #site-footer { font-family:var(--font-body); }
-
     /* TOP SECTION */
     .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
     .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
@@ -665,14 +661,6 @@
       .footer-top-inner { 
         grid-template-columns: 1fr; 
         text-align: center;
-      }
-    }
-
-    /* Add these styles for footer desktop view */
-    @media(min-width:1000px){
-      .footer-top-inner { 
-        grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; 
-        gap: 24px;
       }
     }
   </style>
@@ -916,7 +904,6 @@
   <style>
     
   </style>
-  <!-- SECTION 1: HERO (full width) -->
   <section class="about-hero">
     <div class="about-hero__inner" data-slot="hero">
 <div class="fade-in">
@@ -936,8 +923,6 @@
   </p>
 </div></div>
   </section>
-
-  <!-- SECTION 2: OUR STORY (full width, image left) -->
   <section class="story-section">
     <div class="story-layout">
       <div class="story-image" data-slot="story-image">
@@ -987,8 +972,6 @@ Shitalpati.com, which was started as a trial from Tansen, the headquarters of Pa
 </div></div>
     </div>
   </section>
-
-  <!-- SECTION 3: STATS + NEWS (only split section) -->
   <div class="split-wrapper">
     <div class="split-main">
       <section class="stats-section about-section" data-slot="stats">
@@ -1179,9 +1162,12 @@ Shitalpati.com, which was started as a trial from Tansen, the headquarters of Pa
     <span class="lang-np">सबै समाचार हेर्नुहोस् →</span>
   </a>
 </aside></div>
+          
+          
+        </aside>
+      </template>
+    </div>
   </div>
-
-  <!-- SECTION 4: CTA (full width) -->
   <section class="cta-section">
     <div class="cta-section__inner" data-slot="cta">
 <div class="fade-in">
