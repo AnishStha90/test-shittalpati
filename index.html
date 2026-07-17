@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-10jLu7WL05Ntr+W2QEC+QxGXLW9A2yfINNUje2dvetN4n4ARFGiqY Rox8wtnsE5Xgh5ycbjWasmBaJxAiNAkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-10soQD0hQlo6yddaCVRLEM09HvUtsAxksmyZfUy9K5o+AElQTu0H6tUSImXcJDkEVaxKjARIBdxW2KUcf0w8A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
 
 :root {
@@ -1327,7 +1327,12 @@
 </script>
 <script>
   function filterByCategory(el, cat) {
-    // filter news sections by category
+    const catBtns = document.querySelectorAll('.cat-btn');
+    catBtns.forEach(btn => {
+      btn.classList.remove('active');
+    });
+    const targetBtn = el.querySelector(`[data-cat="${cat}"]`);
+    targetBtn.classList.add('active');
   }
 </script>
 <script>(function(){function show(){var o=document.getElementById('ad-popup-overlay');if(!o)return;o.classList.add('active');o.style.display='flex';function cl(){o.style.display='none';o.classList.remove('active');}document.getElementById('ad-popup-close').addEventListener('click',cl);o.addEventListener('click',function(e){if(e.target===o)cl();});document.addEventListener('keydown',function kh(e){if(e.key==='Escape'){cl();document.removeEventListener('keydown',kh);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(show,200);});}else{setTimeout(show,200);}})();</script>
