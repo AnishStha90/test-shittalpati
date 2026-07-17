@@ -970,6 +970,7 @@
 
   
 
+  <!-- WhatsApp float -->
   <div class="wa-widget">
     <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
     <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -1235,15 +1236,17 @@
 })();
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
       var NP_NUMS = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
       var adYear = new Date().getFullYear();
-      var npYear = String(adYear).split('').map(function (d) { return NP_NUMS[parseInt(d, 10)]; }).join('');
+      var npYear = String(adYear).split('').map(function(d) {
+        return NP_NUMS[parseInt(d, 10)];
+      }).join('');
       var eyEn = document.getElementById('footer-year-en');
       var eyNp = document.getElementById('footer-year-np');
       if (eyEn) eyEn.textContent = adYear;
       if (eyNp) eyNp.textContent = npYear;
-      window.addEventListener('langChange', function (e) {
+      window.addEventListener('langChange', function(e) {
         if (e.detail && e.detail.lang) document.body.classList.toggle('lang-active', e.detail.lang === 'np');
       });
       var stored = localStorage.getItem('fm_lang') || 'en';

@@ -694,14 +694,14 @@
     --accent:       #D4A017;
     --primary:      #A31919;
     --primary-on:   #FFFFFF;
-    --accent-on:    #FFFFFF;
+    --accent-on:    #1F1F1F;
     --bg:           #FFFFFF;
     --surface:      #F8F8F8;
     --text:         #1F1F1F;
     --muted:        rgba(31,31,31,0.55);
     --border:       rgba(163,25,25,0.18);
-    --font-body:    'Open Sans', sans-serif;
-    --font-heading: 'Montserrat', sans-serif;
+    --font-body:    Arial, sans-serif;
+    --font-heading: Arial, sans-serif;
   }
 
   * {
@@ -957,6 +957,26 @@
     .card-title {
       font-size: 1rem;
     }
+  }
+
+  .lang-np {
+    display: none;
+  }
+
+  .lang-en {
+    display: inline;
+  }
+
+  body.lang-active .lang-en {
+    display: none !important;
+  }
+
+  body.lang-active .lang-np {
+    display: inline !important;
+  }
+
+  body.lang-active p.lang-np, body.lang-active span.lang-np {
+    display: inline !important;
   }
 </style>
 <style>
@@ -1429,6 +1449,7 @@
 
   
 
+  <!-- WhatsApp float -->
   
 </footer>
 
@@ -2147,15 +2168,17 @@
 })();
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
       var NP_NUMS = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
       var adYear = new Date().getFullYear();
-      var npYear = String(adYear).split('').map(function (d) { return NP_NUMS[parseInt(d, 10)]; }).join('');
+      var npYear = String(adYear).split('').map(function(d) {
+        return NP_NUMS[parseInt(d, 10)];
+      }).join('');
       var eyEn = document.getElementById('footer-year-en');
       var eyNp = document.getElementById('footer-year-np');
       if (eyEn) eyEn.textContent = adYear;
       if (eyNp) eyNp.textContent = npYear;
-      window.addEventListener('langChange', function (e) {
+      window.addEventListener('langChange', function(e) {
         if (e.detail && e.detail.lang) document.body.classList.toggle('lang-active', e.detail.lang === 'np');
       });
       var stored = localStorage.getItem('fm_lang') || 'en';

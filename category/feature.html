@@ -694,14 +694,14 @@
     --accent:       #D4A017;
     --primary:      #A31919;
     --primary-on:   #FFFFFF;
-    --accent-on:    #FFFFFF;
+    --accent-on:    #1F1F1F;
     --bg:           #FFFFFF;
     --surface:      #F8F8F8;
     --text:         #1F1F1F;
     --muted:        rgba(31,31,31,0.55);
     --border:       rgba(163,25,25,0.18);
-    --font-body:    'Open Sans', sans-serif;
-    --font-heading: 'Montserrat', sans-serif;
+    --font-body:    Arial, sans-serif;
+    --font-heading: Arial, sans-serif;
   }
 
   * {
@@ -957,6 +957,26 @@
     .card-title {
       font-size: 1rem;
     }
+  }
+
+  .lang-np {
+    display: none;
+  }
+
+  .lang-en {
+    display: inline;
+  }
+
+  body.lang-active .lang-en {
+    display: none !important;
+  }
+
+  body.lang-active .lang-np {
+    display: inline !important;
+  }
+
+  body.lang-active p.lang-np, body.lang-active span.lang-np {
+    display: inline !important;
   }
 </style>
 <style>
@@ -1429,6 +1449,7 @@
 
   
 
+  <!-- WhatsApp float -->
   
 </footer>
 
@@ -1880,8 +1901,8 @@
     nameNp:       "विशेष समाचार",
     descEn:       "Feature News — Latest news and updates.",
     descNp:       "विशेष समाचार — नवीनतम समाचार र अपडेटहरू।",
-    totalCount:   1,
-    allArticles:  [{"newsIndex":0,"recordId":"","title":"Nepali who had gone to the funeral bath went missing in the Daroudi river.","titleNe":"मलामी गएका नेपाली नुहाउने क्रममा दरौदीमा बेपत्ता","slug":"nepali-who-had-gone-to-the-funeral-bath-went-missing-in-the-daroudi-river","category":"Feature News","categoryNe":"विशेष समाचार","metaDesc":"Shamsher Nepali, 40, of Ajirkot Rural Municipality-4 in Gorkha, has gone missing in the Daraundi River.","metaDescNe":"गोरखाको अजिरकोट गाउँपालिका-४ का ४० वर्षीय शम्शेर नेपाली दरौदी नदीमा बेपत्ता भएका छन्।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"July 17, 2026","time":"5:51 PM","creator":"","creatorNp":"हरिराम उप्रेती","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/nepali-who-had-gone-to-the-funeral-bath-went-missing-in-the-daroudi-river.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"}],
+    totalCount:   2,
+    allArticles:  [{"newsIndex":1,"recordId":"","title":"The tradition of picking wild fruits in Jumla that reflects the Sinja culture","titleNe":"सिंजा संस्कृति झल्काउने जुम्लाको भुइँकाफल टिप्ने चलन","slug":"the-tradition-of-picking-wild-fruits-in-jumla-that-reflects-the-sinja-culture","category":"Feature News","categoryNe":"विशेष समाचार","metaDesc":"The cultural festival 'Kafal Diwas' is celebrated in the Sinja region of Jumla on the last day of Asar, where people gather to pick wild fruits, play Deuda, and enjoy a communal feast.","metaDescNe":"जुम्लाको सिँजा क्षेत्रमा असार अन्तिम दिन भुइँकाफल टिप्ने, देउडा खेल्ने र सामूहिक भोज गर्ने सांस्कृतिक पर्व 'काफल दिवस' मनाइन्छ।","readTime":"4 min read","readTimeNe":"4 मिनेट पढाइ","date":"July 17, 2026","time":"6:09 PM","creator":"DB Buda","creatorNp":"डीबी बुढा","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/the-tradition-of-picking-wild-fruits-in-jumla-that-reflects-the-sinja-culture.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":0,"recordId":"","title":"Nepali who had gone to the funeral bath went missing in the Daroudi river.","titleNe":"मलामी गएका नेपाली नुहाउने क्रममा दरौदीमा बेपत्ता","slug":"nepali-who-had-gone-to-the-funeral-bath-went-missing-in-the-daroudi-river","category":"Feature News","categoryNe":"विशेष समाचार","metaDesc":"Shamsher Nepali, 40, of Ajirkot Rural Municipality-4 in Gorkha, has gone missing in the Daraundi River.","metaDescNe":"गोरखाको अजिरकोट गाउँपालिका-४ का ४० वर्षीय शम्शेर नेपाली दरौदी नदीमा बेपत्ता भएका छन्।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"July 17, 2026","time":"5:51 PM","creator":"","creatorNp":"हरिराम उप्रेती","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/nepali-who-had-gone-to-the-funeral-bath-went-missing-in-the-daroudi-river.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"}],
     itemsPerPage: 6
   };
 
@@ -2147,15 +2168,17 @@
 })();
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
       var NP_NUMS = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
       var adYear = new Date().getFullYear();
-      var npYear = String(adYear).split('').map(function (d) { return NP_NUMS[parseInt(d, 10)]; }).join('');
+      var npYear = String(adYear).split('').map(function(d) {
+        return NP_NUMS[parseInt(d, 10)];
+      }).join('');
       var eyEn = document.getElementById('footer-year-en');
       var eyNp = document.getElementById('footer-year-np');
       if (eyEn) eyEn.textContent = adYear;
       if (eyNp) eyNp.textContent = npYear;
-      window.addEventListener('langChange', function (e) {
+      window.addEventListener('langChange', function(e) {
         if (e.detail && e.detail.lang) document.body.classList.toggle('lang-active', e.detail.lang === 'np');
       });
       var stored = localStorage.getItem('fm_lang') || 'en';
