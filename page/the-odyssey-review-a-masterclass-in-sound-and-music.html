@@ -631,19 +631,24 @@
     --font-body:    Arial, sans-serif;
     --font-heading: Arial, sans-serif;
   }
+
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text); font-family: var(--font-body); margin: 0; padding: 0; }
+
   .article-container {
     max-width: 1100px; margin: 0 auto; padding: 1.5rem; background: var(--bg);
   }
+
   .article-header {
     margin-bottom: 1.5rem;
   }
+
   h1 {
     font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.3;
     margin: 0.5rem 0 0.75rem; color: var(--primary);
   }
+
   .breadcrumb {
     font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem;
   }
@@ -653,11 +658,13 @@
   .breadcrumb a:hover {
     text-decoration: underline;
   }
+
   .category-badge span {
     display: inline-block; background: var(--accent); color: var(--accent-on);
     padding: 3px 10px; border-radius: 4px; font-size: 0.78rem; font-weight: 700;
     margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.04em;
   }
+
   .meta {
     display: flex; gap: 1.2rem; color: var(--muted); font-size: 0.88rem;
     margin-bottom: 0.75rem; flex-wrap: wrap; align-items: center;
@@ -665,6 +672,7 @@
   .meta i {
     margin-right: 4px;
   }
+
   .share-buttons {
     display: flex; gap: 8px; flex-wrap: wrap; margin-top: 0.5rem;
   }
@@ -683,6 +691,7 @@
   .share-btn.twitter:hover {
     background: #1DA1F2; color: #fff; border-color: #1DA1F2;
   }
+
   .copy-link {
     position: relative;
   }
@@ -694,15 +703,18 @@
   .tooltip.visible {
     display: block;
   }
+
   .article-content {
     display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start;
   }
   @media (max-width: 1023px) {
     .article-content { grid-template-columns: 1fr; }
   }
+
   .main-column {
     min-width: 0;
   }
+
   .image-wrapper {
     margin-bottom: 1.5rem;
   }
@@ -712,6 +724,7 @@
   .image-wrapper.hidden {
     display: none;
   }
+
   .article-body {
     font-size: 1rem; line-height: 1.8; color: var(--text);
   }
@@ -724,6 +737,7 @@
   .article-body img {
     max-width: 100%; border-radius: 6px;
   }
+
   .tags-wrapper {
     margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--border);
   }
@@ -742,9 +756,11 @@
   .tags-list a:hover {
     background: var(--accent); color: var(--accent-on); border-color: var(--accent);
   }
+
   .sidebar {
     position: sticky; top: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;
   }
+
   .widget {
     background: var(--surface); padding: 1.4rem; border-radius: 10px; border: 1px solid var(--border);
   }
@@ -756,6 +772,7 @@
   .widget p {
     font-size: 0.88rem; color: var(--muted); margin-bottom: 0.6rem; line-height: 1.5;
   }
+
   #newsletter-email {
     width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px;
     background: var(--bg); color: var(--text); font-size: 0.88rem;
@@ -772,6 +789,7 @@
   #newsletter-subscribe:hover {
     opacity: 0.85;
   }
+
   #back-to-top {
     position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent);
     color: var(--accent-on); border: none; border-radius: 50%; width: 42px; height: 42px;
@@ -781,6 +799,7 @@
   #back-to-top:hover {
     opacity: 0.85;
   }
+
   .related-card {
     display: flex; gap: 10px; text-decoration: none; color: var(--text);
     padding: 0.7rem 0; border-bottom: 1px solid var(--border); align-items: flex-start;
@@ -805,6 +824,7 @@
   .related-meta {
     font-size: 0.75rem; color: var(--muted);
   }
+
   .lang-np { display: none; }
   .lang-en { display: inline; }
   div.lang-en, p.lang-en, h3.lang-en, .article-body.lang-en { display: block; }
@@ -816,112 +836,80 @@
 </style>
 <style>
     /* TOP SECTION */
-    .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
-    .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
-    .footer-col { display:flex; flex-direction:column; gap:10px; }
-    .footer-col-heading { font-size:.82rem; font-weight:800; color:#111; margin:0 0 6px; padding-bottom:8px; border-bottom:2px solid var(--primary); text-transform:uppercase; letter-spacing:.06em; }
-    .footer-company-name { font-weight:700; font-size:.9rem; color:#111; margin:0; }
-    .footer-addr { font-size:.82rem; color:#444; margin:0; line-height:1.6; }
-    .footer-contact-line { font-size:.82rem; color:#444; margin:0; }
-    .footer-link-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
-    .footer-link-list li a { font-size:.85rem; color:#333; text-decoration:none; transition:color .2s; display:block; padding:2px 0; }
-    .footer-link-list li a:hover { color:var(--primary); }
+    .footer-top { background: #f0f0f0; padding: 40px 0 32px; border-top: 3px solid var(--primary); }
+    .footer-top-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; gap: 24px; }
+    .footer-col { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-heading { font-size: .82rem; font-weight: 800; color: #111; margin: 0 0 6px; padding-bottom: 8px; border-bottom: 2px solid var(--primary); text-transform: uppercase; letter-spacing: .06em; }
+    .footer-company-name { font-weight: 700; font-size: .9rem; color: #111; margin: 0; }
+    .footer-addr { font-size: .82rem; color: #444; margin: 0; line-height: 1.6; }
+    .footer-contact-line { font-size: .82rem; color: #444; margin: 0; }
+    .footer-link-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+    .footer-link-list li a { font-size: .85rem; color: #333; text-decoration: none; transition: color .2s; display: block; padding: 2px 0; }
+    .footer-link-list li a:hover { color: var(--primary); }
 
     /* BOTTOM BAR */
-    .footer-bottom { background:#d8d8d8; border-top:1px solid #bbb; padding:18px 0; }
-    .footer-bottom-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
-    .footer-bottom-brand { display:flex; flex-direction:column; gap:3px; flex-shrink:0; }
-    .footer-site-name { font-size:1rem; font-weight:800; color:#111; }
-    .footer-copy { font-size:.74rem; color:#555; display:flex; align-items:center; gap:4px; }
-    .footer-copy i { font-size:.72rem; }
-    .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { display:flex; flex-direction:column; gap:2px; }
-    .editor-label { font-size:.74rem; color:#555; }
-    .editor-name { font-size:.9rem; font-weight:800; color:#111; display:block; }
-    .editor-phone { font-size:.8rem; color:#333; display:block; margin-top:1px; }
-    .footer-bottom-info { font-size:.78rem; color:#555; max-width:200px; line-height:1.5; }
-    .footer-bottom-social { display:flex; flex-direction:column; gap:6px; align-items:flex-end; }
-    .connect-label { font-size:.78rem; font-weight:700; color:#333; }
-    .footer-social-row { display:flex; gap:10px; align-items:center; }
-    .footer-social-row a { color:#333; font-size:1.1rem; text-decoration:none; transition:color .2s; }
-    .footer-social-row a:hover { color:var(--primary); }
+    .footer-bottom { background: #d8d8d8; border-top: 1px solid #bbb; padding: 18px 0; }
+    .footer-bottom-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .footer-bottom-brand { display: flex; flex-direction: column; gap: 3px; flex-shrink: 0; }
+    .footer-site-name { font-size: 1rem; font-weight: 800; color: #111; }
+    .footer-copy { font-size: .74rem; color: #555; display: flex; align-items: center; gap: 4px; }
+    .footer-copy i { font-size: .72rem; }
+    .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { display: flex; flex-direction: column; gap: 2px; }
+    .editor-label { font-size: .74rem; color: #555; }
+    .editor-name { font-size: .9rem; font-weight: 800; color: #111; display: block; }
+    .editor-phone { font-size: .8rem; color: #333; display: block; margin-top: 1px; }
+    .footer-bottom-info { font-size: .78rem; color: #555; max-width: 200px; line-height: 1.5; }
+    .footer-bottom-social { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+    .connect-label { font-size: .78rem; font-weight: 700; color: #333; }
+    .footer-social-row { display: flex; gap: 10px; align-items: center; }
+    .footer-social-row a { color: #333; font-size: 1.1rem; text-decoration: none; transition: color .2s; }
+    .footer-social-row a:hover { color: var(--primary); }
 
     /* Language */
-    .lang-en { display:inline; }
-    .lang-np { display:none; }
-    body.lang-active .lang-en { display:none; }
-    body.lang-active .lang-np { display:inline; }
+    .lang-en { display: inline; }
+    .lang-np { display: none; }
+    body.lang-active .lang-en { display: none; }
+    body.lang-active .lang-np { display: inline; }
 
     /* Responsive */
-    @media(max-width:1000px){
-      .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; }
+    @media (max-width: 1000px) {
+      .footer-top-inner { grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
     }
-    @media(max-width:640px){
-      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; }
-      .footer-bottom-inner { flex-direction:column; align-items:flex-start; gap:12px; }
-      .footer-bottom-social { align-items:flex-start; }
+    @media (max-width: 640px) {
+      .footer-top-inner { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .footer-bottom-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .footer-bottom-social { align-items: flex-start; }
     }
-    @media(max-width:400px){
-      .footer-top-inner { grid-template-columns:1fr; }
+    @media (max-width: 400px) {
+      .footer-top-inner { grid-template-columns: 1fr; }
     }
 
     /* WhatsApp */
-    .wa-widget { position:fixed; bottom:90px; right:24px; z-index:9999; display:flex; align-items:center; gap:10px; flex-direction:row; }
-    .wa-fab { width:52px; height:52px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.7rem; text-decoration:none; box-shadow:0 4px 16px rgba(37,211,102,.4),0 2px 8px rgba(0,0,0,.2); transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; animation:waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both; position:relative; }
-    .wa-fab:hover { transform:scale(1.12) rotate(-6deg); }
-    .wa-fab::after { content:''; position:absolute; inset:0; border-radius:50%; border:3px solid #25D366; animation:waRing 2s ease-out 2s infinite; }
-    .wa-tooltip { background:#fff; color:#111; font-size:.78rem; font-weight:600; padding:5px 12px; border-radius:14px; white-space:nowrap; box-shadow:0 3px 12px rgba(0,0,0,.15); opacity:0; pointer-events:none; transform:translateX(-6px); transition:opacity .2s,transform .2s; }
-    .wa-widget:hover .wa-tooltip { opacity:1; transform:translateX(0); }
-    @keyframes waIn { from{opacity:0;transform:scale(.4) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
-    @keyframes waRing { 0%{transform:scale(1);opacity:.8} 70%,100%{transform:scale(1.5);opacity:0} }
-    @media(max-width:480px){ .wa-widget{bottom:90px;right:14px;} .wa-fab{width:46px;height:46px;font-size:1.5rem;} }
+    .wa-widget { position: fixed; bottom: 90px; right: 24px; z-index: 9999; display: flex; align-items: center; gap: 10px; flex-direction: row; }
+    .wa-fab { width: 52px; height: 52px; border-radius: 50%; background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; text-decoration: none; box-shadow: 0 4px 16px rgba(37, 211, 102, .4), 0 2px 8px rgba(0, 0, 0, .2); transition: transform .22s cubic-bezier(.34, 1.56, .64, 1), box-shadow .22s; animation: waIn .5s cubic-bezier(.34, 1.56, .64, 1) 1.2s both; position: relative; }
+    .wa-fab:hover { transform: scale(1.12) rotate(-6deg); }
+    .wa-fab::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 3px solid #25D366; animation: waRing 2s ease-out 2s infinite; }
+    .wa-tooltip { background: #fff; color: #111; font-size: .78rem; font-weight: 600; padding: 5px 12px; border-radius: 14px; white-space: nowrap; box-shadow: 0 3px 12px rgba(0, 0, 0, .15); opacity: 0; pointer-events: none; transform: translateX(-6px); transition: opacity .2s, transform .2s; }
+    .wa-widget:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
+    @keyframes waIn { from { opacity: 0; transform: scale(.4) translateY(20px) } to { opacity: 1; transform: scale(1) translateY(0) } }
+    @keyframes waRing { 0% { transform: scale(1); opacity: .8 } 70%, 100% { transform: scale(1.5); opacity: 0 } }
+    @media (max-width: 480px) { .wa-widget { bottom: 90px; right: 14px; } .wa-fab { width: 46px; height: 46px; font-size: 1.5rem; } }
 
     /* Add these responsive styles for footer mobile view */
-    @media(max-width:640px){
-      .footer-top-inner { 
-        grid-template-columns: 1fr 1fr; 
-        gap: 16px;
-        text-align: center;
-      }
-      .footer-bottom-inner { 
-        flex-direction: column; 
-        align-items: center;
-        gap: 16px;
-        text-align: center;
-      }
-      .footer-bottom-social { 
-        align-items: center;
-        width: 100%;
-      }
-      .footer-social-row {
-        justify-content: center;
-      }
-      .footer-col {
-        align-items: center;
-        text-align: center;
-      }
-      .footer-link-list {
-        align-items: center;
-      }
-      .footer-col-heading {
-        text-align: center;
-        width: 100%;
-      }
-      .footer-bottom-brand {
-        align-items: center;
-      }
-      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq {
-        align-items: center;
-      }
-      .footer-bottom-info {
-        max-width: 100%;
-        text-align: center;
-      }
+    @media (max-width: 640px) {
+      .footer-top-inner { grid-template-columns: 1fr 1fr; gap: 16px; text-align: center; }
+      .footer-bottom-inner { flex-direction: column; align-items: center; gap: 16px; text-align: center; }
+      .footer-bottom-social { align-items: center; width: 100%; }
+      .footer-social-row { justify-content: center; }
+      .footer-col { align-items: center; text-align: center; }
+      .footer-link-list { align-items: center; }
+      .footer-col-heading { text-align: center; width: 100%; }
+      .footer-bottom-brand { align-items: center; }
+      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { align-items: center; }
+      .footer-bottom-info { max-width: 100%; text-align: center; }
     }
-    @media(max-width:400px){
-      .footer-top-inner { 
-        grid-template-columns: 1fr; 
-        text-align: center;
-      }
+    @media (max-width: 400px) {
+      .footer-top-inner { grid-template-columns: 1fr; text-align: center; }
     }
   </style>
 
@@ -1117,44 +1105,56 @@
       <span id="breadcrumb-en" class="lang-en"></span>
       <span id="breadcrumb-np" class="lang-np"></span>
     </div>
+
     <div class="category-badge">
       <span id="category-en" class="lang-en"></span>
       <span id="category-np" class="lang-np"></span>
     </div>
+
     <h1>
       <span id="title-en" class="lang-en"></span>
       <span id="title-np" class="lang-np"></span>
     </h1>
+
     <div class="meta">
       <span><i class="fas fa-calendar"></i> <span id="date"></span></span>
       <span><i class="fas fa-clock"></i> <span id="readtime-en" class="lang-en"></span><span id="readtime-np" class="lang-np"></span></span>
     </div>
+
     <div class="share-buttons">
       <button class="share-btn facebook"><i class="fab fa-facebook"></i> Facebook</button>
       <button class="share-btn twitter"><i class="fab fa-twitter"></i> Twitter</button>
       <button class="share-btn copy-link"><i class="fas fa-link"></i> Copy Link<span class="tooltip">Copied!</span></button>
     </div>
   </div>
+
   <div class="article-content">
+
     <div class="main-column">
+
       <div class="image-wrapper">
         <img id="featured-image" src="" alt="" loading="lazy">
       </div>
+
       <div id="article-body-en" class="lang-en article-body"></div>
       <div id="article-body-np" class="lang-np article-body"></div>
+
       <div class="tags-wrapper">
         <h3 class="lang-en"><i class="fas fa-tags"></i> Tags</h3>
         <h3 class="lang-np"><i class="fas fa-tags"></i> ट्यागहरू</h3>
         <div id="tags-en" class="lang-en tags-list"></div>
         <div id="tags-np" class="lang-np tags-list"></div>
       </div>
+
     </div>
+
     <aside class="sidebar">
       <div class="widget related">
         <h3 class="lang-en"><i class="fas fa-newspaper"></i> Related Articles</h3>
         <h3 class="lang-np"><i class="fas fa-newspaper"></i> सम्बन्धित लेखहरू</h3>
         <div id="related-articles"></div>
       </div>
+
       <div class="widget newsletter">
         <h3 class="lang-en"><i class="fas fa-envelope"></i> Newsletter</h3>
         <h3 class="lang-np"><i class="fas fa-envelope"></i> समाचारपत्र</h3>
@@ -1164,8 +1164,11 @@
         <button id="newsletter-subscribe"><i class="fas fa-paper-plane"></i> <span class="lang-en">Subscribe</span><span class="lang-np">सदस्यता लिनुहोस्</span></button>
       </div>
     </aside>
+
   </div>
+
   
+
 </div>
 
 
@@ -1704,9 +1707,9 @@
     sourceNp:       "कान्तिपुर",
     creatorEn:      "Kantipur correspondent",
     creatorNp:      "कान्तिपुर संवाददाता",
-    bodyEnWithAds:  "<p class=\"article-para\">Kathmandu — Bringing Homer’s Greek epic, thousands of years old, to the modern film screen was in itself a huge challenge. But when Christopher Nolan took the helm, it was no longer just a film; it became a global festival. Matt Damon and Tom Holland-starrer ‘The Odyssey’ has now sent ripples across cinema halls and media outlets worldwide.</p>\n<div class=\"ad-unit\" id=\"insection_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_1.png\" alt=\"insection_1.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">The film centers on King Odysseus (Matt Damon), who, after winning the Trojan War, faces a decade-long ordeal at sea—battling monsters, contending with gods, and leaving his wife Penelope behind, waiting at home.</p>\n<div class=\"ad-unit\" id=\"insection_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_2.jpg\" alt=\"insection_2.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">The film speaks to the enduring trauma of war (PTSD). Many soldiers return home physically after war, but it can take years—or decades—for them to recover emotionally or spiritually, and some never do.</p>\n<p class=\"article-para\">Meanwhile, back home, Penelope is forced to ward off power vacuums by hosting dozens of suitors vying for her hand, trapped in a cycle of greed and humiliation. Among them, the cruelest is Antinous, played by Robert Pattinson with chilling precision, who torments Odysseus’s blind servant Eumaeus (a poignant, sympathetic character played by John Leguizamo). Odysseus’s mentally disturbed son Telemachus (Tom Holland) is compelled to embark on his own odyssey—searching for his father or his father’s corpse.</p>\n<p class=\"article-para\">When Odysseus must descend to the underworld to speak with the dead, the scene is unforgettable in its strangeness. Nolan portrays the shrouded spirits—like the witches of Macbeth—bent over the ground. The dead, like the gods, can be approached on almost equal footing. This is the strange pagan rule of The Odyssey, as elusive and amoral as the symptoms of a shattered psyche.</p>\n<p class=\"article-para\">But when Odysseus finally nears Penelope’s home—now besieged by suitors, much like Troy itself—he enters disguised as a beggar, like Christ in Christian lore. In the final act, Odysseus’s own mysterious transformation (metamorphosis) into something godlike begins.</p>\n<p class=\"article-para\">Peter Bradshaw, chief film critic of the UK’s esteemed newspaper The Guardian, has given the film four out of five stars, calling it “a new height in visual language.” According to the Guardian, Nolan shot this film entirely on IMAX 70mm cameras, transporting viewers not to a cinema seat but directly into the middle of the Aegean Sea. The storm-tossed seas and the wrath of Poseidon, the sea god, are rendered not through CGI but through more real, experimental effects that astonish the audience.</p>\n<p class=\"article-para\">Bradshaw points out a recurring weakness in Nolan’s work: “Like his earlier films, ‘The Odyssey’ is technically flawless, but emotionally thin and cold. Audiences are left more awestruck by the grandeur on screen and Nolan’s craft than moved by Odysseus’s pain of separation.”</p>\n<p class=\"article-para\">Coldness or emotional detachment is a hallmark of Nolan’s style. Critics interpret his meticulously constructed, mathematically precise yet emotionally distant artistic framework as his signature chill. Films like ‘Memento,’ ‘Inception,’ ‘Tenet,’ and ‘Oppenheimer’ are often seen by audiences as cerebral, impersonal, or even harsh. But this ‘coldness’ is not a flaw—it’s a deliberate choice. Visually, Nolan rarely includes bright or ‘warm’ scenes in his films. Instead, he favors rough, muted tones—deep ash, coal-black, and faded hues—over rich or vivid colors.</p>\n<p class=\"article-para\">Nolan is fascinated by modern architecture—tall, imposing structures. The glass palaces of ‘Inception’ or the concrete monoliths of ‘Tenet’ dwarf characters, making them feel small and alone in a vast world.<br/>Nolan places immense importance on narrative structure in his films. His protagonists are often men consumed by pain or madness—Cobb in ‘Inception’ or Leonard in ‘Memento’—spending more time explaining scientific or technical details than engaging in emotional dialogue.</p>\n<p class=\"article-para\">Nolan rarely includes crowded scenes or close-up emotional moments. He focuses on a single face, letting the audience peer into the complex psychology within rather than the external relationships.</p>\n<p class=\"article-para\">Critics sometimes call Nolan’s films emotionless “computer calculations.” Yet his fans argue that his way of expressing emotion is simply different—profound and serious. The harsh rules of Nolan’s universe—like the time dilation in ‘Interstellar’ or the dream logic in ‘Inception’—are designed to test human love and connection.</p>\n<p class=\"article-para\">The pain of a father losing years of his daughter’s life due to the physics of a black hole feels even sharper because the universe around him is so cold and indifferent.</p>\n<p class=\"article-para\">The New York Times emphasizes the philosophical depth of the film, calling it “a bold and intellectual work of art.” The critic praises Matt Damon’s performance: “Damon doesn’t just play Odysseus as a radiant or arrogant mythic king; he embodies a modern soldier shattered by war, who has lost comrades and is haunted by guilt.”</p>\n<p class=\"article-para\">According to the New York Times, the film is not just a tale of monsters and battles—it’s a psychological journey of a man desperate to return home and rediscover his identity. Tom Holland’s portrayal of Telemachus, the son raised without a father, successfully grounds the film in family and human emotion, the Times concludes.</p>\n<p class=\"article-para\">Hollywood’s esteemed magazine Variety hails the film’s technical team, especially in sound and music, as a “masterclass.” The critic writes, “Oscar-winning composer Ludwig Göransson’s score gives the film a life of its own. The fusion of ancient Greek instruments and modern orchestration reaches a peak in the Cyclops scene, leaving the theater stunned.”</p>\n<p class=\"article-para\">Variety considers Odysseus’s journey to the underworld to meet the spirits of his dead comrades and mother the film’s best moment. The dim lighting, masterful use of shadow, and haunting sound effects, it claims, will linger in the audience’s mind long after the credits roll.</p>\n<p class=\"article-para\">The Independent argues that Nolan, who also co-wrote the screenplay, prioritizes visuals over dialogue. “Homer’s poetic language seems lost in the film’s long, expository lines. Visually, it deserves five stars; as a screenplay, it shrinks to three. Overall, it earns 3.5 stars,” the paper writes.</p>\n<p class=\"article-para\">The Telegraph, however, gives the film five out of five stars, calling it “the most ambitious mythological film ever made.” Nolan, it says, abandons Hollywood’s traditional spice and video-game-style CGI, instead using experimental effects to bring the mythic world to life in a tangible way.</p>\n<p class=\"article-para\">Screen Daily praises Matt Damon for playing Odysseus not as a flawless hero but as a soldier broken by war—mentally and emotionally—and highlights Tom Holland’s poignant performance as Telemachus, the son raised without a father.</p>\n<p class=\"article-para\">‘The Odyssey’ is more than just a spicy Hollywood mythological film. It’s a showcase of Christopher Nolan’s ambition and technical mastery. Though some critics debate its lengthy runtime and emotional restraint, it has set a new benchmark for adapting ancient literature into modern cinema. Critics worldwide agree: this is a film meant to be experienced not on a phone or laptop screen, but on the big theater screen.</p>\n<div class=\"key-takeaway\"><strong>Key Takeaway:</strong><p>‘The Odyssey’ is a film directed by Christopher Nolan that adapts Homer’s Greek epic into a modern movie, focusing on post-war trauma (PTSD) and the psychological journey of Odysseus’s return home. The film delivers a masterclass in sound and music and has been praised by critics worldwide as a must-watch on the big theater screen.</p></div>",
-    bodyNpWithAds:  "<p class=\"article-para\">काठमाडौँ — हजारौं वर्ष पुरानो कवि होमरको ग्रीक महाकाव्यलाई आधुनिक फिल्मको पर्दामा उतार्नु आफैंमा एउटा ठूलो चुनौती थियो । तर जब यसको कमान्ड निर्देशक क्रिस्टोफर नोलनले सम्हाले, तब यो केवल एउटा फिल्म मात्र रहेन, विश्वव्यापी महोत्सव नै बन्यो । म्याट डेमन र टम हल्यान्ड स्टारर ‘द ओडिसी’ ले यतिबेला विश्वभरका फिल्म हल र सञ्चारमाध्यमहरूमा ठूलो तरंग पैदा गरिदिएको छ ।</p>\n<div class=\"ad-unit\" id=\"insection_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_1.png\" alt=\"insection_1.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">ट्रोजन युद्ध जितेर आफ्नो गृहराज्य इथाका फर्किने क्रममा राजा ओडिसियस (म्याट डेमन) ले समुद्रमा भोगेका भयानक १० वर्षे संघर्ष, दैत्यहरूसँगको टकराव र घरमा उनको पर्खाइमा बसेकी पत्नी पेनेलोपीको कथालाई फिल्मले मुख्य विषय बनाएको छ ।</p>\n<div class=\"ad-unit\" id=\"insection_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_2.jpg\" alt=\"insection_2.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">फिल्मले पुस्तौंदेखिको युद्धपछिको मानसिक आघात (पीटीएसडी) को पीडालाई बोल्छ । कुनै पनि युद्धपछि धेरै सिपाहीहरू भौतिक रूपमा त चाँडै नै घर फर्कन्छन्, तर युद्धअघिको आफ्नो भावनात्मक वा आध्यात्मिक अवस्थामा फर्कन उनीहरूलाई वर्षौं वा दशकौं लाग्न सक्छ, र कतिपय त कहिल्यै फर्कनै सक्दैनन् ।</p>\n<p class=\"article-para\">यता घरमा भने, ओडिसियसको सम्भावित मृत्युपछि सिर्जना हुन सक्ने शक्ति रिक्ततालाई टार्नका लागि पत्नि पेनेलोपी बाध्य भएर दर्जनौं सम्भावित विवाहका आकांक्षीलाई अतिथिका रूपमा राख्न विवश छिन् । जहाँ लोभ र वासनाको अपमानजनक भोज चलिरहन्छ । ती आकांक्षीहरूमध्ये सबैभन्दा प्रमुख क्रूर एन्टिनस हो, जसको भूमिका रोबर्ट प्याटिन्सनले बडो चलाखीपूर्ण र घिनलाग्दो रूपमा निभाएका छन् । उसले ओडिसियसका दृष्टिविहीन नोकर युमाउस (जोन लेगुइजामोद्वारा अभिनित एक भावनात्मक र सहानुभूतिपूर्ण चरित्र) माथि क्रूरता देखाउँछ । ओडिसियसका मानसिक रूपमा विक्षिप्त छोरा टेलिमेकस (टम हल्यान्ड) अब आफ्ना पिता वा पिताको शव खोज्न आफ्नै ओडिसी (यात्रा) मा निस्कन बाध्य हुन्छन् ।</p>\n<p class=\"article-para\">जब ओडिसियस मृत आत्माहरूसँग कुरा गर्न पाताल लोकमा ओर्लनुपर्ने हुन्छ । त्यो दृश्य अविस्मरणीय रूपमा अनौठो छ, नोलनले कात्रो ओढेका आत्माहरूलाई म्याकबेथका बोक्सीहरू जस्तै जमिनमा झुकेर बसेको देखाएका छन् । मृत आत्माहरूलाई, देवताहरूलाई जस्तै, लगभग समान धरातलमा सम्पर्क गर्न सकिन्छ । यो ओडिसीको विचित्र पगान नियम हो, जुन मानसिक सन्तुलन बिग्रँदा देखिने धर्मनिरपेक्ष लक्षणहरू जत्तिकै अस्पष्ट र अनैतिक छ ।</p>\n<p class=\"article-para\">तर जब ओडिसियस अन्ततः पेनेलोपीको घर नजिक पुग्छन्— जुन घर अहिले विवाहका आकांक्षीहरूको क्रूर घेराबन्दीमा छ (जुन ट्रोयको घेराबन्दी जस्तै देखिन्छ)—उनी इसाई धर्मको क्राइस्ट जस्तै जोगीको भेषमा प्रवेश गर्छन् । यस कथाको अन्तिम चरणमा, ओडिसियसको ईश्वरमा परिणत हुने आफ्नै रहस्यमय रूपान्तरण (मेटामर्फिसस) सुरु हुन्छ ।</p>\n<p class=\"article-para\">बेलायतको प्रतिष्ठित अखबार ‘द गार्डियन’ का मुख्य फिल्म समीक्षक पिटर ब्राड्सले यस फिल्मलाई पाँचमा चार ‘स्टार रेटिंग’ दिंदै यसलाई ‘दृश्य भाषाको नयाँ उचाई’ भनेका छन् । गार्डियनका अनुसार नोलनले पूर्ण रूपमा आईम्याक्स ७० एमएम क्यामेरामा पूर्णरूपमा खिचेको यो फिल्मले दर्शकलाई हलको सिटमा नभई सिधै एसियन सागरको बीचमा पुर्‍याउँछ । आँधीबेहरीले उथलपुथल पारेको समुद्र र समुद्रका देवता पोसाइडनको क्रोधलाई नोलनले कम्प्युटर जेनेरेटेड इफेक्ट्स (सीजीआई) भन्दा बढी वास्तविक र प्रयोगात्मक इफेक्ट्सबाट देखाउन सफल भएका छन् ।</p>\n<p class=\"article-para\">पिटर ब्राड्सले नोलनको एउटा पुरानो कमजोरी औंल्याउँदै लेखेका छन्, ‘नोलनका पुराना फिल्महरू जस्तै ‘द ओडिसी’ पनि प्राविधिक रूपमा त्रुटिहीन छ, तर भावनात्मक रूपमा अलि फिक्का र चिसोपनको महसुस हुन्छ । दर्शकहरू ओडिसियसको विछोडको पीडामा भावुक हुनुभन्दा बढी पर्दाको भव्यता र नोलनको मेकिङ कौशल देखेर बढि आश्चर्य चकित हुन्छन् ।’</p>\n<p class=\"article-para\">चिसोपना वा भावनाशून्य शैली नोलनका फिल्मका विशेषता हुन् । समीक्षकहरूले उनको फिल्ममा देखिने निकै सोच–विचार गरेर बुनिएको, गणितीय रूपमा सटिक तर भावनात्मक रूपमा अलिकति टाढा महसुस हुने कलात्मक ढाँचालाई नै नोलानको चिसोपनाको शैली भनी अर्थ्याउँछन् । ‘मेमेन्टो’, ‘इन्सेप्सन’ देखि लिएर ‘टेनेट’ र ‘ओपनहाइमर’ सम्मका नोलनका फिल्महरूलाई दर्शकहरू अक्सर बौद्धिक, मानवरहित वा अलि कठोर मान्ने गर्छन् । तर यो ‘चिसोपना’ उनको कमजोरी नभई जानबुझ गरिएको उपाय हो । दृश्यका हिसाबले नोलनले आफ्ना फिल्ममा धेरै उज्यालो वा ‘वार्म’ दृश्य राख्दैनन् ।</p>\n<p class=\"article-para\">त्यसैगरी, खस्रो र फिक्का रङहरू प्रयोग गर्न बढि रुचाउँछन् । न उनका फिल्महरूमा गाढा वा चम्किला रङहरू नै प्रशस्त हुन्छन् । यसको सट्टा गाढा खरानी, कोइला जस्तो कालो र फिक्का रङहरूले प्राथमिकता पाउँछन् ।</p>\n<p class=\"article-para\">नोलनलाई आधुनिक, अग्ला र ठूलाठूला भवनहरूको वास्तुकला निकै मन पर्छ । ‘इन्सेप्सन’ का सिसाका महलहरू वा ‘टेनेट’ का कङ्क्रिटयुक्त संरचनाहरूले पात्रलाई यो विशाल संसारमा एकदमै एक्लो र सानो देखाउन मद्दत गर्छन्।<br/>नोलन आफ्ना फिल्ममा कथाको बनोटलाई निकै महत्व दिन्छन् । उनका मुख्य</p>\n<p class=\"article-para\">पात्रहरू प्रायः कुनै न कुनै पीडा वा पागलपनमा डुबेका पुरुषहरू हुन्छन् । ‘इन्सेप्सन’ को कब वा ‘मेमेन्टो’ को लियोनार्ड यसका उदाहरण हुन् । तिनीहरू भावनात्मक संवाद भन्दा बढी वैज्ञानिक वा प्राविधिक कुराहरू व्याख्या गर्न व्यस्त देखिन्छन् ।</p>\n<p class=\"article-para\">नोलनले फ्रेममा मानिसहरूको भिडभाड वा धेरै नजिकका भावनात्मक दृश्यहरू कमै राख्छन् । उनी एउटा पात्रको अनुहारलाई मात्र फोकस गरेर खिच्छन्, जसले गर्दा दर्शकले उसको बाहिरी सम्बन्ध भन्दा पनि उसको दिमाग भित्र चलिरहेको जटिल मनोविज्ञानलाई बुझोस् ।</p>\n<p class=\"article-para\">आलोचकहरू नोलनका फिल्महरूलाई भावना नभएको ‘कम्प्युटरको हिसाब’ जस्तो पनि भन्छन् । तर उनका प्रशंसकहरू चाहिँ नोलनको भावना व्यक्त गर्ने तरिका अलि फरक र गम्भीर भएको दाबी गर्छन् । नोलनको संसारका कठोर नियमहरू (जस्तै ‘इन्टरस्टेलर’ मा समयको फरक गति वा ‘इन्सेप्सन’ मा सपनाका नियमहरू) वास्तवमा मानिसको माया र सम्बन्धको परीक्षा लिनका लागि बनाइएका हुन् ।</p>\n<p class=\"article-para\">ब्ल्याक होलको भौतिक नियमका कारण एउटा बुबाले आफ्नी छोरीको जीवनका महत्वपूर्ण वर्षहरू गुमाउनु पर्दाको पीडा अझ बढी शक्तिशाली महसुस हुन्छ, किनभने उनको वरिपरिको ब्रहृमाण्ड एकदमै निष्ठुरी र चिसो छ ।</p>\n<p class=\"article-para\">अमेरिकी अखबार ‘द न्युयोर्क टाइम्स’ ले फिल्मको कथावस्तु र दार्शनिक पक्षलाई बढी जोड दिंदै यसलाई ‘एक साहसिक र बौद्धिक कलाकृति’ को संज्ञा दिएको छ । टाइम्सका समीक्षकले म्याट डेमनको अभिनयको प्रशंसा गर्दै लेखेका छन्, ‘डेमनले ओडिसियसलाई जाज्वल्य वा घमण्डी पौराणिक राजाको रूपमा मात्र प्रस्तुत गरेका छैनन्, उनले त युद्धबाट मानसिक रूपमा क्षतविक्षत भएको, आफ्ना साथीहरू गुमाएको र अपराधवोधले थिचिएको एउटा आधुनिक सिपाहीको रूपमा अभिनय गरेका छन् ।’</p>\n<p class=\"article-para\">न्युयोर्क टाइम्सका अनुसार यो फिल्म केवल दैत्य र राक्षससँग लडेको कथा मात्र होइन, यो त आफ्नो पहिचान खोज्दै घर फर्किन तडपिएको मानिसको मनोवैज्ञानिक यात्रा हो । पिता बिना हुर्किएको छोरा टेलिमकसको भूमिकामा टम हल्यान्डको अभिनयले फिल्मलाई पारिवारिक र मानवीय संवेदनासँग जोड्न सफल भएको टाइम्सको निष्कर्ष छ ।</p>\n<p class=\"article-para\">हलिउडको प्रतिष्ठित म्यागजिन ‘भेराइटी’ ले फिल्मको प्राविधिक टिम, विशेष गरी ध्वनि र संगीतको विधामा फिल्मलाई ‘मास्टरक्लास’ भनेको छ । भेराइटीका समीक्षक लेख्छन्, ‘अस्कर विजेता संगीतकार लुडविग गोरान्सनको पार्श्व संगीतले फिल्मलाई एउटा छुट्टै जीवन दिएको छ । प्राचीन ग्रीक बाजाहरू र आधुनिक अर्केस्ट्राको फ्युजनले जब एकआँखे दैत्य (साइक्लोप्स) को दृश्यमा प्रवेश गर्छ, तब हलभित्रको वातावरण स्तब्ध बन्छ ।’</p>\n<p class=\"article-para\">‘भेराइटी’ ले ओडिसियसले आफ्ना मृत साथीहरू र आमाको आत्मालाई भेट्न पाताल लोकको यात्रा गरेको दृश्यलाई फिल्मको सर्वश्रेष्ठ अंश मानेको छ । मधुरो प्रकाश, छायाको उत्कृष्ट खेल र हन्टिंग साउन्ड इफेक्ट्सले त्यो दृश्यलाई दर्शकको मानसपटलमा लामो समयसम्म ताजा राख्ने ‘भेराइटी’को दाबी छ ।</p>\n<p class=\"article-para\">‘द इन्डिपेन्डेन्ट’ ले फिल्ममा पटकथा लेखकसमेत रहेका नोलनले संवादलाई भन्दा बढी दृश्यलाई प्राथमिकता दिएको लेख्छ । ‘होमरको कवितात्मक भाषा फिल्मका लामा र व्याख्यात्मक संवादहरूमा कतै हराए जस्तो लाग्छ । दृश्यका हिसाबले ५ स्टार पाउन योग्य फिल्म, पटकथाका हिसाबले ३ स्टारमा खुम्चिन्छ’ समग्रमा ३.५ स्टार दिँदै ‘द इन्डिपेन्डेन्ट’ ले लेखेको छ ।</p>\n<p class=\"article-para\">त्यसैगरी, ‘द टेलिग्राफ’ ले पाँचमा पाँच स्टार दिंदै भनेको छ, ‘यो हालसम्मकै सबैभन्दा महत्वाकांक्षी पौराणिक फिल्म हो । नोलनले हलिउडको परम्परागत मसला र सीजीआईको भिडियो गेम जस्तो शैलीलाई त्यागेर ‘प्रयोगात्मक इफेक्ट्स’ मार्फत पौराणिक संसारलाई वास्तविक रूपमा प्रस्तुत गरेका छन् ।’</p>\n<p class=\"article-para\">‘स्क्रिन डेली’ मा म्याट डेमनले ओडिसियसलाई चम्किलो र त्रुटिहीन नायकको रूपमा भन्दा पनि युद्धबाट मानसिक र भावनात्मक रूपमा क्षतविक्षत भएको एउटा घाइते सिपाहीको रूपमा गज्जबले अभिनय गरेको समीक्षा गरेका छन् भने पिता बिना हुर्किएको छोरा टेलिमेकसको भूमिकामा टम हल्यान्डको अभिनय निकै मार्मिक रहेको तर्क गर्छन् ।</p>\n<p class=\"article-para\">‘द ओडिसी’ केवल एउटा मसलेदार पौराणिक हलिउड फिल्म होइन । यो क्रिस्टोफर नोलनको महत्वाकांक्षा र प्राविधिक निपुणताको उत्कृष्ट नमुना हो । पटकथाको लम्बाइ र भावनाको कमीलाई लिएर केही समीक्षकहरूबीच मतभेद रहे पनि, यसले प्राचीन साहित्यलाई आधुनिक फिल्ममा कसरी ढाल्नुपर्छ भन्ने नयाँ मापदण्ड तय गरेको छ । विश्वभरका समीक्षकहरूले साझा धारणा छ, ‘यो फिल्म मोबाइल वा ल्यापटपको स्क्रिनमा होइन, सिधै थिएटरको ठूलो पर्दा मै गएर अनुभव गर्नैपर्ने फिल्म हो ।’</p>\n<div class=\"key-takeaway\"><strong>मुख्य बुँदा:</strong><p>‘द ओडिसी’ क्रिस्टोफर नोलनद्वारा निर्देशित फिल्म हो, जसले होमरको ग्रीक महाकाव्यलाई आधुनिक फिल्ममा रूपान्तरण गरेको छ, युद्धपछिको मानसिक आघात (पीटीएसडी) र ओडिसियसको घर फर्किने मनोवैज्ञानिक यात्रालाई मुख्य विषय बनाएको छ । फिल्मले ध्वनि र संगीतमा ‘मास्टरक्लास’ प्रदान गरेको र विश्वभरका समीक्षकहरूले यसलाई थिएटरको ठूलो पर्दामा अनुभव गर्नुपर्ने उत्कृष्ट फिल्मका रूपमा प्रशंसा गरेका छन् ।</p></div>",
-    sidebarAdsHtml: "<div class=\"sidebar-ads-wrapper\">\n<div class=\"ad-unit\" id=\"sideads_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_1.jpg\" alt=\"sideads_1.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n\n<div class=\"ad-unit\" id=\"sideads_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_2.jpg\" alt=\"sideads_2.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n\n<div class=\"ad-unit\" id=\"sideads_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_3.jpg\" alt=\"sideads_3.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n\n<div class=\"ad-unit\" id=\"sideads_4\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_4.jpg\" alt=\"sideads_4.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div></div>",
+    bodyEnWithAds:  "<p class=\"article-para\">Kathmandu — Bringing Homer’s Greek epic, thousands of years old, to the modern film screen was in itself a huge challenge. But when Christopher Nolan took the helm, it was no longer just a film; it became a global festival. Matt Damon and Tom Holland-starrer ‘The Odyssey’ has now sent ripples across cinema halls and media outlets worldwide.</p>\n<p class=\"article-para\">The film centers on King Odysseus (Matt Damon), who, after winning the Trojan War, faces a decade-long ordeal at sea—battling monsters, contending with gods, and leaving his wife Penelope behind, waiting at home.</p>\n<p class=\"article-para\">The film speaks to the enduring trauma of war (PTSD). Many soldiers return home physically after war, but it can take years—or decades—for them to recover emotionally or spiritually, and some never do.</p>\n<p class=\"article-para\">Meanwhile, back home, Penelope is forced to ward off power vacuums by hosting dozens of suitors vying for her hand, trapped in a cycle of greed and humiliation. Among them, the cruelest is Antinous, played by Robert Pattinson with chilling precision, who torments Odysseus’s blind servant Eumaeus (a poignant, sympathetic character played by John Leguizamo). Odysseus’s mentally disturbed son Telemachus (Tom Holland) is compelled to embark on his own odyssey—searching for his father or his father’s corpse.</p>\n<p class=\"article-para\">When Odysseus must descend to the underworld to speak with the dead, the scene is unforgettable in its strangeness. Nolan portrays the shrouded spirits—like the witches of Macbeth—bent over the ground. The dead, like the gods, can be approached on almost equal footing. This is the strange pagan rule of The Odyssey, as elusive and amoral as the symptoms of a shattered psyche.</p>\n<p class=\"article-para\">But when Odysseus finally nears Penelope’s home—now besieged by suitors, much like Troy itself—he enters disguised as a beggar, like Christ in Christian lore. In the final act, Odysseus’s own mysterious transformation (metamorphosis) into something godlike begins.</p>\n<p class=\"article-para\">Peter Bradshaw, chief film critic of the UK’s esteemed newspaper The Guardian, has given the film four out of five stars, calling it “a new height in visual language.” According to the Guardian, Nolan shot this film entirely on IMAX 70mm cameras, transporting viewers not to a cinema seat but directly into the middle of the Aegean Sea. The storm-tossed seas and the wrath of Poseidon, the sea god, are rendered not through CGI but through more real, experimental effects that astonish the audience.</p>\n<p class=\"article-para\">Bradshaw points out a recurring weakness in Nolan’s work: “Like his earlier films, ‘The Odyssey’ is technically flawless, but emotionally thin and cold. Audiences are left more awestruck by the grandeur on screen and Nolan’s craft than moved by Odysseus’s pain of separation.”</p>\n<p class=\"article-para\">Coldness or emotional detachment is a hallmark of Nolan’s style. Critics interpret his meticulously constructed, mathematically precise yet emotionally distant artistic framework as his signature chill. Films like ‘Memento,’ ‘Inception,’ ‘Tenet,’ and ‘Oppenheimer’ are often seen by audiences as cerebral, impersonal, or even harsh. But this ‘coldness’ is not a flaw—it’s a deliberate choice. Visually, Nolan rarely includes bright or ‘warm’ scenes in his films. Instead, he favors rough, muted tones—deep ash, coal-black, and faded hues—over rich or vivid colors.</p>\n<p class=\"article-para\">Nolan is fascinated by modern architecture—tall, imposing structures. The glass palaces of ‘Inception’ or the concrete monoliths of ‘Tenet’ dwarf characters, making them feel small and alone in a vast world.<br/>Nolan places immense importance on narrative structure in his films. His protagonists are often men consumed by pain or madness—Cobb in ‘Inception’ or Leonard in ‘Memento’—spending more time explaining scientific or technical details than engaging in emotional dialogue.</p>\n<p class=\"article-para\">Nolan rarely includes crowded scenes or close-up emotional moments. He focuses on a single face, letting the audience peer into the complex psychology within rather than the external relationships.</p>\n<p class=\"article-para\">Critics sometimes call Nolan’s films emotionless “computer calculations.” Yet his fans argue that his way of expressing emotion is simply different—profound and serious. The harsh rules of Nolan’s universe—like the time dilation in ‘Interstellar’ or the dream logic in ‘Inception’—are designed to test human love and connection.</p>\n<p class=\"article-para\">The pain of a father losing years of his daughter’s life due to the physics of a black hole feels even sharper because the universe around him is so cold and indifferent.</p>\n<p class=\"article-para\">The New York Times emphasizes the philosophical depth of the film, calling it “a bold and intellectual work of art.” The critic praises Matt Damon’s performance: “Damon doesn’t just play Odysseus as a radiant or arrogant mythic king; he embodies a modern soldier shattered by war, who has lost comrades and is haunted by guilt.”</p>\n<p class=\"article-para\">According to the New York Times, the film is not just a tale of monsters and battles—it’s a psychological journey of a man desperate to return home and rediscover his identity. Tom Holland’s portrayal of Telemachus, the son raised without a father, successfully grounds the film in family and human emotion, the Times concludes.</p>\n<p class=\"article-para\">Hollywood’s esteemed magazine Variety hails the film’s technical team, especially in sound and music, as a “masterclass.” The critic writes, “Oscar-winning composer Ludwig Göransson’s score gives the film a life of its own. The fusion of ancient Greek instruments and modern orchestration reaches a peak in the Cyclops scene, leaving the theater stunned.”</p>\n<p class=\"article-para\">Variety considers Odysseus’s journey to the underworld to meet the spirits of his dead comrades and mother the film’s best moment. The dim lighting, masterful use of shadow, and haunting sound effects, it claims, will linger in the audience’s mind long after the credits roll.</p>\n<p class=\"article-para\">The Independent argues that Nolan, who also co-wrote the screenplay, prioritizes visuals over dialogue. “Homer’s poetic language seems lost in the film’s long, expository lines. Visually, it deserves five stars; as a screenplay, it shrinks to three. Overall, it earns 3.5 stars,” the paper writes.</p>\n<p class=\"article-para\">The Telegraph, however, gives the film five out of five stars, calling it “the most ambitious mythological film ever made.” Nolan, it says, abandons Hollywood’s traditional spice and video-game-style CGI, instead using experimental effects to bring the mythic world to life in a tangible way.</p>\n<p class=\"article-para\">Screen Daily praises Matt Damon for playing Odysseus not as a flawless hero but as a soldier broken by war—mentally and emotionally—and highlights Tom Holland’s poignant performance as Telemachus, the son raised without a father.</p>\n<p class=\"article-para\">‘The Odyssey’ is more than just a spicy Hollywood mythological film. It’s a showcase of Christopher Nolan’s ambition and technical mastery. Though some critics debate its lengthy runtime and emotional restraint, it has set a new benchmark for adapting ancient literature into modern cinema. Critics worldwide agree: this is a film meant to be experienced not on a phone or laptop screen, but on the big theater screen.</p>\n<div class=\"key-takeaway\"><strong>Key Takeaway:</strong><p>‘The Odyssey’ is a film directed by Christopher Nolan that adapts Homer’s Greek epic into a modern movie, focusing on post-war trauma (PTSD) and the psychological journey of Odysseus’s return home. The film delivers a masterclass in sound and music and has been praised by critics worldwide as a must-watch on the big theater screen.</p></div>",
+    bodyNpWithAds:  "<p class=\"article-para\">काठमाडौँ — हजारौं वर्ष पुरानो कवि होमरको ग्रीक महाकाव्यलाई आधुनिक फिल्मको पर्दामा उतार्नु आफैंमा एउटा ठूलो चुनौती थियो । तर जब यसको कमान्ड निर्देशक क्रिस्टोफर नोलनले सम्हाले, तब यो केवल एउटा फिल्म मात्र रहेन, विश्वव्यापी महोत्सव नै बन्यो । म्याट डेमन र टम हल्यान्ड स्टारर ‘द ओडिसी’ ले यतिबेला विश्वभरका फिल्म हल र सञ्चारमाध्यमहरूमा ठूलो तरंग पैदा गरिदिएको छ ।</p>\n<p class=\"article-para\">ट्रोजन युद्ध जितेर आफ्नो गृहराज्य इथाका फर्किने क्रममा राजा ओडिसियस (म्याट डेमन) ले समुद्रमा भोगेका भयानक १० वर्षे संघर्ष, दैत्यहरूसँगको टकराव र घरमा उनको पर्खाइमा बसेकी पत्नी पेनेलोपीको कथालाई फिल्मले मुख्य विषय बनाएको छ ।</p>\n<p class=\"article-para\">फिल्मले पुस्तौंदेखिको युद्धपछिको मानसिक आघात (पीटीएसडी) को पीडालाई बोल्छ । कुनै पनि युद्धपछि धेरै सिपाहीहरू भौतिक रूपमा त चाँडै नै घर फर्कन्छन्, तर युद्धअघिको आफ्नो भावनात्मक वा आध्यात्मिक अवस्थामा फर्कन उनीहरूलाई वर्षौं वा दशकौं लाग्न सक्छ, र कतिपय त कहिल्यै फर्कनै सक्दैनन् ।</p>\n<p class=\"article-para\">यता घरमा भने, ओडिसियसको सम्भावित मृत्युपछि सिर्जना हुन सक्ने शक्ति रिक्ततालाई टार्नका लागि पत्नि पेनेलोपी बाध्य भएर दर्जनौं सम्भावित विवाहका आकांक्षीलाई अतिथिका रूपमा राख्न विवश छिन् । जहाँ लोभ र वासनाको अपमानजनक भोज चलिरहन्छ । ती आकांक्षीहरूमध्ये सबैभन्दा प्रमुख क्रूर एन्टिनस हो, जसको भूमिका रोबर्ट प्याटिन्सनले बडो चलाखीपूर्ण र घिनलाग्दो रूपमा निभाएका छन् । उसले ओडिसियसका दृष्टिविहीन नोकर युमाउस (जोन लेगुइजामोद्वारा अभिनित एक भावनात्मक र सहानुभूतिपूर्ण चरित्र) माथि क्रूरता देखाउँछ । ओडिसियसका मानसिक रूपमा विक्षिप्त छोरा टेलिमेकस (टम हल्यान्ड) अब आफ्ना पिता वा पिताको शव खोज्न आफ्नै ओडिसी (यात्रा) मा निस्कन बाध्य हुन्छन् ।</p>\n<p class=\"article-para\">जब ओडिसियस मृत आत्माहरूसँग कुरा गर्न पाताल लोकमा ओर्लनुपर्ने हुन्छ । त्यो दृश्य अविस्मरणीय रूपमा अनौठो छ, नोलनले कात्रो ओढेका आत्माहरूलाई म्याकबेथका बोक्सीहरू जस्तै जमिनमा झुकेर बसेको देखाएका छन् । मृत आत्माहरूलाई, देवताहरूलाई जस्तै, लगभग समान धरातलमा सम्पर्क गर्न सकिन्छ । यो ओडिसीको विचित्र पगान नियम हो, जुन मानसिक सन्तुलन बिग्रँदा देखिने धर्मनिरपेक्ष लक्षणहरू जत्तिकै अस्पष्ट र अनैतिक छ ।</p>\n<p class=\"article-para\">तर जब ओडिसियस अन्ततः पेनेलोपीको घर नजिक पुग्छन्— जुन घर अहिले विवाहका आकांक्षीहरूको क्रूर घेराबन्दीमा छ (जुन ट्रोयको घेराबन्दी जस्तै देखिन्छ)—उनी इसाई धर्मको क्राइस्ट जस्तै जोगीको भेषमा प्रवेश गर्छन् । यस कथाको अन्तिम चरणमा, ओडिसियसको ईश्वरमा परिणत हुने आफ्नै रहस्यमय रूपान्तरण (मेटामर्फिसस) सुरु हुन्छ ।</p>\n<p class=\"article-para\">बेलायतको प्रतिष्ठित अखबार ‘द गार्डियन’ का मुख्य फिल्म समीक्षक पिटर ब्राड्सले यस फिल्मलाई पाँचमा चार ‘स्टार रेटिंग’ दिंदै यसलाई ‘दृश्य भाषाको नयाँ उचाई’ भनेका छन् । गार्डियनका अनुसार नोलनले पूर्ण रूपमा आईम्याक्स ७० एमएम क्यामेरामा पूर्णरूपमा खिचेको यो फिल्मले दर्शकलाई हलको सिटमा नभई सिधै एसियन सागरको बीचमा पुर्‍याउँछ । आँधीबेहरीले उथलपुथल पारेको समुद्र र समुद्रका देवता पोसाइडनको क्रोधलाई नोलनले कम्प्युटर जेनेरेटेड इफेक्ट्स (सीजीआई) भन्दा बढी वास्तविक र प्रयोगात्मक इफेक्ट्सबाट देखाउन सफल भएका छन् ।</p>\n<p class=\"article-para\">पिटर ब्राड्सले नोलनको एउटा पुरानो कमजोरी औंल्याउँदै लेखेका छन्, ‘नोलनका पुराना फिल्महरू जस्तै ‘द ओडिसी’ पनि प्राविधिक रूपमा त्रुटिहीन छ, तर भावनात्मक रूपमा अलि फिक्का र चिसोपनको महसुस हुन्छ । दर्शकहरू ओडिसियसको विछोडको पीडामा भावुक हुनुभन्दा बढी पर्दाको भव्यता र नोलनको मेकिङ कौशल देखेर बढि आश्चर्य चकित हुन्छन् ।’</p>\n<p class=\"article-para\">चिसोपना वा भावनाशून्य शैली नोलनका फिल्मका विशेषता हुन् । समीक्षकहरूले उनको फिल्ममा देखिने निकै सोच–विचार गरेर बुनिएको, गणितीय रूपमा सटिक तर भावनात्मक रूपमा अलिकति टाढा महसुस हुने कलात्मक ढाँचालाई नै नोलानको चिसोपनाको शैली भनी अर्थ्याउँछन् । ‘मेमेन्टो’, ‘इन्सेप्सन’ देखि लिएर ‘टेनेट’ र ‘ओपनहाइमर’ सम्मका नोलनका फिल्महरूलाई दर्शकहरू अक्सर बौद्धिक, मानवरहित वा अलि कठोर मान्ने गर्छन् । तर यो ‘चिसोपना’ उनको कमजोरी नभई जानबुझ गरिएको उपाय हो । दृश्यका हिसाबले नोलनले आफ्ना फिल्ममा धेरै उज्यालो वा ‘वार्म’ दृश्य राख्दैनन् ।</p>\n<p class=\"article-para\">त्यसैगरी, खस्रो र फिक्का रङहरू प्रयोग गर्न बढि रुचाउँछन् । न उनका फिल्महरूमा गाढा वा चम्किला रङहरू नै प्रशस्त हुन्छन् । यसको सट्टा गाढा खरानी, कोइला जस्तो कालो र फिक्का रङहरूले प्राथमिकता पाउँछन् ।</p>\n<p class=\"article-para\">नोलनलाई आधुनिक, अग्ला र ठूलाठूला भवनहरूको वास्तुकला निकै मन पर्छ । ‘इन्सेप्सन’ का सिसाका महलहरू वा ‘टेनेट’ का कङ्क्रिटयुक्त संरचनाहरूले पात्रलाई यो विशाल संसारमा एकदमै एक्लो र सानो देखाउन मद्दत गर्छन्।<br/>नोलन आफ्ना फिल्ममा कथाको बनोटलाई निकै महत्व दिन्छन् । उनका मुख्य</p>\n<p class=\"article-para\">पात्रहरू प्रायः कुनै न कुनै पीडा वा पागलपनमा डुबेका पुरुषहरू हुन्छन् । ‘इन्सेप्सन’ को कब वा ‘मेमेन्टो’ को लियोनार्ड यसका उदाहरण हुन् । तिनीहरू भावनात्मक संवाद भन्दा बढी वैज्ञानिक वा प्राविधिक कुराहरू व्याख्या गर्न व्यस्त देखिन्छन् ।</p>\n<p class=\"article-para\">नोलनले फ्रेममा मानिसहरूको भिडभाड वा धेरै नजिकका भावनात्मक दृश्यहरू कमै राख्छन् । उनी एउटा पात्रको अनुहारलाई मात्र फोकस गरेर खिच्छन्, जसले गर्दा दर्शकले उसको बाहिरी सम्बन्ध भन्दा पनि उसको दिमाग भित्र चलिरहेको जटिल मनोविज्ञानलाई बुझोस् ।</p>\n<p class=\"article-para\">आलोचकहरू नोलनका फिल्महरूलाई भावना नभएको ‘कम्प्युटरको हिसाब’ जस्तो पनि भन्छन् । तर उनका प्रशंसकहरू चाहिँ नोलनको भावना व्यक्त गर्ने तरिका अलि फरक र गम्भीर भएको दाबी गर्छन् । नोलनको संसारका कठोर नियमहरू (जस्तै ‘इन्टरस्टेलर’ मा समयको फरक गति वा ‘इन्सेप्सन’ मा सपनाका नियमहरू) वास्तवमा मानिसको माया र सम्बन्धको परीक्षा लिनका लागि बनाइएका हुन् ।</p>\n<p class=\"article-para\">ब्ल्याक होलको भौतिक नियमका कारण एउटा बुबाले आफ्नी छोरीको जीवनका महत्वपूर्ण वर्षहरू गुमाउनु पर्दाको पीडा अझ बढी शक्तिशाली महसुस हुन्छ, किनभने उनको वरिपरिको ब्रहृमाण्ड एकदमै निष्ठुरी र चिसो छ ।</p>\n<p class=\"article-para\">अमेरिकी अखबार ‘द न्युयोर्क टाइम्स’ ले फिल्मको कथावस्तु र दार्शनिक पक्षलाई बढी जोड दिंदै यसलाई ‘एक साहसिक र बौद्धिक कलाकृति’ को संज्ञा दिएको छ । टाइम्सका समीक्षकले म्याट डेमनको अभिनयको प्रशंसा गर्दै लेखेका छन्, ‘डेमनले ओडिसियसलाई जाज्वल्य वा घमण्डी पौराणिक राजाको रूपमा मात्र प्रस्तुत गरेका छैनन्, उनले त युद्धबाट मानसिक रूपमा क्षतविक्षत भएको, आफ्ना साथीहरू गुमाएको र अपराधवोधले थिचिएको एउटा आधुनिक सिपाहीको रूपमा अभिनय गरेका छन् ।’</p>\n<p class=\"article-para\">न्युयोर्क टाइम्सका अनुसार यो फिल्म केवल दैत्य र राक्षससँग लडेको कथा मात्र होइन, यो त आफ्नो पहिचान खोज्दै घर फर्किन तडपिएको मानिसको मनोवैज्ञानिक यात्रा हो । पिता बिना हुर्किएको छोरा टेलिमकसको भूमिकामा टम हल्यान्डको अभिनयले फिल्मलाई पारिवारिक र मानवीय संवेदनासँग जोड्न सफल भएको टाइम्सको निष्कर्ष छ ।</p>\n<p class=\"article-para\">हलिउडको प्रतिष्ठित म्यागजिन ‘भेराइटी’ ले फिल्मको प्राविधिक टिम, विशेष गरी ध्वनि र संगीतको विधामा फिल्मलाई ‘मास्टरक्लास’ भनेको छ । भेराइटीका समीक्षक लेख्छन्, ‘अस्कर विजेता संगीतकार लुडविग गोरान्सनको पार्श्व संगीतले फिल्मलाई एउटा छुट्टै जीवन दिएको छ । प्राचीन ग्रीक बाजाहरू र आधुनिक अर्केस्ट्राको फ्युजनले जब एकआँखे दैत्य (साइक्लोप्स) को दृश्यमा प्रवेश गर्छ, तब हलभित्रको वातावरण स्तब्ध बन्छ ।’</p>\n<p class=\"article-para\">‘भेराइटी’ ले ओडिसियसले आफ्ना मृत साथीहरू र आमाको आत्मालाई भेट्न पाताल लोकको यात्रा गरेको दृश्यलाई फिल्मको सर्वश्रेष्ठ अंश मानेको छ । मधुरो प्रकाश, छायाको उत्कृष्ट खेल र हन्टिंग साउन्ड इफेक्ट्सले त्यो दृश्यलाई दर्शकको मानसपटलमा लामो समयसम्म ताजा राख्ने ‘भेराइटी’को दाबी छ ।</p>\n<p class=\"article-para\">‘द इन्डिपेन्डेन्ट’ ले फिल्ममा पटकथा लेखकसमेत रहेका नोलनले संवादलाई भन्दा बढी दृश्यलाई प्राथमिकता दिएको लेख्छ । ‘होमरको कवितात्मक भाषा फिल्मका लामा र व्याख्यात्मक संवादहरूमा कतै हराए जस्तो लाग्छ । दृश्यका हिसाबले ५ स्टार पाउन योग्य फिल्म, पटकथाका हिसाबले ३ स्टारमा खुम्चिन्छ’ समग्रमा ३.५ स्टार दिँदै ‘द इन्डिपेन्डेन्ट’ ले लेखेको छ ।</p>\n<p class=\"article-para\">त्यसैगरी, ‘द टेलिग्राफ’ ले पाँचमा पाँच स्टार दिंदै भनेको छ, ‘यो हालसम्मकै सबैभन्दा महत्वाकांक्षी पौराणिक फिल्म हो । नोलनले हलिउडको परम्परागत मसला र सीजीआईको भिडियो गेम जस्तो शैलीलाई त्यागेर ‘प्रयोगात्मक इफेक्ट्स’ मार्फत पौराणिक संसारलाई वास्तविक रूपमा प्रस्तुत गरेका छन् ।’</p>\n<p class=\"article-para\">‘स्क्रिन डेली’ मा म्याट डेमनले ओडिसियसलाई चम्किलो र त्रुटिहीन नायकको रूपमा भन्दा पनि युद्धबाट मानसिक र भावनात्मक रूपमा क्षतविक्षत भएको एउटा घाइते सिपाहीको रूपमा गज्जबले अभिनय गरेको समीक्षा गरेका छन् भने पिता बिना हुर्किएको छोरा टेलिमेकसको भूमिकामा टम हल्यान्डको अभिनय निकै मार्मिक रहेको तर्क गर्छन् ।</p>\n<p class=\"article-para\">‘द ओडिसी’ केवल एउटा मसलेदार पौराणिक हलिउड फिल्म होइन । यो क्रिस्टोफर नोलनको महत्वाकांक्षा र प्राविधिक निपुणताको उत्कृष्ट नमुना हो । पटकथाको लम्बाइ र भावनाको कमीलाई लिएर केही समीक्षकहरूबीच मतभेद रहे पनि, यसले प्राचीन साहित्यलाई आधुनिक फिल्ममा कसरी ढाल्नुपर्छ भन्ने नयाँ मापदण्ड तय गरेको छ । विश्वभरका समीक्षकहरूले साझा धारणा छ, ‘यो फिल्म मोबाइल वा ल्यापटपको स्क्रिनमा होइन, सिधै थिएटरको ठूलो पर्दा मै गएर अनुभव गर्नैपर्ने फिल्म हो ।’</p>\n<div class=\"key-takeaway\"><strong>मुख्य बुँदा:</strong><p>‘द ओडिसी’ क्रिस्टोफर नोलनद्वारा निर्देशित फिल्म हो, जसले होमरको ग्रीक महाकाव्यलाई आधुनिक फिल्ममा रूपान्तरण गरेको छ, युद्धपछिको मानसिक आघात (पीटीएसडी) र ओडिसियसको घर फर्किने मनोवैज्ञानिक यात्रालाई मुख्य विषय बनाएको छ । फिल्मले ध्वनि र संगीतमा ‘मास्टरक्लास’ प्रदान गरेको र विश्वभरका समीक्षकहरूले यसलाई थिएटरको ठूलो पर्दामा अनुभव गर्नुपर्ने उत्कृष्ट फिल्मका रूपमा प्रशंसा गरेका छन् ।</p></div>",
+    sidebarAdsHtml: "<div class=\"sidebar-ads-wrapper\">\n<div class=\"ad-unit\" id=\"sideads_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_3.jpg\" alt=\"sideads_3.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n\n<div class=\"ad-unit\" id=\"sideads_4\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_4.jpg\" alt=\"sideads_4.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div></div>",
     imageUrl:       "../images/the-odyssey-review-a-masterclass-in-sound-and-music.jpg",
     breadcrumbEn:   "<a href=\"../index.html\">Home</a> / <a href=\"../category/entertainment\">Entertainment</a> / The Odyssey Review: A &#39;Masterclass&#39; in Sound and M...",
     breadcrumbNp:   "<a href=\"../index.html\">गृहपृष्ठ</a> / <a href=\"../category/entertainment\">मनोरञ्जन</a> / द ओडिसी समीक्षा : ध्वनि र संगीतमा ‘मास्टरक्लास’",
@@ -1985,19 +1988,19 @@
 })();
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded',function(){
-      var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
-      var adYear=new Date().getFullYear();
-      var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
-      var eyEn=document.getElementById('footer-year-en');
-      var eyNp=document.getElementById('footer-year-np');
-      if(eyEn)eyEn.textContent=adYear;
-      if(eyNp)eyNp.textContent=npYear;
-      window.addEventListener('langChange',function(e){
-        if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
+    document.addEventListener('DOMContentLoaded', function () {
+      var NP_NUMS = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
+      var adYear = new Date().getFullYear();
+      var npYear = String(adYear).split('').map(function (d) { return NP_NUMS[parseInt(d, 10)]; }).join('');
+      var eyEn = document.getElementById('footer-year-en');
+      var eyNp = document.getElementById('footer-year-np');
+      if (eyEn) eyEn.textContent = adYear;
+      if (eyNp) eyNp.textContent = npYear;
+      window.addEventListener('langChange', function (e) {
+        if (e.detail && e.detail.lang) document.body.classList.toggle('lang-active', e.detail.lang === 'np');
       });
-      var stored=localStorage.getItem('fm_lang')||'en';
-      if(stored==='np')document.body.classList.add('lang-active');
+      var stored = localStorage.getItem('fm_lang') || 'en';
+      if (stored === 'np') document.body.classList.add('lang-active');
     });
   </script>
 
