@@ -700,8 +700,8 @@
     --text:         #1F1F1F;
     --muted:        rgba(31,31,31,0.55);
     --border:       rgba(163,25,25,0.18);
-    --font-body:    Arial, sans-serif;
-    --font-heading: Arial, sans-serif;
+    --font-body:    'Open Sans', sans-serif;
+    --font-heading: 'Montserrat', sans-serif;
   }
 
   * {
@@ -920,7 +920,7 @@
   }
 
   #back-to-top:hover {
-    opacity: 1;
+    opacity: 0.9;
   }
 
   .empty-state {
@@ -957,6 +957,26 @@
     .card-title {
       font-size: 1rem;
     }
+  }
+
+  .lang-np {
+    display: none;
+  }
+
+  .lang-en {
+    display: inline;
+  }
+
+  body.lang-active .lang-en {
+    display: none !important;
+  }
+
+  body.lang-active .lang-np {
+    display: inline !important;
+  }
+
+  body.lang-active p.lang-np, body.lang-active span.lang-np {
+    display: inline !important;
   }
 </style>
 <style>
@@ -1915,8 +1935,8 @@
     nameNp:       "अर्थतन्त्र",
     descEn:       "Economy — Latest news and updates.",
     descNp:       "अर्थतन्त्र — नवीनतम समाचार र अपडेटहरू।",
-    totalCount:   1,
-    allArticles:  [{"newsIndex":0,"recordId":"","title":"The share market saw greenery, transaction amount crossed 4.5 billion.","titleNe":"नेप्सेमा हरियाली, कारोबार रकम साढे ४ अर्ब नाघ्यो","slug":"the-share-market-saw-greenery-transaction-amount-crossed-45-billion","category":"Economy","categoryNe":"अर्थतन्त्र","metaDesc":"The Nepse index rose by 7.50 points to reach 2,597.80 points on the last trading day of the current fiscal year.","metaDescNe":"चालु आर्थिक वर्षको अन्तिम कारोबार दिन नेप्से परिसूचक ७.५० अंकले बढेर २,५९७.८० विन्दुमा पुगेको थियो।","readTime":"2 min read","readTimeNe":"2 मिनेट पढाइ","date":"July 17, 2026","time":"4:57 PM","creator":"Citizen","creatorNp":"नागरिक","source":"nagariknews.nagariknetwork.com","sourceNp":"नगरिकन्यूज.नगरिकनेटवर्क.कम","imageUrls":"../images/the-share-market-saw-greenery-transaction-amount-crossed-45-billion.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"}],
+    totalCount:   2,
+    allArticles:  [{"newsIndex":1,"recordId":"","title":"Monsoon Fully Covers Nepal; Heavy Rainfall Forecast Across Multiple Provinces","titleNe":"मनसुन पूर्ण रूपमा नेपालमा फैलियो; धेरै प्रदेशहरूमा भारी वर्षाको पूर्वानुमान","slug":"monsoon-fully-covers-nepal-heavy-rainfall-forecast-across-multiple-provinces","category":"Economy","categoryNe":"अर्थतन्त्र","metaDesc":"This is a test article summarizing a test news piece.","metaDescNe":"यो एउटा परीक्षण लेख हो जसले एउटा परीक्षण समाचारलाई संक्षेपण गर्दछ।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"July 17, 2026","time":"6:04 PM","creator":"","creatorNp":"","source":"ans","sourceNp":"अन्स","imageUrls":"../images/monsoon-fully-covers-nepal-heavy-rainfall-forecast-across-multiple-provinces.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":0,"recordId":"","title":"The share market saw greenery, transaction amount crossed 4.5 billion.","titleNe":"नेप्सेमा हरियाली, कारोबार रकम साढे ४ अर्ब नाघ्यो","slug":"the-share-market-saw-greenery-transaction-amount-crossed-45-billion","category":"Economy","categoryNe":"अर्थतन्त्र","metaDesc":"The Nepse index rose by 7.50 points to reach 2,597.80 points on the last trading day of the current fiscal year.","metaDescNe":"चालु आर्थिक वर्षको अन्तिम कारोबार दिन नेप्से परिसूचक ७.५० अंकले बढेर २,५९७.८० विन्दुमा पुगेको थियो।","readTime":"2 min read","readTimeNe":"2 मिनेट पढाइ","date":"July 17, 2026","time":"4:57 PM","creator":"Citizen","creatorNp":"नागरिक","source":"nagariknews.nagariknetwork.com","sourceNp":"नगरिकन्यूज.नगरिकनेटवर्क.कम","imageUrls":"../images/the-share-market-saw-greenery-transaction-amount-crossed-45-billion.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"}],
     itemsPerPage: 6
   };
 
