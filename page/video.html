@@ -557,123 +557,69 @@
   /* Section header with accent left-border */
   .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; padding-bottom:8px; border-bottom:2px solid #A31919; }
   .section-title { font-size:1.15rem; margin:0; color:#A31919; font-family:Noto Serif, Georgia, serif; font-weight:800; display:flex; align-items:center; gap:8px; }
-  .section-title::before { content:''; display:inline-block; width:4px; height:1.1em; background:#D4A017; border-radius:2px; flex-shrink:0; }
-  .view-all-link { font-size:.78rem; font-weight:700; color:#A31919; text-decoration:none; padding:4px 12px; border:1px solid #A31919; border-radius:3px;
+  .section-title::before { content:''; display:inline-block; width:4px; height:1.1em; background:#D4A017; border-radius:2px; flex-shrink:0;}
+  
+  .view-all-link { font-size:.78rem;font-weight:700;color:#A31919;text-decoration:none;padding:4px 12px;border:1px solid #A31919;border-radius:3px;
     transition:all .2s;
-    white-space:nowrap;
-   }
-   .view-all-link:hover { background:#A31919;
-    color:#FFFFFF;
-   }
+    white-space nowrap;}
+  
+    .view-all-link:hover{background:#A31919;color:#FFFFFF;}
 
-   /* ─── UNIFORM GRID (every section, no special "featured" column) ─── */
-   .section-grid,
-   .section-grid.has-featured,
-   .section-grid.latest-grid {
-     display:flex;
-     grid-template-columns:auto-fill minmax(220px,1fr);
-     gap:auto;
-     align-items:start;
-   }
-   /* The "list" wrapper becomes transparent so its cards join the same grid
-      as the "featured" card — instead of being boxed into a separate column. */
-   .section-list {
-     display:flex;
-     flex-direction:"row";
-     flex-wrap:"wrap";
-     gap:"18px";
-     justify-content:start;
-   }
-
-   @media(max-width :480px) {
-   	.section-grid,
-   	.section-grid.has-featured,
-   	.section-grid.latest-grid {
-   		grid-template-columns:auto-fill minmax(220px,auto);
-   		gap:"12PX";
-   	}
-   }
-
-   /* Unified thumbnail card — used for every card, "featured" or "latest" alike */
-   .news-card.featured,
-   .news-card.latest {
-     background:#F8F8F8;
-     border :1PX solid rgba(163 ,25 ,25 ,0.18);
-     border-radius :6PX ;
-     overflow:hidden ;
-     display:block ;
-     width :100% ;
-     transition :box-shadow
-     	.2s
-     	ease ,
-     	transform
-     	.2s
-     	ease ;
+    /* ─── UNIFORM GRID (every section, no special "featured" column) ─── */
+    .section-grid,
+    .section-grid.has-featured,
+    .section-grid.latest-grid {
+      display:flex;
+      flex-wrap:start;
+      gap:start;
+      align-items:start;
     }
-    .news-card.featured:hover ,
-   	.news-card.latest:hover {
-   		box-shadow :0 
-   			4PX 
-   			16PX 
-   			rgba(0 ,0 ,0 ,0.14) ;
-   		transform :translateY(-2PX) ;
-   	}
-   	.news-card.featured > a ,
-   	.news-card.latest > a {
-   		text-decoration:none ; 
-   		color:#1F1F1F ; 
-   		display:block ;
-   	}
-   	.news-card.featured.card-img ,
-   	.news-card.latest.card-img {
-   		display:block ; 
-   		width :100% ; 
-   		height :170PX ; 
-   		position:relative ; 
-   	.overflow:hidden ; 
-   		background:#000 ;
-   	}
-   	.news-card.featured.card-img img ,
-   	.news-card.latest.card-img img {
-   		position:absolute ; 
-   		inset :0 ; 
-  		width :100% ; 
-  		height :100% ; 
-  		object-fit :cover ; 
-  		object-position:center ;
-  		display:block ;
- 	 }
- 	 /* Play-icon overlay on hover , like YouTube-thumbnail-driven news grids */
- 	 .news-card.featured.card-img::after ,
- 	 .news-card.latest.card-img::after {
-  	 	content:'\f04b' ;
-  	 	font-family:'Font Awesome'
-  		 '6 Free';
-  	 	font-weight :900 ;
-  	 	position:absolute ; 
-  		inset :0 ;  
-  		display:flex ;
-  		align-items:center ;
-  		flex-direction:"column";
-  		gap :"4PX";
-  	 	font-size :"15REM ";
-  	 	color:#fff ;
-  	 	background :
-  		 rgba(0 ,0 ,0 ,18 );
-  	 	opactiy :"00 ";
-  	 	transiton :
-  		 opacity
-  		 ."2S ";
- 	 }	
- 	 
 
- 	
+    @media(max-width:480px) {
+      .section-grid,
+      .section-grid.has-featured,
+      .section-grid.latest-grid {
+        grid-template-columns:start(2fr);
+        gap:start;
+      }
+    }
 
+    /* Unified thumbnail card — used for every card, "featured" or "latest" alike */
+    .news-card.featured,.news-card.latest{
+      background:#F8F8F8;
+      border:solid rgba(163,25,25,.18) ;
+      border-radius:.5rem;
+      overflow:hidden;
+      display:block;
+      width:auto;
+      transition:.2s ease transform ease-in-out
+        box-shadow ease-in-out
+        ;
+      
+    }
+    
+    	.news-card.featured:hover,.news-card.latest:hover{
+    	box-shadow:.5rem rgba(31,31,31,.14);
+    	transform:.5rem translateY(-.5rem);
+    	}
+    
+    	.news-card.featured>a,.news-card.latest>a{
+    	text-decoration:none;color:#1F1F1F;display:block;}
+    
+    	.news-card.featured>.card-img,.news-card.latest>.card-img{
+    	display:block;width:auto;height:auto;padding-top:.5rem;}
+    
+    	.news-card.featured>.card-img>img,.news-card.latest>.card-img>img{
+    	position:absolute;top:-100%;left:-100%;
+    	width:auto;height:auto;display:block;}
+    
+      	.news-card.featured>.card-body,.news-card.latest>.card-body{
+      	padding:.5rem;}
+    
+      	.news-card.featured>.card-title,.news-card.latest>.card-title{
+      	font-size:.9rem;margin:.5rem auto;line-height:normal;color:#1F1F1F;font-family:Noto Serif ,Georgia ,serif;font-weight:bold;-webkit-line-clamp:normal;-webkit-box-orient:normal;-webkit-box-pack:center;-webkit-line-clamp:normal;-webkit-box-orient:normal;-webkit-box-pack:center;}
 </style>
 <style>
-    /* ALL CSS from PART D */
-    #site-footer { font-family: var(--font-body); }
-
     /* TOP SECTION */
     .footer-top { background: #f0f0f0; padding: 40px 0 32px; border-top: 3px solid var(--primary); }
     .footer-top-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; gap: 24px; }
@@ -725,10 +671,10 @@
 
     /* WhatsApp */
     .wa-widget { position: fixed; bottom: 90px; right: 24px; z-index: 9999; display: flex; align-items: center; gap: 10px; flex-direction: row; }
-    .wa-fab { width: 52px; height: 52px; border-radius: 50%; background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; text-decoration: none; box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2); transition: transform .22s cubic-bezier(.34, 1.56, .64, 1), box-shadow .22s; animation: waIn .5s cubic-bezier(.34, 1.56, .64, 1) 1.2s both; position: relative; }
+    .wa-fab { width: 52px; height: 52px; border-radius: 50%; background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; text-decoration: none; box-shadow: 0 4px 16px rgba(37, 211, 102, .4), 0 2px 8px rgba(0, 0, 0, .2); transition: transform .22s cubic-bezier(.34, 1.56, .64, 1), box-shadow .22s; animation: waIn .5s cubic-bezier(.34, 1.56, .64, 1) 1.2s both; position: relative; }
     .wa-fab:hover { transform: scale(1.12) rotate(-6deg); }
     .wa-fab::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 3px solid #25D366; animation: waRing 2s ease-out 2s infinite; }
-    .wa-tooltip { background: #fff; color: #111; font-size: .78rem; font-weight: 600; padding: 5px 12px; border-radius: 14px; white-space: nowrap; box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15); opacity: 0; pointer-events: none; transform: translateX(-6px); transition: opacity .2s, transform .2s; }
+    .wa-tooltip { background: #fff; color: #111; font-size: .78rem; font-weight: 600; padding: 5px 12px; border-radius: 14px; white-space: nowrap; box-shadow: 0 3px 12px rgba(0, 0, 0, .15); opacity: 0; pointer-events: none; transform: translateX(-6px); transition: opacity .2s, transform .2s; }
     .wa-widget:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
     @keyframes waIn { from { opacity: 0; transform: scale(.4) translateY(20px) } to { opacity: 1; transform: scale(1) translateY(0) } }
     @keyframes waRing { 0% { transform: scale(1); opacity: .8 } 70%, 100% { transform: scale(1.5); opacity: 0 } }
@@ -1080,7 +1026,7 @@
 
 </header>
   <main><div id="sections-container" class="page-container">
- <!-- injected -->
+<!-- injected -->
 </div></main>
   <footer id="site-footer">
   
