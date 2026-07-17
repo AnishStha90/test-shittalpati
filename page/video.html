@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-5+ (base64 encoded string)" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
   <style>
 
 :root {
@@ -542,15 +542,25 @@
 
 </style>
 <style>
-  .page-container { max-width:1200px; margin:0 auto; padding:0 16px; }
   * { box-sizing:border-box; }
   .index-page { background:#FFFFFF; color:#1F1F1F; font-family:Noto Serif, Georgia, serif; min-height:100vh; }
   .lang-np { display:none; }
   .lang-en { display:inline; }
 
-  /* Global layout resets */
+  .page-container { max-width:1200px; margin:0 auto; padding:0 16px; }
 
-  /* ─── SECTION LAYOUT — uniform thumbnail-grid style (matches butwaltodayonlinetv.com) ───── */
+  /* Global layout resets */
+  
+  /* ─── SECTION LAYOUT — uniform thumbnail-grid style (matches butwaltodayonlinetv.com) ─────
+     butwaltodayonlinetv.com does NOT use a "1 big featured card + narrow list" split.
+     Every section — including named category sections — renders as a single row/grid of
+     EQUAL-SIZE thumbnail cards: image on top, short 1-2 line title below, small relative
+     time ("6 days अगाडि") with a clock icon. No excerpt text, no "read more" link — the
+     whole card is the link. Only the top-level "Latest News" section and named category
+     sections share this exact same card treatment; nothing is visually "featured" larger
+     than the rest.
+     ───────────────────────────────────────────────────────────────────────────── */
+
   .news-section { margin:28px 0; border-bottom:1px solid rgba(163,25,25,0.18); padding-bottom:24px; }
   .news-section:last-child { border-bottom:none; }
 
@@ -558,1002 +568,237 @@
   .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; padding-bottom:8px; border-bottom:2px solid #A31919; }
   .section-title { font-size:1.15rem; margin:0; color:#A31919; font-family:Noto Serif, Georgia, serif; font-weight:800; display:flex; align-items:center; gap:8px; }
   .section-title::before { content:''; display:inline-block; width:4px; height:1.1em; background:#D4A017; border-radius:2px; flex-shrink:0; }
-  .view-all-link { font-size:.78rem; font-weight:700; color:#A31919; text-decoration:none; padding:4px 12px; border:1px solid #A31919;
-    border-radius:3px;
-    transition:
-      all
-      .2s;
-    white-space:
-      nowrap;
-    }
-    .view-all-link:hover {
-      background:
-        #A31919;
-      color:
-        #FFFFFF;
-    }
+  .view-all-link { font-size:.78rem; font-weight:700; color:#A31919; text-decoration:none; padding:4px 12px; border:1px solid #A31919; border-radius:3px;
+    transition:all .2s;
+    white-space nowrap;
+   }
+   .view-all-link:hover { background:#A31919;
+    color:#FFFFFF;
+   }
 
-    /* ─── UNIFORM GRID (every section, no special "featured" column) ─── */
-    .section-grid,
-    .section-grid.has-featured,
-    .section-grid.latest-grid {
-      display:
-        grid;
-      grid-template-columns:
-        repeat(auto-fill,minmax(220px,1fr));
-      gap:
-        18px;
-      align-items:
-        start;
-    }
-
-    /* The "list" wrapper becomes transparent so its cards join the same grid
-       as the "featured" card — instead of being boxed into a separate column. */
-    .section-list {
-      display:
-        contents;
-    }
-
-    @media(max-width:
-          480px) {
-      .section-grid,
-      .section-grid.has-featured,
-      .section-grid.latest-grid {
-        grid-template-columns:
-          repeat(2,1fr);
-        gap:
-          12px;
-      }
-    }
-
-    /* Unified thumbnail card — used for every card, "featured" or "latest" alike */
-    .news-card.featured,
-    .news-card.latest {
-      background:
-        #F8F8F8;
-      border:
-        1px
-        solid
-        rgba(
-          163,
-          25,
-          25,
-          .
-          .
-          .
-          .
-          .
-          .
-          .
-          .
-          .
-          .
-          .
-          )
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-            ;
-
-border-radius:
-
-6
-
-6
-
-6
-
-6
-
-6
-
-6
-
-6
-
-6
-
-overflow:
-
-hidden;
-
+   /* ─── UNIFORM GRID (every section, no special "featured" column) ─── */
+   .section-grid,
+   .section-grid.has-featured,
+   .section-grid.latest-grid {
+    display:
+grid;
+grid-template-columns:
+repeat(auto-fill,minmax(220px,
+1fr));
+gap:
+18px;
+align-items:start;
+}
+/* The "list" wrapper becomes transparent so its cards join the same grid
+   as the "featured" card — instead of being boxed into a separate column. */
+.section-list {
 display:
-
-block;
-
-width:
-
-100%
-
-100%
-
-100%
-
-100%
-
-transition:
-
-box-shadow
-
-box-shadow
-
-box-shadow
-
-box-shadow
-
-transform
-
-transform
-
-transform
-
-transform
-
-ease;
-
-ease;
-
-ease;
-
-ease;
-
-ease;
-
-translateY(-2)
-
-translateY(-2)
-
-translateY(-2)
-
-translateY(-2)
-
-translateY(-2)
-
-translateY(-2)
-
-translateY(-2)
-
-translateY(-2)
-
-translateY(-2)
-
-translateY(-2);
-
+contents;
 }
-.news-card.featured:hover,
 
-.news-card.latest:hover {
-
-box-shadow:
-
+@media(max-width:
+480px) {
+.page-container {
+max-width:
+1200px;
+margin:
+0 auto;
+padding:
 0 
+16px;
 
-4 
-
-16 
-
+}
+.news-section {
+margin:
+28px 
+0;
+border-
+bottom:
+1px 
+solid 
 rgba(
-
-0,
-
-0,
-
-0,
-
-.
-
-14);
+163,
+25,
+25,
+0.
+18);
+padding-
+bottom:
+24px;
 
 }
-
-.transform:
-
-
-.translateY(
-
-- 
-
-- 
-
-- 
-
-- 
-
-- 
-
-- 
-
-- 
-
-- 
-
-- 
-
-- 
-
-
-.translateY(
-
--
-
--
-
--
-
--
-
--
-
--
-
--
-
--
-
--
-
--
-
-.translateY(
-
--
--
--
--
--
--
--
--
--
--
-.translateY(
-
--
-
--
--
--
--
--
--
--
-.translateY(
-
--
-
-.
-.
-.
-.
-.
-.
-.
-.
-.
-
-}
-
-.news-card.featured > a,
-
-.news-card.latest > a {
-
-text-decoration:
-
+.news-section:last-child {
+border-
+bottom:
 none;
 
-color:
-
-#FFFFFF;
-
-display:
-
-block;
+}
+.section-header {
+display:flex;
+align-items:center;
+justify-content(space-between);
+margin-
+bottom:
+16px;
+padding-
+bottom:
+8px;
+border-
+bottom:
+2pix 
+solid 
+#A31919;
 
 }
-.news-card.featured .
-
-card-img,
-
-.news-card.latest .
-
-card-img {
-
-display:
-
-block;
-
-width:
-
-100%
-
-height:
-
-170
-
-170
-
-170
-
-170
-
-
-position:
-
-
-relative;
-
-
-overflow:
-
-
-hidden;
-
-
-background:
-
-
-#000;
-
-
-}
-.news-card.featured .
-
-card-img img,
-
-.news-card.latest .
-
-card-img img {
-
-position:
-
-
-absolute;
-
-
-inset:
-
-
-0
-
-
-inset:
-
-
-inset:
-
-
-inset:
-
-
-inset:
-
-
-inset:
-
-
-object-fit:
-
-
-
-object-fit:
-
-
-
-object-fit:
-
-
-
-object-fit:
-
-
-
-object-fit:
-
-
-
-cover;
-
-
-
-cover;
-
-
-
-cover;
-
-
-
-cover;
-
-
-
-cover;
-
-
-
-cover;
-
-
-
-cover;
-
-
-object-position:
-
-
-
-center
-
-
-
-center
-
-
-
-center
-
-
-
-center
-
-
-
-center
-
-
-
-center
-
-
-
-center
-
-
-display:
-
-
-
-block;
-
-
-}
-/* Play-icon overlay on hover, like YouTube-thumbnail-driven news grids */
-.news-card.featured .
-
-card-img::after,
-
-.news-card.latest .
-
-card-img::after {
-
-content:'\f04b';
-
-font-family:'Font Awesome'
-
-'Font Awesome'
-
-'Font Awesome'
-
-'Font Awesome'
-
-'Font Awesome'
-
-'Font Awesome'
-
-'Font Awesome'
-
-'Font Awesome'
-
-'Font Awesome'
-
-'Font Awesome'
-
-'Font Awesome'
-
-
-font-weight:
-
-
-
-900
-
-
-900
-
-
-900
-
-
-900
-
-
-900
-
-
-900
-
-
-900
-
-
-900
-
-
-900…
-
-
-position…
-
-
-absolute…
-
-
-inset…
-
-
-inset…
-
-
-inset…
-
-
-inset…
-
-
-inset…
-
-
-
-display...
-
-
-
-flex…
-
-
-
-align-items...
-
-
-
-justify-content...
-
-
-
-flex…
-
-
-
-align-items...
-
-
-
-justify-content...
-
-
-
-flex…
-
-
-
-align-items...
-
-
-
-justify-content...
-
-
-
-flex…
-
-
-
-align-items...
-
-
-
-justify-content...
-
-
-font-size…
-
-….
-
-
-….
-
-
-….
-
-
-….
-
-
-
-color…
-
-….
-
-
-
-background…
-
-….
-
-
-
-opacity…
-
-….
-
-
-
-transition…
-
-
-
-opacity…
-
-
-
-.opacity…
-
-
-
-.opacity….
-
-.opacity….
-
-.opacity….
-
-.opacity….
-
-.opacity….
-
-.opacity….
-
-.opacity….
-
-.opacity…)
-
-opacity…
-
-…..
-
-opacity…)
-
-opacity…)
-
-opacity…)
-
-opacity…)
-
-opacity…)
-
-opacity…)
-
-opacity…)
-
-.opacity…"
-
-}
-
-.news-card.featured:hover .
-
-card-img::after,
-
-.news-card.latest:hover .
-
-card-img::after {
-
-opacity…
-
-
-}
-
-.news-card.featured .
-
-
-
-card-body,
-
-
-
-.card-body {
-
-
-
-padding :
-
-
-
-10 
-
-
-
-12 
-
-
-
-12 
-
-
-
-12 
-
-
-
-10 
-
-
-
-10 
-
-
-
-10 
-
-
-
-10 
-
-
-
-10 
-
-
-
-10 
-
-
-
-10 
-
-
-
-
-}
-.card-title,
-
-
-
-.card-title {
-
-
-
-font-size :
-
-
-
-.9
-
-
-
-.9
-
-
-
-.9
-
-
-
-.9
-
-
-
-.9
-
-
-
-.9
-
-
-
-.9
-
-
-
-.9
-
-
-
-.9
-
-
-
-
-
-margin :
-
-
-
-4 
-
-
-4 
-
-
-4 
-
-
-4 
-
-
-4 
-
-
-
-
-line-height :
-
-
-
-1 .
-
-
-
-45
-
-
-
-
-
-color :
-
-
-
-#FFFFFF;
-
-
-
-font-family :
-
-
-
-Noto Serif,
-
-
-
+.section-title {
+font-size:;
+margin:;
+color:;
+font-family:Noto Serif,
 Georgia,
+serif;;
+font-weight:;
+display:flex;
+align-items:center;;
+gap:;
+}
+.section-title::before {
+content:'';
+display:inline-block;;
+width:;
+height:;
+background:;
+border-radius:;
+flex-shrink:;
+}
+.view-all-link {
+font-size:.78rem;;
+font-weight:;
+color:;
+text-decoration:none;;
+padding:;
+border:;
+border-radius:;
+transition:both;.2s;;white-space nowrap;}
+.view-all-link:hover{background:#A31919;color:#FFFFFF;}
+/* ─── UNIFORM GRID (every section, no special "featured" column) ─── */
+.section-grid,.section-grid.has-featured,.section-grid.latest-grid{display:block;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction-row;-ms-flex-direction-row;-webkit-box-orient:normal;-moz-box-orient:normal;-o-box-orient:normal;-ms-flex-direction:normal;-webkit-flex-wrap nowrap;-ms-flex-wrap nowrap;-moz-flex-wrap nowrap;-o-flex-wrap nowrap flex-direction row flex-wrap nowrap gap :18px ;align-items:start;}
+/* The "list" wrapper becomes transparent so its cards join the same gridas the "featured" card — instead of being boxed into a separate column.*/
+.section-list{display:block;}
+@media(max-width :480px){.page-container{max-width :1200px;margin :auto;padding :auto;.news-section{margin :28px auto;border - bottom :none;padding - bottom :24px;.news-section:last-child{border - bottom :none;.section-header{display:flex ;align-items:center ;justify-content(space-between);margin - bottom :16px;padding - bottom :8px;border - bottom :2 pix solid # A31919;.section-title{font-size :.9rem;margin :.5rem auto;color #: A31919;font-family:Noto Serif ,Georgia ,serif;font-weight :.9rem;display:flex ;align-items:center ;gap :.5rem;.section-title::before{content:'' ;display:inline-block;width :.5rem;height :.5em;background #: D4 A017;border-radius :.5rem flex-shrink:.view-all-link{font-size:.78rem;font-weight:.color#: A31919;text-decoration:none;padding:.4rem12rem;border:.5rem solid # A31919;border-radius:.3rem transition:both;.2s white-spacenowrap}.view-all-link:hover{background#: A31919;color#: FFFFFF}.page-container{max-width1200}px;margin:auto;padding:auto;.news-section{margin28}pxauto;border-bottomnone;padding-bottom24}px;.news-section:last-child{border-bottonone;.section-header{displayflex	align-itemscenter	justify-content(space-between);margin-botton16}px	padding-botton8}px	border-botton2pix	solid#	A31919;.section-title	font-sizel.l.ren	margin	.auto	color#	A31919	font-familNoto Serif	Georgia	serif	font-wieght800	displayflex	align-itemcenter	gap8x}.sectioin-title::before	content''	displayinline-block	width4x	heightl.l.em	background#	D4A017	border-radiu.s2x	flex-shrink	.view-all-link	font-sizel.ren	font-wieght700	color#	A31919	text-decoratio.none	padding4x12x	borderl.pix	solid#	A3l9l9	border-radiu.s3x	transitionall	.l.s	easy white-spacenowrap}.view-all-link:hover	background#	A3l9l9	color#	FFFFFF}.page-container	max-widt1200x	margin	auto	padding	auto	.newe-sectioin	margin28x	auto	border-bottonl.pix	solidrgba(16325 025 018)	padding-botton24x	.newe-sectioin:last-child	border-bottonnone	.sectioin-heade	r	displayflex	align-itemcenter justify-content(space-between)	margin-botton16x	padding-botton8x_border-botton2pix	solid# A3l9l9 .sectioin-titile	font-sizel.l.ren	margin	auto	color# A3l9l9_font-familNoto Serif Georgiaserif_font-wieght800_displayflex	align-itemcenter	gap8x .sectioin-titile::before	content''	displayinline-block	width4x_heightl.l.em_background# D4A017_border-radiu.s2x	flex-shrink_.view-all-link_font-sizel.ren_font-wieght700_color# A3l9l9_text-decoratio.none_padding4x12x_borderlpix_solid# A3l9l9_border-radiu.s3x_transitionall_._easy_white-spacenowrap_.view-all-link:hover_background# A3l9l9_color#_FFFFF7_.page-container_max-widt1200_margin_auto_padding_auto_.newe-sectioin_margin28_auto_border-botton_none_padding_botton24_.newe-section:last-child_border-botton_none_.seectoin-heade_r_displayflex_align-itemcenter_justify_content_space_between_margin_botton_16_padding_botton_8_border_botton_2pix_solid_A_31_99_.sectioin-titile_font-sizel_ren_margin_auto_color_A_31_99_font-familNoto_Serif_Georgiaserif_font_wieght800_displayflex_align-itemcenter_gap_8_.sectioin-titile_before_content_display_inline_block_width_4_height_l_em_background_D_4_A_O7_border_radius_2_x_flex_shrink_view_all_link_font_size_l_ren_font_weight_sty_color_A_31_99_text_decoration_none_padding_l_ren_l_ren_borde_r_l_p_x_solid_A_l_l_l_nine_borde_radius_l_re_transitiol_all_easy_white_space_nowrap_view_all_link_hover_backgroud_A_l_nine_coler_F_F_F_F_
 
+.news-card.featured,.news-card.latest{
+background:#F8F8F8;border:l.p.x solid rgba(16325 025018);borde_radius6.x overflowhidden;displayblock;width100%;transitionbox-shadow._ease transform._ease;}
+.news-card.featured:hover,.news-card.latest:hover{
+box-shadow:_04 _04 _04 _04 rgba00000014_;transformtranslateY_-02.px;}
+.news-card.featured>a,.news-card.latest>a{
+text-decorationnone;color##F.F.F.F.displayblock;}
+.news-card.featured.card-img,.news-card.latest.card-img{
+displayblock;width100%;height170.px.positionrelative.overflowhidden;background###000;}
+.news-card.featured.card-img>img,.news-card.latest.card-img>img{
+positionabsolute.inset00.width100%.height100%.object-fitcover.object-positioncenter.displayblock;}
+/* Play-icon overlay on hover like YouTube-thumbnail-driven news grids */
+.news-card.featured.card-img::after,.news-card.latest.card-img::after{
+content:'\f04b';
+font-family'Font Awesome _ Free';font-weight900.positionabsolute.inset00.displayflex.align-items.center.justify-content.center.font-sizeL.rem.color##fff.backgroundrgba000000018.opacity00.transitionopacity._ease;}
+.news-card.featured:hover.card-img::after,.news-card.latest:hover.card-img::after{
+opacityL;}
+.news-card.featured.card-body,.news-card.latest.card-body{
+padding10.px l2.px l2.px;}
+.news-card.featured.card-title,.news-card.latest.card-title{
+font-sizeL.rem.margin40.margin6.line-heightL45.color##F.F.F.F.font-familNoto_Serif_Georgiaserif.font_weight700.display-webkite_box.-webkite-line-clampL.-webkite_box_orient_vertical.overflowhidden;}
 
+/* Real site shows only thumbnail title time no excerpt read-more link */
+.news-carde.featured.card-meta-desc,.newscard/latest/card-meta-desc{
+disply none;}
 
-serif;
+card-read-more{
+disply none;}
 
+/* Shared card elements */
+.cat-badge{
+disply inline-block.background##A.L.L.L.Nine.color##FFF.font-sizeL.rem.font_weight800.padding20.padding80.border_radius20.margin_bottom6.text_transformuppercase.leter_spacing06em;}
 
+card-date{
+disply inline-block.colorrgba313131055.disply flex.align_items.center.gap40.margin_top40;}
 
-font-weight :
-
-
-
-700
-
-
-
-
-
-display :-webkit-box;-webkit-line-clamp : -webkit-box;-webkit-line-clamp : -webkit-box;-webkit-line-clamp : -webkit-box;-webkit-line-clamp : -webkit-box;-webkit-line-clamp : -webkit-box;-webkit-line-clamp : -webkit-box;-webkit-line-clamp : -webpack line-clamp : -webpack line-clamp : -webpack line-clamp : -webpack line-clamp : -webpack line-clamp : vertical ; overflow:hidden ;} 
-.card-read-more{display:none;} 
-.cat-badge{display:inline-block;background:#A31919;color:#FFFFFF;font-size:.62rem;font-weight:bold;padding:.5em;display:block;margin-top:.5em;text-transform uppercase;} 
-.card-date{font-size:.72rem;color:muted;display:flex	align-items:center	gap:.5em	margin-top:.5em;}
 </style>
 <style>
     /* TOP SECTION */
-    .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
-    .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
-    .footer-col { display:flex; flex-direction:column; gap:10px; }
-    .footer-col-heading { font-size:.82rem; font-weight:800; color:#111; margin:0 0 6px; padding-bottom:8px; border-bottom:2px solid var(--primary); text-transform:uppercase; letter-spacing:.06em; }
-    .footer-company-name { font-weight:700; font-size:.9rem; color:#111; margin:0; }
-    .footer-addr { font-size:.82rem; color:#444; margin:0; line-height:1.6; }
-    .footer-contact-line { font-size:.82rem; color:#444; margin:0; }
-    .footer-link-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
-    .footer-link-list li a { font-size:.85rem; color:#333; text-decoration:none; transition:color .2s; display:block; padding:2px 0; }
-    .footer-link-list li a:hover { color:var(--primary); }
+    .footer-top { background: #f0f0f0; padding: 40px 0 32px; border-top: 3px solid var(--primary); }
+    .footer-top-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; gap: 24px; }
+    .footer-col { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-heading { font-size: .82rem; font-weight: 800; color: #111; margin: 0 0 6px; padding-bottom: 8px; border-bottom: 2px solid var(--primary); text-transform: uppercase; letter-spacing: .06em; }
+    .footer-company-name { font-weight: 700; font-size: .9rem; color: #111; margin: 0; }
+    .footer-addr { font-size: .82rem; color: #444; margin: 0; line-height: 1.6; }
+    .footer-contact-line { font-size: .82rem; color: #444; margin: 0; }
+    .footer-link-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+    .footer-link-list li a { font-size: .85rem; color: #333; text-decoration: none; transition: color .2s; display: block; padding: 2px 0; }
+    .footer-link-list li a:hover { color: var(--primary); }
 
     /* BOTTOM BAR */
-    .footer-bottom { background:#d8d8d8; border-top:1px solid #bbb; padding:18px 0; }
-    .footer-bottom-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
-    .footer-bottom-brand { display:flex; flex-direction:column; gap:3px; flex-shrink:0; }
-    .footer-site-name { font-size:1rem; font-weight:800; color:#111; }
-    .footer-copy { font-size:.74rem; color:#555; display:flex; align-items:center; gap:4px; }
-    .footer-copy i { font-size:.72rem; }
-    .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { display:flex; flex-direction:column; gap:2px; }
-    .editor-label { font-size:.74rem; color:#555; }
-    .editor-name { font-size:.9rem; font-weight:800; color:#111; display:block; }
-    .editor-phone { font-size:.8rem; color:#333; display:block; margin-top:1px; }
-    .footer-bottom-info { font-size:.78rem; color:#555; max-width:200px; line-height:1.5; }
-    .footer-bottom-social { display:flex; flex-direction:column; gap:6px; align-items:flex-end; }
-    .connect-label { font-size:.78rem; font-weight:700; color:#333; }
-    .footer-social-row { display:flex; gap:10px; align-items:center; }
-    .footer-social-row a { color:#333; font-size:1.1rem; text-decoration:none; transition:color .2s; }
-    .footer-social-row a:hover { color:var(--primary); }
+    .footer-bottom { background: #d8d8d8; border-top: 1px solid #bbb; padding: 18px 0; }
+    .footer-bottom-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .footer-bottom-brand { display: flex; flex-direction: column; gap: 3px; flex-shrink: 0; }
+    .footer-site-name { font-size: 1rem; font-weight: 800; color: #111; }
+    .footer-copy { font-size: .74rem; color: #555; display: flex; align-items: center; gap: 4px; }
+    .footer-copy i { font-size: .72rem; }
+    .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { display: flex; flex-direction: column; gap: 2px; }
+    .editor-label { font-size: .74rem; color: #555; }
+    .editor-name { font-size: .9rem; font-weight: 800; color: #111; display: block; }
+    .editor-phone { font-size: .8rem; color: #333; display: block; margin-top: 1px; }
+    .footer-bottom-info { font-size: .78rem; color: #555; max-width: 200px; line-height: 1.5; }
+    .footer-bottom-social { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+    .connect-label { font-size: .78rem; font-weight: 700; color: #333; }
+    .footer-social-row { display: flex; gap: 10px; align-items: center; }
+    .footer-social-row a { color: #333; font-size: 1.1rem; text-decoration: none; transition: color .2s; }
+    .footer-social-row a:hover { color: var(--primary); }
 
     /* Language */
-    .lang-en { display:inline; }
-    .lang-np { display:none; }
-    body.lang-active .lang-en { display:none; }
-    body.lang-active .lang-np { display:inline; }
+    .lang-en { display: inline; }
+    .lang-np { display: none; }
+    body.lang-active .lang-en { display: none; }
+    body.lang-active .lang-np { display: inline; }
 
     /* Responsive */
-    @media(max-width:1000px){
-      .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; }
+    @media (max-width: 1000px) {
+      .footer-top-inner { grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
     }
-    @media(max-width:640px){
-      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; }
-      .footer-bottom-inner { flex-direction:column; align-items:flex-start; gap:12px; }
-      .footer-bottom-social { align-items:flex-start; }
+    @media (max-width: 640px) {
+      .footer-top-inner { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .footer-bottom-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .footer-bottom-social { align-items: flex-start; }
     }
-    @media(max-width:400px){
-      .footer-top-inner { grid-template-columns:1fr; }
+    @media (max-width: 400px) {
+      .footer-top-inner { grid-template-columns: 1fr; }
     }
 
     /* WhatsApp */
-    .wa-widget { position:fixed; bottom:90px; right:24px; z-index:9999; display:flex; align-items:center; gap:10px; flex-direction:row; }
-    .wa-fab { width:52px; height:52px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.7rem; text-decoration:none; box-shadow:0 4px 16px rgba(37,211,102,.4),0 2px 8px rgba(0,0,0,.2); transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; animation:waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both; position:relative; }
-    .wa-fab:hover { transform:scale(1.12) rotate(-6deg); }
-    .wa-fab::after { content:''; position:absolute; inset:0; border-radius:50%; border:3px solid #25D366; animation:waRing 2s ease-out 2s infinite; }
-    .wa-tooltip { background:#fff; color:#111; font-size:.78rem; font-weight:600; padding:5px 12px; border-radius:14px; white-space:nowrap; box-shadow:0 3px 12px rgba(0,0,0,.15); opacity:0; pointer-events:none; transform:translateX(-6px); transition:opacity .2s,transform .2s; }
-    .wa-widget:hover .wa-tooltip { opacity:1; transform:translateX(0); }
-    @keyframes waIn { from{opacity:0;transform:scale(.4) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
-    @keyframes waRing { 0%{transform:scale(1);opacity:.8} 70%,100%{transform:scale(1.5);opacity:0} }
-    @media(max-width:480px){ .wa-widget{bottom:90px;right:14px;} .wa-fab{width:46px;height:46px;font-size:1.5rem;} }
+    .wa-widget { position: fixed; bottom: 90px; right: 24px; z-index: 9999; display: flex; align-items: center; gap: 10px; flex-direction: row; }
+    .wa-fab { width: 52px; height: 52px; border-radius: 50%; background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; text-decoration: none; box-shadow: 0 4px 16px rgba(37, 211, 102, .4), 0 2px 8px rgba(0, 0, 0, .2); transition: transform .22s cubic-bezier(.34, 1.56, .64, 1), box-shadow .22s; animation: waIn .5s cubic-bezier(.34, 1.56, .64, 1) 1.2s both; position: relative; }
+    .wa-fab:hover { transform: scale(1.12) rotate(-6deg); }
+    .wa-fab::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 3px solid #25D366; animation: waRing 2s ease-out 2s infinite; }
+    .wa-tooltip { background: #fff; color: #111; font-size: .78rem; font-weight: 600; padding: 5px 12px; border-radius: 14px; white-space: nowrap; box-shadow: 0 3px 12px rgba(0, 0, 0, .15); opacity: 0; pointer-events: none; transform: translateX(-6px); transition: opacity .2s, transform .2s; }
+    .wa-widget:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
+    @keyframes waIn { from { opacity: 0; transform: scale(.4) translateY(20px) } to { opacity: 1; transform: scale(1) translateY(0) } }
+    @keyframes waRing { 0% { transform: scale(1); opacity: .8 } 70%, 100% { transform: scale(1.5); opacity: 0 } }
+    @media (max-width: 480px) { .wa-widget { bottom: 90px; right: 14px; } .wa-fab { width: 46px; height: 46px; font-size: 1.5rem; } }
 
     /* Add these responsive styles for footer mobile view */
-    @media(max-width:640px){
-      .footer-top-inner { 
-        grid-template-columns: 1fr 1fr; 
-        gap: 16px;
-        text-align: center;
-      }
-      .footer-bottom-inner { 
-        flex-direction: column; 
-        align-items: center;
-        gap: 16px;
-        text-align: center;
-      }
-      .footer-bottom-social { 
-        align-items: center;
-        width: 100%;
-      }
-      .footer-social-row {
-        justify-content: center;
-      }
-      .footer-col {
-        align-items: center;
-        text-align: center;
-      }
-      .footer-link-list {
-        align-items: center;
-      }
-      .footer-col-heading {
-        text-align: center;
-        width: 100%;
-      }
-      .footer-bottom-brand {
-        align-items: center;
-      }
-      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq {
-        align-items: center;
-      }
-      .footer-bottom-info {
-        max-width: 100%;
-        text-align: center;
-      }
+    @media (max-width: 640px) {
+      .footer-top-inner { grid-template-columns: 1fr 1fr; gap: 16px; text-align: center; }
+      .footer-bottom-inner { flex-direction: column; align-items: center; gap: 16px; text-align: center; }
+      .footer-bottom-social { align-items: center; width: 100%; }
+      .footer-social-row { justify-content: center; }
+      .footer-col { align-items: center; text-align: center; }
+      .footer-link-list { align-items: center; }
+      .footer-col-heading { text-align: center; width: 100%; }
+      .footer-bottom-brand { align-items: center; }
+      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { align-items: center; }
+      .footer-bottom-info { max-width: 100%; text-align: center; }
     }
-    @media(max-width:400px){
-      .footer-top-inner { 
-        grid-template-columns: 1fr; 
-        text-align: center;
-      }
+    @media (max-width: 400px) {
+      .footer-top-inner { grid-template-columns: 1fr; text-align: center; }
     }
   </style>
   <style>
@@ -2280,7 +1525,7 @@ display :-webkit-box;-webkit-line-clamp : -webkit-box;-webkit-line-clamp : -webk
 (function(){
 'use strict';
 
-var SECTIONS_HTML = "\n<section id=\"latest-section\" class=\"news-section\"><div class=\"section-header\"><h2 class=\"section-title\"><span class=\"lang-en\">Latest</span><span class=\"lang-np\" style=\"display:none\">ताजा</span></h2></div><div id=\"latest-grid-0\" class=\"section-grid\"><article class=\"news-card latest\" data-cat=\"General\"><a href=\"/page/detailvideo.html?id=58\" class=\"video-open-link\" data-id=\"58\" data-title=\"Question to Prof. Dr. Bhola Thapa – Your appointment was through meritocracy, but others’ how?\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/d6NpcOJDLEA/hqdefault.jpg\" alt=\"Question to Prof. Dr. Bhola Thapa – Your appointment was through meritocracy, but others’ how?\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Question to Prof. Dr. Bhola Thapa – Your appointment was through meritocracy, but others’ how?</h3><h3 class=\"card-title lang-np\" style=\"display:none\">प्राध्यापक डा. भोला थापालाई प्रश्न – तपाईँको नियुक्ति मेरिटोक्रेसीमार्फत्, अरूको चाहिँ कसरी ?</h3><span class=\"card-date\" data-date-ad=\"2026-07-13\" data-time=\"17:28\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=54\" class=\"video-open-link\" data-id=\"54\" data-title=\"Today news | nepali news | aaja ka mukhya samachar | 28 ashar 2083 | Butwal Today News#news\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/dJzFzv9-eWo/hqdefault.jpg\" alt=\"Today news | nepali news | aaja ka mukhya samachar | 28 ashar 2083 | Butwal Today News#news\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Today news | nepali news | aaja ka mukhya samachar | 28 ashar 2083 | Butwal Today News#news</h3><h3 class=\"card-title lang-np\" style=\"display:none\">आजको समाचार | नेपाली समाचार | आजको मुख्य समाचार | २८ असार २०८३ | बुटवल टुडे समाचार#news</h3><span class=\"card-date\" data-date-ad=\"2026-07-12\" data-time=\"19:18\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Highlights\"><a href=\"/page/detailvideo.html?id=53\" class=\"video-open-link\" data-id=\"53\" data-title=\"HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/PUpKAtiOY9Q/hqdefault.jpg\" alt=\"HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy</h3><h3 class=\"card-title lang-np\" style=\"display:none\">हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र</h3><span class=\"card-date\" data-date-ad=\"2026-07-12\" data-time=\"19:17\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Highlights\"><a href=\"/page/detailvideo.html?id=52\" class=\"video-open-link\" data-id=\"52\" data-title=\"HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/PUpKAtiOY9Q/hqdefault.jpg\" alt=\"HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy</h3><h3 class=\"card-title lang-np\" style=\"display:none\">हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र</h3><span class=\"card-date\" data-date-ad=\"2026-07-12\" data-time=\"19:17\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Sport\"><a href=\"/page/detailvideo.html?id=51\" class=\"video-open-link\" data-id=\"51\" data-title=\"FIFA World Cup: Semi-finals to feature clash of former champions #fifaworldcup2026\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/Cb4KlL1LJlE/hqdefault.jpg\" alt=\"FIFA World Cup: Semi-finals to feature clash of former champions #fifaworldcup2026\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">FIFA World Cup: Semi-finals to feature clash of former champions #fifaworldcup2026</h3><h3 class=\"card-title lang-np\" style=\"display:none\">फिफा विश्वकप : सेमिफाइनलमा पूर्व विजेता टोलीकै भिडन्त हुने #fifaworldcup2026</h3><span class=\"card-date\" data-date-ad=\"2026-07-12\" data-time=\"19:15\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=46\" class=\"video-open-link\" data-id=\"46\" data-title=\"Today news | nepali news | aaja ka mukhya samachar | 25 ashar 2083 | बुटवल टुडे समाचार#news\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/cpYsJvT5Tik/hqdefault.jpg\" alt=\"Today news | nepali news | aaja ka mukhya samachar | 25 ashar 2083 | बुटवल टुडे समाचार#news\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Today news | nepali news | aaja ka mukhya samachar | 25 ashar 2083 | बुटवल टुडे समाचार#news</h3><h3 class=\"card-title lang-np\" style=\"display:none\">आजको समाचार | नेपाली समाचार | आजका मुख्य समाचार | २५ असार २०८३ | बुटवल टुडे समाचार#news</h3><span class=\"card-date\" data-date-ad=\"2026-07-09\" data-time=\"13:38\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Business\"><a href=\"/page/detailvideo.html?id=45\" class=\"video-open-link\" data-id=\"45\" data-title=\"Nepal Requests Saudi Arabia to Halt Skill Testing Program\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/LuRTewN9QbE/hqdefault.jpg\" alt=\"Nepal Requests Saudi Arabia to Halt Skill Testing Program\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Nepal Requests Saudi Arabia to Halt Skill Testing Program</h3><h3 class=\"card-title lang-np\" style=\"display:none\">सीप परीक्षण कार्यक्रम रोक्न नेपालले गर्यो साउदी अरबलाई अनुरोध</h3><span class=\"card-date\" data-date-ad=\"2026-07-08\" data-time=\"13:36\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Politics\"><a href=\"/page/detailvideo.html?id=44\" class=\"video-open-link\" data-id=\"44\" data-title=\"What did Balen Government do in 100 days? #balensarkar #balenshah #balen\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/WBSdckq6-b0/hqdefault.jpg\" alt=\"What did Balen Government do in 100 days? #balensarkar #balenshah #balen\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">What did Balen Government do in 100 days? #balensarkar #balenshah #balen</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बालेन सरकारले १०० दिनमा के गर्‍यो ?#balensarkar #balenshah #balen</h3><span class=\"card-date\" data-date-ad=\"2026-07-08\" data-time=\"13:34\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=43\" class=\"video-open-link\" data-id=\"43\" data-title=\"Today news | nepali news | aaja ka mukhya samachar | 24 ashar 2083 | Butwal Today News#news\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/GQINE1XPn78/hqdefault.jpg\" alt=\"Today news | nepali news | aaja ka mukhya samachar | 24 ashar 2083 | Butwal Today News#news\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Today news | nepali news | aaja ka mukhya samachar | 24 ashar 2083 | Butwal Today News#news</h3><h3 class=\"card-title lang-np\" style=\"display:none\">आजको समाचार | नेपाली समाचार | आजको मुख्य समाचार | २४ असार २०८३ | बुटवल टुडे समाचार#news</h3><span class=\"card-date\" data-date-ad=\"2026-07-08\" data-time=\"13:30\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article></div><div style=\"width:100%;margin:12px 0;text-align:center;\"><a href=\"#\"><img src=\"../images/section_1.jpg\" alt=\"Advertisement\" style=\"width:100%;height:auto;display:block;border-radius:4px;\"></a><span class=\"lang-en\" style=\"display:block;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">Advertisement</span><span class=\"lang-np\" style=\"display:none;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">विज्ञापन</span></div><div id=\"latest-grid-9\" class=\"section-grid\"><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=42\" class=\"video-open-link\" data-id=\"42\" data-title=\"Nepalese also injured in Qatar&#39;s Ras Laffan explosion!\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/tVMG89oJuNI/hqdefault.jpg\" alt=\"Nepalese also injured in Qatar&#39;s Ras Laffan explosion!\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Nepalese also injured in Qatar&#39;s Ras Laffan explosion!</h3><h3 class=\"card-title lang-np\" style=\"display:none\">कतारको रस लाफान विष्फोटमा नेपालीहरु पनि घाइते भए !</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"17:33\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=40\" class=\"video-open-link\" data-id=\"40\" data-title=\"Thakali Sewa Samaj Butwal Engaged in Preserving Tradition | #NewsUpdate #newsfeed #socialwork\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/MdAfTBbsPng/hqdefault.jpg\" alt=\"Thakali Sewa Samaj Butwal Engaged in Preserving Tradition | #NewsUpdate #newsfeed #socialwork\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Thakali Sewa Samaj Butwal Engaged in Preserving Tradition | #NewsUpdate #newsfeed #socialwork</h3><h3 class=\"card-title lang-np\" style=\"display:none\">परम्परा संरक्षणमा जुट्दै थकाली सेवा समाज बुटवल ।।। #NewsUpdate #newsfeed #socialwork</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"17:32\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=39\" class=\"video-open-link\" data-id=\"39\" data-title=\"Oli, Prachanda, and Nepal on same stage at Madan Bhandari birth anniversary program\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/3GAggDJqZsI/hqdefault.jpg\" alt=\"Oli, Prachanda, and Nepal on same stage at Madan Bhandari birth anniversary program\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Oli, Prachanda, and Nepal on same stage at Madan Bhandari birth anniversary program</h3><h3 class=\"card-title lang-np\" style=\"display:none\">मदन भण्डारीको जन्मजयन्ती कार्यक्रममा ओली, प्रचण्ड र नेपाल एउटै मञ्चमा</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"15:53\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=38\" class=\"video-open-link\" data-id=\"38\" data-title=\"Opium and cannabis cultivation destroyed on 56 ropani of land in Rolpa #CrimeNews\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/oNFQ_ms9WS0/hqdefault.jpg\" alt=\"Opium and cannabis cultivation destroyed on 56 ropani of land in Rolpa #CrimeNews\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Opium and cannabis cultivation destroyed on 56 ropani of land in Rolpa #CrimeNews</h3><h3 class=\"card-title lang-np\" style=\"display:none\">रोल्पामा ५६ रोपनी जग्गामा लगाइएको अफिम र गाँजा खेती नष्ट #CrimeNews</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"15:53\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=37\" class=\"video-open-link\" data-id=\"37\" data-title=\"CPN-UML lawmaker Koiri sentenced to 5 years in prison\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/jY5BoX6R3WI/hqdefault.jpg\" alt=\"CPN-UML lawmaker Koiri sentenced to 5 years in prison\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">CPN-UML lawmaker Koiri sentenced to 5 years in prison</h3><h3 class=\"card-title lang-np\" style=\"display:none\">एमाले सांसद कोइरीलाई ५ वर्ष कैद सजाय</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"15:52\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=36\" class=\"video-open-link\" data-id=\"36\" data-title=\"Madheshi parties unite against repealing Provincial Assembly, warn of protest ! #PoliticalNews\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/fjVIksJogBc/hqdefault.jpg\" alt=\"Madheshi parties unite against repealing Provincial Assembly, warn of protest ! #PoliticalNews\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Madheshi parties unite against repealing Provincial Assembly, warn of protest ! #PoliticalNews</h3><h3 class=\"card-title lang-np\" style=\"display:none\">प्रदेशसभा खारेजविरुद्ध मधेशवादी दल एकजुट, प्रतिवादको चेतावनी ! #PoliticalNews</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"14:32\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Health Tip\"><a href=\"/page/detailvideo.html?id=35\" class=\"video-open-link\" data-id=\"35\" data-title=\"Benefits of Eating Guava | HEALTH TIPS |#healthtips #healthylifestyle #guava #healthbenefits\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/ZhcGzqkpOcA/hqdefault.jpg\" alt=\"Benefits of Eating Guava | HEALTH TIPS |#healthtips #healthylifestyle #guava #healthbenefits\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Benefits of Eating Guava | HEALTH TIPS |#healthtips #healthylifestyle #guava #healthbenefits</h3><h3 class=\"card-title lang-np\" style=\"display:none\">अम्बा खानुका फाइदाहरू | स्वास्थ्य सुझावहरू |#स्वास्थ्य सुझावहरू #स्वस्थ जीवनशैली #अम्बा #स्वास्थ्य फाइदाहरू</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:49\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Health Matters\"><a href=\"/page/detailvideo.html?id=34\" class=\"video-open-link\" data-id=\"34\" data-title=\"Meditech&#39;s Journey: Commitment to Quality Healthcare - Chairman JP Kandel || SWASTHYA KA KURA\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/x8UCPKceTBc/hqdefault.jpg\" alt=\"Meditech&#39;s Journey: Commitment to Quality Healthcare - Chairman JP Kandel || SWASTHYA KA KURA\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Meditech&#39;s Journey: Commitment to Quality Healthcare - Chairman JP Kandel || SWASTHYA KA KURA</h3><h3 class=\"card-title lang-np\" style=\"display:none\">मेडिटेकको यात्रा गुणस्तरीय स्वास्थ्य सेवाको प्रतिबद्धता - अध्यक्ष जेपी कँडेल ।। स्वास्थ्यका कुरा</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:44\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Public Dialogue\"><a href=\"/page/detailvideo.html?id=33\" class=\"video-open-link\" data-id=\"33\" data-title=\"Youth&#39;s Hard Work Makes the Nation Prosperous | Kamal Jung Kunwar, Owner of Daddy&#39;s Kitchen | Samriddhi Samvad\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/o0o7N7-sCQ0/hqdefault.jpg\" alt=\"Youth&#39;s Hard Work Makes the Nation Prosperous | Kamal Jung Kunwar, Owner of Daddy&#39;s Kitchen | Samriddhi Samvad\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Youth&#39;s Hard Work Makes the Nation Prosperous | Kamal Jung Kunwar, Owner of Daddy&#39;s Kitchen | Samriddhi Samvad</h3><h3 class=\"card-title lang-np\" style=\"display:none\">युवाले परिश्रम गरे देश समृद्ध बन्छ । ड्याडीज किचनका संचालक कमल जंग कुँवर | समृद्धि संवाद ।</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:44\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article></div><div style=\"width:100%;margin:12px 0;text-align:center;\"><a href=\"#\"><img src=\"../images/section_2.jpg\" alt=\"Advertisement\" style=\"width:100%;height:auto;display:block;border-radius:4px;\"></a><span class=\"lang-en\" style=\"display:block;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">Advertisement</span><span class=\"lang-np\" style=\"display:none;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">विज्ञापन</span></div><div id=\"latest-grid-18\" class=\"section-grid\"><article class=\"news-card latest\" data-cat=\"Cooperative Journey\"><a href=\"/page/detailvideo.html?id=32\" class=\"video-open-link\" data-id=\"32\" data-title=\"Cooperatives must be able to secure members&#39; savings: Ram Prasad Paudel | #interview #sahakari #business\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/V4VS-mWytdU/hqdefault.jpg\" alt=\"Cooperatives must be able to secure members&#39; savings: Ram Prasad Paudel | #interview #sahakari #business\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Cooperatives must be able to secure members&#39; savings: Ram Prasad Paudel | #interview #sahakari #business</h3><h3 class=\"card-title lang-np\" style=\"display:none\">सहकारीले सदस्यकाे बचत सुरक्षित गर्न सक्नु पर्छ : रामप्रसाद पाैडेल | #interview #sahakari #business</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:43\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Co-development\"><a href=\"/page/detailvideo.html?id=31\" class=\"video-open-link\" data-id=\"31\" data-title=\"To sustain in business, long-term planning and patience are needed: Shanta Thapa, Managing Director of De Crown\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/xhsBMyCXPjM/hqdefault.jpg\" alt=\"To sustain in business, long-term planning and patience are needed: Shanta Thapa, Managing Director of De Crown\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">To sustain in business, long-term planning and patience are needed: Shanta Thapa, Managing Director of De Crown</h3><h3 class=\"card-title lang-np\" style=\"display:none\">व्यवसायमा टिक्न दीर्घकालीन योजना र समयलाई कुर्न सक्नुपर्छ : शान्ता थापा, दी क्राउन प्रबन्ध निर्देशक</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:42\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Women Power\"><a href=\"/page/detailvideo.html?id=29\" class=\"video-open-link\" data-id=\"29\" data-title=\"Let’s Be Self-Reliant, Not Dependent on Others: Savina Amatya Shrestha ||| #interview\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/HCFDyRr0vCA/hqdefault.jpg\" alt=\"Let’s Be Self-Reliant, Not Dependent on Others: Savina Amatya Shrestha ||| #interview\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Let’s Be Self-Reliant, Not Dependent on Others: Savina Amatya Shrestha ||| #interview</h3><h3 class=\"card-title lang-np\" style=\"display:none\">परनिर्भरता होइन आत्मनिर्भर बनौं : सविना अमात्य श्रेष्ठ ||| #interview</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:39\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Butwal Debate\"><a href=\"/page/detailvideo.html?id=28\" class=\"video-open-link\" data-id=\"28\" data-title=\"I am a servant, vote after seeing my work: Basudev Ghimire | Butwal Debate\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/JX65hepjy4A/hqdefault.jpg\" alt=\"I am a servant, vote after seeing my work: Basudev Ghimire | Butwal Debate\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">I am a servant, vote after seeing my work: Basudev Ghimire | Butwal Debate</h3><h3 class=\"card-title lang-np\" style=\"display:none\">म सेवक हुँ, काम हेरेर भोट दिनुस् : वासुदेव घिमिरे । बुटवल बहसमा ।</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:38\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Monitoring\"><a href=\"/page/detailvideo.html?id=27\" class=\"video-open-link\" data-id=\"27\" data-title=\"Who lives in the buildings of the Butwal Road Division? | NIGRANI | #rupandehi #butwal #governmentoffice\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/9v_zwcIzbDA/hqdefault.jpg\" alt=\"Who lives in the buildings of the Butwal Road Division? | NIGRANI | #rupandehi #butwal #governmentoffice\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Who lives in the buildings of the Butwal Road Division? | NIGRANI | #rupandehi #butwal #governmentoffice</h3><h3 class=\"card-title lang-np\" style=\"display:none\">को बस्छ सडक डिभिजन बुटवलका भवनमा ? | NIGRANI | #rupandehi #butwal #governmentoffice</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:37\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Life Story\"><a href=\"/page/detailvideo.html?id=26\" class=\"video-open-link\" data-id=\"26\" data-title=\"Ticket to Modeling Journey: Grishma Paudel | JIVAN KATHA | #interview\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/AS-u4BhF3aw/hqdefault.jpg\" alt=\"Ticket to Modeling Journey: Grishma Paudel | JIVAN KATHA | #interview\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Ticket to Modeling Journey: Grishma Paudel | JIVAN KATHA | #interview</h3><h3 class=\"card-title lang-np\" style=\"display:none\">टिकटबाट मोडलिङ यात्रामा ग्रीष्मा पौडेल | जीवन कथा | #interview</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:36\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Butwal Khabar\"><a href=\"/page/detailvideo.html?id=25\" class=\"video-open-link\" data-id=\"25\" data-title=\"Extreme torture at Butwal reform home, girl in ventilator, 4 accused arrested | BUTWAL KHABAR |\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/d61Hm4CINSE/hqdefault.jpg\" alt=\"Extreme torture at Butwal reform home, girl in ventilator, 4 accused arrested | BUTWAL KHABAR |\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Extreme torture at Butwal reform home, girl in ventilator, 4 accused arrested | BUTWAL KHABAR |</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बुटवलको सुधार गृहमा चरम यातना, युवती भेन्टिलेटरमा, ४ आरोपी पक्राउ | बुटवल खबर |</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:31\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Horoscope\"><a href=\"/page/detailvideo.html?id=24\" class=\"video-open-link\" data-id=\"24\" data-title=\"Today&#39;s Horoscope for These Zodiac Signs | July 06, 2026 | Monday | Jul 06, 2026 | #rashifal\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/eSp65pTgHzk/hqdefault.jpg\" alt=\"Today&#39;s Horoscope for These Zodiac Signs | July 06, 2026 | Monday | Jul 06, 2026 | #rashifal\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Today&#39;s Horoscope for These Zodiac Signs | July 06, 2026 | Monday | Jul 06, 2026 | #rashifal</h3><h3 class=\"card-title lang-np\" style=\"display:none\">आज यी राशिहरुकाे लागि शुभ, हेर्नुहाेस् राशिफल | २०८३ असार २२ गते सोमबार | Jul 06, 2026 | #rashifal</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:22\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Highlights\"><a href=\"/page/detailvideo.html?id=23\" class=\"video-open-link\" data-id=\"23\" data-title=\"HILIGHTS NEWS | Butwal Highlight | 20 Asar 2083, Saturday | #NewsUpdate #PoliticalNews #economy\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/zwBQ7fQjKZ0/hqdefault.jpg\" alt=\"HILIGHTS NEWS | Butwal Highlight | 20 Asar 2083, Saturday | #NewsUpdate #PoliticalNews #economy\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">HILIGHTS NEWS | Butwal Highlight | 20 Asar 2083, Saturday | #NewsUpdate #PoliticalNews #economy</h3><h3 class=\"card-title lang-np\" style=\"display:none\">हाइलाइट्स न्युज | बुटवल हाइलाइट | २० असार २०८३, शनिवार | #NewsUpdate #PoliticalNews #economy</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:20\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article></div><div style=\"width:100%;margin:12px 0;text-align:center;\"><a href=\"#\"><img src=\"../images/section_3.jpg\" alt=\"Advertisement\" style=\"width:100%;height:auto;display:block;border-radius:4px;\"></a><span class=\"lang-en\" style=\"display:block;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">Advertisement</span><span class=\"lang-np\" style=\"display:none;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">विज्ञापन</span></div><div id=\"latest-grid-27\" class=\"section-grid\"><article class=\"news-card latest\" data-cat=\"health\"><a href=\"/page/detailvideo.html?id=22\" class=\"video-open-link\" data-id=\"22\" data-title=\"Triage system introduced at Butwal&#39;s Lumbini Provincial Hospital #butwaltodaytv #lumbini_nepal #hospital\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/K09NrWJEfLg/hqdefault.jpg\" alt=\"Triage system introduced at Butwal&#39;s Lumbini Provincial Hospital #butwaltodaytv #lumbini_nepal #hospital\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Triage system introduced at Butwal&#39;s Lumbini Provincial Hospital #butwaltodaytv #lumbini_nepal #hospital</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बुटवलको लुम्बिनी प्रादेशिक अस्पतालमा ‘ट्रयाज प्रणाली’ सुरु #butwaltodaytv #lumbini_nepal #hospital</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:50\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"culture\"><a href=\"/page/detailvideo.html?id=21\" class=\"video-open-link\" data-id=\"21\" data-title=\"Why Jitgadhi Festival in Butwal? #butwaltoday #report #news #update #newpost\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/rE3WjESe7uU/hqdefault.jpg\" alt=\"Why Jitgadhi Festival in Butwal? #butwaltoday #report #news #update #newpost\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Why Jitgadhi Festival in Butwal? #butwaltoday #report #news #update #newpost</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बुटवलमा जीतगढी उत्सव किन ? #butwaltoday #report #news #update #newpost</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:48\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"education\"><a href=\"/page/detailvideo.html?id=20\" class=\"video-open-link\" data-id=\"20\" data-title=\"Shikshyalaya | Nayagaun School excels in Sajitama\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/d8toB0cpIvY/hqdefault.jpg\" alt=\"Shikshyalaya | Nayagaun School excels in Sajitama\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Shikshyalaya | Nayagaun School excels in Sajitama</h3><h3 class=\"card-title lang-np\" style=\"display:none\">शिक्षालय | नजितामा अब्बल बन्दै नयाँगाउँ मा.वि बुटवल</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:47\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"entertainment\"><a href=\"/page/detailvideo.html?id=19\" class=\"video-open-link\" data-id=\"19\" data-title=\"Jitgadhi Victory Celebration#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/QWb4um_E6To/hqdefault.jpg\" alt=\"Jitgadhi Victory Celebration#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Jitgadhi Victory Celebration#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police</h3><h3 class=\"card-title lang-np\" style=\"display:none\">जितगढीमा विजय उत्सव#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:47\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"tourism\"><a href=\"/page/detailvideo.html?id=18\" class=\"video-open-link\" data-id=\"18\" data-title=\"Mardi Himal | Tourist Destination | #mardihimal #marditrek #mountaineering #nature #placetovisit\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/CfB4mU8GbWQ/hqdefault.jpg\" alt=\"Mardi Himal | Tourist Destination | #mardihimal #marditrek #mountaineering #nature #placetovisit\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Mardi Himal | Tourist Destination | #mardihimal #marditrek #mountaineering #nature #placetovisit</h3><h3 class=\"card-title lang-np\" style=\"display:none\">मर्दी हिमाल | पर्यटकीय स्थल | #mardihimal #marditrek #mountaineering #nature #placetovisit</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:46\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Sport\"><a href=\"/page/detailvideo.html?id=17\" class=\"video-open-link\" data-id=\"17\" data-title=\"FIFA suspends ANFA while World Cup is ongoing\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/0OaAsIW7MRM/hqdefault.jpg\" alt=\"FIFA suspends ANFA while World Cup is ongoing\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">FIFA suspends ANFA while World Cup is ongoing</h3><h3 class=\"card-title lang-np\" style=\"display:none\">विश्वकप चलिरहँदा फिफाले गर्यो एन्फालाई निलम्बन</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:44\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"international\"><a href=\"/page/detailvideo.html?id=16\" class=\"video-open-link\" data-id=\"16\" data-title=\"Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Funeral Ceremony\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/g-wcfgJwj7Q/hqdefault.jpg\" alt=\"Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Funeral Ceremony\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Funeral Ceremony</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बुवाको शोक समारोहमा समेत सहभागी भएनन् इरानी सर्वोच्च नेता मोज्तबा खामेनी</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:44\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Highlights\"><a href=\"/page/detailvideo.html?id=15\" class=\"video-open-link\" data-id=\"15\" data-title=\"HILIGHTS NEWS | Butwal Highlights | 21 Asar 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/g8FW28-dG2s/hqdefault.jpg\" alt=\"HILIGHTS NEWS | Butwal Highlights | 21 Asar 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">HILIGHTS NEWS | Butwal Highlights | 21 Asar 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy</h3><h3 class=\"card-title lang-np\" style=\"display:none\">हाइलाइट्स न्युज | बुटवल हाइलाइट | २१ असार २०८३, आइतवार | #NewsUpdate #hilights #PoliticalNews #economy</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"22:26\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Shorts\"><a href=\"/page/detailvideo.html?id=14\" class=\"video-open-link\" data-id=\"14\" data-title=\"Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Mourning Ceremony\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/g-wcfgJwj7Q/hqdefault.jpg\" alt=\"Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Mourning Ceremony\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Mourning Ceremony</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बुवाको शोक समारोहमा समेत सहभागी भएनन् इरानी सर्वोच्च नेता मोज्तबा खामेनी</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"18:29\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article></div><div style=\"width:100%;margin:12px 0;text-align:center;\"><a href=\"#\"><img src=\"../images/section_1.jpg\" alt=\"Advertisement\" style=\"width:100%;height:auto;display:block;border-radius:4px;\"></a><span class=\"lang-en\" style=\"display:block;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">Advertisement</span><span class=\"lang-np\" style=\"display:none;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">विज्ञापन</span></div><div id=\"latest-grid-36\" class=\"section-grid\"><article class=\"news-card latest\" data-cat=\"Shorts\"><a href=\"/page/detailvideo.html?id=12\" class=\"video-open-link\" data-id=\"12\" data-title=\"Claim: The Slope of Daunne Road Will Last More Than 30 Years\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/OcnhVrVb6yE/hqdefault.jpg\" alt=\"Claim: The Slope of Daunne Road Will Last More Than 30 Years\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Claim: The Slope of Daunne Road Will Last More Than 30 Years</h3><h3 class=\"card-title lang-np\" style=\"display:none\">दाबी: डाउन्ने सडकको ढलान ३० वर्षभन्दा बढी टिक्नेछ</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"17:18\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Highlights\"><a href=\"/page/detailvideo.html?id=9\" class=\"video-open-link\" data-id=\"9\" data-title=\"HIGHLIGHTS NEWS | बुटवल हाइलाइट | २० Asar 2083, Saturday\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/zwBQ7fQjKZ0/hqdefault.jpg\" alt=\"HIGHLIGHTS NEWS | बुटवल हाइलाइट | २० Asar 2083, Saturday\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">HIGHLIGHTS NEWS | बुटवल हाइलाइट | २० Asar 2083, Saturday</h3><h3 class=\"card-title lang-np\" style=\"display:none\">हाइलाइट्स समाचार | बुटवल हाइलाइट | २० असार २०८३, शनिवार</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"16:35\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Butwal News\"><a href=\"/page/detailvideo.html?id=8\" class=\"video-open-link\" data-id=\"8\" data-title=\"Extreme Torture in Butwal Correctional Home, Young Woman on Ventilator, 4 Suspects Arrested | BUTWAL KHABAR |\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/d61Hm4CINSE/hqdefault.jpg\" alt=\"Extreme Torture in Butwal Correctional Home, Young Woman on Ventilator, 4 Suspects Arrested | BUTWAL KHABAR |\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Extreme Torture in Butwal Correctional Home, Young Woman on Ventilator, 4 Suspects Arrested | BUTWAL KHABAR |</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बुटवलको सुधार गृहमा चरम यातना, युवती भेन्टिलेटरमा, ४ आरोपी पक्राउ | बुटवल खबर |</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"16:33\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=\" class=\"video-open-link\" data-id=\"\" data-title=\"Today&#39;s News | Nepali News | Today&#39;s Main News | 21 Ashar 2083 | Butwal Today News\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/NqfOzqN6KqA/hqdefault.jpg\" alt=\"Today&#39;s News | Nepali News | Today&#39;s Main News | 21 Ashar 2083 | Butwal Today News\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Today&#39;s News | Nepali News | Today&#39;s Main News | 21 Ashar 2083 | Butwal Today News</h3><h3 class=\"card-title lang-np\" style=\"display:none\">आजको समाचार | नेपाली समाचार | आजको मुख्य समाचार | २१ असार २०८३ | बुटवल टुडे समाचार</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"16:30\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Newspapers\"><a href=\"/page/detailvideo.html?id=7\" class=\"video-open-link\" data-id=\"7\" data-title=\"Today&#39;s Newspaper News | 21 Asar 2083, Sunday | published from Butwal |\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/FdAJHTmq9Zs/hqdefault.jpg\" alt=\"Today&#39;s Newspaper News | 21 Asar 2083, Sunday | published from Butwal |\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Today&#39;s Newspaper News | 21 Asar 2083, Sunday | published from Butwal |</h3><h3 class=\"card-title lang-np\" style=\"display:none\">आजका पत्रपत्रिका | २१ असार २०८३, आइतवार | बुटवलबाट प्रकाशित |</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"16:28\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Nepal Update\"><a href=\"/page/detailvideo.html?id=6\" class=\"video-open-link\" data-id=\"6\" data-title=\"WEATHER UPDATE | Weather Forecast | 2083 Asar 21 Aaitabaar | 5 Jul, 2026 |\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/rsW3LF4IgdM/hqdefault.jpg\" alt=\"WEATHER UPDATE | Weather Forecast | 2083 Asar 21 Aaitabaar | 5 Jul, 2026 |\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">WEATHER UPDATE | Weather Forecast | 2083 Asar 21 Aaitabaar | 5 Jul, 2026 |</h3><h3 class=\"card-title lang-np\" style=\"display:none\">मौसम अपडेट | आजको मौसम पूर्वानुमान | २०८३ असार २१ आइतबार | 5 Jul, 2026 |</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"16:27\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article></div><div style=\"width:100%;margin:12px 0;text-align:center;\"><a href=\"#\"><img src=\"../images/section_2.jpg\" alt=\"Advertisement\" style=\"width:100%;height:auto;display:block;border-radius:4px;\"></a><span class=\"lang-en\" style=\"display:block;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">Advertisement</span><span class=\"lang-np\" style=\"display:none;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">विज्ञापन</span></div></section>";
+var SECTIONS_HTML = "\n<section id=\"latest-section\" class=\"news-section\"><div class=\"section-header\"><h2 class=\"section-title\"><span class=\"lang-en\">Latest</span><span class=\"lang-np\" style=\"display:none\">ताजा</span></h2></div><div id=\"latest-grid-0\" class=\"section-grid\"><article class=\"news-card latest\" data-cat=\"General\"><a href=\"/page/detailvideo.html?id=58\" class=\"video-open-link\" data-id=\"58\" data-title=\"Question to Prof. Dr. Bhola Thapa – Your appointment was through meritocracy, but others’ how?\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/d6NpcOJDLEA/hqdefault.jpg\" alt=\"Question to Prof. Dr. Bhola Thapa – Your appointment was through meritocracy, but others’ how?\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Question to Prof. Dr. Bhola Thapa – Your appointment was through meritocracy, but others’ how?</h3><h3 class=\"card-title lang-np\" style=\"display:none\">प्राध्यापक डा. भोला थापालाई प्रश्न – तपाईँको नियुक्ति मेरिटोक्रेसीमार्फत्, अरूको चाहिँ कसरी ?</h3><span class=\"card-date\" data-date-ad=\"2026-07-13\" data-time=\"17:28\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=54\" class=\"video-open-link\" data-id=\"54\" data-title=\"Today news | nepali news | aaja ka mukhya samachar | 28 ashar 2083 | Butwal Today News#news\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/dJzFzv9-eWo/hqdefault.jpg\" alt=\"Today news | nepali news | aaja ka mukhya samachar | 28 ashar 2083 | Butwal Today News#news\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Today news | nepali news | aaja ka mukhya samachar | 28 ashar 2083 | Butwal Today News#news</h3><h3 class=\"card-title lang-np\" style=\"display:none\">आजको समाचार | नेपाली समाचार | आजको मुख्य समाचार | २८ असार २०८३ | बुटवल टुडे समाचार#news</h3><span class=\"card-date\" data-date-ad=\"2026-07-12\" data-time=\"19:18\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Highlights\"><a href=\"/page/detailvideo.html?id=53\" class=\"video-open-link\" data-id=\"53\" data-title=\"HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/PUpKAtiOY9Q/hqdefault.jpg\" alt=\"HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy</h3><h3 class=\"card-title lang-np\" style=\"display:none\">हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र</h3><span class=\"card-date\" data-date-ad=\"2026-07-12\" data-time=\"19:17\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Highlights\"><a href=\"/page/detailvideo.html?id=52\" class=\"video-open-link\" data-id=\"52\" data-title=\"HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/PUpKAtiOY9Q/hqdefault.jpg\" alt=\"HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy</h3><h3 class=\"card-title lang-np\" style=\"display:none\">हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र</h3><span class=\"card-date\" data-date-ad=\"2026-07-12\" data-time=\"19:17\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Sport\"><a href=\"/page/detailvideo.html?id=51\" class=\"video-open-link\" data-id=\"51\" data-title=\"FIFA World Cup: Semi-finals to feature clash of former champions #fifaworldcup2026\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/Cb4KlL1LJlE/hqdefault.jpg\" alt=\"FIFA World Cup: Semi-finals to feature clash of former champions #fifaworldcup2026\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">FIFA World Cup: Semi-finals to feature clash of former champions #fifaworldcup2026</h3><h3 class=\"card-title lang-np\" style=\"display:none\">फिफा विश्वकप : सेमिफाइनलमा पूर्व विजेता टोलीकै भिडन्त हुने #fifaworldcup2026</h3><span class=\"card-date\" data-date-ad=\"2026-07-12\" data-time=\"19:15\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=46\" class=\"video-open-link\" data-id=\"46\" data-title=\"Today news | nepali news | aaja ka mukhya samachar | 25 ashar 2083 | बुटवल टुडे समाचार#news\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/cpYsJvT5Tik/hqdefault.jpg\" alt=\"Today news | nepali news | aaja ka mukhya samachar | 25 ashar 2083 | बुटवल टुडे समाचार#news\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Today news | nepali news | aaja ka mukhya samachar | 25 ashar 2083 | बुटवल टुडे समाचार#news</h3><h3 class=\"card-title lang-np\" style=\"display:none\">आजको समाचार | नेपाली समाचार | आजका मुख्य समाचार | २५ असार २०८३ | बुटवल टुडे समाचार#news</h3><span class=\"card-date\" data-date-ad=\"2026-07-09\" data-time=\"13:38\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Business\"><a href=\"/page/detailvideo.html?id=45\" class=\"video-open-link\" data-id=\"45\" data-title=\"Nepal Requests Saudi Arabia to Halt Skill Testing Program\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/LuRTewN9QbE/hqdefault.jpg\" alt=\"Nepal Requests Saudi Arabia to Halt Skill Testing Program\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Nepal Requests Saudi Arabia to Halt Skill Testing Program</h3><h3 class=\"card-title lang-np\" style=\"display:none\">सीप परीक्षण कार्यक्रम रोक्न नेपालले गर्यो साउदी अरबलाई अनुरोध</h3><span class=\"card-date\" data-date-ad=\"2026-07-08\" data-time=\"13:36\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Politics\"><a href=\"/page/detailvideo.html?id=44\" class=\"video-open-link\" data-id=\"44\" data-title=\"What did Balen Government do in 100 days? #balensarkar #balenshah #balen\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/WBSdckq6-b0/hqdefault.jpg\" alt=\"What did Balen Government do in 100 days? #balensarkar #balenshah #balen\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">What did Balen Government do in 100 days? #balensarkar #balenshah #balen</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बालेन सरकारले १०० दिनमा के गर्‍यो ?#balensarkar #balenshah #balen</h3><span class=\"card-date\" data-date-ad=\"2026-07-08\" data-time=\"13:34\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=43\" class=\"video-open-link\" data-id=\"43\" data-title=\"Today news | nepali news | aaja ka mukhya samachar | 24 ashar 2083 | Butwal Today News#news\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/GQINE1XPn78/hqdefault.jpg\" alt=\"Today news | nepali news | aaja ka mukhya samachar | 24 ashar 2083 | Butwal Today News#news\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Today news | nepali news | aaja ka mukhya samachar | 24 ashar 2083 | Butwal Today News#news</h3><h3 class=\"card-title lang-np\" style=\"display:none\">आजको समाचार | नेपाली समाचार | आजको मुख्य समाचार | २४ असार २०८३ | बुटवल टुडे समाचार#news</h3><span class=\"card-date\" data-date-ad=\"2026-07-08\" data-time=\"13:30\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article></div><div style=\"width:100%;margin:12px 0;text-align:center;\"><a href=\"#\"><img src=\"../images/section_1.jpg\" alt=\"Advertisement\" style=\"width:100%;height:auto;display:block;border-radius:4px;\"></a><span class=\"lang-en\" style=\"display:block;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">Advertisement</span><span class=\"lang-np\" style=\"display:none;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">विज्ञापन</span></div><div id=\"latest-grid-9\" class=\"section-grid\"><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=42\" class=\"video-open-link\" data-id=\"42\" data-title=\"Nepalese also injured in Qatar&#39;s Ras Laffan explosion!\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/tVMG89oJuNI/hqdefault.jpg\" alt=\"Nepalese also injured in Qatar&#39;s Ras Laffan explosion!\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Nepalese also injured in Qatar&#39;s Ras Laffan explosion!</h3><h3 class=\"card-title lang-np\" style=\"display:none\">कतारको रस लाफान विष्फोटमा नेपालीहरु पनि घाइते भए !</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"17:33\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=40\" class=\"video-open-link\" data-id=\"40\" data-title=\"Thakali Sewa Samaj Butwal Engaged in Preserving Tradition | #NewsUpdate #newsfeed #socialwork\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/MdAfTBbsPng/hqdefault.jpg\" alt=\"Thakali Sewa Samaj Butwal Engaged in Preserving Tradition | #NewsUpdate #newsfeed #socialwork\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Thakali Sewa Samaj Butwal Engaged in Preserving Tradition | #NewsUpdate #newsfeed #socialwork</h3><h3 class=\"card-title lang-np\" style=\"display:none\">परम्परा संरक्षणमा जुट्दै थकाली सेवा समाज बुटवल ।।। #NewsUpdate #newsfeed #socialwork</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"17:32\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=39\" class=\"video-open-link\" data-id=\"39\" data-title=\"Oli, Prachanda, and Nepal on same stage at Madan Bhandari birth anniversary program\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/3GAggDJqZsI/hqdefault.jpg\" alt=\"Oli, Prachanda, and Nepal on same stage at Madan Bhandari birth anniversary program\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Oli, Prachanda, and Nepal on same stage at Madan Bhandari birth anniversary program</h3><h3 class=\"card-title lang-np\" style=\"display:none\">मदन भण्डारीको जन्मजयन्ती कार्यक्रममा ओली, प्रचण्ड र नेपाल एउटै मञ्चमा</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"15:53\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=38\" class=\"video-open-link\" data-id=\"38\" data-title=\"Opium and cannabis cultivation destroyed on 56 ropani of land in Rolpa #CrimeNews\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/oNFQ_ms9WS0/hqdefault.jpg\" alt=\"Opium and cannabis cultivation destroyed on 56 ropani of land in Rolpa #CrimeNews\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Opium and cannabis cultivation destroyed on 56 ropani of land in Rolpa #CrimeNews</h3><h3 class=\"card-title lang-np\" style=\"display:none\">रोल्पामा ५६ रोपनी जग्गामा लगाइएको अफिम र गाँजा खेती नष्ट #CrimeNews</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"15:53\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=37\" class=\"video-open-link\" data-id=\"37\" data-title=\"CPN-UML lawmaker Koiri sentenced to 5 years in prison\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/jY5BoX6R3WI/hqdefault.jpg\" alt=\"CPN-UML lawmaker Koiri sentenced to 5 years in prison\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">CPN-UML lawmaker Koiri sentenced to 5 years in prison</h3><h3 class=\"card-title lang-np\" style=\"display:none\">एमाले सांसद कोइरीलाई ५ वर्ष कैद सजाय</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"15:52\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=36\" class=\"video-open-link\" data-id=\"36\" data-title=\"Madheshi parties unite against repealing Provincial Assembly, warn of protest ! #PoliticalNews\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/fjVIksJogBc/hqdefault.jpg\" alt=\"Madheshi parties unite against repealing Provincial Assembly, warn of protest ! #PoliticalNews\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Madheshi parties unite against repealing Provincial Assembly, warn of protest ! #PoliticalNews</h3><h3 class=\"card-title lang-np\" style=\"display:none\">प्रदेशसभा खारेजविरुद्ध मधेशवादी दल एकजुट, प्रतिवादको चेतावनी ! #PoliticalNews</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"14:32\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Health Tip\"><a href=\"/page/detailvideo.html?id=35\" class=\"video-open-link\" data-id=\"35\" data-title=\"Benefits of Eating Guava | HEALTH TIPS |#healthtips #healthylifestyle #guava #healthbenefits\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/ZhcGzqkpOcA/hqdefault.jpg\" alt=\"Benefits of Eating Guava | HEALTH TIPS |#healthtips #healthylifestyle #guava #healthbenefits\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Benefits of Eating Guava | HEALTH TIPS |#healthtips #healthylifestyle #guava #healthbenefits</h3><h3 class=\"card-title lang-np\" style=\"display:none\">अम्बा खानुका फाइदाहरू | स्वास्थ्य सुझावहरू |#स्वास्थ्य सुझावहरू #स्वस्थ जीवनशैली #अम्बा #स्वास्थ्य फाइदाहरू</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:49\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Health Matters\"><a href=\"/page/detailvideo.html?id=34\" class=\"video-open-link\" data-id=\"34\" data-title=\"Meditech&#39;s Journey: Commitment to Quality Healthcare - Chairman JP Kandel || SWASTHYA KA KURA\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/x8UCPKceTBc/hqdefault.jpg\" alt=\"Meditech&#39;s Journey: Commitment to Quality Healthcare - Chairman JP Kandel || SWASTHYA KA KURA\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Meditech&#39;s Journey: Commitment to Quality Healthcare - Chairman JP Kandel || SWASTHYA KA KURA</h3><h3 class=\"card-title lang-np\" style=\"display:none\">मेडिटेकको यात्रा गुणस्तरीय स्वास्थ्य सेवाको प्रतिबद्धता - अध्यक्ष जेपी कँडेल ।। स्वास्थ्यका कुरा</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:44\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Public Dialogue\"><a href=\"/page/detailvideo.html?id=33\" class=\"video-open-link\" data-id=\"33\" data-title=\"Youth&#39;s Hard Work Makes the Nation Prosperous | Kamal Jung Kunwar, Owner of Daddy&#39;s Kitchen | Samriddhi Samvad\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/o0o7N7-sCQ0/hqdefault.jpg\" alt=\"Youth&#39;s Hard Work Makes the Nation Prosperous | Kamal Jung Kunwar, Owner of Daddy&#39;s Kitchen | Samriddhi Samvad\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Youth&#39;s Hard Work Makes the Nation Prosperous | Kamal Jung Kunwar, Owner of Daddy&#39;s Kitchen | Samriddhi Samvad</h3><h3 class=\"card-title lang-np\" style=\"display:none\">युवाले परिश्रम गरे देश समृद्ध बन्छ । ड्याडीज किचनका संचालक कमल जंग कुँवर | समृद्धि संवाद ।</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:44\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article></div><div style=\"width:100%;margin:12px 0;text-align:center;\"><a href=\"#\"><img src=\"../images/section_2.jpg\" alt=\"Advertisement\" style=\"width:100%;height:auto;display:block;border-radius:4px;\"></a><span class=\"lang-en\" style=\"display:block;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">Advertisement</span><span class=\"lang-np\" style=\"display:none;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">विज्ञापन</span></div><div id=\"latest-grid-18\" class=\"section-grid\"><article class=\"news-card latest\" data-cat=\"Cooperative Journey\"><a href=\"/page/detailvideo.html?id=32\" class=\"video-open-link\" data-id=\"32\" data-title=\"Cooperatives must be able to secure members&#39; savings: Ram Prasad Paudel | #interview #sahakari #business\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/V4VS-mWytdU/hqdefault.jpg\" alt=\"Cooperatives must be able to secure members&#39; savings: Ram Prasad Paudel | #interview #sahakari #business\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Cooperatives must be able to secure members&#39; savings: Ram Prasad Paudel | #interview #sahakari #business</h3><h3 class=\"card-title lang-np\" style=\"display:none\">सहकारीले सदस्यकाे बचत सुरक्षित गर्न सक्नु पर्छ : रामप्रसाद पाैडेल | #interview #sahakari #business</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:43\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Co-development\"><a href=\"/page/detailvideo.html?id=31\" class=\"video-open-link\" data-id=\"31\" data-title=\"To sustain in business, long-term planning and patience are needed: Shanta Thapa, Managing Director of De Crown\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/xhsBMyCXPjM/hqdefault.jpg\" alt=\"To sustain in business, long-term planning and patience are needed: Shanta Thapa, Managing Director of De Crown\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">To sustain in business, long-term planning and patience are needed: Shanta Thapa, Managing Director of De Crown</h3><h3 class=\"card-title lang-np\" style=\"display:none\">व्यवसायमा टिक्न दीर्घकालीन योजना र समयलाई कुर्न सक्नुपर्छ : शान्ता थापा, दी क्राउन प्रबन्ध निर्देशक</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:42\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Women Power\"><a href=\"/page/detailvideo.html?id=29\" class=\"video-open-link\" data-id=\"29\" data-title=\"Let’s Be Self-Reliant, Not Dependent on Others: Savina Amatya Shrestha ||| #interview\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/HCFDyRr0vCA/hqdefault.jpg\" alt=\"Let’s Be Self-Reliant, Not Dependent on Others: Savina Amatya Shrestha ||| #interview\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Let’s Be Self-Reliant, Not Dependent on Others: Savina Amatya Shrestha ||| #interview</h3><h3 class=\"card-title lang-np\" style=\"display:none\">परनिर्भरता होइन आत्मनिर्भर बनौं : सविना अमात्य श्रेष्ठ ||| #interview</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:39\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Butwal Debate\"><a href=\"/page/detailvideo.html?id=28\" class=\"video-open-link\" data-id=\"28\" data-title=\"I am a servant, vote after seeing my work: Basudev Ghimire | Butwal Debate\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/JX65hepjy4A/hqdefault.jpg\" alt=\"I am a servant, vote after seeing my work: Basudev Ghimire | Butwal Debate\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">I am a servant, vote after seeing my work: Basudev Ghimire | Butwal Debate</h3><h3 class=\"card-title lang-np\" style=\"display:none\">म सेवक हुँ, काम हेरेर भोट दिनुस् : वासुदेव घिमिरे । बुटवल बहसमा ।</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:38\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Monitoring\"><a href=\"/page/detailvideo.html?id=27\" class=\"video-open-link\" data-id=\"27\" data-title=\"Who lives in the buildings of the Butwal Road Division? | NIGRANI | #rupandehi #butwal #governmentoffice\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/9v_zwcIzbDA/hqdefault.jpg\" alt=\"Who lives in the buildings of the Butwal Road Division? | NIGRANI | #rupandehi #butwal #governmentoffice\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Who lives in the buildings of the Butwal Road Division? | NIGRANI | #rupandehi #butwal #governmentoffice</h3><h3 class=\"card-title lang-np\" style=\"display:none\">को बस्छ सडक डिभिजन बुटवलका भवनमा ? | NIGRANI | #rupandehi #butwal #governmentoffice</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:37\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Life Story\"><a href=\"/page/detailvideo.html?id=26\" class=\"video-open-link\" data-id=\"26\" data-title=\"Ticket to Modeling Journey: Grishma Paudel | JIVAN KATHA | #interview\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/AS-u4BhF3aw/hqdefault.jpg\" alt=\"Ticket to Modeling Journey: Grishma Paudel | JIVAN KATHA | #interview\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Ticket to Modeling Journey: Grishma Paudel | JIVAN KATHA | #interview</h3><h3 class=\"card-title lang-np\" style=\"display:none\">टिकटबाट मोडलिङ यात्रामा ग्रीष्मा पौडेल | जीवन कथा | #interview</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:36\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Butwal Khabar\"><a href=\"/page/detailvideo.html?id=25\" class=\"video-open-link\" data-id=\"25\" data-title=\"Extreme torture at Butwal reform home, girl in ventilator, 4 accused arrested | BUTWAL KHABAR |\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/d61Hm4CINSE/hqdefault.jpg\" alt=\"Extreme torture at Butwal reform home, girl in ventilator, 4 accused arrested | BUTWAL KHABAR |\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Extreme torture at Butwal reform home, girl in ventilator, 4 accused arrested | BUTWAL KHABAR |</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बुटवलको सुधार गृहमा चरम यातना, युवती भेन्टिलेटरमा, ४ आरोपी पक्राउ | बुटवल खबर |</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:31\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Horoscope\"><a href=\"/page/detailvideo.html?id=24\" class=\"video-open-link\" data-id=\"24\" data-title=\"Today&#39;s Horoscope for These Zodiac Signs | July 06, 2026 | Monday | Jul 06, 2026 | #rashifal\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/eSp65pTgHzk/hqdefault.jpg\" alt=\"Today&#39;s Horoscope for These Zodiac Signs | July 06, 2026 | Monday | Jul 06, 2026 | #rashifal\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Today&#39;s Horoscope for These Zodiac Signs | July 06, 2026 | Monday | Jul 06, 2026 | #rashifal</h3><h3 class=\"card-title lang-np\" style=\"display:none\">आज यी राशिहरुकाे लागि शुभ, हेर्नुहाेस् राशिफल | २०८३ असार २२ गते सोमबार | Jul 06, 2026 | #rashifal</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:22\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Highlights\"><a href=\"/page/detailvideo.html?id=23\" class=\"video-open-link\" data-id=\"23\" data-title=\"HILIGHTS NEWS | Butwal Highlight | 20 Asar 2083, Saturday | #NewsUpdate #PoliticalNews #economy\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/zwBQ7fQjKZ0/hqdefault.jpg\" alt=\"HILIGHTS NEWS | Butwal Highlight | 20 Asar 2083, Saturday | #NewsUpdate #PoliticalNews #economy\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">HILIGHTS NEWS | Butwal Highlight | 20 Asar 2083, Saturday | #NewsUpdate #PoliticalNews #economy</h3><h3 class=\"card-title lang-np\" style=\"display:none\">हाइलाइट्स न्युज | बुटवल हाइलाइट | २० असार २०८३, शनिवार | #NewsUpdate #PoliticalNews #economy</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"13:20\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article></div><div style=\"width:100%;margin:12px 0;text-align:center;\"><a href=\"#\"><img src=\"../images/section_1.jpg\" alt=\"Advertisement\" style=\"width:100%;height:auto;display:block;border-radius:4px;\"></a><span class=\"lang-en\" style=\"display:block;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">Advertisement</span><span class=\"lang-np\" style=\"display:none;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">विज्ञापन</span></div><div id=\"latest-grid-27\" class=\"section-grid\"><article class=\"news-card latest\" data-cat=\"health\"><a href=\"/page/detailvideo.html?id=22\" class=\"video-open-link\" data-id=\"22\" data-title=\"Triage system introduced at Butwal&#39;s Lumbini Provincial Hospital #butwaltodaytv #lumbini_nepal #hospital\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/K09NrWJEfLg/hqdefault.jpg\" alt=\"Triage system introduced at Butwal&#39;s Lumbini Provincial Hospital #butwaltodaytv #lumbini_nepal #hospital\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Triage system introduced at Butwal&#39;s Lumbini Provincial Hospital #butwaltodaytv #lumbini_nepal #hospital</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बुटवलको लुम्बिनी प्रादेशिक अस्पतालमा ‘ट्रयाज प्रणाली’ सुरु #butwaltodaytv #lumbini_nepal #hospital</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:50\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"culture\"><a href=\"/page/detailvideo.html?id=21\" class=\"video-open-link\" data-id=\"21\" data-title=\"Why Jitgadhi Festival in Butwal? #butwaltoday #report #news #update #newpost\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/rE3WjESe7uU/hqdefault.jpg\" alt=\"Why Jitgadhi Festival in Butwal? #butwaltoday #report #news #update #newpost\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Why Jitgadhi Festival in Butwal? #butwaltoday #report #news #update #newpost</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बुटवलमा जीतगढी उत्सव किन ? #butwaltoday #report #news #update #newpost</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:48\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"education\"><a href=\"/page/detailvideo.html?id=20\" class=\"video-open-link\" data-id=\"20\" data-title=\"Shikshyalaya | Nayagaun School excels in Sajitama\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/d8toB0cpIvY/hqdefault.jpg\" alt=\"Shikshyalaya | Nayagaun School excels in Sajitama\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Shikshyalaya | Nayagaun School excels in Sajitama</h3><h3 class=\"card-title lang-np\" style=\"display:none\">शिक्षालय | नजितामा अब्बल बन्दै नयाँगाउँ मा.वि बुटवल</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:47\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"entertainment\"><a href=\"/page/detailvideo.html?id=19\" class=\"video-open-link\" data-id=\"19\" data-title=\"Jitgadhi Victory Celebration#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/QWb4um_E6To/hqdefault.jpg\" alt=\"Jitgadhi Victory Celebration#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Jitgadhi Victory Celebration#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police</h3><h3 class=\"card-title lang-np\" style=\"display:none\">जितगढीमा विजय उत्सव#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:47\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"tourism\"><a href=\"/page/detailvideo.html?id=18\" class=\"video-open-link\" data-id=\"18\" data-title=\"Mardi Himal | Tourist Destination | #mardihimal #marditrek #mountaineering #nature #placetovisit\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/CfB4mU8GbWQ/hqdefault.jpg\" alt=\"Mardi Himal | Tourist Destination | #mardihimal #marditrek #mountaineering #nature #placetovisit\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Mardi Himal | Tourist Destination | #mardihimal #marditrek #mountaineering #nature #placetovisit</h3><h3 class=\"card-title lang-np\" style=\"display:none\">मर्दी हिमाल | पर्यटकीय स्थल | #mardihimal #marditrek #mountaineering #nature #placetovisit</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:46\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Sport\"><a href=\"/page/detailvideo.html?id=17\" class=\"video-open-link\" data-id=\"17\" data-title=\"FIFA suspends ANFA while World Cup is ongoing\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/0OaAsIW7MRM/hqdefault.jpg\" alt=\"FIFA suspends ANFA while World Cup is ongoing\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">FIFA suspends ANFA while World Cup is ongoing</h3><h3 class=\"card-title lang-np\" style=\"display:none\">विश्वकप चलिरहँदा फिफाले गर्यो एन्फालाई निलम्बन</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:44\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"international\"><a href=\"/page/detailvideo.html?id=16\" class=\"video-open-link\" data-id=\"16\" data-title=\"Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Funeral Ceremony\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/g-wcfgJwj7Q/hqdefault.jpg\" alt=\"Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Funeral Ceremony\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Funeral Ceremony</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बुवाको शोक समारोहमा समेत सहभागी भएनन् इरानी सर्वोच्च नेता मोज्तबा खामेनी</h3><span class=\"card-date\" data-date-ad=\"2026-07-06\" data-time=\"12:44\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Highlights\"><a href=\"/page/detailvideo.html?id=15\" class=\"video-open-link\" data-id=\"15\" data-title=\"HILIGHTS NEWS | Butwal Highlights | 21 Asar 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/g8FW28-dG2s/hqdefault.jpg\" alt=\"HILIGHTS NEWS | Butwal Highlights | 21 Asar 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">HILIGHTS NEWS | Butwal Highlights | 21 Asar 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy</h3><h3 class=\"card-title lang-np\" style=\"display:none\">हाइलाइट्स न्युज | बुटवल हाइलाइट | २१ असार २०८३, आइतवार | #NewsUpdate #hilights #PoliticalNews #economy</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"22:26\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Shorts\"><a href=\"/page/detailvideo.html?id=14\" class=\"video-open-link\" data-id=\"14\" data-title=\"Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Mourning Ceremony\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/g-wcfgJwj7Q/hqdefault.jpg\" alt=\"Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Mourning Ceremony\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Mourning Ceremony</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बुवाको शोक समारोहमा समेत सहभागी भएनन् इरानी सर्वोच्च नेता मोज्तबा खामेनी</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"18:29\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article></div><div style=\"width:100%;margin:12px 0;text-align:center;\"><a href=\"#\"><img src=\"../images/section_2.jpg\" alt=\"Advertisement\" style=\"width:100%;height:auto;display:block;border-radius:4px;\"></a><span class=\"lang-en\" style=\"display:block;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">Advertisement</span><span class=\"lang-np\" style=\"display:none;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">विज्ञापन</span></div><div id=\"latest-grid-36\" class=\"section-grid\"><article class=\"news-card latest\" data-cat=\"Shorts\"><a href=\"/page/detailvideo.html?id=12\" class=\"video-open-link\" data-id=\"12\" data-title=\"Claim: The Slope of Daunne Road Will Last More Than 30 Years\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/OcnhVrVb6yE/hqdefault.jpg\" alt=\"Claim: The Slope of Daunne Road Will Last More Than 30 Years\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Claim: The Slope of Daunne Road Will Last More Than 30 Years</h3><h3 class=\"card-title lang-np\" style=\"display:none\">दाबी: डाउन्ने सडकको ढलान ३० वर्षभन्दा बढी टिक्नेछ</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"17:18\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Highlights\"><a href=\"/page/detailvideo.html?id=9\" class=\"video-open-link\" data-id=\"9\" data-title=\"HIGHLIGHTS NEWS | बुटवल हाइलाइट | २० Asar 2083, Saturday\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/zwBQ7fQjKZ0/hqdefault.jpg\" alt=\"HIGHLIGHTS NEWS | बुटवल हाइलाइट | २० Asar 2083, Saturday\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">HIGHLIGHTS NEWS | बुटवल हाइलाइट | २० Asar 2083, Saturday</h3><h3 class=\"card-title lang-np\" style=\"display:none\">हाइलाइट्स समाचार | बुटवल हाइलाइट | २० असार २०८३, शनिवार</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"16:35\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Butwal News\"><a href=\"/page/detailvideo.html?id=8\" class=\"video-open-link\" data-id=\"8\" data-title=\"Extreme Torture in Butwal Correctional Home, Young Woman on Ventilator, 4 Suspects Arrested | BUTWAL KHABAR |\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/d61Hm4CINSE/hqdefault.jpg\" alt=\"Extreme Torture in Butwal Correctional Home, Young Woman on Ventilator, 4 Suspects Arrested | BUTWAL KHABAR |\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Extreme Torture in Butwal Correctional Home, Young Woman on Ventilator, 4 Suspects Arrested | BUTWAL KHABAR |</h3><h3 class=\"card-title lang-np\" style=\"display:none\">बुटवलको सुधार गृहमा चरम यातना, युवती भेन्टिलेटरमा, ४ आरोपी पक्राउ | बुटवल खबर |</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"16:33\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"News\"><a href=\"/page/detailvideo.html?id=\" class=\"video-open-link\" data-id=\"\" data-title=\"Today&#39;s News | Nepali News | Today&#39;s Main News | 21 Ashar 2083 | Butwal Today News\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/NqfOzqN6KqA/hqdefault.jpg\" alt=\"Today&#39;s News | Nepali News | Today&#39;s Main News | 21 Ashar 2083 | Butwal Today News\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Today&#39;s News | Nepali News | Today&#39;s Main News | 21 Ashar 2083 | Butwal Today News</h3><h3 class=\"card-title lang-np\" style=\"display:none\">आजको समाचार | नेपाली समाचार | आजको मुख्य समाचार | २१ असार २०८३ | बुटवल टुडे समाचार</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"16:30\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Newspapers\"><a href=\"/page/detailvideo.html?id=7\" class=\"video-open-link\" data-id=\"7\" data-title=\"Today&#39;s Newspaper News | 21 Asar 2083, Sunday | published from Butwal |\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/FdAJHTmq9Zs/hqdefault.jpg\" alt=\"Today&#39;s Newspaper News | 21 Asar 2083, Sunday | published from Butwal |\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">Today&#39;s Newspaper News | 21 Asar 2083, Sunday | published from Butwal |</h3><h3 class=\"card-title lang-np\" style=\"display:none\">आजका पत्रपत्रिका | २१ असार २०८३, आइतवार | बुटवलबाट प्रकाशित |</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"16:28\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article><article class=\"news-card latest\" data-cat=\"Nepal Update\"><a href=\"/page/detailvideo.html?id=6\" class=\"video-open-link\" data-id=\"6\" data-title=\"WEATHER UPDATE | Weather Forecast | 2083 Asar 21 Aaitabaar | 5 Jul, 2026 |\"><div class=\"card-img\"><img src=\"https://img.youtube.com/vi/rsW3LF4IgdM/hqdefault.jpg\" alt=\"WEATHER UPDATE | Weather Forecast | 2083 Asar 21 Aaitabaar | 5 Jul, 2026 |\" loading=\"lazy\"></div><div class=\"card-body\"><h3 class=\"card-title lang-en\">WEATHER UPDATE | Weather Forecast | 2083 Asar 21 Aaitabaar | 5 Jul, 2026 |</h3><h3 class=\"card-title lang-np\" style=\"display:none\">मौसम अपडेट | आजको मौसम पूर्वानुमान | २०८३ असार २१ आइतबार | 5 Jul, 2026 |</h3><span class=\"card-date\" data-date-ad=\"2026-07-05\" data-time=\"16:27\"><i class=\"fas fa-clock\"></i><span class=\"date-display\"></span></span></div></a></article></div><div style=\"width:100%;margin:12px 0;text-align:center;\"><a href=\"#\"><img src=\"../images/section_1.jpg\" alt=\"Advertisement\" style=\"width:100%;height:auto;display:block;border-radius:4px;\"></a><span class=\"lang-en\" style=\"display:block;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">Advertisement</span><span class=\"lang-np\" style=\"display:none;margin-top:6px;font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.05em;\">विज्ञापन</span></div></section>";
 var HERO_DATA = {"id":"58","title":"Question to Prof. Dr. Bhola Thapa – Your appointment was through meritocracy, but others’ how?","titleNp":"प्राध्यापक डा. भोला थापालाई प्रश्न – तपाईँको नियुक्ति मेरिटोक्रेसीमार्फत्, अरूको चाहिँ कसरी ?","embed":"https://www.youtube.com/embed/d6NpcOJDLEA","bg":"https://img.youtube.com/vi/d6NpcOJDLEA/hqdefault.jpg","strip":[{"id":"54","title":"Today news | nepali news | aaja ka mukhya samachar | 28 ashar 2083 | Butwal Today News#news","titleNp":"आजको समाचार | नेपाली समाचार | आजको मुख्य समाचार | २८ असार २०८३ | बुटवल टुडे समाचार#news","embed":"https://www.youtube.com/embed/dJzFzv9-eWo","img":"https://img.youtube.com/vi/dJzFzv9-eWo/hqdefault.jpg","cat":"News"},{"id":"53","title":"HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy","titleNp":"हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र","embed":"https://www.youtube.com/embed/PUpKAtiOY9Q","img":"https://img.youtube.com/vi/PUpKAtiOY9Q/hqdefault.jpg","cat":"Highlights"},{"id":"52","title":"HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy","titleNp":"हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र","embed":"https://www.youtube.com/embed/PUpKAtiOY9Q","img":"https://img.youtube.com/vi/PUpKAtiOY9Q/hqdefault.jpg","cat":"Highlights"},{"id":"51","title":"FIFA World Cup: Semi-finals to feature clash of former champions #fifaworldcup2026","titleNp":"फिफा विश्वकप : सेमिफाइनलमा पूर्व विजेता टोलीकै भिडन्त हुने #fifaworldcup2026","embed":"https://www.youtube.com/embed/Cb4KlL1LJlE","img":"https://img.youtube.com/vi/Cb4KlL1LJlE/hqdefault.jpg","cat":"Sport"},{"id":"46","title":"Today news | nepali news | aaja ka mukhya samachar | 25 ashar 2083 | बुटवल टुडे समाचार#news","titleNp":"आजको समाचार | नेपाली समाचार | आजका मुख्य समाचार | २५ असार २०८३ | बुटवल टुडे समाचार#news","embed":"https://www.youtube.com/embed/cpYsJvT5Tik","img":"https://img.youtube.com/vi/cpYsJvT5Tik/hqdefault.jpg","cat":"News"},{"id":"45","title":"Nepal Requests Saudi Arabia to Halt Skill Testing Program","titleNp":"सीप परीक्षण कार्यक्रम रोक्न नेपालले गर्यो साउदी अरबलाई अनुरोध","embed":"https://www.youtube.com/embed/LuRTewN9QbE","img":"https://img.youtube.com/vi/LuRTewN9QbE/hqdefault.jpg","cat":"Business"},{"id":"44","title":"What did Balen Government do in 100 days? #balensarkar #balenshah #balen","titleNp":"बालेन सरकारले १०० दिनमा के गर्‍यो ?#balensarkar #balenshah #balen","embed":"https://www.youtube.com/embed/WBSdckq6-b0","img":"https://img.youtube.com/vi/WBSdckq6-b0/hqdefault.jpg","cat":"Politics"},{"id":"43","title":"Today news | nepali news | aaja ka mukhya samachar | 24 ashar 2083 | Butwal Today News#news","titleNp":"आजको समाचार | नेपाली समाचार | आजको मुख्य समाचार | २४ असार २०८३ | बुटवल टुडे समाचार#news","embed":"https://www.youtube.com/embed/GQINE1XPn78","img":"https://img.youtube.com/vi/GQINE1XPn78/hqdefault.jpg","cat":"News"}]};
 
 var EN_MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -2479,19 +1724,21 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
 })();
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded',function(){
-      var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
-      var adYear=new Date().getFullYear();
-      var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
-      var eyEn=document.getElementById('footer-year-en');
-      var eyNp=document.getElementById('footer-year-np');
-      if(eyEn)eyEn.textContent=adYear;
-      if(eyNp)eyNp.textContent=npYear;
-      window.addEventListener('langChange',function(e){
-        if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
+    document.addEventListener('DOMContentLoaded', function() {
+      var NP_NUMS = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
+      var adYear = new Date().getFullYear();
+      var npYear = String(adYear).split('').map(function(d) {
+        return NP_NUMS[parseInt(d, 10)];
+      }).join('');
+      var eyEn = document.getElementById('footer-year-en');
+      var eyNp = document.getElementById('footer-year-np');
+      if (eyEn) eyEn.textContent = adYear;
+      if (eyNp) eyNp.textContent = npYear;
+      window.addEventListener('langChange', function(e) {
+        if (e.detail && e.detail.lang) document.body.classList.toggle('lang-active', e.detail.lang === 'np');
       });
-      var stored=localStorage.getItem('fm_lang')||'en';
-      if(stored==='np')document.body.classList.add('lang-active');
+      var stored = localStorage.getItem('fm_lang') || 'en';
+      if (stored === 'np') document.body.classList.add('lang-active');
     });
   </script>
 </body>

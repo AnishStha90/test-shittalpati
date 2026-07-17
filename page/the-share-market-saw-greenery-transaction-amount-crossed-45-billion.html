@@ -622,7 +622,7 @@
     --accent:       #D4A017;
     --primary:      #A31919;
     --primary-on:   #FFFFFF;
-    --accent-on:    #000000;
+    --accent-on:    #FFFFFF;
     --bg:           #FFFFFF;
     --surface:      #F8F8F8;
     --text:         #1F1F1F;
@@ -978,112 +978,80 @@
 </style>
 <style>
     /* TOP SECTION */
-    .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
-    .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
-    .footer-col { display:flex; flex-direction:column; gap:10px; }
-    .footer-col-heading { font-size:.82rem; font-weight:800; color:#111; margin:0 0 6px; padding-bottom:8px; border-bottom:2px solid var(--primary); text-transform:uppercase; letter-spacing:.06em; }
-    .footer-company-name { font-weight:700; font-size:.9rem; color:#111; margin:0; }
-    .footer-addr { font-size:.82rem; color:#444; margin:0; line-height:1.6; }
-    .footer-contact-line { font-size:.82rem; color:#444; margin:0; }
-    .footer-link-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
-    .footer-link-list li a { font-size:.85rem; color:#333; text-decoration:none; transition:color .2s; display:block; padding:2px 0; }
-    .footer-link-list li a:hover { color:var(--primary); }
+    .footer-top { background: #f0f0f0; padding: 40px 0 32px; border-top: 3px solid var(--primary); }
+    .footer-top-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; gap: 24px; }
+    .footer-col { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-heading { font-size: .82rem; font-weight: 800; color: #111; margin: 0 0 6px; padding-bottom: 8px; border-bottom: 2px solid var(--primary); text-transform: uppercase; letter-spacing: .06em; }
+    .footer-company-name { font-weight: 700; font-size: .9rem; color: #111; margin: 0; }
+    .footer-addr { font-size: .82rem; color: #444; margin: 0; line-height: 1.6; }
+    .footer-contact-line { font-size: .82rem; color: #444; margin: 0; }
+    .footer-link-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+    .footer-link-list li a { font-size: .85rem; color: #333; text-decoration: none; transition: color .2s; display: block; padding: 2px 0; }
+    .footer-link-list li a:hover { color: var(--primary); }
 
     /* BOTTOM BAR */
-    .footer-bottom { background:#d8d8d8; border-top:1px solid #bbb; padding:18px 0; }
-    .footer-bottom-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
-    .footer-bottom-brand { display:flex; flex-direction:column; gap:3px; flex-shrink:0; }
-    .footer-site-name { font-size:1rem; font-weight:800; color:#111; }
-    .footer-copy { font-size:.74rem; color:#555; display:flex; align-items:center; gap:4px; }
-    .footer-copy i { font-size:.72rem; }
-    .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { display:flex; flex-direction:column; gap:2px; }
-    .editor-label { font-size:.74rem; color:#555; }
-    .editor-name { font-size:.9rem; font-weight:800; color:#111; display:block; }
-    .editor-phone { font-size:.8rem; color:#333; display:block; margin-top:1px; }
-    .footer-bottom-info { font-size:.78rem; color:#555; max-width:200px; line-height:1.5; }
-    .footer-bottom-social { display:flex; flex-direction:column; gap:6px; align-items:flex-end; }
-    .connect-label { font-size:.78rem; font-weight:700; color:#333; }
-    .footer-social-row { display:flex; gap:10px; align-items:center; }
-    .footer-social-row a { color:#333; font-size:1.1rem; text-decoration:none; transition:color .2s; }
-    .footer-social-row a:hover { color:var(--primary); }
+    .footer-bottom { background: #d8d8d8; border-top: 1px solid #bbb; padding: 18px 0; }
+    .footer-bottom-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .footer-bottom-brand { display: flex; flex-direction: column; gap: 3px; flex-shrink: 0; }
+    .footer-site-name { font-size: 1rem; font-weight: 800; color: #111; }
+    .footer-copy { font-size: .74rem; color: #555; display: flex; align-items: center; gap: 4px; }
+    .footer-copy i { font-size: .72rem; }
+    .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { display: flex; flex-direction: column; gap: 2px; }
+    .editor-label { font-size: .74rem; color: #555; }
+    .editor-name { font-size: .9rem; font-weight: 800; color: #111; display: block; }
+    .editor-phone { font-size: .8rem; color: #333; display: block; margin-top: 1px; }
+    .footer-bottom-info { font-size: .78rem; color: #555; max-width: 200px; line-height: 1.5; }
+    .footer-bottom-social { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+    .connect-label { font-size: .78rem; font-weight: 700; color: #333; }
+    .footer-social-row { display: flex; gap: 10px; align-items: center; }
+    .footer-social-row a { color: #333; font-size: 1.1rem; text-decoration: none; transition: color .2s; }
+    .footer-social-row a:hover { color: var(--primary); }
 
     /* Language */
-    .lang-en { display:inline; }
-    .lang-np { display:none; }
-    body.lang-active .lang-en { display:none; }
-    body.lang-active .lang-np { display:inline; }
+    .lang-en { display: inline; }
+    .lang-np { display: none; }
+    body.lang-active .lang-en { display: none; }
+    body.lang-active .lang-np { display: inline; }
 
     /* Responsive */
-    @media(max-width:1000px){
-      .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; }
+    @media (max-width: 1000px) {
+      .footer-top-inner { grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
     }
-    @media(max-width:640px){
-      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; }
-      .footer-bottom-inner { flex-direction:column; align-items:flex-start; gap:12px; }
-      .footer-bottom-social { align-items:flex-start; }
+    @media (max-width: 640px) {
+      .footer-top-inner { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .footer-bottom-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .footer-bottom-social { align-items: flex-start; }
     }
-    @media(max-width:400px){
-      .footer-top-inner { grid-template-columns:1fr; }
+    @media (max-width: 400px) {
+      .footer-top-inner { grid-template-columns: 1fr; }
     }
 
     /* WhatsApp */
-    .wa-widget { position:fixed; bottom:90px; right:24px; z-index:9999; display:flex; align-items:center; gap:10px; flex-direction:row; }
-    .wa-fab { width:52px; height:52px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.7rem; text-decoration:none; box-shadow:0 4px 16px rgba(37,211,102,.4),0 2px 8px rgba(0,0,0,.2); transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; animation:waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both; position:relative; }
-    .wa-fab:hover { transform:scale(1.12) rotate(-6deg); }
-    .wa-fab::after { content:''; position:absolute; inset:0; border-radius:50%; border:3px solid #25D366; animation:waRing 2s ease-out 2s infinite; }
-    .wa-tooltip { background:#fff; color:#111; font-size:.78rem; font-weight:600; padding:5px 12px; border-radius:14px; white-space:nowrap; box-shadow:0 3px 12px rgba(0,0,0,.15); opacity:0; pointer-events:none; transform:translateX(-6px); transition:opacity .2s,transform .2s; }
-    .wa-widget:hover .wa-tooltip { opacity:1; transform:translateX(0); }
-    @keyframes waIn { from{opacity:0;transform:scale(.4) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
-    @keyframes waRing { 0%{transform:scale(1);opacity:.8} 70%,100%{transform:scale(1.5);opacity:0} }
-    @media(max-width:480px){ .wa-widget{bottom:90px;right:14px;} .wa-fab{width:46px;height:46px;font-size:1.5rem;} }
+    .wa-widget { position: fixed; bottom: 90px; right: 24px; z-index: 9999; display: flex; align-items: center; gap: 10px; flex-direction: row; }
+    .wa-fab { width: 52px; height: 52px; border-radius: 50%; background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; text-decoration: none; box-shadow: 0 4px 16px rgba(37, 211, 102, .4), 0 2px 8px rgba(0, 0, 0, .2); transition: transform .22s cubic-bezier(.34, 1.56, .64, 1), box-shadow .22s; animation: waIn .5s cubic-bezier(.34, 1.56, .64, 1) 1.2s both; position: relative; }
+    .wa-fab:hover { transform: scale(1.12) rotate(-6deg); }
+    .wa-fab::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 3px solid #25D366; animation: waRing 2s ease-out 2s infinite; }
+    .wa-tooltip { background: #fff; color: #111; font-size: .78rem; font-weight: 600; padding: 5px 12px; border-radius: 14px; white-space: nowrap; box-shadow: 0 3px 12px rgba(0, 0, 0, .15); opacity: 0; pointer-events: none; transform: translateX(-6px); transition: opacity .2s, transform .2s; }
+    .wa-widget:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
+    @keyframes waIn { from { opacity: 0; transform: scale(.4) translateY(20px) } to { opacity: 1; transform: scale(1) translateY(0) } }
+    @keyframes waRing { 0% { transform: scale(1); opacity: .8 } 70%, 100% { transform: scale(1.5); opacity: 0 } }
+    @media (max-width: 480px) { .wa-widget { bottom: 90px; right: 14px; } .wa-fab { width: 46px; height: 46px; font-size: 1.5rem; } }
 
     /* Add these responsive styles for footer mobile view */
-    @media(max-width:640px){
-      .footer-top-inner { 
-        grid-template-columns: 1fr 1fr; 
-        gap: 16px;
-        text-align: center;
-      }
-      .footer-bottom-inner { 
-        flex-direction: column; 
-        align-items: center;
-        gap: 16px;
-        text-align: center;
-      }
-      .footer-bottom-social { 
-        align-items: center;
-        width: 100%;
-      }
-      .footer-social-row {
-        justify-content: center;
-      }
-      .footer-col {
-        align-items: center;
-        text-align: center;
-      }
-      .footer-link-list {
-        align-items: center;
-      }
-      .footer-col-heading {
-        text-align: center;
-        width: 100%;
-      }
-      .footer-bottom-brand {
-        align-items: center;
-      }
-      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq {
-        align-items: center;
-      }
-      .footer-bottom-info {
-        max-width: 100%;
-        text-align: center;
-      }
+    @media (max-width: 640px) {
+      .footer-top-inner { grid-template-columns: 1fr 1fr; gap: 16px; text-align: center; }
+      .footer-bottom-inner { flex-direction: column; align-items: center; gap: 16px; text-align: center; }
+      .footer-bottom-social { align-items: center; width: 100%; }
+      .footer-social-row { justify-content: center; }
+      .footer-col { align-items: center; text-align: center; }
+      .footer-link-list { align-items: center; }
+      .footer-col-heading { text-align: center; width: 100%; }
+      .footer-bottom-brand { align-items: center; }
+      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { align-items: center; }
+      .footer-bottom-info { max-width: 100%; text-align: center; }
     }
-    @media(max-width:400px){
-      .footer-top-inner { 
-        grid-template-columns: 1fr; 
-        text-align: center;
-      }
+    @media (max-width: 400px) {
+      .footer-top-inner { grid-template-columns: 1fr; text-align: center; }
     }
   </style>
 
@@ -1866,9 +1834,9 @@
     sourceNp:       "नगरिकन्यूज.नगरिकनेटवर्क.कम",
     creatorEn:      "Citizen",
     creatorNp:      "नागरिक",
-    bodyEnWithAds:  "<p class=\"article-para\">The Nepal Stock Exchange (Nepse) index closed on a positive note on the last trading day of the current fiscal year. Continuing the positive trend seen over the past few days, both the index and trading volume increased on Thursday.</p>\n<div class=\"ad-unit\" id=\"insection_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_1.png\" alt=\"insection_1.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">On Thursday, the Nepse index rose by 7.50 points to reach 2,597.80. Along with this, the Sensitive Index increased by 2.92 points. The Float Index and Sensitive Float Index also rose by 0.61 points and 0.93 points, respectively.</p>\n<div class=\"ad-unit\" id=\"insection_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_2.jpg\" alt=\"insection_2.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">On this day, shares of 371 companies totaling 9.469 million units were traded 39,595 times, amounting to a total transaction value of Rs 4 billion 562 million 950 thousand. Compared to the previous day's transaction of Rs 4.17 billion, Thursday saw a significant increase in trading volume.</p>\n<p class=\"article-para\">During trading, the unit price of NIBL Growth Fund saw the highest increase of 14.96 percent. Similarly, shares of First Microfinance Institution and Chhukha Hydropower also surged by more than 14 percent.</p>\n<p class=\"article-para\">Meanwhile, the share price of Corporate Development Bank saw the largest decline of 8.77 percent.</p>\n<p class=\"article-para\">Based on trading volume, Singati Hydro Energy led the market. Shares worth Rs 247.4 million of the company were traded. This was followed by a transaction of approximately Rs 230 million for Siddhartha Debenture 2087, while the trading volume for NRN Infrastructure and Development exceeded Rs 220 million.</p>\n<p class=\"article-para\">Out of 13 sub-groups, 9 were positive while 4 showed a decline. The mutual fund sub-group saw the highest increase of 1.66 percent, while microfinance and non-life insurance sub-groups also rose by more than 1 percent. However, finance, hotel and tourism, hydropower, and manufacturing and processing sub-groups saw slight declines.</p>\n<div class=\"key-takeaway\"><strong>Key takeaways:</strong><p>The Nepse index rose by 7.50 points to reach 2,597.80 on the last trading day of the current fiscal year. The total trading volume amounted to Rs 4 billion 562 million 950 thousand.</p></div>",
-    bodyNpWithAds:  "<p class=\"article-para\">चालु आर्थिक वर्षको अन्तिम कारोबार दिन नेपाल स्टक एक्सचेन्ज (नेप्से) परिसूचक सामान्य सुधारसहित बन्द भएको छ। पछिल्ला केही दिनदेखि देखिएको सकारात्मक लयलाई निरन्तरता दिँदै बिहीबार बजारमा परिसूचकसँगै कारोबार रकममा पनि वृद्धि भएको हो।</p>\n<div class=\"ad-unit\" id=\"insection_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_1.png\" alt=\"insection_1.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">बिहीबार नेप्से परिसूचक ७.५० अंकले बढेर २ हजार ५९७.८० विन्दुमा पुगेको छ। यससँगै सेन्सेटिभ इण्डेक्स २.९२ अंकले उकालो लागेको छ। फ्लोट इण्डेक्स ०.६१ अंक र सेन्सेटिभ फ्लोट इण्डेक्स ०.९३ अंकले वृद्धि भएका छन्।</p>\n<div class=\"ad-unit\" id=\"insection_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_2.jpg\" alt=\"insection_2.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">बजारमा यस दिन ३७१ कम्पनीका ९४ लाख ६९ हजार कित्ता शेयर ३९ हजार ५९५ पटक खरिदबिक्री हुँदा कुल ४ अर्ब ५६ करोड २९ लाख ५० हजार रुपैयाँ बराबरको कारोबार भएको छ। अघिल्लो दिन ४ अर्ब १७ करोड रुपैयाँको कारोबार भएको तुलनामा बिहीबार कारोबार रकममा उल्लेख्य वृद्धि देखिएको हो।</p>\n<p class=\"article-para\">कारोबारका क्रममा एनआईबिएल ग्रोथ फण्डको इकाईमूल्य सबैभन्दा धेरै १४.९६ प्रतिशतले बढ्यो। त्यस्तै, फर्स्ट माइक्रोफाइनान्स लघुवित्त वित्तीय संस्था र चिरख्वा हाइड्रोपावरको शेयरमूल्य पनि १४ प्रतिशतभन्दा बढीले उकालो लागेको छ।</p>\n<p class=\"article-para\">यता, कर्पोरेट डेभलपमेन्ट बैंकको शेयरमूल्य सबैभन्दा धेरै ८.७७ प्रतिशतले घटेको छ।</p>\n<p class=\"article-para\">कारोबार रकमका आधारमा सिंगटी हाइड्रो इनर्जी अग्रस्थानमा रह्यो। उक्त कम्पनीको २४ करोड ७४ लाख रुपैयाँ बराबरको शेयर किनबेच भएको छ। त्यसपछि ८.५ प्रतिशत सानिमा डिबेञ्चर २०८७ को करिब २३ करोड रुपैयाँ बराबरको कारोबार भएको छ भने एनआरएन इन्फ्रास्ट्रक्चर एण्ड डेभलपमेन्टको कारोबार रकम २२ करोड रुपैयाँभन्दा बढी पुगेको छ।</p>\n<p class=\"article-para\">१३ उपसमूहमध्ये ९ उपसमूह सकारात्मक रहे भने ४ उपसमूहमा गिरावट देखियो। म्युचुअल फण्ड उपसमूहको परिसूचक सबैभन्दा धेरै १.६६ प्रतिशतले बढ्दा लघुवित्त र निर्जीवन बीमा उपसमूहमा पनि १ प्रतिशतभन्दा बढीको वृद्धि भएको छ। यद्यपि वित्त, होटल तथा पर्यटन, जलविद्युत तथा उत्पादन एवं प्रशोधन उपसमूहका परिसूचक सामान्य ओरालो लागेका छन्।</p>\n<div class=\"key-takeaway\"><strong>मुख्य बुँदा:</strong><p>चालु आर्थिक वर्षको अन्तिम कारोबार दिन नेप्से परिसूचक ७.५० अंकले बढेर २ हजार ५९७.८० विन्दुमा पुगेको थियो। बजारमा कुल ४ अर्ब ५६ करोड २९ लाख ५० हजार रुपैयाँ बराबरको कारोबार भएको थियो।</p></div>",
-    sidebarAdsHtml: "<div class=\"sidebar-ads-wrapper\">\n<div class=\"ad-unit\" id=\"sideads_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_1.jpg\" alt=\"sideads_1.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n\n<div class=\"ad-unit\" id=\"sideads_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_2.jpg\" alt=\"sideads_2.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n\n<div class=\"ad-unit\" id=\"sideads_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_3.jpg\" alt=\"sideads_3.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n\n<div class=\"ad-unit\" id=\"sideads_4\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_4.jpg\" alt=\"sideads_4.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div></div>",
+    bodyEnWithAds:  "<p class=\"article-para\">The Nepal Stock Exchange (Nepse) index closed on a positive note on the last trading day of the current fiscal year. Continuing the positive trend seen over the past few days, both the index and trading volume increased on Thursday.</p>\n<p class=\"article-para\">On Thursday, the Nepse index rose by 7.50 points to reach 2,597.80. Along with this, the Sensitive Index increased by 2.92 points. The Float Index and Sensitive Float Index also rose by 0.61 points and 0.93 points, respectively.</p>\n<p class=\"article-para\">On this day, shares of 371 companies totaling 9.469 million units were traded 39,595 times, amounting to a total transaction value of Rs 4 billion 562 million 950 thousand. Compared to the previous day's transaction of Rs 4.17 billion, Thursday saw a significant increase in trading volume.</p>\n<p class=\"article-para\">During trading, the unit price of NIBL Growth Fund saw the highest increase of 14.96 percent. Similarly, shares of First Microfinance Institution and Chhukha Hydropower also surged by more than 14 percent.</p>\n<p class=\"article-para\">Meanwhile, the share price of Corporate Development Bank saw the largest decline of 8.77 percent.</p>\n<p class=\"article-para\">Based on trading volume, Singati Hydro Energy led the market. Shares worth Rs 247.4 million of the company were traded. This was followed by a transaction of approximately Rs 230 million for Siddhartha Debenture 2087, while the trading volume for NRN Infrastructure and Development exceeded Rs 220 million.</p>\n<p class=\"article-para\">Out of 13 sub-groups, 9 were positive while 4 showed a decline. The mutual fund sub-group saw the highest increase of 1.66 percent, while microfinance and non-life insurance sub-groups also rose by more than 1 percent. However, finance, hotel and tourism, hydropower, and manufacturing and processing sub-groups saw slight declines.</p>\n<div class=\"key-takeaway\"><strong>Key takeaways:</strong><p>The Nepse index rose by 7.50 points to reach 2,597.80 on the last trading day of the current fiscal year. The total trading volume amounted to Rs 4 billion 562 million 950 thousand.</p></div>",
+    bodyNpWithAds:  "<p class=\"article-para\">चालु आर्थिक वर्षको अन्तिम कारोबार दिन नेपाल स्टक एक्सचेन्ज (नेप्से) परिसूचक सामान्य सुधारसहित बन्द भएको छ। पछिल्ला केही दिनदेखि देखिएको सकारात्मक लयलाई निरन्तरता दिँदै बिहीबार बजारमा परिसूचकसँगै कारोबार रकममा पनि वृद्धि भएको हो।</p>\n<p class=\"article-para\">बिहीबार नेप्से परिसूचक ७.५० अंकले बढेर २ हजार ५९७.८० विन्दुमा पुगेको छ। यससँगै सेन्सेटिभ इण्डेक्स २.९२ अंकले उकालो लागेको छ। फ्लोट इण्डेक्स ०.६१ अंक र सेन्सेटिभ फ्लोट इण्डेक्स ०.९३ अंकले वृद्धि भएका छन्।</p>\n<p class=\"article-para\">बजारमा यस दिन ३७१ कम्पनीका ९४ लाख ६९ हजार कित्ता शेयर ३९ हजार ५९५ पटक खरिदबिक्री हुँदा कुल ४ अर्ब ५६ करोड २९ लाख ५० हजार रुपैयाँ बराबरको कारोबार भएको छ। अघिल्लो दिन ४ अर्ब १७ करोड रुपैयाँको कारोबार भएको तुलनामा बिहीबार कारोबार रकममा उल्लेख्य वृद्धि देखिएको हो।</p>\n<p class=\"article-para\">कारोबारका क्रममा एनआईबिएल ग्रोथ फण्डको इकाईमूल्य सबैभन्दा धेरै १४.९६ प्रतिशतले बढ्यो। त्यस्तै, फर्स्ट माइक्रोफाइनान्स लघुवित्त वित्तीय संस्था र चिरख्वा हाइड्रोपावरको शेयरमूल्य पनि १४ प्रतिशतभन्दा बढीले उकालो लागेको छ।</p>\n<p class=\"article-para\">यता, कर्पोरेट डेभलपमेन्ट बैंकको शेयरमूल्य सबैभन्दा धेरै ८.७७ प्रतिशतले घटेको छ।</p>\n<p class=\"article-para\">कारोबार रकमका आधारमा सिंगटी हाइड्रो इनर्जी अग्रस्थानमा रह्यो। उक्त कम्पनीको २४ करोड ७४ लाख रुपैयाँ बराबरको शेयर किनबेच भएको छ। त्यसपछि ८.५ प्रतिशत सानिमा डिबेञ्चर २०८७ को करिब २३ करोड रुपैयाँ बराबरको कारोबार भएको छ भने एनआरएन इन्फ्रास्ट्रक्चर एण्ड डेभलपमेन्टको कारोबार रकम २२ करोड रुपैयाँभन्दा बढी पुगेको छ।</p>\n<p class=\"article-para\">१३ उपसमूहमध्ये ९ उपसमूह सकारात्मक रहे भने ४ उपसमूहमा गिरावट देखियो। म्युचुअल फण्ड उपसमूहको परिसूचक सबैभन्दा धेरै १.६६ प्रतिशतले बढ्दा लघुवित्त र निर्जीवन बीमा उपसमूहमा पनि १ प्रतिशतभन्दा बढीको वृद्धि भएको छ। यद्यपि वित्त, होटल तथा पर्यटन, जलविद्युत तथा उत्पादन एवं प्रशोधन उपसमूहका परिसूचक सामान्य ओरालो लागेका छन्।</p>\n<div class=\"key-takeaway\"><strong>मुख्य बुँदा:</strong><p>चालु आर्थिक वर्षको अन्तिम कारोबार दिन नेप्से परिसूचक ७.५० अंकले बढेर २ हजार ५९७.८० विन्दुमा पुगेको थियो। बजारमा कुल ४ अर्ब ५६ करोड २९ लाख ५० हजार रुपैयाँ बराबरको कारोबार भएको थियो।</p></div>",
+    sidebarAdsHtml: "<div class=\"sidebar-ads-wrapper\">\n<div class=\"ad-unit\" id=\"sideads_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_3.jpg\" alt=\"sideads_3.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n\n<div class=\"ad-unit\" id=\"sideads_4\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_4.jpg\" alt=\"sideads_4.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div></div>",
     imageUrl:       "../images/the-share-market-saw-greenery-transaction-amount-crossed-45-billion.jpg",
     breadcrumbEn:   "<a href=\"../index.html\">Home</a> / <a href=\"../category/economy\">Economy</a> / The share market saw greenery, transaction amount ...",
     breadcrumbNp:   "<a href=\"../index.html\">गृहपृष्ठ</a> / <a href=\"../category/economy\">अर्थतन्त्र</a> / नेप्सेमा हरियाली, कारोबार रकम साढे ४ अर्ब नाघ्यो",
@@ -2147,19 +2115,21 @@
 })();
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded',function(){
-      var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
-      var adYear=new Date().getFullYear();
-      var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
-      var eyEn=document.getElementById('footer-year-en');
-      var eyNp=document.getElementById('footer-year-np');
-      if(eyEn)eyEn.textContent=adYear;
-      if(eyNp)eyNp.textContent=npYear;
-      window.addEventListener('langChange',function(e){
-        if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
+    document.addEventListener('DOMContentLoaded', function() {
+      var NP_NUMS = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
+      var adYear = new Date().getFullYear();
+      var npYear = String(adYear).split('').map(function(d) {
+        return NP_NUMS[parseInt(d, 10)];
+      }).join('');
+      var eyEn = document.getElementById('footer-year-en');
+      var eyNp = document.getElementById('footer-year-np');
+      if (eyEn) eyEn.textContent = adYear;
+      if (eyNp) eyNp.textContent = npYear;
+      window.addEventListener('langChange', function(e) {
+        if (e.detail && e.detail.lang) document.body.classList.toggle('lang-active', e.detail.lang === 'np');
       });
-      var stored=localStorage.getItem('fm_lang')||'en';
-      if(stored==='np')document.body.classList.add('lang-active');
+      var stored = localStorage.getItem('fm_lang') || 'en';
+      if (stored === 'np') document.body.classList.add('lang-active');
     });
   </script>
 
