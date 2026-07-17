@@ -693,18 +693,19 @@
   :root {
     --accent:       #D4A017;
     --primary:      #A31919;
-    --primary-on:   ;
-    --accent-on:    ;
+    --primary-on:   #FFFFFF;
+    --accent-on:    #1F1F1F;
     --bg:           #FFFFFF;
     --surface:      #F8F8F8;
     --text:         #1F1F1F;
     --muted:        rgba(31,31,31,0.55);
     --border:       rgba(163,25,25,0.18);
-    --font-body:    ;
-    --font-heading: ;
+    --font-body:    'Open Sans', sans-serif;
+    --font-heading: 'Montserrat', sans-serif;
   }
 
   @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -858,6 +859,10 @@
   body.lang-active p.lang-np, body.lang-active span.lang-np { display: inline !important; }
 </style>
 <style>
+    /* ALL CSS from PART D */
+
+    #site-footer { font-family:var(--font-body); }
+
     /* TOP SECTION */
     .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
     .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
@@ -964,6 +969,14 @@
       .footer-top-inner { 
         grid-template-columns: 1fr; 
         text-align: center;
+      }
+    }
+
+    /* Add these styles for footer desktop view */
+    @media(min-width:1000px){
+      .footer-top-inner { 
+        grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; 
+        gap: 24px;
       }
     }
   </style>
