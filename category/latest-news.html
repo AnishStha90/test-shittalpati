@@ -954,9 +954,30 @@
       font-size: 1rem;
     }
   }
+
+  .lang-np {
+    display: none;
+  }
+
+  .lang-en {
+    display: inline;
+  }
+
+  body.lang-active .lang-en {
+    display: none !important;
+  }
+
+  body.lang-active .lang-np {
+    display: inline !important;
+  }
+
+  body.lang-active p.lang-np, body.lang-active span.lang-np {
+    display: inline !important;
+  }
 </style>
 <style>
     /* ALL CSS from PART D */
+
     #site-footer { font-family:var(--font-body); }
 
     /* TOP SECTION */
