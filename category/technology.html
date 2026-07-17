@@ -709,9 +709,11 @@
     margin: 0;
     padding: 0;
   }
+
   html {
     scroll-behavior: smooth;
   }
+
   body {
     background: var(--bg);
     color: var(--text);
@@ -737,10 +739,12 @@
     color: var(--muted);
     margin-bottom: 1rem;
   }
+
   .breadcrumb a {
     color: var(--accent);
     text-decoration: none;
   }
+
   .breadcrumb a:hover {
     text-decoration: underline;
   }
@@ -786,6 +790,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid var(--border);
   }
+
   .article-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0,0,0,0.1);
@@ -797,6 +802,7 @@
     object-fit: cover;
     background: var(--border);
   }
+
   .card-image:empty {
     background: linear-gradient(135deg, var(--border) 0%, var(--surface) 100%);
   }
@@ -828,6 +834,7 @@
     text-decoration: none;
     transition: color 0.2s;
   }
+
   .card-title:hover {
     color: var(--accent);
   }
@@ -846,6 +853,7 @@
     font-size: 0.78rem;
     color: var(--muted);
   }
+
   .card-meta i {
     margin-right: 0.2rem;
   }
@@ -857,6 +865,7 @@
     font-weight: 600;
     transition: opacity 0.2s;
   }
+
   .read-more:hover {
     opacity: 0.8;
   }
@@ -880,10 +889,12 @@
     align-items: center;
     gap: 0.5rem;
   }
+
   .load-more-btn:hover {
     opacity: 0.9;
     transform: scale(1.02);
   }
+
   .load-more-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -908,6 +919,10 @@
     transition: opacity 0.2s;
   }
 
+  #back-to-top:hover {
+    opacity: 0.9;
+  }
+
   .empty-state {
     text-align: center;
     padding: 4rem 2rem;
@@ -915,6 +930,7 @@
     border-radius: 12px;
     color: var(--muted);
   }
+
   .empty-state i {
     font-size: 3rem;
     margin-bottom: 1rem;
@@ -942,10 +958,30 @@
       font-size: 1rem;
     }
   }
+
+  .lang-np {
+    display: none;
+  }
+
+  .lang-en {
+    display: inline;
+  }
+
+  body.lang-active .lang-en {
+    display: none !important;
+  }
+
+  body.lang-active .lang-np {
+    display: inline !important;
+  }
+
+  body.lang-active p.lang-np,
+  body.lang-active span.lang-np {
+    display: inline !important;
+  }
 </style>
 <style>
     /* ALL CSS from PART D */
-
     #site-footer { font-family:var(--font-body); }
 
     /* TOP SECTION */
@@ -1906,7 +1942,7 @@
   };
 
   // ── Section ads: cycle through these, one every N real articles ──
-  var SECTION_ADS = [{"img":"../images/section_1.jpg","link":""},{"img":"../images/section_2.jpg","link":""}];
+  var SECTION_ADS = [{"img":"../images/section_1.jpg","link":""},{"img":"../images/insection_1.jpg","link":""},{"img":"../images/section_2.jpg","link":""},{"img":"../images/insection_2.jpg","link":""},{"img":"../images/insection_3.jpeg","link":""}];
   var AD_EVERY_N  = 6;
   var adCycleIndex = 0; // persists across load-more calls
 
@@ -2167,20 +2203,20 @@
 })();
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded',function(){
-      var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
-      var adYear=new Date().getFullYear();
-      var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
-      var eyEn=document.getElementById('footer-year-en');
-      var eyNp=document.getElementById('footer-year-np');
-      if(eyEn)eyEn.textContent=adYear;
-      if(eyNp)eyNp.textContent=npYear;
-      window.addEventListener('langChange',function(e){
-        if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
-      });
-      var stored=localStorage.getItem('fm_lang')||'en';
-      if(stored==='np')document.body.classList.add('lang-active');
+  document.addEventListener('DOMContentLoaded',function(){
+    var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
+    var adYear=new Date().getFullYear();
+    var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
+    var eyEn=document.getElementById('footer-year-en');
+    var eyNp=document.getElementById('footer-year-np');
+    if(eyEn)eyEn.textContent=adYear;
+    if(eyNp)eyNp.textContent=npYear;
+    window.addEventListener('langChange',function(e){
+      if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
     });
+    var stored=localStorage.getItem('fm_lang')||'en';
+    if(stored==='np')document.body.classList.add('lang-active');
+  });
   </script>
 
   <!-- ════ Category card AD→BS date conversion ════ -->
