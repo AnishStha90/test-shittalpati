@@ -628,27 +628,22 @@
     --text:         #1F1F1F;
     --muted:        rgba(31,31,31,0.55);
     --border:       rgba(163,25,25,0.18);
-    --font-body:    'Open Sans', sans-serif;
-    --font-heading: 'Montserrat', sans-serif;
+    --font-body:    Arial, sans-serif;
+    --font-heading: Arial, sans-serif;
   }
-
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text); font-family: var(--font-body); margin: 0; padding: 0; }
-
   .article-container {
     max-width: 1100px; margin: 0 auto; padding: 1.5rem; background: var(--bg);
   }
-
   .article-header {
     margin-bottom: 1.5rem;
   }
-
   h1 {
     font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.3;
     margin: 0.5rem 0 0.75rem; color: var(--primary);
   }
-
   .breadcrumb {
     font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem;
   }
@@ -658,13 +653,11 @@
   .breadcrumb a:hover {
     text-decoration: underline;
   }
-
   .category-badge span {
     display: inline-block; background: var(--accent); color: var(--accent-on);
     padding: 3px 10px; border-radius: 4px; font-size: 0.78rem; font-weight: 700;
     margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.04em;
   }
-
   .meta {
     display: flex; gap: 1.2rem; color: var(--muted); font-size: 0.88rem;
     margin-bottom: 0.75rem; flex-wrap: wrap; align-items: center;
@@ -672,7 +665,6 @@
   .meta i {
     margin-right: 4px;
   }
-
   .share-buttons {
     display: flex; gap: 8px; flex-wrap: wrap; margin-top: 0.5rem;
   }
@@ -686,12 +678,11 @@
     background: var(--accent); color: var(--accent-on); border-color: var(--accent);
   }
   .share-btn.facebook:hover {
-    background: #1877F2; color: #fff; border-color: #1877F2;
+    background: #1877F2; color: #FFFFFF; border-color: #1877F2;
   }
   .share-btn.twitter:hover {
-    background: #1DA1F2; color: #fff; border-color: #1DA1F2;
+    background: #1DA1F2; color: #FFFFFF; border-color: #1DA1F2;
   }
-
   .copy-link {
     position: relative;
   }
@@ -703,18 +694,15 @@
   .tooltip.visible {
     display: block;
   }
-
   .article-content {
     display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start;
   }
   @media (max-width: 1023px) {
     .article-content { grid-template-columns: 1fr; }
   }
-
   .main-column {
     min-width: 0;
   }
-
   .image-wrapper {
     margin-bottom: 1.5rem;
   }
@@ -724,7 +712,6 @@
   .image-wrapper.hidden {
     display: none;
   }
-
   .article-body {
     font-size: 1rem; line-height: 1.8; color: var(--text);
   }
@@ -737,7 +724,6 @@
   .article-body img {
     max-width: 100%; border-radius: 6px;
   }
-
   .tags-wrapper {
     margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--border);
   }
@@ -756,11 +742,9 @@
   .tags-list a:hover {
     background: var(--accent); color: var(--accent-on); border-color: var(--accent);
   }
-
   .sidebar {
     position: sticky; top: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;
   }
-
   .widget {
     background: var(--surface); padding: 1.4rem; border-radius: 10px; border: 1px solid var(--border);
   }
@@ -772,7 +756,6 @@
   .widget p {
     font-size: 0.88rem; color: var(--muted); margin-bottom: 0.6rem; line-height: 1.5;
   }
-
   #newsletter-email {
     width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px;
     background: var(--bg); color: var(--text); font-size: 0.88rem;
@@ -789,7 +772,6 @@
   #newsletter-subscribe:hover {
     opacity: 0.85;
   }
-
   #back-to-top {
     position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent);
     color: var(--accent-on); border: none; border-radius: 50%; width: 42px; height: 42px;
@@ -799,7 +781,6 @@
   #back-to-top:hover {
     opacity: 0.85;
   }
-
   .related-card {
     display: flex; gap: 10px; text-decoration: none; color: var(--text);
     padding: 0.7rem 0; border-bottom: 1px solid var(--border); align-items: flex-start;
@@ -824,20 +805,32 @@
   .related-meta {
     font-size: 0.75rem; color: var(--muted);
   }
-
-  .lang-np { display: none; }
-  .lang-en { display: inline; }
-  div.lang-en, p.lang-en, h3.lang-en, .article-body.lang-en { display: block; }
-  div.lang-np, p.lang-np, h3.lang-np, .article-body.lang-np { display: none; }
-  body.lang-active .lang-en { display: none !important; }
-  body.lang-active .lang-np { display: inline !important; }
-  body.lang-active div.lang-np, body.lang-active p.lang-np, body.lang-active h3.lang-np, body.lang-active .article-body.lang-np { display: block !important; }
-  #article-body-en, #article-body-np { min-height: 2rem; }
+  .lang-np {
+    display: none;
+  }
+  .lang-en {
+    display: inline;
+  }
+  div.lang-en, p.lang-en, h3.lang-en, .article-body.lang-en {
+    display: block;
+  }
+  div.lang-np, p.lang-np, h3.lang-np, .article-body.lang-np {
+    display: none;
+  }
+  body.lang-active .lang-en {
+    display: none !important;
+  }
+  body.lang-active .lang-np {
+    display: inline !important;
+  }
+  body.lang-active div.lang-np, body.lang-active p.lang-np, body.lang-active h3.lang-np, body.lang-active .article-body.lang-np {
+    display: block !important;
+  }
+  #article-body-en, #article-body-np {
+    min-height: 2rem;
+  }
 </style>
 <style>
-    /* ALL CSS from PART D */
-    #site-footer { font-family:var(--font-body); }
-
     /* TOP SECTION */
     .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
     .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
@@ -1140,56 +1133,44 @@
       <span id="breadcrumb-en" class="lang-en"></span>
       <span id="breadcrumb-np" class="lang-np"></span>
     </div>
-
     <div class="category-badge">
       <span id="category-en" class="lang-en"></span>
       <span id="category-np" class="lang-np"></span>
     </div>
-
     <h1>
       <span id="title-en" class="lang-en"></span>
       <span id="title-np" class="lang-np"></span>
     </h1>
-
     <div class="meta">
       <span><i class="fas fa-calendar"></i> <span id="date"></span></span>
       <span><i class="fas fa-clock"></i> <span id="readtime-en" class="lang-en"></span><span id="readtime-np" class="lang-np"></span></span>
     </div>
-
     <div class="share-buttons">
       <button class="share-btn facebook"><i class="fab fa-facebook"></i> Facebook</button>
       <button class="share-btn twitter"><i class="fab fa-twitter"></i> Twitter</button>
       <button class="share-btn copy-link"><i class="fas fa-link"></i> Copy Link<span class="tooltip">Copied!</span></button>
     </div>
   </div>
-
   <div class="article-content">
-
     <div class="main-column">
-
       <div class="image-wrapper">
         <img id="featured-image" src="" alt="" loading="lazy">
       </div>
-
       <div id="article-body-en" class="lang-en article-body"></div>
       <div id="article-body-np" class="lang-np article-body"></div>
-
       <div class="tags-wrapper">
         <h3 class="lang-en"><i class="fas fa-tags"></i> Tags</h3>
         <h3 class="lang-np"><i class="fas fa-tags"></i> ट्यागहरू</h3>
         <div id="tags-en" class="lang-en tags-list"></div>
         <div id="tags-np" class="lang-np tags-list"></div>
       </div>
-
     </div>
-
     <aside class="sidebar">
       <div class="widget related">
         <h3 class="lang-en"><i class="fas fa-newspaper"></i> Related Articles</h3>
         <h3 class="lang-np"><i class="fas fa-newspaper"></i> सम्बन्धित लेखहरू</h3>
         <div id="related-articles"></div>
       </div>
-
       <div class="widget newsletter">
         <h3 class="lang-en"><i class="fas fa-envelope"></i> Newsletter</h3>
         <h3 class="lang-np"><i class="fas fa-envelope"></i> समाचारपत्र</h3>
@@ -1199,11 +1180,8 @@
         <button id="newsletter-subscribe"><i class="fas fa-paper-plane"></i> <span class="lang-en">Subscribe</span><span class="lang-np">सदस्यता लिनुहोस्</span></button>
       </div>
     </aside>
-
   </div>
-
   
-
 </div>
 
 
@@ -2023,20 +2001,20 @@
 })();
 </script>
 <script>
-  document.addEventListener('DOMContentLoaded',function(){
-    var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
-    var adYear=new Date().getFullYear();
-    var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
-    var eyEn=document.getElementById('footer-year-en');
-    var eyNp=document.getElementById('footer-year-np');
-    if(eyEn)eyEn.textContent=adYear;
-    if(eyNp)eyNp.textContent=npYear;
-    window.addEventListener('langChange',function(e){
-      if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
+    document.addEventListener('DOMContentLoaded',function(){
+      var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
+      var adYear=new Date().getFullYear();
+      var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
+      var eyEn=document.getElementById('footer-year-en');
+      var eyNp=document.getElementById('footer-year-np');
+      if(eyEn)eyEn.textContent=adYear;
+      if(eyNp)eyNp.textContent=npYear;
+      window.addEventListener('langChange',function(e){
+        if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
+      });
+      var stored=localStorage.getItem('fm_lang')||'en';
+      if(stored==='np')document.body.classList.add('lang-active');
     });
-    var stored=localStorage.getItem('fm_lang')||'en';
-    if(stored==='np')document.body.classList.add('lang-active');
-  });
   </script>
 
   <!-- ════ WhatsApp tooltip controller ════ -->

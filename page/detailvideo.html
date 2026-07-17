@@ -539,9 +539,6 @@
 
 </style>
 <style>
-    /* ALL CSS from PART D */
-    #site-footer { font-family:var(--font-body); }
-
     /* TOP SECTION */
     .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
     .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
@@ -1270,20 +1267,20 @@
 })();
 </script>
 <script>
-  document.addEventListener('DOMContentLoaded',function(){
-    var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
-    var adYear=new Date().getFullYear();
-    var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
-    var eyEn=document.getElementById('footer-year-en');
-    var eyNp=document.getElementById('footer-year-np');
-    if(eyEn)eyEn.textContent=adYear;
-    if(eyNp)eyNp.textContent=npYear;
-    window.addEventListener('langChange',function(e){
-      if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
+    document.addEventListener('DOMContentLoaded',function(){
+      var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
+      var adYear=new Date().getFullYear();
+      var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
+      var eyEn=document.getElementById('footer-year-en');
+      var eyNp=document.getElementById('footer-year-np');
+      if(eyEn)eyEn.textContent=adYear;
+      if(eyNp)eyNp.textContent=npYear;
+      window.addEventListener('langChange',function(e){
+        if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
+      });
+      var stored=localStorage.getItem('fm_lang')||'en';
+      if(stored==='np')document.body.classList.add('lang-active');
     });
-    var stored=localStorage.getItem('fm_lang')||'en';
-    if(stored==='np')document.body.classList.add('lang-active');
-  });
   </script>
   <script>
 (function() {

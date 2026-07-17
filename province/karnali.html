@@ -690,121 +690,78 @@
   }
 </style>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
-
   :root {
     --accent:       #D4A017;
     --primary:      #A31919;
-    --primary-on:   #FFFFFF;
-    --accent-on:    #1F1F1F;
+    --primary-on:   ;
+    --accent-on:    ;
     --bg:           #FFFFFF;
     --surface:      #F8F8F8;
     --text:         #1F1F1F;
     --muted:        rgba(31,31,31,0.55);
     --border:       rgba(163,25,25,0.18);
-    --font-body:    'Open Sans', sans-serif;
-    --font-heading: 'Open Sans', sans-serif;
+    --font-body:    ;
+    --font-heading: ;
   }
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
-  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); }
 
   .province-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-    min-height: 100vh;
+    max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem; min-height: 100vh;
   }
 
   .province-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
+    text-align: center; margin-bottom: 3rem; padding-bottom: 2rem;
     border-bottom: 1px solid var(--border);
   }
 
   .breadcrumb {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-bottom: 1rem;
+    font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem;
   }
-
   .breadcrumb a {
-    color: var(--accent);
-    text-decoration: none;
+    color: var(--accent); text-decoration: none;
   }
-
   .breadcrumb a:hover {
     text-decoration: underline;
   }
 
   h1 {
-    font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    color: var(--primary);
-    margin-bottom: 1rem;
-    line-height: 1.2;
+    font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--primary); margin-bottom: 1rem; line-height: 1.2;
   }
 
   .province-description {
-    font-size: 1rem;
-    color: var(--muted);
-    max-width: 700px;
-    margin: 0 auto 1rem;
-    line-height: 1.6;
+    font-size: 1rem; color: var(--muted); max-width: 700px;
+    margin: 0 auto 1rem; line-height: 1.6;
   }
 
   .province-meta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--surface);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    color: var(--text);
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--surface); padding: 0.5rem 1rem;
+    border-radius: 20px; font-size: 0.85rem; color: var(--text);
   }
 
   .news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem; margin-bottom: 3rem;
   }
 
   .article-card {
-    background: var(--surface);
-    border-radius: 12px;
-    overflow: hidden;
+    background: var(--surface); border-radius: 12px; overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid var(--border);
   }
-
   .article-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   }
 
   .card-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    background: var(--border);
+    width: 100%; height: 200px; object-fit: cover; background: var(--border);
   }
-
   .card-image:empty {
     background: linear-gradient(135deg, var(--border) 0%, var(--surface) 100%);
   }
@@ -814,173 +771,93 @@
   }
 
   .card-province {
-    display: inline-block;
-    background: var(--accent);
-    color: var(--accent-on);
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.05em;
-    font-weight: 600;
-    text-decoration: none;
+    display: inline-block; background: var(--accent); color: var(--accent-on);
+    font-size: 0.7rem; text-transform: uppercase; padding: 0.2rem 0.6rem;
+    border-radius: 4px; margin-bottom: 0.75rem; letter-spacing: 0.05em;
+    font-weight: 600; text-decoration: none;
   }
 
   .card-title {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    line-height: 1.4;
-    margin: 0 0 0.75rem;
-    color: var(--text);
-    text-decoration: none;
+    font-family: var(--font-heading); font-size: 1.2rem; line-height: 1.4;
+    margin: 0 0 0.75rem; color: var(--text); text-decoration: none;
     transition: color 0.2s;
   }
-
   .card-title:hover {
     color: var(--accent);
   }
 
   .card-excerpt {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.5;
+    font-size: 0.88rem; color: var(--muted); line-height: 1.5;
     margin-bottom: 1rem;
   }
 
   .card-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.78rem;
-    color: var(--muted);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.78rem; color: var(--muted);
   }
-
   .card-meta i {
     margin-right: 0.2rem;
   }
 
   .read-more {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: opacity 0.2s;
+    color: var(--accent); text-decoration: none; font-size: 0.85rem;
+    font-weight: 600; transition: opacity 0.2s;
   }
-
   .read-more:hover {
     opacity: 0.8;
   }
 
   .load-more-container {
-    text-align: center;
-    margin-top: 2rem;
+    text-align: center; margin-top: 2rem;
   }
 
   .load-more-btn {
-    background: var(--accent);
-    color: var(--accent-on);
-    border: none;
-    padding: 0.9rem 2rem;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: transform 0.2s, opacity 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
+    background: var(--accent); color: var(--accent-on); border: none;
+    padding: 0.9rem 2rem; border-radius: 50px; cursor: pointer;
+    font-size: 1rem; font-weight: 600; transition: transform 0.2s, opacity 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
   }
-
   .load-more-btn:hover {
-    opacity: 0.9;
-    transform: scale(1.02);
+    opacity: 0.9; transform: scale(1.02);
   }
-
   .load-more-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+    opacity: 0.5; cursor: not-allowed;
   }
 
   #back-to-top {
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    background: var(--accent);
-    color: var(--accent-on);
-    border: none;
-    border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    cursor: pointer;
-    font-size: 1rem;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
+    position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent);
+    color: var(--accent-on); border: none; border-radius: 50%; width: 42px;
+    height: 42px; cursor: pointer; font-size: 1rem; display: none;
+    align-items: center; justify-content: center; z-index: 999;
     transition: opacity 0.2s;
   }
 
   .empty-state {
-    text-align: center;
-    padding: 4rem 2rem;
-    background: var(--surface);
-    border-radius: 12px;
-    color: var(--muted);
+    text-align: center; padding: 4rem 2rem; background: var(--surface);
+    border-radius: 12px; color: var(--muted);
   }
-
   .empty-state i {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    opacity: 0.5;
+    font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;
   }
 
   @media (max-width: 768px) {
-    .province-container {
-      padding: 1rem;
-    }
-    .news-grid {
-      gap: 1rem;
-      grid-template-columns: 1fr;
-    }
-    .card-image {
-      height: 180px;
-    }
+    .province-container { padding: 1rem; }
+    .news-grid { gap: 1rem; grid-template-columns: 1fr; }
+    .card-image { height: 180px; }
   }
 
   @media (max-width: 480px) {
-    h1 {
-      font-size: 1.5rem;
-    }
-    .card-title {
-      font-size: 1rem;
-    }
+    h1 { font-size: 1.5rem; }
+    .card-title { font-size: 1rem; }
   }
 
-  .lang-np {
-    display: none;
-  }
-
-  .lang-en {
-    display: inline;
-  }
-
-  body.lang-active .lang-en {
-    display: none !important;
-  }
-
-  body.lang-active .lang-np {
-    display: inline !important;
-  }
-
-  body.lang-active p.lang-np, body.lang-active span.lang-np {
-    display: inline !important;
-  }
+  .lang-np { display: none; }
+  .lang-en { display: inline; }
+  body.lang-active .lang-en { display: none !important; }
+  body.lang-active .lang-np { display: inline !important; }
+  body.lang-active p.lang-np, body.lang-active span.lang-np { display: inline !important; }
 </style>
 <style>
-    /* ALL CSS from PART D */
-    #site-footer { font-family:var(--font-body); }
-
     /* TOP SECTION */
     .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
     .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
@@ -2213,20 +2090,20 @@
 })();
 </script>
 <script>
-  document.addEventListener('DOMContentLoaded',function(){
-    var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
-    var adYear=new Date().getFullYear();
-    var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
-    var eyEn=document.getElementById('footer-year-en');
-    var eyNp=document.getElementById('footer-year-np');
-    if(eyEn)eyEn.textContent=adYear;
-    if(eyNp)eyNp.textContent=npYear;
-    window.addEventListener('langChange',function(e){
-      if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
+    document.addEventListener('DOMContentLoaded',function(){
+      var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
+      var adYear=new Date().getFullYear();
+      var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
+      var eyEn=document.getElementById('footer-year-en');
+      var eyNp=document.getElementById('footer-year-np');
+      if(eyEn)eyEn.textContent=adYear;
+      if(eyNp)eyNp.textContent=npYear;
+      window.addEventListener('langChange',function(e){
+        if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
+      });
+      var stored=localStorage.getItem('fm_lang')||'en';
+      if(stored==='np')document.body.classList.add('lang-active');
     });
-    var stored=localStorage.getItem('fm_lang')||'en';
-    if(stored==='np')document.body.classList.add('lang-active');
-  });
   </script>
 
   <!-- ════ Province card AD→BS date conversion ════ -->
