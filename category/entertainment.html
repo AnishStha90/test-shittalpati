@@ -981,6 +981,7 @@
 </style>
 <style>
     /* ALL CSS from PART D */
+
     #site-footer { font-family:var(--font-body); }
 
     /* TOP SECTION */
@@ -1091,6 +1092,7 @@
         text-align: center;
       }
     }
+
   </style>
 
   <style>
@@ -1484,8 +1486,8 @@
 
   
 
-  <!-- WhatsApp float -->
   
+
 </footer>
 
   <!-- ════ WHATSAPP WIDGET ════ -->
@@ -1942,7 +1944,7 @@
   };
 
   // ── Section ads: cycle through these, one every N real articles ──
-  var SECTION_ADS = [{"img":"../images/section_1.jpg","link":""},{"img":"../images/section_2.jpg","link":""}];
+  var SECTION_ADS = [{"img":"../images/section_1.jpg","link":""},{"img":"../images/insection_1.png","link":""},{"img":"../images/section_2.jpg","link":""},{"img":"../images/insection_2.png","link":""},{"img":"../images/insection_3.png","link":""}];
   var AD_EVERY_N  = 6;
   var adCycleIndex = 0; // persists across load-more calls
 
@@ -2027,7 +2029,7 @@
       }
 
       html += `
-  <article class="article-card" data-slug="${slug}" data-index="${idx}" onclick="window.location.href='/page/${slug}.html'" style="cursor:pointer;">
+  <article class="article-card" data-slug="${slug}" data-index="${idx}" onclick="window.location.href='/page/article.html?slug=' + encodeURIComponent(slug)" style="cursor:pointer;">
         ${imageUrl
           ? `<img class="card-image" src="${imageUrl}" alt="${title.replace(/"/g,'&quot;')}" loading="lazy" onerror="this.style.display='none'">`
           : '<div class="card-image no-image"></div>'}
@@ -2036,7 +2038,7 @@
             <span class="card-category lang-en" style="${isNp?'display:none':''}">${category}</span>
             <span class="card-category lang-np"  style="${isNp?'':'display:none'}">${categoryNe}</span>
           </div>
-          <a href="/page/${slug}.html" class="card-title-link">
+          <a href="/page/article.html?slug=${encodeURIComponent(slug)}" class="card-title-link">
             <h3 class="card-title lang-en" style="${isNp?'display:none':''}">${title}</h3>
             <h3 class="card-title lang-np"  style="${isNp?'':'display:none'}">${titleNe}</h3>
           </a>

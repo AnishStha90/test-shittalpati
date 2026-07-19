@@ -981,6 +981,7 @@
 </style>
 <style>
     /* ALL CSS from PART D */
+
     #site-footer { font-family:var(--font-body); }
 
     /* TOP SECTION */
@@ -1091,6 +1092,7 @@
         text-align: center;
       }
     }
+
   </style>
 
   <style>
@@ -1484,8 +1486,8 @@
 
   
 
-  <!-- WhatsApp float -->
   
+
 </footer>
 
   <!-- ════ WHATSAPP WIDGET ════ -->
@@ -1936,13 +1938,13 @@
     nameNp:       "प्रविधि",
     descEn:       "Technology — Latest news and updates.",
     descNp:       "प्रविधि — नवीनतम समाचार र अपडेटहरू।",
-    totalCount:   0,
-    allArticles:  [],
+    totalCount:   1,
+    allArticles:  [{"newsIndex":0,"recordId":"","title":"The servers and systems teasing the digital services","titleNe":"डिजिटल सेवालाई गिज्याइरहेका सर्भर र सिस्टम","slug":"the-servers-and-systems-teasing-the-digital-services","category":"Technology","categoryNe":"प्रविधि","metaDesc":"The frequent shutdowns of the digital system cause problems for service seekers who have to wait for a long time in the land administration, transport, and national identity card departments.","metaDescNe":"डिजिटल प्रणाली बारम्बार बन्द हुँदा भूमि प्रशासन, यातायात र राष्ट्रिय परिचयपत्र विभागमा सेवाग्राहीले लामो समय कुर्नुपर्ने समस्या।","readTime":"7 min read","readTimeNe":"7 मिनेट पढाइ","date":"July 19, 2026","time":"1:12 PM","creator":"Nature Dahal","creatorNp":"प्रकृति दाहाल","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/the-servers-and-systems-teasing-the-digital-services.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"}],
     itemsPerPage: 6
   };
 
   // ── Section ads: cycle through these, one every N real articles ──
-  var SECTION_ADS = [{"img":"../images/section_1.jpg","link":""},{"img":"../images/section_2.jpg","link":""}];
+  var SECTION_ADS = [{"img":"../images/section_1.jpg","link":""},{"img":"../images/insection_1.png","link":""},{"img":"../images/section_2.jpg","link":""},{"img":"../images/insection_2.png","link":""},{"img":"../images/insection_3.png","link":""}];
   var AD_EVERY_N  = 6;
   var adCycleIndex = 0; // persists across load-more calls
 
@@ -2027,7 +2029,7 @@
       }
 
       html += `
-  <article class="article-card" data-slug="${slug}" data-index="${idx}" onclick="window.location.href='/page/${slug}.html'" style="cursor:pointer;">
+  <article class="article-card" data-slug="${slug}" data-index="${idx}" onclick="window.location.href='/page/article.html?slug=' + encodeURIComponent(slug)" style="cursor:pointer;">
         ${imageUrl
           ? `<img class="card-image" src="${imageUrl}" alt="${title.replace(/"/g,'&quot;')}" loading="lazy" onerror="this.style.display='none'">`
           : '<div class="card-image no-image"></div>'}
@@ -2036,7 +2038,7 @@
             <span class="card-category lang-en" style="${isNp?'display:none':''}">${category}</span>
             <span class="card-category lang-np"  style="${isNp?'':'display:none'}">${categoryNe}</span>
           </div>
-          <a href="/page/${slug}.html" class="card-title-link">
+          <a href="/page/article.html?slug=${encodeURIComponent(slug)}" class="card-title-link">
             <h3 class="card-title lang-en" style="${isNp?'display:none':''}">${title}</h3>
             <h3 class="card-title lang-np"  style="${isNp?'':'display:none'}">${titleNe}</h3>
           </a>
