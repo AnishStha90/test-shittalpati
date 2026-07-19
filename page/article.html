@@ -539,9 +539,6 @@
 
 </style>
 <style>
-    /* ALL CSS from PART D */
-    #site-footer { font-family: var(--font-body); }
-
     /* TOP SECTION */
     .footer-top { background: #f0f0f0; padding: 40px 0 32px; border-top: 3px solid var(--primary); }
     .footer-top-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; gap: 24px; }
@@ -933,8 +930,7 @@
           <span class="lang-np">फोन: +९७७ ९८४७४९२२२६</span>
         </p>
         <p class="footer-contact-line">
-          <span class="lang-en">Email:</span>
-          <span class="lang-np">इमेल:</span> njdnews@gmail.com
+          <span class="lang-en">Email:</span><span class="lang-np">इमेल:</span> njdnews@gmail.com
         </p>
       </div>
 
@@ -1047,8 +1043,8 @@
       <div class="footer-bottom-freq">
         <span class="editor-label"><span class="lang-en">Frequency</span><span class="lang-np">फ्रिक्वेन्सी</span></span>
         <span class="editor-name">
-          <span class="lang-en">103.5 MHZ FM</span>
-          <span class="lang-np">१०३.५ मेगाहर्ज एफएम</span>
+          <span class="lang-en">102.5 MHZ FM</span>
+          <span class="lang-np">१०२.५ मेगाहर्ज एफएम</span>
         </span>
       </div>
 
@@ -1070,6 +1066,7 @@
 
   
 
+  <!-- WhatsApp float -->
   <div class="wa-widget">
     <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
     <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -1303,9 +1300,7 @@
     document.addEventListener('DOMContentLoaded', function () {
       var NP_NUMS = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
       var adYear = new Date().getFullYear();
-      var npYear = String(adYear).split('').map(function (d) {
-        return NP_NUMS[parseInt(d, 10)];
-      }).join('');
+      var npYear = String(adYear).split('').map(function (d) { return NP_NUMS[parseInt(d, 10)]; }).join('');
       var eyEn = document.getElementById('footer-year-en');
       var eyNp = document.getElementById('footer-year-np');
       if (eyEn) eyEn.textContent = adYear;
@@ -1321,7 +1316,7 @@
 (function () {
   'use strict';
   const MANIFEST_URL = '../data/articles.json';
-  const SIDE_ADS = [{"name":"sideads_3.jpg","image":"../images/sideads_3.jpg"},{"name":"sideads_4.jpg","image":"../images/sideads_4.jpg"}];
+  const SIDE_ADS = [{"name":"sideads_1.jpg","image":"../images/sideads_1.jpg"},{"name":"sideads_2.jpg","image":"../images/sideads_2.jpg"},{"name":"sideads_3.jpg","image":"../images/sideads_3.jpg"},{"name":"sideads_4.jpg","image":"../images/sideads_4.jpg"}];
   const INSECTION_ADS = [{"name":"insection_1.png","image":"../images/insection_1.png"},{"name":"insection_2.png","image":"../images/insection_2.png"},{"name":"insection_3.png","image":"../images/insection_3.png"}];
 
   function getSlugFromUrl() { return new URLSearchParams(window.location.search).get('slug') || ''; }
