@@ -659,7 +659,6 @@
     main{flex:1} img,video,iframe{max-width:100%;height:auto}
   </style>
   <style>
-  /* ── language toggle (fixed specificity — these win over any later .widget/.tags-wrapper rules) ── */
   .lang-np { display:none; }
   .lang-en { display:inline; }
   div.lang-en,p.lang-en,h3.lang-en,h4.lang-en,span.lang-en,.article-body.lang-en,section.lang-en { display:block; }
@@ -668,7 +667,6 @@
   body.lang-active .lang-np { display:inline !important; }
   body.lang-active div.lang-np,body.lang-active p.lang-np,body.lang-active h3.lang-np,body.lang-active h4.lang-np,
   body.lang-active span.lang-np,body.lang-active .article-body.lang-np,body.lang-active section.lang-np { display:block !important; }
-  /* date spans are inline, not block */
   body.lang-active .date-display.lang-np { display:inline !important; }
   .date-display.lang-np { display:none !important; }
 
@@ -703,8 +701,15 @@
   .widget h3.lang-np { display:none; }
   body.lang-active .widget h3.lang-en { display:none !important; }
   body.lang-active .widget h3.lang-np { display:flex !important; }
-  .related-card { display:flex; gap:12px; margin-bottom:14px; text-decoration:none; color:inherit; padding:8px; border-radius:8px; }
-  .related-card:hover { background:rgba(128,128,128,.08); }
+
+  /* boxed related-article cards */
+  .related-card {
+    display:flex; gap:12px; margin-bottom:12px; text-decoration:none; color:inherit;
+    padding:10px; border-radius:8px; background:var(--bg); border:1px solid var(--border);
+    transition:border-color .2s, box-shadow .2s;
+  }
+  .related-card:last-child { margin-bottom:0; }
+  .related-card:hover { border-color:var(--accent); box-shadow:0 2px 10px rgba(0,0,0,.08); }
   .related-card img { width:80px; height:58px; object-fit:cover; border-radius:6px; flex-shrink:0; }
   .related-category { display:block; font-size:.68rem; color:var(--accent); text-transform:uppercase; font-weight:700; margin-bottom:3px; }
   .related-card h4 { margin:0 0 4px; font-size:.85rem; line-height:1.35; color:var(--text); }
@@ -714,7 +719,6 @@
   .loading-state,.error-state { text-align:center; padding:4rem 1rem; color:var(--muted); }
   .error-state { display:none; }
 
-  /* ── ads ── */
   .ad-label { text-align:center; font-size:.7rem; letter-spacing:.05em; color:var(--muted); text-transform:uppercase; margin-bottom:.6rem; }
   .side-ads img, .insection-ad img { width:100%; border-radius:8px; display:block; margin-bottom:12px; }
   .side-ads img:last-child, .insection-ad img:last-child { margin-bottom:0; }
@@ -862,8 +866,8 @@
         <h1><span id="title-en" class="lang-en"></span><span id="title-np" class="lang-np"></span></h1>
         <div class="meta">
           <span><i class="fas fa-calendar"></i>
-            <span class="date-display lang-en" id="date-en" data-date-ad=""></span>
-            <span class="date-display lang-np" id="date-np" data-date-ad=""></span>
+            <span class="date-display lang-en" id="date-en"></span>
+            <span class="date-display lang-np" id="date-np"></span>
           </span>
           <span><i class="fas fa-clock"></i><span id="readtime-en" class="lang-en"></span><span id="readtime-np" class="lang-np"></span></span>
         </div>
@@ -886,14 +890,14 @@
           </div>
         </div>
         <aside class="sidebar">
+          <div class="widget side-ads" id="side-ads-widget" style="display:none">
+            <div class="ad-label"><span class="lang-en">Advertisement</span><span class="lang-np">विज्ञापन</span></div>
+            <div id="side-ads-list"></div>
+          </div>
           <div class="widget related">
             <h3 class="lang-en"><i class="fas fa-newspaper"></i> Related Articles</h3>
             <h3 class="lang-np"><i class="fas fa-newspaper"></i> सम्बन्धित लेखहरू</h3>
             <div id="related-articles"></div>
-          </div>
-          <div class="widget side-ads" id="side-ads-widget" style="display:none">
-            <div class="ad-label"><span class="lang-en">Advertisement</span><span class="lang-np">विज्ञापन</span></div>
-            <div id="side-ads-list"></div>
           </div>
         </aside>
       </div>
@@ -1310,30 +1314,18 @@
 (function () {
   'use strict';
   const MANIFEST_URL = '../data/articles.json';
-  const SIDE_ADS = [{"name":"sideads_3.jpg","image":"https://drive.google.com/uc?id=1BKRHuN-sRkXb2RmIXYdfZ4ivVtvkMFU_&export=download"},{"name":"sideads_4.jpg","image":"https://drive.google.com/uc?id=18LuXjq6qgj_8ybvA4uf8vcm_oc23nEt1&export=download"}];
-  const INSECTION_ADS = [{"name":"insection_1.png","image":"https://drive.google.com/uc?id=1VRj7wviu1wfvezjRbPJCAMcjUjk8xmND&export=download"},{"name":"insection_2.png","image":"https://drive.google.com/uc?id=1SP9ILfJs4Jjk7NaIl2ThjWrE8IawPQDi&export=download"},{"name":"insection_3.png","image":"https://drive.google.com/uc?id=1bQ1T9jgcBo1L3ZROmOSMqQsFF9Zvvb63&export=download"}];
+  const SIDE_ADS = [{"name":"sideads_3.jpg","image":"../images/sideads_3.jpg"},{"name":"sideads_4.jpg","image":"../images/sideads_4.jpg"}];
+  const INSECTION_ADS = [{"name":"insection_1.png","image":"../images/insection_1.png"},{"name":"insection_2.png","image":"../images/insection_2.png"},{"name":"insection_3.png","image":"../images/insection_3.png"}];
 
   function getSlugFromUrl() { return new URLSearchParams(window.location.search).get('slug') || ''; }
   function escapeHtml(str) { if (!str) return ''; return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
   function el(id) { return document.getElementById(id); }
   var EN_MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  var NP_MONTHS = ['जनवरी','फेब्रुअरी','मार्च','अप्रिल','मे','जुन','जुलाई','अगस्ट','सेप्टेम्बर','अक्टोबर','नोभेम्बर','डिसेम्बर'];
-  var NP_DIGITS = ['०','१','२','३','४','५','६','७','८','९'];
-  function toNpDigits(str) { return String(str).replace(/[0-9]/g, function(d){ return NP_DIGITS[+d]; }); }
   function formatDateEn(dateStr) {
     if (!dateStr) return '';
     var d = new Date(dateStr);
     if (isNaN(d.getTime())) return dateStr;
     return EN_MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
-  }
-  // NOTE: this shows the Gregorian date with Nepali month names + Devanagari
-  // digits (not a true BS conversion). Swap in your existing BS-conversion
-  // function here if you want the actual Bikram Sambat date on this page.
-  function formatDateNp(dateStr) {
-    if (!dateStr) return '';
-    var d = new Date(dateStr);
-    if (isNaN(d.getTime())) return dateStr;
-    return toNpDigits(d.getUTCDate()) + ' ' + NP_MONTHS[d.getUTCMonth()] + ', ' + toNpDigits(d.getUTCFullYear());
   }
   function renderTags(container, tags) {
     if (!tags || !tags.length) { container.innerHTML = ''; return; }
@@ -1352,7 +1344,9 @@
           '<span class="related-category lang-np" style="display:none">' + escapeHtml(r.categoryNe || r.category || '') + '</span>' +
           '<h4 class="lang-en">' + escapeHtml(r.title || '') + '</h4>' +
           '<h4 class="lang-np" style="display:none">' + escapeHtml(r.titleNe || r.title || '') + '</h4>' +
-          '<span class="related-meta">' + escapeHtml(formatDateEn(r.date)) + '</span></div></a>';
+          '<span class="related-meta lang-en">' + escapeHtml(formatDateEn(r.date)) + '</span>' +
+          '<span class="related-meta lang-np" style="display:none">' + escapeHtml(r.dateBS || '') + '</span>' +
+        '</div></a>';
     }).join('');
   }
   function renderSideAds() {
@@ -1368,8 +1362,6 @@
     return '<div class="insection-ad"><div class="ad-label"><span class="lang-en">Advertisement</span><span class="lang-np">विज्ञापन</span></div>' +
       '<a href="#" target="_blank" rel="noopener"><img src="' + escapeHtml(ad.image) + '" alt="' + escapeHtml(ad.name) + '" loading="lazy"></a></div>';
   }
-  // splits body HTML on paragraph boundaries and inserts an in-section ad
-  // after every ~3 paragraphs (won't insert more ads than exist)
   function interleaveAds(bodyHtml) {
     if (!INSECTION_ADS.length || !bodyHtml) return bodyHtml;
     var parts = bodyHtml.split(/(<\/p>)/i);
@@ -1397,11 +1389,10 @@
     el('title-np').textContent = article.titleNe || article.title || '';
     el('readtime-en').textContent = article.readTime || '';
     el('readtime-np').textContent = article.readTimeNe || article.readTime || '';
-    var dateEnEl = el('date-en'), dateNpEl = el('date-np');
-    dateEnEl.setAttribute('data-date-ad', article.date || '');
-    dateEnEl.textContent = formatDateEn(article.date);
-    dateNpEl.setAttribute('data-date-ad', article.date || '');
-    dateNpEl.textContent = formatDateNp(article.date);
+    // NEW: dateBS comes straight from the manifest (real BS date, computed
+    // once at build time) instead of being faked client-side.
+    el('date-en').textContent = formatDateEn(article.date);
+    el('date-np').textContent = article.dateBS || '';
     var img = el('featured-image');
     if (article.imageUrl) {
       img.src = article.imageUrl; img.alt = article.title || '';
