@@ -1,0 +1,2245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Radio  - News</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+
+:root {
+  --hdr-accent:      #D4A017;
+  --hdr-primary:     #A31919;
+  --hdr-primary-on:  #FFFFFF;
+  --hdr-accent-on:   #1F1F1F;
+  --hdr-bg:          #FFFFFF;
+  --hdr-surface:     #F8F8F8;
+  --hdr-text:        #1F1F1F;
+  --hdr-muted:       rgba(31,31,31,0.55);
+  --hdr-border:      rgba(163,25,25,0.18);
+  --hdr-font-body:   sans-serif;
+  --hdr-font-heading:Noto Serif, Georgia, serif;
+}
+
+/* === FIX 1: Header must be position:relative so mobile menu anchors to it === */
+#site-header {
+  position: relative !important;
+  display: block !important;
+}
+
+/* === RESET inside header only — excludes icon elements === */
+#site-header *, #site-header *::before, #site-header *::after {
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: normal !important;
+}
+
+/* Apply font-family only to non-icon elements so Font Awesome is never overridden */
+#site-header *:not(i):not([class*="fa-"]) {
+  font-family: var(--hdr-font-body, sans-serif) !important;
+}
+
+/* === FONT AWESOME ICON PROTECTION === */
+#site-header i[class*="fa-"] {
+  font-style: normal !important;
+  font-variant: normal !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  display: inline-block !important;
+  line-height: 1 !important;
+}
+#site-header i.fa-brands,
+#site-header i[class*="fa-brands"] {
+  font-family: "Font Awesome 6 Brands" !important;
+  font-weight: 400 !important;
+}
+#site-header i.fa-solid,
+#site-header i[class*="fa-solid"] {
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 900 !important;
+}
+#site-header i.fa-regular,
+#site-header i[class*="fa-regular"] {
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 400 !important;
+}
+
+/* === FIX 3: Header-internal lang toggle via .hdr-np class === */
+#site-header .lang-en { display: inline !important; }
+#site-header .lang-np { display: none !important; }
+#site-header.hdr-np .lang-en { display: none !important; }
+#site-header.hdr-np .lang-np { display: inline !important; }
+
+/* === TOP BAR === */
+#site-header .top-bar {
+  background: var(--hdr-surface) !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  overflow: hidden !important;
+  transition: height .3s ease, opacity .3s ease !important;
+}
+#site-header .top-bar-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  height: 38px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+
+/* === SOCIAL ICONS === */
+#site-header .top-social {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  flex-shrink: 0 !important;
+}
+#site-header .top-social a {
+  color: var(--hdr-text) !important;
+  font-size: 1.1rem !important;
+  text-decoration: none !important;
+  transition: color .2s !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 1.4rem !important;
+  height: 1.4rem !important;
+}
+#site-header .top-social a:hover {
+  color: var(--hdr-accent) !important;
+}
+#site-header .top-social a i {
+  font-size: 1.1rem !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* === TOP CENTER === */
+#site-header .top-center {
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  font-size: .8rem !important;
+  color: var(--hdr-text) !important;
+}
+#site-header .top-date,
+#site-header .top-clock {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  white-space: nowrap !important;
+}
+#site-header .top-date i,
+#site-header .top-clock i { opacity: .6 !important; font-size: .78rem !important; }
+#site-header .top-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-shrink: 0 !important;
+}
+
+/* === PLAYER === */
+#site-header .header-player {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  border: 1px solid var(--hdr-border) !important;
+  border-radius: 6px !important;
+  padding: 4px 10px !important;
+  background: var(--hdr-bg) !important;
+}
+#site-header .player-live-badge {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  font-size: .62rem !important;
+  font-weight: 800 !important;
+  color: var(--hdr-accent) !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+#site-header .live-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: #e74c3c !important;
+  animation: hdrLivePulse 1.5s ease-in-out infinite !important;
+  flex-shrink: 0 !important;
+}
+@keyframes hdrLivePulse {
+  0%,100%{ opacity:1; transform:scale(1); }
+  50%{ opacity:.3; transform:scale(.65); }
+}
+#site-header .player-waveform {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+  height: 16px !important;
+}
+#site-header .player-waveform span {
+  display: block !important;
+  width: 2px !important;
+  border-radius: 1px !important;
+  background: var(--hdr-accent) !important;
+  opacity: .65 !important;
+  animation: hdrWaveAnim 1.2s ease-in-out infinite !important;
+}
+#site-header .player-waveform span:nth-child(1){height:4px !important;animation-delay:0s !important;}
+#site-header .player-waveform span:nth-child(2){height:10px !important;animation-delay:.15s !important;}
+#site-header .player-waveform span:nth-child(3){height:14px !important;animation-delay:.3s !important;}
+#site-header .player-waveform span:nth-child(4){height:8px !important;animation-delay:.45s !important;}
+#site-header .player-waveform span:nth-child(5){height:11px !important;animation-delay:.6s !important;}
+@keyframes hdrWaveAnim {
+  0%,100%{ transform:scaleY(.35); }
+  50%{ transform:scaleY(1); }
+}
+#site-header .player-waveform.paused span {
+  animation-play-state: paused !important;
+  opacity: .2 !important;
+}
+#site-header .player-play-btn {
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background: var(--hdr-accent) !important;
+  color: var(--hdr-accent-on) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  transition: opacity .2s, transform .1s !important;
+}
+#site-header .player-play-btn:hover { opacity: .85 !important; }
+#site-header .player-play-btn:active { transform: scale(.9) !important; }
+#site-header .player-vol-wrap {
+  display: flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+}
+#site-header .vol-btn {
+  background: none !important;
+  border: none !important;
+  color: var(--hdr-muted) !important;
+  cursor: pointer !important;
+  padding: 2px !important;
+  display: flex !important;
+  align-items: center !important;
+  transition: color .2s !important;
+  flex-shrink: 0 !important;
+}
+#site-header .vol-btn:hover { color: var(--hdr-accent) !important; }
+#site-header .vol-slider {
+  -webkit-appearance: none !important;
+  width: 56px !important;
+  height: 3px !important;
+  border-radius: 2px !important;
+  outline: none !important;
+  cursor: pointer !important;
+  background: linear-gradient(to right, var(--hdr-accent) 70%, var(--hdr-border) 70%) !important;
+}
+#site-header .vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 50% !important;
+  background: var(--hdr-accent) !important;
+  cursor: pointer !important;
+}
+#site-header .vol-slider::-moz-range-thumb {
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 50% !important;
+  background: var(--hdr-accent) !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+#site-header .lang-toggle {
+  background: var(--hdr-accent) !important;
+  color: var(--hdr-accent-on) !important;
+  border: none !important;
+  border-radius: 3px !important;
+  padding: 3px 10px !important;
+  font-weight: 700 !important;
+  font-size: .72rem !important;
+  cursor: pointer !important;
+  letter-spacing: .05em !important;
+  transition: opacity .2s !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+#site-header .lang-toggle:hover { opacity: .85 !important; }
+
+/* === LOGO BAR === */
+#site-header .logo-bar {
+  background: var(--hdr-surface) !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  padding: 10px 0 !important;
+  transition: padding .3s ease !important;
+}
+#site-header .logo-bar-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: justify-content .3s ease !important;
+}
+#site-header .logo-link {
+  display: flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+}
+#site-header .header-logo {
+  height: 90px !important;
+  width: auto !important;
+  max-width: min(520px, 80vw) !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  display: block !important;
+  transition: height .3s ease, object-position .3s ease !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* === MAIN NAV === */
+#site-header .main-nav {
+  background: var(--hdr-primary) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.22) !important;
+}
+#site-header .main-nav-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+#site-header .nav-list {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  overflow: visible !important;
+}
+#site-header .nav-list li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  display: flex !important;
+  align-items: stretch !important;
+}
+#site-header .nav-list li > a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: .72rem .85rem !important;
+  color: var(--hdr-primary-on) !important;
+  text-decoration: none !important;
+  font-size: .82rem !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  border-bottom: 3px solid transparent !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  transition: background .2s, border-color .2s !important;
+  background: transparent !important;
+}
+#site-header .nav-list li > a:hover,
+#site-header .nav-list li.active > a {
+  background: rgba(0,0,0,.18) !important;
+  border-bottom-color: #fff !important;
+}
+
+/* === DROPDOWN === */
+#site-header .has-dropdown { position: relative !important; }
+#site-header .dropdown-arrow {
+  font-size: .65rem !important;
+  transition: transform .25s !important;
+  margin-left: 2px !important;
+}
+#site-header .has-dropdown:hover .dropdown-arrow,
+#site-header .has-dropdown.open .dropdown-arrow { transform: rotate(180deg) !important; }
+#site-header .dropdown-menu {
+  display: none !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  background: var(--hdr-surface) !important;
+  border: 1px solid var(--hdr-border) !important;
+  border-top: 2px solid var(--hdr-accent) !important;
+  border-radius: 0 0 6px 6px !important;
+  min-width: 220px !important;
+  z-index: 2000 !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.15) !important;
+  list-style: none !important;
+  padding: 4px 0 !important;
+}
+@media (min-width: 961px) {
+  #site-header .has-dropdown:hover .dropdown-menu { display: block !important; }
+}
+@media (max-width: 960px) {
+  #site-header .has-dropdown.open .dropdown-menu { display: block !important; }
+}
+#site-header .dropdown-menu li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+#site-header .dropdown-menu li a {
+  display: block !important;
+  padding: .6rem 1.1rem !important;
+  color: var(--hdr-text) !important;
+  text-decoration: none !important;
+  font-size: .84rem !important;
+  font-weight: 500 !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  transition: background .15s, color .15s !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+}
+#site-header .dropdown-menu li:last-child a { border-bottom: none !important; }
+#site-header .dropdown-menu li a:hover {
+  background: var(--hdr-primary) !important;
+  color: var(--hdr-primary-on) !important;
+}
+
+/* === HAMBURGER === */
+#site-header .nav-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  flex-shrink: 0 !important;
+}
+#site-header .hamburger {
+  display: none !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 6px !important;
+  cursor: pointer !important;
+  width: 40px !important;
+  height: 40px !important;
+  flex-shrink: 0 !important;
+}
+#site-header .bar {
+  display: block !important;
+  width: 20px !important;
+  height: 2px !important;
+  background: var(--hdr-primary-on) !important;
+  border-radius: 2px !important;
+  transition: transform .3s, opacity .3s !important;
+  transform-origin: center !important;
+}
+#site-header .hamburger[aria-expanded="true"] .bar:nth-child(1){transform:translateY(7px) rotate(45deg) !important;}
+#site-header .hamburger[aria-expanded="true"] .bar:nth-child(2){opacity:0 !important;transform:scaleX(0) !important;}
+#site-header .hamburger[aria-expanded="true"] .bar:nth-child(3){transform:translateY(-7px) rotate(-45deg) !important;}
+
+/* === MOBILE MENU === */
+#site-header .mobile-menu {
+  display: none !important;
+  background: var(--hdr-surface) !important;
+  border-top: 2px solid var(--hdr-primary) !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 999 !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.18) !important;
+}
+#site-header .mobile-menu.open { display: block !important; }
+#site-header .mobile-menu ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: .5rem 0 !important;
+}
+#site-header .mobile-menu ul li { margin: 0 !important; padding: 0 !important; }
+#site-header .mobile-menu ul li a {
+  display: block !important;
+  padding: .72rem 1.5rem !important;
+  color: var(--hdr-text) !important;
+  text-decoration: none !important;
+  font-size: .9rem !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  transition: background .2s, color .2s !important;
+  background: transparent !important;
+}
+#site-header .mobile-menu ul li a:hover {
+  background: var(--hdr-primary) !important;
+  color: var(--hdr-primary-on) !important;
+}
+#site-header .mobile-province-list li a {
+  padding-left: 2.5rem !important;
+  font-size: .85rem !important;
+  background: var(--hdr-bg) !important;
+}
+
+/* === SCROLL SHRINK === */
+#site-header.scrolled .top-bar {
+  height: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  border: none !important;
+}
+#site-header.scrolled .logo-bar { padding: 5px 0 !important; }
+#site-header.scrolled .logo-bar-inner { justify-content: flex-start !important; }
+#site-header.scrolled .header-logo { height: 42px !important; object-position: left center !important; }
+
+/* === RESPONSIVE === */
+@media (max-width: 960px) {
+  #site-header .nav-list { display: none !important; }
+  #site-header .hamburger { display: flex !important; }
+  #site-header .top-center { display: none !important; }
+  #site-header .player-vol-wrap { display: none !important; }
+  #site-header .top-bar-inner { padding: 0 12px !important; }
+}
+@media (max-width: 600px) {
+  #site-header .header-logo { height: 58px !important; max-width: 70vw !important; }
+  #site-header .header-player { padding: 3px 7px !important; gap: 4px !important; }
+  #site-header .top-social { gap: 10px !important; }
+  #site-header .logo-bar-inner,
+  #site-header .main-nav-inner { padding: 0 12px !important; }
+  #site-header .top-right { gap: 6px !important; }
+}
+@media (min-width: 961px) {
+  #site-header .hamburger { display: none !important; }
+  #site-header .mobile-menu { display: none !important; }
+  #site-header .nav-list { display: flex !important; }
+}
+@media (max-width: 480px) {
+  #site-header .player-live-badge .live-label { display: none !important; }
+  #site-header .player-waveform { display: none !important; }
+  #site-header .header-player { padding: 2px 5px !important; }
+}
+
+</style>
+<style>
+  .lang-np { display: none !important; }
+  .lang-en { display: inline; }
+  div.lang-en, p.lang-en, h3.lang-en, .article-body.lang-en,
+  section.lang-en, aside.lang-en { display: block !important; }
+  div.lang-np, p.lang-np, h3.lang-np, .article-body.lang-np,
+  section.lang-np, aside.lang-np { display: none !important; }
+
+  .meta { display: flex !important; flex-wrap: wrap; align-items: center !important; gap: 1rem; }
+  .meta > span { display: inline-flex !important; align-items: center; gap: 5px; white-space: nowrap; }
+  .meta i { display: inline-flex !important; align-items: center; line-height: 1; font-size: 0.85rem; flex-shrink: 0; }
+
+  /* ── Section ads (between paragraphs) ── */
+  .ad-unit {
+    margin: 1.6rem 0;
+    padding: 0.5rem;
+    border: 1px dashed var(--border, rgba(0,0,0,0.15));
+    border-radius: 6px;
+    background: var(--surface, rgba(0,0,0,0.02));
+    text-align: center;
+    overflow: hidden;
+  }
+  .ad-label {
+    display: block;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted, rgba(0,0,0,0.3));
+    margin-bottom: 0.35rem;
+  }
+  .ad-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+  }
+  .ad-link { display: inline-block; line-height: 0; }
+
+  /* ── Sidebar ads (above related articles) ── */
+  .sidebar-ads-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .sidebar-ads-wrapper .ad-unit { margin: 0; }
+
+  .related-card {
+    display: flex; gap: 12px; margin-bottom: 14px;
+    text-decoration: none; color: inherit;
+    padding: 8px; border-radius: 8px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .related-card:hover { background: rgba(128,128,128,0.08); transform: translateX(3px); }
+  .related-card img { width: 80px; height: 58px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+  .related-content { flex: 1; min-width: 0; }
+  .related-category { display: block; font-size: 0.68rem; color: var(--accent, #D4A017); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 3px; }
+  .related-card h4 { margin: 0 0 4px; font-size: 0.85rem; line-height: 1.35; font-family: var(--font-heading, serif); color: var(--text, #1F1F1F); }
+  .related-meta { font-size: 0.7rem; color: var(--muted, rgba(0,0,0,0.45)); }
+  .no-related { text-align: center; padding: 1rem; color: var(--muted); font-size: 0.88rem; }
+
+  .tag-pill {
+    display: inline-block; background: var(--surface); border: 1px solid var(--border);
+    padding: 4px 12px; border-radius: 20px; font-size: 0.82rem;
+    text-decoration: none; color: var(--text); margin: 3px 2px; transition: background 0.2s, color 0.2s;
+  }
+  .tag-pill:hover { background: var(--accent); color: var(--accent-on); }
+
+  .tooltip {
+    display: none; position: absolute; background: var(--primary); color: var(--primary-on);
+    padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; white-space: nowrap;
+    bottom: 110%; left: 50%; transform: translateX(-50%); z-index: 10; pointer-events: none;
+  }
+  .tooltip.visible { display: block; }
+</style>
+<style>
+  :root {
+    --accent:       #D4A017;
+    --primary:      #A31919;
+    --primary-on:   #FFFFFF;
+    --accent-on:    #1F1F1F;
+    --bg:           #FFFFFF;
+    --surface:      #F8F8F8;
+    --text:         #1F1F1F;
+    --muted:        rgba(31,31,31,0.55);
+    --border:       rgba(163,25,25,0.18);
+    --font-body:    'Open Sans', sans-serif;
+    --font-heading: 'Montserrat', sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+  }
+
+  .article-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background: var(--bg);
+  }
+
+  .article-header {
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    line-height: 1.3;
+    margin: 0.5rem 0 0.75rem;
+    color: var(--primary);
+  }
+
+  .breadcrumb {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .breadcrumb a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .category-badge span {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--accent-on);
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .meta {
+    display: flex;
+    gap: 1.2rem;
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .meta i {
+    margin-right: 4px;
+  }
+
+  .share-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: var(--font-body);
+    transition: all 0.2s ease;
+  }
+
+  .share-btn:hover {
+    background: var(--accent);
+    color: var(--accent-on);
+    border-color: var(--accent);
+  }
+
+  .share-btn.facebook:hover {
+    background: #1877F2;
+    color: #fff;
+    border-color: #1877F2;
+  }
+
+  .share-btn.twitter:hover {
+    background: #1DA1F2;
+    color: #fff;
+    border-color: #1DA1F2;
+  }
+
+  .copy-link {
+    position: relative;
+  }
+
+  .tooltip {
+    display: none;
+    position: absolute;
+    background: var(--primary);
+    color: var(--primary-on);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    white-space: nowrap;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .tooltip.visible {
+    display: block;
+  }
+
+  .article-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  @media (max-width: 1023px) {
+    .article-content {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .main-column {
+    min-width: 0;
+  }
+
+  .image-wrapper {
+    margin-bottom: 1.5rem;
+  }
+
+  .image-wrapper img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+  }
+
+  .image-wrapper.hidden {
+    display: none;
+  }
+
+  .article-body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  .article-body p {
+    margin-bottom: 1.1rem;
+  }
+
+  .article-body h2 {
+    font-family: var(--font-heading);
+    margin: 1.8rem 0 0.8rem;
+    font-size: 1.3rem;
+  }
+
+  .article-body img {
+    max-width: 100%;
+    border-radius: 6px;
+  }
+
+  .tags-wrapper {
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .tags-wrapper h3 {
+    font-size: 0.95rem;
+    margin: 0 0 0.6rem;
+    font-family: var(--font-heading);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tags-list a {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: 0.2s;
+  }
+
+  .tags-list a:hover {
+    background: var(--accent);
+    color: var(--accent-on);
+    border-color: var(--accent);
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .widget {
+    background: var(--surface);
+    padding: 1.4rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+
+  .widget h3 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .widget p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+  }
+
+  #newsletter-email {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 0.88rem;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    outline: none;
+  }
+
+  #newsletter-email:focus {
+    border-color: var(--accent);
+  }
+
+  #newsletter-subscribe {
+    width: 100%;
+    padding: 9px;
+    background: var(--accent);
+    color: var(--accent-on);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  #newsletter-subscribe:hover {
+    opacity: 0.85;
+  }
+
+  #back-to-top {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: var(--accent);
+    color: var(--accent-on);
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    transition: opacity 0.2s;
+  }
+
+  #back-to-top:hover {
+    opacity: 0.85;
+  }
+
+  .related-card {
+    display: flex;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text);
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+
+  .related-card:last-child {
+    border-bottom: none;
+  }
+
+  .related-card img {
+    width: 72px;
+    height: 52px;
+    object-fit: cover;
+    border-radius: 5px;
+    flex-shrink: 0;
+  }
+
+  .related-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .related-category {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+  }
+
+  .related-content h4 {
+    margin: 0 0 3px;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    font-family: var(--font-heading);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .related-meta {
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+</style>
+<style>
+    /* ALL CSS from PART D */
+    #site-footer { font-family:var(--font-body); }
+
+    /* TOP SECTION */
+    .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
+    .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
+    .footer-col { display:flex; flex-direction:column; gap:10px; }
+    .footer-col-heading { font-size:.82rem; font-weight:800; color:#111; margin:0 0 6px; padding-bottom:8px; border-bottom:2px solid var(--primary); text-transform:uppercase; letter-spacing:.06em; }
+    .footer-company-name { font-weight:700; font-size:.9rem; color:#111; margin:0; }
+    .footer-addr { font-size:.82rem; color:#444; margin:0; line-height:1.6; }
+    .footer-contact-line { font-size:.82rem; color:#444; margin:0; }
+    .footer-link-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+    .footer-link-list li a { font-size:.85rem; color:#333; text-decoration:none; transition:color .2s; display:block; padding:2px 0; }
+    .footer-link-list li a:hover { color:var(--primary); }
+
+    /* BOTTOM BAR */
+    .footer-bottom { background:#d8d8d8; border-top:1px solid #bbb; padding:18px 0; }
+    .footer-bottom-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+    .footer-bottom-brand { display:flex; flex-direction:column; gap:3px; flex-shrink:0; }
+    .footer-site-name { font-size:1rem; font-weight:800; color:#111; }
+    .footer-copy { font-size:.74rem; color:#555; display:flex; align-items:center; gap:4px; }
+    .footer-copy i { font-size:.72rem; }
+    .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { display:flex; flex-direction:column; gap:2px; }
+    .editor-label { font-size:.74rem; color:#555; }
+    .editor-name { font-size:.9rem; font-weight:800; color:#111; display:block; }
+    .editor-phone { font-size:.8rem; color:#333; display:block; margin-top:1px; }
+    .footer-bottom-info { font-size:.78rem; color:#555; max-width:200px; line-height:1.5; }
+    .footer-bottom-social { display:flex; flex-direction:column; gap:6px; align-items:flex-end; }
+    .connect-label { font-size:.78rem; font-weight:700; color:#333; }
+    .footer-social-row { display:flex; gap:10px; align-items:center; }
+    .footer-social-row a { color:#333; font-size:1.1rem; text-decoration:none; transition:color .2s; }
+    .footer-social-row a:hover { color:var(--primary); }
+
+    /* Language */
+    .lang-en { display:inline; }
+    .lang-np { display:none; }
+    body.lang-active .lang-en { display:none; }
+    body.lang-active .lang-np { display:inline; }
+
+    /* Responsive */
+    @media(max-width:1000px){
+      .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; }
+    }
+    @media(max-width:640px){
+      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; }
+      .footer-bottom-inner { flex-direction:column; align-items:flex-start; gap:12px; }
+      .footer-bottom-social { align-items:flex-start; }
+    }
+    @media(max-width:400px){
+      .footer-top-inner { grid-template-columns:1fr; }
+    }
+
+    /* WhatsApp */
+    .wa-widget { position:fixed; bottom:90px; right:24px; z-index:9999; display:flex; align-items:center; gap:10px; flex-direction:row; }
+    .wa-fab { width:52px; height:52px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.7rem; text-decoration:none; box-shadow:0 4px 16px rgba(37,211,102,.4),0 2px 8px rgba(0,0,0,.2); transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; animation:waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both; position:relative; }
+    .wa-fab:hover { transform:scale(1.12) rotate(-6deg); }
+    .wa-fab::after { content:''; position:absolute; inset:0; border-radius:50%; border:3px solid #25D366; animation:waRing 2s ease-out 2s infinite; }
+    .wa-tooltip { background:#fff; color:#111; font-size:.78rem; font-weight:600; padding:5px 12px; border-radius:14px; white-space:nowrap; box-shadow:0 3px 12px rgba(0,0,0,.15); opacity:0; pointer-events:none; transform:translateX(-6px); transition:opacity .2s,transform .2s; }
+    .wa-widget:hover .wa-tooltip { opacity:1; transform:translateX(0); }
+    @keyframes waIn { from{opacity:0;transform:scale(.4) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    @keyframes waRing { 0%{transform:scale(1);opacity:.8} 70%,100%{transform:scale(1.5);opacity:0} }
+    @media(max-width:480px){ .wa-widget{bottom:90px;right:14px;} .wa-fab{width:46px;height:46px;font-size:1.5rem;} }
+
+    /* Add these responsive styles for footer mobile view */
+    @media(max-width:640px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-inner { 
+        flex-direction: column; 
+        align-items: center;
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-social { 
+        align-items: center;
+        width: 100%;
+      }
+      .footer-social-row {
+        justify-content: center;
+      }
+      .footer-col {
+        align-items: center;
+        text-align: center;
+      }
+      .footer-link-list {
+        align-items: center;
+      }
+      .footer-col-heading {
+        text-align: center;
+        width: 100%;
+      }
+      .footer-bottom-brand {
+        align-items: center;
+      }
+      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq {
+        align-items: center;
+      }
+      .footer-bottom-info {
+        max-width: 100%;
+        text-align: center;
+      }
+    }
+    @media(max-width:400px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr; 
+        text-align: center;
+      }
+    }
+  </style>
+
+  <style>
+    *,*::before,*::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; padding: 0;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      overflow-x: hidden;
+      background: var(--bg, #1C1C1C);
+      color: var(--text, #F0EBE0);
+      font-family: var(--font-body, 'Cormorant Garamond', serif);
+    }
+    main.main-content { flex: 1; }
+    img, video, iframe { max-width: 100%; height: auto; }
+
+    header, .site-header, #site-header {
+      max-height: none !important;
+      overflow: visible !important;
+    }
+
+    /* Language system */
+    .lang-en { display: inline !important; }
+    .lang-np { display: none !important; }
+    div.lang-en, p.lang-en, section.lang-en,
+    h1.lang-en, h2.lang-en, h3.lang-en, h4.lang-en,
+    li.lang-en, span.lang-en,
+    .article-body.lang-en { display: block !important; }
+    div.lang-np, p.lang-np, section.lang-np,
+    h1.lang-np, h2.lang-np, h3.lang-np, h4.lang-np,
+    li.lang-np, span.lang-np,
+    .article-body.lang-np { display: none !important; }
+
+    body.lang-active .lang-en { display: none !important; }
+    body.lang-active .lang-np { display: inline !important; }
+    body.lang-active div.lang-np, body.lang-active p.lang-np,
+    body.lang-active section.lang-np, body.lang-active h1.lang-np,
+    body.lang-active h2.lang-np, body.lang-active h3.lang-np,
+    body.lang-active h4.lang-np, body.lang-active li.lang-np,
+    body.lang-active .article-body.lang-np { display: block !important; }
+    body.lang-active div.lang-en, body.lang-active p.lang-en,
+    body.lang-active section.lang-en, body.lang-active h1.lang-en,
+    body.lang-active h2.lang-en, body.lang-active h3.lang-en,
+    body.lang-active h4.lang-en, body.lang-active li.lang-en,
+    body.lang-active .article-body.lang-en { display: none !important; }
+
+    /* Category badge */
+    .category-badge,
+    .category-label,
+    .article-category,
+    .cat-badge,
+    [class*="category"] {
+      display: inline-block !important;
+      width: auto !important;
+      max-width: fit-content !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════ HEADER (9070 chars) ════ -->
+  <header id="site-header">
+
+
+
+  <!-- TIER 1: Top utility bar -->
+  <div class="top-bar" id="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-social">
+          <a href="https://www.facebook.com/nawajanachetana/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/shittalpationline/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+      <div class="top-center">
+        <span class="top-date"><i class="fa-regular fa-calendar"></i> <span id="np-datetime">Loading...</span></span>
+        <span class="top-clock"><i class="fa-regular fa-clock"></i> <span id="np-clock">00:00:00 AM</span></span>
+      </div>
+      <div class="top-right">
+        <div class="header-player" id="header-player">
+          <div class="player-live-badge">
+            <span class="live-dot"></span>
+            <span class="live-label">LIVE</span>
+          </div>
+          <div class="player-waveform" id="player-waveform">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <button class="player-play-btn" id="play-btn" aria-label="Play stream">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path id="play-path" d="M8 5v14l11-7z"/></svg>
+          </button>
+          <div class="player-vol-wrap">
+            <button class="vol-btn" id="vol-down-btn"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z"/></svg></button>
+            <input type="range" class="vol-slider" id="vol-slider" min="0" max="100" value="70">
+            <button class="vol-btn" id="vol-up-btn"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
+          </div>
+        </div>
+        <button class="lang-toggle" id="lang-toggle">NP</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIER 2: Logo bar -->
+  <div class="logo-bar" id="logo-bar">
+    <div class="logo-bar-inner">
+      <a href="../index.html" class="logo-link" aria-label="Home">
+        <img src="../images/logo.png" alt="Logo" class="header-logo" id="header-logo" onerror="this.style.display='none'">
+      </a>
+    </div>
+  </div>
+
+  <!-- TIER 3: Sticky nav -->
+  <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+    <div class="main-nav-inner">
+      <ul class="nav-list" id="nav-list">
+        <li class="active"><a href="../index.html"><span class="lang-en">Homepage</span><span class="lang-np">गृहपृष्ठ</span></a></li>
+        <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
+        <li><a href="../index.html#economy-section"><span class="lang-en">Economy</span><span class="lang-np">अर्थ</span></a></li>
+        <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
+        <li><a href="../index.html#entertainment-section"><span class="lang-en">Entertainment</span><span class="lang-np">मनोरञ्जन</span></a></li>
+        <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
+        <li><a href="../index.html#international-section"><span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span></a></li>
+        <li class="has-dropdown" id="province-nav">
+          <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            <span class="lang-en">Province</span><span class="lang-np">प्रदेश</span>
+            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+          </a>
+          <ul class="dropdown-menu" id="province-dropdown">
+            <li><a href="../province/koshi.html"><span class="lang-en">Koshi Province</span><span class="lang-np">कोशी प्रदेश</span></a></li>
+            <li><a href="../province/madhesh.html"><span class="lang-en">Madhesh Province</span><span class="lang-np">मधेश प्रदेश</span></a></li>
+            <li><a href="../province/bagmati.html"><span class="lang-en">Bagmati Province</span><span class="lang-np">बागमती प्रदेश</span></a></li>
+            <li><a href="../province/gandaki.html"><span class="lang-en">Gandaki Province</span><span class="lang-np">गण्डकी प्रदेश</span></a></li>
+            <li><a href="../province/lumbini.html"><span class="lang-en">Lumbini Province</span><span class="lang-np">लुम्बिनी प्रदेश</span></a></li>
+            <li><a href="../province/karnali.html"><span class="lang-en">Karnali Province</span><span class="lang-np">कर्णाली प्रदेश</span></a></li>
+            <li><a href="../province/sudurpashchim.html"><span class="lang-en">Sudurpashchim Province</span><span class="lang-np">सुदूरपश्चिम प्रदेश</span></a></li>
+          </ul>
+        </li>
+        <li><a href="epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
+        <li><a href="about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
+        <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+        <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडिय</span></a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul>
+      <li><a href="../index.html"><span class="lang-en">Homepage</span><span class="lang-np">गृहपृष्ठ</span></a></li>
+      <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
+      <li><a href="../index.html#economy-section"><span class="lang-en">Economy</span><span class="lang-np">अर्थतन्त्र</span></a></li>
+      <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
+      <li><a href="../index.html#entertainment-section"><span class="lang-en">Entertainment</span><span class="lang-np">मनोरञ्जन</span></a></li>
+      <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
+      <li><a href="../index.html#international-section"><span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span></a></li>
+<li><a href="../index.html#latest-section"><span class="lang-en">Latest News</span><span class="lang-np">ताजा समाचार</span></a></li>
+<li><a href="../index.html#feature-section"><span class="lang-en">Feature News</span><span class="lang-np">विशेष समाचार</span></a></li>
+<li class="mobile-province-parent">
+        <a href="#" id="mobile-province-toggle"><span class="lang-en">Province</span><span class="lang-np">प्रदेश</span> <i class="fa-solid fa-chevron-down"></i></a>
+        <ul class="mobile-province-list" id="mobile-province-list" style="display:none;">
+          <li><a href="../province/koshi.html"><span class="lang-en">Koshi Province</span><span class="lang-np">कोशी प्रदेश</span></a></li>
+          <li><a href="../province/madhesh.html"><span class="lang-en">Madhesh Province</span><span class="lang-np">मधेश प्रदेश</span></a></li>
+          <li><a href="../province/bagmati.html"><span class="lang-en">Bagmati Province</span><span class="lang-np">बागमती प्रदेश</span></a></li>
+          <li><a href="../province/gandaki.html"><span class="lang-en">Gandaki Province</span><span class="lang-np">गण्डकी प्रदेश</span></a></li>
+          <li><a href="../province/lumbini.html"><span class="lang-en">Lumbini Province</span><span class="lang-np">लुम्बिनी प्रदेश</span></a></li>
+          <li><a href="../province/karnali.html"><span class="lang-en">Karnali Province</span><span class="lang-np">कर्णाली प्रदेश</span></a></li>
+          <li><a href="../province/sudurpashchim.html"><span class="lang-en">Sudurpashchim Province</span><span class="lang-np">सुदूरपश्चिम प्रदेश</span></a></li>
+        </ul>
+      </li>
+      <li><a href="epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
+      <li><a href="about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
+      <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+     <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
+    </ul>
+  </div>
+
+
+</header>
+
+  <!-- ════ ARTICLE (1 item) ════ -->
+  <main class="main-content">
+    
+
+
+
+
+<div class="article-container">
+
+  <div class="article-header">
+    <div class="breadcrumb">
+      <span id="breadcrumb-en" class="lang-en"></span>
+      <span id="breadcrumb-np" class="lang-np"></span>
+    </div>
+
+    <div class="category-badge">
+      <span id="category-en" class="lang-en"></span>
+      <span id="category-np" class="lang-np"></span>
+    </div>
+
+    <h1>
+      <span id="title-en" class="lang-en"></span>
+      <span id="title-np" class="lang-np"></span>
+    </h1>
+
+    <div class="meta">
+      <span><i class="fas fa-calendar"></i> <span id="date"></span></span>
+      <span><i class="fas fa-clock"></i> <span id="readtime-en" class="lang-en"></span><span id="readtime-np" class="lang-np"></span></span>
+    </div>
+
+    <div class="share-buttons">
+      <button class="share-btn facebook"><i class="fab fa-facebook"></i> Facebook</button>
+      <button class="share-btn twitter"><i class="fab fa-twitter"></i> Twitter</button>
+      <button class="share-btn copy-link"><i class="fas fa-link"></i> Copy Link<span class="tooltip">Copied!</span></button>
+    </div>
+  </div>
+
+  <div class="article-content">
+
+    <div class="main-column">
+
+      <div class="image-wrapper">
+        <img id="featured-image" src="" alt="" loading="lazy">
+      </div>
+
+      <div id="article-body-en" class="lang-en article-body"></div>
+      <div id="article-body-np" class="lang-np article-body"></div>
+
+      <div class="tags-wrapper">
+        <h3 class="lang-en"><i class="fas fa-tags"></i> Tags</h3>
+        <h3 class="lang-np"><i class="fas fa-tags"></i> ट्यागहरू</h3>
+        <div id="tags-en" class="lang-en tags-list"></div>
+        <div id="tags-np" class="lang-np tags-list"></div>
+      </div>
+
+    </div>
+
+    <aside class="sidebar">
+      <div class="widget related">
+        <h3 class="lang-en"><i class="fas fa-newspaper"></i> Related Articles</h3>
+        <h3 class="lang-np"><i class="fas fa-newspaper"></i> सम्बन्धित लेखहरू</h3>
+        <div id="related-articles"></div>
+      </div>
+
+      <div class="widget newsletter">
+        <h3 class="lang-en"><i class="fas fa-envelope"></i> Newsletter</h3>
+        <h3 class="lang-np"><i class="fas fa-envelope"></i> समाचारपत्र</h3>
+        <p class="lang-en">Stay updated — subscribe to our free newsletter and get the latest news delivered to your inbox.</p>
+        <p class="lang-np">अपडेट रहनुहोस् — हाम्रो नि:शुल्क समाचारपत्र सदस्यता लिनुहोस् र नवीनतम समाचार आफ्नो इनबक्समा पाउनुहोस्।</p>
+        <input type="email" id="newsletter-email" placeholder="Enter your email address">
+        <button id="newsletter-subscribe"><i class="fas fa-paper-plane"></i> <span class="lang-en">Subscribe</span><span class="lang-np">सदस्यता लिनुहोस्</span></button>
+      </div>
+    </aside>
+
+  </div>
+
+  
+
+</div>
+
+
+
+
+
+
+  </main>
+
+  <!-- ════ FOOTER (6821 chars) ════ -->
+  <footer id="site-footer">
+  
+  
+
+  <!-- TOP SECTION: multi-column links -->
+  <div class="footer-top">
+    <div class="footer-top-inner">
+
+      <!-- Col 1: Contact -->
+      <div class="footer-col footer-contact-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Contact Address</span>
+          <span class="lang-np">सम्पर्क ठेगाना</span>
+        </h4>
+        <p class="footer-company-name">Shittal Pati</p>
+        <p class="footer-addr">
+          <span class="lang-en">Bhagwati Tole-3, Tansen Palpa, Nepal</span>
+          <span class="lang-np">भगवती टोल-३, तानसेन पाल्पा, नेपाल</span>
+        </p>
+        <p class="footer-contact-line">
+          <span class="lang-en">Phone: +977 9847492226</span>
+          <span class="lang-np">फोन: +९७७ ९८४७४९२२२६</span>
+        </p>
+        <p class="footer-contact-line">
+          <span class="lang-en">Email:</span><span class="lang-np">इमेल:</span> njdnews@gmail.com
+        </p>
+      </div>
+
+      <!-- Col 2: News links -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">News</span>
+          <span class="lang-np">समाचार</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
+          <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
+          <li><a href="../index.html#economy-section"><span class="lang-en">Economy</span><span class="lang-np">अर्थतन्त्र</span></a></li>
+          <li><a href="../index.html#international-section"><span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span></a></li>
+          <li><a href="../index.html#education-section"><span class="lang-en">Education</span><span class="lang-np">शिक्षा</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Entertainment -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Entertainment</span>
+          <span class="lang-np">मनोरञ्जन</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="#entertainment-section"><span class="lang-en">Movies & Music</span><span class="lang-np">चलचित्र र संगीत</span></a></li>
+          <li><a href="#entertainment-section"><span class="lang-en">Arts</span><span class="lang-np">कला</span></a></li>
+          <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Feature -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Feature</span>
+          <span class="lang-np">विशेष</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="../index.html#feature-section"><span class="lang-en">Feature News</span><span class="lang-np">विशेष समाचार</span></a></li>
+          <li><a href="../index.html#latest-section"><span class="lang-en">Latest</span><span class="lang-np">ताजा</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 5: Specials -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Specials</span>
+          <span class="lang-np">विशेष</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 6: About -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">About Us</span>
+          <span class="lang-np">हाम्रोबारे</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="about.html"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></a></li>
+          <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+
+      <div class="footer-bottom-brand">
+        <span class="footer-site-name">Shittal Pati</span>
+        <span class="footer-copy">
+          <i class="fa-regular fa-copyright"></i>
+          <span class="lang-en" id="footer-year-en"></span>
+          <span class="lang-np" id="footer-year-np"></span>
+          Shittal Pati.
+          <span class="lang-en">All Rights Reserved.</span>
+          <span class="lang-np">सर्वाधिकार सुरक्षित।</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-editor">
+        <span class="editor-label"><span class="lang-en">Editor</span><span class="lang-np">सम्पादक</span></span>
+        <span class="editor-name">
+          <span class="lang-en">Jagdish Bhattarai</span>
+          <span class="lang-np">जगदीश भट्टराई</span>
+        </span>
+        <span class="editor-phone">
+          <span class="lang-en">9857060301</span>
+          <span class="lang-np">९८५७०६०३०१</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-sub">
+        <span class="editor-label"><span class="lang-en">Sub-Editor</span><span class="lang-np">सह-सम्पादक</span></span>
+        <span class="editor-name">
+          <span class="lang-en">Ramchandra Rayamajhi</span>
+          <span class="lang-np">रामचन्द्र रायमाझी</span>
+        </span>
+        <span class="editor-phone">
+          <span class="lang-en">9847492226</span>
+          <span class="lang-np">९८४७४९२२२६</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-freq">
+        <span class="editor-label"><span class="lang-en">Frequency</span><span class="lang-np">फ्रिक्वेन्सी</span></span>
+        <span class="editor-name">
+          <span class="lang-en">103.5 MHZ FM</span>
+          <span class="lang-np">१०३.५ मेगाहर्ज एफएम</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-info">
+        <span class="lang-en">Official Website of Janavedana Daily</span>
+        <span class="lang-np">जनवेदना दैनिकको आधिकारिक वेबसाइट</span>
+      </div>
+
+      <div class="footer-bottom-social">
+        <span class="connect-label"><span class="lang-en">Connect with Us</span><span class="lang-np">जोडिनुहोस्</span></span>
+        <div class="footer-social-row">
+          <a href="https://www.facebook.com/nawajanachetana/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/shittalpationline/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  
+
+  <!-- WhatsApp float -->
+  
+</footer>
+
+  <!-- ════ WhatsApp widget — pulled directly from footer, no hardcoding ════ -->
+  <div class="wa-widget">
+    <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
+    <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  </div>
+
+  <!-- ════ LANG CAPTURE — installed first, cancels all competing handlers ════ -->
+  <script>
+(function () {
+  'use strict';
+  var STORAGE_KEY = 'fm_lang';
+  var _applying = false;
+
+  function getCurrentLang() {
+    try { return localStorage.getItem(STORAGE_KEY) || 'en'; } catch(e) { return 'en'; }
+  }
+
+  function applyLang(lang) {
+    if (_applying) return;
+    _applying = true;
+    var isNp = (lang === 'np');
+
+    document.body.classList.toggle('lang-active', isNp);
+
+    document.querySelectorAll('.lang-toggle').forEach(function(btn) {
+      btn.textContent = isNp ? 'EN' : 'NP';
+    });
+
+    var hdr = document.getElementById('site-header');
+    if (hdr) hdr.classList.toggle('hdr-np', isNp);
+
+    ['fm_lang', 'language', 'siteLang', 'articleLang'].forEach(function(k) {
+      try { localStorage.setItem(k, lang); } catch(e) {}
+    });
+
+    _applying = false;
+  }
+
+  function broadcast(lang) {
+    applyLang(lang);
+    window.dispatchEvent(new CustomEvent('langChange', { detail: { lang: lang } }));
+  }
+
+  function attachCapturingToggle() {
+    var btn = document.getElementById('lang-toggle');
+    if (!btn || btn._capturebound) return;
+    btn._capturebound = true;
+    btn._langBound = true;
+    btn._hdrBound  = true;
+    btn.addEventListener('click', function(e) {
+      e.stopImmediatePropagation();
+      broadcast(getCurrentLang() === 'en' ? 'np' : 'en');
+    }, true); // useCapture = true — fires before any other bound handler
+  }
+
+  window.addEventListener('langChange', function(e) {
+    if (_applying) return;
+    if (e && e.detail && e.detail.lang) applyLang(e.detail.lang);
+  });
+
+  function init() {
+    attachCapturingToggle();
+    applyLang(getCurrentLang());
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    setTimeout(init, 0);
+  }
+})();
+</script>
+
+  <!-- ════ All component scripts (deduped; pure lang-bridge scripts removed) ════ -->
+  <script>
+
+(function () {
+
+  /* ── Load Font Awesome if not already on page ── */
+  (function(){
+    if(!document.querySelector('link[href*="font-awesome"],link[href*="fontawesome"]')){
+      var fa=document.createElement('link');
+      fa.rel='stylesheet';
+      fa.href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+      fa.crossOrigin='anonymous';
+      document.head.appendChild(fa);
+    }
+  })();
+
+  /* ── BS/AD conversion data ── */
+  var _NP_DAYS   = ['आइतबार','सोमबार','मंगलबार','बुधबार','बिहिबार','शुक्रबार','शनिबार'];
+  var _BS_MONTHS = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
+  var _NP_NUMS   = ['०','१','२','३','४','५','६','७','८','९'];
+  var _EN_MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var _EN_DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var _BS_TBL    = {2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],2004:[366,30,32,31,32,31,30,30,30,29,30,29,31],2005:[365,31,31,32,31,31,31,30,29,30,29,30,30],2006:[365,31,31,32,32,31,30,30,29,30,29,30,30],2007:[366,31,32,31,32,31,30,30,30,29,29,30,31],2008:[365,31,31,32,31,31,31,30,29,30,29,30,30],2009:[365,31,31,32,31,31,31,30,29,30,29,30,30],2010:[365,31,31,32,32,31,30,30,29,30,29,30,30],2011:[366,31,32,31,32,31,30,30,30,29,29,30,31],2012:[365,31,31,32,31,31,31,30,29,30,29,30,30],2013:[365,31,31,32,31,31,31,30,29,30,29,30,30],2014:[365,31,31,32,32,31,30,30,29,30,29,30,30],2015:[366,31,32,31,32,31,30,30,30,29,29,30,31],2016:[366,31,31,32,31,31,31,30,29,30,29,30,31],2017:[365,31,31,32,31,31,31,30,29,30,29,30,30],2018:[365,31,31,32,32,31,30,30,29,30,29,30,30],2019:[366,31,32,31,32,31,30,30,30,29,29,30,31],2020:[366,31,31,32,31,31,30,30,29,30,29,30,31],2021:[365,31,31,32,31,31,31,30,29,30,29,30,30],2022:[365,31,31,32,32,31,30,30,29,30,29,30,30],2023:[366,31,32,31,32,31,30,30,30,29,29,30,31],2024:[366,31,31,32,31,31,30,30,29,30,29,30,31],2025:[365,31,31,32,31,31,31,30,29,30,29,30,30],2026:[365,31,31,32,32,31,30,30,29,30,29,30,30],2027:[366,31,32,31,32,31,30,30,30,29,29,30,31],2028:[366,31,32,31,32,31,30,30,30,29,30,29,31],2029:[365,31,31,32,31,31,31,30,29,30,29,30,30],2030:[365,31,31,32,31,31,31,30,29,30,29,30,30],2031:[365,31,31,32,32,31,30,30,29,30,29,30,30],2032:[366,31,32,31,32,31,30,30,30,29,29,30,31],2033:[366,31,31,32,31,31,30,30,29,30,29,30,31],2034:[365,31,31,32,31,31,31,30,29,30,29,30,30],2035:[365,31,31,32,32,31,30,30,29,30,29,30,30],2036:[366,31,32,31,32,31,30,30,30,29,29,30,31],2037:[366,31,32,31,32,31,30,30,30,29,30,29,31],2038:[365,31,31,32,31,31,31,30,29,30,29,30,30],2039:[365,31,31,32,31,31,31,30,29,30,29,30,30],2040:[365,31,31,32,32,31,30,30,29,30,29,30,30],2041:[366,31,32,31,32,31,30,30,30,29,29,30,31],2042:[366,31,31,32,31,31,30,30,29,30,29,30,31],2043:[365,31,31,32,31,31,31,30,29,30,29,30,30],2044:[365,31,31,32,31,31,31,30,29,30,29,30,30],2045:[366,31,32,31,32,31,30,30,30,29,29,30,31],2046:[366,31,32,31,32,31,30,30,30,29,30,29,31],2047:[365,31,31,32,31,31,31,30,29,30,29,30,30],2048:[365,31,31,32,32,31,30,30,29,30,29,30,30],2049:[366,31,32,31,32,31,30,30,30,29,29,30,31],2050:[366,31,32,31,32,31,30,30,30,29,30,29,31],2051:[365,31,31,32,31,31,31,30,29,30,29,30,30],2052:[365,31,31,32,32,31,30,30,29,30,29,30,30],2053:[366,31,32,31,32,31,30,30,30,29,29,30,31],2054:[366,31,32,31,32,31,30,30,30,29,30,29,31],2055:[365,31,31,32,31,31,31,30,29,30,29,30,30],2056:[366,31,31,32,31,31,31,30,29,30,29,30,31],2057:[366,31,31,32,32,31,30,30,29,30,29,30,31],2058:[365,30,32,31,32,31,30,30,30,29,29,30,30],2059:[366,31,32,31,32,31,30,30,30,29,30,29,31],2060:[365,31,31,32,31,31,31,30,29,30,29,30,30],2061:[365,31,31,32,31,31,31,30,29,30,29,30,30],2062:[365,31,31,32,32,31,30,30,29,30,29,30,30],2063:[366,31,32,31,32,31,30,30,30,29,29,30,31],2064:[366,31,31,32,31,31,30,30,29,30,29,30,31],2065:[365,31,31,32,31,31,31,30,29,30,29,30,30],2066:[365,31,31,32,31,31,31,30,29,30,29,30,30],2067:[366,31,32,31,32,31,30,30,30,29,29,30,31],2068:[366,31,32,31,32,31,30,30,30,29,30,29,31],2069:[365,31,31,32,31,31,31,30,29,30,29,30,30],2070:[365,31,31,32,32,31,30,30,29,30,29,30,30],2071:[366,31,32,31,32,31,30,30,30,29,29,30,31],2072:[366,31,32,31,32,31,30,30,30,29,30,29,31],2073:[365,31,31,32,31,31,31,30,29,30,29,30,30],2074:[365,31,31,32,32,31,30,30,29,30,29,30,30],2075:[366,31,32,31,32,31,30,30,30,29,29,30,31],2076:[365,31,32,31,32,31,30,30,30,29,30,29,31],2077:[365,31,31,32,31,31,31,30,29,30,29,30,30],2078:[365,31,31,32,31,31,31,30,29,30,29,30,30],2079:[366,31,32,31,32,31,30,30,30,29,29,30,31],2080:[365,31,32,31,32,31,30,30,30,29,30,29,31],2081:[365,31,31,32,31,31,31,30,29,30,29,30,30],2082:[365,31,31,32,32,31,30,30,29,30,29,30,30],2083:[365,31,31,32,31,31,31,30,29,30,29,30,30],2084:[366,31,32,31,32,31,30,30,30,29,30,29,31],2085:[365,31,31,32,31,31,31,30,29,30,29,30,30],2086:[365,31,31,32,32,31,30,30,29,30,29,30,30],2087:[366,31,32,31,32,31,30,30,30,29,29,30,31],2088:[366,31,32,31,32,31,30,30,30,29,30,29,31],2089:[365,31,31,32,31,31,31,30,29,30,29,30,30],2090:[365,31,31,32,32,31,30,30,29,30,29,30,30]};
+  var _EPOCH = Date.UTC(1943,2,31);
+
+  function _toNp(n){return String(n).split('').map(function(d){var i=parseInt(d,10);return isNaN(i)?d:_NP_NUMS[i];}).join('');}
+  function _adToBs(d){
+    var days=Math.floor((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())-_EPOCH)/86400000);
+    if(days<0)return '';
+    var y=2000;
+    while(true){var yr=_BS_TBL[y];if(!yr||days<yr[0])break;days-=yr[0];y++;}
+    var yr2=_BS_TBL[y];if(!yr2)return '';
+    var mo=1,dy=1;
+    for(var m=1;m<=12;m++){if(days<yr2[m]){mo=m;dy=days+1;break;}days-=yr2[m];}
+    return _NP_DAYS[d.getDay()]+', '+_BS_MONTHS[mo-1]+' '+_toNp(dy)+', '+_toNp(y);
+  }
+
+  function _tick(){
+    var now=new Date();
+    var dtEl=document.getElementById('np-datetime');
+    var clEl=document.getElementById('np-clock');
+    if(dtEl){
+      var bsStr=_adToBs(now);
+      var enStr=_EN_DAYS[now.getDay()]+', '+_EN_MONTHS[now.getMonth()]+' '+now.getDate()+', '+now.getFullYear();
+      dtEl.setAttribute('data-en',enStr);
+      dtEl.setAttribute('data-np',bsStr);
+      var _lang='en';try{_lang=localStorage.getItem('fm_lang')||'en';}catch(e){}
+      dtEl.textContent=(_lang==='np')?bsStr:enStr;
+    }
+    if(clEl){
+      var h=now.getHours(),mi=now.getMinutes(),s=now.getSeconds(),ap=h>=12?'PM':'AM';
+      h=h%12;if(h===0)h=12;
+      clEl.textContent=String(h).padStart(2,'0')+':'+String(mi).padStart(2,'0')+':'+String(s).padStart(2,'0')+' '+ap;
+    }
+  }
+
+  function _init(){
+    var _audio=null,_playing=false,_SK='fmPlayer',_stream='https://live.itech.host:2440/stream';
+    var _playBtn=document.getElementById('play-btn');
+    var _playPath=document.getElementById('play-path');
+    var _waveform=document.getElementById('player-waveform');
+    var _volSlider=document.getElementById('vol-slider');
+    var _volDown=document.getElementById('vol-down-btn');
+    var _volUp=document.getElementById('vol-up-btn');
+    var _hamburger=document.getElementById('hamburger-btn');
+    var _mobMenu=document.getElementById('mobile-menu');
+    var _langBtn=document.getElementById('lang-toggle');
+    var _siteHdr=document.getElementById('site-header');
+    var _provNav=document.getElementById('province-nav');
+    var _provDrop=document.getElementById('province-dropdown');
+    var _mobPTog=document.getElementById('mobile-province-toggle');
+    var _mobPList=document.getElementById('mobile-province-list');
+
+    _tick();
+    setInterval(_tick,1000);
+
+    /* ── Apply stored lang on load ── */
+    (function(){
+      var saved='en';try{saved=localStorage.getItem('fm_lang')||'en';}catch(e){}
+      if(saved==='np'){
+        if(_siteHdr)_siteHdr.classList.add('hdr-np');
+        if(_langBtn)_langBtn.textContent='EN';
+        var dtEl=document.getElementById('np-datetime');
+        if(dtEl&&dtEl.getAttribute('data-np'))dtEl.textContent=dtEl.getAttribute('data-np');
+      }
+    })();
+
+    /* ── Lang toggle ── */
+    if(_langBtn && !_langBtn._hdrBound){
+      _langBtn._hdrBound = true;
+      _langBtn.addEventListener('click',function(){
+        var isNp=_langBtn.textContent.trim()==='NP';
+        var newLang=isNp?'np':'en';
+        try{localStorage.setItem('fm_lang',newLang);}catch(e){}
+        _langBtn.textContent=isNp?'EN':'NP';
+        if(_siteHdr)_siteHdr.classList.toggle('hdr-np',isNp);
+        var dtEl=document.getElementById('np-datetime');
+        if(dtEl)dtEl.textContent=isNp?(dtEl.getAttribute('data-np')||''):(dtEl.getAttribute('data-en')||'');
+        window.dispatchEvent(new CustomEvent('langChange',{detail:{lang:newLang}}));
+      });
+    }
+
+    /* ── Sync lang from external events ── */
+    window.addEventListener('langChange',function(e){
+      if(!e||!e.detail||!e.detail.lang)return;
+      var isNp=e.detail.lang==='np';
+      if(_siteHdr)_siteHdr.classList.toggle('hdr-np',isNp);
+      if(_langBtn)_langBtn.textContent=isNp?'EN':'NP';
+      var dtEl=document.getElementById('np-datetime');
+      if(dtEl)dtEl.textContent=isNp?(dtEl.getAttribute('data-np')||''):(dtEl.getAttribute('data-en')||'');
+    });
+
+    /* ── Scroll shrink ── */
+    window.addEventListener('scroll',function(){
+      if(_siteHdr)_siteHdr.classList.toggle('scrolled',window.scrollY>120);
+    },{passive:true});
+
+    /* ── Hamburger ── */
+    if(_hamburger&&_mobMenu){
+      _hamburger.addEventListener('click',function(){
+        var exp=_hamburger.getAttribute('aria-expanded')==='true';
+        _hamburger.setAttribute('aria-expanded',String(!exp));
+        _mobMenu.classList.toggle('open',!exp);
+        _mobMenu.setAttribute('aria-hidden',String(exp));
+      });
+      _mobMenu.querySelectorAll('a:not(#mobile-province-toggle)').forEach(function(a){
+        a.addEventListener('click',function(){
+          _hamburger.setAttribute('aria-expanded','false');
+          _mobMenu.classList.remove('open');
+          _mobMenu.setAttribute('aria-hidden','true');
+        });
+      });
+    }
+
+    /* ── Province dropdown ── */
+    if(_provNav){
+      var _togLink=_provNav.querySelector('.dropdown-toggle');
+      if(_togLink){
+        _togLink.addEventListener('click',function(e){
+          e.preventDefault();
+          if(window.innerWidth<=960){
+            var isOpen=_provNav.classList.toggle('open');
+            _togLink.setAttribute('aria-expanded',String(isOpen));
+          }
+        });
+      }
+      document.addEventListener('click',function(e){
+        if(!_provNav.contains(e.target)){
+          _provNav.classList.remove('open');
+          if(_togLink)_togLink.setAttribute('aria-expanded','false');
+        }
+      });
+      if(_provDrop){
+        _provDrop.querySelectorAll('a').forEach(function(a){
+          a.addEventListener('click',function(){
+            _provNav.classList.remove('open');
+            if(_togLink)_togLink.setAttribute('aria-expanded','false');
+          });
+        });
+      }
+    }
+
+    /* ── Mobile province sub-list toggle ── */
+    if(_mobPTog&&_mobPList){
+      _mobPTog.addEventListener('click',function(e){
+        e.preventDefault();
+        var hidden=_mobPList.style.display==='none';
+        _mobPList.style.display=hidden?'block':'none';
+        var ico=_mobPTog.querySelector('i');
+        if(ico)ico.style.transform=hidden?'rotate(180deg)':'';
+      });
+    }
+
+    /* ── Volume controls ── */
+    function _updateSlider(v){
+      if(_volSlider)_volSlider.style.background='linear-gradient(to right,var(--hdr-accent) '+v+'%,var(--hdr-border) '+v+'%)';
+    }
+    function _setVol(v){
+      v=Math.max(0,Math.min(100,v));
+      if(_volSlider){_volSlider.value=v;_updateSlider(v);}
+      if(_audio)_audio.volume=v/100;
+      try{var s=JSON.parse(localStorage.getItem(_SK)||'{}');s.vol=v;localStorage.setItem(_SK,JSON.stringify(s));}catch(e){}
+    }
+    function _setPlayingUI(on){
+      if(_playPath)_playPath.setAttribute('d',on?'M6 6h12v12H6z':'M8 5v14l11-7z');
+      if(_playBtn)_playBtn.setAttribute('aria-label',on?'Stop stream':'Play stream');
+      if(_waveform)_waveform.classList.toggle('paused',!on);
+    }
+    function _startPlay(){
+      if(!_audio){
+        _audio=new Audio(_stream);
+        _audio.volume=(_volSlider?_volSlider.value:70)/100;
+        _audio.addEventListener('error',function(){_stopPlay();});
+      }
+      _audio.play().catch(function(e){console.warn('Stream:',e);_stopPlay();});
+      _playing=true;_setPlayingUI(true);
+      try{localStorage.setItem(_SK,JSON.stringify({playing:true,vol:_volSlider?parseInt(_volSlider.value):70}));}catch(e){}
+    }
+    function _stopPlay(){
+      if(_audio){_audio.pause();_audio.src='';_audio=null;}
+      _playing=false;_setPlayingUI(false);
+      try{var s=JSON.parse(localStorage.getItem(_SK)||'{}');s.playing=false;localStorage.setItem(_SK,JSON.stringify(s));}catch(e){}
+    }
+
+    if(_playBtn)_playBtn.addEventListener('click',function(){_playing?_stopPlay():_startPlay();});
+    if(_volDown)_volDown.addEventListener('click',function(){_setVol(parseInt(_volSlider.value)-10);});
+    if(_volUp)_volUp.addEventListener('click',function(){_setVol(parseInt(_volSlider.value)+10);});
+    if(_volSlider)_volSlider.addEventListener('input',function(){
+      _updateSlider(this.value);
+      if(_audio)_audio.volume=this.value/100;
+      try{var s=JSON.parse(localStorage.getItem(_SK)||'{}');s.vol=parseInt(this.value);localStorage.setItem(_SK,JSON.stringify(s));}catch(e){}
+    });
+
+    var _saved={};try{_saved=JSON.parse(localStorage.getItem(_SK)||'{}');}catch(e){}
+    var _initVol=(_saved.vol!=null)?_saved.vol:70;
+    if(_volSlider)_volSlider.value=_initVol;
+    _updateSlider(_initVol);
+    if(_saved.playing){_startPlay();}else{if(_waveform)_waveform.classList.add('paused');}
+  }
+
+  setTimeout(_init, 0);
+
+})();
+
+</script>
+<script>
+(function() {
+  'use strict';
+
+  var BS_MONTHS_NP = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
+  var NP_DIGITS    = ['०','१','२','३','४','५','६','७','८','९'];
+  var EN_MONTHS_FULL = ['January','February','March','April','May','June',
+                        'July','August','September','October','November','December'];
+
+  var BS = {
+  2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2004:[366,30,32,31,32,31,30,30,30,29,30,29,31],2005:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2006:[365,31,31,32,32,31,30,30,29,30,29,30,30],2007:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2008:[365,31,31,32,31,31,31,30,29,30,29,30,30],2009:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2010:[365,31,31,32,32,31,30,30,29,30,29,30,30],2011:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2012:[365,31,31,32,31,31,31,30,29,30,29,30,30],2013:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2014:[365,31,31,32,32,31,30,30,29,30,29,30,30],2015:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2016:[366,31,31,32,31,31,31,30,29,30,29,30,31],2017:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2018:[365,31,31,32,32,31,30,30,29,30,29,30,30],2019:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2020:[366,31,31,32,31,31,30,30,29,30,29,30,31],2021:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2022:[365,31,31,32,32,31,30,30,29,30,29,30,30],2023:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2024:[366,31,31,32,31,31,30,30,29,30,29,30,31],2025:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2026:[365,31,31,32,32,31,30,30,29,30,29,30,30],2027:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2028:[366,31,32,31,32,31,30,30,30,29,30,29,31],2029:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2030:[365,31,31,32,31,31,31,30,29,30,29,30,30]
+  };
+
+  var AD_EPOCH_MS = Date.UTC(1943, 2, 31);
+
+  function toNpDigits(n) {
+    return String(n).split('').map(function(d) {
+      var i = parseInt(d, 10); return isNaN(i) ? d : NP_DIGITS[i];
+    }).join('');
+  }
+
+  function adToBs(dateStr) {
+    if (!dateStr) return '';
+    var d = new Date(dateStr);
+    if (isNaN(d.getTime())) return dateStr;
+    var adMidnight = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+    var totalDays  = Math.floor((adMidnight - AD_EPOCH_MS) / 86400000);
+    if (totalDays < 0) return dateStr;
+    var bsYear = 2000;
+    while (true) {
+      var yd = BS[bsYear]; if (!yd) break; if (totalDays < yd[0]) break; totalDays -= yd[0]; bsYear++;
+    }
+    var yd2 = BS[bsYear]; if (!yd2) return dateStr;
+    var bsMonth = 1, bsDay = 1;
+    for (var m = 1; m <= 12; m++) {
+      if (totalDays < yd2[m]) { bsMonth = m; bsDay = totalDays + 1; break; } totalDays -= yd2[m];
+    }
+    return toNpDigits(bsYear) + ' ' + BS_MONTHS_NP[bsMonth - 1] + ' ' + toNpDigits(bsDay);
+  }
+
+  var DATA = {
+    titleEn:        "औसत सरकार, अनुत्तरदायी प्रधानमन्त्री",
+    titleNp:        "औसत सरकार, अनुत्तरदायी प्रधानमन्त्री",
+    categoryEn:     "General",
+    categoryNp:     "सामान्य",
+    dateAd:         "July 19, 2026",
+    dateEn:         "July 19, 2026",
+    readTimeEn:     "10 min read",
+    readTimeNp:     "10 मिनेट पढाइ",
+    sourceEn:       "Kantipur",
+    sourceNp:       "",
+    creatorEn:      "",
+    creatorNp:      "गेजा शर्मा वाग्ले",
+    bodyEnWithAds:  "<p class=\"article-para\"><body class=\"article-detail-page\"><div class=\"sticky_top\"></div>  <section class=\"news-section-wrap\" data-link=\"opinion/2026/07/17/average-government-unresponsive-prime-minister-53-05.html\"><h2 class=\"\">औसत सरकार, अनुत्तरदायी प्रधानमन्त्री </h2><p class=\"\">अवाञ्छित दलीयकरणको अन्त्य गरी स्वस्थ लोकतान्त्रिक अभ्यास गर्ने वाचा गरेको ‘नयाँ’ सरकारले हिजो पुराना दलहरूले जे गरेका थिए, आज त्यही पदचाप अनुसरण गरेको छ ।</p><div class=\"author-date\"><span translate=\"no\">श्रावण १, २०८३</span><p><a href=\"https://ekantipur.com/author/author-8813\">गेजा शर्मा वाग्ले</a> </p></div></section><section class=\"image-section-wrap\"><figure class=\"d-flex\"><div class=\"skeleton\"></div><img alt=\"Average government, unresponsive prime minister\" class=\"lazy\" data-path=\"news/kantipur/2026/politics/balen-2042026121002.jpg\" data-src=\"https://assets-cdn-api.ekantipur.com/thumb.php?src=https://assets-cdn.ekantipur.com/uploads/source/news/kantipur/2026/politics/balen-2042026121002-1000x0.jpg&amp;w=1001&amp;h=0\"/></figure></section><section class=\"utility-section\"><input class=\"currNews\" type=\"hidden\" value=\"10051855\"/><input class=\"currCategory\" type=\"hidden\" value=\"opinion\"/><input class=\"currLang\" type=\"hidden\" value=\"np\"/><input class=\"currPremium\" type=\"hidden\" value=\"0\"/><input class=\"currNewsType\" type=\"hidden\" value=\"normal\"/><button class=\"inter\"><a href=\"https://ekantipur.com/opinion/2026/07/17/en/average-government-unresponsive-prime-minister-53-05.html\">Read In English</a></button><div class=\"audio-wraps\" data-audiosrc=\"https://media-cdn.ekantipur.com/azure-tts-audio/2026/07/17/news-10051855.mp3\"><div class=\"main-controls\"><div class=\"play\"><svg><use xlink:href=\"/assets/icon/desktop/icon.svg#play-icon\"></use></svg></div><div class=\"duration\"><input class=\"duration-slider\" max=\"100\" min=\"0\" type=\"range\" value=\"0\"/></div><div class=\"volumeIcon\"><svg><use xlink:href=\"/assets/icon/desktop/icon.svg#volume-up\"></use></svg></div></div></div></section><section class=\"ai-summary position-relative\"><div class=\"ai-body\"><ul><li>सरकार गठनको प्रारम्भिक उत्साह मधुमास अवधिपछि आशंका र निराशामा परिणत भएको छ।</li><li>प्रधानमन्त्री शाहको कार्यशैली र सरकारको अनुत्तरदायी प्रवृत्तिले लोकतान्त्रिक मूल्य, नागरिक अधिकार र संस्थागत अभ्यासमा गम्भीर प्रश्न उठाएका छन्।</li><li>सरकारले जनताको अधिकार संकुचित गर्दै प्रोपोगान्डा र दमनकारी नीति अपनाएको आरोप लागिरहेको छ, जसले लोकतन्त्रको भविष्यप्रति चिन्ता बढाएको छ।</li></ul></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p> प्रतिनिधिसभामा करिब दुईतिहाइ सिट र ४८ प्रतिशत लोकप्रिय मत हासिल गरेको रास्वपाका वरिष्ठ नेता वालेन्द्र शाहको नेतृत्वमा बनेको सरकारको मधुमास सकिएपछि प्रारम्भिक मूल्यांकन गर्ने क्रम सुरु भएको छ । लोकतान्त्रिक प्रणालीमा सरकार बनेपछिको १०० दिनलाई हनिमुन अर्थात् मधुमास भनिन्छ । लोकतान्त्रिक मूल्य–मान्यता, संस्कार र परम्पराअनुसार जनमतको सम्मान गर्दै शंकाको सुविधा दिएर मधुमास अवधिमा सरकारको खासै आलोचना गरिँदैन । ‘सरकारको आलोचना गर्ने धर्म भएका’ प्रतिपक्षी पार्टीले पनि मधुमासमा कडा आलोचना गर्दैनन् । मधुमास अवधिमा यो सरकारले अधिकतम शंकाको सुविधा पायो ।</p><p>प्रारम्भमा सरकारप्रति जनताको निकै ठूलो आशा र उत्साह थियो । तर मधुमासको अन्त्यसँगै उक्त आशा र उत्साह आशंका र निराशामा रूपान्तरण भएको देखिन्छ । सरकारले सफल भएको दाबी गरे पनि प्रतिपक्षी पार्टी, बौद्धिक समुदाय, नागरिक समाज, सञ्चारमाध्यमले विगतका जस्तै विवादित र औसत सरकारको संज्ञा दिएका छन् । प्रधानमन्त्री शाहको विवादित अभिव्यक्ति र कार्यशैली तथा सरकारको अनुत्तरदायी प्रवृत्तिले केही गम्भीर प्रश्न उठेका छन् । त्यसैले सरकारको मधुमास, शाहको कार्यशैली र सरकारको कारणले सिर्जना हुन सक्ने सम्भावित परिदृश्यबारे यहाँ वस्तुनिष्ठ विश्लेषणको प्रयास गरिएको छ ।</p><div class=\"saman-samachar\"><div class=\"samsung-special\"><figure class=\"no-hover\"><a href=\"https://worldcup.ekantipur.com\" onclick=\"gaEvent('World Cup Ekantipur','detail','clicked');\" target=\"_blank\"><div class=\"skeleton\"></div><img alt=\"World Cup 2026\" class=\"lazy\" data-src=\"https://assets-cdn.ekantipur.com/uploads/source/ads/whatsapp-image-2026-07-03-at-163230-0372026015253.jpg\"/> </a></figure></div></div></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p><strong>लोकतान्त्रिक प्रणाली र संस्थाको अवमूल्यन<br/></strong>लोकतन्त्र भनेको प्रणाली र संस्था हो । लोकतन्त्रको अर्थ शासन प्रणाली मात्रै होइन, जीवन पद्धति हो । लोकतान्त्रिक संस्थाहरू कार्यमूलक र प्रभावकारी भए पद्धतिको विकास हुन्छ र पद्धतिको विकास भएपछि मात्रै प्रणालीको विकास हुन्छ । लोकतान्त्रिक प्रणाली, संविधान र दलहरू छन् । तर विडम्बना लोकतन्त्रलाई प्रणाली र संस्थाका रूपमा सरकार र दलहरूले आत्मसात् गर्न सकेनन् । एकातिर तीन दशकसम्म पनि लोकतन्त्रको अपेक्षाकृत संस्थागत विकास हुन सकेको छैन । अर्कोतिर लोकतान्त्रिक, संवैधानिक तथा सार्वजनिक संस्था कार्यमूलक, सबल र सक्षम छैनन् । यी संस्थाहरू सबल, सक्षम र कार्यमूलक नभएको कारणले सरकार, दल र नेतृत्व पंक्ति पनि उत्तरदायी भएनन् । कतिपय समय र सन्दर्भमा कार्यपालिका, व्यवस्थापिका र कार्यपालिकाबीच अन्तर्विरोध र द्वन्द्वसमेत हुँदै आएको छ । न्यायपालिका र संवैधानिक अंगहरू लोकतन्त्रका आधारस्तम्भ भए पनि लोकतान्त्रिक मूल्य–मान्यता र संविधानको परिकल्पनाअनुसार स्वतन्त्र र स्वायत्त रूपमा कार्यसम्पादन गर्न सकेका छैनन् । त्यसैले यी संस्थाले जनताको विश्वास पनि गुमाउँदै गएका छन् । </p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p><span class=\"highlight-box quoted-highlight-box\"><span data-mce-style=\"font-size: 21px; background-color: #ffffff;\" style=\"font-size: 21px; background-color: #ffffff;\">सरकार बनेको घडीदेखि नै लोकतान्त्रिक प्रणाली र संस्थालाई अवमूल्यन र उपेक्षा गरिँदै आएको छ । लोकतान्त्रिक प्रणाली र संविधानको भावनाविपरीत अधिकार सिंहदरबार र प्रधानमन्त्रीमा केन्द्रीकृत गरिएको छ । प्रणाली र संस्थाभन्दा पनि डेलिभरीका लागि प्रधानमन्त्री शक्तिशाली हुनुपर्ने न्यारेटिभ बनाइएको छ ।</span></span>सरकार बनेको घडीदेखि नै लोकतान्त्रिक प्रणाली र संस्थालाई अवमूल्यन र उपेक्षा गरिँदै आएको छ । लोकतान्त्रिक प्रणाली र संविधानको भावनाविपरीत अधिकार सिंहदरबार र प्रधानमन्त्रीमा केन्द्रीकृत गरिएको छ । प्रणाली र संस्थाभन्दा पनि डेलिभरीका लागि प्रधानमन्त्री शक्तिशाली हुनुपर्ने न्यारेटिभ बनाइएको छ । उत्तरदायीभन्दा शक्तिशाली, भिजनभन्दा भ्रम र पर्फमेन्सभन्दा प्रोपोगान्डालाई नेतृत्वको मापदण्ड भनी परिभाषित गरिएको छ । प्रधामन्त्री, मन्त्री र सत्तारूढ पार्टीका नेता–कार्यकर्तामा जादु, चमत्कार र स्टन्टवादी प्रवृत्ति हाबी भएको देखिन्छ । तर प्रणाली र संस्थालाई अवमूल्यन गरी शक्तिशाली प्रधानमन्त्रीको वकालत अधिनायकवादी अवधारणा हो र पपुलिस्टहरूको भ्रामक भाष्य हो । जादु, चमत्कार र स्टन्टको प्रोपोगन्डा गर्ने लोकतन्त्रवादी होइनन्, पपुलिस्ट हुन् ।</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>यदि निरपेक्ष रूपमा शक्तिशाली सरकार र बलियो प्रधानमन्त्रीको अपेक्षा हो भने अहिलेको प्रधानमन्त्रीभन्दा शक्तिशाली राजा थिए र पञ्चायतकालमा राजनीतिक स्थायित्व पनि थियो । के त्यस्तो भ्रममा परेर अधिनायकवाद र सर्वसत्तावाद अनुसरण गर्ने ? यदि लोकतान्त्रिक संस्था प्रभावकारी र कार्यमूलक भएनन् भने लोकतान्त्रिक प्रणालीबाटै अधिनायकवादी, सर्वसत्तावादी, पपुलिस्ट शासकहरू जन्मिएको विश्वको इतिहासबाट पुष्टि भइसकेको छ । भ्रष्टाचार नियन्त्रण, सुशासन र डेलिभरीको लोकप्रिय नाराका आधारमा सत्तामा आएका शाहले केही सकारात्मक पहल पनि गरेका छन् । तर विद्यमान संस्था र कानुनलाई उपेक्षा गर्ने सरकारको मनोवृत्ति गैरलोकतान्त्रिक छ, प्रवृत्ति पपुलिस्ट छ र कार्यशैली विवादित छ ।</p><p><strong>जनताका अधिकार संकुचित<br/></strong>विगतमा केपी ओलीको सरकारले केही सामाजिक सञ्जाल बन्द गरी नागरिकको बोल्न पाउने अधिकार कुण्ठित गरेपछि त्यसको विरुद्धमा जेन–जी आन्दोलन भएको थियो । हिजो शाह स्वयंले ‘बोल्न दे सरकार’ भनी सरकारलाई चुनौती दिएका थिए । तर आज शाहकै सरकारले संविधानप्रदत्त नागरिक अधिकार कुण्ठित गर्ने धृष्टता गरेको छ, अभिव्यक्ति तथा प्रेस स्वतन्त्रता संकुचित गर्ने षड्यन्त्र गरेको छ, सरकारको आलोचना गर्ने केही सञ्चारगृह, दल र नेताहरूलाई तर्साउने आत्मघाती रणनीति अख्तियार गरेको छ । राजा ज्ञानेन्द्रको निरंकुशकालमा सेनासँग समेत नडराएर व्यावसायिक धर्म निर्वाह गर्दै जनताको अधिकार र लोकतन्त्रको पक्षमा निर्भीकतापूर्वक लेख्दै–बोल्दै आएको सञ्चारजगत् सरकारको यस्तो प्रवृत्तिसँग तर्सिने प्रश्नै भएन ।</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>तर कान्तिपुर, अनलाइनखबर, हिमालय टीभीलगायतका सञ्चारगृह तथा कांग्रेस सभापति गगन थापाको घरअगाडि सरकारी योजना र संरक्षणमा गाडी पार्क गरेपछि सरकारको नियत र षड्यन्त्रको पर्दाफास भएको छ । यो राज्य संरक्षित अपराधीकरण र भिजिलान्ते प्रवृत्ति हो, जुन आपत्तिजनक र निन्दनीय छ । यस्तो आपराधिक प्रवृत्तिको स्वयं सत्तारूढ रास्वपा सभापति रवि लामिछानेले समेत निन्दा र भर्त्सना गर्दै दोषीमाथि कारबाही गर्न माग गरेका छन् । यस्तो भिजिलान्ते शैली पञ्चायतकालको विकृत संस्करण हो । २०६५ मा सत्तामा आएको माओवादीले पनि यसरी नै भिजिलान्तेकरण गरेको थियो । पञ्चायत र माओवादीको पतन कसरी भयो ? त्यसैले यस्तो प्रवृत्तिको पनि अन्त्य हुने निश्चित छ ।   </p><p>सरकारकै कारणले गणेश नेपाली, आश्विन राउत, विवेक मण्डलहरूले आत्मदाह गर्नुपरेको यथार्थता घामजत्तिकै छर्लंग  छ । उनीहरूको आत्मदाहसँगै यो सरकारप्रति जनताका आशा, विश्वास र सपना पनि जलेका छन् भने शाह र सरकारप्रतिको आशा र विश्वास पनि खण्डित भएको छ । केही वर्षअगाडि व्यापारी प्रेम आचार्यले आत्मदाह गर्दा तत्कालीन मेयर शाहले सरकारलाई हत्याराको आरोप लगाएका थिए । तर अहिलेको आत्मदाहमा मृतक र शोकाकुल परिवारजनप्रति न श्रद्धाञ्जली छ, न समवेदना, न सेम्पेथी (सहानुभूति) छ, न एम्पेथी (समानुभूति) । यस्तो द्वैधचरित्र चरित्र किन ? के जनताको अभिभावक हुनुपर्ने प्रधानमन्त्रीको भूमिका र जिम्मेवारी यस्तै हो ? यो सरकार नागरिकमैत्री छ, न अधिकारमैत्री । माजिद अन्सारीहरूले गरेको जेन–जी विद्रोहको जगमा बनेको सरकारले आज किन अन्सारीहरूलाई नै दमन गर्दै छ ? शाहको शासनमा नागरिक अधिकार हुन्छ कि हुँदैन ? मानव अधिकार हुन्छ कि हुँदैन ? नागरिकलाई बोल्ने अधिकार हुन्छ कि हुँदैन ? हिजो ओली र आज शाह सरकारमा के फरक छ ? आवरण फरक छ, तर प्रवृत्ति समान । </p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>अवाञ्छित दलीयकरणको अन्त्य गरी स्वस्थ लोकतान्त्रिक अभ्यास गर्ने वाचा गरेको ‘नयाँ’ सरकारले हिजो पुराना दलहरूले जे गरेका थिए, आज त्यही पदचाप अनुसरण गरेको छ । प्रधानन्यायाधीशको नियुक्ति र अख्तियार दुरुपयोग अनुसन्धान आयोगका पदाधिकारीहरूलाई प्रधानमन्त्री कार्यालयमा केरकार गरेको घटना आपत्तिजनक मात्रै होइन, लोकतान्त्रिक प्रणाली र संविधानको भावनाविपरीत छ । यदि अख्तियारका पदाधिकारीहरूले संस्थाको मूल्य–मान्यता र उद्देश्यअनुसार कार्यसम्पादन गरेका छैनन् भने नयाँ पदाधिकारी नियुक्त गर्नुपर्‍यो । होइन भने, संवैधानिक निकायलाई प्रधानमन्त्री कार्यालयअन्तर्गतको शाखाको जस्तो व्यवहार गर्नु कुन हदसम्मको स्वेच्छाचारी प्रवृत्ति हो ?</p><p>के न्यायालय र संवैधानिक संस्थालाई पनि प्रधानमन्त्री कार्यालयअन्तर्गत राख्ने धृष्टता गरिएको हो ? यस्तो स्वेच्छाचारी प्रवृत्तिले लोकतन्त्रको भविष्य के होला ? राजनीतिक भर्तीकेन्द्र र दलीयकरण अन्त्य गर्ने नाममा सरकारले संवैधानिक तथा कूटनीतिक निकाय र प्राज्ञिक तथा शैक्षिक संस्थामा अर्को आवरणमा रास्वपाकरणको दुश्चक्र सुरु गरेको छ । सार्वभौम संसद्लाई त यसरी निरन्तर उपेक्षा गरिएको छ भने राज्यका अन्य निकायप्रति कस्तो दृष्टिकोण र व्यवहार होला ? सरकारको यस्तो प्रवृत्तिको कुनै बेला प्रधानमन्त्री शाहले ‘आमा’ भनी सम्बोधन गर्ने पूर्वप्रधानमन्त्री तथा पूर्वप्रधानन्यायाधीश सुशीला कार्कीले समेत कडा शब्दमा आलोचना गरेकी छन् ।</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>सरकारकै दमनकारी नीतिको कारणले इन्द्रबहादुर राई, रविन तामाङलगायत विस्थापित सुकुमवासीहरू आत्महत्या गर्न बाध्य भए । वास्तवमा यो आत्महत्या होइन, राज्यले गरेको हत्या हो । भूमिहीन नागरिकप्रति राज्यले गर्ने व्यवहार यस्तै हो ? सुकुमवासी समस्या समाधान गर्ने नाममा गरिएको दमनकारी र गैरजिम्मेवार नीतिको प्रतिपक्षी पार्टी, बौद्धिक समुदाय र नागरिक समाजले कटु आलोचना गर्दै आएका छन् । तर सरकारले सुनेन, सुन्दैन । भूमिहीन–सुकुमवासी समस्याको सम्मानजनक र दिगो समाधान गर्ने कि दमन र विस्थापित गर्ने ? शाहको शासनमा सुकुमवासीको बाँच्न पाउने अधिकार हुन्छ कि हुँदैन ? यदि हुन्छ भने नागरिकमाथि किन यसरी दमन गरिँदै छ ? सुकुमवासीप्रति न्यूनतम मानवीय व्यवहार र करुणा त छैन भने यो सरकारसँग मानवअधिकार, स्वतन्त्रता, पारदर्शिता, उत्तरदायित्वजस्ता मर्यादित लोकतान्त्रिक अभ्यासको अपेक्षा गर्नु नै बेकार छ ।</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p><strong>प्रधानमन्त्री शाहको अनुत्तरदायी प्रवृत्ति <br/></strong>लोकतन्त्रमा जनता, नागरिक समाज, बौद्धिक समुदाय, सञ्चारमाध्यमले सरकार, दल, नेतृत्व, राज्यका निकायलाई निरन्तर प्रश्न, खबरदारी, निगरानी गर्छन् । जति प्रश्न, खबरदारी र निगरानी गरिन्छ, त्यति नै सरकार र राज्यका निकायहरू जनताप्रति उत्तरदायी हुन्छन् । लोकतन्त्रमा यो जनताको नैसर्गिक अधिकार हो । लोकतान्त्रिक प्रणालीको आत्मा भनेकै जवाफदेहिता हो । जवाफदेहिताबिना कुनै पनि सरकार लोकतान्त्रिक हुन सक्दैन । तर यो सरकार जवाफदेही छैन, प्रधानमन्त्री र मन्त्रीहरू जवाफदेही छैनन् ।</p><p>सरकार, प्रधानमन्त्री र मन्त्रीका निर्णय विधिसम्मत र पारदर्शी पनि छैनन् । प्रधानमन्त्री शाहले न राजनीतिक पार्टीसँग संवाद गर्छन्, न बौद्धिक समुदाय र नागरिक समाजसँग । आफ्नै पार्टीसँग समेत छलफल र परामर्श गर्दैनन् । न आफ्नै पार्टीको केन्द्रीय समितिको बैठकमा जान्छन्, न संसदीय दलको बैठकमा । रास्वपा र सभापति लामिछानेसमेत सरकार र शाहको लाचार छाया भएका छन् । उनी न जनताप्रति उत्तरदायी छन्, न संसद् र पार्टीप्रति । लोकतान्त्रिक र दलीय प्रणालीबाट निर्वाचित भएर प्रधानमन्त्री बनेका भए पनि उनको आचरण, संस्कार र कार्यशैली न लोकतान्त्रिक छ, न दलीय । न लोकतान्त्रिक मूल्य–मान्यता र सिद्धान्तलाई आत्मसात् गर्न सकेको देखिन्छ, न जनमतको सम्मान ।</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>आवरण लोकतान्त्रिक छ । तर उनको व्यवहारमा भने गैरलोकतान्त्रिक प्रवृत्ति देखिन्छ । वास्तवमा भूमिगत गिरोहको शैलीमा सरकार सञ्चालन गरिएको छ । उनको कार्यशैली चक्रवर्ती सम्राटको जस्तो प्रतीत हुन्छ । लोकतान्त्रिक प्रणाली र पार्टीलाई केवल उपयोग मात्रै गरेको देखिन्छ । लोकतान्त्रिक प्रणालीमा प्रधानमन्त्रीलाई कि संसद्ले नियन्त्रण गर्छ कि पार्टीले । यदि संसद् वा पार्टीले नियन्त्रण गर्न सकेन भने त्यस्तो सरकार वा प्रधानमन्त्री निरंकुश र अधिनायकवादी हुन्छ । अहिले उनलाई न संसद्ले नियन्त्रण गर्न सक्छ, न पार्टीले । सरकार अनुत्तरदायी हुनु भनेको अधिनायकवाद तथा सर्वसत्तावादतर्फको पहिलो पाइला हो । सरकार जतिजति अनुत्तरदायी हुँदै जान्छ, त्यति नै अधिनायकवादी तथा सर्वसत्तावादी प्रवृत्ति बढ्दै जान्छ । सुशासन र डेलिभरीको नायकका रूपमा कृत्रिम भाष्य बनाएर अधिनायकवादी शासनको रिहर्सल गरिँदै छ । लोकतन्त्रका लागि योभन्दा ठूलो दुर्भाग्य अरू के हुन सक्छ ?</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p><strong>प्रोपोगान्डाको साम्राज्य<br/></strong>एकातिर जनताका अधिकार, प्रेस स्वतन्त्रता र लोकतान्त्रिक ‘स्पेस’ संकुचित गर्ने धृष्टता गरिएको छ, अर्कोतिर सामाजिक सञ्जाल र डिजिटल प्लाटफर्ममार्फत प्रोपोगान्डाको साम्राज्य स्वयं सरकारले चलाएको छ । सामाजिक सञ्जाल र डिजिटल प्लाटफर्ममा आधारित पार्टी र निर्वाचनमा विजय हासिल गरेका शाहले विरोधी र प्रतिस्पर्धीलाई साइबर आक्रमण गर्दै आइरहेका छन् । असत्य पनि हजार पटक भन्यो भने सत्यका रूपमा स्थापित गर्न सकिन्छ भन्ने प्रोपोगान्डा सिद्धान्तका प्रणेता एवं हिटलरका प्रचारमन्त्री जोसेफ गोयवल्सका नयाँ–नयाँ मानसपुत्रहरू सिंहदरबार र बालुवाटारमा जन्मिएका छन् । मिडिया साक्षरता कमजोर भएको हाम्रो जस्तो देशमा भ्रामक र मिथ्या सूचना फैलाएर समाजलाई दिग्भ्रमित पारी राजनीतिक स्वार्थ पूरा गर्ने अस्त्रका रूपमा सामाजिक सञ्जाल र डिजिटल प्लाटफर्मलाई सरकारले दुरुपयोग गर्दै आइरहेको छ । अल्गोरिदम विज्ञ एवं ट्रोल नेपालका सञ्चालक नै प्रधानमन्त्रीको सल्लाहकार भएकाले सामाजिक सञ्जाल र डिजिटल प्लाटफर्मबारे कस्तो रणनीति होला ? घामजत्तिकै छर्लंग छ । </p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>सामाजिक सञ्जाल र डिजिटल प्लाटफर्मले विश्वव्यापी रूपमा नै पपुलिजम, अनुदारवाद, उग्रराष्ट्रवाद, असहिष्णुतालाई प्रोत्साहित गरेको राष्ट्रिय तथा अन्तर्राष्ट्रिय थिंक–ट्यांकहरूले निष्कर्ष निकालेका छन् । वैकल्पिक भाष्य निर्माण गर्ने नाममा पपुलिस्ट, अनुदारवादी, अतिवादी, उग्रराष्ट्रवादीहरूको प्रोपोगान्डा मेसिन भएको संज्ञा दिँदै मिसइन्फर्मेसन, डिसइन्फर्मेसन, घृणा, असहिष्णुता फैलाउने औजार भएको टिप्पणी गरेका छन् । तथ्य र तथ्यांकका आधारमा सिद्धान्त, विचार, नीतिमाथि बहस र विमर्श बहस गरिँदैन, मिथ्यांकको आधारमा अतिरञ्जत र अस्वस्थ आरोप–प्रत्यारोप गरिन्छ । जसले चर्को स्वरमा निन्दा र भर्त्सना गर्‍यो, त्यही क्रान्तिकारी भन्ने भ्रामक भाष्य र मानक स्थापित हुँदै गएको छ । मूलधार, मध्यमार्ग र उदार मूल्य–मान्यतामाथि आक्रमण गरी ‘लोकप्रिय’ र ‘नायक’ हुने पपुलिस्ट तथा स्टन्टवादी प्रवृत्ति हाबी भएको देखिन्छ ।</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>यस्तो प्रवृत्ति यति उत्कर्ष बिन्दुमा पुगेको छ कि कुनै विचार, पार्टी वा पात्रलाई कि देवत्वकरण गरिन्छ कि दानवीकरण । अतिरञ्जित, असहिष्णु र विषाक्त प्रोपोगान्डालाई लोकप्रिय भाष्यका रूपमा परिभाषित र आत्मसात् गर्ने दुर्भाग्यपूर्ण प्रवृत्ति बढ्दै गइरहेको छ । यस्तो घातक प्रवृत्ति र विषाक्त भाष्यलाई सरकारले अधिकतम ‘सदुपयोग’ गर्दै आएको छ । लाइक, सेयर, भ्युज, कमेन्ट सरकारको प्रमुख खेती भएको छ, अल्गोरिदम प्रमुख औजार भएको छ र मिसइन्फर्मेसन तथा डिसइन्फर्मेसनका आधारमा प्रायोजित र विषाक्त भाष्य मूलमन्त्र भएको छ । सरकार र सरकारी संयन्त्र नै विषाक्त र प्रायोजित भाष्यको कारखाना भएका छन् । जब राज्य नै संगठित रूपमा प्रोपोगान्डा र अपराधीकरणमा उद्यत हुन्छ, त्यसले गम्भीर संकट सिर्जना गर्छ ।</p></div></section><section class=\"news-section-wrap-story\"><div class=\"news-inner-wrapper\"><p>अर्कोतिर आवश्यकता र स्वार्थको कारणले प्राविधिक रूपमा एउटै पार्टीमा भए पनि महत्त्वाकांक्षा र सत्ता सिद्धान्तका दृष्टिले विपरीत ध्रुवका शाह र लामिछानेबीचको सम्भावित अन्तर्द्वन्द्वले सरकारको भविष्य पनि अनिश्चित देखिन्छ । त्यसैले ‘जय महाकाली, आयो गोर्खाली’ नामक र्‍याप गीत रिलिज गरेलगत्तै शपथ ग्रहण गरेका शाहको ‘सिंहासन’ को रक्षार्थ भद्रकाली शक्तिपीठको अखण्ड उपासनालाई भविष्यमा थप उच्च प्राथमिकता दिने निश्चित छ । सम्भवतः शाहले घन्टी बजाउँदै गाउने नयाँ भजन (र्‍याप होइन) को शीर्षक हुनेछ– जय भद्रकाली, जय महाकाली । यो त प्रारम्भ मात्रै हो, विडम्बनापूर्ण राजनीतिक परिदृश्य त देखिनै बाँकी छ ।</p></div></section> <section class=\"author-list news-wrap-sec\"><input class=\"currNews\" type=\"hidden\" value=\"10051855\"/><p class=\"inter\"><span><a href=\"https://ekantipur.com/author/author-8813\">गेजा</a></span> गेजा शर्मा वाग्ले राजनीति, भूराजनीति तथा अन्तर्राष्ट्रिय सम्बन्ध मामिलाका विषयमा लेख्छन् । उनी बेलायतको बर्मिंघम विश्वविद्यालयमा नेपालको राजनीतिक संक्रमण र शान्ति प्रक्रियासम्बन्धी अनुसन्धान फेलो समेत रहेका थिए ।</p></section><div class=\"copy-ticker d-none\" id=\"copyTicker\"><div class=\"copy-ticker-text\">Link copied successfully</div></div></p><p class=\"article-para\"></body></p>",
+    bodyNpWithAds:  "<p class=\"article-para\"><body class=\"article-detail-page\"><div class=\"sticky_top\"></div>  <section class=\"news-section-wrap\" data-link=\"opinion/2026/07/17/average-government-unresponsive-prime-minister-53-05.html\"><h2 class=\"\">औसत सरकार, अनुत्तरदायी प्रधानमन्त्री </h2><p class=\"\">अवाञ्छित दलीयकरणको अन्त्य गरी स्वस्थ लोकतान्त्रिक अभ्यास गर्ने वाचा गरेको ‘नयाँ’ सरकारले हिजो पुराना दलहरूले जे गरेका थिए, आज त्यही पदचाप अनुसरण गरेको छ ।</p><div class=\"author-date\"><span translate=\"no\">श्रावण १, २०८३</span><p><a href=\"https://ekantipur.com/author/author-8813\">गेजा शर्मा वाग्ले</a> </p></div></section><section class=\"image-section-wrap\"><figure class=\"d-flex\"><div class=\"skeleton\"></div><img alt=\"Average government, unresponsive prime minister\" class=\"lazy\" data-path=\"news/kantipur/2026/politics/balen-2042026121002.jpg\" data-src=\"https://assets-cdn-api.ekantipur.com/thumb.php?src=https://assets-cdn.ekantipur.com/uploads/source/news/kantipur/2026/politics/balen-2042026121002-1000x0.jpg&amp;w=1001&amp;h=0\"/></figure></section><section class=\"utility-section\"><input class=\"currNews\" type=\"hidden\" value=\"10051855\"/><input class=\"currCategory\" type=\"hidden\" value=\"opinion\"/><input class=\"currLang\" type=\"hidden\" value=\"np\"/><input class=\"currPremium\" type=\"hidden\" value=\"0\"/><input class=\"currNewsType\" type=\"hidden\" value=\"normal\"/><button class=\"inter\"><a href=\"https://ekantipur.com/opinion/2026/07/17/en/average-government-unresponsive-prime-minister-53-05.html\">Read In English</a></button><div class=\"audio-wraps\" data-audiosrc=\"https://media-cdn.ekantipur.com/azure-tts-audio/2026/07/17/news-10051855.mp3\"><div class=\"main-controls\"><div class=\"play\"><svg><use xlink:href=\"/assets/icon/desktop/icon.svg#play-icon\"></use></svg></div><div class=\"duration\"><input class=\"duration-slider\" max=\"100\" min=\"0\" type=\"range\" value=\"0\"/></div><div class=\"volumeIcon\"><svg><use xlink:href=\"/assets/icon/desktop/icon.svg#volume-up\"></use></svg></div></div></div></section><section class=\"ai-summary position-relative\"><div class=\"ai-body\"><ul><li>सरकार गठनको प्रारम्भिक उत्साह मधुमास अवधिपछि आशंका र निराशामा परिणत भएको छ।</li><li>प्रधानमन्त्री शाहको कार्यशैली र सरकारको अनुत्तरदायी प्रवृत्तिले लोकतान्त्रिक मूल्य, नागरिक अधिकार र संस्थागत अभ्यासमा गम्भीर प्रश्न उठाएका छन्।</li><li>सरकारले जनताको अधिकार संकुचित गर्दै प्रोपोगान्डा र दमनकारी नीति अपनाएको आरोप लागिरहेको छ, जसले लोकतन्त्रको भविष्यप्रति चिन्ता बढाएको छ।</li></ul></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p> प्रतिनिधिसभामा करिब दुईतिहाइ सिट र ४८ प्रतिशत लोकप्रिय मत हासिल गरेको रास्वपाका वरिष्ठ नेता वालेन्द्र शाहको नेतृत्वमा बनेको सरकारको मधुमास सकिएपछि प्रारम्भिक मूल्यांकन गर्ने क्रम सुरु भएको छ । लोकतान्त्रिक प्रणालीमा सरकार बनेपछिको १०० दिनलाई हनिमुन अर्थात् मधुमास भनिन्छ । लोकतान्त्रिक मूल्य–मान्यता, संस्कार र परम्पराअनुसार जनमतको सम्मान गर्दै शंकाको सुविधा दिएर मधुमास अवधिमा सरकारको खासै आलोचना गरिँदैन । ‘सरकारको आलोचना गर्ने धर्म भएका’ प्रतिपक्षी पार्टीले पनि मधुमासमा कडा आलोचना गर्दैनन् । मधुमास अवधिमा यो सरकारले अधिकतम शंकाको सुविधा पायो ।</p><p>प्रारम्भमा सरकारप्रति जनताको निकै ठूलो आशा र उत्साह थियो । तर मधुमासको अन्त्यसँगै उक्त आशा र उत्साह आशंका र निराशामा रूपान्तरण भएको देखिन्छ । सरकारले सफल भएको दाबी गरे पनि प्रतिपक्षी पार्टी, बौद्धिक समुदाय, नागरिक समाज, सञ्चारमाध्यमले विगतका जस्तै विवादित र औसत सरकारको संज्ञा दिएका छन् । प्रधानमन्त्री शाहको विवादित अभिव्यक्ति र कार्यशैली तथा सरकारको अनुत्तरदायी प्रवृत्तिले केही गम्भीर प्रश्न उठेका छन् । त्यसैले सरकारको मधुमास, शाहको कार्यशैली र सरकारको कारणले सिर्जना हुन सक्ने सम्भावित परिदृश्यबारे यहाँ वस्तुनिष्ठ विश्लेषणको प्रयास गरिएको छ ।</p><div class=\"saman-samachar\"><div class=\"samsung-special\"><figure class=\"no-hover\"><a href=\"https://worldcup.ekantipur.com\" onclick=\"gaEvent('World Cup Ekantipur','detail','clicked');\" target=\"_blank\"><div class=\"skeleton\"></div><img alt=\"World Cup 2026\" class=\"lazy\" data-src=\"https://assets-cdn.ekantipur.com/uploads/source/ads/whatsapp-image-2026-07-03-at-163230-0372026015253.jpg\"/> </a></figure></div></div></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p><strong>लोकतान्त्रिक प्रणाली र संस्थाको अवमूल्यन<br/></strong>लोकतन्त्र भनेको प्रणाली र संस्था हो । लोकतन्त्रको अर्थ शासन प्रणाली मात्रै होइन, जीवन पद्धति हो । लोकतान्त्रिक संस्थाहरू कार्यमूलक र प्रभावकारी भए पद्धतिको विकास हुन्छ र पद्धतिको विकास भएपछि मात्रै प्रणालीको विकास हुन्छ । लोकतान्त्रिक प्रणाली, संविधान र दलहरू छन् । तर विडम्बना लोकतन्त्रलाई प्रणाली र संस्थाका रूपमा सरकार र दलहरूले आत्मसात् गर्न सकेनन् । एकातिर तीन दशकसम्म पनि लोकतन्त्रको अपेक्षाकृत संस्थागत विकास हुन सकेको छैन । अर्कोतिर लोकतान्त्रिक, संवैधानिक तथा सार्वजनिक संस्था कार्यमूलक, सबल र सक्षम छैनन् । यी संस्थाहरू सबल, सक्षम र कार्यमूलक नभएको कारणले सरकार, दल र नेतृत्व पंक्ति पनि उत्तरदायी भएनन् । कतिपय समय र सन्दर्भमा कार्यपालिका, व्यवस्थापिका र कार्यपालिकाबीच अन्तर्विरोध र द्वन्द्वसमेत हुँदै आएको छ । न्यायपालिका र संवैधानिक अंगहरू लोकतन्त्रका आधारस्तम्भ भए पनि लोकतान्त्रिक मूल्य–मान्यता र संविधानको परिकल्पनाअनुसार स्वतन्त्र र स्वायत्त रूपमा कार्यसम्पादन गर्न सकेका छैनन् । त्यसैले यी संस्थाले जनताको विश्वास पनि गुमाउँदै गएका छन् । </p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p><span class=\"highlight-box quoted-highlight-box\"><span data-mce-style=\"font-size: 21px; background-color: #ffffff;\" style=\"font-size: 21px; background-color: #ffffff;\">सरकार बनेको घडीदेखि नै लोकतान्त्रिक प्रणाली र संस्थालाई अवमूल्यन र उपेक्षा गरिँदै आएको छ । लोकतान्त्रिक प्रणाली र संविधानको भावनाविपरीत अधिकार सिंहदरबार र प्रधानमन्त्रीमा केन्द्रीकृत गरिएको छ । प्रणाली र संस्थाभन्दा पनि डेलिभरीका लागि प्रधानमन्त्री शक्तिशाली हुनुपर्ने न्यारेटिभ बनाइएको छ ।</span></span>सरकार बनेको घडीदेखि नै लोकतान्त्रिक प्रणाली र संस्थालाई अवमूल्यन र उपेक्षा गरिँदै आएको छ । लोकतान्त्रिक प्रणाली र संविधानको भावनाविपरीत अधिकार सिंहदरबार र प्रधानमन्त्रीमा केन्द्रीकृत गरिएको छ । प्रणाली र संस्थाभन्दा पनि डेलिभरीका लागि प्रधानमन्त्री शक्तिशाली हुनुपर्ने न्यारेटिभ बनाइएको छ । उत्तरदायीभन्दा शक्तिशाली, भिजनभन्दा भ्रम र पर्फमेन्सभन्दा प्रोपोगान्डालाई नेतृत्वको मापदण्ड भनी परिभाषित गरिएको छ । प्रधामन्त्री, मन्त्री र सत्तारूढ पार्टीका नेता–कार्यकर्तामा जादु, चमत्कार र स्टन्टवादी प्रवृत्ति हाबी भएको देखिन्छ । तर प्रणाली र संस्थालाई अवमूल्यन गरी शक्तिशाली प्रधानमन्त्रीको वकालत अधिनायकवादी अवधारणा हो र पपुलिस्टहरूको भ्रामक भाष्य हो । जादु, चमत्कार र स्टन्टको प्रोपोगन्डा गर्ने लोकतन्त्रवादी होइनन्, पपुलिस्ट हुन् ।</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>यदि निरपेक्ष रूपमा शक्तिशाली सरकार र बलियो प्रधानमन्त्रीको अपेक्षा हो भने अहिलेको प्रधानमन्त्रीभन्दा शक्तिशाली राजा थिए र पञ्चायतकालमा राजनीतिक स्थायित्व पनि थियो । के त्यस्तो भ्रममा परेर अधिनायकवाद र सर्वसत्तावाद अनुसरण गर्ने ? यदि लोकतान्त्रिक संस्था प्रभावकारी र कार्यमूलक भएनन् भने लोकतान्त्रिक प्रणालीबाटै अधिनायकवादी, सर्वसत्तावादी, पपुलिस्ट शासकहरू जन्मिएको विश्वको इतिहासबाट पुष्टि भइसकेको छ । भ्रष्टाचार नियन्त्रण, सुशासन र डेलिभरीको लोकप्रिय नाराका आधारमा सत्तामा आएका शाहले केही सकारात्मक पहल पनि गरेका छन् । तर विद्यमान संस्था र कानुनलाई उपेक्षा गर्ने सरकारको मनोवृत्ति गैरलोकतान्त्रिक छ, प्रवृत्ति पपुलिस्ट छ र कार्यशैली विवादित छ ।</p><p><strong>जनताका अधिकार संकुचित<br/></strong>विगतमा केपी ओलीको सरकारले केही सामाजिक सञ्जाल बन्द गरी नागरिकको बोल्न पाउने अधिकार कुण्ठित गरेपछि त्यसको विरुद्धमा जेन–जी आन्दोलन भएको थियो । हिजो शाह स्वयंले ‘बोल्न दे सरकार’ भनी सरकारलाई चुनौती दिएका थिए । तर आज शाहकै सरकारले संविधानप्रदत्त नागरिक अधिकार कुण्ठित गर्ने धृष्टता गरेको छ, अभिव्यक्ति तथा प्रेस स्वतन्त्रता संकुचित गर्ने षड्यन्त्र गरेको छ, सरकारको आलोचना गर्ने केही सञ्चारगृह, दल र नेताहरूलाई तर्साउने आत्मघाती रणनीति अख्तियार गरेको छ । राजा ज्ञानेन्द्रको निरंकुशकालमा सेनासँग समेत नडराएर व्यावसायिक धर्म निर्वाह गर्दै जनताको अधिकार र लोकतन्त्रको पक्षमा निर्भीकतापूर्वक लेख्दै–बोल्दै आएको सञ्चारजगत् सरकारको यस्तो प्रवृत्तिसँग तर्सिने प्रश्नै भएन ।</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>तर कान्तिपुर, अनलाइनखबर, हिमालय टीभीलगायतका सञ्चारगृह तथा कांग्रेस सभापति गगन थापाको घरअगाडि सरकारी योजना र संरक्षणमा गाडी पार्क गरेपछि सरकारको नियत र षड्यन्त्रको पर्दाफास भएको छ । यो राज्य संरक्षित अपराधीकरण र भिजिलान्ते प्रवृत्ति हो, जुन आपत्तिजनक र निन्दनीय छ । यस्तो आपराधिक प्रवृत्तिको स्वयं सत्तारूढ रास्वपा सभापति रवि लामिछानेले समेत निन्दा र भर्त्सना गर्दै दोषीमाथि कारबाही गर्न माग गरेका छन् । यस्तो भिजिलान्ते शैली पञ्चायतकालको विकृत संस्करण हो । २०६५ मा सत्तामा आएको माओवादीले पनि यसरी नै भिजिलान्तेकरण गरेको थियो । पञ्चायत र माओवादीको पतन कसरी भयो ? त्यसैले यस्तो प्रवृत्तिको पनि अन्त्य हुने निश्चित छ ।   </p><p>सरकारकै कारणले गणेश नेपाली, आश्विन राउत, विवेक मण्डलहरूले आत्मदाह गर्नुपरेको यथार्थता घामजत्तिकै छर्लंग  छ । उनीहरूको आत्मदाहसँगै यो सरकारप्रति जनताका आशा, विश्वास र सपना पनि जलेका छन् भने शाह र सरकारप्रतिको आशा र विश्वास पनि खण्डित भएको छ । केही वर्षअगाडि व्यापारी प्रेम आचार्यले आत्मदाह गर्दा तत्कालीन मेयर शाहले सरकारलाई हत्याराको आरोप लगाएका थिए । तर अहिलेको आत्मदाहमा मृतक र शोकाकुल परिवारजनप्रति न श्रद्धाञ्जली छ, न समवेदना, न सेम्पेथी (सहानुभूति) छ, न एम्पेथी (समानुभूति) । यस्तो द्वैधचरित्र चरित्र किन ? के जनताको अभिभावक हुनुपर्ने प्रधानमन्त्रीको भूमिका र जिम्मेवारी यस्तै हो ? यो सरकार नागरिकमैत्री छ, न अधिकारमैत्री । माजिद अन्सारीहरूले गरेको जेन–जी विद्रोहको जगमा बनेको सरकारले आज किन अन्सारीहरूलाई नै दमन गर्दै छ ? शाहको शासनमा नागरिक अधिकार हुन्छ कि हुँदैन ? मानव अधिकार हुन्छ कि हुँदैन ? नागरिकलाई बोल्ने अधिकार हुन्छ कि हुँदैन ? हिजो ओली र आज शाह सरकारमा के फरक छ ? आवरण फरक छ, तर प्रवृत्ति समान । </p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>अवाञ्छित दलीयकरणको अन्त्य गरी स्वस्थ लोकतान्त्रिक अभ्यास गर्ने वाचा गरेको ‘नयाँ’ सरकारले हिजो पुराना दलहरूले जे गरेका थिए, आज त्यही पदचाप अनुसरण गरेको छ । प्रधानन्यायाधीशको नियुक्ति र अख्तियार दुरुपयोग अनुसन्धान आयोगका पदाधिकारीहरूलाई प्रधानमन्त्री कार्यालयमा केरकार गरेको घटना आपत्तिजनक मात्रै होइन, लोकतान्त्रिक प्रणाली र संविधानको भावनाविपरीत छ । यदि अख्तियारका पदाधिकारीहरूले संस्थाको मूल्य–मान्यता र उद्देश्यअनुसार कार्यसम्पादन गरेका छैनन् भने नयाँ पदाधिकारी नियुक्त गर्नुपर्‍यो । होइन भने, संवैधानिक निकायलाई प्रधानमन्त्री कार्यालयअन्तर्गतको शाखाको जस्तो व्यवहार गर्नु कुन हदसम्मको स्वेच्छाचारी प्रवृत्ति हो ?</p><p>के न्यायालय र संवैधानिक संस्थालाई पनि प्रधानमन्त्री कार्यालयअन्तर्गत राख्ने धृष्टता गरिएको हो ? यस्तो स्वेच्छाचारी प्रवृत्तिले लोकतन्त्रको भविष्य के होला ? राजनीतिक भर्तीकेन्द्र र दलीयकरण अन्त्य गर्ने नाममा सरकारले संवैधानिक तथा कूटनीतिक निकाय र प्राज्ञिक तथा शैक्षिक संस्थामा अर्को आवरणमा रास्वपाकरणको दुश्चक्र सुरु गरेको छ । सार्वभौम संसद्लाई त यसरी निरन्तर उपेक्षा गरिएको छ भने राज्यका अन्य निकायप्रति कस्तो दृष्टिकोण र व्यवहार होला ? सरकारको यस्तो प्रवृत्तिको कुनै बेला प्रधानमन्त्री शाहले ‘आमा’ भनी सम्बोधन गर्ने पूर्वप्रधानमन्त्री तथा पूर्वप्रधानन्यायाधीश सुशीला कार्कीले समेत कडा शब्दमा आलोचना गरेकी छन् ।</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>सरकारकै दमनकारी नीतिको कारणले इन्द्रबहादुर राई, रविन तामाङलगायत विस्थापित सुकुमवासीहरू आत्महत्या गर्न बाध्य भए । वास्तवमा यो आत्महत्या होइन, राज्यले गरेको हत्या हो । भूमिहीन नागरिकप्रति राज्यले गर्ने व्यवहार यस्तै हो ? सुकुमवासी समस्या समाधान गर्ने नाममा गरिएको दमनकारी र गैरजिम्मेवार नीतिको प्रतिपक्षी पार्टी, बौद्धिक समुदाय र नागरिक समाजले कटु आलोचना गर्दै आएका छन् । तर सरकारले सुनेन, सुन्दैन । भूमिहीन–सुकुमवासी समस्याको सम्मानजनक र दिगो समाधान गर्ने कि दमन र विस्थापित गर्ने ? शाहको शासनमा सुकुमवासीको बाँच्न पाउने अधिकार हुन्छ कि हुँदैन ? यदि हुन्छ भने नागरिकमाथि किन यसरी दमन गरिँदै छ ? सुकुमवासीप्रति न्यूनतम मानवीय व्यवहार र करुणा त छैन भने यो सरकारसँग मानवअधिकार, स्वतन्त्रता, पारदर्शिता, उत्तरदायित्वजस्ता मर्यादित लोकतान्त्रिक अभ्यासको अपेक्षा गर्नु नै बेकार छ ।</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p><strong>प्रधानमन्त्री शाहको अनुत्तरदायी प्रवृत्ति <br/></strong>लोकतन्त्रमा जनता, नागरिक समाज, बौद्धिक समुदाय, सञ्चारमाध्यमले सरकार, दल, नेतृत्व, राज्यका निकायलाई निरन्तर प्रश्न, खबरदारी, निगरानी गर्छन् । जति प्रश्न, खबरदारी र निगरानी गरिन्छ, त्यति नै सरकार र राज्यका निकायहरू जनताप्रति उत्तरदायी हुन्छन् । लोकतन्त्रमा यो जनताको नैसर्गिक अधिकार हो । लोकतान्त्रिक प्रणालीको आत्मा भनेकै जवाफदेहिता हो । जवाफदेहिताबिना कुनै पनि सरकार लोकतान्त्रिक हुन सक्दैन । तर यो सरकार जवाफदेही छैन, प्रधानमन्त्री र मन्त्रीहरू जवाफदेही छैनन् ।</p><p>सरकार, प्रधानमन्त्री र मन्त्रीका निर्णय विधिसम्मत र पारदर्शी पनि छैनन् । प्रधानमन्त्री शाहले न राजनीतिक पार्टीसँग संवाद गर्छन्, न बौद्धिक समुदाय र नागरिक समाजसँग । आफ्नै पार्टीसँग समेत छलफल र परामर्श गर्दैनन् । न आफ्नै पार्टीको केन्द्रीय समितिको बैठकमा जान्छन्, न संसदीय दलको बैठकमा । रास्वपा र सभापति लामिछानेसमेत सरकार र शाहको लाचार छाया भएका छन् । उनी न जनताप्रति उत्तरदायी छन्, न संसद् र पार्टीप्रति । लोकतान्त्रिक र दलीय प्रणालीबाट निर्वाचित भएर प्रधानमन्त्री बनेका भए पनि उनको आचरण, संस्कार र कार्यशैली न लोकतान्त्रिक छ, न दलीय । न लोकतान्त्रिक मूल्य–मान्यता र सिद्धान्तलाई आत्मसात् गर्न सकेको देखिन्छ, न जनमतको सम्मान ।</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>आवरण लोकतान्त्रिक छ । तर उनको व्यवहारमा भने गैरलोकतान्त्रिक प्रवृत्ति देखिन्छ । वास्तवमा भूमिगत गिरोहको शैलीमा सरकार सञ्चालन गरिएको छ । उनको कार्यशैली चक्रवर्ती सम्राटको जस्तो प्रतीत हुन्छ । लोकतान्त्रिक प्रणाली र पार्टीलाई केवल उपयोग मात्रै गरेको देखिन्छ । लोकतान्त्रिक प्रणालीमा प्रधानमन्त्रीलाई कि संसद्ले नियन्त्रण गर्छ कि पार्टीले । यदि संसद् वा पार्टीले नियन्त्रण गर्न सकेन भने त्यस्तो सरकार वा प्रधानमन्त्री निरंकुश र अधिनायकवादी हुन्छ । अहिले उनलाई न संसद्ले नियन्त्रण गर्न सक्छ, न पार्टीले । सरकार अनुत्तरदायी हुनु भनेको अधिनायकवाद तथा सर्वसत्तावादतर्फको पहिलो पाइला हो । सरकार जतिजति अनुत्तरदायी हुँदै जान्छ, त्यति नै अधिनायकवादी तथा सर्वसत्तावादी प्रवृत्ति बढ्दै जान्छ । सुशासन र डेलिभरीको नायकका रूपमा कृत्रिम भाष्य बनाएर अधिनायकवादी शासनको रिहर्सल गरिँदै छ । लोकतन्त्रका लागि योभन्दा ठूलो दुर्भाग्य अरू के हुन सक्छ ?</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p><strong>प्रोपोगान्डाको साम्राज्य<br/></strong>एकातिर जनताका अधिकार, प्रेस स्वतन्त्रता र लोकतान्त्रिक ‘स्पेस’ संकुचित गर्ने धृष्टता गरिएको छ, अर्कोतिर सामाजिक सञ्जाल र डिजिटल प्लाटफर्ममार्फत प्रोपोगान्डाको साम्राज्य स्वयं सरकारले चलाएको छ । सामाजिक सञ्जाल र डिजिटल प्लाटफर्ममा आधारित पार्टी र निर्वाचनमा विजय हासिल गरेका शाहले विरोधी र प्रतिस्पर्धीलाई साइबर आक्रमण गर्दै आइरहेका छन् । असत्य पनि हजार पटक भन्यो भने सत्यका रूपमा स्थापित गर्न सकिन्छ भन्ने प्रोपोगान्डा सिद्धान्तका प्रणेता एवं हिटलरका प्रचारमन्त्री जोसेफ गोयवल्सका नयाँ–नयाँ मानसपुत्रहरू सिंहदरबार र बालुवाटारमा जन्मिएका छन् । मिडिया साक्षरता कमजोर भएको हाम्रो जस्तो देशमा भ्रामक र मिथ्या सूचना फैलाएर समाजलाई दिग्भ्रमित पारी राजनीतिक स्वार्थ पूरा गर्ने अस्त्रका रूपमा सामाजिक सञ्जाल र डिजिटल प्लाटफर्मलाई सरकारले दुरुपयोग गर्दै आइरहेको छ । अल्गोरिदम विज्ञ एवं ट्रोल नेपालका सञ्चालक नै प्रधानमन्त्रीको सल्लाहकार भएकाले सामाजिक सञ्जाल र डिजिटल प्लाटफर्मबारे कस्तो रणनीति होला ? घामजत्तिकै छर्लंग छ । </p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>सामाजिक सञ्जाल र डिजिटल प्लाटफर्मले विश्वव्यापी रूपमा नै पपुलिजम, अनुदारवाद, उग्रराष्ट्रवाद, असहिष्णुतालाई प्रोत्साहित गरेको राष्ट्रिय तथा अन्तर्राष्ट्रिय थिंक–ट्यांकहरूले निष्कर्ष निकालेका छन् । वैकल्पिक भाष्य निर्माण गर्ने नाममा पपुलिस्ट, अनुदारवादी, अतिवादी, उग्रराष्ट्रवादीहरूको प्रोपोगान्डा मेसिन भएको संज्ञा दिँदै मिसइन्फर्मेसन, डिसइन्फर्मेसन, घृणा, असहिष्णुता फैलाउने औजार भएको टिप्पणी गरेका छन् । तथ्य र तथ्यांकका आधारमा सिद्धान्त, विचार, नीतिमाथि बहस र विमर्श बहस गरिँदैन, मिथ्यांकको आधारमा अतिरञ्जत र अस्वस्थ आरोप–प्रत्यारोप गरिन्छ । जसले चर्को स्वरमा निन्दा र भर्त्सना गर्‍यो, त्यही क्रान्तिकारी भन्ने भ्रामक भाष्य र मानक स्थापित हुँदै गएको छ । मूलधार, मध्यमार्ग र उदार मूल्य–मान्यतामाथि आक्रमण गरी ‘लोकप्रिय’ र ‘नायक’ हुने पपुलिस्ट तथा स्टन्टवादी प्रवृत्ति हाबी भएको देखिन्छ ।</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>यस्तो प्रवृत्ति यति उत्कर्ष बिन्दुमा पुगेको छ कि कुनै विचार, पार्टी वा पात्रलाई कि देवत्वकरण गरिन्छ कि दानवीकरण । अतिरञ्जित, असहिष्णु र विषाक्त प्रोपोगान्डालाई लोकप्रिय भाष्यका रूपमा परिभाषित र आत्मसात् गर्ने दुर्भाग्यपूर्ण प्रवृत्ति बढ्दै गइरहेको छ । यस्तो घातक प्रवृत्ति र विषाक्त भाष्यलाई सरकारले अधिकतम ‘सदुपयोग’ गर्दै आएको छ । लाइक, सेयर, भ्युज, कमेन्ट सरकारको प्रमुख खेती भएको छ, अल्गोरिदम प्रमुख औजार भएको छ र मिसइन्फर्मेसन तथा डिसइन्फर्मेसनका आधारमा प्रायोजित र विषाक्त भाष्य मूलमन्त्र भएको छ । सरकार र सरकारी संयन्त्र नै विषाक्त र प्रायोजित भाष्यको कारखाना भएका छन् । जब राज्य नै संगठित रूपमा प्रोपोगान्डा र अपराधीकरणमा उद्यत हुन्छ, त्यसले गम्भीर संकट सिर्जना गर्छ ।</p></div></section><section class=\"news-section-wrap-story\"><div class=\"news-inner-wrapper\"><p>अर्कोतिर आवश्यकता र स्वार्थको कारणले प्राविधिक रूपमा एउटै पार्टीमा भए पनि महत्त्वाकांक्षा र सत्ता सिद्धान्तका दृष्टिले विपरीत ध्रुवका शाह र लामिछानेबीचको सम्भावित अन्तर्द्वन्द्वले सरकारको भविष्य पनि अनिश्चित देखिन्छ । त्यसैले ‘जय महाकाली, आयो गोर्खाली’ नामक र्‍याप गीत रिलिज गरेलगत्तै शपथ ग्रहण गरेका शाहको ‘सिंहासन’ को रक्षार्थ भद्रकाली शक्तिपीठको अखण्ड उपासनालाई भविष्यमा थप उच्च प्राथमिकता दिने निश्चित छ । सम्भवतः शाहले घन्टी बजाउँदै गाउने नयाँ भजन (र्‍याप होइन) को शीर्षक हुनेछ– जय भद्रकाली, जय महाकाली । यो त प्रारम्भ मात्रै हो, विडम्बनापूर्ण राजनीतिक परिदृश्य त देखिनै बाँकी छ ।</p></div></section> <section class=\"author-list news-wrap-sec\"><input class=\"currNews\" type=\"hidden\" value=\"10051855\"/><p class=\"inter\"><span><a href=\"https://ekantipur.com/author/author-8813\">गेजा</a></span> गेजा शर्मा वाग्ले राजनीति, भूराजनीति तथा अन्तर्राष्ट्रिय सम्बन्ध मामिलाका विषयमा लेख्छन् । उनी बेलायतको बर्मिंघम विश्वविद्यालयमा नेपालको राजनीतिक संक्रमण र शान्ति प्रक्रियासम्बन्धी अनुसन्धान फेलो समेत रहेका थिए ।</p></section><div class=\"copy-ticker d-none\" id=\"copyTicker\"><div class=\"copy-ticker-text\">Link copied successfully</div></div></p><p class=\"article-para\"></body></p>",
+    sidebarAdsHtml: "<div class=\"sidebar-ads-wrapper\">\n<div class=\"ad-unit\" id=\"sideads_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_3.jpg\" alt=\"sideads_3.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n\n<div class=\"ad-unit\" id=\"sideads_4\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_4.jpg\" alt=\"sideads_4.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div></div>",
+    imageUrl:       "../images/article-1784441152.jpg",
+    breadcrumbEn:   "<a href=\"../index.html\">Home</a> / <a href=\"../category/general\">General</a> / औसत सरकार, अनुत्तरदायी प्रधानमन्त्री",
+    breadcrumbNp:   "<a href=\"../index.html\">गृहपृष्ठ</a> / <a href=\"../category/general\">सामान्य</a> / औसत सरकार, अनुत्तरदायी प्रधानमन्त्री",
+    tagsEn:         "<a href=\"#\" class=\"tag-pill\">news</a>",
+    tagsNp:         "",
+    relatedHtml:    "\n      <a href=\"/page/after-the-new-passport-system-was-implemented-in-ramechhap-the-problems-that-had-appeared-were-resolved-and-the-service-became-regular.html\" class=\"related-card\">\n        <img src=\"../images/after-the-new-passport-system-was-implemented-in-ramechhap-the-problems-that-had-appeared-were-resolved-and-the-service-became-regular.jpg\" alt=\"After the new passport system was implemented in Ramechhap, the problems that had appeared were resolved, and the service became regular.\" loading=\"lazy\"\n             onerror=\"this.src='https://placehold.co/400x225/1a1a1a/ffffff?text=Related'\">\n        <div class=\"related-content\">\n          <span class=\"related-category lang-en\">General</span>\n                     <span class=\"related-category lang-np\" style=\"display:none\">सामान्य</span>\n          <h4 class=\"lang-en\">After the new passport system was implemented in Ramechhap, the problems that had appeared were resolved, and the service became regular.</h4>\n          <h4 class=\"lang-np\" style=\"display:none\">रामेछापमा नयाँ राहदानी प्रणाली लागू भएपछि देखिएको समस्या हट्यो, सेवा नियमित</h4>\n          <span class=\"related-meta\" data-date-ad=\"July 19, 2026\">\n            <i class=\"fas fa-clock\" style=\"font-size:.68rem;margin-right:3px;\"></i>\n            <span class=\"date-display\">July 19, 2026</span>\n            <span class=\"lang-en\"></span>\n            <span class=\"lang-np\" style=\"display:none\"></span>\n          </span>\n          <span class=\"related-meta\" style=\"margin-top:3px;\">\n                <span class=\"lang-en\">Source: Kantipur</span>\n                <span class=\"lang-np\" style=\"display:none\">स्रोत: Kantipur · सिर्जनाकर्ता: नवराज श्रेष्ठ</span>\n              </span>\n        </div>\n      </a>"
+  };
+
+  function populate() {
+    var el = function(id) { return document.getElementById(id); };
+    if (el('breadcrumb-en'))    el('breadcrumb-en').innerHTML    = DATA.breadcrumbEn;
+    if (el('breadcrumb-np'))    el('breadcrumb-np').innerHTML    = DATA.breadcrumbNp;
+    if (el('category-en'))      el('category-en').textContent    = DATA.categoryEn;
+    if (el('category-np'))      el('category-np').textContent    = DATA.categoryNp;
+    if (el('title-en'))         el('title-en').textContent       = DATA.titleEn;
+    if (el('title-np'))         el('title-np').textContent       = DATA.titleNp;
+    if (el('readtime-en'))      el('readtime-en').textContent    = DATA.readTimeEn;
+    if (el('readtime-np'))      el('readtime-np').textContent    = DATA.readTimeNp;
+    if (el('tags-en'))          el('tags-en').innerHTML          = DATA.tagsEn;
+    if (el('tags-np'))          el('tags-np').innerHTML          = DATA.tagsNp;
+    if (el('article-body-en'))  el('article-body-en').innerHTML  = DATA.bodyEnWithAds;
+    if (el('article-body-np'))  el('article-body-np').innerHTML  = DATA.bodyNpWithAds;
+
+    var relatedContainer = el('related-articles');
+    if (relatedContainer) {
+      var sidebarWidget = relatedContainer.closest('.widget.related') || relatedContainer.parentElement;
+      if (sidebarWidget && DATA.sidebarAdsHtml) {
+        sidebarWidget.insertAdjacentHTML('beforebegin', DATA.sidebarAdsHtml);
+      }
+      relatedContainer.innerHTML = DATA.relatedHtml;
+    }
+
+    var dateEl = el('date');
+    if (dateEl) {
+      dateEl.setAttribute('data-date-ad', DATA.dateAd);
+      var span = dateEl.querySelector('.date-display');
+      if (!span) { dateEl.innerHTML = '<span class="date-display">' + DATA.dateEn + '</span>'; }
+      else { span.textContent = DATA.dateEn; }
+    }
+
+    var img = el('featured-image');
+    if (img) {
+      if (DATA.imageUrl) {
+        img.src = DATA.imageUrl; img.alt = DATA.titleEn;
+        img.onerror = function() { this.src = 'https://placehold.co/1200x675/1a1a1a/ffffff?text=Image+Not+Found'; };
+      } else {
+        var wrapper = img.closest('.image-wrapper');
+        if (wrapper) wrapper.style.display = 'none';
+      }
+    }
+
+    var dateEl2 = el('date');
+    if (dateEl2 && (DATA.sourceEn || DATA.creatorEn)) {
+      var metaBar = dateEl2.closest('.meta') || dateEl2.parentElement;
+      if (metaBar && !metaBar.querySelector('#meta-source')) {
+        var enParts = [DATA.sourceEn ? 'Source: ' + DATA.sourceEn : '', DATA.creatorEn ? 'Creator: ' + DATA.creatorEn : ''].filter(Boolean).join(' · ');
+        var npParts = [DATA.sourceNp ? 'स्रोत: ' + DATA.sourceNp : '', DATA.creatorNp ? 'सिर्जनाकर्ता: ' + DATA.creatorNp : ''].filter(Boolean).join(' · ');
+        var srcSpan = document.createElement('span');
+        srcSpan.id = 'meta-source';
+        srcSpan.style.cssText = 'font-size:0.78rem;display:inline-flex;align-items:center;gap:4px;';
+        srcSpan.innerHTML =
+          '<i class="fas fa-pen-nib" style="font-size:.7rem;opacity:.6;flex-shrink:0;"></i>' +
+          '<span class="lang-en">' + enParts + '</span>' +
+          '<span class="lang-np" style="display:none">' + npParts + '</span>';
+        metaBar.appendChild(srcSpan);
+      }
+    }
+  }
+
+  function updateDates(isNp) {
+    document.querySelectorAll('[data-date-ad]').forEach(function(el) {
+      var adStr = el.getAttribute('data-date-ad');
+      var display = el.querySelector('.date-display');
+      if (!display) return;
+      if (isNp) { display.textContent = adToBs(adStr); }
+      else {
+        var d = new Date(adStr);
+        if (!isNaN(d.getTime())) {
+          display.textContent = EN_MONTHS_FULL[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
+        } else { display.textContent = adStr; }
+      }
+    });
+  }
+
+  function getDisplay(el, active) {
+    if (!active) return 'none';
+    var tag = el.tagName.toLowerCase();
+    return (tag === 'span' || tag === 'a' || tag === 'i' || tag === 'b' || tag === 'strong') ? 'inline' : 'block';
+  }
+
+  window.setArticleLang = function(lang) {
+    var isEn = (lang === 'en');
+    document.querySelectorAll('.lang-en').forEach(function(el) { el.style.display = getDisplay(el, isEn); });
+    document.querySelectorAll('.lang-np').forEach(function(el) { el.style.display = getDisplay(el, !isEn); });
+    updateDates(!isEn);
+    try { localStorage.setItem('articleLang', lang); } catch(e) {}
+    window.__articleLang = lang;
+    if (!isEn) { document.body.classList.add('lang-active'); }
+    else        { document.body.classList.remove('lang-active'); }
+  };
+
+  function applyStoredLang() {
+    var stored; try { stored = localStorage.getItem('articleLang'); } catch(e) {}
+    window.setArticleLang(stored || 'en');
+  }
+
+  function initShareButtons() {
+    document.querySelectorAll('.share-btn.facebook').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank', 'width=600,height=400');
+      });
+    });
+    document.querySelectorAll('.share-btn.twitter').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var text = document.getElementById('title-en') ? document.getElementById('title-en').textContent : document.title;
+        window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(text), '_blank', 'width=600,height=400');
+      });
+    });
+  }
+
+  function initCopyButtons() {
+    document.querySelectorAll('.copy-link').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        navigator.clipboard.writeText(window.location.href).catch(function() {
+          var ta = document.createElement('textarea'); ta.value = window.location.href;
+          document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+        });
+        var tooltip = btn.querySelector('.tooltip');
+        if (tooltip) { tooltip.classList.add('visible'); setTimeout(function() { tooltip.classList.remove('visible'); }, 2000); }
+      });
+    });
+  }
+
+  function initBackToTop() {
+    var btn = document.getElementById('back-to-top'); if (!btn) return;
+    window.addEventListener('scroll', function() { btn.style.display = window.scrollY > 300 ? 'flex' : 'none'; });
+    btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  }
+
+  function initNewsletter() {
+    var btn = document.getElementById('newsletter-subscribe'); if (!btn) return;
+    btn.addEventListener('click', function() {
+      var emailEl = document.getElementById('newsletter-email');
+      var val = emailEl ? emailEl.value.trim() : '';
+      if (!val || !/^[^s@]+@[^s@]+.[^s@]+$/.test(val)) {
+        alert(window.__articleLang === 'np' ? 'कृपया मान्य इमेल ठेगाना प्रविष्ट गर्नुहोस्।' : 'Please enter a valid email address.');
+        return;
+      }
+      alert(window.__articleLang === 'np' ? 'सदस्यता लिनुभएकोमा धन्यवाद!' : 'Thank you for subscribing!');
+    });
+  }
+
+  window.addEventListener('langChange', function(e) {
+    if (e && e.detail && e.detail.lang) window.setArticleLang(e.detail.lang);
+  });
+
+  function init() {
+    populate(); applyStoredLang(); initShareButtons(); initCopyButtons(); initBackToTop(); initNewsletter();
+    window.dispatchEvent(new CustomEvent('articleContentLoaded'));
+  }
+
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); }
+  else { init(); }
+
+  window.refreshArticleContent = function() { populate(); applyStoredLang(); };
+})();
+</script>
+<script>
+(function() {
+  'use strict';
+  var NP_DIGITS    = ['०','१','२','३','४','५','६','७','८','९'];
+  var BS_MONTHS_NP = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
+  var EN_MONTHS    = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var BS_DATA = {
+    2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2004:[366,30,32,31,32,31,30,30,30,29,30,29,31],2005:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2006:[365,31,31,32,32,31,30,30,29,30,29,30,30],2007:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2008:[365,31,31,32,31,31,31,30,29,30,29,30,30],2009:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2010:[365,31,31,32,32,31,30,30,29,30,29,30,30],2011:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2012:[365,31,31,32,31,31,31,30,29,30,29,30,30],2013:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2014:[365,31,31,32,32,31,30,30,29,30,29,30,30],2015:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2016:[366,31,31,32,31,31,31,30,29,30,29,30,31],2017:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2018:[365,31,31,32,32,31,30,30,29,30,29,30,30],2019:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2020:[366,31,31,32,31,31,30,30,29,30,29,30,31],2021:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2022:[365,31,31,32,32,31,30,30,29,30,29,30,30],2023:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2024:[366,31,31,32,31,31,30,30,29,30,29,30,31],2025:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2026:[365,31,31,32,32,31,30,30,29,30,29,30,30],2027:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2028:[366,31,32,31,32,31,30,30,30,29,30,29,31],2029:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2030:[365,31,31,32,31,31,31,30,29,30,29,30,30],2031:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+    2032:[366,31,32,31,32,31,30,30,30,29,29,30,31],2033:[366,31,31,32,31,31,30,30,29,30,29,30,31],
+    2034:[365,31,31,32,31,31,31,30,29,30,29,30,30],2035:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+    2036:[366,31,32,31,32,31,30,30,30,29,29,30,31],2037:[366,31,32,31,32,31,30,30,30,29,30,29,31],
+    2038:[365,31,31,32,31,31,31,30,29,30,29,30,30],2039:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2040:[365,31,31,32,32,31,30,30,29,30,29,30,30],2041:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2042:[366,31,31,32,31,31,30,30,29,30,29,30,31],2043:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2044:[365,31,31,32,31,31,31,30,29,30,29,30,30],2045:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2046:[366,31,32,31,32,31,30,30,30,29,30,29,31],2047:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2048:[365,31,31,32,32,31,30,30,29,30,29,30,30],2049:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2050:[366,31,32,31,32,31,30,30,30,29,30,29,31],2051:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2052:[365,31,31,32,32,31,30,30,29,30,29,30,30],2053:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2054:[366,31,32,31,32,31,30,30,30,29,30,29,31],2055:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2056:[366,31,31,32,31,31,31,30,29,30,29,30,31],2057:[366,31,31,32,32,31,30,30,29,30,29,30,31],
+    2058:[365,30,32,31,32,31,30,30,30,29,29,30,30],2059:[366,31,32,31,32,31,30,30,30,29,30,29,31],
+    2060:[365,31,31,32,31,31,31,30,29,30,29,30,30],2061:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2062:[365,31,31,32,32,31,30,30,29,30,29,30,30],2063:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2064:[366,31,31,32,31,31,30,30,29,30,29,30,31],2065:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2066:[365,31,31,32,31,31,31,30,29,30,29,30,30],2067:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2068:[366,31,32,31,32,31,30,30,30,29,30,29,31],2069:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2070:[365,31,31,32,32,31,30,30,29,30,29,30,30],2071:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2072:[366,31,32,31,32,31,30,30,30,29,30,29,31],2073:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2074:[365,31,31,32,32,31,30,30,29,30,29,30,30],2075:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2076:[365,31,32,31,32,31,30,30,30,29,30,29,31],2077:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2078:[365,31,31,32,31,31,31,30,29,30,29,30,30],2079:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2080:[365,31,32,31,32,31,30,30,30,29,30,29,31],2081:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2082:[365,31,31,32,32,31,30,30,29,30,29,30,30],2083:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2084:[366,31,32,31,32,31,30,30,30,29,30,29,31],2085:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2086:[365,31,31,32,32,31,30,30,29,30,29,30,30],2087:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2088:[366,31,32,31,32,31,30,30,30,29,30,29,31],2089:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2090:[365,31,31,32,32,31,30,30,29,30,29,30,30]
+  };
+  var AD_EPOCH_MS = Date.UTC(1943, 2, 31);
+
+  function toNpDigits(n) {
+    return String(n).split('').map(function(d) {
+      var i = parseInt(d, 10); return isNaN(i) ? d : NP_DIGITS[i];
+    }).join('');
+  }
+  function adToBs(dateStr) {
+    if (!dateStr) return '';
+    var d = new Date(dateStr);
+    if (isNaN(d.getTime())) return dateStr;
+    var totalDays = Math.floor((Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()) - AD_EPOCH_MS) / 86400000);
+    if (totalDays < 0) return dateStr;
+    var bsYear = 2000;
+    while (true) { var yd = BS_DATA[bsYear]; if (!yd || totalDays < yd[0]) break; totalDays -= yd[0]; bsYear++; }
+    var yd2 = BS_DATA[bsYear]; if (!yd2) return dateStr;
+    var bsMonth = 1, bsDay = 1;
+    for (var m = 1; m <= 12; m++) {
+      if (totalDays < yd2[m]) { bsMonth = m; bsDay = totalDays + 1; break; } totalDays -= yd2[m];
+    }
+    return toNpDigits(bsYear) + ' ' + BS_MONTHS_NP[bsMonth - 1] + ' ' + toNpDigits(bsDay);
+  }
+  function formatDateEn(dateStr) {
+    if (!dateStr) return '';
+    var d = new Date(dateStr);
+    if (isNaN(d.getTime())) return dateStr;
+    return EN_MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
+  }
+
+  function updateAllDates() {
+    var isNp = document.body.classList.contains('lang-active');
+    document.querySelectorAll('[data-date-ad]').forEach(function(el) {
+      var adStr   = el.getAttribute('data-date-ad') || '';
+      var timeStr = el.getAttribute('data-time') || '';
+      if (!adStr) return;
+      var display = el.classList.contains('date-display') ? el : el.querySelector('.date-display');
+      if (!display) return;
+      display.textContent = isNp
+        ? adToBs(adStr) + (timeStr ? ', ' + timeStr : '')
+        : formatDateEn(adStr) + (timeStr ? ', ' + timeStr : '');
+    });
+  }
+
+  // Run on every langChange, on DOM ready, and again shortly after
+  // (covers the case where populate() re-renders #date/.related-articles
+  // AFTER this script first runs, e.g. race with POPULATION_SCRIPT).
+  window.addEventListener('langChange', function() { setTimeout(updateAllDates, 30); });
+  window.addEventListener('articleContentLoaded', function() { setTimeout(updateAllDates, 30); });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { setTimeout(updateAllDates, 50); });
+  } else {
+    setTimeout(updateAllDates, 50);
+  }
+})();
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+      var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
+      var adYear=new Date().getFullYear();
+      var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
+      var eyEn=document.getElementById('footer-year-en');
+      var eyNp=document.getElementById('footer-year-np');
+      if(eyEn)eyEn.textContent=adYear;
+      if(eyNp)eyNp.textContent=npYear;
+      window.addEventListener('langChange',function(e){
+        if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
+      });
+      var stored=localStorage.getItem('fm_lang')||'en';
+      if(stored==='np')document.body.classList.add('lang-active');
+    });
+  </script>
+
+  <!-- ════ WhatsApp tooltip controller ════ -->
+  <script>
+(function() {
+  var tip = document.getElementById('waTooltip');
+  if (tip && !sessionStorage.getItem('waTip')) {
+    setTimeout(function() {
+      tip.style.opacity = '1';
+      tip.style.transform = 'translateX(0)';
+      setTimeout(function() {
+        tip.style.opacity = '';
+        tip.style.transform = '';
+        sessionStorage.setItem('waTip', '1');
+      }, 3000);
+    }, 2500);
+  }
+})();
+</script>
+
+</body>
+</html>

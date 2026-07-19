@@ -700,69 +700,109 @@
     --text:         #1F1F1F;
     --muted:        rgba(31,31,31,0.55);
     --border:       rgba(163,25,25,0.18);
-    --font-body:    'Open Sans', sans-serif;
-    --font-heading: 'Montserrat', sans-serif;
+    --font-body:    Arial, sans-serif;
+    --font-heading: Arial, sans-serif;
   }
 
-  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--font-body); }
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+  }
 
   .category-container {
-    max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem; min-height: 100vh;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    min-height: 100vh;
   }
 
   .category-header {
-    text-align: center; margin-bottom: 3rem; padding-bottom: 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
     border-bottom: 1px solid var(--border);
   }
 
   .breadcrumb {
-    font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
   }
+
   .breadcrumb a {
-    color: var(--accent); text-decoration: none;
+    color: var(--accent);
+    text-decoration: none;
   }
+
   .breadcrumb a:hover {
     text-decoration: underline;
   }
 
   h1 {
-    font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.8rem);
-    color: var(--primary); margin-bottom: 1rem; line-height: 1.2;
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--primary);
+    margin-bottom: 1rem;
+    line-height: 1.2;
   }
 
   .category-description {
-    font-size: 1rem; color: var(--muted); max-width: 700px;
-    margin: 0 auto 1rem; line-height: 1.6;
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 700px;
+    margin: 0 auto 1rem;
+    line-height: 1.6;
   }
 
   .category-meta {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    background: var(--surface); padding: 0.5rem 1rem;
-    border-radius: 20px; font-size: 0.85rem; color: var(--text);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--surface);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text);
   }
 
   .news-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem; margin-bottom: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
   }
 
   .article-card {
-    background: var(--surface); border-radius: 12px; overflow: hidden;
+    background: var(--surface);
+    border-radius: 12px;
+    overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid var(--border);
   }
+
   .article-card:hover {
-    transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   }
 
   .card-image {
-    width: 100%; height: 200px; object-fit: cover; background: var(--border);
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: var(--border);
   }
+
   .card-image:empty {
     background: linear-gradient(135deg, var(--border) 0%, var(--surface) 100%);
   }
@@ -772,168 +812,284 @@
   }
 
   .card-category {
-    display: inline-block; background: var(--accent); color: var(--accent-on);
-    font-size: 0.7rem; text-transform: uppercase; padding: 0.2rem 0.6rem;
-    border-radius: 4px; margin-bottom: 0.75rem; letter-spacing: 0.05em;
-    font-weight: 600; text-decoration: none;
+    display: inline-block;
+    background: var(--accent);
+    color: var(--accent-on);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    text-decoration: none;
   }
 
   .card-title {
-    font-family: var(--font-heading); font-size: 1.2rem; line-height: 1.4;
-    margin: 0 0 0.75rem; color: var(--text); text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    line-height: 1.4;
+    margin: 0 0 0.75rem;
+    color: var(--text);
+    text-decoration: none;
     transition: color 0.2s;
   }
+
   .card-title:hover {
     color: var(--accent);
   }
 
   .card-excerpt {
-    font-size: 0.88rem; color: var(--muted); line-height: 1.5;
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.5;
     margin-bottom: 1rem;
   }
 
   .card-meta {
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 0.78rem; color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--muted);
   }
+
   .card-meta i {
     margin-right: 0.2rem;
   }
 
   .read-more {
-    color: var(--accent); text-decoration: none; font-size: 0.85rem;
-    font-weight: 600; transition: opacity 0.2s;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: opacity 0.2s;
   }
+
   .read-more:hover {
     opacity: 0.8;
   }
 
   .load-more-container {
-    text-align: center; margin-top: 2rem;
+    text-align: center;
+    margin-top: 2rem;
   }
 
   .load-more-btn {
-    background: var(--accent); color: var(--accent-on); border: none;
-    padding: 0.9rem 2rem; border-radius: 50px; cursor: pointer;
-    font-size: 1rem; font-weight: 600; transition: transform 0.2s, opacity 0.2s;
-    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--accent);
+    color: var(--accent-on);
+    border: none;
+    padding: 0.9rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: transform 0.2s, opacity 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
   }
+
   .load-more-btn:hover {
-    opacity: 0.9; transform: scale(1.02);
+    opacity: 0.9;
+    transform: scale(1.02);
   }
+
   .load-more-btn:disabled {
-    opacity: 0.5; cursor: not-allowed;
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 
   #back-to-top {
-    position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent);
-    color: var(--accent-on); border: none; border-radius: 50%; width: 42px;
-    height: 42px; cursor: pointer; font-size: 1rem; display: none;
-    align-items: center; justify-content: center; z-index: 999;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: var(--accent);
+    color: var(--accent-on);
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
     transition: opacity 0.2s;
   }
 
-  .empty-state {
-    text-align: center; padding: 4rem 2rem; background: var(--surface);
-    border-radius: 12px; color: var(--muted);
+  #back-to-top:hover {
+    opacity: 0.9;
   }
+
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--surface);
+    border-radius: 12px;
+    color: var(--muted);
+  }
+
   .empty-state i {
-    font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
   }
 
   @media (max-width: 768px) {
-    .category-container { padding: 1rem; }
-    .news-grid { gap: 1rem; grid-template-columns: 1fr; }
-    .card-image { height: 180px; }
+    .category-container {
+      padding: 1rem;
+    }
+    .news-grid {
+      gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+    .card-image {
+      height: 180px;
+    }
   }
 
   @media (max-width: 480px) {
-    h1 { font-size: 1.5rem; }
-    .card-title { font-size: 1rem; }
+    h1 {
+      font-size: 1.5rem;
+    }
+    .card-title {
+      font-size: 1rem;
+    }
   }
 
-  .lang-np { display: none; }
-  .lang-en { display: inline; }
-  body.lang-active .lang-en { display: none !important; }
-  body.lang-active .lang-np { display: inline !important; }
-  body.lang-active p.lang-np, body.lang-active span.lang-np { display: inline !important; }
+  .lang-np {
+    display: none;
+  }
+
+  .lang-en {
+    display: inline;
+  }
+
+  body.lang-active .lang-en {
+    display: none !important;
+  }
+
+  body.lang-active .lang-np {
+    display: inline !important;
+  }
+
+  body.lang-active p.lang-np, body.lang-active span.lang-np {
+    display: inline !important;
+  }
 </style>
 <style>
+    /* ALL CSS from PART D */
+    #site-footer { font-family:var(--font-body); }
+
     /* TOP SECTION */
-    .footer-top { background: #f0f0f0; padding: 40px 0 32px; border-top: 3px solid var(--primary); }
-    .footer-top-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; gap: 24px; }
-    .footer-col { display: flex; flex-direction: column; gap: 10px; }
-    .footer-col-heading { font-size: 0.82rem; font-weight: 800; color: #111; margin: 0 0 6px; padding-bottom: 8px; border-bottom: 2px solid var(--primary); text-transform: uppercase; letter-spacing: 0.06em; }
-    .footer-company-name { font-weight: 700; font-size: 0.9rem; color: #111; margin: 0; }
-    .footer-addr { font-size: 0.82rem; color: #444; margin: 0; line-height: 1.6; }
-    .footer-contact-line { font-size: 0.82rem; color: #444; margin: 0; }
-    .footer-link-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-    .footer-link-list li a { font-size: 0.85rem; color: #333; text-decoration: none; transition: color 0.2s; display: block; padding: 2px 0; }
-    .footer-link-list li a:hover { color: var(--primary); }
+    .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
+    .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
+    .footer-col { display:flex; flex-direction:column; gap:10px; }
+    .footer-col-heading { font-size:.82rem; font-weight:800; color:#111; margin:0 0 6px; padding-bottom:8px; border-bottom:2px solid var(--primary); text-transform:uppercase; letter-spacing:.06em; }
+    .footer-company-name { font-weight:700; font-size:.9rem; color:#111; margin:0; }
+    .footer-addr { font-size:.82rem; color:#444; margin:0; line-height:1.6; }
+    .footer-contact-line { font-size:.82rem; color:#444; margin:0; }
+    .footer-link-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+    .footer-link-list li a { font-size:.85rem; color:#333; text-decoration:none; transition:color .2s; display:block; padding:2px 0; }
+    .footer-link-list li a:hover { color:var(--primary); }
 
     /* BOTTOM BAR */
-    .footer-bottom { background: #d8d8d8; border-top: 1px solid #bbb; padding: 18px 0; }
-    .footer-bottom-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-    .footer-bottom-brand { display: flex; flex-direction: column; gap: 3px; flex-shrink: 0; }
-    .footer-site-name { font-size: 1rem; font-weight: 800; color: #111; }
-    .footer-copy { font-size: 0.74rem; color: #555; display: flex; align-items: center; gap: 4px; }
-    .footer-copy i { font-size: 0.72rem; }
-    .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { display: flex; flex-direction: column; gap: 2px; }
-    .editor-label { font-size: 0.74rem; color: #555; }
-    .editor-name { font-size: 0.9rem; font-weight: 800; color: #111; display: block; }
-    .editor-phone { font-size: 0.8rem; color: #333; display: block; margin-top: 1px; }
-    .footer-bottom-info { font-size: 0.78rem; color: #555; max-width: 200px; line-height: 1.5; }
-    .footer-bottom-social { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
-    .connect-label { font-size: 0.78rem; font-weight: 700; color: #333; }
-    .footer-social-row { display: flex; gap: 10px; align-items: center; }
-    .footer-social-row a { color: #333; font-size: 1.1rem; text-decoration: none; transition: color 0.2s; }
-    .footer-social-row a:hover { color: var(--primary); }
+    .footer-bottom { background:#d8d8d8; border-top:1px solid #bbb; padding:18px 0; }
+    .footer-bottom-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+    .footer-bottom-brand { display:flex; flex-direction:column; gap:3px; flex-shrink:0; }
+    .footer-site-name { font-size:1rem; font-weight:800; color:#111; }
+    .footer-copy { font-size:.74rem; color:#555; display:flex; align-items:center; gap:4px; }
+    .footer-copy i { font-size:.72rem; }
+    .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { display:flex; flex-direction:column; gap:2px; }
+    .editor-label { font-size:.74rem; color:#555; }
+    .editor-name { font-size:.9rem; font-weight:800; color:#111; display:block; }
+    .editor-phone { font-size:.8rem; color:#333; display:block; margin-top:1px; }
+    .footer-bottom-info { font-size:.78rem; color:#555; max-width:200px; line-height:1.5; }
+    .footer-bottom-social { display:flex; flex-direction:column; gap:6px; align-items:flex-end; }
+    .connect-label { font-size:.78rem; font-weight:700; color:#333; }
+    .footer-social-row { display:flex; gap:10px; align-items:center; }
+    .footer-social-row a { color:#333; font-size:1.1rem; text-decoration:none; transition:color .2s; }
+    .footer-social-row a:hover { color:var(--primary); }
 
     /* Language */
-    .lang-en { display: inline; }
-    .lang-np { display: none; }
-    body.lang-active .lang-en { display: none; }
-    body.lang-active .lang-np { display: inline; }
+    .lang-en { display:inline; }
+    .lang-np { display:none; }
+    body.lang-active .lang-en { display:none; }
+    body.lang-active .lang-np { display:inline; }
 
     /* Responsive */
-    @media (max-width: 1000px) {
-      .footer-top-inner { grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    @media(max-width:1000px){
+      .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; }
     }
-    @media (max-width: 640px) {
-      .footer-top-inner { grid-template-columns: 1fr 1fr; gap: 16px; }
-      .footer-bottom-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
-      .footer-bottom-social { align-items: flex-start; }
+    @media(max-width:640px){
+      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; }
+      .footer-bottom-inner { flex-direction:column; align-items:flex-start; gap:12px; }
+      .footer-bottom-social { align-items:flex-start; }
     }
-    @media (max-width: 400px) {
-      .footer-top-inner { grid-template-columns: 1fr; }
+    @media(max-width:400px){
+      .footer-top-inner { grid-template-columns:1fr; }
     }
 
     /* WhatsApp */
-    .wa-widget { position: fixed; bottom: 90px; right: 24px; z-index: 9999; display: flex; align-items: center; gap: 10px; flex-direction: row; }
-    .wa-fab { width: 52px; height: 52px; border-radius: 50%; background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; text-decoration: none; box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2); transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s; animation: waIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s both; position: relative; }
-    .wa-fab:hover { transform: scale(1.12) rotate(-6deg); }
-    .wa-fab::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 3px solid #25D366; animation: waRing 2s ease-out 2s infinite; }
-    .wa-tooltip { background: #fff; color: #111; font-size: 0.78rem; font-weight: 600; padding: 5px 12px; border-radius: 14px; white-space: nowrap; box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15); opacity: 0; pointer-events: none; transform: translateX(-6px); transition: opacity 0.2s, transform 0.2s; }
-    .wa-widget:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
-    @keyframes waIn { from { opacity: 0; transform: scale(0.4) translateY(20px) } to { opacity: 1; transform: scale(1) translateY(0) } }
-    @keyframes waRing { 0% { transform: scale(1); opacity: 0.8 } 70%, 100% { transform: scale(1.5); opacity: 0 } }
-    @media (max-width: 480px) { .wa-widget { bottom: 90px; right: 14px; } .wa-fab { width: 46px; height: 46px; font-size: 1.5rem; } }
+    .wa-widget { position:fixed; bottom:90px; right:24px; z-index:9999; display:flex; align-items:center; gap:10px; flex-direction:row; }
+    .wa-fab { width:52px; height:52px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.7rem; text-decoration:none; box-shadow:0 4px 16px rgba(37,211,102,.4),0 2px 8px rgba(0,0,0,.2); transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; animation:waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both; position:relative; }
+    .wa-fab:hover { transform:scale(1.12) rotate(-6deg); }
+    .wa-fab::after { content:''; position:absolute; inset:0; border-radius:50%; border:3px solid #25D366; animation:waRing 2s ease-out 2s infinite; }
+    .wa-tooltip { background:#fff; color:#111; font-size:.78rem; font-weight:600; padding:5px 12px; border-radius:14px; white-space:nowrap; box-shadow:0 3px 12px rgba(0,0,0,.15); opacity:0; pointer-events:none; transform:translateX(-6px); transition:opacity .2s,transform .2s; }
+    .wa-widget:hover .wa-tooltip { opacity:1; transform:translateX(0); }
+    @keyframes waIn { from{opacity:0;transform:scale(.4) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    @keyframes waRing { 0%{transform:scale(1);opacity:.8} 70%,100%{transform:scale(1.5);opacity:0} }
+    @media(max-width:480px){ .wa-widget{bottom:90px;right:14px;} .wa-fab{width:46px;height:46px;font-size:1.5rem;} }
 
     /* Add these responsive styles for footer mobile view */
-    @media (max-width: 640px) {
-      .footer-top-inner { grid-template-columns: 1fr 1fr; gap: 16px; text-align: center; }
-      .footer-bottom-inner { flex-direction: column; align-items: center; gap: 16px; text-align: center; }
-      .footer-bottom-social { align-items: center; width: 100%; }
-      .footer-social-row { justify-content: center; }
-      .footer-col { align-items: center; text-align: center; }
-      .footer-link-list { align-items: center; }
-      .footer-col-heading { text-align: center; width: 100%; }
-      .footer-bottom-brand { align-items: center; }
-      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { align-items: center; }
-      .footer-bottom-info { max-width: 100%; text-align: center; }
+    @media(max-width:640px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-inner { 
+        flex-direction: column; 
+        align-items: center;
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-social { 
+        align-items: center;
+        width: 100%;
+      }
+      .footer-social-row {
+        justify-content: center;
+      }
+      .footer-col {
+        align-items: center;
+        text-align: center;
+      }
+      .footer-link-list {
+        align-items: center;
+      }
+      .footer-col-heading {
+        text-align: center;
+        width: 100%;
+      }
+      .footer-bottom-brand {
+        align-items: center;
+      }
+      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq {
+        align-items: center;
+      }
+      .footer-bottom-info {
+        max-width: 100%;
+        text-align: center;
+      }
     }
-    @media (max-width: 400px) {
-      .footer-top-inner { grid-template-columns: 1fr; text-align: center; }
+    @media(max-width:400px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr; 
+        text-align: center;
+      }
     }
   </style>
 
@@ -1780,13 +1936,13 @@
     nameNp:       "अन्तर्राष्ट्रिय",
     descEn:       "International — Latest news and updates.",
     descNp:       "अन्तर्राष्ट्रिय — नवीनतम समाचार र अपडेटहरू।",
-    totalCount:   3,
-    allArticles:  [{"newsIndex":2,"recordId":"","title":"The Ebola outbreak in Congo has surpassed two thousand confirmed cases: WHO","titleNe":"कंगोमा इबोलाको प्रकोप उच्च संक्रमितको संख्या दुई हजार नाघ्यो : डब्ल्यूएचओ","slug":"the-ebola-outbreak-in-congo-has-surpassed-two-thousand-confirmed-cases-who","category":"International","categoryNe":"अन्तर्राष्ट्रिय","metaDesc":"Ebola outbreak in Congo is worsening, with 2,124 infected and 828 deaths; conflict and insecurity are hindering treatment.","metaDescNe":"कंगोमा इबोला प्रकोप बढ्दो छ, २,१२४ सङ्क्रमित र ८२८ मृत्यु, द्वन्द्व र असुरक्षाले उपचारमा बाधा।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"July 17, 2026","time":"5:51 PM","creator":"RSS/AFP","creatorNp":"रासस/एएफपी","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/the-ebola-outbreak-in-congo-has-surpassed-two-thousand-confirmed-cases-who.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":1,"recordId":"","title":"India launched a hydrogen-powered train.","titleNe":"भारतले सञ्चालनमा ल्यायो हाइड्रोजन रेल","slug":"india-launched-a-hydrogen-powered-train","category":"International","categoryNe":"अन्तर्राष्ट्रिय","metaDesc":"India has launched the first 10-coach hydrogen-powered train 'Namo Green Train', which can carry 2,600 passengers.","metaDescNe":"भारतले पहिलो १० कोचको हाइड्रोजन रेल 'नमो ग्रिन रेल' सञ्चालनमा ल्याएको छ, जसले २६०० यात्रु बोक्न सक्छ।","readTime":"3 min read","readTimeNe":"3 मिनेट पढाइ","date":"July 17, 2026","time":"5:31 PM","creator":"Kantipur Correspondent","creatorNp":"कान्तिपुर संवाददाता","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/india-launched-a-hydrogen-powered-train.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":0,"recordId":"","title":"Green card applicants may face a $100,000 deposit requirement in the US.","titleNe":"ग्रिनकार्ड आवेदकसँग १ लाख डलर धरौटी लिनेबारे अमेरिकामा छलफल","slug":"green-card-applicants-may-face-a-100000-deposit-requirement-in-the-us","category":"International","categoryNe":"अन्तर्राष्ट्रिय","metaDesc":"The US government is reportedly discussing requiring green card applicants to post a $100,000 bond.","metaDescNe":"अमेरिकी सरकारले ग्रीन कार्ड आवेदकसँग १ लाख डलरको धरौटी लिनेबारे छलफल गरिरहेको खुलासा भएको छ।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"July 17, 2026","time":"4:46 PM","creator":"Agency","creatorNp":"एजेन्सी","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/green-card-applicants-may-face-a-100000-deposit-requirement-in-the-us.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"}],
+    totalCount:   7,
+    allArticles:  [{"newsIndex":3,"recordId":"","title":"Shrawan 1st is a public holiday in Karnali.","titleNe":"साउने १ गते कर्णाली सार्वजनिक बिदा","slug":"shrawan-1st-is-a-public-holiday-in-karnali","category":"International","categoryNe":"अन्तर्राष्ट्रिय","metaDesc":"The Karnali government has decided to grant a public holiday on the occasion of Saune Sankranti and Deuda festival on Shrawan 1.","metaDescNe":"कर्णाली सरकारले साउन १ गते साउने संक्रान्ति तथा देउडा पर्वको अवसरमा सार्वजनिक बिदा दिने निर्णय गरेको छ।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"July 19, 2026","time":"11:54 AM","creator":"Citizens Surkhet 32 Asar 2083 1 Minute Patsangrah Email Print","creatorNp":"नागरिकसुर्खेत३२ असार २०८३१ मिनेट पाठसंग्रहईमेलप्रिन्ट","source":"nagariknews.nagariknetwork.com","sourceNp":"नागरिकन्यूज.नागरिकनेटवर्क.कम","imageUrls":"../images/shrawan-1st-is-a-public-holiday-in-karnali.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":2,"recordId":"","title":"The Japanese Ambassador paid a courtesy call to the Education Minister.","titleNe":"शिक्षामन्त्रीसँग जापानी राजदूतको शिष्टाचार भेटवार्ता","slug":"the-japanese-ambassador-paid-a-courtesy-call-to-the-education-minister","category":"International","categoryNe":"अन्तर्राष्ट्रिय","metaDesc":"Nepal and Japan held a meeting at Singha Durbar between Minister Pokharel and Ambassador Toru to discuss education reform and bilateral cooperation.","metaDescNe":"नेपाल–जापानबीच शिक्षा सुधार र द्विपक्षीय सहकार्यका विषयमा मन्त्री पोखरेल र राजदूत तोरुको सिंहदरबारमा भेटवार्ता भएको थियो।","readTime":"3 min read","readTimeNe":"3 मिनेट पढाइ","date":"July 19, 2026","time":"11:53 AM","creator":"Citizen","creatorNp":"नागरिक","source":"nagariknews.nagariknetwork.com","sourceNp":"नागरिकन्यूज.नागरिकनेटवर्क.कम","imageUrls":"../images/the-japanese-ambassador-paid-a-courtesy-call-to-the-education-minister.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":0,"recordId":"","title":"Who to support in the final? Even the Argentinians are in dilemma.","titleNe":"फाइनलमा समर्थन कसलाई&nbsp;? अर्जेन्टिनी नै छन् दुविधामा","slug":"who-to-support-in-the-final-even-the-argentinians-are-in-dilemma","category":"International","categoryNe":"अन्तर्राष्ट्रिय","metaDesc":"Spain and Argentina will face each other in the 2026 World Cup final, creating an emotional dilemma for supporters and immigrant communities from both countries.","metaDescNe":"स्पेन र अर्जेन्टिना विश्वकप २०२६ को फाइनलमा भिड्दा दुवै देशका समर्थक तथा आप्रवासी समुदायमा भावनात्मक दुविधा उत्पन्न भएको छ।","readTime":"3 min read","readTimeNe":"3 मिनेट पढाइ","date":"July 19, 2026","time":"11:49 AM","creator":"I","creatorNp":"एपी","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/who-to-support-in-the-final-even-the-argentinians-are-in-dilemma.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":6,"recordId":"","title":"The women have also been subjected to sexual violence by the Sahus: Laxmi Ghimire","titleNe":"साहुहरूबाट धेरै महिला यौनहिंसामा समेत परेका छन् : लक्ष्मी घिमिरे","slug":"the-women-have-also-been-subjected-to-sexual-violence-by-the-sahus-laxmi-ghimire","category":"International","categoryNe":"अन्तर्राष्ट्रिय","metaDesc":"Meter-byaaj victims women when taking loans from sahu-mahajan have to endure domestic violence, social humiliation and sexual exploitation.","metaDescNe":"मिटरब्याज पीडित महिलाहरूले साहु–महाजनबाट ऋण लिँदा घरेलु हिंसा, सामाजिक अपमान र यौन शोषण भोग्नुपरेको छ।","readTime":"6 min read","readTimeNe":"6 मिनेट पढाइ","date":"July 19, 2026","time":"11:46 AM","creator":"Janak Raj Sapkota","creatorNp":"जनकराज सापकोटा","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/the-women-have-also-been-subjected-to-sexual-violence-by-the-sahus-laxmi-ghimire.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":5,"recordId":"","title":"The Ebola outbreak in Congo has surpassed two thousand confirmed cases: WHO","titleNe":"कंगोमा इबोलाको प्रकोप उच्च संक्रमितको संख्या दुई हजार नाघ्यो : डब्ल्यूएचओ","slug":"the-ebola-outbreak-in-congo-has-surpassed-two-thousand-confirmed-cases-who","category":"International","categoryNe":"अन्तर्राष्ट्रिय","metaDesc":"Ebola outbreak in Congo is worsening, with 2,124 infected and 828 deaths; conflict and insecurity are hindering treatment.","metaDescNe":"कंगोमा इबोला प्रकोप बढ्दो छ, २,१२४ सङ्क्रमित र ८२८ मृत्यु, द्वन्द्व र असुरक्षाले उपचारमा बाधा।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"July 17, 2026","time":"5:51 PM","creator":"RSS/AFP","creatorNp":"रासस/एएफपी","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/the-ebola-outbreak-in-congo-has-surpassed-two-thousand-confirmed-cases-who.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":4,"recordId":"","title":"India launched a hydrogen-powered train.","titleNe":"भारतले सञ्चालनमा ल्यायो हाइड्रोजन रेल","slug":"india-launched-a-hydrogen-powered-train","category":"International","categoryNe":"अन्तर्राष्ट्रिय","metaDesc":"India has launched the first 10-coach hydrogen-powered train 'Namo Green Train', which can carry 2,600 passengers.","metaDescNe":"भारतले पहिलो १० कोचको हाइड्रोजन रेल 'नमो ग्रिन रेल' सञ्चालनमा ल्याएको छ, जसले २६०० यात्रु बोक्न सक्छ।","readTime":"3 min read","readTimeNe":"3 मिनेट पढाइ","date":"July 17, 2026","time":"5:31 PM","creator":"Kantipur Correspondent","creatorNp":"कान्तिपुर संवाददाता","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/india-launched-a-hydrogen-powered-train.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":1,"recordId":"","title":"Green card applicants may face a $100,000 deposit requirement in the US.","titleNe":"ग्रिनकार्ड आवेदकसँग १ लाख डलर धरौटी लिनेबारे अमेरिकामा छलफल","slug":"green-card-applicants-may-face-a-100000-deposit-requirement-in-the-us","category":"International","categoryNe":"अन्तर्राष्ट्रिय","metaDesc":"The US government is reportedly discussing requiring green card applicants to post a $100,000 bond.","metaDescNe":"अमेरिकी सरकारले ग्रीन कार्ड आवेदकसँग १ लाख डलरको धरौटी लिनेबारे छलफल गरिरहेको खुलासा भएको छ।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"July 17, 2026","time":"4:46 PM","creator":"Agency","creatorNp":"एजेन्सी","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/green-card-applicants-may-face-a-100000-deposit-requirement-in-the-us.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"}],
     itemsPerPage: 6
   };
 
   // ── Section ads: cycle through these, one every N real articles ──
-  var SECTION_ADS = [{"img":"../images/section_1.jpg","link":""},{"img":"../images/insection_1.jpg","link":""},{"img":"../images/section_2.jpg","link":""},{"img":"../images/insection_2.jpg","link":""},{"img":"../images/insection_3.jpeg","link":""}];
+  var SECTION_ADS = [{"img":"../images/section_1.jpg","link":""},{"img":"../images/section_2.jpg","link":""}];
   var AD_EVERY_N  = 6;
   var adCycleIndex = 0; // persists across load-more calls
 
@@ -2047,21 +2203,19 @@
 })();
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var NP_NUMS = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
-      var adYear = new Date().getFullYear();
-      var npYear = String(adYear).split('').map(function(d) {
-        return NP_NUMS[parseInt(d, 10)];
-      }).join('');
-      var eyEn = document.getElementById('footer-year-en');
-      var eyNp = document.getElementById('footer-year-np');
-      if (eyEn) eyEn.textContent = adYear;
-      if (eyNp) eyNp.textContent = npYear;
-      window.addEventListener('langChange', function(e) {
-        if (e.detail && e.detail.lang) document.body.classList.toggle('lang-active', e.detail.lang === 'np');
+    document.addEventListener('DOMContentLoaded',function(){
+      var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
+      var adYear=new Date().getFullYear();
+      var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
+      var eyEn=document.getElementById('footer-year-en');
+      var eyNp=document.getElementById('footer-year-np');
+      if(eyEn)eyEn.textContent=adYear;
+      if(eyNp)eyNp.textContent=npYear;
+      window.addEventListener('langChange',function(e){
+        if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
       });
-      var stored = localStorage.getItem('fm_lang') || 'en';
-      if (stored === 'np') document.body.classList.add('lang-active');
+      var stored=localStorage.getItem('fm_lang')||'en';
+      if(stored==='np')document.body.classList.add('lang-active');
     });
   </script>
 

@@ -622,27 +622,43 @@
     --accent:       #D4A017;
     --primary:      #A31919;
     --primary-on:   #FFFFFF;
-    --accent-on:    #FFFFFF;
+    --accent-on:    #1F1F1F;
     --bg:           #FFFFFF;
     --surface:      #F8F8F8;
     --text:         #1F1F1F;
     --muted:        rgba(31,31,31,0.55);
     --border:       rgba(163,25,25,0.18);
-    --font-body:    Arial, sans-serif;
-    --font-heading: Arial, sans-serif;
+    --font-body:    'Open Sans', sans-serif;
+    --font-heading: 'Montserrat', sans-serif;
   }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--font-body); margin: 0; padding: 0; }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+  }
+
   .article-container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 1.5rem;
     background: var(--bg);
   }
+
   .article-header {
     margin-bottom: 1.5rem;
   }
+
   h1 {
     font-family: var(--font-heading);
     font-size: clamp(1.5rem, 3vw, 2.2rem);
@@ -650,18 +666,22 @@
     margin: 0.5rem 0 0.75rem;
     color: var(--primary);
   }
+
   .breadcrumb {
     font-size: 0.85rem;
     color: var(--muted);
     margin-bottom: 0.5rem;
   }
+
   .breadcrumb a {
     color: var(--accent);
     text-decoration: none;
   }
+
   .breadcrumb a:hover {
     text-decoration: underline;
   }
+
   .category-badge span {
     display: inline-block;
     background: var(--accent);
@@ -674,6 +694,7 @@
     text-transform: uppercase;
     letter-spacing: 0.04em;
   }
+
   .meta {
     display: flex;
     gap: 1.2rem;
@@ -683,15 +704,18 @@
     flex-wrap: wrap;
     align-items: center;
   }
+
   .meta i {
     margin-right: 4px;
   }
+
   .share-buttons {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
     margin-top: 0.5rem;
   }
+
   .share-btn {
     display: inline-flex;
     align-items: center;
@@ -706,24 +730,29 @@
     font-family: var(--font-body);
     transition: all 0.2s ease;
   }
+
   .share-btn:hover {
     background: var(--accent);
     color: var(--accent-on);
     border-color: var(--accent);
   }
+
   .share-btn.facebook:hover {
     background: #1877F2;
-    color: #FFFFFF;
+    color: #fff;
     border-color: #1877F2;
   }
+
   .share-btn.twitter:hover {
     background: #1DA1F2;
-    color: #FFFFFF;
+    color: #fff;
     border-color: #1DA1F2;
   }
+
   .copy-link {
     position: relative;
   }
+
   .tooltip {
     display: none;
     position: absolute;
@@ -739,26 +768,32 @@
     z-index: 10;
     pointer-events: none;
   }
+
   .tooltip.visible {
     display: block;
   }
+
   .article-content {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 2rem;
     align-items: start;
   }
+
   @media (max-width: 1023px) {
     .article-content {
       grid-template-columns: 1fr;
     }
   }
+
   .main-column {
     min-width: 0;
   }
+
   .image-wrapper {
     margin-bottom: 1.5rem;
   }
+
   .image-wrapper img {
     width: 100%;
     aspect-ratio: 16/9;
@@ -766,31 +801,38 @@
     border-radius: 8px;
     display: block;
   }
+
   .image-wrapper.hidden {
     display: none;
   }
+
   .article-body {
     font-size: 1rem;
     line-height: 1.8;
     color: var(--text);
   }
+
   .article-body p {
     margin-bottom: 1.1rem;
   }
+
   .article-body h2 {
     font-family: var(--font-heading);
     margin: 1.8rem 0 0.8rem;
     font-size: 1.3rem;
   }
+
   .article-body img {
     max-width: 100%;
     border-radius: 6px;
   }
+
   .tags-wrapper {
     margin-top: 1.5rem;
     padding-top: 1.2rem;
     border-top: 1px solid var(--border);
   }
+
   .tags-wrapper h3 {
     font-size: 0.95rem;
     margin: 0 0 0.6rem;
@@ -799,11 +841,13 @@
     align-items: center;
     gap: 6px;
   }
+
   .tags-list {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
   }
+
   .tags-list a {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -814,11 +858,13 @@
     color: var(--text);
     transition: 0.2s;
   }
+
   .tags-list a:hover {
     background: var(--accent);
     color: var(--accent-on);
     border-color: var(--accent);
   }
+
   .sidebar {
     position: sticky;
     top: 1.5rem;
@@ -826,12 +872,14 @@
     flex-direction: column;
     gap: 1.5rem;
   }
+
   .widget {
     background: var(--surface);
     padding: 1.4rem;
     border-radius: 10px;
     border: 1px solid var(--border);
   }
+
   .widget h3 {
     font-family: var(--font-heading);
     font-size: 1.05rem;
@@ -843,12 +891,14 @@
     align-items: center;
     gap: 8px;
   }
+
   .widget p {
     font-size: 0.88rem;
     color: var(--muted);
     margin-bottom: 0.6rem;
     line-height: 1.5;
   }
+
   #newsletter-email {
     width: 100%;
     padding: 8px 10px;
@@ -861,9 +911,11 @@
     margin-bottom: 8px;
     outline: none;
   }
+
   #newsletter-email:focus {
     border-color: var(--accent);
   }
+
   #newsletter-subscribe {
     width: 100%;
     padding: 9px;
@@ -880,9 +932,11 @@
     justify-content: center;
     gap: 6px;
   }
+
   #newsletter-subscribe:hover {
     opacity: 0.85;
   }
+
   #back-to-top {
     position: fixed;
     bottom: 1.5rem;
@@ -902,9 +956,11 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.25);
     transition: opacity 0.2s;
   }
+
   #back-to-top:hover {
     opacity: 0.85;
   }
+
   .related-card {
     display: flex;
     gap: 10px;
@@ -914,9 +970,11 @@
     border-bottom: 1px solid var(--border);
     align-items: flex-start;
   }
+
   .related-card:last-child {
     border-bottom: none;
   }
+
   .related-card img {
     width: 72px;
     height: 52px;
@@ -924,10 +982,12 @@
     border-radius: 5px;
     flex-shrink: 0;
   }
+
   .related-content {
     flex: 1;
     min-width: 0;
   }
+
   .related-category {
     display: block;
     font-size: 0.7rem;
@@ -937,6 +997,7 @@
     letter-spacing: 0.05em;
     margin-bottom: 2px;
   }
+
   .related-content h4 {
     margin: 0 0 3px;
     font-size: 0.85rem;
@@ -947,111 +1008,123 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }
+
   .related-meta {
     font-size: 0.75rem;
     color: var(--muted);
   }
-  .lang-np {
-    display: none;
-  }
-  .lang-en {
-    display: inline;
-  }
-  div.lang-en, p.lang-en, h3.lang-en, .article-body.lang-en {
-    display: block;
-  }
-  div.lang-np, p.lang-np, h3.lang-np, .article-body.lang-np {
-    display: none;
-  }
-  body.lang-active .lang-en {
-    display: none !important;
-  }
-  body.lang-active .lang-np {
-    display: inline !important;
-  }
-  body.lang-active div.lang-np, body.lang-active p.lang-np, body.lang-active h3.lang-np, body.lang-active .article-body.lang-np {
-    display: block !important;
-  }
-  #article-body-en, #article-body-np {
-    min-height: 2rem;
-  }
 </style>
 <style>
+    /* ALL CSS from PART D */
+    #site-footer { font-family:var(--font-body); }
+
     /* TOP SECTION */
-    .footer-top { background: #f0f0f0; padding: 40px 0 32px; border-top: 3px solid var(--primary); }
-    .footer-top-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; gap: 24px; }
-    .footer-col { display: flex; flex-direction: column; gap: 10px; }
-    .footer-col-heading { font-size: 0.82rem; font-weight: 800; color: #111; margin: 0 0 6px; padding-bottom: 8px; border-bottom: 2px solid var(--primary); text-transform: uppercase; letter-spacing: 0.06em; }
-    .footer-company-name { font-weight: 700; font-size: 0.9rem; color: #111; margin: 0; }
-    .footer-addr { font-size: 0.82rem; color: #444; margin: 0; line-height: 1.6; }
-    .footer-contact-line { font-size: 0.82rem; color: #444; margin: 0; }
-    .footer-link-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-    .footer-link-list li a { font-size: 0.85rem; color: #333; text-decoration: none; transition: color 0.2s; display: block; padding: 2px 0; }
-    .footer-link-list li a:hover { color: var(--primary); }
+    .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
+    .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
+    .footer-col { display:flex; flex-direction:column; gap:10px; }
+    .footer-col-heading { font-size:.82rem; font-weight:800; color:#111; margin:0 0 6px; padding-bottom:8px; border-bottom:2px solid var(--primary); text-transform:uppercase; letter-spacing:.06em; }
+    .footer-company-name { font-weight:700; font-size:.9rem; color:#111; margin:0; }
+    .footer-addr { font-size:.82rem; color:#444; margin:0; line-height:1.6; }
+    .footer-contact-line { font-size:.82rem; color:#444; margin:0; }
+    .footer-link-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+    .footer-link-list li a { font-size:.85rem; color:#333; text-decoration:none; transition:color .2s; display:block; padding:2px 0; }
+    .footer-link-list li a:hover { color:var(--primary); }
 
     /* BOTTOM BAR */
-    .footer-bottom { background: #d8d8d8; border-top: 1px solid #bbb; padding: 18px 0; }
-    .footer-bottom-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-    .footer-bottom-brand { display: flex; flex-direction: column; gap: 3px; flex-shrink: 0; }
-    .footer-site-name { font-size: 1rem; font-weight: 800; color: #111; }
-    .footer-copy { font-size: 0.74rem; color: #555; display: flex; align-items: center; gap: 4px; }
-    .footer-copy i { font-size: 0.72rem; }
-    .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { display: flex; flex-direction: column; gap: 2px; }
-    .editor-label { font-size: 0.74rem; color: #555; }
-    .editor-name { font-size: 0.9rem; font-weight: 800; color: #111; display: block; }
-    .editor-phone { font-size: 0.8rem; color: #333; display: block; margin-top: 1px; }
-    .footer-bottom-info { font-size: 0.78rem; color: #555; max-width: 200px; line-height: 1.5; }
-    .footer-bottom-social { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
-    .connect-label { font-size: 0.78rem; font-weight: 700; color: #333; }
-    .footer-social-row { display: flex; gap: 10px; align-items: center; }
-    .footer-social-row a { color: #333; font-size: 1.1rem; text-decoration: none; transition: color 0.2s; }
-    .footer-social-row a:hover { color: var(--primary); }
+    .footer-bottom { background:#d8d8d8; border-top:1px solid #bbb; padding:18px 0; }
+    .footer-bottom-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+    .footer-bottom-brand { display:flex; flex-direction:column; gap:3px; flex-shrink:0; }
+    .footer-site-name { font-size:1rem; font-weight:800; color:#111; }
+    .footer-copy { font-size:.74rem; color:#555; display:flex; align-items:center; gap:4px; }
+    .footer-copy i { font-size:.72rem; }
+    .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { display:flex; flex-direction:column; gap:2px; }
+    .editor-label { font-size:.74rem; color:#555; }
+    .editor-name { font-size:.9rem; font-weight:800; color:#111; display:block; }
+    .editor-phone { font-size:.8rem; color:#333; display:block; margin-top:1px; }
+    .footer-bottom-info { font-size:.78rem; color:#555; max-width:200px; line-height:1.5; }
+    .footer-bottom-social { display:flex; flex-direction:column; gap:6px; align-items:flex-end; }
+    .connect-label { font-size:.78rem; font-weight:700; color:#333; }
+    .footer-social-row { display:flex; gap:10px; align-items:center; }
+    .footer-social-row a { color:#333; font-size:1.1rem; text-decoration:none; transition:color .2s; }
+    .footer-social-row a:hover { color:var(--primary); }
 
     /* Language */
-    .lang-en { display: inline; }
-    .lang-np { display: none; }
-    body.lang-active .lang-en { display: none; }
-    body.lang-active .lang-np { display: inline; }
+    .lang-en { display:inline; }
+    .lang-np { display:none; }
+    body.lang-active .lang-en { display:none; }
+    body.lang-active .lang-np { display:inline; }
 
     /* Responsive */
-    @media (max-width: 1000px) {
-      .footer-top-inner { grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    @media(max-width:1000px){
+      .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; }
     }
-    @media (max-width: 640px) {
-      .footer-top-inner { grid-template-columns: 1fr 1fr; gap: 16px; }
-      .footer-bottom-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
-      .footer-bottom-social { align-items: flex-start; }
+    @media(max-width:640px){
+      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; }
+      .footer-bottom-inner { flex-direction:column; align-items:flex-start; gap:12px; }
+      .footer-bottom-social { align-items:flex-start; }
     }
-    @media (max-width: 400px) {
-      .footer-top-inner { grid-template-columns: 1fr; }
+    @media(max-width:400px){
+      .footer-top-inner { grid-template-columns:1fr; }
     }
 
     /* WhatsApp */
-    .wa-widget { position: fixed; bottom: 90px; right: 24px; z-index: 9999; display: flex; align-items: center; gap: 10px; flex-direction: row; }
-    .wa-fab { width: 52px; height: 52px; border-radius: 50%; background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; text-decoration: none; box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2); transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s; animation: waIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s both; position: relative; }
-    .wa-fab:hover { transform: scale(1.12) rotate(-6deg); }
-    .wa-fab::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 3px solid #25D366; animation: waRing 2s ease-out 2s infinite; }
-    .wa-tooltip { background: #fff; color: #111; font-size: 0.78rem; font-weight: 600; padding: 5px 12px; border-radius: 14px; white-space: nowrap; box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15); opacity: 0; pointer-events: none; transform: translateX(-6px); transition: opacity 0.2s, transform 0.2s; }
-    .wa-widget:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
-    @keyframes waIn { from { opacity: 0; transform: scale(0.4) translateY(20px) } to { opacity: 1; transform: scale(1) translateY(0) } }
-    @keyframes waRing { 0% { transform: scale(1); opacity: 0.8 } 70%, 100% { transform: scale(1.5); opacity: 0 } }
-    @media (max-width: 480px) { .wa-widget { bottom: 90px; right: 14px; } .wa-fab { width: 46px; height: 46px; font-size: 1.5rem; } }
+    .wa-widget { position:fixed; bottom:90px; right:24px; z-index:9999; display:flex; align-items:center; gap:10px; flex-direction:row; }
+    .wa-fab { width:52px; height:52px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.7rem; text-decoration:none; box-shadow:0 4px 16px rgba(37,211,102,.4),0 2px 8px rgba(0,0,0,.2); transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; animation:waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both; position:relative; }
+    .wa-fab:hover { transform:scale(1.12) rotate(-6deg); }
+    .wa-fab::after { content:''; position:absolute; inset:0; border-radius:50%; border:3px solid #25D366; animation:waRing 2s ease-out 2s infinite; }
+    .wa-tooltip { background:#fff; color:#111; font-size:.78rem; font-weight:600; padding:5px 12px; border-radius:14px; white-space:nowrap; box-shadow:0 3px 12px rgba(0,0,0,.15); opacity:0; pointer-events:none; transform:translateX(-6px); transition:opacity .2s,transform .2s; }
+    .wa-widget:hover .wa-tooltip { opacity:1; transform:translateX(0); }
+    @keyframes waIn { from{opacity:0;transform:scale(.4) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    @keyframes waRing { 0%{transform:scale(1);opacity:.8} 70%,100%{transform:scale(1.5);opacity:0} }
+    @media(max-width:480px){ .wa-widget{bottom:90px;right:14px;} .wa-fab{width:46px;height:46px;font-size:1.5rem;} }
 
     /* Add these responsive styles for footer mobile view */
-    @media (max-width: 640px) {
-      .footer-top-inner { grid-template-columns: 1fr 1fr; gap: 16px; text-align: center; }
-      .footer-bottom-inner { flex-direction: column; align-items: center; gap: 16px; text-align: center; }
-      .footer-bottom-social { align-items: center; width: 100%; }
-      .footer-social-row { justify-content: center; }
-      .footer-col { align-items: center; text-align: center; }
-      .footer-link-list { align-items: center; }
-      .footer-col-heading { text-align: center; width: 100%; }
-      .footer-bottom-brand { align-items: center; }
-      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { align-items: center; }
-      .footer-bottom-info { max-width: 100%; text-align: center; }
+    @media(max-width:640px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-inner { 
+        flex-direction: column; 
+        align-items: center;
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-social { 
+        align-items: center;
+        width: 100%;
+      }
+      .footer-social-row {
+        justify-content: center;
+      }
+      .footer-col {
+        align-items: center;
+        text-align: center;
+      }
+      .footer-link-list {
+        align-items: center;
+      }
+      .footer-col-heading {
+        text-align: center;
+        width: 100%;
+      }
+      .footer-bottom-brand {
+        align-items: center;
+      }
+      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq {
+        align-items: center;
+      }
+      .footer-bottom-info {
+        max-width: 100%;
+        text-align: center;
+      }
     }
-    @media (max-width: 400px) {
-      .footer-top-inner { grid-template-columns: 1fr; text-align: center; }
+    @media(max-width:400px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr; 
+        text-align: center;
+      }
     }
   </style>
 
@@ -1241,50 +1314,64 @@
 
 
 
+
 <div class="article-container">
+
   <div class="article-header">
     <div class="breadcrumb">
       <span id="breadcrumb-en" class="lang-en"></span>
       <span id="breadcrumb-np" class="lang-np"></span>
     </div>
+
     <div class="category-badge">
       <span id="category-en" class="lang-en"></span>
       <span id="category-np" class="lang-np"></span>
     </div>
+
     <h1>
       <span id="title-en" class="lang-en"></span>
       <span id="title-np" class="lang-np"></span>
     </h1>
+
     <div class="meta">
       <span><i class="fas fa-calendar"></i> <span id="date"></span></span>
       <span><i class="fas fa-clock"></i> <span id="readtime-en" class="lang-en"></span><span id="readtime-np" class="lang-np"></span></span>
     </div>
+
     <div class="share-buttons">
       <button class="share-btn facebook"><i class="fab fa-facebook"></i> Facebook</button>
       <button class="share-btn twitter"><i class="fab fa-twitter"></i> Twitter</button>
       <button class="share-btn copy-link"><i class="fas fa-link"></i> Copy Link<span class="tooltip">Copied!</span></button>
     </div>
   </div>
+
   <div class="article-content">
+
     <div class="main-column">
+
       <div class="image-wrapper">
         <img id="featured-image" src="" alt="" loading="lazy">
       </div>
+
       <div id="article-body-en" class="lang-en article-body"></div>
       <div id="article-body-np" class="lang-np article-body"></div>
+
       <div class="tags-wrapper">
         <h3 class="lang-en"><i class="fas fa-tags"></i> Tags</h3>
         <h3 class="lang-np"><i class="fas fa-tags"></i> ट्यागहरू</h3>
         <div id="tags-en" class="lang-en tags-list"></div>
         <div id="tags-np" class="lang-np tags-list"></div>
       </div>
+
     </div>
+
     <aside class="sidebar">
       <div class="widget related">
         <h3 class="lang-en"><i class="fas fa-newspaper"></i> Related Articles</h3>
         <h3 class="lang-np"><i class="fas fa-newspaper"></i> सम्बन्धित लेखहरू</h3>
         <div id="related-articles"></div>
       </div>
+
       <div class="widget newsletter">
         <h3 class="lang-en"><i class="fas fa-envelope"></i> Newsletter</h3>
         <h3 class="lang-np"><i class="fas fa-envelope"></i> समाचारपत्र</h3>
@@ -1294,9 +1381,13 @@
         <button id="newsletter-subscribe"><i class="fas fa-paper-plane"></i> <span class="lang-en">Subscribe</span><span class="lang-np">सदस्यता लिनुहोस्</span></button>
       </div>
     </aside>
+
   </div>
+
   
+
 </div>
+
 
 
 
@@ -1835,15 +1926,15 @@
     sourceNp:       "कान्तिपुर",
     creatorEn:      "Nawin Paudel",
     creatorNp:      "नवीन पौडेल",
-    bodyEnWithAds:  "<p class=\"article-para\">Nawalpur — Kavasoti Municipality-16-based Madhyabindu Provincial Hospital has launched an Intensive Care Unit (ICU, NICU) and a well-equipped operating room.</p>\n<div class=\"ad-unit\" id=\"insection_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_1.jpg\" alt=\"insection_1.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">Previously, due to the absence of an ICU, patients with complex conditions were referred to Chitwan, Kathmandu, and other places. The hospital has started ICU services for all patients and NICU for children, equipped with advanced facilities and skilled human resources, in coordination with the provincial government and the hospital development committee, said Medical Superintendent Dr. Ramesh Prasad Acharya.</p>\n<div class=\"ad-unit\" id=\"insection_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_2.jpg\" alt=\"insection_2.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">The hospital has started services from Friday with an advanced operating room for complex surgeries. “Even for routine surgeries, we could not perform intensive care surgeries,” said Bal Krishna Ghimire, Chairman of the Hospital Management Committee. “Now, we have expanded services so that patients in Nawalpur do not have to go outside the district. This will benefit accident victims on the highway, snakebite patients, pregnant women, and newborns.”</p>\n<div class=\"ad-unit\" id=\"insection_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_3.jpeg\" alt=\"insection_3.jpeg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">Established in 2064 BS by local residents as Madhyabindu Smriti Community Hospital, the hospital received district hospital status in 2075 BS with a 15-bed capacity.</p>\n<p class=\"article-para\">Due to the high patient load, the Gandaki Provincial Government upgraded it to a provincial hospital with 100 beds in 2081 BS.</p>\n<p class=\"article-para\">In the fiscal year 2082/83, the hospital served over 97,000 patients. The hospital has planned to develop into a teaching hospital in the coming days.</p>\n<div class=\"key-takeaway\"><strong>Key takeaways:</strong><p>Madhyabindu Provincial Hospital has launched ICU, NICU, and a modern operating room. Previously, complex patients were referred elsewhere. The hospital started as a community hospital in 2064 BS and has now been upgraded to a 100-bed provincial hospital.</p></div>",
-    bodyNpWithAds:  "<p class=\"article-para\">नवलपुर — कावासोती नगरपालिका–१६ स्थित मध्यबिन्दु प्रादेशिक अस्पतालले सघन उपचार कक्ष (आइसीयू, एनआइसीयू) र सुविधा सम्पन्न शल्यक्रिया कक्षको सुरुवात गरेको छ ।</p>\n<div class=\"ad-unit\" id=\"insection_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_1.jpg\" alt=\"insection_1.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">यसअघि आइसीयू नहुँदा जटिल प्रकृतिका बिरामीलाई चितवन, काठमाडौं रिफर गरिँदै आएको थियो । प्रदेश सरकार र अस्पताल विकास समितिको समन्वयमा बालबालिकाको लागि एनआइसीयू, अन्य बिरामीका लागि सुविधा सम्पन्न उपकरण र दक्ष जनशक्तिसहित आइसीयू सेवा सुरु गरिएको अस्पतालका मेडिकल सुपरिटेन्डेन्ट डा. रमेशप्रसाद आचार्यले बताए ।</p>\n<div class=\"ad-unit\" id=\"insection_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_2.jpg\" alt=\"insection_2.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">अस्पतालले जटिल प्रकारको शल्यक्रियाका लागि अत्याधुनिक उपकरणसहितको कक्षबाट शुक्रबारदेखि सेवा सुचारु गरेको हो । ‘सामान्य प्रकारको शल्यक्रिया भए पनि सघन कक्ष आवश्यक हुने शल्यक्रिया गर्न सकिएको थिएन,’ अस्पताल सञ्चालक समिति अध्यक्ष बालकृष्ण घिमिरेले भने,‘अब भने नवलपुरका बिरामीलाई जिल्ला बाहिर जान नपर्ने गरेर सेवा बिस्तार गरेका छौं । यसले राजमार्गमा हुने दुर्घटना, सर्पदशंका बिरामी र प्रसूतिका महिला र नवजात शिशुका लागि सुविधा पुग्ने छ ।’</p>\n<div class=\"ad-unit\" id=\"insection_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_3.jpeg\" alt=\"insection_3.jpeg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">२०६४ सालमा स्थानीयले धनधान्याञ्चल गरेर मध्यबिन्दु स्मृति सामुदायिक अस्पतालको रुपमा सञ्चालन भएको यस अस्पतालले २०७५ सालमा १५ शय्याको दरबन्दीसहित जिल्ला अस्पतालको मान्यता पाएको थियो ।</p>\n<p class=\"article-para\">बिरामीको अत्याधिक चापको कारण गण्डकी प्रदेश सरकारले यसलाई २०८१ मा प्रादेशिक अस्पतालमा रूपान्तरण गर्दै १ सय शय्यामा स्तरोन्नति गरेको थियो ।</p>\n<p class=\"article-para\">आर्थिक वर्ष २०८२/८३ मा यहाँबाट ९७ हजार भन्दा बढी बिरामीले सेवा लिएको अस्पतालले जनाएको छ । अस्पतालले आगामी दिनमा शिक्षण अस्पतालको रुपमा विकास गर्दै लैजाने लक्ष्यसहित योजना बनाएको छ ।</p>\n<div class=\"key-takeaway\"><strong>मुख्य बुँदा:</strong><p>मध्यबिन्दु प्रादेशिक अस्पतालले आइसीयू, एनआइसीयू र अत्याधुनिक शल्यक्रिया कक्ष सञ्चालनमा ल्याएको छ। यसअघि जटिल बिरामीहरूलाई बाहिर रिफर गरिन्थ्यो। अस्पतालले २०६४ मा सामुदायिक अस्पतालको रूपमा सुरुवात गरेको थियो र हाल १ सय शय्याको प्रादेशिक अस्पतालमा स्तरोन्नति भएको छ।</p></div>",
+    bodyEnWithAds:  "<p class=\"article-para\">Nawalpur — Kavasoti Municipality-16-based Madhyabindu Provincial Hospital has launched an Intensive Care Unit (ICU, NICU) and a well-equipped operating room.</p>\n<p class=\"article-para\">Previously, due to the absence of an ICU, patients with complex conditions were referred to Chitwan, Kathmandu, and other places. The hospital has started ICU services for all patients and NICU for children, equipped with advanced facilities and skilled human resources, in coordination with the provincial government and the hospital development committee, said Medical Superintendent Dr. Ramesh Prasad Acharya.</p>\n<p class=\"article-para\">The hospital has started services from Friday with an advanced operating room for complex surgeries. “Even for routine surgeries, we could not perform intensive care surgeries,” said Bal Krishna Ghimire, Chairman of the Hospital Management Committee. “Now, we have expanded services so that patients in Nawalpur do not have to go outside the district. This will benefit accident victims on the highway, snakebite patients, pregnant women, and newborns.”</p>\n<p class=\"article-para\">Established in 2064 BS by local residents as Madhyabindu Smriti Community Hospital, the hospital received district hospital status in 2075 BS with a 15-bed capacity.</p>\n<p class=\"article-para\">Due to the high patient load, the Gandaki Provincial Government upgraded it to a provincial hospital with 100 beds in 2081 BS.</p>\n<p class=\"article-para\">In the fiscal year 2082/83, the hospital served over 97,000 patients. The hospital has planned to develop into a teaching hospital in the coming days.</p>\n<div class=\"key-takeaway\"><strong>Key takeaways:</strong><p>Madhyabindu Provincial Hospital has launched ICU, NICU, and a modern operating room. Previously, complex patients were referred elsewhere. The hospital started as a community hospital in 2064 BS and has now been upgraded to a 100-bed provincial hospital.</p></div>",
+    bodyNpWithAds:  "<p class=\"article-para\">नवलपुर — कावासोती नगरपालिका–१६ स्थित मध्यबिन्दु प्रादेशिक अस्पतालले सघन उपचार कक्ष (आइसीयू, एनआइसीयू) र सुविधा सम्पन्न शल्यक्रिया कक्षको सुरुवात गरेको छ ।</p>\n<p class=\"article-para\">यसअघि आइसीयू नहुँदा जटिल प्रकृतिका बिरामीलाई चितवन, काठमाडौं रिफर गरिँदै आएको थियो । प्रदेश सरकार र अस्पताल विकास समितिको समन्वयमा बालबालिकाको लागि एनआइसीयू, अन्य बिरामीका लागि सुविधा सम्पन्न उपकरण र दक्ष जनशक्तिसहित आइसीयू सेवा सुरु गरिएको अस्पतालका मेडिकल सुपरिटेन्डेन्ट डा. रमेशप्रसाद आचार्यले बताए ।</p>\n<p class=\"article-para\">अस्पतालले जटिल प्रकारको शल्यक्रियाका लागि अत्याधुनिक उपकरणसहितको कक्षबाट शुक्रबारदेखि सेवा सुचारु गरेको हो । ‘सामान्य प्रकारको शल्यक्रिया भए पनि सघन कक्ष आवश्यक हुने शल्यक्रिया गर्न सकिएको थिएन,’ अस्पताल सञ्चालक समिति अध्यक्ष बालकृष्ण घिमिरेले भने,‘अब भने नवलपुरका बिरामीलाई जिल्ला बाहिर जान नपर्ने गरेर सेवा बिस्तार गरेका छौं । यसले राजमार्गमा हुने दुर्घटना, सर्पदशंका बिरामी र प्रसूतिका महिला र नवजात शिशुका लागि सुविधा पुग्ने छ ।’</p>\n<p class=\"article-para\">२०६४ सालमा स्थानीयले धनधान्याञ्चल गरेर मध्यबिन्दु स्मृति सामुदायिक अस्पतालको रुपमा सञ्चालन भएको यस अस्पतालले २०७५ सालमा १५ शय्याको दरबन्दीसहित जिल्ला अस्पतालको मान्यता पाएको थियो ।</p>\n<p class=\"article-para\">बिरामीको अत्याधिक चापको कारण गण्डकी प्रदेश सरकारले यसलाई २०८१ मा प्रादेशिक अस्पतालमा रूपान्तरण गर्दै १ सय शय्यामा स्तरोन्नति गरेको थियो ।</p>\n<p class=\"article-para\">आर्थिक वर्ष २०८२/८३ मा यहाँबाट ९७ हजार भन्दा बढी बिरामीले सेवा लिएको अस्पतालले जनाएको छ । अस्पतालले आगामी दिनमा शिक्षण अस्पतालको रुपमा विकास गर्दै लैजाने लक्ष्यसहित योजना बनाएको छ ।</p>\n<div class=\"key-takeaway\"><strong>मुख्य बुँदा:</strong><p>मध्यबिन्दु प्रादेशिक अस्पतालले आइसीयू, एनआइसीयू र अत्याधुनिक शल्यक्रिया कक्ष सञ्चालनमा ल्याएको छ। यसअघि जटिल बिरामीहरूलाई बाहिर रिफर गरिन्थ्यो। अस्पतालले २०६४ मा सामुदायिक अस्पतालको रूपमा सुरुवात गरेको थियो र हाल १ सय शय्याको प्रादेशिक अस्पतालमा स्तरोन्नति भएको छ।</p></div>",
     sidebarAdsHtml: "<div class=\"sidebar-ads-wrapper\">\n<div class=\"ad-unit\" id=\"sideads_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_3.jpg\" alt=\"sideads_3.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n\n<div class=\"ad-unit\" id=\"sideads_4\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_4.jpg\" alt=\"sideads_4.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div></div>",
     imageUrl:       "../images/icu-service-has-started-at-madhyabindu-regional-hospital.jpg",
     breadcrumbEn:   "<a href=\"../index.html\">Home</a> / <a href=\"../category/local\">Local</a> / ICU service has started at Madhyabindu Regional Ho...",
     breadcrumbNp:   "<a href=\"../index.html\">गृहपृष्ठ</a> / <a href=\"../category/local\">स्थानीय</a> / मध्यबिन्दु प्रादेशिक अस्पतालमा आइसीयू सेवा सुरु",
     tagsEn:         "<a href=\"#\" class=\"tag-pill\">Midpoint Provincial Hospital</a><a href=\"#\" class=\"tag-pill\">ICU</a><a href=\"#\" class=\"tag-pill\">NICU</a><a href=\"#\" class=\"tag-pill\">Operation Theater</a><a href=\"#\" class=\"tag-pill\">Nawalpur</a><a href=\"#\" class=\"tag-pill\">Provincial Government</a>",
     tagsNp:         "<a href=\"#\" class=\"tag-pill\">मध्यबिन्दु प्रादेशिक अस्पताल</a><a href=\"#\" class=\"tag-pill\">आइसीयू</a><a href=\"#\" class=\"tag-pill\">एनआइसीयू</a><a href=\"#\" class=\"tag-pill\">शल्यक्रिया कक्ष</a><a href=\"#\" class=\"tag-pill\">नवलपुर</a><a href=\"#\" class=\"tag-pill\">प्रदेश सरकार</a>",
-    relatedHtml:    "<p class=\"no-related lang-en\">No related articles found.</p>\n            <p class=\"no-related lang-np\" style=\"display:none\">कुनै सम्बन्धित लेख फेला परेन।</p>"
+    relatedHtml:    "\n      <a href=\"/page/the-impact-of-the-gaza-israel-conflict-and-the-jenin-operation-tourist-numbers-decline-in-bardia-national-park.html\" class=\"related-card\">\n        <img src=\"../images/the-impact-of-the-gaza-israel-conflict-and-the-jenin-operation-tourist-numbers-decline-in-bardia-national-park.jpg\" alt=\"The impact of the Gaza-Israel conflict and the Jenin operation: Tourist numbers decline in Bardia National Park\" loading=\"lazy\"\n             onerror=\"this.src='https://placehold.co/400x225/1a1a1a/ffffff?text=Related'\">\n        <div class=\"related-content\">\n          <span class=\"related-category lang-en\">Local</span>\n                     <span class=\"related-category lang-np\" style=\"display:none\">स्थानीय</span>\n          <h4 class=\"lang-en\">The impact of the Gaza-Israel conflict and the Jenin operation: Tourist numbers decline in Bardia National Park</h4>\n          <h4 class=\"lang-np\" style=\"display:none\">जेन-जी आन्दोलन र पश्चिम एसिया युद्धको असर : बर्दिया निकुञ्जमा पर्यटक घटे</h4>\n          <span class=\"related-meta\" data-date-ad=\"July 19, 2026\">\n            <i class=\"fas fa-clock\" style=\"font-size:.68rem;margin-right:3px;\"></i>\n            <span class=\"date-display\">July 19, 2026</span>\n            <span class=\"lang-en\"></span>\n            <span class=\"lang-np\" style=\"display:none\"></span>\n          </span>\n          <span class=\"related-meta\" style=\"margin-top:3px;\">\n                <span class=\"lang-en\">Source: Kantipur · Creator: Kamal Panthee</span>\n                <span class=\"lang-np\" style=\"display:none\">स्रोत: कान्तिपुर · सिर्जनाकर्ता: कमल पन्थी</span>\n              </span>\n        </div>\n      </a>\n      <a href=\"/page/the-landslide-has-obstructed-the-kantipur-lokpath.html\" class=\"related-card\">\n        <img src=\"../images/the-landslide-has-obstructed-the-kantipur-lokpath.jpg\" alt=\"The landslide has obstructed the Kantipur Lokpath.\" loading=\"lazy\"\n             onerror=\"this.src='https://placehold.co/400x225/1a1a1a/ffffff?text=Related'\">\n        <div class=\"related-content\">\n          <span class=\"related-category lang-en\">Local</span>\n                     <span class=\"related-category lang-np\" style=\"display:none\">स्थानीय</span>\n          <h4 class=\"lang-en\">The landslide has obstructed the Kantipur Lokpath.</h4>\n          <h4 class=\"lang-np\" style=\"display:none\">पहिरोले कान्ति लोकपथ अवरुद्ध</h4>\n          <span class=\"related-meta\" data-date-ad=\"July 19, 2026\">\n            <i class=\"fas fa-clock\" style=\"font-size:.68rem;margin-right:3px;\"></i>\n            <span class=\"date-display\">July 19, 2026</span>\n            <span class=\"lang-en\"></span>\n            <span class=\"lang-np\" style=\"display:none\"></span>\n          </span>\n          <span class=\"related-meta\" style=\"margin-top:3px;\">\n                <span class=\"lang-en\">Source: Kantipur · Creator: Pratap Bista</span>\n                <span class=\"lang-np\" style=\"display:none\">स्रोत: कान्तिपुर · सिर्जनाकर्ता: प्रताप विष्ट</span>\n              </span>\n        </div>\n      </a>\n      <a href=\"/page/the-new-passport-system-has-disrupted-services-in-dolpa.html\" class=\"related-card\">\n        <img src=\"../images/the-new-passport-system-has-disrupted-services-in-dolpa.jpg\" alt=\"The new passport system has disrupted services in Dolpa.\" loading=\"lazy\"\n             onerror=\"this.src='https://placehold.co/400x225/1a1a1a/ffffff?text=Related'\">\n        <div class=\"related-content\">\n          <span class=\"related-category lang-en\">Local</span>\n                     <span class=\"related-category lang-np\" style=\"display:none\">स्थानीय</span>\n          <h4 class=\"lang-en\">The new passport system has disrupted services in Dolpa.</h4>\n          <h4 class=\"lang-np\" style=\"display:none\">नयाँ राहदानी प्रणालीले काम नगर्दा डोल्पामा सेवा प्रभावित</h4>\n          <span class=\"related-meta\" data-date-ad=\"July 19, 2026\">\n            <i class=\"fas fa-clock\" style=\"font-size:.68rem;margin-right:3px;\"></i>\n            <span class=\"date-display\">July 19, 2026</span>\n            <span class=\"lang-en\"></span>\n            <span class=\"lang-np\" style=\"display:none\"></span>\n          </span>\n          <span class=\"related-meta\" style=\"margin-top:3px;\">\n                <span class=\"lang-en\">Source: Kantipur · Creator: Ramchandra Nyaupane</span>\n                <span class=\"lang-np\" style=\"display:none\">स्रोत: कान्तिपुर · सिर्जनाकर्ता: रामचन्द्र न्यौपाने</span>\n              </span>\n        </div>\n      </a>\n      <a href=\"/page/nepal-bal-sangathan-conducted-a-monitoring-and-rescued-20-children.html\" class=\"related-card\">\n        <img src=\"../images/nepal-bal-sangathan-conducted-a-monitoring-and-rescued-20-children.jpg\" alt=\"Nepal Bal Sangathan conducted a monitoring and rescued 20 children.\" loading=\"lazy\"\n             onerror=\"this.src='https://placehold.co/400x225/1a1a1a/ffffff?text=Related'\">\n        <div class=\"related-content\">\n          <span class=\"related-category lang-en\">Local</span>\n                     <span class=\"related-category lang-np\" style=\"display:none\">स्थानीय</span>\n          <h4 class=\"lang-en\">Nepal Bal Sangathan conducted a monitoring and rescued 20 children.</h4>\n          <h4 class=\"lang-np\" style=\"display:none\">नेपाल बाल संगठनमा अनुगमन गरेर २० बालबालिकाको उद्धार</h4>\n          <span class=\"related-meta\" data-date-ad=\"July 19, 2026\">\n            <i class=\"fas fa-clock\" style=\"font-size:.68rem;margin-right:3px;\"></i>\n            <span class=\"date-display\">July 19, 2026</span>\n            <span class=\"lang-en\"></span>\n            <span class=\"lang-np\" style=\"display:none\"></span>\n          </span>\n          <span class=\"related-meta\" style=\"margin-top:3px;\">\n                <span class=\"lang-en\">Source: Kantipur · Creator: Kantipur correspondent</span>\n                <span class=\"lang-np\" style=\"display:none\">स्रोत: कान्तिपुर · सिर्जनाकर्ता: कान्तिपुर संवाददाता</span>\n              </span>\n        </div>\n      </a>"
   };
 
   function populate() {
@@ -2116,21 +2207,19 @@
 })();
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var NP_NUMS = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
-      var adYear = new Date().getFullYear();
-      var npYear = String(adYear).split('').map(function(d) {
-        return NP_NUMS[parseInt(d, 10)];
-      }).join('');
-      var eyEn = document.getElementById('footer-year-en');
-      var eyNp = document.getElementById('footer-year-np');
-      if (eyEn) eyEn.textContent = adYear;
-      if (eyNp) eyNp.textContent = npYear;
-      window.addEventListener('langChange', function(e) {
-        if (e.detail && e.detail.lang) document.body.classList.toggle('lang-active', e.detail.lang === 'np');
+    document.addEventListener('DOMContentLoaded',function(){
+      var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
+      var adYear=new Date().getFullYear();
+      var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
+      var eyEn=document.getElementById('footer-year-en');
+      var eyNp=document.getElementById('footer-year-np');
+      if(eyEn)eyEn.textContent=adYear;
+      if(eyNp)eyNp.textContent=npYear;
+      window.addEventListener('langChange',function(e){
+        if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
       });
-      var stored = localStorage.getItem('fm_lang') || 'en';
-      if (stored === 'np') document.body.classList.add('lang-active');
+      var stored=localStorage.getItem('fm_lang')||'en';
+      if(stored==='np')document.body.classList.add('lang-active');
     });
   </script>
 

@@ -555,81 +555,116 @@
 
 </style>
   <style>
+    /* ALL CSS from PART D */
+    #site-footer { font-family:var(--font-body); }
+
     /* TOP SECTION */
-    .footer-top { background: #f0f0f0; padding: 40px 0 32px; border-top: 3px solid var(--primary); }
-    .footer-top-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; gap: 24px; }
-    .footer-col { display: flex; flex-direction: column; gap: 10px; }
-    .footer-col-heading { font-size: 0.82rem; font-weight: 800; color: #111; margin: 0 0 6px; padding-bottom: 8px; border-bottom: 2px solid var(--primary); text-transform: uppercase; letter-spacing: 0.06em; }
-    .footer-company-name { font-weight: 700; font-size: 0.9rem; color: #111; margin: 0; }
-    .footer-addr { font-size: 0.82rem; color: #444; margin: 0; line-height: 1.6; }
-    .footer-contact-line { font-size: 0.82rem; color: #444; margin: 0; }
-    .footer-link-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-    .footer-link-list li a { font-size: 0.85rem; color: #333; text-decoration: none; transition: color 0.2s; display: block; padding: 2px 0; }
-    .footer-link-list li a:hover { color: var(--primary); }
+    .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
+    .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
+    .footer-col { display:flex; flex-direction:column; gap:10px; }
+    .footer-col-heading { font-size:.82rem; font-weight:800; color:#111; margin:0 0 6px; padding-bottom:8px; border-bottom:2px solid var(--primary); text-transform:uppercase; letter-spacing:.06em; }
+    .footer-company-name { font-weight:700; font-size:.9rem; color:#111; margin:0; }
+    .footer-addr { font-size:.82rem; color:#444; margin:0; line-height:1.6; }
+    .footer-contact-line { font-size:.82rem; color:#444; margin:0; }
+    .footer-link-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+    .footer-link-list li a { font-size:.85rem; color:#333; text-decoration:none; transition:color .2s; display:block; padding:2px 0; }
+    .footer-link-list li a:hover { color:var(--primary); }
 
     /* BOTTOM BAR */
-    .footer-bottom { background: #d8d8d8; border-top: 1px solid #bbb; padding: 18px 0; }
-    .footer-bottom-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-    .footer-bottom-brand { display: flex; flex-direction: column; gap: 3px; flex-shrink: 0; }
-    .footer-site-name { font-size: 1rem; font-weight: 800; color: #111; }
-    .footer-copy { font-size: 0.74rem; color: #555; display: flex; align-items: center; gap: 4px; }
-    .footer-copy i { font-size: 0.72rem; }
-    .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { display: flex; flex-direction: column; gap: 2px; }
-    .editor-label { font-size: 0.74rem; color: #555; }
-    .editor-name { font-size: 0.9rem; font-weight: 800; color: #111; display: block; }
-    .editor-phone { font-size: 0.8rem; color: #333; display: block; margin-top: 1px; }
-    .footer-bottom-info { font-size: 0.78rem; color: #555; max-width: 200px; line-height: 1.5; }
-    .footer-bottom-social { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
-    .connect-label { font-size: 0.78rem; font-weight: 700; color: #333; }
-    .footer-social-row { display: flex; gap: 10px; align-items: center; }
-    .footer-social-row a { color: #333; font-size: 1.1rem; text-decoration: none; transition: color 0.2s; }
-    .footer-social-row a:hover { color: var(--primary); }
+    .footer-bottom { background:#d8d8d8; border-top:1px solid #bbb; padding:18px 0; }
+    .footer-bottom-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+    .footer-bottom-brand { display:flex; flex-direction:column; gap:3px; flex-shrink:0; }
+    .footer-site-name { font-size:1rem; font-weight:800; color:#111; }
+    .footer-copy { font-size:.74rem; color:#555; display:flex; align-items:center; gap:4px; }
+    .footer-copy i { font-size:.72rem; }
+    .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { display:flex; flex-direction:column; gap:2px; }
+    .editor-label { font-size:.74rem; color:#555; }
+    .editor-name { font-size:.9rem; font-weight:800; color:#111; display:block; }
+    .editor-phone { font-size:.8rem; color:#333; display:block; margin-top:1px; }
+    .footer-bottom-info { font-size:.78rem; color:#555; max-width:200px; line-height:1.5; }
+    .footer-bottom-social { display:flex; flex-direction:column; gap:6px; align-items:flex-end; }
+    .connect-label { font-size:.78rem; font-weight:700; color:#333; }
+    .footer-social-row { display:flex; gap:10px; align-items:center; }
+    .footer-social-row a { color:#333; font-size:1.1rem; text-decoration:none; transition:color .2s; }
+    .footer-social-row a:hover { color:var(--primary); }
 
     /* Language */
-    .lang-en { display: inline; }
-    .lang-np { display: none; }
-    body.lang-active .lang-en { display: none; }
-    body.lang-active .lang-np { display: inline; }
+    .lang-en { display:inline; }
+    .lang-np { display:none; }
+    body.lang-active .lang-en { display:none; }
+    body.lang-active .lang-np { display:inline; }
 
     /* Responsive */
-    @media (max-width: 1000px) {
-      .footer-top-inner { grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    @media(max-width:1000px){
+      .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; }
     }
-    @media (max-width: 640px) {
-      .footer-top-inner { grid-template-columns: 1fr 1fr; gap: 16px; }
-      .footer-bottom-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
-      .footer-bottom-social { align-items: flex-start; }
+    @media(max-width:640px){
+      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; }
+      .footer-bottom-inner { flex-direction:column; align-items:flex-start; gap:12px; }
+      .footer-bottom-social { align-items:flex-start; }
     }
-    @media (max-width: 400px) {
-      .footer-top-inner { grid-template-columns: 1fr; }
+    @media(max-width:400px){
+      .footer-top-inner { grid-template-columns:1fr; }
     }
 
     /* WhatsApp */
-    .wa-widget { position: fixed; bottom: 90px; right: 24px; z-index: 9999; display: flex; align-items: center; gap: 10px; flex-direction: row; }
-    .wa-fab { width: 52px; height: 52px; border-radius: 50%; background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; text-decoration: none; box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2); transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s; animation: waIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s both; position: relative; }
-    .wa-fab:hover { transform: scale(1.12) rotate(-6deg); }
-    .wa-fab::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 3px solid #25D366; animation: waRing 2s ease-out 2s infinite; }
-    .wa-tooltip { background: #fff; color: #111; font-size: 0.78rem; font-weight: 600; padding: 5px 12px; border-radius: 14px; white-space: nowrap; box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15); opacity: 0; pointer-events: none; transform: translateX(-6px); transition: opacity 0.2s, transform 0.2s; }
-    .wa-widget:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
-    @keyframes waIn { from { opacity: 0; transform: scale(0.4) translateY(20px) } to { opacity: 1; transform: scale(1) translateY(0) } }
-    @keyframes waRing { 0% { transform: scale(1); opacity: 0.8 } 70%, 100% { transform: scale(1.5); opacity: 0 } }
-    @media (max-width: 480px) { .wa-widget { bottom: 90px; right: 14px; } .wa-fab { width: 46px; height: 46px; font-size: 1.5rem; } }
+    .wa-widget { position:fixed; bottom:90px; right:24px; z-index:9999; display:flex; align-items:center; gap:10px; flex-direction:row; }
+    .wa-fab { width:52px; height:52px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.7rem; text-decoration:none; box-shadow:0 4px 16px rgba(37,211,102,.4),0 2px 8px rgba(0,0,0,.2); transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; animation:waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both; position:relative; }
+    .wa-fab:hover { transform:scale(1.12) rotate(-6deg); }
+    .wa-fab::after { content:''; position:absolute; inset:0; border-radius:50%; border:3px solid #25D366; animation:waRing 2s ease-out 2s infinite; }
+    .wa-tooltip { background:#fff; color:#111; font-size:.78rem; font-weight:600; padding:5px 12px; border-radius:14px; white-space:nowrap; box-shadow:0 3px 12px rgba(0,0,0,.15); opacity:0; pointer-events:none; transform:translateX(-6px); transition:opacity .2s,transform .2s; }
+    .wa-widget:hover .wa-tooltip { opacity:1; transform:translateX(0); }
+    @keyframes waIn { from{opacity:0;transform:scale(.4) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    @keyframes waRing { 0%{transform:scale(1);opacity:.8} 70%,100%{transform:scale(1.5);opacity:0} }
+    @media(max-width:480px){ .wa-widget{bottom:90px;right:14px;} .wa-fab{width:46px;height:46px;font-size:1.5rem;} }
 
     /* Add these responsive styles for footer mobile view */
-    @media (max-width: 640px) {
-      .footer-top-inner { grid-template-columns: 1fr 1fr; gap: 16px; text-align: center; }
-      .footer-bottom-inner { flex-direction: column; align-items: center; gap: 16px; text-align: center; }
-      .footer-bottom-social { align-items: center; width: 100%; }
-      .footer-social-row { justify-content: center; }
-      .footer-col { align-items: center; text-align: center; }
-      .footer-link-list { align-items: center; }
-      .footer-col-heading { text-align: center; width: 100%; }
-      .footer-bottom-brand { align-items: center; }
-      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { align-items: center; }
-      .footer-bottom-info { max-width: 100%; text-align: center; }
+    @media(max-width:640px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-inner { 
+        flex-direction: column; 
+        align-items: center;
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-social { 
+        align-items: center;
+        width: 100%;
+      }
+      .footer-social-row {
+        justify-content: center;
+      }
+      .footer-col {
+        align-items: center;
+        text-align: center;
+      }
+      .footer-link-list {
+        align-items: center;
+      }
+      .footer-col-heading {
+        text-align: center;
+        width: 100%;
+      }
+      .footer-bottom-brand {
+        align-items: center;
+      }
+      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq {
+        align-items: center;
+      }
+      .footer-bottom-info {
+        max-width: 100%;
+        text-align: center;
+      }
     }
-    @media (max-width: 400px) {
-      .footer-top-inner { grid-template-columns: 1fr; text-align: center; }
+    @media(max-width:400px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr; 
+        text-align: center;
+      }
     }
   </style>
   <style>
@@ -872,7 +907,6 @@
   <style>
     
   </style>
-  <!-- SECTION 1: HERO (full width) -->
   <section class="about-hero">
     <div class="about-hero__inner" data-slot="hero">
 <div class="fade-in">
@@ -892,8 +926,6 @@
   </p>
 </div></div>
   </section>
-
-  <!-- SECTION 2: OUR STORY (full width, image left) -->
   <section class="story-section">
     <div class="story-layout">
       <div class="story-image" data-slot="story-image">
@@ -943,8 +975,6 @@ Shitalpati.com, which was started as a trial from Tansen, the headquarters of Pa
 </div></div>
     </div>
   </section>
-
-  <!-- SECTION 3: STATS + NEWS (only split section) -->
   <div class="split-wrapper">
     <div class="split-main">
       <section class="stats-section about-section" data-slot="stats">
@@ -1067,42 +1097,63 @@ Shitalpati.com, which was started as a trial from Tansen, the headquarters of Pa
     <li style="display:flex;gap:.75rem;align-items:flex-start;
                padding-bottom:1rem;border-bottom:1px solid var(--border);
                margin-bottom:0.5rem;">
-      <a href="../page/the-share-market-saw-greenery-transaction-amount-crossed-45-billion.html" style="flex-shrink:0;text-decoration:none;"><img src="../images/the-share-market-saw-greenery-transaction-amount-crossed-45-billion.jpg" alt="The share market saw greenery, transaction amount crossed 4.5 billion."
+      <a href="../page/fifa-world-cup-2026-slavko-from-slovakia-to-be-the-referee-for-the-final.html" style="flex-shrink:0;text-decoration:none;"><img src="../images/fifa-world-cup-2026-slavko-from-slovakia-to-be-the-referee-for-the-final.jpg" alt="FIFA World Cup 2026: Slavko from Slovakia to be the referee for the final"
            style="width:72px;height:60px;object-fit:cover;border-radius:6px;flex-shrink:0;"></a>
       <div style="display:flex;flex-direction:column;gap:.25rem;min-width:0;">
         <span style="font-size:.7rem;font-weight:700;text-transform:uppercase;color:var(--accent);">
-          <span class="lang-en">Economy</span>
-          <span class="lang-np">अर्थतन्त्र</span>
+          <span class="lang-en">Sports</span>
+          <span class="lang-np">खेलकुद</span>
         </span>
-        <a href="../page/the-share-market-saw-greenery-transaction-amount-crossed-45-billion.html" style="font-size:.85rem;font-weight:600;color:var(--text);
+        <a href="../page/fifa-world-cup-2026-slavko-from-slovakia-to-be-the-referee-for-the-final.html" style="font-size:.85rem;font-weight:600;color:var(--text);
            text-decoration:none;line-height:1.35;display:-webkit-box;
            -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">
-          <span class="lang-en">The share market saw greenery, transaction amount crossed 4.5 billion.</span>
-          <span class="lang-np">नेप्सेमा हरियाली, कारोबार रकम साढे ४ अर्ब नाघ्यो</span>
+          <span class="lang-en">FIFA World Cup 2026: Slavko from Slovakia to be the referee for the final</span>
+          <span class="lang-np">फिफा विश्वकप २०२६ : फाइनलको रेफ्रीमा स्लोभाकियाका स्लाभ्को</span>
         </a>
         <span style="font-size:.72rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:.2rem .3rem;align-items:center;">
-          <span class="date-display" data-date-ad="July 17, 2026">July 17, 2026</span> · <span class="lang-en">Source: nagariknews.nagariknetwork.com</span><span class="lang-np" style="display:none;">स्रोत: नगरिकन्यूज.नगरिकनेटवर्क.कम</span>
+          <span class="date-display" data-date-ad="July 19, 2026">July 19, 2026</span> · <span class="lang-en">Source: Kantipur</span><span class="lang-np" style="display:none;">स्रोत: कान्तिपुर</span>
         </span>
       </div>
     </li>
     <li style="display:flex;gap:.75rem;align-items:flex-start;
                padding-bottom:1rem;border-bottom:1px solid var(--border);
                margin-bottom:0.5rem;">
-      <a href="../page/jaybir-deubas-company-is-under-investigation-regarding-the-25-crore-rupees-provided-by-deepak-bhatt.html" style="flex-shrink:0;text-decoration:none;"><img src="../images/jaybir-deubas-company-is-under-investigation-regarding-the-25-crore-rupees-provided-by-deepak-bhatt.jpg" alt="Jaybir Deuba&#39;s company is under investigation regarding the 2.5 crore rupees provided by Deepak Bhatt."
+      <a href="../page/article-1784441220.html" style="flex-shrink:0;text-decoration:none;"><img src="../images/article-1784441220.jpg" alt="अमेरिकी बजारमा नेपाली उत्पादनको पहुँच सुनिश्चित गर्न आग्रह"
+           style="width:72px;height:60px;object-fit:cover;border-radius:6px;flex-shrink:0;"></a>
+      <div style="display:flex;flex-direction:column;gap:.25rem;min-width:0;">
+        <span style="font-size:.7rem;font-weight:700;text-transform:uppercase;color:var(--accent);">
+          <span class="lang-en">Economy</span>
+          <span class="lang-np">अर्थतन्त्र</span>
+        </span>
+        <a href="../page/article-1784441220.html" style="font-size:.85rem;font-weight:600;color:var(--text);
+           text-decoration:none;line-height:1.35;display:-webkit-box;
+           -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">
+          <span class="lang-en">अमेरिकी बजारमा नेपाली उत्पादनको पहुँच सुनिश्चित गर्न आग्रह</span>
+          <span class="lang-np">अमेरिकी बजारमा नेपाली उत्पादनको पहुँच सुनिश्चित गर्न आग्रह</span>
+        </a>
+        <span style="font-size:.72rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:.2rem .3rem;align-items:center;">
+          <span class="date-display" data-date-ad="July 19, 2026">July 19, 2026</span> · <span class="lang-en">Source: nagariknews.nagariknetwork.com</span><span class="lang-np" style="display:none;">स्रोत: nagariknews.nagariknetwork.com</span>
+        </span>
+      </div>
+    </li>
+    <li style="display:flex;gap:.75rem;align-items:flex-start;
+               padding-bottom:1rem;border-bottom:1px solid var(--border);
+               margin-bottom:0.5rem;">
+      <a href="../page/article-1784441168.html" style="flex-shrink:0;text-decoration:none;"><img src="../images/article-1784441168.jpg" alt="सुदूरपश्चिममा नेकपाले माग्यो मुख्यमन्त्री शाहको राजीनामा"
            style="width:72px;height:60px;object-fit:cover;border-radius:6px;flex-shrink:0;"></a>
       <div style="display:flex;flex-direction:column;gap:.25rem;min-width:0;">
         <span style="font-size:.7rem;font-weight:700;text-transform:uppercase;color:var(--accent);">
           <span class="lang-en">Politics</span>
           <span class="lang-np">राजनीति</span>
         </span>
-        <a href="../page/jaybir-deubas-company-is-under-investigation-regarding-the-25-crore-rupees-provided-by-deepak-bhatt.html" style="font-size:.85rem;font-weight:600;color:var(--text);
+        <a href="../page/article-1784441168.html" style="font-size:.85rem;font-weight:600;color:var(--text);
            text-decoration:none;line-height:1.35;display:-webkit-box;
            -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">
-          <span class="lang-en">Jaybir Deuba&#39;s company is under investigation regarding the 2.5 crore rupees provided by Deepak Bhatt.</span>
-          <span class="lang-np">जयवीर देउवाको कम्पनीलाई दीपक भट्टले दिएको साढे २ करोडबारे अनुसन्धान जारी</span>
+          <span class="lang-en">सुदूरपश्चिममा नेकपाले माग्यो मुख्यमन्त्री शाहको राजीनामा</span>
+          <span class="lang-np">सुदूरपश्चिममा नेकपाले माग्यो मुख्यमन्त्री शाहको राजीनामा</span>
         </a>
         <span style="font-size:.72rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:.2rem .3rem;align-items:center;">
-          <span class="date-display" data-date-ad="July 17, 2026">July 17, 2026</span> · <span class="lang-en">Source: Kantipur</span><span class="lang-np" style="display:none;">स्रोत: कान्तिपुर</span>
+          <span class="date-display" data-date-ad="July 19, 2026">July 19, 2026</span> · <span class="lang-en">Source: Kantipur</span><span class="lang-np" style="display:none;">स्रोत: कान्तिपुर</span>
         </span>
       </div>
     </li>
@@ -1130,21 +1181,21 @@ Shitalpati.com, which was started as a trial from Tansen, the headquarters of Pa
     <li style="display:flex;gap:.75rem;align-items:flex-start;
                padding-bottom:1rem;border-bottom:1px solid var(--border);
                margin-bottom:0.5rem;">
-      <a href="../page/green-card-applicants-may-face-a-100000-deposit-requirement-in-the-us.html" style="flex-shrink:0;text-decoration:none;"><img src="../images/green-card-applicants-may-face-a-100000-deposit-requirement-in-the-us.jpg" alt="Green card applicants may face a <div class="split-sidebar" data-news-container="true">00,000 deposit requirement in the US."
+      <a href="../page/who-to-support-in-the-final-even-the-argentinians-are-in-dilemma.html" style="flex-shrink:0;text-decoration:none;"><img src="../images/who-to-support-in-the-final-even-the-argentinians-are-in-dilemma.jpg" alt="Who to support in the final? Even the Argentinians are in dilemma."
            style="width:72px;height:60px;object-fit:cover;border-radius:6px;flex-shrink:0;"></a>
       <div style="display:flex;flex-direction:column;gap:.25rem;min-width:0;">
         <span style="font-size:.7rem;font-weight:700;text-transform:uppercase;color:var(--accent);">
           <span class="lang-en">World</span>
           <span class="lang-np">विश्व</span>
         </span>
-        <a href="../page/green-card-applicants-may-face-a-100000-deposit-requirement-in-the-us.html" style="font-size:.85rem;font-weight:600;color:var(--text);
+        <a href="../page/who-to-support-in-the-final-even-the-argentinians-are-in-dilemma.html" style="font-size:.85rem;font-weight:600;color:var(--text);
            text-decoration:none;line-height:1.35;display:-webkit-box;
            -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">
-          <span class="lang-en">Green card applicants may face a <div class="split-sidebar" data-news-container="true">00,000 deposit requirement in the US.</span>
-          <span class="lang-np">ग्रिनकार्ड आवेदकसँग १ लाख डलर धरौटी लिनेबारे अमेरिकामा छलफल</span>
+          <span class="lang-en">Who to support in the final? Even the Argentinians are in dilemma.</span>
+          <span class="lang-np">फाइनलमा समर्थन कसलाई&amp;nbsp;? अर्जेन्टिनी नै छन् दुविधामा</span>
         </a>
         <span style="font-size:.72rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:.2rem .3rem;align-items:center;">
-          <span class="date-display" data-date-ad="July 17, 2026">July 17, 2026</span> · <span class="lang-en">Source: Kantipur</span><span class="lang-np" style="display:none;">स्रोत: कान्तिपुर</span>
+          <span class="date-display" data-date-ad="July 19, 2026">July 19, 2026</span> · <span class="lang-en">Source: Kantipur</span><span class="lang-np" style="display:none;">स्रोत: कान्तिपुर</span>
         </span>
       </div>
     </li>
@@ -1156,9 +1207,12 @@ Shitalpati.com, which was started as a trial from Tansen, the headquarters of Pa
     <span class="lang-np">सबै समाचार हेर्नुहोस् →</span>
   </a>
 </aside></div>
+          
+          
+        </aside>
+      </template>
+    </div>
   </div>
-
-  <!-- SECTION 4: CTA (full width) -->
   <section class="cta-section">
     <div class="cta-section__inner" data-slot="cta">
 <div class="fade-in">
