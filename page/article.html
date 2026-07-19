@@ -702,26 +702,31 @@
   body.lang-active .widget h3.lang-en { display:none !important; }
   body.lang-active .widget h3.lang-np { display:flex !important; }
 
-  /* boxed related-article cards */
+  /* boxed related-article cards — soft border, rounded, subtle shadow,
+     clear gap between cards (matches reference design) */
+  #related-articles { display:flex; flex-direction:column; gap:14px; }
   .related-card {
-    display:flex; gap:12px; margin-bottom:12px; text-decoration:none; color:inherit;
-    padding:10px; border-radius:8px; background:var(--bg); border:1px solid var(--border);
-    transition:border-color .2s, box-shadow .2s;
+    display:flex; gap:12px; text-decoration:none; color:inherit;
+    padding:12px; border-radius:12px;
+    background:var(--surface); border:1px solid var(--border);
+    box-shadow:0 1px 3px rgba(0,0,0,.06);
+    transition:border-color .2s, box-shadow .2s, transform .15s;
   }
-  .related-card:last-child { margin-bottom:0; }
-  .related-card:hover { border-color:var(--accent); box-shadow:0 2px 10px rgba(0,0,0,.08); }
-  .related-card img { width:80px; height:58px; object-fit:cover; border-radius:6px; flex-shrink:0; }
+  .related-card:hover { border-color:var(--accent); box-shadow:0 4px 14px rgba(0,0,0,.1); transform:translateY(-1px); }
+  .related-card img { width:80px; height:58px; object-fit:cover; border-radius:8px; flex-shrink:0; }
   .related-category { display:block; font-size:.68rem; color:var(--accent); text-transform:uppercase; font-weight:700; margin-bottom:3px; }
   .related-card h4 { margin:0 0 4px; font-size:.85rem; line-height:1.35; color:var(--text); }
   .related-meta { font-size:.7rem; color:var(--muted); }
   .no-related { text-align:center; padding:1rem; color:var(--muted); font-size:.88rem; }
-  #back-to-top { position:fixed; bottom:1.5rem; right:1.5rem; background:var(--accent); color:var(--accent-on); border:none; border-radius:50%; width:42px; height:42px; cursor:pointer; display:none; align-items:center; justify-content:center; z-index:999; box-shadow:0 2px 8px rgba(0,0,0,.25); }
   .loading-state,.error-state { text-align:center; padding:4rem 1rem; color:var(--muted); }
   .error-state { display:none; }
 
   .ad-label { text-align:center; font-size:.7rem; letter-spacing:.05em; color:var(--muted); text-transform:uppercase; margin-bottom:.6rem; }
-  .side-ads img, .insection-ad img { width:100%; border-radius:8px; display:block; margin-bottom:12px; }
-  .side-ads img:last-child, .insection-ad img:last-child { margin-bottom:0; }
+  /* side ads: explicit flex + gap so spacing between multiple ad images
+     is reliable regardless of image size/aspect ratio */
+  #side-ads-list { display:flex; flex-direction:column; gap:14px; }
+  #side-ads-list a { display:block; }
+  .side-ads img, .insection-ad img { width:100%; border-radius:8px; display:block; }
   .insection-ad { margin:1.6rem 0; text-align:center; }
   .insection-ad .ad-label { margin-bottom:.4rem; }
 </style>
@@ -904,7 +909,6 @@
     </div>
   </div>
 </main>
-<button id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
   <footer id="site-footer">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
@@ -1389,8 +1393,6 @@
     el('title-np').textContent = article.titleNe || article.title || '';
     el('readtime-en').textContent = article.readTime || '';
     el('readtime-np').textContent = article.readTimeNe || article.readTime || '';
-    // NEW: dateBS comes straight from the manifest (real BS date, computed
-    // once at build time) instead of being faked client-side.
     el('date-en').textContent = formatDateEn(article.date);
     el('date-np').textContent = article.dateBS || '';
     var img = el('featured-image');
@@ -1437,15 +1439,10 @@
       });
     });
   }
-  function setupBackToTop() {
-    var btn = el('back-to-top');
-    window.addEventListener('scroll', function(){ btn.style.display = window.scrollY > 300 ? 'flex' : 'none'; });
-    btn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
-  }
+  // NOTE: back-to-top button + its scroll/click handlers removed.
   window.addEventListener('langChange', syncLanguage);
   document.addEventListener('DOMContentLoaded', function () {
     setupShareAndCopy();
-    setupBackToTop();
     const slug = getSlugFromUrl();
     if (!slug) { showError(); return; }
     fetch(MANIFEST_URL, { cache: 'no-cache' })
