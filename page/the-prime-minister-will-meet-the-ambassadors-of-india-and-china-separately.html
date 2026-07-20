@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Radio  - Bagmati Province News</title>
+  <title>Radio  - News</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -544,292 +544,275 @@
 <style>
   .lang-np { display: none !important; }
   .lang-en { display: inline; }
-  div.lang-en, p.lang-en, h3.lang-en { display: block !important; }
-  div.lang-np, p.lang-np, h3.lang-np { display: none !important; }
+  div.lang-en, p.lang-en, h3.lang-en, .article-body.lang-en,
+  section.lang-en, aside.lang-en { display: block !important; }
+  div.lang-np, p.lang-np, h3.lang-np, .article-body.lang-np,
+  section.lang-np, aside.lang-np { display: none !important; }
 
-  .article-card {
-    background: var(--surface);
-    border-radius: 12px;
+  .meta { display: flex !important; flex-wrap: wrap; align-items: center !important; gap: 1rem; }
+  .meta > span { display: inline-flex !important; align-items: center; gap: 5px; white-space: nowrap; }
+  .meta i { display: inline-flex !important; align-items: center; line-height: 1; font-size: 0.85rem; flex-shrink: 0; }
+
+  /* ── Section ads (between paragraphs) ── */
+  .ad-unit {
+    margin: 1.6rem 0;
+    padding: 0.5rem;
+    border: 1px dashed var(--border, rgba(0,0,0,0.15));
+    border-radius: 6px;
+    background: var(--surface, rgba(0,0,0,0.02));
+    text-align: center;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid var(--border);
   }
-  .article-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  .ad-label {
+    display: block;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted, rgba(0,0,0,0.3));
+    margin-bottom: 0.35rem;
   }
-  .card-image {
-    width: 100%; height: 200px; object-fit: cover;
-    background: var(--border); display: block;
-  }
-  .card-image.no-image {
-    background: linear-gradient(135deg, var(--border) 0%, var(--surface) 100%);
-  }
-  .card-content { padding: 1.25rem; }
-  .card-province {
-    display: inline-block;
-    background: var(--accent); color: var(--accent-on);
-    font-size: 0.7rem; text-transform: uppercase;
-    padding: 0.2rem 0.6rem; border-radius: 4px;
-    margin-bottom: 0.75rem; letter-spacing: 0.05em; font-weight: 600;
-  }
-  .card-title {
-    font-family: var(--font-heading, serif);
-    font-size: 1.2rem; line-height: 1.4;
-    margin: 0 0 0.75rem; color: var(--text);
-  }
-  .card-title-link { text-decoration: none; }
-  .card-title-link:hover .card-title { color: var(--accent); }
-  .card-excerpt {
-    font-size: 0.88rem; color: var(--muted);
-    line-height: 1.5; margin-bottom: 1rem;
-  }
-  .card-meta {
-    display: flex; justify-content: space-between;
-    align-items: center; font-size: 0.78rem; color: var(--muted);
-    flex-wrap: wrap; gap: 0.5rem;
-  }
-  .card-meta i { margin-right: 0.2rem; }
-  .card-source-creator {
-    font-size: 0.72rem; color: var(--muted);
-    margin-top: 4px;
-  }
-  .load-more-btn {
-    background: var(--accent); color: var(--accent-on);
-    border: none; padding: 0.9rem 2rem; border-radius: 50px;
-    cursor: pointer; font-size: 1rem; font-weight: 600;
-    transition: opacity 0.2s, transform 0.2s;
-    display: inline-flex; align-items: center; gap: 0.5rem;
-  }
-  .load-more-btn:hover:not(:disabled) { opacity: 0.9; transform: scale(1.02); }
-  .load-more-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-  #back-to-top {
-    position: fixed; bottom: 1.5rem; right: 1.5rem;
-    background: var(--accent); color: var(--accent-on);
-    border: none; border-radius: 50%;
-    width: 42px; height: 42px; cursor: pointer;
-    font-size: 1rem; display: none;
-    align-items: center; justify-content: center; z-index: 999;
-  }
-  #back-to-top:hover { opacity: 0.85; }
-  .news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem; margin-bottom: 3rem;
-  }
-  @media (max-width: 768px) {
-    .news-grid { gap: 1rem; grid-template-columns: 1fr; }
-    .card-image { height: 180px; }
-  }
-
-  /* ── In-grid section ad — banner style, matches index/category page ── */
-  .ad-card-inline {
-    /* no border/background box — reads as a full-width banner, not a card */
-  }
-  .ad-card-inline img { cursor: pointer; }
-
-  /* ── Sidebar ads layout ─────────────────────────────────── */
-  .province-page-grid {
-    display: grid;
-    grid-template-columns: 1fr 240px;
-    gap: 20px;
-    max-width: 1280px;
+  .ad-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
     margin: 0 auto;
-    align-items: start;
   }
-  .province-main-col .province-container { max-width: none; margin: 0; }
-  .province-ads-col {
-    position: sticky;
-    top: 16px;
+  .ad-link { display: inline-block; line-height: 0; }
+
+  /* ── Sidebar ads (above related articles) ── */
+  .sidebar-ads-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
   }
-  .ads-label {
-    font-size: .68rem;
-    font-weight: 700;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    text-align: center;
-    padding-bottom: 6px;
-    border-bottom: 1px solid var(--border);
-  }
-  .ad-card {
-    background: var(--surface);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,.07);
-  }
-  .ad-card img { width: 100%; height: auto; display: block; }
-  .ad-card a { display: block; }
-  .ad-card a:hover img { opacity: .88; }
+  .sidebar-ads-wrapper .ad-unit { margin: 0; }
 
-  /* Mobile — stack vertically, label on top, full-width ad cards below */
-  @media (max-width: 900px) {
-    .province-page-grid {
-      grid-template-columns: 1fr;
-    }
-    .province-ads-col {
-      position: relative;
-      top: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      width: 100%;
-      margin-top: 20px;
-    }
-    .ads-label {
-      order: -1;
-      width: 100%;
-    }
-    .ad-card {
-      flex: none;
-      width: 100%;
-    }
+  .related-card {
+    display: flex; gap: 12px; margin-bottom: 14px;
+    text-decoration: none; color: inherit;
+    padding: 8px; border-radius: 8px;
+    transition: background 0.2s, transform 0.2s;
   }
+  .related-card:hover { background: rgba(128,128,128,0.08); transform: translateX(3px); }
+  .related-card img { width: 80px; height: 58px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+  .related-content { flex: 1; min-width: 0; }
+  .related-category { display: block; font-size: 0.68rem; color: var(--accent, #D4A017); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 3px; }
+  .related-card h4 { margin: 0 0 4px; font-size: 0.85rem; line-height: 1.35; font-family: var(--font-heading, serif); color: var(--text, #1F1F1F); }
+  .related-meta { font-size: 0.7rem; color: var(--muted, rgba(0,0,0,0.45)); }
+  .no-related { text-align: center; padding: 1rem; color: var(--muted); font-size: 0.88rem; }
+
+  .tag-pill {
+    display: inline-block; background: var(--surface); border: 1px solid var(--border);
+    padding: 4px 12px; border-radius: 20px; font-size: 0.82rem;
+    text-decoration: none; color: var(--text); margin: 3px 2px; transition: background 0.2s, color 0.2s;
+  }
+  .tag-pill:hover { background: var(--accent); color: var(--accent-on); }
+
+  .tooltip {
+    display: none; position: absolute; background: var(--primary); color: var(--primary-on);
+    padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; white-space: nowrap;
+    bottom: 110%; left: 50%; transform: translateX(-50%); z-index: 10; pointer-events: none;
+  }
+  .tooltip.visible { display: block; }
 </style>
 <style>
   :root {
     --accent:       #D4A017;
     --primary:      #A31919;
     --primary-on:   #FFFFFF;
-    --accent-on:    #1F1F1F;
+    --accent-on:    #000000;
     --bg:           #FFFFFF;
     --surface:      #F8F8F8;
     --text:         #1F1F1F;
     --muted:        rgba(31,31,31,0.55);
     --border:       rgba(163,25,25,0.18);
-    --font-body:    'Open Sans', sans-serif;
-    --font-heading: 'Montserrat', sans-serif;
+    --font-body:    Arial, sans-serif;
+    --font-heading: Georgia, serif;
   }
-
-  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--font-body); }
-
-  .province-container:
-    max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem; min-height: 100vh;
-
-  .province-header:
-    text-align: center; margin-bottom: 3rem; padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
-
-  .breadcrumb:
-    font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem;
-  .breadcrumb a:
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); margin: 0; padding: 0; }
+  .article-container {
+    max-width: 1100px; margin: 0 auto; padding: 1.5rem; background: var(--bg);
+  }
+  .article-header {
+    margin-bottom: 1.5rem;
+  }
+  h1 {
+    font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.3;
+    margin: 0.5rem 0 0.75rem; color: var(--primary);
+  }
+  .breadcrumb {
+    font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem;
+  }
+  .breadcrumb a {
     color: var(--accent); text-decoration: none;
-  .breadcrumb a:hover:
+  }
+  .breadcrumb a:hover {
     text-decoration: underline;
-
-  h1:
-    font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.8rem);
-    color: var(--primary); margin-bottom: 1rem; line-height: 1.2;
-
-  .province-description:
-    font-size: 1rem; color: var(--muted); max-width: 700px;
-    margin: 0 auto 1rem; line-height: 1.6;
-
-  .province-meta:
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    background: var(--surface); padding: 0.5rem 1rem;
-    border-radius: 20px; font-size: 0.85rem; color: var(--text);
-
-  .news-grid:
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem; margin-bottom: 3rem;
-
-  /* Article Card Styles */
-  .article-card:
-    background: var(--surface); border-radius: 12px; overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid var(--border);
-  .article-card:hover:
-    transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-
-  .card-image:
-    width: 100%; height: 200px; object-fit: cover; background: var(--border);
-  .card-image:empty:
-    background: linear-gradient(135deg, var(--border) 0%, var(--surface) 100%);
-
-  .card-content:
-    padding: 1.25rem;
-
-  .card-province:
+  }
+  .category-badge span {
     display: inline-block; background: var(--accent); color: var(--accent-on);
-    font-size: 0.7rem; text-transform: uppercase; padding: 0.2rem 0.6rem;
-    border-radius: 4px; margin-bottom: 0.75rem; letter-spacing: 0.05em;
-    font-weight: 600; text-decoration: none;
-
-  .card-title:
-    font-family: var(--font-heading); font-size: 1.2rem; line-height: 1.4;
-    margin: 0 0 0.75rem; color: var(--text); text-decoration: none;
-    transition: color 0.2s;
-  .card-title:hover:
-    color: var(--accent);
-
-  .card-excerpt:
-    font-size: 0.88rem; color: var(--muted); line-height: 1.5;
-    margin-bottom: 1rem;
-
-  .card-meta:
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 0.78rem; color: var(--muted);
-  .card-meta i:
-    margin-right: 0.2rem;
-
-  .read-more:
-    color: var(--accent); text-decoration: none; font-size: 0.85rem;
-    font-weight: 600; transition: opacity 0.2s;
-  .read-more:hover:
-    opacity: 0.8;
-
-  .load-more-container:
-    text-align: center; margin-top: 2rem;
-
-  .load-more-btn:
-    background: var(--accent); color: var(--accent-on); border: none;
-    padding: 0.9rem 2rem; border-radius: 50px; cursor: pointer;
-    font-size: 1rem; font-weight: 600; transition: transform 0.2s, opacity 0.2s;
-    display: inline-flex; align-items: center; gap: 0.5rem;
-  .load-more-btn:hover:
-    opacity: 0.9; transform: scale(1.02);
-  .load-more-btn:disabled:
-    opacity: 0.5; cursor: not-allowed;
-
-  #back-to-top:
+    padding: 3px 10px; border-radius: 4px; font-size: 0.78rem; font-weight: 700;
+    margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .meta {
+    display: flex; gap: 1.2rem; color: var(--muted); font-size: 0.88rem;
+    margin-bottom: 0.75rem; flex-wrap: wrap; align-items: center;
+  }
+  .meta i {
+    margin-right: 4px;
+  }
+  .share-buttons {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 0.5rem;
+  }
+  .share-btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px;
+    border-radius: 5px; border: 1px solid var(--border); background: var(--surface);
+    color: var(--text); cursor: pointer; font-size: 0.85rem;
+    font-family: var(--font-body); transition: all 0.2s ease;
+  }
+  .share-btn:hover {
+    background: var(--accent); color: var(--accent-on); border-color: var(--accent);
+  }
+  .share-btn.facebook:hover {
+    background: #1877F2; color: #fff; border-color: #1877F2;
+  }
+  .share-btn.twitter:hover {
+    background: #1DA1F2; color: #fff; border-color: #1DA1F2;
+  }
+  .copy-link {
+    position: relative;
+  }
+  .tooltip {
+    display: none; position: absolute; background: var(--primary); color: var(--primary-on);
+    padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; white-space: nowrap;
+    bottom: 110%; left: 50%; transform: translateX(-50%); z-index: 10; pointer-events: none;
+  }
+  .tooltip.visible {
+    display: block;
+  }
+  .article-content {
+    display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start;
+  }
+  @media (max-width: 1023px) {
+    .article-content { grid-template-columns: 1fr; }
+  }
+  .main-column {
+    min-width: 0;
+  }
+  .image-wrapper {
+    margin-bottom: 1.5rem;
+  }
+  .image-wrapper img {
+    width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; display: block;
+  }
+  .image-wrapper.hidden {
+    display: none;
+  }
+  .article-body {
+    font-size: 1rem; line-height: 1.8; color: var(--text);
+  }
+  .article-body p {
+    margin-bottom: 1.1rem;
+  }
+  .article-body h2 {
+    font-family: var(--font-heading); margin: 1.8rem 0 0.8rem; font-size: 1.3rem;
+  }
+  .article-body img {
+    max-width: 100%; border-radius: 6px;
+  }
+  .tags-wrapper {
+    margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--border);
+  }
+  .tags-wrapper h3 {
+    font-size: 0.95rem; margin: 0 0 0.6rem; font-family: var(--font-heading);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .tags-list {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .tags-list a {
+    background: var(--surface); border: 1px solid var(--border); padding: 4px 12px;
+    border-radius: 20px; font-size: 0.82rem; text-decoration: none; color: var(--text);
+    transition: 0.2s;
+  }
+  .tags-list a:hover {
+    background: var(--accent); color: var(--accent-on); border-color: var(--accent);
+  }
+  .sidebar {
+    position: sticky; top: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;
+  }
+  .widget {
+    background: var(--surface); padding: 1.4rem; border-radius: 10px; border: 1px solid var(--border);
+  }
+  .widget h3 {
+    font-family: var(--font-heading); font-size: 1.05rem; margin: 0 0 1rem;
+    padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); color: var(--primary);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .widget p {
+    font-size: 0.88rem; color: var(--muted); margin-bottom: 0.6rem; line-height: 1.5;
+  }
+  #newsletter-email {
+    width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px;
+    background: var(--bg); color: var(--text); font-size: 0.88rem;
+    box-sizing: border-box; margin-bottom: 8px; outline: none;
+  }
+  #newsletter-email:focus {
+    border-color: var(--accent);
+  }
+  #newsletter-subscribe {
+    width: 100%; padding: 9px; background: var(--accent); color: var(--accent-on);
+    border: none; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 0.9rem;
+    transition: opacity 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  #newsletter-subscribe:hover {
+    opacity: 0.85;
+  }
+  #back-to-top {
     position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent);
-    color: var(--accent-on); border: none; border-radius: 50%; width: 42px;
-    height: 42px; cursor: pointer; font-size: 1rem; display: none;
-    align-items: center; justify-content: center; z-index: 999;
-    transition: opacity 0.2s;
-
-  /* Empty State */
-  .empty-state:
-    text-align: center; padding: 4rem 2rem; background: var(--surface);
-    border-radius: 12px; color: var(--muted);
-  .empty-state i:
-    font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;
-
-  /* Responsive */
-  @media (max-width: 768px):
-    .province-container { padding: 1rem; }
-    .news-grid { gap: 1rem; grid-template-columns: 1fr; }
-    .card-image { height: 180px; }
-
-  @media (max-width: 480px):
-    h1 { font-size: 1.5rem; }
-    .card-title { font-size: 1rem; }
-
-  /* Language Visibility */
+    color: var(--accent-on); border: none; border-radius: 50%; width: 42px; height: 42px;
+    cursor: pointer; font-size: 1rem; display: none; align-items: center; justify-content: center;
+    z-index: 999; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: opacity 0.2s;
+  }
+  #back-to-top:hover {
+    opacity: 0.85;
+  }
+  .related-card {
+    display: flex; gap: 10px; text-decoration: none; color: var(--text);
+    padding: 0.7rem 0; border-bottom: 1px solid var(--border); align-items: flex-start;
+  }
+  .related-card:last-child {
+    border-bottom: none;
+  }
+  .related-card img {
+    width: 72px; height: 52px; object-fit: cover; border-radius: 5px; flex-shrink: 0;
+  }
+  .related-content {
+    flex: 1; min-width: 0;
+  }
+  .related-category {
+    display: block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    color: var(--accent); letter-spacing: 0.05em; margin-bottom: 2px;
+  }
+  .related-content h4 {
+    margin: 0 0 3px; font-size: 0.85rem; line-height: 1.3; font-family: var(--font-heading);
+    overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  }
+  .related-meta {
+    font-size: 0.75rem; color: var(--muted);
+  }
   .lang-np { display: none; }
   .lang-en { display: inline; }
+  div.lang-en, p.lang-en, h3.lang-en, .article-body.lang-en { display: block; }
+  div.lang-np, p.lang-np, h3.lang-np, .article-body.lang-np { display: none; }
   body.lang-active .lang-en { display: none !important; }
   body.lang-active .lang-np { display: inline !important; }
-  body.lang-active p.lang-np, body.lang-active span.lang-np { display: inline !important; }
+  body.lang-active div.lang-np, body.lang-active p.lang-np, body.lang-active h3.lang-np, body.lang-active .article-body.lang-np { display: block !important; }
+  #article-body-en, #article-body-np { min-height: 2rem; }
 </style>
 <style>
     /* ALL CSS from PART D */
@@ -953,39 +936,58 @@
       min-height: 100vh;
       display: flex; flex-direction: column;
       overflow-x: hidden;
-      background: var(--bg, #ffffff);
-      color: var(--text, #0f172a);
-      font-family: var(--font-body, 'Inter', sans-serif);
+      background: var(--bg, #1C1C1C);
+      color: var(--text, #F0EBE0);
+      font-family: var(--font-body, 'Cormorant Garamond', serif);
     }
     main.main-content { flex: 1; }
     img, video, iframe { max-width: 100%; height: auto; }
 
-    /* ── Language visibility — body.lang-active is the single source of truth ── */
+    header, .site-header, #site-header {
+      max-height: none !important;
+      overflow: visible !important;
+    }
+
+    /* Language system */
+    .lang-en { display: inline !important; }
     .lang-np { display: none !important; }
-    .lang-en { display: inline; }
     div.lang-en, p.lang-en, section.lang-en,
     h1.lang-en, h2.lang-en, h3.lang-en, h4.lang-en,
+    li.lang-en, span.lang-en,
     .article-body.lang-en { display: block !important; }
     div.lang-np, p.lang-np, section.lang-np,
     h1.lang-np, h2.lang-np, h3.lang-np, h4.lang-np,
+    li.lang-np, span.lang-np,
     .article-body.lang-np { display: none !important; }
 
     body.lang-active .lang-en { display: none !important; }
     body.lang-active .lang-np { display: inline !important; }
-    body.lang-active div.lang-np,
-    body.lang-active p.lang-np,
-    body.lang-active section.lang-np,
-    body.lang-active h1.lang-np,
-    body.lang-active h2.lang-np,
-    body.lang-active h3.lang-np,
-    body.lang-active h4.lang-np,
+    body.lang-active div.lang-np, body.lang-active p.lang-np,
+    body.lang-active section.lang-np, body.lang-active h1.lang-np,
+    body.lang-active h2.lang-np, body.lang-active h3.lang-np,
+    body.lang-active h4.lang-np, body.lang-active li.lang-np,
     body.lang-active .article-body.lang-np { display: block !important; }
+    body.lang-active div.lang-en, body.lang-active p.lang-en,
+    body.lang-active section.lang-en, body.lang-active h1.lang-en,
+    body.lang-active h2.lang-en, body.lang-active h3.lang-en,
+    body.lang-active h4.lang-en, body.lang-active li.lang-en,
+    body.lang-active .article-body.lang-en { display: none !important; }
 
+    /* Category badge */
+    .category-badge,
+    .category-label,
+    .article-category,
+    .cat-badge,
+    [class*="category"] {
+      display: inline-block !important;
+      width: auto !important;
+      max-width: fit-content !important;
+    }
   </style>
 </head>
 <body>
 
-  <!-- ════ HEADER ════ -->
+  <!-- ════ HEADER (9070 chars) ════ -->
   <header id="site-header">
 
 
@@ -1050,19 +1052,19 @@
             <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
           </a>
           <ul class="dropdown-menu" id="province-dropdown">
-            <li><a href="koshi.html"><span class="lang-en">Koshi Province</span><span class="lang-np">कोशी प्रदेश</span></a></li>
-            <li><a href="madhesh.html"><span class="lang-en">Madhesh Province</span><span class="lang-np">मधेश प्रदेश</span></a></li>
-            <li><a href="bagmati.html"><span class="lang-en">Bagmati Province</span><span class="lang-np">बागमती प्रदेश</span></a></li>
-            <li><a href="gandaki.html"><span class="lang-en">Gandaki Province</span><span class="lang-np">गण्डकी प्रदेश</span></a></li>
-            <li><a href="lumbini.html"><span class="lang-en">Lumbini Province</span><span class="lang-np">लुम्बिनी प्रदेश</span></a></li>
-            <li><a href="karnali.html"><span class="lang-en">Karnali Province</span><span class="lang-np">कर्णाली प्रदेश</span></a></li>
-            <li><a href="sudurpashchim.html"><span class="lang-en">Sudurpashchim Province</span><span class="lang-np">सुदूरपश्चिम प्रदेश</span></a></li>
+            <li><a href="../province/koshi.html"><span class="lang-en">Koshi Province</span><span class="lang-np">कोशी प्रदेश</span></a></li>
+            <li><a href="../province/madhesh.html"><span class="lang-en">Madhesh Province</span><span class="lang-np">मधेश प्रदेश</span></a></li>
+            <li><a href="../province/bagmati.html"><span class="lang-en">Bagmati Province</span><span class="lang-np">बागमती प्रदेश</span></a></li>
+            <li><a href="../province/gandaki.html"><span class="lang-en">Gandaki Province</span><span class="lang-np">गण्डकी प्रदेश</span></a></li>
+            <li><a href="../province/lumbini.html"><span class="lang-en">Lumbini Province</span><span class="lang-np">लुम्बिनी प्रदेश</span></a></li>
+            <li><a href="../province/karnali.html"><span class="lang-en">Karnali Province</span><span class="lang-np">कर्णाली प्रदेश</span></a></li>
+            <li><a href="../province/sudurpashchim.html"><span class="lang-en">Sudurpashchim Province</span><span class="lang-np">सुदूरपश्चिम प्रदेश</span></a></li>
           </ul>
         </li>
-        <li><a href="../page/epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
-        <li><a href="../page/about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
-        <li><a href="../page/contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
-        <li><a href="../page/video.html"><span class="lang-en">Video</span><span class="lang-np">भिडिय</span></a></li>
+        <li><a href="epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
+        <li><a href="about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
+        <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+        <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडिय</span></a></li>
       </ul>
       <div class="nav-actions">
         <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -1087,95 +1089,95 @@
 <li class="mobile-province-parent">
         <a href="#" id="mobile-province-toggle"><span class="lang-en">Province</span><span class="lang-np">प्रदेश</span> <i class="fa-solid fa-chevron-down"></i></a>
         <ul class="mobile-province-list" id="mobile-province-list" style="display:none;">
-          <li><a href="koshi.html"><span class="lang-en">Koshi Province</span><span class="lang-np">कोशी प्रदेश</span></a></li>
-          <li><a href="madhesh.html"><span class="lang-en">Madhesh Province</span><span class="lang-np">मधेश प्रदेश</span></a></li>
-          <li><a href="bagmati.html"><span class="lang-en">Bagmati Province</span><span class="lang-np">बागमती प्रदेश</span></a></li>
-          <li><a href="gandaki.html"><span class="lang-en">Gandaki Province</span><span class="lang-np">गण्डकी प्रदेश</span></a></li>
-          <li><a href="lumbini.html"><span class="lang-en">Lumbini Province</span><span class="lang-np">लुम्बिनी प्रदेश</span></a></li>
-          <li><a href="karnali.html"><span class="lang-en">Karnali Province</span><span class="lang-np">कर्णाली प्रदेश</span></a></li>
-          <li><a href="sudurpashchim.html"><span class="lang-en">Sudurpashchim Province</span><span class="lang-np">सुदूरपश्चिम प्रदेश</span></a></li>
+          <li><a href="../province/koshi.html"><span class="lang-en">Koshi Province</span><span class="lang-np">कोशी प्रदेश</span></a></li>
+          <li><a href="../province/madhesh.html"><span class="lang-en">Madhesh Province</span><span class="lang-np">मधेश प्रदेश</span></a></li>
+          <li><a href="../province/bagmati.html"><span class="lang-en">Bagmati Province</span><span class="lang-np">बागमती प्रदेश</span></a></li>
+          <li><a href="../province/gandaki.html"><span class="lang-en">Gandaki Province</span><span class="lang-np">गण्डकी प्रदेश</span></a></li>
+          <li><a href="../province/lumbini.html"><span class="lang-en">Lumbini Province</span><span class="lang-np">लुम्बिनी प्रदेश</span></a></li>
+          <li><a href="../province/karnali.html"><span class="lang-en">Karnali Province</span><span class="lang-np">कर्णाली प्रदेश</span></a></li>
+          <li><a href="../province/sudurpashchim.html"><span class="lang-en">Sudurpashchim Province</span><span class="lang-np">सुदूरपश्चिम प्रदेश</span></a></li>
         </ul>
       </li>
-      <li><a href="../page/epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
-      <li><a href="../page/about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
-      <li><a href="../page/contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
-     <li><a href="../page/video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
+      <li><a href="epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
+      <li><a href="about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
+      <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+     <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
     </ul>
   </div>
 
 
 </header>
 
-  <!-- ════ PROVINCE PAGE CONTENT ════ -->
+  <!-- ════ ARTICLE (1 item) ════ -->
   <main class="main-content">
     
 
 
 
-
-
-<div class="province-page-grid">
-       <div class="province-main-col"><div class="province-container">
-
-  <!-- Province Header Section -->
-  <div class="province-header">
+<div class="article-container">
+  <div class="article-header">
     <div class="breadcrumb">
       <span id="breadcrumb-en" class="lang-en"></span>
       <span id="breadcrumb-np" class="lang-np"></span>
     </div>
-    
+    <div class="category-badge">
+      <span id="category-en" class="lang-en"></span>
+      <span id="category-np" class="lang-np"></span>
+    </div>
     <h1>
-      <span id="province-title-en" class="lang-en"></span>
-      <span id="province-title-np" class="lang-np"></span>
+      <span id="title-en" class="lang-en"></span>
+      <span id="title-np" class="lang-np"></span>
     </h1>
-    
-    <p class="province-description">
-      <span id="province-description-en" class="lang-en"></span>
-      <span id="province-description-np" class="lang-np"></span>
-    </p>
-    
-    <div class="province-meta">
-      <span><i class="fa-regular fa-newspaper"></i> <span id="news-count"></span> <span class="lang-en">Articles</span><span class="lang-np">लेखहरू</span></span>
+    <div class="meta">
+      <span><i class="fas fa-calendar"></i> <span id="date"></span></span>
+      <span><i class="fas fa-clock"></i> <span id="readtime-en" class="lang-en"></span><span id="readtime-np" class="lang-np"></span></span>
+    </div>
+    <div class="share-buttons">
+      <button class="share-btn facebook"><i class="fab fa-facebook"></i> Facebook</button>
+      <button class="share-btn twitter"><i class="fab fa-twitter"></i> Twitter</button>
+      <button class="share-btn copy-link"><i class="fas fa-link"></i> Copy Link<span class="tooltip">Copied!</span></button>
     </div>
   </div>
-
-  <!-- News Grid Section -->
-  <div id="news-grid" class="news-grid"></div>
-
-  <!-- Load More Section -->
-  <div class="load-more-container">
-    <button id="load-more-btn" class="load-more-btn">
-      <span class="lang-en"><i class="fas fa-chevron-down"></i> Load More</span>
-      <span class="lang-np"><i class="fas fa-chevron-down"></i> थप लोड गर्नुहोस्</span>
-    </button>
+  <div class="article-content">
+    <div class="main-column">
+      <div class="image-wrapper">
+        <img id="featured-image" src="" alt="" loading="lazy">
+      </div>
+      <div id="article-body-en" class="lang-en article-body"></div>
+      <div id="article-body-np" class="lang-np article-body"></div>
+      <div class="tags-wrapper">
+        <h3 class="lang-en"><i class="fas fa-tags"></i> Tags</h3>
+        <h3 class="lang-np"><i class="fas fa-tags"></i> ट्यागहरू</h3>
+        <div id="tags-en" class="lang-en tags-list"></div>
+        <div id="tags-np" class="lang-np tags-list"></div>
+      </div>
+    </div>
+    <aside class="sidebar">
+      <div class="widget related">
+        <h3 class="lang-en"><i class="fas fa-newspaper"></i> Related Articles</h3>
+        <h3 class="lang-np"><i class="fas fa-newspaper"></i> सम्बन्धित लेखहरू</h3>
+        <div id="related-articles"></div>
+      </div>
+      <div class="widget newsletter">
+        <h3 class="lang-en"><i class="fas fa-envelope"></i> Newsletter</h3>
+        <h3 class="lang-np"><i class="fas fa-envelope"></i> समाचारपत्र</h3>
+        <p class="lang-en">Stay updated — subscribe to our free newsletter and get the latest news delivered to your inbox.</p>
+        <p class="lang-np">अपडेट रहनुहोस् — हाम्रो नि:शुल्क समाचारपत्र सदस्यता लिनुहोस् र नवीनतम समाचार आफ्नो इनबक्समा पाउनुहोस्।</p>
+        <input type="email" id="newsletter-email" placeholder="Enter your email address">
+        <button id="newsletter-subscribe"><i class="fas fa-paper-plane"></i> <span class="lang-en">Subscribe</span><span class="lang-np">सदस्यता लिनुहोस्</span></button>
+      </div>
+    </aside>
   </div>
-
-  <!-- Back to Top Button -->
   
-
 </div>
 
-</div>
-       <aside class="province-ads-col">
-         <div class="ads-label">
-           <span class="lang-en">Advertisement</span>
-           <span class="lang-np" style="display:none">विज्ञापन</span>
-         </div>
-         
-    <div class="ad-card" data-ad-number="1">
-      <img src="../images/sideads_3.jpg" alt="sideads_3.jpg" loading="lazy" style="pointer-events:none;" onerror="this.closest('.ad-card').style.display='none'">
-    </div>
 
-    <div class="ad-card" data-ad-number="2">
-      <img src="../images/sideads_4.jpg" alt="sideads_4.jpg" loading="lazy" style="pointer-events:none;" onerror="this.closest('.ad-card').style.display='none'">
-    </div>
-       </aside>
-     </div>
+
 
 
   </main>
 
-  <!-- ════ FOOTER ════ -->
+  <!-- ════ FOOTER (6795 chars) ════ -->
   <footer id="site-footer">
   
   
@@ -1251,7 +1253,7 @@
           <span class="lang-np">विशेष</span>
         </h4>
         <ul class="footer-link-list">
-          <li><a href="../page/video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
+          <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
         </ul>
       </div>
 
@@ -1262,8 +1264,8 @@
           <span class="lang-np">हाम्रोबारे</span>
         </h4>
         <ul class="footer-link-list">
-          <li><a href="../page/about.html"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></a></li>
-          <li><a href="../page/contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+          <li><a href="about.html"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></a></li>
+          <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
         </ul>
       </div>
 
@@ -1339,7 +1341,7 @@
   
 </footer>
 
-  <!-- ════ WHATSAPP WIDGET ════ -->
+  <!-- ════ WhatsApp widget — pulled directly from footer, no hardcoding ════ -->
   <div class="wa-widget">
     <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
     <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -1370,14 +1372,7 @@
     var hdr = document.getElementById('site-header');
     if (hdr) hdr.classList.toggle('hdr-np', isNp);
 
-    var dtEl = document.getElementById('np-datetime');
-    if (dtEl) {
-      dtEl.textContent = isNp
-        ? (dtEl.getAttribute('data-np') || dtEl.textContent)
-        : (dtEl.getAttribute('data-en') || dtEl.textContent);
-    }
-
-    ['fm_lang', 'language', 'siteLang', 'provinceLang'].forEach(function(k) {
+    ['fm_lang', 'language', 'siteLang', 'articleLang'].forEach(function(k) {
       try { localStorage.setItem(k, lang); } catch(e) {}
     });
 
@@ -1393,13 +1388,12 @@
     var btn = document.getElementById('lang-toggle');
     if (!btn || btn._capturebound) return;
     btn._capturebound = true;
-    // Pre-set guards so header/province scripts skip their own binding
     btn._langBound = true;
     btn._hdrBound  = true;
     btn.addEventListener('click', function(e) {
       e.stopImmediatePropagation();
       broadcast(getCurrentLang() === 'en' ? 'np' : 'en');
-    }, true); // useCapture = true
+    }, true); // useCapture = true — fires before any other bound handler
   }
 
   window.addEventListener('langChange', function(e) {
@@ -1649,14 +1643,246 @@
 (function() {
   'use strict';
 
-  // ── AD → BS Converter ────────────────────────────────────
   var BS_MONTHS_NP = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
   var NP_DIGITS    = ['०','१','२','३','४','५','६','७','८','९'];
-
-  // ── EN months for UTC-safe AD date formatting ────────────
   var EN_MONTHS_FULL = ['January','February','March','April','May','June',
                         'July','August','September','October','November','December'];
 
+  var BS = {
+  2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2004:[366,30,32,31,32,31,30,30,30,29,30,29,31],2005:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2006:[365,31,31,32,32,31,30,30,29,30,29,30,30],2007:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2008:[365,31,31,32,31,31,31,30,29,30,29,30,30],2009:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2010:[365,31,31,32,32,31,30,30,29,30,29,30,30],2011:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2012:[365,31,31,32,31,31,31,30,29,30,29,30,30],2013:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2014:[365,31,31,32,32,31,30,30,29,30,29,30,30],2015:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2016:[366,31,31,32,31,31,31,30,29,30,29,30,31],2017:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2018:[365,31,31,32,32,31,30,30,29,30,29,30,30],2019:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2020:[366,31,31,32,31,31,30,30,29,30,29,30,31],2021:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2022:[365,31,31,32,32,31,30,30,29,30,29,30,30],2023:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2024:[366,31,31,32,31,31,30,30,29,30,29,30,31],2025:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2026:[365,31,31,32,32,31,30,30,29,30,29,30,30],2027:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2028:[366,31,32,31,32,31,30,30,30,29,30,29,31],2029:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2030:[365,31,31,32,31,31,31,30,29,30,29,30,30]
+  };
+
+  var AD_EPOCH_MS = Date.UTC(1943, 2, 31);
+
+  function toNpDigits(n) {
+    return String(n).split('').map(function(d) {
+      var i = parseInt(d, 10); return isNaN(i) ? d : NP_DIGITS[i];
+    }).join('');
+  }
+
+  function adToBs(dateStr) {
+    if (!dateStr) return '';
+    var d = new Date(dateStr);
+    if (isNaN(d.getTime())) return dateStr;
+    var adMidnight = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+    var totalDays  = Math.floor((adMidnight - AD_EPOCH_MS) / 86400000);
+    if (totalDays < 0) return dateStr;
+    var bsYear = 2000;
+    while (true) {
+      var yd = BS[bsYear]; if (!yd) break; if (totalDays < yd[0]) break; totalDays -= yd[0]; bsYear++;
+    }
+    var yd2 = BS[bsYear]; if (!yd2) return dateStr;
+    var bsMonth = 1, bsDay = 1;
+    for (var m = 1; m <= 12; m++) {
+      if (totalDays < yd2[m]) { bsMonth = m; bsDay = totalDays + 1; break; } totalDays -= yd2[m];
+    }
+    return toNpDigits(bsYear) + ' ' + BS_MONTHS_NP[bsMonth - 1] + ' ' + toNpDigits(bsDay);
+  }
+
+  var DATA = {
+    titleEn:        "The Prime Minister will meet the ambassadors of India and China separately.",
+    titleNp:        "प्रधानमन्‍त्रीले भारत र चीनका राजदूतसँग एक्ला-एक्लै भेट गर्ने",
+    categoryEn:     "Politics",
+    categoryNp:     "राजनीति",
+    dateAd:         "July 20, 2026",
+    dateEn:         "July 20, 2026",
+    readTimeEn:     "2 min read",
+    readTimeNp:     "2 मिनेट पढाइ",
+    sourceEn:       "Kantipur",
+    sourceNp:       "कान्तिपुर",
+    creatorEn:      "Anil Giri",
+    creatorNp:      "अनिल गिरी",
+    bodyEnWithAds:  "<p class=\"article-para\">During his three-day visit to Nepal last month, Shah had a one-on-one meeting with Masato Kanda, President of the Asian Development Bank.</p>\n<div class=\"ad-unit\" id=\"insection_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_1.png\" alt=\"insection_1.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p class=\"article-para\">Kathmandu — Prime Minister Baleendra Shah is set to hold separate meetings with the Indian and Chinese ambassadors this week. The Ministry of Foreign Affairs is coordinating these meetings.</p>\n<div class=\"ad-unit\" id=\"insection_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_2.png\" alt=\"insection_2.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p class=\"article-para\">To convey the message that both India and China are equally important to Nepal, Prime Minister Shah is scheduled to meet Indian Ambassador Naveen Srivastava and Chinese Ambassador Zhang Mao Ming on the same day.</p>\n<div class=\"ad-unit\" id=\"insection_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_3.png\" alt=\"insection_3.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p class=\"article-para\">A Prime Minister’s aide said, “The Prime Minister has started meeting various stakeholders over the past two weeks. We have concluded that we must also engage in dialogue with foreign ambassadors and diplomats.” He added, “Given Nepal’s foreign policy priorities, it is natural to begin these meetings with the ambassadors of our two neighbors, India and China.”</p><p class=\"article-para\">Earlier, Prime Minister Shah had refused to meet foreign embassy officials individually after assuming office.</p><p class=\"article-para\">Instead, on Baisakh 26 and Jestha 12, he held joint meetings with ambassadors in Kathmandu, which Nepali diplomats and foreign affairs experts praised as a transparent practice.</p><p class=\"article-para\">The only exception to this was Masato Kanda, President of the Asian Development Bank. During his three-day visit to Nepal last month, Shah held a one-on-one meeting with Kanda.</p><p class=\"article-para\">Meanwhile, shifting from his previous style of avoiding meetings with domestic stakeholders, Prime Minister Shah has recently started regularly meeting with the business community, including industrialists, traders, and construction entrepreneurs.</p><p class=\"article-para\">Previously, Prime Minister Shah had refused to meet high-ranking US diplomats during their visits to Nepal. The US Embassy in Kathmandu had requested meetings with US Assistant Secretary of State for South and Central Asian Affairs Samir Paul Kapur and US Special Envoy for South and Central Asia Sergio Gor, but Shah declined.</p><p class=\"article-para\">Similarly, US Under Secretary of State for Public Diplomacy Sarah B. Rogers also did not get the opportunity to meet the Prime Minister during her visit. In the past, newly elected prime ministers would typically meet foreign ambassadors individually at the Prime Minister’s Office or their official residence within days of assuming office.</p>\n<div class=\"key-takeaway\"><strong>Key takeaways:</strong><p>Prime Minister Baleendra Shah is set to hold separate meetings with the Indian and Chinese ambassadors this week. Earlier, he had refused to meet foreign ambassadors and diplomats.</p></div>",
+    bodyNpWithAds:  "<p class=\"article-para\">गत महिना नेपालको तीनदिने भ्रमणका क्रममा शाहले एसियाली विकास बैंकका अध्यक्ष मासातो कान्डा वान टु वान भेटघाट गरेका थिए</p>\n<div class=\"ad-unit\" id=\"insection_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_1.png\" alt=\"insection_1.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p class=\"article-para\">काठमाडौँ — प्रधानमन्त्री बालेन्द्र शाहले यसै साता भारतीय र चिनियाँ राजदूतहरूसँग एक्ला-एक्लै भेटवार्ता गर्ने भएका छन् ।उक्त भेटघाटको समन्वय परराष्ट्र मन्त्रालयले गर्दैछ ।</p>\n<div class=\"ad-unit\" id=\"insection_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_2.png\" alt=\"insection_2.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p class=\"article-para\">नेपालका लागि भारत र चीन दुबै उत्तिकै महत्त्वपूर्ण छन् भन्ने सन्देश दिन प्रधानमन्त्री शाहले भारतीय राजदूत नवीन श्रीवास्तव र चिनियाँ राजदूत झाङ माओमिङलाई एकै दिन भेट्ने तय भएको छ ।</p>\n<div class=\"ad-unit\" id=\"insection_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_3.png\" alt=\"insection_3.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p class=\"article-para\">प्रधानमन्त्रीका एक सहयोगीले भने, 'प्रधानमन्त्रीज्यूले पछिल्लो दुई सातायता विभिन्न सरोकारवालाहरूसँग भेटघाट सुरु गर्नुभएको छ। अब हामीले विदेशी राजदूत र कूटनीतिज्ञहरूसँग पनि संवाद गर्नुपर्छ भन्ने निष्कर्षमा पुगेका छौँ।' उनले थपे, 'नेपालको परराष्ट्र नीतिको प्राथमिकतालाई ध्यानमा राख्दै हाम्रा दुई छिमेकी भारत र चीनका राजदूतहरूबाट यो भेटघाटको सुरुआत गर्नु स्वाभाविक हो।'</p><p class=\"article-para\">यसअघि प्रधानमन्त्री शाहले पदभार ग्रहण गरेपछि विदेशी राजदूतावासका अधिकारीहरूसँग एक्ला-एक्लै भेट गर्न अस्वीकार गर्दै आएका थिए ।</p><p class=\"article-para\">बरु, उनले गत वैशाख २६ र जेठ १२ मा काठमाडौँस्थित राजदूतहरूसँग संयुक्त बैठक गरे । जसलाई नेपाली कूटनीतिज्ञ र परराष्ट्र मामिलाका विज्ञहरूले पारदर्शी अभ्यास भन्दै प्रशंसा गरेका थिए।</p><p class=\"article-para\">यसमा एउटै अपवादका रुपमा एसियाली विकास बैंकका अध्यक्ष मासातो कान्डा रहे । गत महिना नेपालको तीनदिने भ्रमणका क्रममा शाहले कान्डासँग एक्ला-एक्लै भेटघाट गरेका थिए ।</p><p class=\"article-para\">यसैबीच, घरेलु सरोकारवालाहरूसँग पनि भेटघाटबाट टाढै बच्ने आफ्नो पूर्ववत् शैलीमा परिवर्तन गर्दै प्रधानमन्त्री शाहले हालैका हप्ताहरूमा उद्योगी, व्यापारी, निर्माण व्यवसायीलगायतका व्यापारिक समुदायसँग नियमित रूपमा भेटघाट गर्न थालेका छन्।</p><p class=\"article-para\">प्रधानमन्‍त्री शाहले यसअघि नेपाल भ्रमणमा आएका उच्च अमेरिकी कूटनीतिज्ञहरूसँग पनि भेट्न अस्वीकार गरेका थिए ।काठमाडौँस्थित अमेरिकी दूतावासले दक्षिण तथा मध्य एसियाली मामिला हेर्ने अमेरिकी सहायक विदेशमन्त्री समिर पल कपुर र दक्षिण तथा मध्य एसियाका लागि अमेरिकी राष्ट्रपतिका विशेष दूत सर्जियो गोरसँग भेटका लागि गरेको अनुरोध पनि उनले अस्वीकार गरेका थिए ।</p><p class=\"article-para\">त्यसैगरी, सार्वजनिक कूटनीति मामिलाकी अमेरिकी उपविदेशमन्त्री सारा बी रोजर्सले पनि आफ्नो भ्रमणका क्रममा प्रधानमन्त्रीसँग भेट्ने अवसर पाएकी थिइनन् । विगतमा, नवनिर्वाचित प्रधानमन्त्रीहरूले पदभार ग्रहण गरेको केही दिनभित्रै प्रधानमन्त्री कार्यालय वा उनीहरूको सरकारी निवासमा विदेशी राजदूतहरूसँग व्यक्तिगत रूपमा भेटघाट गर्ने चलन थियो।</p>\n<div class=\"key-takeaway\"><strong>मुख्य बुँदा:</strong><p>प्रधानमन्त्री बालेन्द्र शाहले यसै साता भारतीय र चिनियाँ राजदूतहरूसँग एक्ला-एक्लै भेटवार्ता गर्ने भएका छन्। यसअघि उनले विदेशी राजदूत तथा कूटनीतिज्ञहरूसँग भेटघाट गर्न अस्वीकार गर्दै आएका थिए।</p></div>",
+    sidebarAdsHtml: "<div class=\"sidebar-ads-wrapper\">\n<div class=\"ad-unit\" id=\"sideads_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_3.jpg\" alt=\"sideads_3.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n\n<div class=\"ad-unit\" id=\"sideads_4\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_4.jpg\" alt=\"sideads_4.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div></div>",
+    imageUrl:       "../images/the-prime-minister-will-meet-the-ambassadors-of-india-and-china-separately.jpg",
+    breadcrumbEn:   "<a href=\"../index.html\">Home</a> / <a href=\"../category/politics\">Politics</a> / The Prime Minister will meet the ambassadors of In...",
+    breadcrumbNp:   "<a href=\"../index.html\">गृहपृष्ठ</a> / <a href=\"../category/politics\">राजनीति</a> / प्रधानमन्‍त्रीले भारत र चीनका राजदूतसँग एक्ला-एक्ल...",
+    tagsEn:         "<a href=\"#\" class=\"tag-pill\">Balendra Shah</a><a href=\"#\" class=\"tag-pill\">Indian Ambassador Navin Shrivastav</a><a href=\"#\" class=\"tag-pill\">Chinese Ambassador Zhang Maoming</a><a href=\"#\" class=\"tag-pill\">foreign policy</a><a href=\"#\" class=\"tag-pill\">diplomatic meeting</a><a href=\"#\" class=\"tag-pill\">Asian Development Bank</a>",
+    tagsNp:         "<a href=\"#\" class=\"tag-pill\">बालेन्द्र शाह</a><a href=\"#\" class=\"tag-pill\">भारतीय राजदूत नवीन श्रीवास्तव</a><a href=\"#\" class=\"tag-pill\">चिनियाँ राजदूत झाङ माओमिङ</a><a href=\"#\" class=\"tag-pill\">परराष्ट्र नीति</a><a href=\"#\" class=\"tag-pill\">कूटनीतिक भेटघाट</a><a href=\"#\" class=\"tag-pill\">एसियाली विकास बैंक</a>",
+    relatedHtml:    "<p class=\"no-related lang-en\">No related articles found.</p>\n            <p class=\"no-related lang-np\" style=\"display:none\">कुनै सम्बन्धित लेख फेला परेन।</p>"
+  };
+
+  function populate() {
+    var el = function(id) { return document.getElementById(id); };
+    if (el('breadcrumb-en'))    el('breadcrumb-en').innerHTML    = DATA.breadcrumbEn;
+    if (el('breadcrumb-np'))    el('breadcrumb-np').innerHTML    = DATA.breadcrumbNp;
+    if (el('category-en'))      el('category-en').textContent    = DATA.categoryEn;
+    if (el('category-np'))      el('category-np').textContent    = DATA.categoryNp;
+    if (el('title-en'))         el('title-en').textContent       = DATA.titleEn;
+    if (el('title-np'))         el('title-np').textContent       = DATA.titleNp;
+    if (el('readtime-en'))      el('readtime-en').textContent    = DATA.readTimeEn;
+    if (el('readtime-np'))      el('readtime-np').textContent    = DATA.readTimeNp;
+    if (el('tags-en'))          el('tags-en').innerHTML          = DATA.tagsEn;
+    if (el('tags-np'))          el('tags-np').innerHTML          = DATA.tagsNp;
+    if (el('article-body-en'))  el('article-body-en').innerHTML  = DATA.bodyEnWithAds;
+    if (el('article-body-np'))  el('article-body-np').innerHTML  = DATA.bodyNpWithAds;
+
+    var relatedContainer = el('related-articles');
+    if (relatedContainer) {
+      var sidebarWidget = relatedContainer.closest('.widget.related') || relatedContainer.parentElement;
+      if (sidebarWidget && DATA.sidebarAdsHtml) {
+        sidebarWidget.insertAdjacentHTML('beforebegin', DATA.sidebarAdsHtml);
+      }
+      relatedContainer.innerHTML = DATA.relatedHtml;
+    }
+
+    var dateEl = el('date');
+    if (dateEl) {
+      dateEl.setAttribute('data-date-ad', DATA.dateAd);
+      var span = dateEl.querySelector('.date-display');
+      if (!span) { dateEl.innerHTML = '<span class="date-display">' + DATA.dateEn + '</span>'; }
+      else { span.textContent = DATA.dateEn; }
+    }
+
+    var img = el('featured-image');
+    if (img) {
+      if (DATA.imageUrl) {
+        img.src = DATA.imageUrl; img.alt = DATA.titleEn;
+        img.onerror = function() { this.src = 'https://placehold.co/1200x675/1a1a1a/ffffff?text=Image+Not+Found'; };
+      } else {
+        var wrapper = img.closest('.image-wrapper');
+        if (wrapper) wrapper.style.display = 'none';
+      }
+    }
+
+    var dateEl2 = el('date');
+    if (dateEl2 && (DATA.sourceEn || DATA.creatorEn)) {
+      var metaBar = dateEl2.closest('.meta') || dateEl2.parentElement;
+      if (metaBar && !metaBar.querySelector('#meta-source')) {
+        var enParts = [DATA.sourceEn ? 'Source: ' + DATA.sourceEn : '', DATA.creatorEn ? 'Creator: ' + DATA.creatorEn : ''].filter(Boolean).join(' · ');
+        var npParts = [DATA.sourceNp ? 'स्रोत: ' + DATA.sourceNp : '', DATA.creatorNp ? 'सिर्जनाकर्ता: ' + DATA.creatorNp : ''].filter(Boolean).join(' · ');
+        var srcSpan = document.createElement('span');
+        srcSpan.id = 'meta-source';
+        srcSpan.style.cssText = 'font-size:0.78rem;display:inline-flex;align-items:center;gap:4px;';
+        srcSpan.innerHTML =
+          '<i class="fas fa-pen-nib" style="font-size:.7rem;opacity:.6;flex-shrink:0;"></i>' +
+          '<span class="lang-en">' + enParts + '</span>' +
+          '<span class="lang-np" style="display:none">' + npParts + '</span>';
+        metaBar.appendChild(srcSpan);
+      }
+    }
+  }
+
+  function updateDates(isNp) {
+    document.querySelectorAll('[data-date-ad]').forEach(function(el) {
+      var adStr = el.getAttribute('data-date-ad');
+      var display = el.querySelector('.date-display');
+      if (!display) return;
+      if (isNp) { display.textContent = adToBs(adStr); }
+      else {
+        var d = new Date(adStr);
+        if (!isNaN(d.getTime())) {
+          display.textContent = EN_MONTHS_FULL[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
+        } else { display.textContent = adStr; }
+      }
+    });
+  }
+
+  function getDisplay(el, active) {
+    if (!active) return 'none';
+    var tag = el.tagName.toLowerCase();
+    return (tag === 'span' || tag === 'a' || tag === 'i' || tag === 'b' || tag === 'strong') ? 'inline' : 'block';
+  }
+
+  window.setArticleLang = function(lang) {
+    var isEn = (lang === 'en');
+    document.querySelectorAll('.lang-en').forEach(function(el) { el.style.display = getDisplay(el, isEn); });
+    document.querySelectorAll('.lang-np').forEach(function(el) { el.style.display = getDisplay(el, !isEn); });
+    updateDates(!isEn);
+    try { localStorage.setItem('articleLang', lang); } catch(e) {}
+    window.__articleLang = lang;
+    if (!isEn) { document.body.classList.add('lang-active'); }
+    else        { document.body.classList.remove('lang-active'); }
+  };
+
+  function applyStoredLang() {
+    var stored; try { stored = localStorage.getItem('articleLang'); } catch(e) {}
+    window.setArticleLang(stored || 'en');
+  }
+
+  function initShareButtons() {
+    document.querySelectorAll('.share-btn.facebook').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank', 'width=600,height=400');
+      });
+    });
+    document.querySelectorAll('.share-btn.twitter').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var text = document.getElementById('title-en') ? document.getElementById('title-en').textContent : document.title;
+        window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(text), '_blank', 'width=600,height=400');
+      });
+    });
+  }
+
+  function initCopyButtons() {
+    document.querySelectorAll('.copy-link').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        navigator.clipboard.writeText(window.location.href).catch(function() {
+          var ta = document.createElement('textarea'); ta.value = window.location.href;
+          document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+        });
+        var tooltip = btn.querySelector('.tooltip');
+        if (tooltip) { tooltip.classList.add('visible'); setTimeout(function() { tooltip.classList.remove('visible'); }, 2000); }
+      });
+    });
+  }
+
+  function initBackToTop() {
+    var btn = document.getElementById('back-to-top'); if (!btn) return;
+    window.addEventListener('scroll', function() { btn.style.display = window.scrollY > 300 ? 'flex' : 'none'; });
+    btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  }
+
+  function initNewsletter() {
+    var btn = document.getElementById('newsletter-subscribe'); if (!btn) return;
+    btn.addEventListener('click', function() {
+      var emailEl = document.getElementById('newsletter-email');
+      var val = emailEl ? emailEl.value.trim() : '';
+      if (!val || !/^[^s@]+@[^s@]+.[^s@]+$/.test(val)) {
+        alert(window.__articleLang === 'np' ? 'कृपया मान्य इमेल ठेगाना प्रविष्ट गर्नुहोस्।' : 'Please enter a valid email address.');
+        return;
+      }
+      alert(window.__articleLang === 'np' ? 'सदस्यता लिनुभएकोमा धन्यवाद!' : 'Thank you for subscribing!');
+    });
+  }
+
+  window.addEventListener('langChange', function(e) {
+    if (e && e.detail && e.detail.lang) window.setArticleLang(e.detail.lang);
+  });
+
+  function init() {
+    populate(); applyStoredLang(); initShareButtons(); initCopyButtons(); initBackToTop(); initNewsletter();
+    window.dispatchEvent(new CustomEvent('articleContentLoaded'));
+  }
+
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); }
+  else { init(); }
+
+  window.refreshArticleContent = function() { populate(); applyStoredLang(); };
+})();
+</script>
+<script>
+(function() {
+  'use strict';
+  var NP_DIGITS    = ['०','१','२','३','४','५','६','७','८','९'];
+  var BS_MONTHS_NP = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
+  var EN_MONTHS    = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   var BS_DATA = {
     2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],
     2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],
@@ -1690,379 +1916,74 @@
     2058:[365,30,32,31,32,31,30,30,30,29,29,30,30],2059:[366,31,32,31,32,31,30,30,30,29,30,29,31],
     2060:[365,31,31,32,31,31,31,30,29,30,29,30,30],2061:[365,31,31,32,31,31,31,30,29,30,29,30,30],
     2062:[365,31,31,32,32,31,30,30,29,30,29,30,30],2063:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-    2064:[366,31,31,32,31,31,30,30,29,30,29,30,31],
-    2065:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-    2066:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-    2067:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-    2068:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-    2069:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-    2070:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-    2071:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-    2072:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-    2073:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-    2074:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-    2075:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-    2076:[365,31,32,31,32,31,30,30,30,29,30,29,31],
-    2077:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-    2078:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-    2079:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-    2080:[365,31,32,31,32,31,30,30,30,29,30,29,31],
-    2081:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-    2082:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-    2083:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-    2084:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-    2085:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-    2086:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-    2087:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-    2088:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-    2089:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2064:[366,31,31,32,31,31,30,30,29,30,29,30,31],2065:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2066:[365,31,31,32,31,31,31,30,29,30,29,30,30],2067:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2068:[366,31,32,31,32,31,30,30,30,29,30,29,31],2069:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2070:[365,31,31,32,32,31,30,30,29,30,29,30,30],2071:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2072:[366,31,32,31,32,31,30,30,30,29,30,29,31],2073:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2074:[365,31,31,32,32,31,30,30,29,30,29,30,30],2075:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2076:[365,31,32,31,32,31,30,30,30,29,30,29,31],2077:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2078:[365,31,31,32,31,31,31,30,29,30,29,30,30],2079:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2080:[365,31,32,31,32,31,30,30,30,29,30,29,31],2081:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2082:[365,31,31,32,32,31,30,30,29,30,29,30,30],2083:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2084:[366,31,32,31,32,31,30,30,30,29,30,29,31],2085:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2086:[365,31,31,32,32,31,30,30,29,30,29,30,30],2087:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2088:[366,31,32,31,32,31,30,30,30,29,30,29,31],2089:[365,31,31,32,31,31,31,30,29,30,29,30,30],
     2090:[365,31,31,32,32,31,30,30,29,30,29,30,30]
   };
-
   var AD_EPOCH_MS = Date.UTC(1943, 2, 31);
 
   function toNpDigits(n) {
     return String(n).split('').map(function(d) {
-      var i = parseInt(d, 10);
-      return isNaN(i) ? d : NP_DIGITS[i];
+      var i = parseInt(d, 10); return isNaN(i) ? d : NP_DIGITS[i];
     }).join('');
   }
-
-  // ── UTC-safe epoch math — avoids Nepal UTC+5:45 off-by-one ──
   function adToBs(dateStr) {
     if (!dateStr) return '';
     var d = new Date(dateStr);
     if (isNaN(d.getTime())) return dateStr;
-
-    var totalDays = Math.floor(
-      (Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()) - AD_EPOCH_MS) / 86400000
-    );
+    var totalDays = Math.floor((Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()) - AD_EPOCH_MS) / 86400000);
     if (totalDays < 0) return dateStr;
-
     var bsYear = 2000;
-    while (true) {
-      var yd = BS_DATA[bsYear];
-      if (!yd || totalDays < yd[0]) break;
-      totalDays -= yd[0];
-      bsYear++;
-    }
-    var yd2 = BS_DATA[bsYear];
-    if (!yd2) return dateStr;
+    while (true) { var yd = BS_DATA[bsYear]; if (!yd || totalDays < yd[0]) break; totalDays -= yd[0]; bsYear++; }
+    var yd2 = BS_DATA[bsYear]; if (!yd2) return dateStr;
     var bsMonth = 1, bsDay = 1;
     for (var m = 1; m <= 12; m++) {
-      if (totalDays < yd2[m]) { bsMonth = m; bsDay = totalDays + 1; break; }
-      totalDays -= yd2[m];
+      if (totalDays < yd2[m]) { bsMonth = m; bsDay = totalDays + 1; break; } totalDays -= yd2[m];
     }
     return toNpDigits(bsYear) + ' ' + BS_MONTHS_NP[bsMonth - 1] + ' ' + toNpDigits(bsDay);
   }
-
-  // ── UTC-safe EN date formatter ────────────────────
   function formatDateEn(dateStr) {
     if (!dateStr) return '';
     var d = new Date(dateStr);
     if (isNaN(d.getTime())) return dateStr;
-    return EN_MONTHS_FULL[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
+    return EN_MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
   }
 
-  // ── Province data ─────────────────────────────────────────
-  var PROVINCE_NP_MAP = {
-    'Bagmati':        'बागमती',
-    'Gandaki':        'गण्डकी',
-    'Lumbini':        'लुम्बिनी',
-    'Madhesh':        'मधेश',
-    'Sudurpashchim':  'सुदूरपश्चिम',
-    'Karnali':        'कर्णाली',
-    'Koshi':          'कोशी'
-  };
-
-  var PROVINCE_DATA = {
-    nameEn:       "Bagmati",
-    nameNp:       "बागमती",
-    descEn:       "Bagmati — Latest news and updates from this province.",
-    descNp:       "बागमती — यस प्रदेशका नवीनतम समाचार र अपडेटहरू।",
-    totalCount:   3,
-    allArticles:  [{"newsIndex":0,"recordId":1798,"title":"Food has been stopped at Banepa Holding Center for 14 days.","titleNe":"बनेपा होल्डिङ सेन्टरमा १४ दिनदेखि खाना रोकियो","slug":"food-has-been-stopped-at-banepa-holding-center-for-14-days","province":"Bagmati","provinceNe":"बागमती","category":"Local","categoryNe":"स्थानीय","metaDesc":"The government has stopped providing food to the displaced squatters staying at the holding center in Banepa for the past 14 days.","metaDescNe":"सरकारले १४ दिनदेखि बनेपाको होल्डिङ सेन्टरमा बस्ने विस्थापित सुकुमवासीहरूको खाना रोकिदिएको छ।","readTime":"3 min read","readTimeNe":"3 मिनेट पढाइ","date":"2026-07-20T00:00:00.000Z","time":"6:41 PM","creator":"Devotion, Ms. Jyoti Shrestha","creatorNp":"समर्पण श्री,ज्योती श्रेष्ठ","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/food-has-been-stopped-at-banepa-holding-center-for-14-days.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":1,"recordId":1728,"title":"After the new passport system was implemented in Ramechhap, the problems that had appeared were resolved, and the service became regular.","titleNe":"रामेछापमा नयाँ राहदानी प्रणाली लागू भएपछि देखिएको समस्या हट्यो, सेवा नियमित","slug":"after-the-new-passport-system-was-implemented-in-ramechhap-the-problems-that-had-appeared-were-resolved-and-the-service-became-regular","province":"Bagmati","provinceNe":"बागमती","category":"General","categoryNe":"सामान्य","metaDesc":"The new passport system has been implemented in Ramechhap, and despite some initial technical issues, services are now operating regularly and smoothly.","metaDescNe":"रामेछापमा नयाँ राहदानी प्रणाली लागू हुँदा केही प्राविधिक समस्या आए पनि हाल सेवा नियमित र सहज रूपमा सञ्चालन भइरहेको छ।","readTime":"2 min read","readTimeNe":"2 मिनेट पढाइ","date":"2026-07-19T00:00:00.000Z","time":"11:50 AM","creator":"","creatorNp":"नवराज श्रेष्ठ","source":"Kantipur","sourceNp":"","imageUrls":"../images/after-the-new-passport-system-was-implemented-in-ramechhap-the-problems-that-had-appeared-were-resolved-and-the-service-became-regular.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":2,"recordId":1716,"title":"The landslide has obstructed the Kantipur Lokpath.","titleNe":"पहिरोले कान्ति लोकपथ अवरुद्ध","slug":"the-landslide-has-obstructed-the-kantipur-lokpath","province":"Bagmati","provinceNe":"बागमती","category":"Local","categoryNe":"स्थानीय","metaDesc":"A continuous landslide following the heavy rainfall has completely blocked the Kantilokpath in Pangdure, Lalitpur.","metaDescNe":"लगातारको वर्षाले ललितपुरको पाङदुरेमा पहिरो खसेपछि कान्तिलोकपथ पूर्ण रूपमा बन्द भएको छ।","readTime":"2 min read","readTimeNe":"2 मिनेट पढाइ","date":"2026-07-19T00:00:00.000Z","time":"11:48 AM","creator":"Pratap Bista","creatorNp":"प्रताप विष्ट","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/the-landslide-has-obstructed-the-kantipur-lokpath.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"}],
-    itemsPerPage: 6
-  };
-
-  // ── Section ads: cycle through these, one every N real articles ──
-  var SECTION_ADS = [{"img":"../images/section_1.jpg","link":""},{"img":"../images/insection_1.png","link":""},{"img":"../images/section_2.jpg","link":""},{"img":"../images/insection_2.png","link":""},{"img":"../images/insection_3.png","link":""}];
-  var AD_EVERY_N  = 6;
-  var adCycleIndex = 0; // persists across load-more calls
-
-  // Section ad card — full-width banner, matches index/category page style
-  function buildSectionAdCardHtml() {
-    if (!SECTION_ADS.length) return '';
-    var ad = SECTION_ADS[adCycleIndex % SECTION_ADS.length];
-    adCycleIndex++;
+  function updateAllDates() {
     var isNp = document.body.classList.contains('lang-active');
-    var inner = '<img src="' + ad.img + '" alt="Advertisement" loading="lazy" ' +
-      'style="width:100%;height:auto;max-height:220px;object-fit:cover;border-radius:4px;display:block;" ' +
-      'onerror="this.closest(\'.ad-card-inline\').style.display=\'none\'">';
-    var wrapped = ad.link
-      ? '<a href="' + ad.link + '" target="_blank" rel="noopener noreferrer sponsored" style="display:block;">' + inner + '</a>'
-      : inner;
-    return '<div class="ad-card-inline" style="grid-column:1 / -1;width:100%;margin:12px 0;text-align:center;">' +
-      wrapped +
-      '<span class="lang-en" style="display:' + (isNp ? 'none' : 'block') + ';margin-top:6px;font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;">Advertisement</span>' +
-      '<span class="lang-np" style="display:' + (isNp ? 'block' : 'none') + ';margin-top:6px;font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;">विज्ञापन</span>' +
-      '</div>';
-  }
-
-  var currentPage = 1;
-  var isLoading   = false;
-  var articlesRenderedCount = 0; // tracks real articles rendered so far, for ad cadence
-
-  // ── Render articles ───────────────────────────────────────
-  function renderArticles(articles, append) {
-    var grid = document.getElementById('news-grid');
-    if (!grid) return;
-
-    var isNp = document.body.classList.contains('lang-active');
-    var html = '';
-
-    articles.forEach(function(article, idx) {
-      var title      = article.title      || 'Untitled';
-      var titleNe    = article.titleNe    || title;
-      var slug       = article.slug       || '#';
-      var date       = article.date       || '';
-      var time       = article.time       || '';
-      var readTime   = article.readTime   || '';
-      var readTimeNe = article.readTimeNe || readTime;
-      var imageUrl   = article.imageUrls  || '';
-      var excerpt    = article.metaDesc   || '';
-      var excerptNe  = article.metaDescNe || excerpt;
-      var creator    = article.creator    || '';
-      var creatorNp  = article.creatorNp  || '';
-      var source     = article.source     || '';
-      var sourceNp   = article.sourceNp   || '';
-
-      var province      = article.province   || PROVINCE_DATA.nameEn;
-      var provinceNe    = article.provinceNe || PROVINCE_NP_MAP[province] || province;
-
-      var dateTimeEn = date ? formatDateEn(date) + (time ? ', ' + time : '') : '';
-      var dateTimeNp = date ? adToBs(date)        + (time ? ', ' + time : '') : '';
-
-      // ── Source / Creator row ──────────────────────────────
-      var sourceCreatorHtml = '';
-      if (source || creator) {
-        var enText = source && creator
-          ? 'Source: ' + source + ' · Creator: ' + creator
-          : source
-            ? 'Source: ' + source
-            : 'Creator: ' + creator;
-        var npText = source && creator
-          ? 'स्रोत: ' + (sourceNp || source) + ' · सिर्जनाकर्ता: ' + (creatorNp || creator)
-          : source
-            ? 'स्रोत: ' + (sourceNp || source)
-            : 'सिर्जनाकर्ता: ' + (creatorNp || creator);
-
-        sourceCreatorHtml =
-          `<div class="card-source-creator" style="font-size:.72rem;color:var(--muted);margin-top:4px;display:flex;align-items:center;gap:4px;flex-wrap:wrap;">` +
-          `<span class="lang-en" style="${isNp ? 'display:none' : ''}">${enText}</span>` +
-          `<span class="lang-np"  style="${isNp ? '' : 'display:none'}">${npText}</span>` +
-          `</div>`;
-      }
-
-      html += `
-  <article class="article-card" data-slug="${slug}" data-index="${idx}" onclick="window.location.href='/page/${slug}.html'" style="cursor:pointer;">
-        ${imageUrl
-          ? `<img class="card-image" src="${imageUrl}" alt="${title.replace(/"/g,'&quot;')}" loading="lazy" onerror="this.style.display='none'">`
-          : '<div class="card-image no-image"></div>'}
-        <div class="card-content">
-          <div class="card-province-wrapper">
-            <span class="card-province lang-en" style="${isNp?'display:none':''}">${province}</span>
-            <span class="card-province lang-np"  style="${isNp?'':'display:none'}">${provinceNe}</span>
-          </div>
-          <a href="/page/${slug}.html" class="card-title-link">
-            <h3 class="card-title lang-en" style="${isNp?'display:none':''}">${title}</h3>
-            <h3 class="card-title lang-np"  style="${isNp?'':'display:none'}">${titleNe}</h3>
-          </a>
-          <p class="card-excerpt lang-en" style="${isNp?'display:none':''}">${(excerpt||'').substring(0,120)}${(excerpt||'').length>120?'...':''}</p>
-          <p class="card-excerpt lang-np"  style="${isNp?'':'display:none'}">${(excerptNe||'').substring(0,120)}${(excerptNe||'').length>120?'...':''}</p>
-          <div class="card-meta">
-            <span>
-              <i class="fa-regular fa-calendar"></i>
-              <span class="date-display lang-en" data-date-ad="${date}" data-time="${time}" style="${isNp?'display:none':''}">${dateTimeEn}</span>
-              <span class="date-display lang-np"  data-date-ad="${date}" data-time="${time}" style="${isNp?'':'display:none'}">${dateTimeNp}</span>
-            </span>
-            <span>
-              <i class="fa-regular fa-clock"></i>
-              <span class="lang-en" style="${isNp?'display:none':''}">${readTime}</span>
-              <span class="lang-np"  style="${isNp?'':'display:none'}">${readTimeNe}</span>
-            </span>
-          </div>
-          ${sourceCreatorHtml}
-        </div>
-      </article>
-      `;
-
-      // ── Insert a section ad after every AD_EVERY_N real articles ──
-      articlesRenderedCount++;
-      if (SECTION_ADS.length && (articlesRenderedCount % AD_EVERY_N === 0)) {
-        html += buildSectionAdCardHtml();
-      }
-    });
-
-    if (append) {
-      grid.insertAdjacentHTML('beforeend', html);
-    } else {
-      grid.innerHTML = html;
-    }
-  }
-
-  // ── UTC-safe date update on lang switch ────────────
-  function updateDates(isNp) {
-    document.querySelectorAll('.date-display[data-date-ad]').forEach(function(el) {
+    document.querySelectorAll('[data-date-ad]').forEach(function(el) {
       var adStr   = el.getAttribute('data-date-ad') || '';
-      var timeStr = el.getAttribute('data-time')    || '';
+      var timeStr = el.getAttribute('data-time') || '';
       if (!adStr) return;
-
-      var isNpEl = el.classList.contains('lang-np');
-      if (isNp && isNpEl) {
-        el.textContent = adToBs(adStr) + (timeStr ? ', ' + timeStr : '');
-      } else if (!isNp && !isNpEl) {
-        el.textContent = formatDateEn(adStr) + (timeStr ? ', ' + timeStr : '');
-      }
+      var display = el.classList.contains('date-display') ? el : el.querySelector('.date-display');
+      if (!display) return;
+      display.textContent = isNp
+        ? adToBs(adStr) + (timeStr ? ', ' + timeStr : '')
+        : formatDateEn(adStr) + (timeStr ? ', ' + timeStr : '');
     });
   }
 
-  // ── Load more ─────────────────────────────────────────────
-  function loadMore() {
-    if (isLoading) return;
-    var start = currentPage * PROVINCE_DATA.itemsPerPage;
-    var end   = start + PROVINCE_DATA.itemsPerPage;
-    var next  = PROVINCE_DATA.allArticles.slice(start, end);
-
-    if (next.length === 0) {
-      var btn = document.getElementById('load-more-btn');
-      if (btn) {
-        btn.disabled = true;
-        btn.innerHTML = document.body.classList.contains('lang-active')
-          ? 'थप लेखहरू छैनन्'
-          : 'No more articles';
-      }
-      return;
-    }
-
-    renderArticles(next, true);
-    currentPage++;
-  }
-
-  // ── Back to top ───────────────────────────────────────────
-  function initBackToTop() {
-    var btn = document.getElementById('back-to-top');
-    if (!btn) return;
-    window.addEventListener('scroll', function() {
-      btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
-    });
-    btn.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  // ── Language apply ────────────────────────────────────────
-  function applyLang(lang) {
-    var isNp = (lang === 'np');
-
-    document.querySelectorAll('.lang-en, .lang-np').forEach(function(el) {
-      var isNpEl = el.classList.contains('lang-np');
-      var show   = isNp ? isNpEl : !isNpEl;
-      if (!show) { el.style.display = 'none'; return; }
-
-      var tag = (el.tagName || '').toLowerCase();
-      var inlineTags = ['span','a','i','b','strong','em','label','button','small'];
-      if (el.classList.contains('card-excerpt')) {
-        el.style.display = 'block';
-      } else if (inlineTags.indexOf(tag) !== -1) {
-        el.style.display = 'inline';
-      } else {
-        el.style.display = 'block';
-      }
-    });
-
-    updateDates(isNp);
-    document.body.classList.toggle('lang-active', isNp);
-  }
-
-  // ── Init ─────────────────────────────────────────────────
-  function init() {
-    var titleEn      = document.getElementById('province-title-en');
-    var titleNp      = document.getElementById('province-title-np');
-    var countSpan    = document.getElementById('news-count');
-    var descEn       = document.getElementById('province-description-en');
-    var descNp       = document.getElementById('province-description-np');
-    var breadcrumbEn = document.getElementById('breadcrumb-en');
-    var breadcrumbNp = document.getElementById('breadcrumb-np');
-
-    if (titleEn)      titleEn.textContent    = PROVINCE_DATA.nameEn;
-    if (titleNp)      titleNp.textContent    = PROVINCE_DATA.nameNp;
-    if (countSpan)    countSpan.textContent  = PROVINCE_DATA.totalCount;
-    if (descEn)       descEn.textContent     = PROVINCE_DATA.descEn;
-    if (descNp)       descNp.textContent     = PROVINCE_DATA.descNp;
-    if (breadcrumbEn) breadcrumbEn.innerHTML = '<a href="../index.html">Home</a> / ' + PROVINCE_DATA.nameEn;
-    if (breadcrumbNp) breadcrumbNp.innerHTML = '<a href="../index.html">गृहपृष्ठ</a> / ' + PROVINCE_DATA.nameNp;
-
-    // Render first page
-    var first = PROVINCE_DATA.allArticles.slice(0, PROVINCE_DATA.itemsPerPage);
-    renderArticles(first, false);
-    currentPage = 1;
-
-    // ── Toggle any AI-generated empty-state block ──────────────
-    // The LLM sometimes bakes a static "No articles found" element
-    // into the template regardless of actual article count. Only
-    // show it when there truly are zero articles.
-    var emptyStateEls = document.querySelectorAll('.empty-state, [class*="empty-state"]');
-    emptyStateEls.forEach(function(el) {
-      el.style.display = PROVINCE_DATA.totalCount === 0 ? '' : 'none';
-    });
-
-    // Fallback: some LLM outputs don't use an "empty-state" class at all —
-    // find any element whose own text (not counting children we just
-    // rendered) mentions "no articles" and hide it when we have articles.
-    if (PROVINCE_DATA.totalCount > 0) {
-      var newsGrid = document.getElementById('news-grid');
-      document.querySelectorAll('body *').forEach(function(el) {
-        if (newsGrid && newsGrid.contains(el)) return; // never touch rendered cards
-        if (el.children.length > 0) return; // only leaf text nodes
-        var txt = (el.textContent || '').trim().toLowerCase();
-        if (txt && /no articles? found|no news found|no articles? available/.test(txt)) {
-          // hide the closest reasonably-sized wrapper, not just the text node
-          var wrapper = el.closest('div, section') || el;
-          wrapper.style.display = 'none';
-        }
-      });
-    }
-
-    // Hide load-more if all articles already shown
-    var loadBtn = document.getElementById('load-more-btn');
-    if (loadBtn) {
-      if (PROVINCE_DATA.allArticles.length <= PROVINCE_DATA.itemsPerPage) {
-        loadBtn.style.display = 'none';
-      } else {
-        loadBtn.addEventListener('click', loadMore);
-      }
-    }
-
-    initBackToTop();
-
-    // Sync with global lang state
-    var storedLang;
-    try { storedLang = localStorage.getItem('fm_lang') || localStorage.getItem('provinceLang'); } catch(e) {}
-    applyLang(storedLang || 'en');
-  }
-
-  // Listen for global lang changes from header toggle
-  window.addEventListener('langChange', function(e) {
-    if (e && e.detail && e.detail.lang) {
-      applyLang(e.detail.lang);
-    }
-  });
+  // Run on every langChange, on DOM ready, and again shortly after
+  // (covers the case where populate() re-renders #date/.related-articles
+  // AFTER this script first runs, e.g. race with POPULATION_SCRIPT).
+  window.addEventListener('langChange', function() { setTimeout(updateAllDates, 30); });
+  window.addEventListener('articleContentLoaded', function() { setTimeout(updateAllDates, 30); });
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', function() { setTimeout(updateAllDates, 50); });
   } else {
-    init();
+    setTimeout(updateAllDates, 50);
   }
 })();
 </script>
@@ -2083,98 +2004,23 @@
     });
   </script>
 
-  <!-- ════ Province card AD→BS date conversion ════ -->
+  <!-- ════ WhatsApp tooltip controller ════ -->
   <script>
-  (function() {
-    'use strict';
-    var NP_DIGITS    = ['०','१','२','३','४','५','६','७','८','९'];
-    var BS_MONTHS_NP = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
-    var BS_DATA = {
-      2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2004:[366,30,32,31,32,31,30,30,30,29,30,29,31],2005:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2006:[365,31,31,32,32,31,30,30,29,30,29,30,30],2007:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2008:[365,31,31,32,31,31,31,30,29,30,29,30,30],2009:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2010:[365,31,31,32,32,31,30,30,29,30,29,30,30],2011:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2012:[365,31,31,32,31,31,31,30,29,30,29,30,30],2013:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2014:[365,31,31,32,32,31,30,30,29,30,29,30,30],2015:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2016:[366,31,31,32,31,31,31,30,29,30,29,30,31],2017:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2018:[365,31,31,32,32,31,30,30,29,30,29,30,30],2019:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2020:[366,31,31,32,31,31,30,30,29,30,29,30,31],2021:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2022:[365,31,31,32,32,31,30,30,29,30,29,30,30],2023:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2024:[366,31,31,32,31,31,30,30,29,30,29,30,31],2025:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2026:[365,31,31,32,32,31,30,30,29,30,29,30,30],2027:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2028:[366,31,32,31,32,31,30,30,30,29,30,29,31],2029:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2030:[365,31,31,32,31,31,31,30,29,30,29,30,30],2031:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-      2032:[366,31,32,31,32,31,30,30,30,29,29,30,31],2033:[366,31,31,32,31,31,30,30,29,30,29,30,31],
-      2034:[365,31,31,32,31,31,31,30,29,30,29,30,30],2035:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-      2036:[366,31,32,31,32,31,30,30,30,29,29,30,31],2037:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-      2038:[365,31,31,32,31,31,31,30,29,30,29,30,30],2039:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2040:[365,31,31,32,32,31,30,30,29,30,29,30,30],2041:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2042:[366,31,31,32,31,31,30,30,29,30,29,30,31],2043:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2044:[365,31,31,32,31,31,31,30,29,30,29,30,30],2045:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2046:[366,31,32,31,32,31,30,30,30,29,30,29,31],2047:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2048:[365,31,31,32,32,31,30,30,29,30,29,30,30],2049:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2050:[366,31,32,31,32,31,30,30,30,29,30,29,31],2051:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2052:[365,31,31,32,32,31,30,30,29,30,29,30,30],2053:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2054:[366,31,32,31,32,31,30,30,30,29,30,29,31],2055:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2056:[366,31,31,32,31,31,31,30,29,30,29,30,31],2057:[366,31,31,32,32,31,30,30,29,30,29,30,31],
-      2058:[365,30,32,31,32,31,30,30,30,29,29,30,30],2059:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-      2060:[365,31,31,32,31,31,31,30,29,30,29,30,30],2061:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2062:[365,31,31,32,32,31,30,30,29,30,29,30,30],2063:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2064:[366,31,31,32,31,31,30,30,29,30,29,30,31],2065:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2066:[365,31,31,32,31,31,31,30,29,30,29,30,30],2067:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2068:[366,31,32,31,32,31,30,30,30,29,30,29,31],2069:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2070:[365,31,31,32,32,31,30,30,29,30,29,30,30],2071:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2072:[366,31,32,31,32,31,30,30,30,29,30,29,31],2073:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2074:[365,31,31,32,32,31,30,30,29,30,29,30,30],2075:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2076:[365,31,32,31,32,31,30,30,30,29,30,29,31],2077:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2078:[365,31,31,32,31,31,31,30,29,30,29,30,30],2079:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2080:[365,31,32,31,32,31,30,30,30,29,30,29,31],2081:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2082:[365,31,31,32,32,31,30,30,29,30,29,30,30],2083:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2084:[366,31,32,31,32,31,30,30,30,29,30,29,31],2085:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2086:[365,31,31,32,32,31,30,30,29,30,29,30,30],2087:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2088:[366,31,32,31,32,31,30,30,30,29,30,29,31],2089:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2090:[365,31,31,32,32,31,30,30,29,30,29,30,30]
-    };
-    var AD_EPOCH_MS = Date.UTC(1943, 2, 31);
-    function toNpDigits(n) {
-      return String(n).split('').map(function(d){var i=parseInt(d,10);return isNaN(i)?d:NP_DIGITS[i];}).join('');
-    }
-    function adToBs(dateStr) {
-      if (!dateStr) return '';
-      var d = new Date(dateStr);
-      if (isNaN(d.getTime())) return dateStr;
-      var totalDays = Math.floor((Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate())-AD_EPOCH_MS)/86400000);
-      if (totalDays < 0) return dateStr;
-      var bsYear = 2000;
-      while (true) { var yd=BS_DATA[bsYear]; if(!yd||totalDays<yd[0])break; totalDays-=yd[0]; bsYear++; }
-      var yd2=BS_DATA[bsYear]; var bsMonth=1,bsDay=1;
-      for(var m=1;m<=12;m++){if(totalDays<yd2[m]){bsMonth=m;bsDay=totalDays+1;break;}totalDays-=yd2[m];}
-      return toNpDigits(bsYear)+' '+BS_MONTHS_NP[bsMonth-1]+' '+toNpDigits(bsDay);
-    }
-    function formatDateEn(dateStr) {
-      if (!dateStr) return '';
-      try { var d=new Date(dateStr); if(isNaN(d.getTime()))return dateStr;
-        return d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-      } catch(e){return dateStr;}
-    }
-    function updateProvinceDates() {
-      var isNp = document.body.classList.contains('lang-active');
-      document.querySelectorAll('.date-display[data-date-ad]').forEach(function(el) {
-        var adStr=el.getAttribute('data-date-ad')||'';
-        var timeStr=el.getAttribute('data-time')||'';
-        if (!adStr) return;
-        var isNpEl=el.classList.contains('lang-np');
-        if(isNp&&isNpEl) el.textContent=adToBs(adStr)+(timeStr?', '+timeStr:'');
-        else if(!isNp&&!isNpEl) el.textContent=formatDateEn(adStr)+(timeStr?', '+timeStr:'');
-      });
-    }
-    window.addEventListener('langChange', function(){ setTimeout(updateProvinceDates, 50); });
-    if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',updateProvinceDates);}
-    else{updateProvinceDates();}
-  })();
-  </script>
+(function() {
+  var tip = document.getElementById('waTooltip');
+  if (tip && !sessionStorage.getItem('waTip')) {
+    setTimeout(function() {
+      tip.style.opacity = '1';
+      tip.style.transform = 'translateX(0)';
+      setTimeout(function() {
+        tip.style.opacity = '';
+        tip.style.transform = '';
+        sessionStorage.setItem('waTip', '1');
+      }, 3000);
+    }, 2500);
+  }
+})();
+</script>
 
 </body>
 </html>
