@@ -704,6 +704,9 @@
     --font-heading: 'Montserrat', sans-serif;
   }
 
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
   * {
     box-sizing: border-box;
     margin: 0;
@@ -953,6 +956,26 @@
     .card-title {
       font-size: 1rem;
     }
+  }
+
+  .lang-np {
+    display: none;
+  }
+
+  .lang-en {
+    display: inline;
+  }
+
+  body.lang-active .lang-en {
+    display: none !important;
+  }
+
+  body.lang-active .lang-np {
+    display: inline !important;
+  }
+
+  body.lang-active p.lang-np, body.lang-active span.lang-np {
+    display: inline !important;
   }
 </style>
 <style>
@@ -1241,7 +1264,6 @@
 <div class="category-page-grid">
        <div class="category-main-col"><div class="category-container">
 
-  <!-- Category Header Section -->
   <div class="category-header">
     <div class="breadcrumb">
       <span id="breadcrumb-en" class="lang-en"></span>
@@ -1263,10 +1285,8 @@
     </div>
   </div>
 
-  <!-- News Grid Section -->
   <div id="news-grid" class="news-grid"></div>
 
-  <!-- Load More Section -->
   <div class="load-more-container">
     <button id="load-more-btn" class="load-more-btn">
       <span class="lang-en"><i class="fas fa-chevron-down"></i> Load More</span>
@@ -1274,7 +1294,6 @@
     </button>
   </div>
 
-  <!-- Back to Top Button -->
   
 
 </div>
