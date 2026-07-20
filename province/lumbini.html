@@ -809,10 +809,6 @@
     background: linear-gradient(135deg, var(--border) 0%, var(--surface) 100%);
   }
 
-  .card-content {
-    padding: 1.25rem;
-  }
-
   .card-province {
     display: inline-block;
     background: var(--accent);
@@ -921,6 +917,10 @@
     transition: opacity 0.2s;
   }
 
+  #back-to-top:hover {
+    opacity: 0.9;
+  }
+
   .empty-state {
     text-align: center;
     padding: 4rem 2rem;
@@ -956,10 +956,29 @@
       font-size: 1rem;
     }
   }
+
+  .lang-np {
+    display: none;
+  }
+
+  .lang-en {
+    display: inline;
+  }
+
+  body.lang-active .lang-en {
+    display: none !important;
+  }
+
+  body.lang-active .lang-np {
+    display: inline !important;
+  }
+
+  body.lang-active p.lang-np, body.lang-active span.lang-np {
+    display: inline !important;
+  }
 </style>
 <style>
     /* ALL CSS from PART D */
-
     #site-footer { font-family:var(--font-body); }
 
     /* TOP SECTION */
@@ -1243,6 +1262,7 @@
 
 <div class="province-page-grid">
        <div class="province-main-col"><div class="province-container">
+
   <!-- Province Header Section -->
   <div class="province-header">
     <div class="breadcrumb">
@@ -1279,11 +1299,6 @@
   <!-- Back to Top Button -->
   
 
-  <!-- Empty State -->
-  <div class="empty-state">
-    <i class="fa-regular fa-newspaper"></i>
-    <p>No articles found.</p>
-  </div>
 </div>
 
 </div>
@@ -1294,18 +1309,10 @@
          </div>
          
     <div class="ad-card" data-ad-number="1">
-      <img src="../images/sideads_1.jpg" alt="sideads_1.jpg" loading="lazy" style="pointer-events:none;" onerror="this.closest('.ad-card').style.display='none'">
-    </div>
-
-    <div class="ad-card" data-ad-number="2">
-      <img src="../images/sideads_2.jpg" alt="sideads_2.jpg" loading="lazy" style="pointer-events:none;" onerror="this.closest('.ad-card').style.display='none'">
-    </div>
-
-    <div class="ad-card" data-ad-number="3">
       <img src="../images/sideads_3.jpg" alt="sideads_3.jpg" loading="lazy" style="pointer-events:none;" onerror="this.closest('.ad-card').style.display='none'">
     </div>
 
-    <div class="ad-card" data-ad-number="4">
+    <div class="ad-card" data-ad-number="2">
       <img src="../images/sideads_4.jpg" alt="sideads_4.jpg" loading="lazy" style="pointer-events:none;" onerror="this.closest('.ad-card').style.display='none'">
     </div>
        </aside>
@@ -1452,8 +1459,8 @@
       <div class="footer-bottom-freq">
         <span class="editor-label"><span class="lang-en">Frequency</span><span class="lang-np">फ्रिक्वेन्सी</span></span>
         <span class="editor-name">
-          <span class="lang-en">102.5 MHZ FM</span>
-          <span class="lang-np">१०२.५ मेगाहर्ज एफएम</span>
+          <span class="lang-en">103.5 MHZ FM</span>
+          <span class="lang-np">१०३.५ मेगाहर्ज एफएम</span>
         </span>
       </div>
 
@@ -1475,7 +1482,6 @@
 
   
 
-  <!-- WhatsApp float -->
   
 </footer>
 
@@ -1921,12 +1927,12 @@
     descEn:       "Lumbini — Latest news and updates from this province.",
     descNp:       "लुम्बिनी — यस प्रदेशका नवीनतम समाचार र अपडेटहरू।",
     totalCount:   1,
-    allArticles:  [{"newsIndex":0,"recordId":665,"title":"British-era coin and Shiva lingam discovered, new clues about ancient civilization in Bardiya","titleNe":"ब्रिटिसकालीन सिक्का र शिवलिङ्ग फेला, बर्दियाको प्राचीन सभ्यताबारे नयाँ संकेत","slug":"british-era-coin-and-shiva-lingam-discovered-new-clues-about-ancient-civilization-in-bardiya","province":"Lumbini","provinceNe":"लुम्बिनी","category":"Technology","categoryNe":"प्रविधि","metaDesc":"A British-era coin and a Shiva lingam have been discovered in Bardiya, revealing new clues about the ancient civilization and religious practices in the region.","metaDescNe":"बर्दियाको ठाकुरबाबा मन्दिर परिसरमा ब्रिटिसकालीन सिक्का र शिवलिङ्ग फेला परेको छ, जसले यस क्षेत्रको प्राचीन सभ्यता र धार्मिक गतिविधिबारे नयाँ संकेत गरेको छ।","readTime":"1 min read","readTimeNe":"१ मिनेट पढाइ","date":"2026-06-12T00:00:00.000Z","time":"5:28 PM","creator":"Nirmal Ghimire","creatorNp":"निर्मल घिमिरे","source":"Nagarik News","sourceNp":"नागरिक न्यूज","imageUrls":"../images/british-era-coin-and-shiva-lingam-discovered-new-clues-about-ancient-civilizatio.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"}],
+    allArticles:  [{"newsIndex":0,"recordId":1767,"title":"In Lumbini, 20 percent of the farmland remains to be planted.","titleNe":"लुम्बिनीमा २० प्रतिशत खेत रोप्न बाँकी","slug":"in-lumbini-20-percent-of-the-farmland-remains-to-be-planted","province":"Lumbini","provinceNe":"लुम्बिनी","category":"Local","categoryNe":"स्थानीय","metaDesc":"The paddy transplantation in Lumbini Province has been completed up to 80.64 percent by Shrawan 1, and it would have reached 90 percent if there had been timely rainfall.","metaDescNe":"लुम्बिनी प्रदेशमा साउन १ सम्म ८०.६४ प्रतिशत धान रोपाइँ सकिएको, समयमै वर्षा भएको भए ९० प्रतिशत पुग्ने थियो।","readTime":"2 min read","readTimeNe":"2 मिनेट पढाइ","date":"2026-07-19T00:00:00.000Z","time":"1:52 PM","creator":"Madhav Aryal","creatorNp":"माधव अर्याल","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/in-lumbini-20-percent-of-the-farmland-remains-to-be-planted.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"}],
     itemsPerPage: 6
   };
 
   // ── Section ads: cycle through these, one every N real articles ──
-  var SECTION_ADS = [{"img":"../images/section_1.jpg","link":""},{"img":"../images/insection_1.png","link":""},{"img":"../images/section_2.jpg","link":""},{"img":"../images/insection_2.png","link":""},{"img":"../images/section_3.jpg","link":""},{"img":"../images/insection_3.png","link":""},{"img":"../images/section_10.jpg","link":""}];
+  var SECTION_ADS = [{"img":"../images/section_1.jpg","link":""},{"img":"../images/insection_1.png","link":""},{"img":"../images/section_2.jpg","link":""},{"img":"../images/insection_2.png","link":""},{"img":"../images/insection_3.png","link":""}];
   var AD_EVERY_N  = 6;
   var adCycleIndex = 0; // persists across load-more calls
 
@@ -1983,9 +1989,6 @@
       var dateTimeEn = date ? formatDateEn(date) + (time ? ', ' + time : '') : '';
       var dateTimeNp = date ? adToBs(date)        + (time ? ', ' + time : '') : '';
 
-      // ── Article detail link — shared article.html template ──
-      var articleUrl = '/page/article.html?slug=' + encodeURIComponent(slug);
-
       // ── Source / Creator row ──────────────────────────────
       var sourceCreatorHtml = '';
       if (source || creator) {
@@ -2008,7 +2011,7 @@
       }
 
       html += `
-  <article class="article-card" data-slug="${slug}" data-index="${idx}" onclick="window.location.href='${articleUrl}'" style="cursor:pointer;">
+  <article class="article-card" data-slug="${slug}" data-index="${idx}" onclick="window.location.href='/page/${slug}.html'" style="cursor:pointer;">
         ${imageUrl
           ? `<img class="card-image" src="${imageUrl}" alt="${title.replace(/"/g,'&quot;')}" loading="lazy" onerror="this.style.display='none'">`
           : '<div class="card-image no-image"></div>'}
@@ -2017,7 +2020,7 @@
             <span class="card-province lang-en" style="${isNp?'display:none':''}">${province}</span>
             <span class="card-province lang-np"  style="${isNp?'':'display:none'}">${provinceNe}</span>
           </div>
-          <a href="${articleUrl}" class="card-title-link">
+          <a href="/page/${slug}.html" class="card-title-link">
             <h3 class="card-title lang-en" style="${isNp?'display:none':''}">${title}</h3>
             <h3 class="card-title lang-np"  style="${isNp?'':'display:none'}">${titleNe}</h3>
           </a>
@@ -2152,18 +2155,25 @@
     currentPage = 1;
 
     // ── Toggle any AI-generated empty-state block ──────────────
+    // The LLM sometimes bakes a static "No articles found" element
+    // into the template regardless of actual article count. Only
+    // show it when there truly are zero articles.
     var emptyStateEls = document.querySelectorAll('.empty-state, [class*="empty-state"]');
     emptyStateEls.forEach(function(el) {
       el.style.display = PROVINCE_DATA.totalCount === 0 ? '' : 'none';
     });
 
+    // Fallback: some LLM outputs don't use an "empty-state" class at all —
+    // find any element whose own text (not counting children we just
+    // rendered) mentions "no articles" and hide it when we have articles.
     if (PROVINCE_DATA.totalCount > 0) {
       var newsGrid = document.getElementById('news-grid');
       document.querySelectorAll('body *').forEach(function(el) {
-        if (newsGrid && newsGrid.contains(el)) return;
-        if (el.children.length > 0) return;
+        if (newsGrid && newsGrid.contains(el)) return; // never touch rendered cards
+        if (el.children.length > 0) return; // only leaf text nodes
         var txt = (el.textContent || '').trim().toLowerCase();
         if (txt && /no articles? found|no news found|no articles? available/.test(txt)) {
+          // hide the closest reasonably-sized wrapper, not just the text node
           var wrapper = el.closest('div, section') || el;
           wrapper.style.display = 'none';
         }

@@ -809,10 +809,6 @@
     background: linear-gradient(135deg, var(--border) 0%, var(--surface) 100%);
   }
 
-  .card-content {
-    padding: 1.25rem;
-  }
-
   .card-province {
     display: inline-block;
     background: var(--accent);
@@ -921,6 +917,10 @@
     transition: opacity 0.2s;
   }
 
+  #back-to-top:hover {
+    opacity: 0.9;
+  }
+
   .empty-state {
     text-align: center;
     padding: 4rem 2rem;
@@ -956,10 +956,29 @@
       font-size: 1rem;
     }
   }
+
+  .lang-np {
+    display: none;
+  }
+
+  .lang-en {
+    display: inline;
+  }
+
+  body.lang-active .lang-en {
+    display: none !important;
+  }
+
+  body.lang-active .lang-np {
+    display: inline !important;
+  }
+
+  body.lang-active p.lang-np, body.lang-active span.lang-np {
+    display: inline !important;
+  }
 </style>
 <style>
     /* ALL CSS from PART D */
-
     #site-footer { font-family:var(--font-body); }
 
     /* TOP SECTION */
@@ -1243,6 +1262,7 @@
 
 <div class="province-page-grid">
        <div class="province-main-col"><div class="province-container">
+
   <!-- Province Header Section -->
   <div class="province-header">
     <div class="breadcrumb">
@@ -1279,11 +1299,6 @@
   <!-- Back to Top Button -->
   
 
-  <!-- Empty State -->
-  <div class="empty-state">
-    <i class="fa-regular fa-newspaper"></i>
-    <p>No articles found.</p>
-  </div>
 </div>
 
 </div>
@@ -1294,18 +1309,10 @@
          </div>
          
     <div class="ad-card" data-ad-number="1">
-      <img src="../images/sideads_1.jpg" alt="sideads_1.jpg" loading="lazy" style="pointer-events:none;" onerror="this.closest('.ad-card').style.display='none'">
-    </div>
-
-    <div class="ad-card" data-ad-number="2">
-      <img src="../images/sideads_2.jpg" alt="sideads_2.jpg" loading="lazy" style="pointer-events:none;" onerror="this.closest('.ad-card').style.display='none'">
-    </div>
-
-    <div class="ad-card" data-ad-number="3">
       <img src="../images/sideads_3.jpg" alt="sideads_3.jpg" loading="lazy" style="pointer-events:none;" onerror="this.closest('.ad-card').style.display='none'">
     </div>
 
-    <div class="ad-card" data-ad-number="4">
+    <div class="ad-card" data-ad-number="2">
       <img src="../images/sideads_4.jpg" alt="sideads_4.jpg" loading="lazy" style="pointer-events:none;" onerror="this.closest('.ad-card').style.display='none'">
     </div>
        </aside>
@@ -1452,8 +1459,8 @@
       <div class="footer-bottom-freq">
         <span class="editor-label"><span class="lang-en">Frequency</span><span class="lang-np">फ्रिक्वेन्सी</span></span>
         <span class="editor-name">
-          <span class="lang-en">102.5 MHZ FM</span>
-          <span class="lang-np">१०२.५ मेगाहर्ज एफएम</span>
+          <span class="lang-en">103.5 MHZ FM</span>
+          <span class="lang-np">१०३.५ मेगाहर्ज एफएम</span>
         </span>
       </div>
 
@@ -1475,7 +1482,6 @@
 
   
 
-  <!-- WhatsApp float -->
   
 </footer>
 
@@ -1920,13 +1926,13 @@
     nameNp:       "गण्डकी",
     descEn:       "Gandaki — Latest news and updates from this province.",
     descNp:       "गण्डकी — यस प्रदेशका नवीनतम समाचार र अपडेटहरू।",
-    totalCount:   0,
-    allArticles:  [],
+    totalCount:   2,
+    allArticles:  [{"newsIndex":0,"recordId":1707,"title":"ICU service has started at Madhyabindu Regional Hospital.","titleNe":"मध्यबिन्दु प्रादेशिक अस्पतालमा आइसीयू सेवा सुरु","slug":"icu-service-has-started-at-madhyabindu-regional-hospital","province":"Gandaki","provinceNe":"गण्डकी","category":"Local","categoryNe":"स्थानीय","metaDesc":"The Mid-Bandhu Regional Hospital has launched ICU, NICU, and state-of-the-art operation theaters, ending the need for patients from Nawalpur to seek treatment outside the district.","metaDescNe":"मध्यबिन्दु प्रादेशिक अस्पतालले आइसीयू, एनआइसीयू र अत्याधुनिक शल्यक्रिया कक्ष सञ्चालनमा ल्याएको छ, जसले नवलपुरका बिरामीहरूलाई जिल्ला बाहिर जानुपर्ने अवस्था अन्त्य गरेको छ।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"2026-07-17T00:00:00.000Z","time":"6:26 PM","creator":"Nawin Paudel","creatorNp":"नवीन पौडेल","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/icu-service-has-started-at-madhyabindu-regional-hospital.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":1,"recordId":1701,"title":"Nepali who had gone to the funeral bath went missing in the Daroudi river.","titleNe":"मलामी गएका नेपाली नुहाउने क्रममा दरौदीमा बेपत्ता","slug":"nepali-who-had-gone-to-the-funeral-bath-went-missing-in-the-daroudi-river","province":"Gandaki","provinceNe":"गण्डकी","category":"General","categoryNe":"सामान्य","metaDesc":"Shamsher Nepali, 40, of Ajirkot Rural Municipality-4 in Gorkha, has gone missing in the Daraundi River.","metaDescNe":"गोरखाको अजिरकोट गाउँपालिका-४ का ४० वर्षीय शम्शेर नेपाली दरौदी नदीमा बेपत्ता भएका छन्।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"2026-07-17T00:00:00.000Z","time":"5:51 PM","creator":"","creatorNp":"हरिराम उप्रेती","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/nepali-who-had-gone-to-the-funeral-bath-went-missing-in-the-daroudi-river.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"}],
     itemsPerPage: 6
   };
 
   // ── Section ads: cycle through these, one every N real articles ──
-  var SECTION_ADS = [{"img":"../images/section_1.jpg","link":""},{"img":"../images/insection_1.png","link":""},{"img":"../images/section_2.jpg","link":""},{"img":"../images/insection_2.png","link":""},{"img":"../images/section_3.jpg","link":""},{"img":"../images/insection_3.png","link":""},{"img":"../images/section_10.jpg","link":""}];
+  var SECTION_ADS = [{"img":"../images/section_1.jpg","link":""},{"img":"../images/insection_1.png","link":""},{"img":"../images/section_2.jpg","link":""},{"img":"../images/insection_2.png","link":""},{"img":"../images/insection_3.png","link":""}];
   var AD_EVERY_N  = 6;
   var adCycleIndex = 0; // persists across load-more calls
 
@@ -1983,9 +1989,6 @@
       var dateTimeEn = date ? formatDateEn(date) + (time ? ', ' + time : '') : '';
       var dateTimeNp = date ? adToBs(date)        + (time ? ', ' + time : '') : '';
 
-      // ── Article detail link — shared article.html template ──
-      var articleUrl = '/page/article.html?slug=' + encodeURIComponent(slug);
-
       // ── Source / Creator row ──────────────────────────────
       var sourceCreatorHtml = '';
       if (source || creator) {
@@ -2008,7 +2011,7 @@
       }
 
       html += `
-  <article class="article-card" data-slug="${slug}" data-index="${idx}" onclick="window.location.href='${articleUrl}'" style="cursor:pointer;">
+  <article class="article-card" data-slug="${slug}" data-index="${idx}" onclick="window.location.href='/page/${slug}.html'" style="cursor:pointer;">
         ${imageUrl
           ? `<img class="card-image" src="${imageUrl}" alt="${title.replace(/"/g,'&quot;')}" loading="lazy" onerror="this.style.display='none'">`
           : '<div class="card-image no-image"></div>'}
@@ -2017,7 +2020,7 @@
             <span class="card-province lang-en" style="${isNp?'display:none':''}">${province}</span>
             <span class="card-province lang-np"  style="${isNp?'':'display:none'}">${provinceNe}</span>
           </div>
-          <a href="${articleUrl}" class="card-title-link">
+          <a href="/page/${slug}.html" class="card-title-link">
             <h3 class="card-title lang-en" style="${isNp?'display:none':''}">${title}</h3>
             <h3 class="card-title lang-np"  style="${isNp?'':'display:none'}">${titleNe}</h3>
           </a>
@@ -2152,18 +2155,25 @@
     currentPage = 1;
 
     // ── Toggle any AI-generated empty-state block ──────────────
+    // The LLM sometimes bakes a static "No articles found" element
+    // into the template regardless of actual article count. Only
+    // show it when there truly are zero articles.
     var emptyStateEls = document.querySelectorAll('.empty-state, [class*="empty-state"]');
     emptyStateEls.forEach(function(el) {
       el.style.display = PROVINCE_DATA.totalCount === 0 ? '' : 'none';
     });
 
+    // Fallback: some LLM outputs don't use an "empty-state" class at all —
+    // find any element whose own text (not counting children we just
+    // rendered) mentions "no articles" and hide it when we have articles.
     if (PROVINCE_DATA.totalCount > 0) {
       var newsGrid = document.getElementById('news-grid');
       document.querySelectorAll('body *').forEach(function(el) {
-        if (newsGrid && newsGrid.contains(el)) return;
-        if (el.children.length > 0) return;
+        if (newsGrid && newsGrid.contains(el)) return; // never touch rendered cards
+        if (el.children.length > 0) return; // only leaf text nodes
         var txt = (el.textContent || '').trim().toLowerCase();
         if (txt && /no articles? found|no news found|no articles? available/.test(txt)) {
+          // hide the closest reasonably-sized wrapper, not just the text node
           var wrapper = el.closest('div, section') || el;
           wrapper.style.display = 'none';
         }

@@ -622,7 +622,7 @@
     --accent:       #D4A017;
     --primary:      #A31919;
     --primary-on:   #FFFFFF;
-    --accent-on:    #1F1F1F;
+    --accent-on:    #000000;
     --bg:           #FFFFFF;
     --surface:      #F8F8F8;
     --text:         #1F1F1F;
@@ -632,27 +632,12 @@
     --font-heading: 'Montserrat', sans-serif;
   }
 
-  * {
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
-    margin: 0;
-    padding: 0;
-  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); margin: 0; padding: 0; }
 
   .article-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 1.5rem;
-    background: var(--bg);
+    max-width: 1100px; margin: 0 auto; padding: 1.5rem; background: var(--bg);
   }
 
   .article-header {
@@ -660,130 +645,70 @@
   }
 
   h1 {
-    font-family: var(--font-heading);
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
-    line-height: 1.3;
-    margin: 0.5rem 0 0.75rem;
-    color: var(--primary);
+    font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.3;
+    margin: 0.5rem 0 0.75rem; color: var(--primary);
   }
 
   .breadcrumb {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-bottom: 0.5rem;
+    font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem;
   }
-
   .breadcrumb a {
-    color: var(--accent);
-    text-decoration: none;
+    color: var(--accent); text-decoration: none;
   }
-
   .breadcrumb a:hover {
     text-decoration: underline;
   }
 
   .category-badge span {
-    display: inline-block;
-    background: var(--accent);
-    color: var(--accent-on);
-    padding: 3px 10px;
-    border-radius: 4px;
-    font-size: 0.78rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    display: inline-block; background: var(--accent); color: var(--accent-on);
+    padding: 3px 10px; border-radius: 4px; font-size: 0.78rem; font-weight: 700;
+    margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.04em;
   }
 
   .meta {
-    display: flex;
-    gap: 1.2rem;
-    color: var(--muted);
-    font-size: 0.88rem;
-    margin-bottom: 0.75rem;
-    flex-wrap: wrap;
-    align-items: center;
+    display: flex; gap: 1.2rem; color: var(--muted); font-size: 0.88rem;
+    margin-bottom: 0.75rem; flex-wrap: wrap; align-items: center;
   }
-
   .meta i {
     margin-right: 4px;
   }
 
   .share-buttons {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: 0.5rem;
+    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 0.5rem;
   }
-
   .share-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 7px 16px;
-    border-radius: 5px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--text);
-    cursor: pointer;
-    font-size: 0.85rem;
-    font-family: var(--font-body);
-    transition: all 0.2s ease;
+    display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px;
+    border-radius: 5px; border: 1px solid var(--border); background: var(--surface);
+    color: var(--text); cursor: pointer; font-size: 0.85rem;
+    font-family: var(--font-body); transition: all 0.2s ease;
   }
-
   .share-btn:hover {
-    background: var(--accent);
-    color: var(--accent-on);
-    border-color: var(--accent);
+    background: var(--accent); color: var(--accent-on); border-color: var(--accent);
   }
-
   .share-btn.facebook:hover {
-    background: #1877F2;
-    color: #fff;
-    border-color: #1877F2;
+    background: #1877F2; color: #fff; border-color: #1877F2;
   }
-
   .share-btn.twitter:hover {
-    background: #1DA1F2;
-    color: #fff;
-    border-color: #1DA1F2;
+    background: #1DA1F2; color: #fff; border-color: #1DA1F2;
   }
 
   .copy-link {
     position: relative;
   }
-
   .tooltip {
-    display: none;
-    position: absolute;
-    background: var(--primary);
-    color: var(--primary-on);
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 0.72rem;
-    white-space: nowrap;
-    bottom: 110%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    pointer-events: none;
+    display: none; position: absolute; background: var(--primary); color: var(--primary-on);
+    padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; white-space: nowrap;
+    bottom: 110%; left: 50%; transform: translateX(-50%); z-index: 10; pointer-events: none;
   }
-
   .tooltip.visible {
     display: block;
   }
 
   .article-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2rem;
-    align-items: start;
+    display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start;
   }
-
   @media (max-width: 1023px) {
-    .article-content {
-      grid-template-columns: 1fr;
-    }
+    .article-content { grid-template-columns: 1fr; }
   }
 
   .main-column {
@@ -793,225 +718,111 @@
   .image-wrapper {
     margin-bottom: 1.5rem;
   }
-
   .image-wrapper img {
-    width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    border-radius: 8px;
-    display: block;
+    width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; display: block;
   }
-
   .image-wrapper.hidden {
     display: none;
   }
 
   .article-body {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: var(--text);
+    font-size: 1rem; line-height: 1.8; color: var(--text);
   }
-
   .article-body p {
     margin-bottom: 1.1rem;
   }
-
   .article-body h2 {
-    font-family: var(--font-heading);
-    margin: 1.8rem 0 0.8rem;
-    font-size: 1.3rem;
+    font-family: var(--font-heading); margin: 1.8rem 0 0.8rem; font-size: 1.3rem;
   }
-
   .article-body img {
-    max-width: 100%;
-    border-radius: 6px;
+    max-width: 100%; border-radius: 6px;
   }
 
   .tags-wrapper {
-    margin-top: 1.5rem;
-    padding-top: 1.2rem;
-    border-top: 1px solid var(--border);
+    margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--border);
   }
-
   .tags-wrapper h3 {
-    font-size: 0.95rem;
-    margin: 0 0 0.6rem;
-    font-family: var(--font-heading);
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    font-size: 0.95rem; margin: 0 0 0.6rem; font-family: var(--font-heading);
+    display: flex; align-items: center; gap: 6px;
   }
-
   .tags-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    display: flex; flex-wrap: wrap; gap: 8px;
   }
-
   .tags-list a {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.82rem;
-    text-decoration: none;
-    color: var(--text);
+    background: var(--surface); border: 1px solid var(--border); padding: 4px 12px;
+    border-radius: 20px; font-size: 0.82rem; text-decoration: none; color: var(--text);
     transition: 0.2s;
   }
-
   .tags-list a:hover {
-    background: var(--accent);
-    color: var(--accent-on);
-    border-color: var(--accent);
+    background: var(--accent); color: var(--accent-on); border-color: var(--accent);
   }
 
   .sidebar {
-    position: sticky;
-    top: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+    position: sticky; top: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;
   }
 
   .widget {
-    background: var(--surface);
-    padding: 1.4rem;
-    border-radius: 10px;
-    border: 1px solid var(--border);
+    background: var(--surface); padding: 1.4rem; border-radius: 10px; border: 1px solid var(--border);
   }
-
   .widget h3 {
-    font-family: var(--font-heading);
-    font-size: 1.05rem;
-    margin: 0 0 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border);
-    color: var(--primary);
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-family: var(--font-heading); font-size: 1.05rem; margin: 0 0 1rem;
+    padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); color: var(--primary);
+    display: flex; align-items: center; gap: 8px;
   }
-
   .widget p {
-    font-size: 0.88rem;
-    color: var(--muted);
-    margin-bottom: 0.6rem;
-    line-height: 1.5;
+    font-size: 0.88rem; color: var(--muted); margin-bottom: 0.6rem; line-height: 1.5;
   }
 
   #newsletter-email {
-    width: 100%;
-    padding: 8px 10px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 0.88rem;
-    box-sizing: border-box;
-    margin-bottom: 8px;
-    outline: none;
+    width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px;
+    background: var(--bg); color: var(--text); font-size: 0.88rem;
+    box-sizing: border-box; margin-bottom: 8px; outline: none;
   }
-
   #newsletter-email:focus {
     border-color: var(--accent);
   }
-
   #newsletter-subscribe {
-    width: 100%;
-    padding: 9px;
-    background: var(--accent);
-    color: var(--accent-on);
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 0.9rem;
-    transition: opacity 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
+    width: 100%; padding: 9px; background: var(--accent); color: var(--accent-on);
+    border: none; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 0.9rem;
+    transition: opacity 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px;
   }
-
   #newsletter-subscribe:hover {
     opacity: 0.85;
   }
 
   #back-to-top {
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    background: var(--accent);
-    color: var(--accent-on);
-    border: none;
-    border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    cursor: pointer;
-    font-size: 1rem;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-    transition: opacity 0.2s;
+    position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent);
+    color: var(--accent-on); border: none; border-radius: 50%; width: 42px; height: 42px;
+    cursor: pointer; font-size: 1rem; display: none; align-items: center; justify-content: center;
+    z-index: 999; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: opacity 0.2s;
   }
-
   #back-to-top:hover {
     opacity: 0.85;
   }
 
   .related-card {
-    display: flex;
-    gap: 10px;
-    text-decoration: none;
-    color: var(--text);
-    padding: 0.7rem 0;
-    border-bottom: 1px solid var(--border);
-    align-items: flex-start;
+    display: flex; gap: 10px; text-decoration: none; color: var(--text);
+    padding: 0.7rem 0; border-bottom: 1px solid var(--border); align-items: flex-start;
   }
-
   .related-card:last-child {
     border-bottom: none;
   }
-
   .related-card img {
-    width: 72px;
-    height: 52px;
-    object-fit: cover;
-    border-radius: 5px;
-    flex-shrink: 0;
+    width: 72px; height: 52px; object-fit: cover; border-radius: 5px; flex-shrink: 0;
   }
-
   .related-content {
-    flex: 1;
-    min-width: 0;
+    flex: 1; min-width: 0;
   }
-
   .related-category {
-    display: block;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-    margin-bottom: 2px;
+    display: block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    color: var(--accent); letter-spacing: 0.05em; margin-bottom: 2px;
   }
-
   .related-content h4 {
-    margin: 0 0 3px;
-    font-size: 0.85rem;
-    line-height: 1.3;
-    font-family: var(--font-heading);
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    margin: 0 0 3px; font-size: 0.85rem; line-height: 1.3; font-family: var(--font-heading);
+    overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
   }
-
   .related-meta {
-    font-size: 0.75rem;
-    color: var(--muted);
+    font-size: 0.75rem; color: var(--muted);
   }
 </style>
 <style>
@@ -1317,6 +1128,7 @@
 
 <div class="article-container">
 
+  <!-- ZONE 1: full-width article header -->
   <div class="article-header">
     <div class="breadcrumb">
       <span id="breadcrumb-en" class="lang-en"></span>
@@ -1345,8 +1157,10 @@
     </div>
   </div>
 
+  <!-- ZONE 2: two-column body -->
   <div class="article-content">
 
+    <!-- LEFT column -->
     <div class="main-column">
 
       <div class="image-wrapper">
@@ -1365,6 +1179,7 @@
 
     </div>
 
+    <!-- RIGHT column / sidebar -->
     <aside class="sidebar">
       <div class="widget related">
         <h3 class="lang-en"><i class="fas fa-newspaper"></i> Related Articles</h3>
@@ -1395,7 +1210,7 @@
 
   </main>
 
-  <!-- ════ FOOTER (6821 chars) ════ -->
+  <!-- ════ FOOTER (6795 chars) ════ -->
   <footer id="site-footer">
   
   
@@ -1556,7 +1371,6 @@
 
   
 
-  <!-- WhatsApp float -->
   
 </footer>
 
@@ -1926,15 +1740,15 @@
     sourceNp:       "कान्तिपुर",
     creatorEn:      "AFP",
     creatorNp:      "एएफपी",
-    bodyEnWithAds:  "<p class=\"article-para\">São Paulo — traditionally, no matter which team reaches the World Cup final, South America tends to support its own continent’s team. This time, however, the World Cup may be an exception. Jokes circulating on social media and the critical sentiment among football fans suggest that not all South American supporters are backing Argentina.</p>\n<p class=\"article-para\">Right now, a photo is going viral in Brazil. In it, Lamine Yamal is wearing the Brazilian jersey. Yamal’s goal will be to defeat Argentina in the final. Beneath the photo is the caption, “For Brazilian football, our trust.” Of course, Brazil and Argentina have long had a fierce football rivalry, and it remains intense.</p>\n<p class=\"article-para\">This rivalry was further fueled by the personal clash between Pelé and Maradona. What’s more, fans from Mexico, Colombia, Chile, and other South American countries seem to want the team that loses on Sunday to be Argentina. Even in 2022, when Argentina won the World Cup for the third time, similar sentiments were seen in South America—opposition to Messi’s team.</p>\n<p class=\"article-para\">Colombian social researcher Germán Gómez says, “The mutual understanding and fraternal spirit among South American countries seems to crumble when it comes to football.” According to him, social media may be influencing many South Americans to believe that FIFA and its president Gianni Infantino also played a role in shaping Argentina’s path to the final.</p>\n<p class=\"article-para\">In São Paulo, football fan Francisco Santos, carrying a Brazilian flag, says, “Argentina reached the final only because the referees helped them. If Brazil can’t win the World Cup for the sixth time, I hope Spain wins it a second time. I don’t want to see Argentina win the World Cup for the fourth time.”</p>\n<p class=\"article-para\">Over time, this 42-year-old Brazilian supporter has become an opponent of Argentine football.</p>\n<p class=\"article-para\">Critics of this World Cup also argue that decisions were made to make Argentina’s journey easier. This could relate to the red and yellow cards shown or the penalty opportunities awarded. Many believe FIFA itself is supporting Argentina, making it harder for its opponents. This has fueled resentment against Argentina.</p>\n<p class=\"article-para\">Juan Camilo, a 28-year-old finance employee from Bogotá, says, “Our support will be for Spain.” Antonio López, a 51-year-old police officer in Mexico City, considers Lionel Messi a legend of world football. Yet he says, “Argentina won’t win the World Cup a second time in a row without referee help. Only if the referees don’t help will I support Argentina.”</p>\n<p class=\"article-para\">Claudia Sheinbaum, Mexico’s president, was recently asked whom she would support in the final. Her answer was Spain. Jorge Negro, a professor in Mexico, believes football is now entangled with politics, saying, “The strong opposition to Argentina in South America stems mainly from political reasons. That’s why the current situation feels so unbelievable.”</p>\n<p class=\"article-para\">There are also serious accusations of racism against some Argentine players and fans. Not only that, the way Argentine fans treated a Black French player has drawn widespread criticism. This may have reduced the number of South Americans supporting Argentina. Whatever the reasons, such rivalries only make football even more thrilling.</p>\n<div class=\"key-takeaway\"><strong>Key Takeaway:</strong><p>This time, many South American supporters have not backed Argentina in the World Cup final as they traditionally would. Fans from countries like Brazil, Mexico, and Colombia are rallying behind Spain. Football rivalries, political influence, and dissatisfaction with referee decisions have fueled anti-Argentina sentiment.</p></div>",
-    bodyNpWithAds:  "<p class=\"article-para\">साओ पाउला — पारम्परिक रूपमा विश्वकपको फाइनलमा जुनसुकै टिम पुगे पनि दक्षिण अमेरिकाले आफ्नै महादेशको टिमलाई समर्थन गर्ने गर्छ । सायद यसपल्टको विश्वकप अपवाद रहनेछ । सामाजिक सञ्जालमा भेटिने हाँसको कथादेखि आम फुटबलप्रेमीमा रहेको आलोचनात्मक भावनाले भन्छ, सबै दक्षिण अमेरिकी समर्थक अर्जेन्टिनाको पक्षमा छैनन् ।</p>\n<p class=\"article-para\">अहिले ब्राजिलमा एउटा तस्बिर खुबै भाइरल भइरहेको छ । त्यसमा लामिन यामलले ब्राजिलको जर्सी लगाइरहेका छन् । तिनै यामलको उद्देश्य रहनेछ, अर्जेन्टिनालाई फाइनलमा हराउने । त्यस तस्बिरमुनि भनिएको छ, ‘ब्राजिली फुटबलका लागि भरोसा ।’ त्यसो त ब्राजिल र अर्जेन्टिनाबीच लामो समयदेखि फुटबलमा चिर प्रतिद्वन्द्विता रहँदै आएको छ, त्यो पनि चर्को स्तरमै ।</p>\n<p class=\"article-para\">त्यसलाई पेले र म्याराडोनाबीचको व्यक्तिगत टकरावले अझ झाँगिन प्रेरित गरेको छ । त्यति मात्र होइन, मेक्सिको, कोलम्बिया, चिली र अन्य दक्षिण अमेरिकी देशका फुटबल समर्थकलाई लाग्छ, आइतबारको फाइनलमा हार्ने टिम अर्जेन्टिना नै रहोस् । सन् २०२२ मा अर्जेन्टिनाले तेस्रो पटक विश्वकप जित्दा पनि दक्षिण अमेरिकामा त्यस्तै भावना देखिएको थियो, मेसीको टिमको विरोधमा ।</p>\n<p class=\"article-para\">कोलम्बियाका सामाजिक अनुसन्धानकर्ता जर्मेन गोमेज भन्छन्, ‘दक्षिण अमेरिकी देशबीचको आपसी समझदारी र भातृत्वको भावना फुटबलमा आएर टुट्दो रहेछ ।’ उनका अनुसार सामाजिक सञ्जालकै प्रभाव हुनसक्छ, धेरै दक्षिण अमेरिकीलाई के लाग्छ भने अर्जेन्टिनाले तय गरेको फाइनल यात्रामा फिफा र यसका अध्यक्ष जियानी इन्फान्टिनोको पनि भूमिका छ ।</p>\n<p class=\"article-para\">साओ पाउलोमा ब्राजिली झन्डा बोकेर हिँडिरहेका फुटबल प्रशंसक फ्रान्सिस्को सान्तोस भन्छन्, ‘रेफ्रीले सहयोग गरेकै कारण अर्जेन्टिना फाइनल पुगेको हो । यदि ब्राजिल छैटौंपल्ट विश्वकप जित्न सक्दैन भने मलाई लाग्छ, स्पेन दोस्रोपल्ट विजेता बनोस् । मलाई अर्जेन्टिनाले चौथो पटक विश्वकप जितेको हेर्ने इच्छा छैन ।’</p>\n<p class=\"article-para\">पछिल्लो समय यी ४२ वर्षीय ब्राजिली समर्थक अर्जेन्टिनी फुटबल विरोधी बनेका छन् ।</p>\n<p class=\"article-para\">यसपल्टको विश्वकपको आलोचक के पनि मान्छन् भने अर्जेन्टिनाको यात्रालाई सजिलो होस् भनेर त्यसै अनुसार निर्णय भएका छन् । त्यो रातो र पहेँलो कार्डलाई लिएर पनि हुनसक्छ वा पेनाल्टी प्रदान गर्ने अवसरलाई लिएर । खासमा फिफाले नै अर्जेन्टिनालाई समर्थन गरिरहेको पनि बताउने धेरै छन् । त्यही कारणले उसका विपक्षी टिमलाई गाह्रो भएको मानिएको छ ।</p>\n<p class=\"article-para\">बोगाटाका २८ वर्षीय वित्त कर्मचारी जुवान कामिलो भन्छन्, ‘हाम्रो समर्थन स्पेनलाई रहनेछ ।’ मेक्सिको सिटीमा प्रहरी रहेका ५१ वर्षीय एन्टोनियो लोपज लियोनल मेसीलाई विश्व फुटबलकै लिजेन्ड मान्छन् । तर उनी के भन्छन् भने, ‘रेफ्रीको सहयोग नहुने हो भने अर्जेन्टिना लगातार दोस्रोपल्ट विश्वकप जित्न सफल हुने छैन । रेफ्रीले सहयोग गर्दैन भने मात्र म अर्जेन्टिनाको समर्थन गर्ने छु ।’</p>\n<p class=\"article-para\">मेक्सिकोकी राष्ट्रपति क्लाउडियो सेनबउमालाई भर्खर सोधिएको थियो, फाइनलमा समर्थन कसलाई हुनेछ ? त्यसमा उनको उत्तर थियो, स्पेन । मेक्सिकोका प्रोफेसर जोर्गे नेग्रोले अहिलेको स्थितिमा फुटबल पनि राजनीतिसँग मुछिएको मान्छन् र भन्छन्, ‘अर्जेन्टिनामा धेरै विरोधी दक्षिण अमेरिकामा हुनु पछाडि राजनीति प्रमुख कारण रहेको छ । त्यसैले अहिलेको अविश्वसनीय स्थिति छ ।’</p>\n<p class=\"article-para\">केही अर्जेन्टिनी खेलाडी र समर्थकमाथि पनि रंगभेदी भएको गम्भीर आरोप छ । त्यतिमात्र होइन, एक अश्वेत फ्रान्सेली खेलाडीमाथि अर्जेन्टिनी समर्थकले जसरी व्यवहार गरेका छन्, त्यसको पनि विरोध भइरहेको छ । त्यसले दक्षिण अमेरिकामा अर्जेन्टिनाको समर्थन गर्नेहरू कम रहेको हुनसक्छ । कारण जस्तै भए पनि यस्तै प्रतिद्वन्द्विताले फुटबल अझ रोमाञ्चक हुने गर्छ ।</p>\n<div class=\"key-takeaway\"><strong>मुख्य बुँदा:</strong><p>यसपटकको विश्वकप फाइनलमा दक्षिण अमेरिकाका धेरै समर्थकहरूले परम्परागत रूपमा अर्जेन्टिनालाई गर्ने गरेको समर्थन गरेका छैनन्। ब्राजिल, मेक्सिको, कोलम्बिया लगायतका देशका समर्थकहरू स्पेनको पक्षमा उभिएका छन्। फुटबल प्रतिद्वन्द्विता, राजनीतिक प्रभाव र रेफ्रीको निर्णयप्रति असन्तुष्टिले अर्जेन्टिनाविरुद्धको भावना बढेको छ।</p></div>",
+    bodyEnWithAds:  "<p class=\"article-para\">São Paulo — traditionally, no matter which team reaches the World Cup final, South America tends to support its own continent’s team. This time, however, the World Cup may be an exception. Jokes circulating on social media and the critical sentiment among football fans suggest that not all South American supporters are backing Argentina.</p>\n<div class=\"ad-unit\" id=\"insection_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_1.png\" alt=\"insection_1.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">Right now, a photo is going viral in Brazil. In it, Lamine Yamal is wearing the Brazilian jersey. Yamal’s goal will be to defeat Argentina in the final. Beneath the photo is the caption, “For Brazilian football, our trust.” Of course, Brazil and Argentina have long had a fierce football rivalry, and it remains intense.</p>\n<div class=\"ad-unit\" id=\"insection_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_2.png\" alt=\"insection_2.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">This rivalry was further fueled by the personal clash between Pelé and Maradona. What’s more, fans from Mexico, Colombia, Chile, and other South American countries seem to want the team that loses on Sunday to be Argentina. Even in 2022, when Argentina won the World Cup for the third time, similar sentiments were seen in South America—opposition to Messi’s team.</p>\n<div class=\"ad-unit\" id=\"insection_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_3.png\" alt=\"insection_3.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">Colombian social researcher Germán Gómez says, “The mutual understanding and fraternal spirit among South American countries seems to crumble when it comes to football.” According to him, social media may be influencing many South Americans to believe that FIFA and its president Gianni Infantino also played a role in shaping Argentina’s path to the final.</p>\n<p class=\"article-para\">In São Paulo, football fan Francisco Santos, carrying a Brazilian flag, says, “Argentina reached the final only because the referees helped them. If Brazil can’t win the World Cup for the sixth time, I hope Spain wins it a second time. I don’t want to see Argentina win the World Cup for the fourth time.”</p>\n<p class=\"article-para\">Over time, this 42-year-old Brazilian supporter has become an opponent of Argentine football.</p>\n<p class=\"article-para\">Critics of this World Cup also argue that decisions were made to make Argentina’s journey easier. This could relate to the red and yellow cards shown or the penalty opportunities awarded. Many believe FIFA itself is supporting Argentina, making it harder for its opponents. This has fueled resentment against Argentina.</p>\n<p class=\"article-para\">Juan Camilo, a 28-year-old finance employee from Bogotá, says, “Our support will be for Spain.” Antonio López, a 51-year-old police officer in Mexico City, considers Lionel Messi a legend of world football. Yet he says, “Argentina won’t win the World Cup a second time in a row without referee help. Only if the referees don’t help will I support Argentina.”</p>\n<p class=\"article-para\">Claudia Sheinbaum, Mexico’s president, was recently asked whom she would support in the final. Her answer was Spain. Jorge Negro, a professor in Mexico, believes football is now entangled with politics, saying, “The strong opposition to Argentina in South America stems mainly from political reasons. That’s why the current situation feels so unbelievable.”</p>\n<p class=\"article-para\">There are also serious accusations of racism against some Argentine players and fans. Not only that, the way Argentine fans treated a Black French player has drawn widespread criticism. This may have reduced the number of South Americans supporting Argentina. Whatever the reasons, such rivalries only make football even more thrilling.</p>\n<div class=\"key-takeaway\"><strong>Key Takeaway:</strong><p>This time, many South American supporters have not backed Argentina in the World Cup final as they traditionally would. Fans from countries like Brazil, Mexico, and Colombia are rallying behind Spain. Football rivalries, political influence, and dissatisfaction with referee decisions have fueled anti-Argentina sentiment.</p></div>",
+    bodyNpWithAds:  "<p class=\"article-para\">साओ पाउला — पारम्परिक रूपमा विश्वकपको फाइनलमा जुनसुकै टिम पुगे पनि दक्षिण अमेरिकाले आफ्नै महादेशको टिमलाई समर्थन गर्ने गर्छ । सायद यसपल्टको विश्वकप अपवाद रहनेछ । सामाजिक सञ्जालमा भेटिने हाँसको कथादेखि आम फुटबलप्रेमीमा रहेको आलोचनात्मक भावनाले भन्छ, सबै दक्षिण अमेरिकी समर्थक अर्जेन्टिनाको पक्षमा छैनन् ।</p>\n<div class=\"ad-unit\" id=\"insection_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_1.png\" alt=\"insection_1.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">अहिले ब्राजिलमा एउटा तस्बिर खुबै भाइरल भइरहेको छ । त्यसमा लामिन यामलले ब्राजिलको जर्सी लगाइरहेका छन् । तिनै यामलको उद्देश्य रहनेछ, अर्जेन्टिनालाई फाइनलमा हराउने । त्यस तस्बिरमुनि भनिएको छ, ‘ब्राजिली फुटबलका लागि भरोसा ।’ त्यसो त ब्राजिल र अर्जेन्टिनाबीच लामो समयदेखि फुटबलमा चिर प्रतिद्वन्द्विता रहँदै आएको छ, त्यो पनि चर्को स्तरमै ।</p>\n<div class=\"ad-unit\" id=\"insection_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_2.png\" alt=\"insection_2.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">त्यसलाई पेले र म्याराडोनाबीचको व्यक्तिगत टकरावले अझ झाँगिन प्रेरित गरेको छ । त्यति मात्र होइन, मेक्सिको, कोलम्बिया, चिली र अन्य दक्षिण अमेरिकी देशका फुटबल समर्थकलाई लाग्छ, आइतबारको फाइनलमा हार्ने टिम अर्जेन्टिना नै रहोस् । सन् २०२२ मा अर्जेन्टिनाले तेस्रो पटक विश्वकप जित्दा पनि दक्षिण अमेरिकामा त्यस्तै भावना देखिएको थियो, मेसीको टिमको विरोधमा ।</p>\n<div class=\"ad-unit\" id=\"insection_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_3.png\" alt=\"insection_3.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">कोलम्बियाका सामाजिक अनुसन्धानकर्ता जर्मेन गोमेज भन्छन्, ‘दक्षिण अमेरिकी देशबीचको आपसी समझदारी र भातृत्वको भावना फुटबलमा आएर टुट्दो रहेछ ।’ उनका अनुसार सामाजिक सञ्जालकै प्रभाव हुनसक्छ, धेरै दक्षिण अमेरिकीलाई के लाग्छ भने अर्जेन्टिनाले तय गरेको फाइनल यात्रामा फिफा र यसका अध्यक्ष जियानी इन्फान्टिनोको पनि भूमिका छ ।</p>\n<p class=\"article-para\">साओ पाउलोमा ब्राजिली झन्डा बोकेर हिँडिरहेका फुटबल प्रशंसक फ्रान्सिस्को सान्तोस भन्छन्, ‘रेफ्रीले सहयोग गरेकै कारण अर्जेन्टिना फाइनल पुगेको हो । यदि ब्राजिल छैटौंपल्ट विश्वकप जित्न सक्दैन भने मलाई लाग्छ, स्पेन दोस्रोपल्ट विजेता बनोस् । मलाई अर्जेन्टिनाले चौथो पटक विश्वकप जितेको हेर्ने इच्छा छैन ।’</p>\n<p class=\"article-para\">पछिल्लो समय यी ४२ वर्षीय ब्राजिली समर्थक अर्जेन्टिनी फुटबल विरोधी बनेका छन् ।</p>\n<p class=\"article-para\">यसपल्टको विश्वकपको आलोचक के पनि मान्छन् भने अर्जेन्टिनाको यात्रालाई सजिलो होस् भनेर त्यसै अनुसार निर्णय भएका छन् । त्यो रातो र पहेँलो कार्डलाई लिएर पनि हुनसक्छ वा पेनाल्टी प्रदान गर्ने अवसरलाई लिएर । खासमा फिफाले नै अर्जेन्टिनालाई समर्थन गरिरहेको पनि बताउने धेरै छन् । त्यही कारणले उसका विपक्षी टिमलाई गाह्रो भएको मानिएको छ ।</p>\n<p class=\"article-para\">बोगाटाका २८ वर्षीय वित्त कर्मचारी जुवान कामिलो भन्छन्, ‘हाम्रो समर्थन स्पेनलाई रहनेछ ।’ मेक्सिको सिटीमा प्रहरी रहेका ५१ वर्षीय एन्टोनियो लोपज लियोनल मेसीलाई विश्व फुटबलकै लिजेन्ड मान्छन् । तर उनी के भन्छन् भने, ‘रेफ्रीको सहयोग नहुने हो भने अर्जेन्टिना लगातार दोस्रोपल्ट विश्वकप जित्न सफल हुने छैन । रेफ्रीले सहयोग गर्दैन भने मात्र म अर्जेन्टिनाको समर्थन गर्ने छु ।’</p>\n<p class=\"article-para\">मेक्सिकोकी राष्ट्रपति क्लाउडियो सेनबउमालाई भर्खर सोधिएको थियो, फाइनलमा समर्थन कसलाई हुनेछ ? त्यसमा उनको उत्तर थियो, स्पेन । मेक्सिकोका प्रोफेसर जोर्गे नेग्रोले अहिलेको स्थितिमा फुटबल पनि राजनीतिसँग मुछिएको मान्छन् र भन्छन्, ‘अर्जेन्टिनामा धेरै विरोधी दक्षिण अमेरिकामा हुनु पछाडि राजनीति प्रमुख कारण रहेको छ । त्यसैले अहिलेको अविश्वसनीय स्थिति छ ।’</p>\n<p class=\"article-para\">केही अर्जेन्टिनी खेलाडी र समर्थकमाथि पनि रंगभेदी भएको गम्भीर आरोप छ । त्यतिमात्र होइन, एक अश्वेत फ्रान्सेली खेलाडीमाथि अर्जेन्टिनी समर्थकले जसरी व्यवहार गरेका छन्, त्यसको पनि विरोध भइरहेको छ । त्यसले दक्षिण अमेरिकामा अर्जेन्टिनाको समर्थन गर्नेहरू कम रहेको हुनसक्छ । कारण जस्तै भए पनि यस्तै प्रतिद्वन्द्विताले फुटबल अझ रोमाञ्चक हुने गर्छ ।</p>\n<div class=\"key-takeaway\"><strong>मुख्य बुँदा:</strong><p>यसपटकको विश्वकप फाइनलमा दक्षिण अमेरिकाका धेरै समर्थकहरूले परम्परागत रूपमा अर्जेन्टिनालाई गर्ने गरेको समर्थन गरेका छैनन्। ब्राजिल, मेक्सिको, कोलम्बिया लगायतका देशका समर्थकहरू स्पेनको पक्षमा उभिएका छन्। फुटबल प्रतिद्वन्द्विता, राजनीतिक प्रभाव र रेफ्रीको निर्णयप्रति असन्तुष्टिले अर्जेन्टिनाविरुद्धको भावना बढेको छ।</p></div>",
     sidebarAdsHtml: "<div class=\"sidebar-ads-wrapper\">\n<div class=\"ad-unit\" id=\"sideads_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_3.jpg\" alt=\"sideads_3.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n\n<div class=\"ad-unit\" id=\"sideads_4\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_4.jpg\" alt=\"sideads_4.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div></div>",
     imageUrl:       "../images/who-does-south-america-support.jpg",
     breadcrumbEn:   "<a href=\"../index.html\">Home</a> / <a href=\"../category/world\">World</a> / Who does South America support?",
     breadcrumbNp:   "<a href=\"../index.html\">गृहपृष्ठ</a> / <a href=\"../category/world\">विश्व</a> / दक्षिण अमेरिकाले कसलाई गर्छ समर्थन&amp;nbsp;?",
     tagsEn:         "<a href=\"#\" class=\"tag-pill\">World Cup</a><a href=\"#\" class=\"tag-pill\">Final</a><a href=\"#\" class=\"tag-pill\">Argentina</a><a href=\"#\" class=\"tag-pill\">Brazil</a><a href=\"#\" class=\"tag-pill\">Spain</a><a href=\"#\" class=\"tag-pill\">FIFA</a>",
     tagsNp:         "<a href=\"#\" class=\"tag-pill\">विश्वकप</a><a href=\"#\" class=\"tag-pill\">फाइनल</a><a href=\"#\" class=\"tag-pill\">अर्जेन्टिना</a><a href=\"#\" class=\"tag-pill\">ब्राजिल</a><a href=\"#\" class=\"tag-pill\">स्पेन</a><a href=\"#\" class=\"tag-pill\">फिफा</a>",
-    relatedHtml:    "\n      <a href=\"/page/the-women-have-also-been-subjected-to-sexual-violence-by-the-sahus-laxmi-ghimire.html\" class=\"related-card\">\n        <img src=\"../images/the-women-have-also-been-subjected-to-sexual-violence-by-the-sahus-laxmi-ghimire.jpg\" alt=\"The women have also been subjected to sexual violence by the Sahus: Laxmi Ghimire\" loading=\"lazy\"\n             onerror=\"this.src='https://placehold.co/400x225/1a1a1a/ffffff?text=Related'\">\n        <div class=\"related-content\">\n          <span class=\"related-category lang-en\">World</span>\n                     <span class=\"related-category lang-np\" style=\"display:none\">विश्व</span>\n          <h4 class=\"lang-en\">The women have also been subjected to sexual violence by the Sahus: Laxmi Ghimire</h4>\n          <h4 class=\"lang-np\" style=\"display:none\">साहुहरूबाट धेरै महिला यौनहिंसामा समेत परेका छन् : लक्ष्मी घिमिरे</h4>\n          <span class=\"related-meta\" data-date-ad=\"July 19, 2026\">\n            <i class=\"fas fa-clock\" style=\"font-size:.68rem;margin-right:3px;\"></i>\n            <span class=\"date-display\">July 19, 2026</span>\n            <span class=\"lang-en\"></span>\n            <span class=\"lang-np\" style=\"display:none\"></span>\n          </span>\n          <span class=\"related-meta\" style=\"margin-top:3px;\">\n                <span class=\"lang-en\">Source: Kantipur · Creator: Janak Raj Sapkota</span>\n                <span class=\"lang-np\" style=\"display:none\">स्रोत: कान्तिपुर · सिर्जनाकर्ता: जनकराज सापकोटा</span>\n              </span>\n        </div>\n      </a>\n      <a href=\"/page/who-to-support-in-the-final-even-the-argentinians-are-in-dilemma.html\" class=\"related-card\">\n        <img src=\"../images/who-to-support-in-the-final-even-the-argentinians-are-in-dilemma.jpg\" alt=\"Who to support in the final? Even the Argentinians are in dilemma.\" loading=\"lazy\"\n             onerror=\"this.src='https://placehold.co/400x225/1a1a1a/ffffff?text=Related'\">\n        <div class=\"related-content\">\n          <span class=\"related-category lang-en\">World</span>\n                     <span class=\"related-category lang-np\" style=\"display:none\">विश्व</span>\n          <h4 class=\"lang-en\">Who to support in the final? Even the Argentinians are in dilemma.</h4>\n          <h4 class=\"lang-np\" style=\"display:none\">फाइनलमा समर्थन कसलाई&amp;nbsp;? अर्जेन्टिनी नै छन् दुविधामा</h4>\n          <span class=\"related-meta\" data-date-ad=\"July 19, 2026\">\n            <i class=\"fas fa-clock\" style=\"font-size:.68rem;margin-right:3px;\"></i>\n            <span class=\"date-display\">July 19, 2026</span>\n            <span class=\"lang-en\"></span>\n            <span class=\"lang-np\" style=\"display:none\"></span>\n          </span>\n          <span class=\"related-meta\" style=\"margin-top:3px;\">\n                <span class=\"lang-en\">Source: Kantipur · Creator: I</span>\n                <span class=\"lang-np\" style=\"display:none\">स्रोत: कान्तिपुर · सिर्जनाकर्ता: एपी</span>\n              </span>\n        </div>\n      </a>\n      <a href=\"/page/the-japanese-ambassador-paid-a-courtesy-call-to-the-education-minister.html\" class=\"related-card\">\n        <img src=\"../images/the-japanese-ambassador-paid-a-courtesy-call-to-the-education-minister.jpg\" alt=\"The Japanese Ambassador paid a courtesy call to the Education Minister.\" loading=\"lazy\"\n             onerror=\"this.src='https://placehold.co/400x225/1a1a1a/ffffff?text=Related'\">\n        <div class=\"related-content\">\n          <span class=\"related-category lang-en\">World</span>\n                     <span class=\"related-category lang-np\" style=\"display:none\">विश्व</span>\n          <h4 class=\"lang-en\">The Japanese Ambassador paid a courtesy call to the Education Minister.</h4>\n          <h4 class=\"lang-np\" style=\"display:none\">शिक्षामन्त्रीसँग जापानी राजदूतको शिष्टाचार भेटवार्ता</h4>\n          <span class=\"related-meta\" data-date-ad=\"July 19, 2026\">\n            <i class=\"fas fa-clock\" style=\"font-size:.68rem;margin-right:3px;\"></i>\n            <span class=\"date-display\">July 19, 2026</span>\n            <span class=\"lang-en\"></span>\n            <span class=\"lang-np\" style=\"display:none\"></span>\n          </span>\n          <span class=\"related-meta\" style=\"margin-top:3px;\">\n                <span class=\"lang-en\">Source: nagariknews.nagariknetwork.com · Creator: Citizen</span>\n                <span class=\"lang-np\" style=\"display:none\">स्रोत: नागरिकन्यूज.नागरिकनेटवर्क.कम · सिर्जनाकर्ता: नागरिक</span>\n              </span>\n        </div>\n      </a>\n      <a href=\"/page/shrawan-1st-is-a-public-holiday-in-karnali.html\" class=\"related-card\">\n        <img src=\"../images/shrawan-1st-is-a-public-holiday-in-karnali.jpg\" alt=\"Shrawan 1st is a public holiday in Karnali.\" loading=\"lazy\"\n             onerror=\"this.src='https://placehold.co/400x225/1a1a1a/ffffff?text=Related'\">\n        <div class=\"related-content\">\n          <span class=\"related-category lang-en\">World</span>\n                     <span class=\"related-category lang-np\" style=\"display:none\">विश्व</span>\n          <h4 class=\"lang-en\">Shrawan 1st is a public holiday in Karnali.</h4>\n          <h4 class=\"lang-np\" style=\"display:none\">साउने १ गते कर्णाली सार्वजनिक बिदा</h4>\n          <span class=\"related-meta\" data-date-ad=\"July 19, 2026\">\n            <i class=\"fas fa-clock\" style=\"font-size:.68rem;margin-right:3px;\"></i>\n            <span class=\"date-display\">July 19, 2026</span>\n            <span class=\"lang-en\"></span>\n            <span class=\"lang-np\" style=\"display:none\"></span>\n          </span>\n          <span class=\"related-meta\" style=\"margin-top:3px;\">\n                <span class=\"lang-en\">Source: nagariknews.nagariknetwork.com · Creator: Citizens Surkhet 32 Asar 2083 1 Minute Patsangrah Email Print</span>\n                <span class=\"lang-np\" style=\"display:none\">स्रोत: नागरिकन्यूज.नागरिकनेटवर्क.कम · सिर्जनाकर्ता: नागरिकसुर्खेत३२ असार २०८३१ मिनेट पाठसंग्रहईमेलप्रिन्ट</span>\n              </span>\n        </div>\n      </a>"
+    relatedHtml:    "\n      <a href=\"/page/the-hard-work-has-changed-the-life-after-being-freed-from-kamaiya-system.html\" class=\"related-card\">\n        <img src=\"../images/the-hard-work-has-changed-the-life-after-being-freed-from-kamaiya-system.jpg\" alt=\"The hard work has changed the life after being freed from Kamaiya system.\" loading=\"lazy\"\n             onerror=\"this.src='https://placehold.co/400x225/1a1a1a/ffffff?text=Related'\">\n        <div class=\"related-content\">\n          <span class=\"related-category lang-en\">World</span>\n                     <span class=\"related-category lang-np\" style=\"display:none\">विश्व</span>\n          <h4 class=\"lang-en\">The hard work has changed the life after being freed from Kamaiya system.</h4>\n          <h4 class=\"lang-np\" style=\"display:none\">कमैया मुक्तिपछि परिश्रमले फेरिएको जीवन</h4>\n          <span class=\"related-meta\" data-date-ad=\"July 19, 2026\">\n            <i class=\"fas fa-clock\" style=\"font-size:.68rem;margin-right:3px;\"></i>\n            <span class=\"date-display\">July 19, 2026</span>\n            <span class=\"lang-en\"></span>\n            <span class=\"lang-np\" style=\"display:none\"></span>\n          </span>\n          <span class=\"related-meta\" style=\"margin-top:3px;\">\n                <span class=\"lang-en\">Source: Kantipur · Creator: Bhawani Bhatt</span>\n                <span class=\"lang-np\" style=\"display:none\">स्रोत: कान्तिपुर · सिर्जनाकर्ता: भवानी भट्ट</span>\n              </span>\n        </div>\n      </a>"
   };
 
   function populate() {
