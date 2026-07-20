@@ -690,8 +690,6 @@
   }
 </style>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
-  
   :root {
     --accent:       #D4A017;
     --primary:      #A31919;
@@ -702,8 +700,8 @@
     --text:         #1F1F1F;
     --muted:        rgba(31,31,31,0.55);
     --border:       rgba(163,25,25,0.18);
-    --font-body:    'Open Sans', sans-serif;
-    --font-heading: 'Open Sans', sans-serif;
+    --font-body:    Arial, sans-serif;
+    --font-heading: Arial, sans-serif;
   }
 
   * {
@@ -955,26 +953,6 @@
     .card-title {
       font-size: 1rem;
     }
-  }
-
-  .lang-np {
-    display: none;
-  }
-
-  .lang-en {
-    display: inline;
-  }
-
-  body.lang-active .lang-en {
-    display: none !important;
-  }
-
-  body.lang-active .lang-np {
-    display: inline !important;
-  }
-
-  body.lang-active p.lang-np, body.lang-active span.lang-np {
-    display: inline !important;
   }
 </style>
 <style>
@@ -1259,9 +1237,9 @@
 
 
 
+
 <div class="category-page-grid">
        <div class="category-main-col"><div class="category-container">
-  <!-- Category Header Section -->
   <div class="category-header">
     <div class="breadcrumb">
       <span id="breadcrumb-en" class="lang-en"></span>
@@ -1283,10 +1261,8 @@
     </div>
   </div>
 
-  <!-- News Grid Section -->
   <div id="news-grid" class="news-grid"></div>
 
-  <!-- Load More Section -->
   <div class="load-more-container">
     <button id="load-more-btn" class="load-more-btn">
       <span class="lang-en"><i class="fas fa-chevron-down"></i> Load More</span>
@@ -1294,14 +1270,7 @@
     </button>
   </div>
 
-  <!-- Back to Top Button -->
   
-
-  <!-- Empty State -->
-  <div class="empty-state">
-    <i class="fa-regular fa-newspaper"></i>
-    <p>No articles in this category.</p>
-  </div>
 </div>
 
 </div>
@@ -1484,16 +1453,15 @@
   </div>
 
   
-
-  <!-- WhatsApp float -->
-  
 </footer>
+
+
 
   <!-- ════ WHATSAPP WIDGET ════ -->
   <div class="wa-widget">
-    <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
-    <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
-  </div>
+  <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
+  <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</div>
 
   <!-- ════ LANG CAPTURE — installed first, cancels all competing handlers ════ -->
   <script>

@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-50oiMu7EJCF36sfRcz/UU5ELC/MxwEmBD8BwPR6khO24xUvUSgDPmUHaeU6SdvLI+1XnE/A58pWGP38vkZEYQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
 
 :root {
@@ -542,135 +542,71 @@
 
 </style>
 <style>
-  .page-container { max-width:1200px; margin:0 auto; padding:0 16px; }
   * { box-sizing:border-box; }
   .index-page { background:#FFFFFF; color:#1F1F1F; font-family:Noto Serif, Georgia, serif; min-height:100vh; }
   .lang-np { display:none; }
   .lang-en { display:inline; }
 
-  /* Global layout resets */
+  .page-container { max-width:1200px; margin:0 auto; padding:0 16px; }
 
-  /* ─── SECTION LAYOUT — uniform thumbnail-grid style (matches butwaltodayonlinetv.com) ───── */
   .news-section { margin:28px 0; border-bottom:1px solid rgba(163,25,25,0.18); padding-bottom:24px; }
   .news-section:last-child { border-bottom:none; }
 
-  /* Section header with accent left-border */
   .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; padding-bottom:8px; border-bottom:2px solid #A31919; }
   .section-title { font-size:1.15rem; margin:0; color:#A31919; font-family:Noto Serif, Georgia, serif; font-weight:800; display:flex; align-items:center; gap:8px; }
   .section-title::before { content:''; display:inline-block; width:4px; height:1.1em; background:#D4A017; border-radius:2px; flex-shrink:0; }
-  .view-all-link { font-size:.78rem; font-weight:700; color:#A31919; text-decoration:none;
-    padding:4px 12px;
-    border:1px solid #A31919;
-    border-radius:3px;
-    transition:all .2s;
-    white-space:nowrap;
-  }
-  .view-all-link:hover { background:#A31919;
-    color:#FFFFFF;
-    }
+  .view-all-link { font-size:.78rem; font-weight:700; color:#A31919; text-decoration:none; padding:4px 12px; border:1px solid #A31919; border-radius:3px; transition:all .2s; white-space:nowrap;}
+  .view-all-link:hover { background:#A31919;color:#FFFFFF;}
 
-/* ─── UNIFORM GRID (every section, no special "featured" column) ─── */
-.section-grid,
-.section-grid.has-featured,
-.section-grid.latest-grid {
-display:block;
+  .section-grid,
+  .section-grid.has-featured,
+  .section-grid.latest-grid {
+    display:-webkit-grid;
+    -webkit-grid-template-columns:auto-fill;
+    -webkit-grid-auto-columns:minmax(220px,1fr);
+    gap:-18px;
+    align-items:start;
 }
 /* The "list" wrapper becomes transparent so its cards join the same grid
    as the "featured" card — instead of being boxed into a separate column. */
 .section-list {
-display:block;
+    display:-webkit-box;
 }
 
 @media(max-width:480px) {
-.page-container {
-max-width:none;
+    .section-grid,
+    .section-grid.has-featured,
+    .section-grid.latest-grid {
+        -webkit-grid-template-columns:auto-fill;
+        -webkit-grid-auto-columns:minmax(220px,1fr);
+        gap:-12px;
 }
-.page-container {
-padding-left:auto !important;
-padding-right:auto !important;
-
-}
-.page-container {
-margin-left:auto !important;
-margin-right:auto !important;
-
-}
-.page-container {
-width:max-content !important;
-
 }
 
-}
-
-/* Unified thumbnail card — used for every card, "featured" or "latest" alike */
-.news-card.featured,
-.news-card.latest {
+.news-card.featured,.news-card.latest {
 background:#F8F8F8;
-border:
-solid
-rgba(163,25,25,.18);
-border-radius:
-6px
+border-radius:.5rem;
+display:block;
+width:auto;
+transition:.2s ease-in-out all;
+
 }
-.news-card.featured:hover,
-.news-card.latest:hover {
-box-shadow:
-0
-4
-16
-rgba(0,0,0,.14);
-transform:
-translateY(-2)
+.news-card.featured:hover,.news-card.latest:hover {
+box-shadow:.5rem rgba(0,0,0,.14);
+transform:.5rem translateY(-.5rem);
 }
-.news-card.featured > a,
-.news-card.latest > a {
-text-decoration:none;color:#1F1F1F;display:block;}
-.news-card.featured.card-img,
-.news-card.latest.card-img{
-display:block;width:
-100%;
-height:
-170
-position:relative;background-color:;
-overflow:hidden;}
-.news-card.featured.card-img img,
-.news-card.latest.card-img img{
-position:absolute;top:;
-left:;
-width:;
-height:;
-object-fit:;
-object-position:center;display:block;}
-/* Play-icon overlay on hover */
-.news-card.featured.card-img::after,
-.news-card.latest.card-img::after{
-content:'\f04b';
-font-family:'Font Awesome';
-font-weight:;
-position:absolute;top:;
-left:;
-display:flex;display:flex;display:flex;display:flex;display:flex;display:flex;display:flex;display:flex;display:flex;display:flex&displayflexflexflexflexflexflexflexflexflexflexflexflexflexflexdisplayblockalignitemscenterjustifycontentcenter;font-size:.5rem;color:white;background-color:blackopacity:.18transition.opacity.s;}
-(news-card.featured:hover.card-img::after,
-(news-card.latest:hover.card-img::after{opacity:.5})
-/* Card body styles */
-.news-card.featured.card-body,
-.news-card.latest.card-body{
-padding-top:;
-padding-left:;
-padding-right:;
-padding-bottom:;
-}
-/* Card title styles */
-.news-card.featured.card-title,
-.news-card.latest.card-title{
-font-size:.9rem;margin-top:;
-line-height:;
-color:white;font-family:Noto Serif Georgia serif;font-weight:bold;-webkit-line-clamp:;
--webkit-box-orient:';
-overflow:hidden;}
-/* Card meta styles */
-.cat-badge{display:inline-block;background-color:red;color:white;font-size:.62rem;font-weight:bold;padding-top:;
-letter-spacing:.06em;text-transform:');
+.news-card.featured > a,.news-card.latest > a {
+text-decoration:none;color:#000;display:block;}
+.news-card.featured.card-date,.news-card.latest.card-date{
+display:block;}
+.news-card.featured.card-title,.news-card.latest.card-title{
+font-size:.9rem;margin-top:.5rem;line-height:normal;color:#000;}
+.news-card.featured.card-meta-desc,.news-card.latest.card-meta-desc{
+display:block;}
+
+.cat-badge{display:inline-block;background-color:A31919;color:white;font-size:.62rem;font-weight:bold;padding:.25em;.75em;border-radius:.25em;margin-bottom:.75em;text-transform uppercase;}
+.card-date{font-size:.72rem;color:muted;display:flex	align-items:center	gap	4em	margin-top	4em;}
+
 </style>
 <style>
     /* ALL CSS from PART D */
@@ -1275,13 +1211,12 @@ letter-spacing:.06em;text-transform:');
   </div>
 
   
-
-  <!-- WhatsApp float -->
-  <div class="wa-widget">
-    <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
-    <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
-  </div>
 </footer>
+
+<div class="wa-widget">
+  <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
+  <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</div>
   <script>
 
 (function () {
