@@ -700,8 +700,8 @@
     --text:         #1F1F1F;
     --muted:        rgba(31,31,31,0.55);
     --border:       rgba(163,25,25,0.18);
-    --font-body:    Arial, sans-serif;
-    --font-heading: Arial, sans-serif;
+    --font-body:    'Open Sans', sans-serif;
+    --font-heading: 'Montserrat', sans-serif;
   }
 
   * {
@@ -953,6 +953,27 @@
     .card-title {
       font-size: 1rem;
     }
+  }
+
+  .lang-np {
+    display: none;
+  }
+
+  .lang-en {
+    display: inline;
+  }
+
+  body.lang-active .lang-en {
+    display: none !important;
+  }
+
+  body.lang-active .lang-np {
+    display: inline !important;
+  }
+
+  body.lang-active p.lang-np,
+  body.lang-active span.lang-np {
+    display: inline !important;
   }
 </style>
 <style>
@@ -1272,9 +1293,16 @@
 
   
 
-  <div id="empty-state" class="empty-state">
+  <div id="load-more-btn-container" style="display: none;">
+    <button id="load-more-btn" class="load-more-btn">
+      <span class="lang-en"><i class="fas fa-chevron-down"></i> Load More</span>
+      <span class="lang-np"><i class="fas fa-chevron-down"></i> थप लोड गर्नुहोस्</span>
+    </button>
+  </div>
+
+  <div class="empty-state" style="display: none;">
     <i class="fa-regular fa-newspaper"></i>
-    <p>No articles found in this category.</p>
+    <p>No articles in this category.</p>
   </div>
 </div>
 
