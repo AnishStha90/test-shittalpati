@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Radio  - News</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+
+:root {
+  --hdr-accent:      #D4A017;
+  --hdr-primary:     #A31919;
+  --hdr-primary-on:  #FFFFFF;
+  --hdr-accent-on:   #1F1F1F;
+  --hdr-bg:          #FFFFFF;
+  --hdr-surface:     #F8F8F8;
+  --hdr-text:        #1F1F1F;
+  --hdr-muted:       rgba(31,31,31,0.55);
+  --hdr-border:      rgba(163,25,25,0.18);
+  --hdr-font-body:   sans-serif;
+  --hdr-font-heading:Noto Serif, Georgia, serif;
+}
+
+/* === FIX 1: Header must be position:relative so mobile menu anchors to it === */
+#site-header {
+  position: relative !important;
+  display: block !important;
+}
+
+/* === RESET inside header only — excludes icon elements === */
+#site-header *, #site-header *::before, #site-header *::after {
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: normal !important;
+}
+
+/* Apply font-family only to non-icon elements so Font Awesome is never overridden */
+#site-header *:not(i):not([class*="fa-"]) {
+  font-family: var(--hdr-font-body, sans-serif) !important;
+}
+
+/* === FONT AWESOME ICON PROTECTION === */
+#site-header i[class*="fa-"] {
+  font-style: normal !important;
+  font-variant: normal !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  display: inline-block !important;
+  line-height: 1 !important;
+}
+#site-header i.fa-brands,
+#site-header i[class*="fa-brands"] {
+  font-family: "Font Awesome 6 Brands" !important;
+  font-weight: 400 !important;
+}
+#site-header i.fa-solid,
+#site-header i[class*="fa-solid"] {
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 900 !important;
+}
+#site-header i.fa-regular,
+#site-header i[class*="fa-regular"] {
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 400 !important;
+}
+
+/* === FIX 3: Header-internal lang toggle via .hdr-np class === */
+#site-header .lang-en { display: inline !important; }
+#site-header .lang-np { display: none !important; }
+#site-header.hdr-np .lang-en { display: none !important; }
+#site-header.hdr-np .lang-np { display: inline !important; }
+
+/* === TOP BAR === */
+#site-header .top-bar {
+  background: var(--hdr-surface) !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  overflow: hidden !important;
+  transition: height .3s ease, opacity .3s ease !important;
+}
+#site-header .top-bar-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  height: 38px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+
+/* === SOCIAL ICONS === */
+#site-header .top-social {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  flex-shrink: 0 !important;
+}
+#site-header .top-social a {
+  color: var(--hdr-text) !important;
+  font-size: 1.1rem !important;
+  text-decoration: none !important;
+  transition: color .2s !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 1.4rem !important;
+  height: 1.4rem !important;
+}
+#site-header .top-social a:hover {
+  color: var(--hdr-accent) !important;
+}
+#site-header .top-social a i {
+  font-size: 1.1rem !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* === TOP CENTER === */
+#site-header .top-center {
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  font-size: .8rem !important;
+  color: var(--hdr-text) !important;
+}
+#site-header .top-date,
+#site-header .top-clock {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  white-space: nowrap !important;
+}
+#site-header .top-date i,
+#site-header .top-clock i { opacity: .6 !important; font-size: .78rem !important; }
+#site-header .top-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-shrink: 0 !important;
+}
+
+/* === PLAYER === */
+#site-header .header-player {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  border: 1px solid var(--hdr-border) !important;
+  border-radius: 6px !important;
+  padding: 4px 10px !important;
+  background: var(--hdr-bg) !important;
+}
+#site-header .player-live-badge {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  font-size: .62rem !important;
+  font-weight: 800 !important;
+  color: var(--hdr-accent) !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+#site-header .live-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: #e74c3c !important;
+  animation: hdrLivePulse 1.5s ease-in-out infinite !important;
+  flex-shrink: 0 !important;
+}
+@keyframes hdrLivePulse {
+  0%,100%{ opacity:1; transform:scale(1); }
+  50%{ opacity:.3; transform:scale(.65); }
+}
+#site-header .player-waveform {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+  height: 16px !important;
+}
+#site-header .player-waveform span {
+  display: block !important;
+  width: 2px !important;
+  border-radius: 1px !important;
+  background: var(--hdr-accent) !important;
+  opacity: .65 !important;
+  animation: hdrWaveAnim 1.2s ease-in-out infinite !important;
+}
+#site-header .player-waveform span:nth-child(1){height:4px !important;animation-delay:0s !important;}
+#site-header .player-waveform span:nth-child(2){height:10px !important;animation-delay:.15s !important;}
+#site-header .player-waveform span:nth-child(3){height:14px !important;animation-delay:.3s !important;}
+#site-header .player-waveform span:nth-child(4){height:8px !important;animation-delay:.45s !important;}
+#site-header .player-waveform span:nth-child(5){height:11px !important;animation-delay:.6s !important;}
+@keyframes hdrWaveAnim {
+  0%,100%{ transform:scaleY(.35); }
+  50%{ transform:scaleY(1); }
+}
+#site-header .player-waveform.paused span {
+  animation-play-state: paused !important;
+  opacity: .2 !important;
+}
+#site-header .player-play-btn {
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background: var(--hdr-accent) !important;
+  color: var(--hdr-accent-on) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  transition: opacity .2s, transform .1s !important;
+}
+#site-header .player-play-btn:hover { opacity: .85 !important; }
+#site-header .player-play-btn:active { transform: scale(.9) !important; }
+#site-header .player-vol-wrap {
+  display: flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+}
+#site-header .vol-btn {
+  background: none !important;
+  border: none !important;
+  color: var(--hdr-muted) !important;
+  cursor: pointer !important;
+  padding: 2px !important;
+  display: flex !important;
+  align-items: center !important;
+  transition: color .2s !important;
+  flex-shrink: 0 !important;
+}
+#site-header .vol-btn:hover { color: var(--hdr-accent) !important; }
+#site-header .vol-slider {
+  -webkit-appearance: none !important;
+  width: 56px !important;
+  height: 3px !important;
+  border-radius: 2px !important;
+  outline: none !important;
+  cursor: pointer !important;
+  background: linear-gradient(to right, var(--hdr-accent) 70%, var(--hdr-border) 70%) !important;
+}
+#site-header .vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 50% !important;
+  background: var(--hdr-accent) !important;
+  cursor: pointer !important;
+}
+#site-header .vol-slider::-moz-range-thumb {
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 50% !important;
+  background: var(--hdr-accent) !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+#site-header .lang-toggle {
+  background: var(--hdr-accent) !important;
+  color: var(--hdr-accent-on) !important;
+  border: none !important;
+  border-radius: 3px !important;
+  padding: 3px 10px !important;
+  font-weight: 700 !important;
+  font-size: .72rem !important;
+  cursor: pointer !important;
+  letter-spacing: .05em !important;
+  transition: opacity .2s !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+#site-header .lang-toggle:hover { opacity: .85 !important; }
+
+/* === LOGO BAR === */
+#site-header .logo-bar {
+  background: var(--hdr-surface) !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  padding: 10px 0 !important;
+  transition: padding .3s ease !important;
+}
+#site-header .logo-bar-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: justify-content .3s ease !important;
+}
+#site-header .logo-link {
+  display: flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+}
+#site-header .header-logo {
+  height: 90px !important;
+  width: auto !important;
+  max-width: min(520px, 80vw) !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  display: block !important;
+  transition: height .3s ease, object-position .3s ease !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* === MAIN NAV === */
+#site-header .main-nav {
+  background: var(--hdr-primary) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.22) !important;
+}
+#site-header .main-nav-inner {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+#site-header .nav-list {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  overflow: visible !important;
+}
+#site-header .nav-list li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  display: flex !important;
+  align-items: stretch !important;
+}
+#site-header .nav-list li > a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: .72rem .85rem !important;
+  color: var(--hdr-primary-on) !important;
+  text-decoration: none !important;
+  font-size: .82rem !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  border-bottom: 3px solid transparent !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  transition: background .2s, border-color .2s !important;
+  background: transparent !important;
+}
+#site-header .nav-list li > a:hover,
+#site-header .nav-list li.active > a {
+  background: rgba(0,0,0,.18) !important;
+  border-bottom-color: #fff !important;
+}
+
+/* === DROPDOWN === */
+#site-header .has-dropdown { position: relative !important; }
+#site-header .dropdown-arrow {
+  font-size: .65rem !important;
+  transition: transform .25s !important;
+  margin-left: 2px !important;
+}
+#site-header .has-dropdown:hover .dropdown-arrow,
+#site-header .has-dropdown.open .dropdown-arrow { transform: rotate(180deg) !important; }
+#site-header .dropdown-menu {
+  display: none !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  background: var(--hdr-surface) !important;
+  border: 1px solid var(--hdr-border) !important;
+  border-top: 2px solid var(--hdr-accent) !important;
+  border-radius: 0 0 6px 6px !important;
+  min-width: 220px !important;
+  z-index: 2000 !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.15) !important;
+  list-style: none !important;
+  padding: 4px 0 !important;
+}
+@media (min-width: 961px) {
+  #site-header .has-dropdown:hover .dropdown-menu { display: block !important; }
+}
+@media (max-width: 960px) {
+  #site-header .has-dropdown.open .dropdown-menu { display: block !important; }
+}
+#site-header .dropdown-menu li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+#site-header .dropdown-menu li a {
+  display: block !important;
+  padding: .6rem 1.1rem !important;
+  color: var(--hdr-text) !important;
+  text-decoration: none !important;
+  font-size: .84rem !important;
+  font-weight: 500 !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  transition: background .15s, color .15s !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+}
+#site-header .dropdown-menu li:last-child a { border-bottom: none !important; }
+#site-header .dropdown-menu li a:hover {
+  background: var(--hdr-primary) !important;
+  color: var(--hdr-primary-on) !important;
+}
+
+/* === HAMBURGER === */
+#site-header .nav-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  flex-shrink: 0 !important;
+}
+#site-header .hamburger {
+  display: none !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 6px !important;
+  cursor: pointer !important;
+  width: 40px !important;
+  height: 40px !important;
+  flex-shrink: 0 !important;
+}
+#site-header .bar {
+  display: block !important;
+  width: 20px !important;
+  height: 2px !important;
+  background: var(--hdr-primary-on) !important;
+  border-radius: 2px !important;
+  transition: transform .3s, opacity .3s !important;
+  transform-origin: center !important;
+}
+#site-header .hamburger[aria-expanded="true"] .bar:nth-child(1){transform:translateY(7px) rotate(45deg) !important;}
+#site-header .hamburger[aria-expanded="true"] .bar:nth-child(2){opacity:0 !important;transform:scaleX(0) !important;}
+#site-header .hamburger[aria-expanded="true"] .bar:nth-child(3){transform:translateY(-7px) rotate(-45deg) !important;}
+
+/* === MOBILE MENU === */
+#site-header .mobile-menu {
+  display: none !important;
+  background: var(--hdr-surface) !important;
+  border-top: 2px solid var(--hdr-primary) !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 999 !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.18) !important;
+}
+#site-header .mobile-menu.open { display: block !important; }
+#site-header .mobile-menu ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: .5rem 0 !important;
+}
+#site-header .mobile-menu ul li { margin: 0 !important; padding: 0 !important; }
+#site-header .mobile-menu ul li a {
+  display: block !important;
+  padding: .72rem 1.5rem !important;
+  color: var(--hdr-text) !important;
+  text-decoration: none !important;
+  font-size: .9rem !important;
+  border-bottom: 1px solid var(--hdr-border) !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  transition: background .2s, color .2s !important;
+  background: transparent !important;
+}
+#site-header .mobile-menu ul li a:hover {
+  background: var(--hdr-primary) !important;
+  color: var(--hdr-primary-on) !important;
+}
+#site-header .mobile-province-list li a {
+  padding-left: 2.5rem !important;
+  font-size: .85rem !important;
+  background: var(--hdr-bg) !important;
+}
+
+/* === SCROLL SHRINK === */
+#site-header.scrolled .top-bar {
+  height: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  border: none !important;
+}
+#site-header.scrolled .logo-bar { padding: 5px 0 !important; }
+#site-header.scrolled .logo-bar-inner { justify-content: flex-start !important; }
+#site-header.scrolled .header-logo { height: 42px !important; object-position: left center !important; }
+
+/* === RESPONSIVE === */
+@media (max-width: 960px) {
+  #site-header .nav-list { display: none !important; }
+  #site-header .hamburger { display: flex !important; }
+  #site-header .top-center { display: none !important; }
+  #site-header .player-vol-wrap { display: none !important; }
+  #site-header .top-bar-inner { padding: 0 12px !important; }
+}
+@media (max-width: 600px) {
+  #site-header .header-logo { height: 58px !important; max-width: 70vw !important; }
+  #site-header .header-player { padding: 3px 7px !important; gap: 4px !important; }
+  #site-header .top-social { gap: 10px !important; }
+  #site-header .logo-bar-inner,
+  #site-header .main-nav-inner { padding: 0 12px !important; }
+  #site-header .top-right { gap: 6px !important; }
+}
+@media (min-width: 961px) {
+  #site-header .hamburger { display: none !important; }
+  #site-header .mobile-menu { display: none !important; }
+  #site-header .nav-list { display: flex !important; }
+}
+@media (max-width: 480px) {
+  #site-header .player-live-badge .live-label { display: none !important; }
+  #site-header .player-waveform { display: none !important; }
+  #site-header .header-player { padding: 2px 5px !important; }
+}
+
+</style>
+<style>
+  .lang-np { display: none !important; }
+  .lang-en { display: inline; }
+  div.lang-en, p.lang-en, h3.lang-en, .article-body.lang-en,
+  section.lang-en, aside.lang-en { display: block !important; }
+  div.lang-np, p.lang-np, h3.lang-np, .article-body.lang-np,
+  section.lang-np, aside.lang-np { display: none !important; }
+
+  .meta { display: flex !important; flex-wrap: wrap; align-items: center !important; gap: 1rem; }
+  .meta > span { display: inline-flex !important; align-items: center; gap: 5px; white-space: nowrap; }
+  .meta i { display: inline-flex !important; align-items: center; line-height: 1; font-size: 0.85rem; flex-shrink: 0; }
+
+  /* ── Section ads (between paragraphs) ── */
+  .ad-unit {
+    margin: 1.6rem 0;
+    padding: 0.5rem;
+    border: 1px dashed var(--border, rgba(0,0,0,0.15));
+    border-radius: 6px;
+    background: var(--surface, rgba(0,0,0,0.02));
+    text-align: center;
+    overflow: hidden;
+  }
+  .ad-label {
+    display: block;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted, rgba(0,0,0,0.3));
+    margin-bottom: 0.35rem;
+  }
+  .ad-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+  }
+  .ad-link { display: inline-block; line-height: 0; }
+
+  /* ── Sidebar ads (above related articles) ── */
+  .sidebar-ads-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .sidebar-ads-wrapper .ad-unit { margin: 0; }
+
+  .related-card {
+    display: flex; gap: 12px; margin-bottom: 14px;
+    text-decoration: none; color: inherit;
+    padding: 8px; border-radius: 8px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .related-card:hover { background: rgba(128,128,128,0.08); transform: translateX(3px); }
+  .related-card img { width: 80px; height: 58px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+  .related-content { flex: 1; min-width: 0; }
+  .related-category { display: block; font-size: 0.68rem; color: var(--accent, #D4A017); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 3px; }
+  .related-card h4 { margin: 0 0 4px; font-size: 0.85rem; line-height: 1.35; font-family: var(--font-heading, serif); color: var(--text, #1F1F1F); }
+  .related-meta { font-size: 0.7rem; color: var(--muted, rgba(0,0,0,0.45)); }
+  .no-related { text-align: center; padding: 1rem; color: var(--muted); font-size: 0.88rem; }
+
+  .tag-pill {
+    display: inline-block; background: var(--surface); border: 1px solid var(--border);
+    padding: 4px 12px; border-radius: 20px; font-size: 0.82rem;
+    text-decoration: none; color: var(--text); margin: 3px 2px; transition: background 0.2s, color 0.2s;
+  }
+  .tag-pill:hover { background: var(--accent); color: var(--accent-on); }
+
+  .tooltip {
+    display: none; position: absolute; background: var(--primary); color: var(--primary-on);
+    padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; white-space: nowrap;
+    bottom: 110%; left: 50%; transform: translateX(-50%); z-index: 10; pointer-events: none;
+  }
+  .tooltip.visible { display: block; }
+</style>
+<style>
+  :root {
+    --accent:       #D4A017;
+    --primary:      #A31919;
+    --primary-on:   #FFFFFF;
+    --accent-on:    #1F1F1F;
+    --bg:           #FFFFFF;
+    --surface:      #F8F8F8;
+    --text:         #1F1F1F;
+    --muted:        rgba(31,31,31,0.55);
+    --border:       rgba(163,25,25,0.18);
+    --font-body:    'Open Sans', sans-serif;
+    --font-heading: 'Montserrat', sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); margin: 0; padding: 0; }
+
+  .article-container {
+    max-width: 1100px; margin: 0 auto; padding: 1.5rem; background: var(--bg);
+  }
+
+  .article-header {
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.3;
+    margin: 0.5rem 0 0.75rem; color: var(--primary);
+  }
+
+  .breadcrumb {
+    font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem;
+  }
+  .breadcrumb a {
+    color: var(--accent); text-decoration: none;
+  }
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .category-badge span {
+    display: inline-block; background: var(--accent); color: var(--accent-on);
+    padding: 3px 10px; border-radius: 4px; font-size: 0.78rem; font-weight: 700;
+    margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+
+  .meta {
+    display: flex; gap: 1.2rem; color: var(--muted); font-size: 0.88rem;
+    margin-bottom: 0.75rem; flex-wrap: wrap; align-items: center;
+  }
+  .meta i {
+    margin-right: 4px;
+  }
+
+  .share-buttons {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 0.5rem;
+  }
+  .share-btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px;
+    border-radius: 5px; border: 1px solid var(--border); background: var(--surface);
+    color: var(--text); cursor: pointer; font-size: 0.85rem;
+    font-family: var(--font-body); transition: all 0.2s ease;
+  }
+  .share-btn:hover {
+    background: var(--accent); color: var(--accent-on); border-color: var(--accent);
+  }
+  .share-btn.facebook:hover {
+    background: #1877F2; color: #fff; border-color: #1877F2;
+  }
+  .share-btn.twitter:hover {
+    background: #1DA1F2; color: #fff; border-color: #1DA1F2;
+  }
+
+  .copy-link {
+    position: relative;
+  }
+  .tooltip {
+    display: none; position: absolute; background: var(--primary); color: var(--primary-on);
+    padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; white-space: nowrap;
+    bottom: 110%; left: 50%; transform: translateX(-50%); z-index: 10; pointer-events: none;
+  }
+  .tooltip.visible {
+    display: block;
+  }
+
+  .article-content {
+    display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start;
+  }
+  @media (max-width: 1023px) {
+    .article-content { grid-template-columns: 1fr; }
+  }
+
+  .main-column {
+    min-width: 0;
+  }
+
+  .image-wrapper {
+    margin-bottom: 1.5rem;
+  }
+  .image-wrapper img {
+    width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; display: block;
+  }
+  .image-wrapper.hidden {
+    display: none;
+  }
+
+  .article-body {
+    font-size: 1rem; line-height: 1.8; color: var(--text);
+  }
+  .article-body p {
+    margin-bottom: 1.1rem;
+  }
+  .article-body h2 {
+    font-family: var(--font-heading); margin: 1.8rem 0 0.8rem; font-size: 1.3rem;
+  }
+  .article-body img {
+    max-width: 100%; border-radius: 6px;
+  }
+
+  .tags-wrapper {
+    margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--border);
+  }
+  .tags-wrapper h3 {
+    font-size: 0.95rem; margin: 0 0 0.6rem; font-family: var(--font-heading);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .tags-list {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .tags-list a {
+    background: var(--surface); border: 1px solid var(--border); padding: 4px 12px;
+    border-radius: 20px; font-size: 0.82rem; text-decoration: none; color: var(--text);
+    transition: 0.2s;
+  }
+  .tags-list a:hover {
+    background: var(--accent); color: var(--accent-on); border-color: var(--accent);
+  }
+
+  .sidebar {
+    position: sticky; top: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;
+  }
+
+  .widget {
+    background: var(--surface); padding: 1.4rem; border-radius: 10px; border: 1px solid var(--border);
+  }
+  .widget h3 {
+    font-family: var(--font-heading); font-size: 1.05rem; margin: 0 0 1rem;
+    padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); color: var(--primary);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .widget p {
+    font-size: 0.88rem; color: var(--muted); margin-bottom: 0.6rem; line-height: 1.5;
+  }
+
+  #newsletter-email {
+    width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px;
+    background: var(--bg); color: var(--text); font-size: 0.88rem;
+    box-sizing: border-box; margin-bottom: 8px; outline: none;
+  }
+  #newsletter-email:focus {
+    border-color: var(--accent);
+  }
+  #newsletter-subscribe {
+    width: 100%; padding: 9px; background: var(--accent); color: var(--accent-on);
+    border: none; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 0.9rem;
+    transition: opacity 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  #newsletter-subscribe:hover {
+    opacity: 0.85;
+  }
+
+  #back-to-top {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent);
+    color: var(--accent-on); border: none; border-radius: 50%; width: 42px; height: 42px;
+    cursor: pointer; font-size: 1rem; display: none; align-items: center; justify-content: center;
+    z-index: 999; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: opacity 0.2s;
+  }
+  #back-to-top:hover {
+    opacity: 0.85;
+  }
+
+  .related-card {
+    display: flex; gap: 10px; text-decoration: none; color: var(--text);
+    padding: 0.7rem 0; border-bottom: 1px solid var(--border); align-items: flex-start;
+  }
+  .related-card:last-child {
+    border-bottom: none;
+  }
+  .related-card img {
+    width: 72px; height: 52px; object-fit: cover; border-radius: 5px; flex-shrink: 0;
+  }
+  .related-content {
+    flex: 1; min-width: 0;
+  }
+  .related-category {
+    display: block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    color: var(--accent); letter-spacing: 0.05em; margin-bottom: 2px;
+  }
+  .related-content h4 {
+    margin: 0 0 3px; font-size: 0.85rem; line-height: 1.3; font-family: var(--font-heading);
+    overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  }
+  .related-meta {
+    font-size: 0.75rem; color: var(--muted);
+  }
+
+  .lang-np { display: none; }
+  .lang-en { display: inline; }
+  div.lang-en, p.lang-en, h3.lang-en, .article-body.lang-en { display: block; }
+  div.lang-np, p.lang-np, h3.lang-np, .article-body.lang-np { display: none; }
+  body.lang-active .lang-en { display: none !important; }
+  body.lang-active .lang-np { display: inline !important; }
+  body.lang-active div.lang-np, body.lang-active p.lang-np, body.lang-active h3.lang-np, body.lang-active .article-body.lang-np { display: block !important; }
+  #article-body-en, #article-body-np { min-height: 2rem; }
+</style>
+<style>
+    /* ALL CSS from PART D */
+    #site-footer { font-family:var(--font-body); }
+
+    /* TOP SECTION */
+    .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
+    .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
+    .footer-col { display:flex; flex-direction:column; gap:10px; }
+    .footer-col-heading { font-size:.82rem; font-weight:800; color:#111; margin:0 0 6px; padding-bottom:8px; border-bottom:2px solid var(--primary); text-transform:uppercase; letter-spacing:.06em; }
+    .footer-company-name { font-weight:700; font-size:.9rem; color:#111; margin:0; }
+    .footer-addr { font-size:.82rem; color:#444; margin:0; line-height:1.6; }
+    .footer-contact-line { font-size:.82rem; color:#444; margin:0; }
+    .footer-link-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+    .footer-link-list li a { font-size:.85rem; color:#333; text-decoration:none; transition:color .2s; display:block; padding:2px 0; }
+    .footer-link-list li a:hover { color:var(--primary); }
+
+    /* BOTTOM BAR */
+    .footer-bottom { background:#d8d8d8; border-top:1px solid #bbb; padding:18px 0; }
+    .footer-bottom-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+    .footer-bottom-brand { display:flex; flex-direction:column; gap:3px; flex-shrink:0; }
+    .footer-site-name { font-size:1rem; font-weight:800; color:#111; }
+    .footer-copy { font-size:.74rem; color:#555; display:flex; align-items:center; gap:4px; }
+    .footer-copy i { font-size:.72rem; }
+    .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { display:flex; flex-direction:column; gap:2px; }
+    .editor-label { font-size:.74rem; color:#555; }
+    .editor-name { font-size:.9rem; font-weight:800; color:#111; display:block; }
+    .editor-phone { font-size:.8rem; color:#333; display:block; margin-top:1px; }
+    .footer-bottom-info { font-size:.78rem; color:#555; max-width:200px; line-height:1.5; }
+    .footer-bottom-social { display:flex; flex-direction:column; gap:6px; align-items:flex-end; }
+    .connect-label { font-size:.78rem; font-weight:700; color:#333; }
+    .footer-social-row { display:flex; gap:10px; align-items:center; }
+    .footer-social-row a { color:#333; font-size:1.1rem; text-decoration:none; transition:color .2s; }
+    .footer-social-row a:hover { color:var(--primary); }
+
+    /* Language */
+    .lang-en { display:inline; }
+    .lang-np { display:none; }
+    body.lang-active .lang-en { display:none; }
+    body.lang-active .lang-np { display:inline; }
+
+    /* Responsive */
+    @media(max-width:1000px){
+      .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; }
+    }
+    @media(max-width:640px){
+      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; }
+      .footer-bottom-inner { flex-direction:column; align-items:flex-start; gap:12px; }
+      .footer-bottom-social { align-items:flex-start; }
+    }
+    @media(max-width:400px){
+      .footer-top-inner { grid-template-columns:1fr; }
+    }
+
+    /* WhatsApp */
+    .wa-widget { position:fixed; bottom:90px; right:24px; z-index:9999; display:flex; align-items:center; gap:10px; flex-direction:row; }
+    .wa-fab { width:52px; height:52px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.7rem; text-decoration:none; box-shadow:0 4px 16px rgba(37,211,102,.4),0 2px 8px rgba(0,0,0,.2); transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; animation:waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both; position:relative; }
+    .wa-fab:hover { transform:scale(1.12) rotate(-6deg); }
+    .wa-fab::after { content:''; position:absolute; inset:0; border-radius:50%; border:3px solid #25D366; animation:waRing 2s ease-out 2s infinite; }
+    .wa-tooltip { background:#fff; color:#111; font-size:.78rem; font-weight:600; padding:5px 12px; border-radius:14px; white-space:nowrap; box-shadow:0 3px 12px rgba(0,0,0,.15); opacity:0; pointer-events:none; transform:translateX(-6px); transition:opacity .2s,transform .2s; }
+    .wa-widget:hover .wa-tooltip { opacity:1; transform:translateX(0); }
+    @keyframes waIn { from{opacity:0;transform:scale(.4) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    @keyframes waRing { 0%{transform:scale(1);opacity:.8} 70%,100%{transform:scale(1.5);opacity:0} }
+    @media(max-width:480px){ .wa-widget{bottom:90px;right:14px;} .wa-fab{width:46px;height:46px;font-size:1.5rem;} }
+
+    /* Add these responsive styles for footer mobile view */
+    @media(max-width:640px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-inner { 
+        flex-direction: column; 
+        align-items: center;
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-social { 
+        align-items: center;
+        width: 100%;
+      }
+      .footer-social-row {
+        justify-content: center;
+      }
+      .footer-col {
+        align-items: center;
+        text-align: center;
+      }
+      .footer-link-list {
+        align-items: center;
+      }
+      .footer-col-heading {
+        text-align: center;
+        width: 100%;
+      }
+      .footer-bottom-brand {
+        align-items: center;
+      }
+      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq {
+        align-items: center;
+      }
+      .footer-bottom-info {
+        max-width: 100%;
+        text-align: center;
+      }
+    }
+    @media(max-width:400px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr; 
+        text-align: center;
+      }
+    }
+  </style>
+
+  <style>
+    *,*::before,*::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; padding: 0;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      overflow-x: hidden;
+      background: var(--bg, #1C1C1C);
+      color: var(--text, #F0EBE0);
+      font-family: var(--font-body, 'Cormorant Garamond', serif);
+    }
+    main.main-content { flex: 1; }
+    img, video, iframe { max-width: 100%; height: auto; }
+
+    header, .site-header, #site-header {
+      max-height: none !important;
+      overflow: visible !important;
+    }
+
+    /* Language system */
+    .lang-en { display: inline !important; }
+    .lang-np { display: none !important; }
+    div.lang-en, p.lang-en, section.lang-en,
+    h1.lang-en, h2.lang-en, h3.lang-en, h4.lang-en,
+    li.lang-en, span.lang-en,
+    .article-body.lang-en { display: block !important; }
+    div.lang-np, p.lang-np, section.lang-np,
+    h1.lang-np, h2.lang-np, h3.lang-np, h4.lang-np,
+    li.lang-np, span.lang-np,
+    .article-body.lang-np { display: none !important; }
+
+    body.lang-active .lang-en { display: none !important; }
+    body.lang-active .lang-np { display: inline !important; }
+    body.lang-active div.lang-np, body.lang-active p.lang-np,
+    body.lang-active section.lang-np, body.lang-active h1.lang-np,
+    body.lang-active h2.lang-np, body.lang-active h3.lang-np,
+    body.lang-active h4.lang-np, body.lang-active li.lang-np,
+    body.lang-active .article-body.lang-np { display: block !important; }
+    body.lang-active div.lang-en, body.lang-active p.lang-en,
+    body.lang-active section.lang-en, body.lang-active h1.lang-en,
+    body.lang-active h2.lang-en, body.lang-active h3.lang-en,
+    body.lang-active h4.lang-en, body.lang-active li.lang-en,
+    body.lang-active .article-body.lang-en { display: none !important; }
+
+    /* Category badge */
+    .category-badge,
+    .category-label,
+    .article-category,
+    .cat-badge,
+    [class*="category"] {
+      display: inline-block !important;
+      width: auto !important;
+      max-width: fit-content !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════ HEADER (9070 chars) ════ -->
+  <header id="site-header">
+
+
+
+  <!-- TIER 1: Top utility bar -->
+  <div class="top-bar" id="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-social">
+          <a href="https://www.facebook.com/nawajanachetana/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/shittalpationline/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+      <div class="top-center">
+        <span class="top-date"><i class="fa-regular fa-calendar"></i> <span id="np-datetime">Loading...</span></span>
+        <span class="top-clock"><i class="fa-regular fa-clock"></i> <span id="np-clock">00:00:00 AM</span></span>
+      </div>
+      <div class="top-right">
+        <div class="header-player" id="header-player">
+          <div class="player-live-badge">
+            <span class="live-dot"></span>
+            <span class="live-label">LIVE</span>
+          </div>
+          <div class="player-waveform" id="player-waveform">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <button class="player-play-btn" id="play-btn" aria-label="Play stream">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path id="play-path" d="M8 5v14l11-7z"/></svg>
+          </button>
+          <div class="player-vol-wrap">
+            <button class="vol-btn" id="vol-down-btn"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z"/></svg></button>
+            <input type="range" class="vol-slider" id="vol-slider" min="0" max="100" value="70">
+            <button class="vol-btn" id="vol-up-btn"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
+          </div>
+        </div>
+        <button class="lang-toggle" id="lang-toggle">NP</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIER 2: Logo bar -->
+  <div class="logo-bar" id="logo-bar">
+    <div class="logo-bar-inner">
+      <a href="../index.html" class="logo-link" aria-label="Home">
+        <img src="../images/logo.png" alt="Logo" class="header-logo" id="header-logo" onerror="this.style.display='none'">
+      </a>
+    </div>
+  </div>
+
+  <!-- TIER 3: Sticky nav -->
+  <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+    <div class="main-nav-inner">
+      <ul class="nav-list" id="nav-list">
+        <li class="active"><a href="../index.html"><span class="lang-en">Homepage</span><span class="lang-np">गृहपृष्ठ</span></a></li>
+        <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
+        <li><a href="../index.html#economy-section"><span class="lang-en">Economy</span><span class="lang-np">अर्थ</span></a></li>
+        <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
+        <li><a href="../index.html#entertainment-section"><span class="lang-en">Entertainment</span><span class="lang-np">मनोरञ्जन</span></a></li>
+        <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
+        <li><a href="../index.html#international-section"><span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span></a></li>
+        <li class="has-dropdown" id="province-nav">
+          <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            <span class="lang-en">Province</span><span class="lang-np">प्रदेश</span>
+            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+          </a>
+          <ul class="dropdown-menu" id="province-dropdown">
+            <li><a href="../province/koshi.html"><span class="lang-en">Koshi Province</span><span class="lang-np">कोशी प्रदेश</span></a></li>
+            <li><a href="../province/madhesh.html"><span class="lang-en">Madhesh Province</span><span class="lang-np">मधेश प्रदेश</span></a></li>
+            <li><a href="../province/bagmati.html"><span class="lang-en">Bagmati Province</span><span class="lang-np">बागमती प्रदेश</span></a></li>
+            <li><a href="../province/gandaki.html"><span class="lang-en">Gandaki Province</span><span class="lang-np">गण्डकी प्रदेश</span></a></li>
+            <li><a href="../province/lumbini.html"><span class="lang-en">Lumbini Province</span><span class="lang-np">लुम्बिनी प्रदेश</span></a></li>
+            <li><a href="../province/karnali.html"><span class="lang-en">Karnali Province</span><span class="lang-np">कर्णाली प्रदेश</span></a></li>
+            <li><a href="../province/sudurpashchim.html"><span class="lang-en">Sudurpashchim Province</span><span class="lang-np">सुदूरपश्चिम प्रदेश</span></a></li>
+          </ul>
+        </li>
+        <li><a href="epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
+        <li><a href="about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
+        <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+        <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडिय</span></a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul>
+      <li><a href="../index.html"><span class="lang-en">Homepage</span><span class="lang-np">गृहपृष्ठ</span></a></li>
+      <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
+      <li><a href="../index.html#economy-section"><span class="lang-en">Economy</span><span class="lang-np">अर्थतन्त्र</span></a></li>
+      <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
+      <li><a href="../index.html#entertainment-section"><span class="lang-en">Entertainment</span><span class="lang-np">मनोरञ्जन</span></a></li>
+      <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
+      <li><a href="../index.html#international-section"><span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span></a></li>
+<li><a href="../index.html#latest-section"><span class="lang-en">Latest News</span><span class="lang-np">ताजा समाचार</span></a></li>
+<li><a href="../index.html#feature-section"><span class="lang-en">Feature News</span><span class="lang-np">विशेष समाचार</span></a></li>
+<li class="mobile-province-parent">
+        <a href="#" id="mobile-province-toggle"><span class="lang-en">Province</span><span class="lang-np">प्रदेश</span> <i class="fa-solid fa-chevron-down"></i></a>
+        <ul class="mobile-province-list" id="mobile-province-list" style="display:none;">
+          <li><a href="../province/koshi.html"><span class="lang-en">Koshi Province</span><span class="lang-np">कोशी प्रदेश</span></a></li>
+          <li><a href="../province/madhesh.html"><span class="lang-en">Madhesh Province</span><span class="lang-np">मधेश प्रदेश</span></a></li>
+          <li><a href="../province/bagmati.html"><span class="lang-en">Bagmati Province</span><span class="lang-np">बागमती प्रदेश</span></a></li>
+          <li><a href="../province/gandaki.html"><span class="lang-en">Gandaki Province</span><span class="lang-np">गण्डकी प्रदेश</span></a></li>
+          <li><a href="../province/lumbini.html"><span class="lang-en">Lumbini Province</span><span class="lang-np">लुम्बिनी प्रदेश</span></a></li>
+          <li><a href="../province/karnali.html"><span class="lang-en">Karnali Province</span><span class="lang-np">कर्णाली प्रदेश</span></a></li>
+          <li><a href="../province/sudurpashchim.html"><span class="lang-en">Sudurpashchim Province</span><span class="lang-np">सुदूरपश्चिम प्रदेश</span></a></li>
+        </ul>
+      </li>
+      <li><a href="epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
+      <li><a href="about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
+      <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+     <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
+    </ul>
+  </div>
+
+
+</header>
+
+  <!-- ════ ARTICLE (1 item) ════ -->
+  <main class="main-content">
+    
+
+
+
+<div class="article-container">
+
+  <!-- ZONE 1: full-width article header -->
+  <div class="article-header">
+    <div class="breadcrumb">
+      <span id="breadcrumb-en" class="lang-en"></span>
+      <span id="breadcrumb-np" class="lang-np"></span>
+    </div>
+
+    <div class="category-badge">
+      <span id="category-en" class="lang-en"></span>
+      <span id="category-np" class="lang-np"></span>
+    </div>
+
+    <h1>
+      <span id="title-en" class="lang-en"></span>
+      <span id="title-np" class="lang-np"></span>
+    </h1>
+
+    <div class="meta">
+      <span><i class="fas fa-calendar"></i> <span id="date"></span></span>
+      <span><i class="fas fa-clock"></i> <span id="readtime-en" class="lang-en"></span><span id="readtime-np" class="lang-np"></span></span>
+    </div>
+
+    <div class="share-buttons">
+      <button class="share-btn facebook"><i class="fab fa-facebook"></i> Facebook</button>
+      <button class="share-btn twitter"><i class="fab fa-twitter"></i> Twitter</button>
+      <button class="share-btn copy-link"><i class="fas fa-link"></i> Copy Link<span class="tooltip">Copied!</span></button>
+    </div>
+  </div>
+
+  <!-- ZONE 2: two-column body -->
+  <div class="article-content">
+
+    <!-- LEFT column -->
+    <div class="main-column">
+
+      <div class="image-wrapper">
+        <img id="featured-image" src="" alt="" loading="lazy">
+      </div>
+
+      <div id="article-body-en" class="lang-en article-body"></div>
+      <div id="article-body-np" class="lang-np article-body"></div>
+
+      <div class="tags-wrapper">
+        <h3 class="lang-en"><i class="fas fa-tags"></i> Tags</h3>
+        <h3 class="lang-np"><i class="fas fa-tags"></i> ट्यागहरू</h3>
+        <div id="tags-en" class="lang-en tags-list"></div>
+        <div id="tags-np" class="lang-np tags-list"></div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT column / sidebar -->
+    <aside class="sidebar">
+      <div class="widget related">
+        <h3 class="lang-en"><i class="fas fa-newspaper"></i> Related Articles</h3>
+        <h3 class="lang-np"><i class="fas fa-newspaper"></i> सम्बन्धित लेखहरू</h3>
+        <div id="related-articles"></div>
+      </div>
+
+      <div class="widget newsletter">
+        <h3 class="lang-en"><i class="fas fa-envelope"></i> Newsletter</h3>
+        <h3 class="lang-np"><i class="fas fa-envelope"></i> समाचारपत्र</h3>
+        <p class="lang-en">Stay updated — subscribe to our free newsletter and get the latest news delivered to your inbox.</p>
+        <p class="lang-np">अपडेट रहनुहोस् — हाम्रो नि:शुल्क समाचारपत्र सदस्यता लिनुहोस् र नवीनतम समाचार आफ्नो इनबक्समा पाउनुहोस्।</p>
+        <input type="email" id="newsletter-email" placeholder="Enter your email address">
+        <button id="newsletter-subscribe"><i class="fas fa-paper-plane"></i> <span class="lang-en">Subscribe</span><span class="lang-np">सदस्यता लिनुहोस्</span></button>
+      </div>
+    </aside>
+
+  </div>
+
+  
+
+</div>
+
+
+
+
+
+  </main>
+
+  <!-- ════ FOOTER (6795 chars) ════ -->
+  <footer id="site-footer">
+  
+  
+
+  <!-- TOP SECTION: multi-column links -->
+  <div class="footer-top">
+    <div class="footer-top-inner">
+
+      <!-- Col 1: Contact -->
+      <div class="footer-col footer-contact-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Contact Address</span>
+          <span class="lang-np">सम्पर्क ठेगाना</span>
+        </h4>
+        <p class="footer-company-name">Shittal Pati</p>
+        <p class="footer-addr">
+          <span class="lang-en">Bhagwati Tole-3, Tansen Palpa, Nepal</span>
+          <span class="lang-np">भगवती टोल-३, तानसेन पाल्पा, नेपाल</span>
+        </p>
+        <p class="footer-contact-line">
+          <span class="lang-en">Phone: +977 9847492226</span>
+          <span class="lang-np">फोन: +९७७ ९८४७४९२२२६</span>
+        </p>
+        <p class="footer-contact-line">
+          <span class="lang-en">Email:</span><span class="lang-np">इमेल:</span> njdnews@gmail.com
+        </p>
+      </div>
+
+      <!-- Col 2: News links -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">News</span>
+          <span class="lang-np">समाचार</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
+          <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
+          <li><a href="../index.html#economy-section"><span class="lang-en">Economy</span><span class="lang-np">अर्थतन्त्र</span></a></li>
+          <li><a href="../index.html#international-section"><span class="lang-en">International</span><span class="lang-np">अन्तर्राष्ट्रिय</span></a></li>
+          <li><a href="../index.html#education-section"><span class="lang-en">Education</span><span class="lang-np">शिक्षा</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Entertainment -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Entertainment</span>
+          <span class="lang-np">मनोरञ्जन</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="#entertainment-section"><span class="lang-en">Movies & Music</span><span class="lang-np">चलचित्र र संगीत</span></a></li>
+          <li><a href="#entertainment-section"><span class="lang-en">Arts</span><span class="lang-np">कला</span></a></li>
+          <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Feature -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Feature</span>
+          <span class="lang-np">विशेष</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="../index.html#feature-section"><span class="lang-en">Feature News</span><span class="lang-np">विशेष समाचार</span></a></li>
+          <li><a href="../index.html#latest-section"><span class="lang-en">Latest</span><span class="lang-np">ताजा</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 5: Specials -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Specials</span>
+          <span class="lang-np">विशेष</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 6: About -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">
+          <span class="lang-en">About Us</span>
+          <span class="lang-np">हाम्रोबारे</span>
+        </h4>
+        <ul class="footer-link-list">
+          <li><a href="about.html"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></a></li>
+          <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+
+      <div class="footer-bottom-brand">
+        <span class="footer-site-name">Shittal Pati</span>
+        <span class="footer-copy">
+          <i class="fa-regular fa-copyright"></i>
+          <span class="lang-en" id="footer-year-en"></span>
+          <span class="lang-np" id="footer-year-np"></span>
+          Shittal Pati.
+          <span class="lang-en">All Rights Reserved.</span>
+          <span class="lang-np">सर्वाधिकार सुरक्षित।</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-editor">
+        <span class="editor-label"><span class="lang-en">Editor</span><span class="lang-np">सम्पादक</span></span>
+        <span class="editor-name">
+          <span class="lang-en">Jagdish Bhattarai</span>
+          <span class="lang-np">जगदीश भट्टराई</span>
+        </span>
+        <span class="editor-phone">
+          <span class="lang-en">9857060301</span>
+          <span class="lang-np">९८५७०६०३०१</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-sub">
+        <span class="editor-label"><span class="lang-en">Sub-Editor</span><span class="lang-np">सह-सम्पादक</span></span>
+        <span class="editor-name">
+          <span class="lang-en">Ramchandra Rayamajhi</span>
+          <span class="lang-np">रामचन्द्र रायमाझी</span>
+        </span>
+        <span class="editor-phone">
+          <span class="lang-en">9847492226</span>
+          <span class="lang-np">९८४७४९२२२६</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-freq">
+        <span class="editor-label"><span class="lang-en">Frequency</span><span class="lang-np">फ्रिक्वेन्सी</span></span>
+        <span class="editor-name">
+          <span class="lang-en">103.5 MHZ FM</span>
+          <span class="lang-np">१०३.५ मेगाहर्ज एफएम</span>
+        </span>
+      </div>
+
+      <div class="footer-bottom-info">
+        <span class="lang-en">Official Website of Janavedana Daily</span>
+        <span class="lang-np">जनवेदना दैनिकको आधिकारिक वेबसाइट</span>
+      </div>
+
+      <div class="footer-bottom-social">
+        <span class="connect-label"><span class="lang-en">Connect with Us</span><span class="lang-np">जोडिनुहोस्</span></span>
+        <div class="footer-social-row">
+          <a href="https://www.facebook.com/nawajanachetana/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/shittalpationline/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  
+
+  
+</footer>
+
+  <!-- ════ WhatsApp widget — pulled directly from footer, no hardcoding ════ -->
+  <div class="wa-widget">
+    <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
+    <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  </div>
+
+  <!-- ════ LANG CAPTURE — installed first, cancels all competing handlers ════ -->
+  <script>
+(function () {
+  'use strict';
+  var STORAGE_KEY = 'fm_lang';
+  var _applying = false;
+
+  function getCurrentLang() {
+    try { return localStorage.getItem(STORAGE_KEY) || 'en'; } catch(e) { return 'en'; }
+  }
+
+  function applyLang(lang) {
+    if (_applying) return;
+    _applying = true;
+    var isNp = (lang === 'np');
+
+    document.body.classList.toggle('lang-active', isNp);
+
+    document.querySelectorAll('.lang-toggle').forEach(function(btn) {
+      btn.textContent = isNp ? 'EN' : 'NP';
+    });
+
+    var hdr = document.getElementById('site-header');
+    if (hdr) hdr.classList.toggle('hdr-np', isNp);
+
+    ['fm_lang', 'language', 'siteLang', 'articleLang'].forEach(function(k) {
+      try { localStorage.setItem(k, lang); } catch(e) {}
+    });
+
+    _applying = false;
+  }
+
+  function broadcast(lang) {
+    applyLang(lang);
+    window.dispatchEvent(new CustomEvent('langChange', { detail: { lang: lang } }));
+  }
+
+  function attachCapturingToggle() {
+    var btn = document.getElementById('lang-toggle');
+    if (!btn || btn._capturebound) return;
+    btn._capturebound = true;
+    btn._langBound = true;
+    btn._hdrBound  = true;
+    btn.addEventListener('click', function(e) {
+      e.stopImmediatePropagation();
+      broadcast(getCurrentLang() === 'en' ? 'np' : 'en');
+    }, true); // useCapture = true — fires before any other bound handler
+  }
+
+  window.addEventListener('langChange', function(e) {
+    if (_applying) return;
+    if (e && e.detail && e.detail.lang) applyLang(e.detail.lang);
+  });
+
+  function init() {
+    attachCapturingToggle();
+    applyLang(getCurrentLang());
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    setTimeout(init, 0);
+  }
+})();
+</script>
+
+  <!-- ════ All component scripts (deduped; pure lang-bridge scripts removed) ════ -->
+  <script>
+
+(function () {
+
+  /* ── Load Font Awesome if not already on page ── */
+  (function(){
+    if(!document.querySelector('link[href*="font-awesome"],link[href*="fontawesome"]')){
+      var fa=document.createElement('link');
+      fa.rel='stylesheet';
+      fa.href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+      fa.crossOrigin='anonymous';
+      document.head.appendChild(fa);
+    }
+  })();
+
+  /* ── BS/AD conversion data ── */
+  var _NP_DAYS   = ['आइतबार','सोमबार','मंगलबार','बुधबार','बिहिबार','शुक्रबार','शनिबार'];
+  var _BS_MONTHS = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
+  var _NP_NUMS   = ['०','१','२','३','४','५','६','७','८','९'];
+  var _EN_MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var _EN_DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var _BS_TBL    = {2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],2004:[366,30,32,31,32,31,30,30,30,29,30,29,31],2005:[365,31,31,32,31,31,31,30,29,30,29,30,30],2006:[365,31,31,32,32,31,30,30,29,30,29,30,30],2007:[366,31,32,31,32,31,30,30,30,29,29,30,31],2008:[365,31,31,32,31,31,31,30,29,30,29,30,30],2009:[365,31,31,32,31,31,31,30,29,30,29,30,30],2010:[365,31,31,32,32,31,30,30,29,30,29,30,30],2011:[366,31,32,31,32,31,30,30,30,29,29,30,31],2012:[365,31,31,32,31,31,31,30,29,30,29,30,30],2013:[365,31,31,32,31,31,31,30,29,30,29,30,30],2014:[365,31,31,32,32,31,30,30,29,30,29,30,30],2015:[366,31,32,31,32,31,30,30,30,29,29,30,31],2016:[366,31,31,32,31,31,31,30,29,30,29,30,31],2017:[365,31,31,32,31,31,31,30,29,30,29,30,30],2018:[365,31,31,32,32,31,30,30,29,30,29,30,30],2019:[366,31,32,31,32,31,30,30,30,29,29,30,31],2020:[366,31,31,32,31,31,30,30,29,30,29,30,31],2021:[365,31,31,32,31,31,31,30,29,30,29,30,30],2022:[365,31,31,32,32,31,30,30,29,30,29,30,30],2023:[366,31,32,31,32,31,30,30,30,29,29,30,31],2024:[366,31,31,32,31,31,30,30,29,30,29,30,31],2025:[365,31,31,32,31,31,31,30,29,30,29,30,30],2026:[365,31,31,32,32,31,30,30,29,30,29,30,30],2027:[366,31,32,31,32,31,30,30,30,29,29,30,31],2028:[366,31,32,31,32,31,30,30,30,29,30,29,31],2029:[365,31,31,32,31,31,31,30,29,30,29,30,30],2030:[365,31,31,32,31,31,31,30,29,30,29,30,30],2031:[365,31,31,32,32,31,30,30,29,30,29,30,30],2032:[366,31,32,31,32,31,30,30,30,29,29,30,31],2033:[366,31,31,32,31,31,30,30,29,30,29,30,31],2034:[365,31,31,32,31,31,31,30,29,30,29,30,30],2035:[365,31,31,32,32,31,30,30,29,30,29,30,30],2036:[366,31,32,31,32,31,30,30,30,29,29,30,31],2037:[366,31,32,31,32,31,30,30,30,29,30,29,31],2038:[365,31,31,32,31,31,31,30,29,30,29,30,30],2039:[365,31,31,32,31,31,31,30,29,30,29,30,30],2040:[365,31,31,32,32,31,30,30,29,30,29,30,30],2041:[366,31,32,31,32,31,30,30,30,29,29,30,31],2042:[366,31,31,32,31,31,30,30,29,30,29,30,31],2043:[365,31,31,32,31,31,31,30,29,30,29,30,30],2044:[365,31,31,32,31,31,31,30,29,30,29,30,30],2045:[366,31,32,31,32,31,30,30,30,29,29,30,31],2046:[366,31,32,31,32,31,30,30,30,29,30,29,31],2047:[365,31,31,32,31,31,31,30,29,30,29,30,30],2048:[365,31,31,32,32,31,30,30,29,30,29,30,30],2049:[366,31,32,31,32,31,30,30,30,29,29,30,31],2050:[366,31,32,31,32,31,30,30,30,29,30,29,31],2051:[365,31,31,32,31,31,31,30,29,30,29,30,30],2052:[365,31,31,32,32,31,30,30,29,30,29,30,30],2053:[366,31,32,31,32,31,30,30,30,29,29,30,31],2054:[366,31,32,31,32,31,30,30,30,29,30,29,31],2055:[365,31,31,32,31,31,31,30,29,30,29,30,30],2056:[366,31,31,32,31,31,31,30,29,30,29,30,31],2057:[366,31,31,32,32,31,30,30,29,30,29,30,31],2058:[365,30,32,31,32,31,30,30,30,29,29,30,30],2059:[366,31,32,31,32,31,30,30,30,29,30,29,31],2060:[365,31,31,32,31,31,31,30,29,30,29,30,30],2061:[365,31,31,32,31,31,31,30,29,30,29,30,30],2062:[365,31,31,32,32,31,30,30,29,30,29,30,30],2063:[366,31,32,31,32,31,30,30,30,29,29,30,31],2064:[366,31,31,32,31,31,30,30,29,30,29,30,31],2065:[365,31,31,32,31,31,31,30,29,30,29,30,30],2066:[365,31,31,32,31,31,31,30,29,30,29,30,30],2067:[366,31,32,31,32,31,30,30,30,29,29,30,31],2068:[366,31,32,31,32,31,30,30,30,29,30,29,31],2069:[365,31,31,32,31,31,31,30,29,30,29,30,30],2070:[365,31,31,32,32,31,30,30,29,30,29,30,30],2071:[366,31,32,31,32,31,30,30,30,29,29,30,31],2072:[366,31,32,31,32,31,30,30,30,29,30,29,31],2073:[365,31,31,32,31,31,31,30,29,30,29,30,30],2074:[365,31,31,32,32,31,30,30,29,30,29,30,30],2075:[366,31,32,31,32,31,30,30,30,29,29,30,31],2076:[365,31,32,31,32,31,30,30,30,29,30,29,31],2077:[365,31,31,32,31,31,31,30,29,30,29,30,30],2078:[365,31,31,32,31,31,31,30,29,30,29,30,30],2079:[366,31,32,31,32,31,30,30,30,29,29,30,31],2080:[365,31,32,31,32,31,30,30,30,29,30,29,31],2081:[365,31,31,32,31,31,31,30,29,30,29,30,30],2082:[365,31,31,32,32,31,30,30,29,30,29,30,30],2083:[365,31,31,32,31,31,31,30,29,30,29,30,30],2084:[366,31,32,31,32,31,30,30,30,29,30,29,31],2085:[365,31,31,32,31,31,31,30,29,30,29,30,30],2086:[365,31,31,32,32,31,30,30,29,30,29,30,30],2087:[366,31,32,31,32,31,30,30,30,29,29,30,31],2088:[366,31,32,31,32,31,30,30,30,29,30,29,31],2089:[365,31,31,32,31,31,31,30,29,30,29,30,30],2090:[365,31,31,32,32,31,30,30,29,30,29,30,30]};
+  var _EPOCH = Date.UTC(1943,2,31);
+
+  function _toNp(n){return String(n).split('').map(function(d){var i=parseInt(d,10);return isNaN(i)?d:_NP_NUMS[i];}).join('');}
+  function _adToBs(d){
+    var days=Math.floor((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())-_EPOCH)/86400000);
+    if(days<0)return '';
+    var y=2000;
+    while(true){var yr=_BS_TBL[y];if(!yr||days<yr[0])break;days-=yr[0];y++;}
+    var yr2=_BS_TBL[y];if(!yr2)return '';
+    var mo=1,dy=1;
+    for(var m=1;m<=12;m++){if(days<yr2[m]){mo=m;dy=days+1;break;}days-=yr2[m];}
+    return _NP_DAYS[d.getDay()]+', '+_BS_MONTHS[mo-1]+' '+_toNp(dy)+', '+_toNp(y);
+  }
+
+  function _tick(){
+    var now=new Date();
+    var dtEl=document.getElementById('np-datetime');
+    var clEl=document.getElementById('np-clock');
+    if(dtEl){
+      var bsStr=_adToBs(now);
+      var enStr=_EN_DAYS[now.getDay()]+', '+_EN_MONTHS[now.getMonth()]+' '+now.getDate()+', '+now.getFullYear();
+      dtEl.setAttribute('data-en',enStr);
+      dtEl.setAttribute('data-np',bsStr);
+      var _lang='en';try{_lang=localStorage.getItem('fm_lang')||'en';}catch(e){}
+      dtEl.textContent=(_lang==='np')?bsStr:enStr;
+    }
+    if(clEl){
+      var h=now.getHours(),mi=now.getMinutes(),s=now.getSeconds(),ap=h>=12?'PM':'AM';
+      h=h%12;if(h===0)h=12;
+      clEl.textContent=String(h).padStart(2,'0')+':'+String(mi).padStart(2,'0')+':'+String(s).padStart(2,'0')+' '+ap;
+    }
+  }
+
+  function _init(){
+    var _audio=null,_playing=false,_SK='fmPlayer',_stream='https://live.itech.host:2440/stream';
+    var _playBtn=document.getElementById('play-btn');
+    var _playPath=document.getElementById('play-path');
+    var _waveform=document.getElementById('player-waveform');
+    var _volSlider=document.getElementById('vol-slider');
+    var _volDown=document.getElementById('vol-down-btn');
+    var _volUp=document.getElementById('vol-up-btn');
+    var _hamburger=document.getElementById('hamburger-btn');
+    var _mobMenu=document.getElementById('mobile-menu');
+    var _langBtn=document.getElementById('lang-toggle');
+    var _siteHdr=document.getElementById('site-header');
+    var _provNav=document.getElementById('province-nav');
+    var _provDrop=document.getElementById('province-dropdown');
+    var _mobPTog=document.getElementById('mobile-province-toggle');
+    var _mobPList=document.getElementById('mobile-province-list');
+
+    _tick();
+    setInterval(_tick,1000);
+
+    /* ── Apply stored lang on load ── */
+    (function(){
+      var saved='en';try{saved=localStorage.getItem('fm_lang')||'en';}catch(e){}
+      if(saved==='np'){
+        if(_siteHdr)_siteHdr.classList.add('hdr-np');
+        if(_langBtn)_langBtn.textContent='EN';
+        var dtEl=document.getElementById('np-datetime');
+        if(dtEl&&dtEl.getAttribute('data-np'))dtEl.textContent=dtEl.getAttribute('data-np');
+      }
+    })();
+
+    /* ── Lang toggle ── */
+    if(_langBtn && !_langBtn._hdrBound){
+      _langBtn._hdrBound = true;
+      _langBtn.addEventListener('click',function(){
+        var isNp=_langBtn.textContent.trim()==='NP';
+        var newLang=isNp?'np':'en';
+        try{localStorage.setItem('fm_lang',newLang);}catch(e){}
+        _langBtn.textContent=isNp?'EN':'NP';
+        if(_siteHdr)_siteHdr.classList.toggle('hdr-np',isNp);
+        var dtEl=document.getElementById('np-datetime');
+        if(dtEl)dtEl.textContent=isNp?(dtEl.getAttribute('data-np')||''):(dtEl.getAttribute('data-en')||'');
+        window.dispatchEvent(new CustomEvent('langChange',{detail:{lang:newLang}}));
+      });
+    }
+
+    /* ── Sync lang from external events ── */
+    window.addEventListener('langChange',function(e){
+      if(!e||!e.detail||!e.detail.lang)return;
+      var isNp=e.detail.lang==='np';
+      if(_siteHdr)_siteHdr.classList.toggle('hdr-np',isNp);
+      if(_langBtn)_langBtn.textContent=isNp?'EN':'NP';
+      var dtEl=document.getElementById('np-datetime');
+      if(dtEl)dtEl.textContent=isNp?(dtEl.getAttribute('data-np')||''):(dtEl.getAttribute('data-en')||'');
+    });
+
+    /* ── Scroll shrink ── */
+    window.addEventListener('scroll',function(){
+      if(_siteHdr)_siteHdr.classList.toggle('scrolled',window.scrollY>120);
+    },{passive:true});
+
+    /* ── Hamburger ── */
+    if(_hamburger&&_mobMenu){
+      _hamburger.addEventListener('click',function(){
+        var exp=_hamburger.getAttribute('aria-expanded')==='true';
+        _hamburger.setAttribute('aria-expanded',String(!exp));
+        _mobMenu.classList.toggle('open',!exp);
+        _mobMenu.setAttribute('aria-hidden',String(exp));
+      });
+      _mobMenu.querySelectorAll('a:not(#mobile-province-toggle)').forEach(function(a){
+        a.addEventListener('click',function(){
+          _hamburger.setAttribute('aria-expanded','false');
+          _mobMenu.classList.remove('open');
+          _mobMenu.setAttribute('aria-hidden','true');
+        });
+      });
+    }
+
+    /* ── Province dropdown ── */
+    if(_provNav){
+      var _togLink=_provNav.querySelector('.dropdown-toggle');
+      if(_togLink){
+        _togLink.addEventListener('click',function(e){
+          e.preventDefault();
+          if(window.innerWidth<=960){
+            var isOpen=_provNav.classList.toggle('open');
+            _togLink.setAttribute('aria-expanded',String(isOpen));
+          }
+        });
+      }
+      document.addEventListener('click',function(e){
+        if(!_provNav.contains(e.target)){
+          _provNav.classList.remove('open');
+          if(_togLink)_togLink.setAttribute('aria-expanded','false');
+        }
+      });
+      if(_provDrop){
+        _provDrop.querySelectorAll('a').forEach(function(a){
+          a.addEventListener('click',function(){
+            _provNav.classList.remove('open');
+            if(_togLink)_togLink.setAttribute('aria-expanded','false');
+          });
+        });
+      }
+    }
+
+    /* ── Mobile province sub-list toggle ── */
+    if(_mobPTog&&_mobPList){
+      _mobPTog.addEventListener('click',function(e){
+        e.preventDefault();
+        var hidden=_mobPList.style.display==='none';
+        _mobPList.style.display=hidden?'block':'none';
+        var ico=_mobPTog.querySelector('i');
+        if(ico)ico.style.transform=hidden?'rotate(180deg)':'';
+      });
+    }
+
+    /* ── Volume controls ── */
+    function _updateSlider(v){
+      if(_volSlider)_volSlider.style.background='linear-gradient(to right,var(--hdr-accent) '+v+'%,var(--hdr-border) '+v+'%)';
+    }
+    function _setVol(v){
+      v=Math.max(0,Math.min(100,v));
+      if(_volSlider){_volSlider.value=v;_updateSlider(v);}
+      if(_audio)_audio.volume=v/100;
+      try{var s=JSON.parse(localStorage.getItem(_SK)||'{}');s.vol=v;localStorage.setItem(_SK,JSON.stringify(s));}catch(e){}
+    }
+    function _setPlayingUI(on){
+      if(_playPath)_playPath.setAttribute('d',on?'M6 6h12v12H6z':'M8 5v14l11-7z');
+      if(_playBtn)_playBtn.setAttribute('aria-label',on?'Stop stream':'Play stream');
+      if(_waveform)_waveform.classList.toggle('paused',!on);
+    }
+    function _startPlay(){
+      if(!_audio){
+        _audio=new Audio(_stream);
+        _audio.volume=(_volSlider?_volSlider.value:70)/100;
+        _audio.addEventListener('error',function(){_stopPlay();});
+      }
+      _audio.play().catch(function(e){console.warn('Stream:',e);_stopPlay();});
+      _playing=true;_setPlayingUI(true);
+      try{localStorage.setItem(_SK,JSON.stringify({playing:true,vol:_volSlider?parseInt(_volSlider.value):70}));}catch(e){}
+    }
+    function _stopPlay(){
+      if(_audio){_audio.pause();_audio.src='';_audio=null;}
+      _playing=false;_setPlayingUI(false);
+      try{var s=JSON.parse(localStorage.getItem(_SK)||'{}');s.playing=false;localStorage.setItem(_SK,JSON.stringify(s));}catch(e){}
+    }
+
+    if(_playBtn)_playBtn.addEventListener('click',function(){_playing?_stopPlay():_startPlay();});
+    if(_volDown)_volDown.addEventListener('click',function(){_setVol(parseInt(_volSlider.value)-10);});
+    if(_volUp)_volUp.addEventListener('click',function(){_setVol(parseInt(_volSlider.value)+10);});
+    if(_volSlider)_volSlider.addEventListener('input',function(){
+      _updateSlider(this.value);
+      if(_audio)_audio.volume=this.value/100;
+      try{var s=JSON.parse(localStorage.getItem(_SK)||'{}');s.vol=parseInt(this.value);localStorage.setItem(_SK,JSON.stringify(s));}catch(e){}
+    });
+
+    var _saved={};try{_saved=JSON.parse(localStorage.getItem(_SK)||'{}');}catch(e){}
+    var _initVol=(_saved.vol!=null)?_saved.vol:70;
+    if(_volSlider)_volSlider.value=_initVol;
+    _updateSlider(_initVol);
+    if(_saved.playing){_startPlay();}else{if(_waveform)_waveform.classList.add('paused');}
+  }
+
+  setTimeout(_init, 0);
+
+})();
+
+</script>
+<script>
+(function() {
+  'use strict';
+
+  var BS_MONTHS_NP = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
+  var NP_DIGITS    = ['०','१','२','३','४','५','६','७','८','९'];
+  var EN_MONTHS_FULL = ['January','February','March','April','May','June',
+                        'July','August','September','October','November','December'];
+
+  var BS = {
+  2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2004:[366,30,32,31,32,31,30,30,30,29,30,29,31],2005:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2006:[365,31,31,32,32,31,30,30,29,30,29,30,30],2007:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2008:[365,31,31,32,31,31,31,30,29,30,29,30,30],2009:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2010:[365,31,31,32,32,31,30,30,29,30,29,30,30],2011:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2012:[365,31,31,32,31,31,31,30,29,30,29,30,30],2013:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2014:[365,31,31,32,32,31,30,30,29,30,29,30,30],2015:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2016:[366,31,31,32,31,31,31,30,29,30,29,30,31],2017:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2018:[365,31,31,32,32,31,30,30,29,30,29,30,30],2019:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2020:[366,31,31,32,31,31,30,30,29,30,29,30,31],2021:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2022:[365,31,31,32,32,31,30,30,29,30,29,30,30],2023:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2024:[366,31,31,32,31,31,30,30,29,30,29,30,31],2025:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2026:[365,31,31,32,32,31,30,30,29,30,29,30,30],2027:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2028:[366,31,32,31,32,31,30,30,30,29,30,29,31],2029:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2030:[365,31,31,32,31,31,31,30,29,30,29,30,30]
+  };
+
+  var AD_EPOCH_MS = Date.UTC(1943, 2, 31);
+
+  function toNpDigits(n) {
+    return String(n).split('').map(function(d) {
+      var i = parseInt(d, 10); return isNaN(i) ? d : NP_DIGITS[i];
+    }).join('');
+  }
+
+  function adToBs(dateStr) {
+    if (!dateStr) return '';
+    var d = new Date(dateStr);
+    if (isNaN(d.getTime())) return dateStr;
+    var adMidnight = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+    var totalDays  = Math.floor((adMidnight - AD_EPOCH_MS) / 86400000);
+    if (totalDays < 0) return dateStr;
+    var bsYear = 2000;
+    while (true) {
+      var yd = BS[bsYear]; if (!yd) break; if (totalDays < yd[0]) break; totalDays -= yd[0]; bsYear++;
+    }
+    var yd2 = BS[bsYear]; if (!yd2) return dateStr;
+    var bsMonth = 1, bsDay = 1;
+    for (var m = 1; m <= 12; m++) {
+      if (totalDays < yd2[m]) { bsMonth = m; bsDay = totalDays + 1; break; } totalDays -= yd2[m];
+    }
+    return toNpDigits(bsYear) + ' ' + BS_MONTHS_NP[bsMonth - 1] + ' ' + toNpDigits(bsDay);
+  }
+
+  var DATA = {
+    titleEn:        "The state of human rights in Nepal",
+    titleNp:        "नेपालमा मानवअधिकारको अवस्था",
+    categoryEn:     "Local",
+    categoryNp:     "स्थानीय",
+    dateAd:         "July 21, 2026",
+    dateEn:         "July 21, 2026",
+    readTimeEn:     "7 min read",
+    readTimeNp:     "7 मिनेट पढाइ",
+    sourceEn:       "Kantipur",
+    sourceNp:       "कान्तिपुर",
+    creatorEn:      "Arjun Narasingha KC",
+    creatorNp:      "अर्जुननरसिंह केसी",
+    bodyEnWithAds:  "<p class=\"article-para\">It is a matter of concern that the government is trying to avoid the National Human Rights Commission’s report and shield the guilty from facing the law.</p>\n<div class=\"ad-unit\" id=\"insection_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_1.png\" alt=\"insection_1.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p class=\"article-para\">A government committed to meaningful democracy and good governance must necessarily be human rights-friendly. The high standards of codified human rights are also a measure of a country’s democratic civilization. Why and how does any government, no matter how powerful, that suppresses human rights or finds excuses for it, fall? A glaring example of this is fresh in everyone’s memory—the behavior of the then government on Bhadra 23 and 24 last year, the unpleasant reactions it provoked, and the dangerous situation that ensued. It was on Bhadra 12 last year that the then government arbitrarily misused the Social Media Directives 2080 to impose a blanket ban on 26 social media platforms, directly attacking constitutionally guaranteed freedom of thought and expression, and the resulting public discontent pushed the country into a complex and difficult situation. Attempts to regulate social media through directives instead of bringing the relevant bill to Parliament and letting it lie idle led the situation to take an unforeseen turn.</p>\n<div class=\"ad-unit\" id=\"insection_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_2.png\" alt=\"insection_2.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p class=\"article-para\"><span class=\"highlight-box quoted-highlight-box\">It is a matter of concern that the government is trying to avoid the National Human Rights Commission’s report and shield the guilty from facing the law.</span> The investigation committee formed under the leadership of Honourable Member Lili Thapa of the National Human Rights Commission, which conducted a detailed study and prepared a report with recommendations after meticulous effort, should not be suppressed by the government’s attempts to avoid making the report public and to shield the guilty from facing the law. The current government, which came to power on the ashes of the blood of those killed and the ruins of property destroyed in the same movement, has done a grave disservice to democracy, transparency, and accountability by not making this report public. Concealing the voices of citizens and the state’s shortcomings in this way is highly undemocratic. Such high-handedness that stifles the right to information and protects the guilty deserves all possible condemnation.</p>\n<div class=\"ad-unit\" id=\"insection_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_3.png\" alt=\"insection_3.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p class=\"article-para\">Former Chairperson of the National Human Rights Commission and former Chief Justice Kedarnath Upadhyay, former members Mohna Ansari, Sushil Pyakurel, Professor Kapil Shrestha, Gauri Pradhan, Dr. Gaurishankar Lal Das, and former Secretary Kedar Paudel have pressed Chairperson Tap Bahadur Magar to make the full text of the report public. It is the state’s mandatory duty to make that full report public immediately for the protection of citizens’ justice and rights. The government must not consider costs, benefits, or losses when enforcing the legal provisions of citizens’ fundamental human rights. Let us not forget that it was the government’s wrongdoing in the past that led to the decline of the National Human Rights Commission’s standing.</p><p class=\"article-para\">In Nepal, the government’s sensitivity toward human rights is best measured by its stance or behavior regarding the events of Bhadra 23 and 24 last year. While the Nepali people want an investigation into the events of Bhadra 24, some who claim ownership of the Gen-Z movement seem to argue that only the events of the 23rd should be investigated and punished. However, such one-sided and biased demands for action cannot be justified or accepted in any sense.</p><p class=\"article-para\">Human rights and issues directly related to them fall under universal jurisdiction. Therefore, when human rights violations within one country are questioned by another, it is not considered interference in internal affairs. Today, the global consensus is that a human rights violator or perpetrator of crimes against humanity from one country cannot be a guest in another. As Meenakshi Ganguly, South Asia Director of Human Rights Watch, rightly said, “Until the transitional justice process in Nepal meets basic standards for prosecuting accused persons in the country’s judicial system, such rights violators cannot be granted immunity from prosecution as international crimes under universal jurisdiction in other countries.”</p><p class=\"article-para\">Issues such as transitional justice, religious conversion, gender-based violence, women’s and children’s rights, rights of persons with disabilities, rights of Dalits and indigenous peoples, inter-sectional discrimination, access to justice, and citizenship through the mother’s name are always priorities. These issues are deeply connected to the protection and promotion of human rights.</p><p class=\"article-para\">Today, ten international human rights treaties and resolutions are in force worldwide—the Universal Declaration of Human Rights adopted unanimously by the United Nations in 1948, the International Covenant on Civil and Political Rights, the International Covenant on Economic, Social and Cultural Rights, the Convention against Torture, the Convention on Genocide, the Geneva Conventions, the Convention on the Rights of the Child, the Convention on the Elimination of All Forms of Discrimination against Women, and the UN Charter. Nepal is a signatory to most of these treaties. Being a signatory to international conventions means committing to their unconditional implementation, establishing the necessary institutional structures, and aligning national laws and practices accordingly.</p><p class=\"article-para\">It is absurd to seek human rights while lacking a culture of lawful and responsible use of rights and instead promoting lawlessness and anarchy. Human rights empower citizens with responsibility and prevent recklessness. The right to raise one’s voice loudly to sing or listen to music is a human right, but one cannot claim only one’s own human rights to the extent that it harms neighbors with loud noise. In such cases, human duties apply, not human rights. Rights without duties can be disastrous and even become a source of anarchy. Human rights can only sustain and enrich democracy when used responsibly.</p><p class=\"article-para\"><span class=\"highlight-box quoted-highlight-box\">The nearly two-thirds parliamentary majority the government enjoys is not a license to act arbitrarily while in power.</span> The weakness in Nepal’s human rights situation is not due to a lack of legal guarantees or institutional structures for their protection and promotion. Nepal has specific laws such as the Constitution of Nepal (Part 3 guarantees 31 fundamental rights), the National Human Rights Commission Act 2068, the Untouchability and Discrimination Act, the Human Trafficking and Transportation (Control) Act, the Domestic Violence (Control and Punishment) Act, and the Children’s Rights Act. The main administrative body responsible for formulating and implementing the National Action Plan on Human Rights is the government, the Office of the Prime Minister and Council of Ministers.</p><p class=\"article-para\">The status of the National Human Rights Commission established by the Constitution, its reports, or documents cannot be equated with other commissions formed by the government according to its needs and decisions. Therefore, the acceptance or receptiveness of the National Human Rights Commission’s report and the report submitted by the Gauri Bahadur Karki Commission differs from that of the National Human Rights Commission’s report.</p><p class=\"article-para\">The Parliament’s Law, Justice and Human Rights Committee, the Truth and Reconciliation Commission, the Commission of Investigation on Enforced Disappeared Persons, along with constitutional bodies such as the National Human Rights Commission, the Women’s Commission, the Dalit Commission, the National Inclusion Commission, the Indigenous Peoples Commission, and the Madhesi Commission work to protect the rights of marginalized groups and promote human rights.</p><p class=\"article-para\">Yet why does Nepal’s human rights situation remain weak and sometimes controversial? Nepal’s transitional justice law does not meet international human rights standards. The government must conduct a self-assessment to arrive at a realistic conclusion. In doing so, it may recall the famous cartoonist Pogo’s words: “We have met the enemy, and he is us.”</p><p class=\"article-para\">If the government wants to eliminate signs of meting out punishment based on personal bias rather than justice and to abandon the path of retribution, it must immediately make the National Human Rights Commission’s report public and initiate appropriate action. This is being seen by all national and international stakeholders as a litmus test of the government’s commitment to justice. If the government disagrees, it can publish its objections along with the report.</p><p class=\"article-para\">The nearly two-thirds parliamentary majority the government enjoys is not a license to act arbitrarily while in power. Ruling only for one’s own benefit and convenience is not an indicator of a ruler’s legitimacy or relevance. No matter how much deception is employed on such grave issues, the future will certainly uncover the truth.</p>\n<div class=\"key-takeaway\"><strong>Key Takeaways:</strong><p>The government has faced criticism for not making public the National Human Rights Commission’s report and attempting to shield the guilty from legal accountability; 47 people died in the Bhadra 23 and 24 incidents, and despite legal frameworks for human rights protection, the government has shown no accountability.</p></div>",
+    bodyNpWithAds:  "<p class=\"article-para\">राष्ट्रिय मानवअधिकार आयोगको प्रतिवेदन सार्वजनिक गर्न र दोषीलाई कानुनको कठघरामा पुर्‍याउन सरकारले टाङ अड्याउने चेष्टा गर्नु दुःखद पक्ष हो ।</p>\n<div class=\"ad-unit\" id=\"insection_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_1.png\" alt=\"insection_1.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p class=\"article-para\">सार्थक लोकतन्त्र र सुशासनमा प्रतिबद्ध सरकार अनिवार्यतः मानवअधिकारमैत्री हुनैपर्छ । संहिताबद्ध मानवअधिकारको उच्चस्तर त्यो मुलुकको लोकतान्त्रिक सभ्यताको मापक पनि हो । यस विषयमा कुनै पनि बहानाबाजी वा मानवअधिकार कुण्ठित गर्ने जस्तोसुकै शक्तिशाली सरकारसमेत कसरी पतन हुन्छ ? त्यसको ज्वलन्त उदाहरण गत साल भदौ २३ र २४ मा तत्कालीन सरकारले गरेको व्यवहार, त्यसबाट उत्पन्न अप्रिय प्रतिक्रियाका घटना र खतरनाक परिस्थिति सबैसामु ताजै छ । गत साल भदौ १२ मा तत्कालीन सरकारले सामाजिक सञ्जाल प्रयोग निर्देशिका २०८० लाई स्वेच्छाचारीपूर्वक दुरुपयोग गर्दै संविधानप्रदत्त विचार र अभिव्यक्ति स्वतन्त्रतामाथि ठाडै प्रहार हुने गरी चलिरहेका २६ वटा सामाजिक सञ्जालमा पूर्ण प्रतिबन्ध अनि जनतामा चुलिएको असन्तुष्टिको परिणामस्वरूप नै देश जटिल–कठिन अवस्थामा फसेको हो । सामाजिक सञ्जाललाई स्पष्ट कानुनी दायरामा ल्याउन त्यससम्बन्धी विधेयक संसद्मा अलपत्र छाडेर निर्देशिकाका भरमा तह लगाउन खोज्दा परिस्थितिले अकल्पनीय रूप लिएको हो ।</p>\n<div class=\"ad-unit\" id=\"insection_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_2.png\" alt=\"insection_2.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p class=\"article-para\">२३ भदौमा संसद् भवन घेर्ने तथा सुरक्षाकर्मीको ब्यारिकेड भत्काउने प्रयास हुँदा सुरक्षाकर्मीको गोली प्रहारबाट १९ जनाको सोही दिन स्थलगत र अस्पतालमा थप २३ गरी ४२ को निधन भएको थियो । सुनसरी र झापामा थप ५ गरी कुल ४७ नवयुवाको ज्यान गएको थियो । आन्दोलनकारीको आक्रोशमा परेर कर्तव्यपालनामा खटिएका तीन जना नेपाल प्रहरीका असई मिलन राय, हवल्दार अमृत गुरुङ र प्रहरी जवान उत्तम थापाको कुटीकुटी बीभत्स हत्या गरियो । सरकारी हातहतियारहरू लुटियो, जेलका कैदीहरूलाई भगाइयो, राज्यको ऐतिहासिक पहिचान र धरोहरका रूपमा रहेका सिंहदरबार, सर्वोच्च अदालत, संसद् भवन, महत्त्वपूर्ण सरकारी भवनलगायत औद्योगिक तथा व्यापारिक प्रतिष्ठान, निजी घर, सम्पत्ति तथा गाडीमा लुटपाट, आगजनी, तोडफोड गरी एक खर्बभन्दा बढीको धन–सम्पत्ति क्षति भयो ।</p>\n<div class=\"ad-unit\" id=\"insection_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_3.png\" alt=\"insection_3.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p class=\"article-para\"><span class=\"highlight-box quoted-highlight-box\">राष्ट्रिय मानवअधिकार आयोगको प्रतिवेदन सार्वजनिक गर्न र दोषीलाई कानुनको कठघरामा पुर्‍याउन सरकारले टाङ अड्याउने चेष्टा गर्नु दुःखद पक्ष हो ।</span>ती घटना र जनधनको क्षतिबारे राष्ट्रिय मानवअधिकार आयोगका तर्फबाट माननीय सदस्य लिली थापाको संयोजकत्वमा गठित छानबिन समितिले विस्तृत अध्ययन गरी मिहिनेतपूर्वक तयार पारेको सुझावसहितको प्रतिवेदन सार्वजनिक गर्ने र दोषीहरूलाई न्यायिक छानबिन अनि कानुनको कठघरामा पुर्‍याउन टाङ अड्याउने चेष्टा सरकारले गर्नु हुँदैन । गत जेठ १३ गते प्रकाशित उक्त प्रतिवेदन, सोही आन्दोलनको जगमा, मानव मृत्युको रगतदेखि सम्पत्ति नोक्सानीको भग्नावशेष र खरानी टेकेर ‘डढेको सिंहदरबार’ (सत्ता) मा पुगेको वर्तमान सरकारले सो प्रतिवेदन सार्वजनिक नगर्नु लोकतन्त्र, पारदर्शिता र जवाफदेहितामाथि गम्भीर प्रहार हो । नागरिकको थुनिएका आवाज र राज्यका कमजोरी लुकाउने यस्तो कदम घोर अलोकतान्त्रिक छ । सूचनाको हक कुण्ठित गर्ने र दोषीलाई संरक्षण दिने यस्तो बलमिच्याइँको जति विरोध गरे पनि कमै हुन्छ ।</p><p class=\"article-para\">सो प्रतिवेदनको पूर्णपाठ सार्वजनिक गर्न राष्ट्रिय मानवअधिकार आयोगका पूर्वअध्यक्ष तथा पूर्वप्रधानन्यायाधीश केदारनाथ उपाध्याय, पूर्वसदस्यहरू मोहना अन्सारी, सुशील प्याकुरेल, प्राध्यापक कपिल श्रेष्ठ, गौरी प्रधान, डा. गौरीशंकरलाल दास तथा पूर्वसचिव केदार पौडेलले आयोगका अध्यक्ष तपबहादुर मगरलाई भेटी दबाब दिएका छन् । नागरिकको न्याय र अधिकार रक्षाका लागि त्यो पूर्ण प्रतिवेदन तत्काल सार्वजनिक गर्नु राज्यको अनिवार्य दायित्व हो । नागरिकका आधारभूत मानवअधिकारका वैधानिक प्रावधान लागू गर्दा सरकारले लागत, कसैको लाभ र हानिको दृष्टिकोण राख्नु हुँदैन । विगतमा सरकारको गलत रबैयाकै कारण हाम्रो राष्ट्रिय मानवअधिकार आयोगको स्तर अवनति हुन पुगेको तथ्य नबिर्सौं ।</p><p class=\"article-para\">नेपालमा मानवअधिकारप्रति सरकारी संवेदनशीलताको मापदण्ड, गत वर्ष भदौ २३ र २४ गतेका घटनाप्रति सरकारी निष्पक्षता वा रबैयाको स्तरबाट वास्तविकता छर्लङ्ग हुन्छ । सम्पूर्ण नेपाली जनताले भदौ २४ का घटनाको छानबिन होस् भन्ने चाहन्छन् भने जेन–जी आन्दोलनको अपनत्व लिएर वर्तमान सरकार चलाइरहेकामा यदाकदा २३ को घटनामा मात्रै छानबिन र कारबाही हुनुपर्छ भन्ने मत देखिन्छ । तर, यस्तो एकाङ्गी र पक्षपाती कारबाहीको आग्रह कुनै पनि अर्थमा न्यायोचित अनि स्वीकार्य हुँदैन ।</p><p class=\"article-para\">मानवअधिकार र यससँग प्रत्यक्ष सरोकारका विषयहरू विश्वव्यापी क्षेत्राधिकारमा पर्छन् । त्यसैले कुनै मुलुकबाट अर्को मुलुकभित्रको मानवअधिकारबारे प्रश्न उठ्यो भने आन्तरिक मामिलामा हस्तक्षेप भनिँदैन । आजको विश्वमा मानवअधिकार उल्लंघनकर्ता वा मानवताविरुद्धको अपराधमा संलग्न एउटा मुलुकको अपराधी अर्को मुलुकको पाहुना हुन सक्दैन भन्ने मान्यता सर्वव्यापी भइसकेको छ । अन्तर्राष्ट्रिय मानवअधिकारवादी संगठन ह्युमन राइट्स वाचकी दक्षिण एसिया निर्देशक मीनाक्षी गांगुलीले ठीकै भनेकी थिइन्, ‘जबसम्म संक्रमणकालीन न्याय प्रक्रियाले नेपालको अदालती न्यायपद्धतिमा अभियुक्तलाई मुद्दा चलाउनेबारे आधारभूत मानक पूरा गर्दैन, तबसम्म यस्ता अधिकार उल्लंघनकर्ताहरूलाई विश्वव्यापी क्षेत्राधिकारअन्तर्गत अन्तर्राष्ट्रिय अपराधका रूपमा अन्य मुलुकमा पुर्पक्ष गर्नबाट उन्मुक्ति दिन सक्दैन ।’</p><p class=\"article-para\">संक्रमणकालीन न्याय, धर्म परिवर्तन, लैंगिक हिंसा, महिला तथा बालअधिकार, अपांगता भएका व्यक्तिका अधिकार, दलित तथा आदिवासी जनजातिका अधिकार, अन्तरविषयगत भेदभाव, न्यायमा पहुँच तथा आमाको नामबाट नागरिकता जस्ता संवेदनशील र दीर्घकालीन विषय सदैव प्राथमिकतामा पर्छन् । यी मामिलाले मानवअधिकार संरक्षण र प्रवर्द्धनसँग गहिरो सम्बन्ध राख्छन् ।</p><p class=\"article-para\">आज विश्वमा १० वटा मानवअधिकारसम्बन्धी अन्तर्राष्ट्रिय सन्धि तथा संकल्प कार्यान्वयनमा छन्– सन् १९४८ मा राष्ट्रसंघबाट सर्वसम्मतिमा पारित मानवअधिकारको विश्वव्यापी घोषणा, नागरिक तथा राजनीतिक अधिकारसम्बन्धी संकल्प, आर्थिक, सामाजिक र सांस्कृतिक अधिकारसम्बन्धी संकल्प,  यातनाविरुद्धको महासन्धि, आमनरसंहार विरुद्धको महासन्धि, जेनेभा महासन्धि, बालअधिकारसम्बन्धी महासन्धि, महिलाविरुद्ध विद्यमान विभेदको अन्त्यसम्बन्धी महासन्धि र राष्ट्रसंघको बडापत्र । नेपाल यी सबैजसो सन्धिको हस्ताक्षरकर्ता मुलुक हो । अन्तर्राष्ट्रिय संस्थाहरूका महासन्धिको हस्ताक्षरकर्ता हुनु भनेको सो महासन्धिको अकुण्ठित कार्यान्वयनका लागि आवश्यक संस्थागत संरचना अनि राष्ट्रिय कानुनमा प्रतिबद्धता र तदनुरूपको व्यवहार गर्नु हो ।</p><p class=\"article-para\">मानवअधिकारको सही कानुनसम्मत सदुपयोग गर्ने प्रवृत्ति नभई कानुनविहीन र अराजकता बोक्ने मानसिकताले मानवअधिकार खोज्नु हास्यास्पद हो । मानवअधिकारले नागरिकमा उत्तरदायित्व बढाउँछ, छाडा हुन दिँदैन । ठूलो आवाज खोलेर संगीत गाउन वा सुन्न पाउनु मानवअधिकार हो, तर चर्को आवाजले छिमेकीलाई सताउने हदमा आफ्नो मात्रै मानवअधिकार भन्न पाइन्नँ । त्यस्तो हदमा मानवअधिकार होइन, मानवीय कर्तव्य लागू हुन्छ । कर्तव्यबिनाको अधिकार भयावह हुन सक्छ । कर्तव्यरहित अधिकार अराजकताको स्रोत पनि हुन सक्छ । मानवअधिकारको सदुपयोग भए मात्रै लोकतन्त्र सम्पोषित र सार्थक रहन्छ ।</p><p class=\"article-para\"><span class=\"highlight-box quoted-highlight-box\">सरकारलाई झन्डै दुईतिहाइ संसदीय बहुमतको सुविधानजनक जनादेश मिलेको अर्थ सत्तामा बसेर मनपरी गर्न पाउने लाइसेन्स दिएको होइन</span>नेपालमा मानवअधिकारको संरक्षण र संवर्द्धन गर्ने वैधानिक सुनिश्चितता र संस्थागत संरचनाको कमीले मानवअधिकारको स्थिति दुर्बल भएको होइन । मानवअधिकारको सार्वकालिक स्रोतका रूपमा, नेपालको संविधान (संविधानको भाग ३ मा ३१ वटा मौलिक हकको सुनिश्चितता), राष्ट्रिय मानवअधिकार आयोग ऐन– २०६८, छुवाछूत तथा भेदभावविरुद्धको ऐन, मानव बेचबिखन तथा ओसारपसार (नियन्त्रण) ऐन, घरेलु हिंसा (नियन्त्रण तथा सजाय) ऐन र बालअधिकार ऐन आदि विशिष्ट कानुन हामीकहाँ छन् । मानवअधिकारसम्बन्धी राष्ट्रिय कार्ययोजना तर्जुमा र कार्यान्वयन गर्ने मुख्य प्रशासनिक निकाय सरकार, प्रधानमन्त्री तथा मन्त्रिपरिषद्को कार्यालय हो ।</p><p class=\"article-para\">संविधानले व्यवस्था गरेको राष्ट्रिय मानवअधिकार आयोगको हैसियत, यसका प्रतिवेदन वा दस्तावेजहरू सरकारले आफ्ना आवश्यकता, अनुकूलता र निर्णयअनुरूप गठन गर्ने अन्य आयोग र त्यसका प्रतिवेदन वा दस्तावेजसरह हुन सक्दैन । त्यसैले राष्ट्रिय मानवअधिकार आयोगको प्रतिवेदन र गौरीबहादुर कार्की आयोगले दिएको प्रतिवेदनको स्वीकार्यता वा ग्रहणशीलता राष्ट्रिय मानवअधिकार आयोगको प्रतिवेदनभन्दा फरक हुन्छ ।</p><p class=\"article-para\">संसद्को कानुन, न्याय तथा मानवअधिकार समिति, सत्यनिरूपण तथा मेलमिलाप आयोग, बेपत्ता पारिएका व्यक्तिको छानबिन आयोगलगायत राष्ट्रिय मानवअधिकार आयोग, संवैधानिक आयोगहरूमा महिला आयोग, दलित आयोग, राष्ट्रिय समावेशी आयोग, आदिवासी जनजाति आयोग र मधेशी आयोगजस्ता मानवअधिकारसँग सम्बन्धित संवैधानिक निकायले सम्बन्धित वर्गको अधिकार अनि मानवअधिकारको रक्षाका लागि कार्य गर्छन् ।</p><p class=\"article-para\">तैपनि नेपालमा मानवअधिकारको अवस्था किन कमजोर र बेलाबखत विवादास्पद बन्न पुग्छ ? नेपालको संक्रमणकालीन न्यायसम्बन्धी कानुन अन्तर्राष्ट्रिय मानवअधिकारका मानकसँग मेल खान असफल भएको छ । यसको वस्तुवादी निष्कर्षका लागि सरकारले आत्मसमीक्षा गर्नैपर्छ । आत्मसमीक्षा गर्दा प्रसिद्ध कार्टुनिस्ट पोगोको यो संवादको सम्झना आउन सक्ला, ‘हामीले आफ्नो शत्रु फेला पार्‍यौं, त्यो त हामी नै पो रहेछौं ।’</p><p class=\"article-para\">सरकारले पनि कसुर हेरी दण्डको न्यायिक बाटोबाट च्युत भएर मानिस हेरी दण्ड (दण्डहीनता) र प्रतिशोधको बाटो अपनाउने लक्षण र संकेतलाई मेटाउने हो भने राष्ट्रिय मानवअधिकार आयोगको उक्त प्रतिवेदन तत्काल सार्वजनिक गर्दै तदनुरूप कारबाहीको प्रक्रिया सुरु गर्नुपर्छ । यसलाई राष्ट्रिय–अन्तर्राष्ट्रिय सम्पूर्ण सरोकारवालाबाट सरकारको न्यायिक परीक्षाको कसीको रूपमा हेरिएको छ । सरकारको कतै असहमति छ भने आफ्ना असहमतिसहित सार्वजनिक गरे हुन्छ ।</p><p class=\"article-para\">सरकारलाई झन्डै दुईतिहाइ संसदीय बहुमतको सुविधानजनक जनादेश मिलेको अर्थ सत्तामा बसेर मनपरी गर्न पाउने लाइसेन्स दिएको होइन । आफूलाई मन परेको र हित हुने काम मात्रै गर्नु सत्ताधारीको औचित्य र सान्दर्भिकताको परिसूचक होइन । यस्ता गम्भीर विषयउपर छलछामसहित जति बेइमानी गरे पनि भविष्यले यसको निश्चित रूपमा उत्खनन गर्नेछ ।</p>\n<div class=\"key-takeaway\"><strong>मुख्य बुँदा:</strong><p>सरकारले राष्ट्रिय मानवअधिकार आयोगको प्रतिवेदन सार्वजनिक नगरी दोषीलाई कानुनी कठघरामा ल्याउन टाङ अडाउने प्रयास गरेकोमा आलोचना भएको छ, भदौ २३ र २४ को घटनामा ४७ जनाको मृत्यु भएको थियो र सरकारले मानवअधिकार संरक्षणमा कानुनी संरचना हुँदा पनि जवाफदेहिता देखाएको छैन ।</p></div>",
+    sidebarAdsHtml: "<div class=\"sidebar-ads-wrapper\">\n<div class=\"ad-unit\" id=\"sideads_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_3.jpg\" alt=\"sideads_3.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n\n<div class=\"ad-unit\" id=\"sideads_4\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_4.jpg\" alt=\"sideads_4.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div></div>",
+    imageUrl:       "../images/the-state-of-human-rights-in-nepal.jpg",
+    breadcrumbEn:   "<a href=\"../index.html\">Home</a> / <a href=\"../category/local\">Local</a> / The state of human rights in Nepal",
+    breadcrumbNp:   "<a href=\"../index.html\">गृहपृष्ठ</a> / <a href=\"../category/local\">स्थानीय</a> / नेपालमा मानवअधिकारको अवस्था",
+    tagsEn:         "<a href=\"#\" class=\"tag-pill\">National Human Rights Commission</a><a href=\"#\" class=\"tag-pill\">report made public</a><a href=\"#\" class=\"tag-pill\">dock of law</a><a href=\"#\" class=\"tag-pill\">Bhadra 23 and 24</a><a href=\"#\" class=\"tag-pill\">social media directive</a><a href=\"#\" class=\"tag-pill\">democracy</a><a href=\"#\" class=\"tag-pill\">women</a>",
+    tagsNp:         "<a href=\"#\" class=\"tag-pill\">राष्ट्रिय मानवअधिकार आयोग</a><a href=\"#\" class=\"tag-pill\">प्रतिवेदन सार्वजनिक</a><a href=\"#\" class=\"tag-pill\">कानुनको कठघरा</a><a href=\"#\" class=\"tag-pill\">भदौ २३ र २४</a><a href=\"#\" class=\"tag-pill\">सामाजिक सञ्जाल निर्देशिका</a><a href=\"#\" class=\"tag-pill\">लोकतन्त्र</a><a href=\"#\" class=\"tag-pill\">women</a>",
+    relatedHtml:    "<p class=\"no-related lang-en\">No related articles found.</p>\n            <p class=\"no-related lang-np\" style=\"display:none\">कुनै सम्बन्धित लेख फेला परेन।</p>"
+  };
+
+  function populate() {
+    var el = function(id) { return document.getElementById(id); };
+    if (el('breadcrumb-en'))    el('breadcrumb-en').innerHTML    = DATA.breadcrumbEn;
+    if (el('breadcrumb-np'))    el('breadcrumb-np').innerHTML    = DATA.breadcrumbNp;
+    if (el('category-en'))      el('category-en').textContent    = DATA.categoryEn;
+    if (el('category-np'))      el('category-np').textContent    = DATA.categoryNp;
+    if (el('title-en'))         el('title-en').textContent       = DATA.titleEn;
+    if (el('title-np'))         el('title-np').textContent       = DATA.titleNp;
+    if (el('readtime-en'))      el('readtime-en').textContent    = DATA.readTimeEn;
+    if (el('readtime-np'))      el('readtime-np').textContent    = DATA.readTimeNp;
+    if (el('tags-en'))          el('tags-en').innerHTML          = DATA.tagsEn;
+    if (el('tags-np'))          el('tags-np').innerHTML          = DATA.tagsNp;
+    if (el('article-body-en'))  el('article-body-en').innerHTML  = DATA.bodyEnWithAds;
+    if (el('article-body-np'))  el('article-body-np').innerHTML  = DATA.bodyNpWithAds;
+
+    var relatedContainer = el('related-articles');
+    if (relatedContainer) {
+      var sidebarWidget = relatedContainer.closest('.widget.related') || relatedContainer.parentElement;
+      if (sidebarWidget && DATA.sidebarAdsHtml) {
+        sidebarWidget.insertAdjacentHTML('beforebegin', DATA.sidebarAdsHtml);
+      }
+      relatedContainer.innerHTML = DATA.relatedHtml;
+    }
+
+    var dateEl = el('date');
+    if (dateEl) {
+      dateEl.setAttribute('data-date-ad', DATA.dateAd);
+      var span = dateEl.querySelector('.date-display');
+      if (!span) { dateEl.innerHTML = '<span class="date-display">' + DATA.dateEn + '</span>'; }
+      else { span.textContent = DATA.dateEn; }
+    }
+
+    var img = el('featured-image');
+    if (img) {
+      if (DATA.imageUrl) {
+        img.src = DATA.imageUrl; img.alt = DATA.titleEn;
+        img.onerror = function() { this.src = 'https://placehold.co/1200x675/1a1a1a/ffffff?text=Image+Not+Found'; };
+      } else {
+        var wrapper = img.closest('.image-wrapper');
+        if (wrapper) wrapper.style.display = 'none';
+      }
+    }
+
+    var dateEl2 = el('date');
+    if (dateEl2 && (DATA.sourceEn || DATA.creatorEn)) {
+      var metaBar = dateEl2.closest('.meta') || dateEl2.parentElement;
+      if (metaBar && !metaBar.querySelector('#meta-source')) {
+        var enParts = [DATA.sourceEn ? 'Source: ' + DATA.sourceEn : '', DATA.creatorEn ? 'Creator: ' + DATA.creatorEn : ''].filter(Boolean).join(' · ');
+        var npParts = [DATA.sourceNp ? 'स्रोत: ' + DATA.sourceNp : '', DATA.creatorNp ? 'सिर्जनाकर्ता: ' + DATA.creatorNp : ''].filter(Boolean).join(' · ');
+        var srcSpan = document.createElement('span');
+        srcSpan.id = 'meta-source';
+        srcSpan.style.cssText = 'font-size:0.78rem;display:inline-flex;align-items:center;gap:4px;';
+        srcSpan.innerHTML =
+          '<i class="fas fa-pen-nib" style="font-size:.7rem;opacity:.6;flex-shrink:0;"></i>' +
+          '<span class="lang-en">' + enParts + '</span>' +
+          '<span class="lang-np" style="display:none">' + npParts + '</span>';
+        metaBar.appendChild(srcSpan);
+      }
+    }
+  }
+
+  function updateDates(isNp) {
+    document.querySelectorAll('[data-date-ad]').forEach(function(el) {
+      var adStr = el.getAttribute('data-date-ad');
+      var display = el.querySelector('.date-display');
+      if (!display) return;
+      if (isNp) { display.textContent = adToBs(adStr); }
+      else {
+        var d = new Date(adStr);
+        if (!isNaN(d.getTime())) {
+          display.textContent = EN_MONTHS_FULL[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
+        } else { display.textContent = adStr; }
+      }
+    });
+  }
+
+  function getDisplay(el, active) {
+    if (!active) return 'none';
+    var tag = el.tagName.toLowerCase();
+    return (tag === 'span' || tag === 'a' || tag === 'i' || tag === 'b' || tag === 'strong') ? 'inline' : 'block';
+  }
+
+  window.setArticleLang = function(lang) {
+    var isEn = (lang === 'en');
+    document.querySelectorAll('.lang-en').forEach(function(el) { el.style.display = getDisplay(el, isEn); });
+    document.querySelectorAll('.lang-np').forEach(function(el) { el.style.display = getDisplay(el, !isEn); });
+    updateDates(!isEn);
+    try { localStorage.setItem('articleLang', lang); } catch(e) {}
+    window.__articleLang = lang;
+    if (!isEn) { document.body.classList.add('lang-active'); }
+    else        { document.body.classList.remove('lang-active'); }
+  };
+
+  function applyStoredLang() {
+    var stored; try { stored = localStorage.getItem('articleLang'); } catch(e) {}
+    window.setArticleLang(stored || 'en');
+  }
+
+  function initShareButtons() {
+    document.querySelectorAll('.share-btn.facebook').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank', 'width=600,height=400');
+      });
+    });
+    document.querySelectorAll('.share-btn.twitter').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var text = document.getElementById('title-en') ? document.getElementById('title-en').textContent : document.title;
+        window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(text), '_blank', 'width=600,height=400');
+      });
+    });
+  }
+
+  function initCopyButtons() {
+    document.querySelectorAll('.copy-link').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        navigator.clipboard.writeText(window.location.href).catch(function() {
+          var ta = document.createElement('textarea'); ta.value = window.location.href;
+          document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+        });
+        var tooltip = btn.querySelector('.tooltip');
+        if (tooltip) { tooltip.classList.add('visible'); setTimeout(function() { tooltip.classList.remove('visible'); }, 2000); }
+      });
+    });
+  }
+
+  function initBackToTop() {
+    var btn = document.getElementById('back-to-top'); if (!btn) return;
+    window.addEventListener('scroll', function() { btn.style.display = window.scrollY > 300 ? 'flex' : 'none'; });
+    btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  }
+
+  function initNewsletter() {
+    var btn = document.getElementById('newsletter-subscribe'); if (!btn) return;
+    btn.addEventListener('click', function() {
+      var emailEl = document.getElementById('newsletter-email');
+      var val = emailEl ? emailEl.value.trim() : '';
+      if (!val || !/^[^s@]+@[^s@]+.[^s@]+$/.test(val)) {
+        alert(window.__articleLang === 'np' ? 'कृपया मान्य इमेल ठेगाना प्रविष्ट गर्नुहोस्।' : 'Please enter a valid email address.');
+        return;
+      }
+      alert(window.__articleLang === 'np' ? 'सदस्यता लिनुभएकोमा धन्यवाद!' : 'Thank you for subscribing!');
+    });
+  }
+
+  window.addEventListener('langChange', function(e) {
+    if (e && e.detail && e.detail.lang) window.setArticleLang(e.detail.lang);
+  });
+
+  function init() {
+    populate(); applyStoredLang(); initShareButtons(); initCopyButtons(); initBackToTop(); initNewsletter();
+    window.dispatchEvent(new CustomEvent('articleContentLoaded'));
+  }
+
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); }
+  else { init(); }
+
+  window.refreshArticleContent = function() { populate(); applyStoredLang(); };
+})();
+</script>
+<script>
+(function() {
+  'use strict';
+  var NP_DIGITS    = ['०','१','२','३','४','५','६','७','८','९'];
+  var BS_MONTHS_NP = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
+  var EN_MONTHS    = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var BS_DATA = {
+    2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2004:[366,30,32,31,32,31,30,30,30,29,30,29,31],2005:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2006:[365,31,31,32,32,31,30,30,29,30,29,30,30],2007:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2008:[365,31,31,32,31,31,31,30,29,30,29,30,30],2009:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2010:[365,31,31,32,32,31,30,30,29,30,29,30,30],2011:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2012:[365,31,31,32,31,31,31,30,29,30,29,30,30],2013:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2014:[365,31,31,32,32,31,30,30,29,30,29,30,30],2015:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2016:[366,31,31,32,31,31,31,30,29,30,29,30,31],2017:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2018:[365,31,31,32,32,31,30,30,29,30,29,30,30],2019:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2020:[366,31,31,32,31,31,30,30,29,30,29,30,31],2021:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2022:[365,31,31,32,32,31,30,30,29,30,29,30,30],2023:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2024:[366,31,31,32,31,31,30,30,29,30,29,30,31],2025:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2026:[365,31,31,32,32,31,30,30,29,30,29,30,30],2027:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2028:[366,31,32,31,32,31,30,30,30,29,30,29,31],2029:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2030:[365,31,31,32,31,31,31,30,29,30,29,30,30],2031:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+    2032:[366,31,32,31,32,31,30,30,30,29,29,30,31],2033:[366,31,31,32,31,31,30,30,29,30,29,30,31],
+    2034:[365,31,31,32,31,31,31,30,29,30,29,30,30],2035:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+    2036:[366,31,32,31,32,31,30,30,30,29,29,30,31],2037:[366,31,32,31,32,31,30,30,30,29,30,29,31],
+    2038:[365,31,31,32,31,31,31,30,29,30,29,30,30],2039:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2040:[365,31,31,32,32,31,30,30,29,30,29,30,30],2041:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2042:[366,31,31,32,31,31,30,30,29,30,29,30,31],2043:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2044:[365,31,31,32,31,31,31,30,29,30,29,30,30],2045:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2046:[366,31,32,31,32,31,30,30,30,29,30,29,31],2047:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2048:[365,31,31,32,32,31,30,30,29,30,29,30,30],2049:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2050:[366,31,32,31,32,31,30,30,30,29,30,29,31],2051:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2052:[365,31,31,32,32,31,30,30,29,30,29,30,30],2053:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2054:[366,31,32,31,32,31,30,30,30,29,30,29,31],2055:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2056:[366,31,31,32,31,31,31,30,29,30,29,30,31],2057:[366,31,31,32,32,31,30,30,29,30,29,30,31],
+    2058:[365,30,32,31,32,31,30,30,30,29,29,30,30],2059:[366,31,32,31,32,31,30,30,30,29,30,29,31],
+    2060:[365,31,31,32,31,31,31,30,29,30,29,30,30],2061:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2062:[365,31,31,32,32,31,30,30,29,30,29,30,30],2063:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2064:[366,31,31,32,31,31,30,30,29,30,29,30,31],2065:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2066:[365,31,31,32,31,31,31,30,29,30,29,30,30],2067:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2068:[366,31,32,31,32,31,30,30,30,29,30,29,31],2069:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2070:[365,31,31,32,32,31,30,30,29,30,29,30,30],2071:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2072:[366,31,32,31,32,31,30,30,30,29,30,29,31],2073:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2074:[365,31,31,32,32,31,30,30,29,30,29,30,30],2075:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2076:[365,31,32,31,32,31,30,30,30,29,30,29,31],2077:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2078:[365,31,31,32,31,31,31,30,29,30,29,30,30],2079:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2080:[365,31,32,31,32,31,30,30,30,29,30,29,31],2081:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2082:[365,31,31,32,32,31,30,30,29,30,29,30,30],2083:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2084:[366,31,32,31,32,31,30,30,30,29,30,29,31],2085:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2086:[365,31,31,32,32,31,30,30,29,30,29,30,30],2087:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2088:[366,31,32,31,32,31,30,30,30,29,30,29,31],2089:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2090:[365,31,31,32,32,31,30,30,29,30,29,30,30]
+  };
+  var AD_EPOCH_MS = Date.UTC(1943, 2, 31);
+
+  function toNpDigits(n) {
+    return String(n).split('').map(function(d) {
+      var i = parseInt(d, 10); return isNaN(i) ? d : NP_DIGITS[i];
+    }).join('');
+  }
+  function adToBs(dateStr) {
+    if (!dateStr) return '';
+    var d = new Date(dateStr);
+    if (isNaN(d.getTime())) return dateStr;
+    var totalDays = Math.floor((Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()) - AD_EPOCH_MS) / 86400000);
+    if (totalDays < 0) return dateStr;
+    var bsYear = 2000;
+    while (true) { var yd = BS_DATA[bsYear]; if (!yd || totalDays < yd[0]) break; totalDays -= yd[0]; bsYear++; }
+    var yd2 = BS_DATA[bsYear]; if (!yd2) return dateStr;
+    var bsMonth = 1, bsDay = 1;
+    for (var m = 1; m <= 12; m++) {
+      if (totalDays < yd2[m]) { bsMonth = m; bsDay = totalDays + 1; break; } totalDays -= yd2[m];
+    }
+    return toNpDigits(bsYear) + ' ' + BS_MONTHS_NP[bsMonth - 1] + ' ' + toNpDigits(bsDay);
+  }
+  function formatDateEn(dateStr) {
+    if (!dateStr) return '';
+    var d = new Date(dateStr);
+    if (isNaN(d.getTime())) return dateStr;
+    return EN_MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
+  }
+
+  function updateAllDates() {
+    var isNp = document.body.classList.contains('lang-active');
+    document.querySelectorAll('[data-date-ad]').forEach(function(el) {
+      var adStr   = el.getAttribute('data-date-ad') || '';
+      var timeStr = el.getAttribute('data-time') || '';
+      if (!adStr) return;
+      var display = el.classList.contains('date-display') ? el : el.querySelector('.date-display');
+      if (!display) return;
+      display.textContent = isNp
+        ? adToBs(adStr) + (timeStr ? ', ' + timeStr : '')
+        : formatDateEn(adStr) + (timeStr ? ', ' + timeStr : '');
+    });
+  }
+
+  // Run on every langChange, on DOM ready, and again shortly after
+  // (covers the case where populate() re-renders #date/.related-articles
+  // AFTER this script first runs, e.g. race with POPULATION_SCRIPT).
+  window.addEventListener('langChange', function() { setTimeout(updateAllDates, 30); });
+  window.addEventListener('articleContentLoaded', function() { setTimeout(updateAllDates, 30); });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { setTimeout(updateAllDates, 50); });
+  } else {
+    setTimeout(updateAllDates, 50);
+  }
+})();
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+      var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
+      var adYear=new Date().getFullYear();
+      var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
+      var eyEn=document.getElementById('footer-year-en');
+      var eyNp=document.getElementById('footer-year-np');
+      if(eyEn)eyEn.textContent=adYear;
+      if(eyNp)eyNp.textContent=npYear;
+      window.addEventListener('langChange',function(e){
+        if(e.detail&&e.detail.lang)document.body.classList.toggle('lang-active',e.detail.lang==='np');
+      });
+      var stored=localStorage.getItem('fm_lang')||'en';
+      if(stored==='np')document.body.classList.add('lang-active');
+    });
+  </script>
+
+  <!-- ════ WhatsApp tooltip controller ════ -->
+  <script>
+(function() {
+  var tip = document.getElementById('waTooltip');
+  if (tip && !sessionStorage.getItem('waTip')) {
+    setTimeout(function() {
+      tip.style.opacity = '1';
+      tip.style.transform = 'translateX(0)';
+      setTimeout(function() {
+        tip.style.opacity = '';
+        tip.style.transform = '';
+        sessionStorage.setItem('waTip', '1');
+      }, 3000);
+    }, 2500);
+  }
+})();
+</script>
+
+</body>
+</html>
