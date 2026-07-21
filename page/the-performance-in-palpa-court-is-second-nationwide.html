@@ -622,7 +622,7 @@
     --accent:       #D4A017;
     --primary:      #A31919;
     --primary-on:   #FFFFFF;
-    --accent-on:    #1F1F1F;
+    --accent-on:    #FFFFFF;
     --bg:           #FFFFFF;
     --surface:      #F8F8F8;
     --text:         #1F1F1F;
@@ -953,7 +953,7 @@
     align-items: center;
     justify-content: center;
     z-index: 999;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
     transition: opacity 0.2s;
   }
 
@@ -1022,17 +1022,11 @@
     display: inline;
   }
 
-  div.lang-en,
-  p.lang-en,
-  h3.lang-en,
-  .article-body.lang-en {
+  div.lang-en, p.lang-en, h3.lang-en, .article-body.lang-en {
     display: block;
   }
 
-  div.lang-np,
-  p.lang-np,
-  h3.lang-np,
-  .article-body.lang-np {
+  div.lang-np, p.lang-np, h3.lang-np, .article-body.lang-np {
     display: none;
   }
 
@@ -1044,15 +1038,11 @@
     display: inline !important;
   }
 
-  body.lang-active div.lang-np,
-  body.lang-active p.lang-np,
-  body.lang-active h3.lang-np,
-  body.lang-active .article-body.lang-np {
+  body.lang-active div.lang-np, body.lang-active p.lang-np, body.lang-active h3.lang-np, body.lang-active .article-body.lang-np {
     display: block !important;
   }
 
-  #article-body-en,
-  #article-body-np {
+  #article-body-en, #article-body-np {
     min-height: 2rem;
   }
 </style>
@@ -1426,15 +1416,6 @@
 
   
 
-  <div id="comments-section"></div>
-
-  <div id="source-en" class="lang-en"></div>
-  <div id="source-np" class="lang-np"></div>
-
-  <div id="creator-en" class="lang-en"></div>
-  <div id="creator-np" class="lang-np"></div>
-
-  <div id="related-articles"></div>
 </div>
 
 
