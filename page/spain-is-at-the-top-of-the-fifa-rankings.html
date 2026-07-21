@@ -622,33 +622,29 @@
     --accent:       #D4A017;
     --primary:      #A31919;
     --primary-on:   #FFFFFF;
-    --accent-on:    #1F1F1F;
+    --accent-on:    #000000;
     --bg:           #FFFFFF;
     --surface:      #F8F8F8;
     --text:         #1F1F1F;
     --muted:        rgba(31,31,31,0.55);
     --border:       rgba(163,25,25,0.18);
-    --font-body:    'Open Sans', sans-serif;
-    --font-heading: 'Montserrat', sans-serif;
+    --font-body:    Arial, sans-serif;
+    --font-heading: Arial, sans-serif;
   }
-
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text); font-family: var(--font-body); margin: 0; padding: 0; }
-
   .article-container {
     max-width: 1100px; margin: 0 auto; padding: 1.5rem; background: var(--bg);
   }
-
   .article-header {
     margin-bottom: 1.5rem;
   }
-
   h1 {
     font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.3;
     margin: 0.5rem 0 0.75rem; color: var(--primary);
   }
-
   .breadcrumb {
     font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem;
   }
@@ -658,13 +654,11 @@
   .breadcrumb a:hover {
     text-decoration: underline;
   }
-
   .category-badge span {
     display: inline-block; background: var(--accent); color: var(--accent-on);
     padding: 3px 10px; border-radius: 4px; font-size: 0.78rem; font-weight: 700;
     margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.04em;
   }
-
   .meta {
     display: flex; gap: 1.2rem; color: var(--muted); font-size: 0.88rem;
     margin-bottom: 0.75rem; flex-wrap: wrap; align-items: center;
@@ -672,7 +666,6 @@
   .meta i {
     margin-right: 4px;
   }
-
   .share-buttons {
     display: flex; gap: 8px; flex-wrap: wrap; margin-top: 0.5rem;
   }
@@ -691,7 +684,6 @@
   .share-btn.twitter:hover {
     background: #1DA1F2; color: #fff; border-color: #1DA1F2;
   }
-
   .copy-link {
     position: relative;
   }
@@ -703,18 +695,15 @@
   .tooltip.visible {
     display: block;
   }
-
   .article-content {
     display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start;
   }
   @media (max-width: 1023px) {
     .article-content { grid-template-columns: 1fr; }
   }
-
   .main-column {
     min-width: 0;
   }
-
   .image-wrapper {
     margin-bottom: 1.5rem;
   }
@@ -724,7 +713,6 @@
   .image-wrapper.hidden {
     display: none;
   }
-
   .article-body {
     font-size: 1rem; line-height: 1.8; color: var(--text);
   }
@@ -737,7 +725,6 @@
   .article-body img {
     max-width: 100%; border-radius: 6px;
   }
-
   .tags-wrapper {
     margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--border);
   }
@@ -756,11 +743,9 @@
   .tags-list a:hover {
     background: var(--accent); color: var(--accent-on); border-color: var(--accent);
   }
-
   .sidebar {
     position: sticky; top: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;
   }
-
   .widget {
     background: var(--surface); padding: 1.4rem; border-radius: 10px; border: 1px solid var(--border);
   }
@@ -772,7 +757,6 @@
   .widget p {
     font-size: 0.88rem; color: var(--muted); margin-bottom: 0.6rem; line-height: 1.5;
   }
-
   #newsletter-email {
     width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px;
     background: var(--bg); color: var(--text); font-size: 0.88rem;
@@ -789,7 +773,6 @@
   #newsletter-subscribe:hover {
     opacity: 0.85;
   }
-
   #back-to-top {
     position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent);
     color: var(--accent-on); border: none; border-radius: 50%; width: 42px; height: 42px;
@@ -799,7 +782,6 @@
   #back-to-top:hover {
     opacity: 0.85;
   }
-
   .related-card {
     display: flex; gap: 10px; text-decoration: none; color: var(--text);
     padding: 0.7rem 0; border-bottom: 1px solid var(--border); align-items: flex-start;
@@ -824,15 +806,30 @@
   .related-meta {
     font-size: 0.75rem; color: var(--muted);
   }
-
-  .lang-np { display: none; }
-  .lang-en { display: inline; }
-  div.lang-en, p.lang-en, h3.lang-en, .article-body.lang-en { display: block; }
-  div.lang-np, p.lang-np, h3.lang-np, .article-body.lang-np { display: none; }
-  body.lang-active .lang-en { display: none !important; }
-  body.lang-active .lang-np { display: inline !important; }
-  body.lang-active div.lang-np, body.lang-active p.lang-np, body.lang-active h3.lang-np, body.lang-active .article-body.lang-np { display: block !important; }
-  #article-body-en, #article-body-np { min-height: 2rem; }
+  .lang-np {
+    display: none;
+  }
+  .lang-en {
+    display: inline;
+  }
+  div.lang-en, p.lang-en, h3.lang-en, .article-body.lang-en {
+    display: block;
+  }
+  div.lang-np, p.lang-np, h3.lang-np, .article-body.lang-np {
+    display: none;
+  }
+  body.lang-active .lang-en {
+    display: none !important;
+  }
+  body.lang-active .lang-np {
+    display: inline !important;
+  }
+  body.lang-active div.lang-np, body.lang-active p.lang-np, body.lang-active h3.lang-np, body.lang-active .article-body.lang-np {
+    display: block !important;
+  }
+  #article-body-en, #article-body-np {
+    min-height: 2rem;
+  }
 </style>
 <style>
     /* ALL CSS from PART D */
@@ -1135,66 +1132,49 @@
 
 
 <div class="article-container">
-
-  <!-- ZONE 1: full-width article header -->
   <div class="article-header">
     <div class="breadcrumb">
       <span id="breadcrumb-en" class="lang-en"></span>
       <span id="breadcrumb-np" class="lang-np"></span>
     </div>
-
     <div class="category-badge">
       <span id="category-en" class="lang-en"></span>
       <span id="category-np" class="lang-np"></span>
     </div>
-
     <h1>
       <span id="title-en" class="lang-en"></span>
       <span id="title-np" class="lang-np"></span>
     </h1>
-
     <div class="meta">
       <span><i class="fas fa-calendar"></i> <span id="date"></span></span>
       <span><i class="fas fa-clock"></i> <span id="readtime-en" class="lang-en"></span><span id="readtime-np" class="lang-np"></span></span>
     </div>
-
     <div class="share-buttons">
       <button class="share-btn facebook"><i class="fab fa-facebook"></i> Facebook</button>
       <button class="share-btn twitter"><i class="fab fa-twitter"></i> Twitter</button>
       <button class="share-btn copy-link"><i class="fas fa-link"></i> Copy Link<span class="tooltip">Copied!</span></button>
     </div>
   </div>
-
-  <!-- ZONE 2: two-column body -->
   <div class="article-content">
-
-    <!-- LEFT column -->
     <div class="main-column">
-
       <div class="image-wrapper">
         <img id="featured-image" src="" alt="" loading="lazy">
       </div>
-
       <div id="article-body-en" class="lang-en article-body"></div>
       <div id="article-body-np" class="lang-np article-body"></div>
-
       <div class="tags-wrapper">
         <h3 class="lang-en"><i class="fas fa-tags"></i> Tags</h3>
         <h3 class="lang-np"><i class="fas fa-tags"></i> ट्यागहरू</h3>
         <div id="tags-en" class="lang-en tags-list"></div>
         <div id="tags-np" class="lang-np tags-list"></div>
       </div>
-
     </div>
-
-    <!-- RIGHT column / sidebar -->
     <aside class="sidebar">
       <div class="widget related">
         <h3 class="lang-en"><i class="fas fa-newspaper"></i> Related Articles</h3>
         <h3 class="lang-np"><i class="fas fa-newspaper"></i> सम्बन्धित लेखहरू</h3>
         <div id="related-articles"></div>
       </div>
-
       <div class="widget newsletter">
         <h3 class="lang-en"><i class="fas fa-envelope"></i> Newsletter</h3>
         <h3 class="lang-np"><i class="fas fa-envelope"></i> समाचारपत्र</h3>
@@ -1204,11 +1184,8 @@
         <button id="newsletter-subscribe"><i class="fas fa-paper-plane"></i> <span class="lang-en">Subscribe</span><span class="lang-np">सदस्यता लिनुहोस्</span></button>
       </div>
     </aside>
-
   </div>
-
   
-
 </div>
 
 
@@ -1755,7 +1732,7 @@
     breadcrumbNp:   "<a href=\"../index.html\">गृहपृष्ठ</a> / <a href=\"../category/world\">विश्व</a> / स्पेन फिफा वरीयताको शीर्षमा",
     tagsEn:         "<a href=\"#\" class=\"tag-pill\">FIFA rankings</a><a href=\"#\" class=\"tag-pill\">FIFA World Cup 2026</a><a href=\"#\" class=\"tag-pill\">Spain</a><a href=\"#\" class=\"tag-pill\">Argentina</a><a href=\"#\" class=\"tag-pill\">France</a><a href=\"#\" class=\"tag-pill\">England</a><a href=\"#\" class=\"tag-pill\">sports</a>",
     tagsNp:         "<a href=\"#\" class=\"tag-pill\">फिफा वरीयता</a><a href=\"#\" class=\"tag-pill\">विश्वकप २०२६</a><a href=\"#\" class=\"tag-pill\">स्पेन</a><a href=\"#\" class=\"tag-pill\">अर्जेन्टिना</a><a href=\"#\" class=\"tag-pill\">फ्रान्स</a><a href=\"#\" class=\"tag-pill\">इंग्ल्यान्ड</a><a href=\"#\" class=\"tag-pill\">sports</a>",
-    relatedHtml:    "\n      <a href=\"/page/the-way-forward-wellness-tourism.html\" class=\"related-card\">\n        <img src=\"../images/the-way-forward-wellness-tourism.jpg\" alt=\"The way forward: Wellness tourism\" loading=\"lazy\"\n             onerror=\"this.src='https://placehold.co/400x225/1a1a1a/ffffff?text=Related'\">\n        <div class=\"related-content\">\n          <span class=\"related-category lang-en\">World</span>\n                     <span class=\"related-category lang-np\" style=\"display:none\">विश्व</span>\n          <h4 class=\"lang-en\">The way forward: Wellness tourism</h4>\n          <h4 class=\"lang-np\" style=\"display:none\">अबको बाटो : आरोग्य पर्यटन</h4>\n          <span class=\"related-meta\" data-date-ad=\"July 21, 2026\">\n            <i class=\"fas fa-clock\" style=\"font-size:.68rem;margin-right:3px;\"></i>\n            <span class=\"date-display\">July 21, 2026</span>\n            <span class=\"lang-en\"></span>\n            <span class=\"lang-np\" style=\"display:none\"></span>\n          </span>\n          <span class=\"related-meta\" style=\"margin-top:3px;\">\n                <span class=\"lang-en\">Source: Kantipur · Creator: Tara Wagley</span>\n                <span class=\"lang-np\" style=\"display:none\">स्रोत: कान्तिपुर · सिर्जनाकर्ता: तारा वाग्ले</span>\n              </span>\n        </div>\n      </a>\n      <a href=\"/page/dried-trees-are-the-world-of-lichen-pictures.html\" class=\"related-card\">\n        <img src=\"../images/dried-trees-are-the-world-of-lichen-pictures.jpg\" alt=\"Dried trees are the world of lichen [pictures]\" loading=\"lazy\"\n             onerror=\"this.src='https://placehold.co/400x225/1a1a1a/ffffff?text=Related'\">\n        <div class=\"related-content\">\n          <span class=\"related-category lang-en\">World</span>\n                     <span class=\"related-category lang-np\" style=\"display:none\">विश्व</span>\n          <h4 class=\"lang-en\">Dried trees are the world of lichen [pictures]</h4>\n          <h4 class=\"lang-np\" style=\"display:none\">सुकेका रुखमा घोँगीफोरको संसार [तस्बिरहरू]</h4>\n          <span class=\"related-meta\" data-date-ad=\"July 21, 2026\">\n            <i class=\"fas fa-clock\" style=\"font-size:.68rem;margin-right:3px;\"></i>\n            <span class=\"date-display\">July 21, 2026</span>\n            <span class=\"lang-en\"></span>\n            <span class=\"lang-np\" style=\"display:none\"></span>\n          </span>\n          <span class=\"related-meta\" style=\"margin-top:3px;\">\n                <span class=\"lang-en\">Source: Kantipur · Creator: Ramesh Kumar Paudel</span>\n                <span class=\"lang-np\" style=\"display:none\">स्रोत: कान्तिपुर · सिर्जनाकर्ता: रमेशकुमार पौडेल</span>\n              </span>\n        </div>\n      </a>"
+    relatedHtml:    "<p class=\"no-related lang-en\">No related articles found.</p>\n            <p class=\"no-related lang-np\" style=\"display:none\">कुनै सम्बन्धित लेख फेला परेन।</p>"
   };
 
   function populate() {
