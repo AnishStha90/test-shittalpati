@@ -704,6 +704,8 @@
     --font-heading: Arial, sans-serif;
   }
 
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
   * {
     box-sizing: border-box;
     margin: 0;
@@ -919,6 +921,10 @@
     transition: opacity 0.2s;
   }
 
+  #back-to-top:hover {
+    opacity: 0.9;
+  }
+
   .empty-state {
     text-align: center;
     padding: 4rem 2rem;
@@ -953,6 +959,26 @@
     .card-title {
       font-size: 1rem;
     }
+  }
+
+  .lang-np {
+    display: none;
+  }
+
+  .lang-en {
+    display: inline;
+  }
+
+  body.lang-active .lang-en {
+    display: none !important;
+  }
+
+  body.lang-active .lang-np {
+    display: inline !important;
+  }
+
+  body.lang-active p.lang-np, body.lang-active span.lang-np {
+    display: inline !important;
   }
 </style>
 <style>

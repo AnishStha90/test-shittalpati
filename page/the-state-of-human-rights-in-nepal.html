@@ -622,7 +622,7 @@
     --accent:       #D4A017;
     --primary:      #A31919;
     --primary-on:   #FFFFFF;
-    --accent-on:    #1F1F1F;
+    --accent-on:    #FFFFFF;
     --bg:           #FFFFFF;
     --surface:      #F8F8F8;
     --text:         #1F1F1F;
@@ -631,208 +631,352 @@
     --font-body:    'Open Sans', sans-serif;
     --font-heading: 'Montserrat', sans-serif;
   }
-
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text); font-family: var(--font-body); margin: 0; padding: 0; }
-
   .article-container {
-    max-width: 1100px; margin: 0 auto; padding: 1.5rem; background: var(--bg);
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background: var(--bg);
   }
-
   .article-header {
     margin-bottom: 1.5rem;
   }
-
   h1 {
-    font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.3;
-    margin: 0.5rem 0 0.75rem; color: var(--primary);
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    line-height: 1.3;
+    margin: 0.5rem 0 0.75rem;
+    color: var(--primary);
   }
-
   .breadcrumb {
-    font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
   }
   .breadcrumb a {
-    color: var(--accent); text-decoration: none;
+    color: var(--accent);
+    text-decoration: none;
   }
   .breadcrumb a:hover {
     text-decoration: underline;
   }
-
   .category-badge span {
-    display: inline-block; background: var(--accent); color: var(--accent-on);
-    padding: 3px 10px; border-radius: 4px; font-size: 0.78rem; font-weight: 700;
-    margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.04em;
+    display: inline-block;
+    background: var(--accent);
+    color: var(--accent-on);
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
-
   .meta {
-    display: flex; gap: 1.2rem; color: var(--muted); font-size: 0.88rem;
-    margin-bottom: 0.75rem; flex-wrap: wrap; align-items: center;
+    display: flex;
+    gap: 1.2rem;
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
   }
   .meta i {
     margin-right: 4px;
   }
-
   .share-buttons {
-    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 0.5rem;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
   }
   .share-btn {
-    display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px;
-    border-radius: 5px; border: 1px solid var(--border); background: var(--surface);
-    color: var(--text); cursor: pointer; font-size: 0.85rem;
-    font-family: var(--font-body); transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: var(--font-body);
+    transition: all 0.2s ease;
   }
   .share-btn:hover {
-    background: var(--accent); color: var(--accent-on); border-color: var(--accent);
+    background: var(--accent);
+    color: var(--accent-on);
+    border-color: var(--accent);
   }
   .share-btn.facebook:hover {
-    background: #1877F2; color: #fff; border-color: #1877F2;
+    background: #1877F2;
+    color: #fff;
+    border-color: #1877F2;
   }
   .share-btn.twitter:hover {
-    background: #1DA1F2; color: #fff; border-color: #1DA1F2;
+    background: #1DA1F2;
+    color: #fff;
+    border-color: #1DA1F2;
   }
-
   .copy-link {
     position: relative;
   }
   .tooltip {
-    display: none; position: absolute; background: var(--primary); color: var(--primary-on);
-    padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; white-space: nowrap;
-    bottom: 110%; left: 50%; transform: translateX(-50%); z-index: 10; pointer-events: none;
+    display: none;
+    position: absolute;
+    background: var(--primary);
+    color: var(--primary-on);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    white-space: nowrap;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    pointer-events: none;
   }
   .tooltip.visible {
     display: block;
   }
-
   .article-content {
-    display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    align-items: start;
   }
   @media (max-width: 1023px) {
-    .article-content { grid-template-columns: 1fr; }
+    .article-content {
+      grid-template-columns: 1fr;
+    }
   }
-
   .main-column {
     min-width: 0;
   }
-
   .image-wrapper {
     margin-bottom: 1.5rem;
   }
   .image-wrapper img {
-    width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; display: block;
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
   }
   .image-wrapper.hidden {
     display: none;
   }
-
   .article-body {
-    font-size: 1rem; line-height: 1.8; color: var(--text);
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text);
   }
   .article-body p {
     margin-bottom: 1.1rem;
   }
   .article-body h2 {
-    font-family: var(--font-heading); margin: 1.8rem 0 0.8rem; font-size: 1.3rem;
+    font-family: var(--font-heading);
+    margin: 1.8rem 0 0.8rem;
+    font-size: 1.3rem;
   }
   .article-body img {
-    max-width: 100%; border-radius: 6px;
+    max-width: 100%;
+    border-radius: 6px;
   }
-
   .tags-wrapper {
-    margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--border);
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
   }
   .tags-wrapper h3 {
-    font-size: 0.95rem; margin: 0 0 0.6rem; font-family: var(--font-heading);
-    display: flex; align-items: center; gap: 6px;
+    font-size: 0.95rem;
+    margin: 0 0 0.6rem;
+    font-family: var(--font-heading);
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
   .tags-list {
-    display: flex; flex-wrap: wrap; gap: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
   }
   .tags-list a {
-    background: var(--surface); border: 1px solid var(--border); padding: 4px 12px;
-    border-radius: 20px; font-size: 0.82rem; text-decoration: none; color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    text-decoration: none;
+    color: var(--text);
     transition: 0.2s;
   }
   .tags-list a:hover {
-    background: var(--accent); color: var(--accent-on); border-color: var(--accent);
+    background: var(--accent);
+    color: var(--accent-on);
+    border-color: var(--accent);
   }
-
   .sidebar {
-    position: sticky; top: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;
+    position: sticky;
+    top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
-
   .widget {
-    background: var(--surface); padding: 1.4rem; border-radius: 10px; border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 1.4rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
   }
   .widget h3 {
-    font-family: var(--font-heading); font-size: 1.05rem; margin: 0 0 1rem;
-    padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); color: var(--primary);
-    display: flex; align-items: center; gap: 8px;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
   .widget p {
-    font-size: 0.88rem; color: var(--muted); margin-bottom: 0.6rem; line-height: 1.5;
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
   }
-
   #newsletter-email {
-    width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px;
-    background: var(--bg); color: var(--text); font-size: 0.88rem;
-    box-sizing: border-box; margin-bottom: 8px; outline: none;
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 0.88rem;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    outline: none;
   }
   #newsletter-email:focus {
     border-color: var(--accent);
   }
   #newsletter-subscribe {
-    width: 100%; padding: 9px; background: var(--accent); color: var(--accent-on);
-    border: none; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 0.9rem;
-    transition: opacity 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px;
+    width: 100%;
+    padding: 9px;
+    background: var(--accent);
+    color: var(--accent-on);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
   }
   #newsletter-subscribe:hover {
     opacity: 0.85;
   }
-
   #back-to-top {
-    position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent);
-    color: var(--accent-on); border: none; border-radius: 50%; width: 42px; height: 42px;
-    cursor: pointer; font-size: 1rem; display: none; align-items: center; justify-content: center;
-    z-index: 999; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: opacity 0.2s;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: var(--accent);
+    color: var(--accent-on);
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    transition: opacity 0.2s;
   }
   #back-to-top:hover {
     opacity: 0.85;
   }
-
   .related-card {
-    display: flex; gap: 10px; text-decoration: none; color: var(--text);
-    padding: 0.7rem 0; border-bottom: 1px solid var(--border); align-items: flex-start;
+    display: flex;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text);
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
   }
   .related-card:last-child {
     border-bottom: none;
   }
   .related-card img {
-    width: 72px; height: 52px; object-fit: cover; border-radius: 5px; flex-shrink: 0;
+    width: 72px;
+    height: 52px;
+    object-fit: cover;
+    border-radius: 5px;
+    flex-shrink: 0;
   }
   .related-content {
-    flex: 1; min-width: 0;
+    flex: 1;
+    min-width: 0;
   }
   .related-category {
-    display: block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-    color: var(--accent); letter-spacing: 0.05em; margin-bottom: 2px;
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
   }
   .related-content h4 {
-    margin: 0 0 3px; font-size: 0.85rem; line-height: 1.3; font-family: var(--font-heading);
-    overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    margin: 0 0 3px;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    font-family: var(--font-heading);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
   .related-meta {
-    font-size: 0.75rem; color: var(--muted);
+    font-size: 0.75rem;
+    color: var(--muted);
   }
-
-  .lang-np { display: none; }
-  .lang-en { display: inline; }
-  div.lang-en, p.lang-en, h3.lang-en, .article-body.lang-en { display: block; }
-  div.lang-np, p.lang-np, h3.lang-np, .article-body.lang-np { display: none; }
-  body.lang-active .lang-en { display: none !important; }
-  body.lang-active .lang-np { display: inline !important; }
-  body.lang-active div.lang-np, body.lang-active p.lang-np, body.lang-active h3.lang-np, body.lang-active .article-body.lang-np { display: block !important; }
-  #article-body-en, #article-body-np { min-height: 2rem; }
+  .lang-np {
+    display: none;
+  }
+  .lang-en {
+    display: inline;
+  }
+  div.lang-en, p.lang-en, h3.lang-en, .article-body.lang-en {
+    display: block;
+  }
+  div.lang-np, p.lang-np, h3.lang-np, .article-body.lang-np {
+    display: none;
+  }
+  body.lang-active .lang-en {
+    display: none !important;
+  }
+  body.lang-active .lang-np {
+    display: inline !important;
+  }
+  body.lang-active div.lang-np, body.lang-active p.lang-np, body.lang-active h3.lang-np, body.lang-active .article-body.lang-np {
+    display: block !important;
+  }
+  #article-body-en, #article-body-np {
+    min-height: 2rem;
+  }
 </style>
 <style>
     /* ALL CSS from PART D */
@@ -1135,66 +1279,49 @@
 
 
 <div class="article-container">
-
-  <!-- ZONE 1: full-width article header -->
   <div class="article-header">
     <div class="breadcrumb">
       <span id="breadcrumb-en" class="lang-en"></span>
       <span id="breadcrumb-np" class="lang-np"></span>
     </div>
-
     <div class="category-badge">
       <span id="category-en" class="lang-en"></span>
       <span id="category-np" class="lang-np"></span>
     </div>
-
     <h1>
       <span id="title-en" class="lang-en"></span>
       <span id="title-np" class="lang-np"></span>
     </h1>
-
     <div class="meta">
       <span><i class="fas fa-calendar"></i> <span id="date"></span></span>
       <span><i class="fas fa-clock"></i> <span id="readtime-en" class="lang-en"></span><span id="readtime-np" class="lang-np"></span></span>
     </div>
-
     <div class="share-buttons">
       <button class="share-btn facebook"><i class="fab fa-facebook"></i> Facebook</button>
       <button class="share-btn twitter"><i class="fab fa-twitter"></i> Twitter</button>
       <button class="share-btn copy-link"><i class="fas fa-link"></i> Copy Link<span class="tooltip">Copied!</span></button>
     </div>
   </div>
-
-  <!-- ZONE 2: two-column body -->
   <div class="article-content">
-
-    <!-- LEFT column -->
     <div class="main-column">
-
       <div class="image-wrapper">
         <img id="featured-image" src="" alt="" loading="lazy">
       </div>
-
       <div id="article-body-en" class="lang-en article-body"></div>
       <div id="article-body-np" class="lang-np article-body"></div>
-
       <div class="tags-wrapper">
         <h3 class="lang-en"><i class="fas fa-tags"></i> Tags</h3>
         <h3 class="lang-np"><i class="fas fa-tags"></i> ट्यागहरू</h3>
         <div id="tags-en" class="lang-en tags-list"></div>
         <div id="tags-np" class="lang-np tags-list"></div>
       </div>
-
     </div>
-
-    <!-- RIGHT column / sidebar -->
     <aside class="sidebar">
       <div class="widget related">
         <h3 class="lang-en"><i class="fas fa-newspaper"></i> Related Articles</h3>
         <h3 class="lang-np"><i class="fas fa-newspaper"></i> सम्बन्धित लेखहरू</h3>
         <div id="related-articles"></div>
       </div>
-
       <div class="widget newsletter">
         <h3 class="lang-en"><i class="fas fa-envelope"></i> Newsletter</h3>
         <h3 class="lang-np"><i class="fas fa-envelope"></i> समाचारपत्र</h3>
@@ -1204,11 +1331,8 @@
         <button id="newsletter-subscribe"><i class="fas fa-paper-plane"></i> <span class="lang-en">Subscribe</span><span class="lang-np">सदस्यता लिनुहोस्</span></button>
       </div>
     </aside>
-
   </div>
-
   
-
 </div>
 
 
@@ -1745,17 +1869,17 @@
     readTimeNp:     "7 मिनेट पढाइ",
     sourceEn:       "Kantipur",
     sourceNp:       "कान्तिपुर",
-    creatorEn:      "Arjun Narasingha KC",
+    creatorEn:      "Arjun Narasingh KC",
     creatorNp:      "अर्जुननरसिंह केसी",
-    bodyEnWithAds:  "<p class=\"article-para\">It is a matter of concern that the government is trying to avoid the National Human Rights Commission’s report and shield the guilty from facing the law.</p>\n<div class=\"ad-unit\" id=\"insection_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_1.png\" alt=\"insection_1.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p class=\"article-para\">A government committed to meaningful democracy and good governance must necessarily be human rights-friendly. The high standards of codified human rights are also a measure of a country’s democratic civilization. Why and how does any government, no matter how powerful, that suppresses human rights or finds excuses for it, fall? A glaring example of this is fresh in everyone’s memory—the behavior of the then government on Bhadra 23 and 24 last year, the unpleasant reactions it provoked, and the dangerous situation that ensued. It was on Bhadra 12 last year that the then government arbitrarily misused the Social Media Directives 2080 to impose a blanket ban on 26 social media platforms, directly attacking constitutionally guaranteed freedom of thought and expression, and the resulting public discontent pushed the country into a complex and difficult situation. Attempts to regulate social media through directives instead of bringing the relevant bill to Parliament and letting it lie idle led the situation to take an unforeseen turn.</p>\n<div class=\"ad-unit\" id=\"insection_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_2.png\" alt=\"insection_2.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p class=\"article-para\"><span class=\"highlight-box quoted-highlight-box\">It is a matter of concern that the government is trying to avoid the National Human Rights Commission’s report and shield the guilty from facing the law.</span> The investigation committee formed under the leadership of Honourable Member Lili Thapa of the National Human Rights Commission, which conducted a detailed study and prepared a report with recommendations after meticulous effort, should not be suppressed by the government’s attempts to avoid making the report public and to shield the guilty from facing the law. The current government, which came to power on the ashes of the blood of those killed and the ruins of property destroyed in the same movement, has done a grave disservice to democracy, transparency, and accountability by not making this report public. Concealing the voices of citizens and the state’s shortcomings in this way is highly undemocratic. Such high-handedness that stifles the right to information and protects the guilty deserves all possible condemnation.</p>\n<div class=\"ad-unit\" id=\"insection_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_3.png\" alt=\"insection_3.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p class=\"article-para\">Former Chairperson of the National Human Rights Commission and former Chief Justice Kedarnath Upadhyay, former members Mohna Ansari, Sushil Pyakurel, Professor Kapil Shrestha, Gauri Pradhan, Dr. Gaurishankar Lal Das, and former Secretary Kedar Paudel have pressed Chairperson Tap Bahadur Magar to make the full text of the report public. It is the state’s mandatory duty to make that full report public immediately for the protection of citizens’ justice and rights. The government must not consider costs, benefits, or losses when enforcing the legal provisions of citizens’ fundamental human rights. Let us not forget that it was the government’s wrongdoing in the past that led to the decline of the National Human Rights Commission’s standing.</p><p class=\"article-para\">In Nepal, the government’s sensitivity toward human rights is best measured by its stance or behavior regarding the events of Bhadra 23 and 24 last year. While the Nepali people want an investigation into the events of Bhadra 24, some who claim ownership of the Gen-Z movement seem to argue that only the events of the 23rd should be investigated and punished. However, such one-sided and biased demands for action cannot be justified or accepted in any sense.</p><p class=\"article-para\">Human rights and issues directly related to them fall under universal jurisdiction. Therefore, when human rights violations within one country are questioned by another, it is not considered interference in internal affairs. Today, the global consensus is that a human rights violator or perpetrator of crimes against humanity from one country cannot be a guest in another. As Meenakshi Ganguly, South Asia Director of Human Rights Watch, rightly said, “Until the transitional justice process in Nepal meets basic standards for prosecuting accused persons in the country’s judicial system, such rights violators cannot be granted immunity from prosecution as international crimes under universal jurisdiction in other countries.”</p><p class=\"article-para\">Issues such as transitional justice, religious conversion, gender-based violence, women’s and children’s rights, rights of persons with disabilities, rights of Dalits and indigenous peoples, inter-sectional discrimination, access to justice, and citizenship through the mother’s name are always priorities. These issues are deeply connected to the protection and promotion of human rights.</p><p class=\"article-para\">Today, ten international human rights treaties and resolutions are in force worldwide—the Universal Declaration of Human Rights adopted unanimously by the United Nations in 1948, the International Covenant on Civil and Political Rights, the International Covenant on Economic, Social and Cultural Rights, the Convention against Torture, the Convention on Genocide, the Geneva Conventions, the Convention on the Rights of the Child, the Convention on the Elimination of All Forms of Discrimination against Women, and the UN Charter. Nepal is a signatory to most of these treaties. Being a signatory to international conventions means committing to their unconditional implementation, establishing the necessary institutional structures, and aligning national laws and practices accordingly.</p><p class=\"article-para\">It is absurd to seek human rights while lacking a culture of lawful and responsible use of rights and instead promoting lawlessness and anarchy. Human rights empower citizens with responsibility and prevent recklessness. The right to raise one’s voice loudly to sing or listen to music is a human right, but one cannot claim only one’s own human rights to the extent that it harms neighbors with loud noise. In such cases, human duties apply, not human rights. Rights without duties can be disastrous and even become a source of anarchy. Human rights can only sustain and enrich democracy when used responsibly.</p><p class=\"article-para\"><span class=\"highlight-box quoted-highlight-box\">The nearly two-thirds parliamentary majority the government enjoys is not a license to act arbitrarily while in power.</span> The weakness in Nepal’s human rights situation is not due to a lack of legal guarantees or institutional structures for their protection and promotion. Nepal has specific laws such as the Constitution of Nepal (Part 3 guarantees 31 fundamental rights), the National Human Rights Commission Act 2068, the Untouchability and Discrimination Act, the Human Trafficking and Transportation (Control) Act, the Domestic Violence (Control and Punishment) Act, and the Children’s Rights Act. The main administrative body responsible for formulating and implementing the National Action Plan on Human Rights is the government, the Office of the Prime Minister and Council of Ministers.</p><p class=\"article-para\">The status of the National Human Rights Commission established by the Constitution, its reports, or documents cannot be equated with other commissions formed by the government according to its needs and decisions. Therefore, the acceptance or receptiveness of the National Human Rights Commission’s report and the report submitted by the Gauri Bahadur Karki Commission differs from that of the National Human Rights Commission’s report.</p><p class=\"article-para\">The Parliament’s Law, Justice and Human Rights Committee, the Truth and Reconciliation Commission, the Commission of Investigation on Enforced Disappeared Persons, along with constitutional bodies such as the National Human Rights Commission, the Women’s Commission, the Dalit Commission, the National Inclusion Commission, the Indigenous Peoples Commission, and the Madhesi Commission work to protect the rights of marginalized groups and promote human rights.</p><p class=\"article-para\">Yet why does Nepal’s human rights situation remain weak and sometimes controversial? Nepal’s transitional justice law does not meet international human rights standards. The government must conduct a self-assessment to arrive at a realistic conclusion. In doing so, it may recall the famous cartoonist Pogo’s words: “We have met the enemy, and he is us.”</p><p class=\"article-para\">If the government wants to eliminate signs of meting out punishment based on personal bias rather than justice and to abandon the path of retribution, it must immediately make the National Human Rights Commission’s report public and initiate appropriate action. This is being seen by all national and international stakeholders as a litmus test of the government’s commitment to justice. If the government disagrees, it can publish its objections along with the report.</p><p class=\"article-para\">The nearly two-thirds parliamentary majority the government enjoys is not a license to act arbitrarily while in power. Ruling only for one’s own benefit and convenience is not an indicator of a ruler’s legitimacy or relevance. No matter how much deception is employed on such grave issues, the future will certainly uncover the truth.</p>\n<div class=\"key-takeaway\"><strong>Key Takeaways:</strong><p>The government has faced criticism for not making public the National Human Rights Commission’s report and attempting to shield the guilty from legal accountability; 47 people died in the Bhadra 23 and 24 incidents, and despite legal frameworks for human rights protection, the government has shown no accountability.</p></div>",
-    bodyNpWithAds:  "<p class=\"article-para\">राष्ट्रिय मानवअधिकार आयोगको प्रतिवेदन सार्वजनिक गर्न र दोषीलाई कानुनको कठघरामा पुर्‍याउन सरकारले टाङ अड्याउने चेष्टा गर्नु दुःखद पक्ष हो ।</p>\n<div class=\"ad-unit\" id=\"insection_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_1.png\" alt=\"insection_1.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p class=\"article-para\">सार्थक लोकतन्त्र र सुशासनमा प्रतिबद्ध सरकार अनिवार्यतः मानवअधिकारमैत्री हुनैपर्छ । संहिताबद्ध मानवअधिकारको उच्चस्तर त्यो मुलुकको लोकतान्त्रिक सभ्यताको मापक पनि हो । यस विषयमा कुनै पनि बहानाबाजी वा मानवअधिकार कुण्ठित गर्ने जस्तोसुकै शक्तिशाली सरकारसमेत कसरी पतन हुन्छ ? त्यसको ज्वलन्त उदाहरण गत साल भदौ २३ र २४ मा तत्कालीन सरकारले गरेको व्यवहार, त्यसबाट उत्पन्न अप्रिय प्रतिक्रियाका घटना र खतरनाक परिस्थिति सबैसामु ताजै छ । गत साल भदौ १२ मा तत्कालीन सरकारले सामाजिक सञ्जाल प्रयोग निर्देशिका २०८० लाई स्वेच्छाचारीपूर्वक दुरुपयोग गर्दै संविधानप्रदत्त विचार र अभिव्यक्ति स्वतन्त्रतामाथि ठाडै प्रहार हुने गरी चलिरहेका २६ वटा सामाजिक सञ्जालमा पूर्ण प्रतिबन्ध अनि जनतामा चुलिएको असन्तुष्टिको परिणामस्वरूप नै देश जटिल–कठिन अवस्थामा फसेको हो । सामाजिक सञ्जाललाई स्पष्ट कानुनी दायरामा ल्याउन त्यससम्बन्धी विधेयक संसद्मा अलपत्र छाडेर निर्देशिकाका भरमा तह लगाउन खोज्दा परिस्थितिले अकल्पनीय रूप लिएको हो ।</p>\n<div class=\"ad-unit\" id=\"insection_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_2.png\" alt=\"insection_2.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p class=\"article-para\">२३ भदौमा संसद् भवन घेर्ने तथा सुरक्षाकर्मीको ब्यारिकेड भत्काउने प्रयास हुँदा सुरक्षाकर्मीको गोली प्रहारबाट १९ जनाको सोही दिन स्थलगत र अस्पतालमा थप २३ गरी ४२ को निधन भएको थियो । सुनसरी र झापामा थप ५ गरी कुल ४७ नवयुवाको ज्यान गएको थियो । आन्दोलनकारीको आक्रोशमा परेर कर्तव्यपालनामा खटिएका तीन जना नेपाल प्रहरीका असई मिलन राय, हवल्दार अमृत गुरुङ र प्रहरी जवान उत्तम थापाको कुटीकुटी बीभत्स हत्या गरियो । सरकारी हातहतियारहरू लुटियो, जेलका कैदीहरूलाई भगाइयो, राज्यको ऐतिहासिक पहिचान र धरोहरका रूपमा रहेका सिंहदरबार, सर्वोच्च अदालत, संसद् भवन, महत्त्वपूर्ण सरकारी भवनलगायत औद्योगिक तथा व्यापारिक प्रतिष्ठान, निजी घर, सम्पत्ति तथा गाडीमा लुटपाट, आगजनी, तोडफोड गरी एक खर्बभन्दा बढीको धन–सम्पत्ति क्षति भयो ।</p>\n<div class=\"ad-unit\" id=\"insection_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_3.png\" alt=\"insection_3.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p class=\"article-para\"><span class=\"highlight-box quoted-highlight-box\">राष्ट्रिय मानवअधिकार आयोगको प्रतिवेदन सार्वजनिक गर्न र दोषीलाई कानुनको कठघरामा पुर्‍याउन सरकारले टाङ अड्याउने चेष्टा गर्नु दुःखद पक्ष हो ।</span>ती घटना र जनधनको क्षतिबारे राष्ट्रिय मानवअधिकार आयोगका तर्फबाट माननीय सदस्य लिली थापाको संयोजकत्वमा गठित छानबिन समितिले विस्तृत अध्ययन गरी मिहिनेतपूर्वक तयार पारेको सुझावसहितको प्रतिवेदन सार्वजनिक गर्ने र दोषीहरूलाई न्यायिक छानबिन अनि कानुनको कठघरामा पुर्‍याउन टाङ अड्याउने चेष्टा सरकारले गर्नु हुँदैन । गत जेठ १३ गते प्रकाशित उक्त प्रतिवेदन, सोही आन्दोलनको जगमा, मानव मृत्युको रगतदेखि सम्पत्ति नोक्सानीको भग्नावशेष र खरानी टेकेर ‘डढेको सिंहदरबार’ (सत्ता) मा पुगेको वर्तमान सरकारले सो प्रतिवेदन सार्वजनिक नगर्नु लोकतन्त्र, पारदर्शिता र जवाफदेहितामाथि गम्भीर प्रहार हो । नागरिकको थुनिएका आवाज र राज्यका कमजोरी लुकाउने यस्तो कदम घोर अलोकतान्त्रिक छ । सूचनाको हक कुण्ठित गर्ने र दोषीलाई संरक्षण दिने यस्तो बलमिच्याइँको जति विरोध गरे पनि कमै हुन्छ ।</p><p class=\"article-para\">सो प्रतिवेदनको पूर्णपाठ सार्वजनिक गर्न राष्ट्रिय मानवअधिकार आयोगका पूर्वअध्यक्ष तथा पूर्वप्रधानन्यायाधीश केदारनाथ उपाध्याय, पूर्वसदस्यहरू मोहना अन्सारी, सुशील प्याकुरेल, प्राध्यापक कपिल श्रेष्ठ, गौरी प्रधान, डा. गौरीशंकरलाल दास तथा पूर्वसचिव केदार पौडेलले आयोगका अध्यक्ष तपबहादुर मगरलाई भेटी दबाब दिएका छन् । नागरिकको न्याय र अधिकार रक्षाका लागि त्यो पूर्ण प्रतिवेदन तत्काल सार्वजनिक गर्नु राज्यको अनिवार्य दायित्व हो । नागरिकका आधारभूत मानवअधिकारका वैधानिक प्रावधान लागू गर्दा सरकारले लागत, कसैको लाभ र हानिको दृष्टिकोण राख्नु हुँदैन । विगतमा सरकारको गलत रबैयाकै कारण हाम्रो राष्ट्रिय मानवअधिकार आयोगको स्तर अवनति हुन पुगेको तथ्य नबिर्सौं ।</p><p class=\"article-para\">नेपालमा मानवअधिकारप्रति सरकारी संवेदनशीलताको मापदण्ड, गत वर्ष भदौ २३ र २४ गतेका घटनाप्रति सरकारी निष्पक्षता वा रबैयाको स्तरबाट वास्तविकता छर्लङ्ग हुन्छ । सम्पूर्ण नेपाली जनताले भदौ २४ का घटनाको छानबिन होस् भन्ने चाहन्छन् भने जेन–जी आन्दोलनको अपनत्व लिएर वर्तमान सरकार चलाइरहेकामा यदाकदा २३ को घटनामा मात्रै छानबिन र कारबाही हुनुपर्छ भन्ने मत देखिन्छ । तर, यस्तो एकाङ्गी र पक्षपाती कारबाहीको आग्रह कुनै पनि अर्थमा न्यायोचित अनि स्वीकार्य हुँदैन ।</p><p class=\"article-para\">मानवअधिकार र यससँग प्रत्यक्ष सरोकारका विषयहरू विश्वव्यापी क्षेत्राधिकारमा पर्छन् । त्यसैले कुनै मुलुकबाट अर्को मुलुकभित्रको मानवअधिकारबारे प्रश्न उठ्यो भने आन्तरिक मामिलामा हस्तक्षेप भनिँदैन । आजको विश्वमा मानवअधिकार उल्लंघनकर्ता वा मानवताविरुद्धको अपराधमा संलग्न एउटा मुलुकको अपराधी अर्को मुलुकको पाहुना हुन सक्दैन भन्ने मान्यता सर्वव्यापी भइसकेको छ । अन्तर्राष्ट्रिय मानवअधिकारवादी संगठन ह्युमन राइट्स वाचकी दक्षिण एसिया निर्देशक मीनाक्षी गांगुलीले ठीकै भनेकी थिइन्, ‘जबसम्म संक्रमणकालीन न्याय प्रक्रियाले नेपालको अदालती न्यायपद्धतिमा अभियुक्तलाई मुद्दा चलाउनेबारे आधारभूत मानक पूरा गर्दैन, तबसम्म यस्ता अधिकार उल्लंघनकर्ताहरूलाई विश्वव्यापी क्षेत्राधिकारअन्तर्गत अन्तर्राष्ट्रिय अपराधका रूपमा अन्य मुलुकमा पुर्पक्ष गर्नबाट उन्मुक्ति दिन सक्दैन ।’</p><p class=\"article-para\">संक्रमणकालीन न्याय, धर्म परिवर्तन, लैंगिक हिंसा, महिला तथा बालअधिकार, अपांगता भएका व्यक्तिका अधिकार, दलित तथा आदिवासी जनजातिका अधिकार, अन्तरविषयगत भेदभाव, न्यायमा पहुँच तथा आमाको नामबाट नागरिकता जस्ता संवेदनशील र दीर्घकालीन विषय सदैव प्राथमिकतामा पर्छन् । यी मामिलाले मानवअधिकार संरक्षण र प्रवर्द्धनसँग गहिरो सम्बन्ध राख्छन् ।</p><p class=\"article-para\">आज विश्वमा १० वटा मानवअधिकारसम्बन्धी अन्तर्राष्ट्रिय सन्धि तथा संकल्प कार्यान्वयनमा छन्– सन् १९४८ मा राष्ट्रसंघबाट सर्वसम्मतिमा पारित मानवअधिकारको विश्वव्यापी घोषणा, नागरिक तथा राजनीतिक अधिकारसम्बन्धी संकल्प, आर्थिक, सामाजिक र सांस्कृतिक अधिकारसम्बन्धी संकल्प,  यातनाविरुद्धको महासन्धि, आमनरसंहार विरुद्धको महासन्धि, जेनेभा महासन्धि, बालअधिकारसम्बन्धी महासन्धि, महिलाविरुद्ध विद्यमान विभेदको अन्त्यसम्बन्धी महासन्धि र राष्ट्रसंघको बडापत्र । नेपाल यी सबैजसो सन्धिको हस्ताक्षरकर्ता मुलुक हो । अन्तर्राष्ट्रिय संस्थाहरूका महासन्धिको हस्ताक्षरकर्ता हुनु भनेको सो महासन्धिको अकुण्ठित कार्यान्वयनका लागि आवश्यक संस्थागत संरचना अनि राष्ट्रिय कानुनमा प्रतिबद्धता र तदनुरूपको व्यवहार गर्नु हो ।</p><p class=\"article-para\">मानवअधिकारको सही कानुनसम्मत सदुपयोग गर्ने प्रवृत्ति नभई कानुनविहीन र अराजकता बोक्ने मानसिकताले मानवअधिकार खोज्नु हास्यास्पद हो । मानवअधिकारले नागरिकमा उत्तरदायित्व बढाउँछ, छाडा हुन दिँदैन । ठूलो आवाज खोलेर संगीत गाउन वा सुन्न पाउनु मानवअधिकार हो, तर चर्को आवाजले छिमेकीलाई सताउने हदमा आफ्नो मात्रै मानवअधिकार भन्न पाइन्नँ । त्यस्तो हदमा मानवअधिकार होइन, मानवीय कर्तव्य लागू हुन्छ । कर्तव्यबिनाको अधिकार भयावह हुन सक्छ । कर्तव्यरहित अधिकार अराजकताको स्रोत पनि हुन सक्छ । मानवअधिकारको सदुपयोग भए मात्रै लोकतन्त्र सम्पोषित र सार्थक रहन्छ ।</p><p class=\"article-para\"><span class=\"highlight-box quoted-highlight-box\">सरकारलाई झन्डै दुईतिहाइ संसदीय बहुमतको सुविधानजनक जनादेश मिलेको अर्थ सत्तामा बसेर मनपरी गर्न पाउने लाइसेन्स दिएको होइन</span>नेपालमा मानवअधिकारको संरक्षण र संवर्द्धन गर्ने वैधानिक सुनिश्चितता र संस्थागत संरचनाको कमीले मानवअधिकारको स्थिति दुर्बल भएको होइन । मानवअधिकारको सार्वकालिक स्रोतका रूपमा, नेपालको संविधान (संविधानको भाग ३ मा ३१ वटा मौलिक हकको सुनिश्चितता), राष्ट्रिय मानवअधिकार आयोग ऐन– २०६८, छुवाछूत तथा भेदभावविरुद्धको ऐन, मानव बेचबिखन तथा ओसारपसार (नियन्त्रण) ऐन, घरेलु हिंसा (नियन्त्रण तथा सजाय) ऐन र बालअधिकार ऐन आदि विशिष्ट कानुन हामीकहाँ छन् । मानवअधिकारसम्बन्धी राष्ट्रिय कार्ययोजना तर्जुमा र कार्यान्वयन गर्ने मुख्य प्रशासनिक निकाय सरकार, प्रधानमन्त्री तथा मन्त्रिपरिषद्को कार्यालय हो ।</p><p class=\"article-para\">संविधानले व्यवस्था गरेको राष्ट्रिय मानवअधिकार आयोगको हैसियत, यसका प्रतिवेदन वा दस्तावेजहरू सरकारले आफ्ना आवश्यकता, अनुकूलता र निर्णयअनुरूप गठन गर्ने अन्य आयोग र त्यसका प्रतिवेदन वा दस्तावेजसरह हुन सक्दैन । त्यसैले राष्ट्रिय मानवअधिकार आयोगको प्रतिवेदन र गौरीबहादुर कार्की आयोगले दिएको प्रतिवेदनको स्वीकार्यता वा ग्रहणशीलता राष्ट्रिय मानवअधिकार आयोगको प्रतिवेदनभन्दा फरक हुन्छ ।</p><p class=\"article-para\">संसद्को कानुन, न्याय तथा मानवअधिकार समिति, सत्यनिरूपण तथा मेलमिलाप आयोग, बेपत्ता पारिएका व्यक्तिको छानबिन आयोगलगायत राष्ट्रिय मानवअधिकार आयोग, संवैधानिक आयोगहरूमा महिला आयोग, दलित आयोग, राष्ट्रिय समावेशी आयोग, आदिवासी जनजाति आयोग र मधेशी आयोगजस्ता मानवअधिकारसँग सम्बन्धित संवैधानिक निकायले सम्बन्धित वर्गको अधिकार अनि मानवअधिकारको रक्षाका लागि कार्य गर्छन् ।</p><p class=\"article-para\">तैपनि नेपालमा मानवअधिकारको अवस्था किन कमजोर र बेलाबखत विवादास्पद बन्न पुग्छ ? नेपालको संक्रमणकालीन न्यायसम्बन्धी कानुन अन्तर्राष्ट्रिय मानवअधिकारका मानकसँग मेल खान असफल भएको छ । यसको वस्तुवादी निष्कर्षका लागि सरकारले आत्मसमीक्षा गर्नैपर्छ । आत्मसमीक्षा गर्दा प्रसिद्ध कार्टुनिस्ट पोगोको यो संवादको सम्झना आउन सक्ला, ‘हामीले आफ्नो शत्रु फेला पार्‍यौं, त्यो त हामी नै पो रहेछौं ।’</p><p class=\"article-para\">सरकारले पनि कसुर हेरी दण्डको न्यायिक बाटोबाट च्युत भएर मानिस हेरी दण्ड (दण्डहीनता) र प्रतिशोधको बाटो अपनाउने लक्षण र संकेतलाई मेटाउने हो भने राष्ट्रिय मानवअधिकार आयोगको उक्त प्रतिवेदन तत्काल सार्वजनिक गर्दै तदनुरूप कारबाहीको प्रक्रिया सुरु गर्नुपर्छ । यसलाई राष्ट्रिय–अन्तर्राष्ट्रिय सम्पूर्ण सरोकारवालाबाट सरकारको न्यायिक परीक्षाको कसीको रूपमा हेरिएको छ । सरकारको कतै असहमति छ भने आफ्ना असहमतिसहित सार्वजनिक गरे हुन्छ ।</p><p class=\"article-para\">सरकारलाई झन्डै दुईतिहाइ संसदीय बहुमतको सुविधानजनक जनादेश मिलेको अर्थ सत्तामा बसेर मनपरी गर्न पाउने लाइसेन्स दिएको होइन । आफूलाई मन परेको र हित हुने काम मात्रै गर्नु सत्ताधारीको औचित्य र सान्दर्भिकताको परिसूचक होइन । यस्ता गम्भीर विषयउपर छलछामसहित जति बेइमानी गरे पनि भविष्यले यसको निश्चित रूपमा उत्खनन गर्नेछ ।</p>\n<div class=\"key-takeaway\"><strong>मुख्य बुँदा:</strong><p>सरकारले राष्ट्रिय मानवअधिकार आयोगको प्रतिवेदन सार्वजनिक नगरी दोषीलाई कानुनी कठघरामा ल्याउन टाङ अडाउने प्रयास गरेकोमा आलोचना भएको छ, भदौ २३ र २४ को घटनामा ४७ जनाको मृत्यु भएको थियो र सरकारले मानवअधिकार संरक्षणमा कानुनी संरचना हुँदा पनि जवाफदेहिता देखाएको छैन ।</p></div>",
+    bodyEnWithAds:  "<p class=\"article-para\">It is a sad aspect that the government is trying to stall the release of the report by the National Human Rights Commission and bring the guilty to justice.</p>\n<div class=\"ad-unit\" id=\"insection_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_1.png\" alt=\"insection_1.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><div class=\"author-date\"><span translate=\"no\">Shrawan 5, 2083</span></div>\n<p class=\"article-para\">A government committed to meaningful democracy and good governance must necessarily be human rights-friendly. The high standards of codified human rights are also a measure of a country’s democratic civilization. Why and how does any government, no matter how powerful, that makes excuses or suppresses human rights, fall? A glaring example of this is fresh in everyone’s memory—the behavior of the then government on Bhadra 23 and 24 last year, the unpleasant reactions it provoked, and the dangerous situation that ensued. On Bhadra 12 last year, the then government arbitrarily misused the Social Media Use Directive 2080 to impose a blanket ban on 26 social media platforms, directly attacking constitutionally guaranteed freedom of thought and expression, and the resulting public discontent pushed the country into a complex and difficult situation. Attempting to regulate social media through directives while the relevant bill languishes in Parliament has led to an unforeseen situation.</p>\n<div class=\"ad-unit\" id=\"insection_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_2.png\" alt=\"insection_2.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">On Bhadra 23, when an attempt was made to encircle the Parliament building and break through police barricades, police opened fire, killing 19 people on the spot and another 23 in hospitals, totaling 42 deaths. In addition, five more youths died in Sunsari and Jhapa, bringing the total to 47. In the fury of the protesters, three police personnel—Sub-Inspector Milan Ray, Head Constable Amrit Gurung, and Constable Uttam Thapa—were brutally murdered while performing their duties. Government weapons were looted, prisoners were freed, and widespread looting, arson, and vandalism occurred at the Singha Durbar, Supreme Court, Parliament building, other key government structures, industrial and commercial establishments, private homes, property, and vehicles, causing damage exceeding one trillion rupees.</p>\n<div class=\"ad-unit\" id=\"insection_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_3.png\" alt=\"insection_3.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\"><span class=\"highlight-box quoted-highlight-box\">It is a sad aspect that the government is trying to stall the release of the report by the National Human Rights Commission and bring the guilty to justice.</span>These incidents and the loss of life and property should have prompted the National Human Rights Commission to form an investigation committee led by Honourable Member Lili Thapa to conduct a thorough study and release a detailed report with recommendations, and the government should not obstruct the release of this report or efforts to bring the guilty to justice. The current government, which came to power on the heels of the Bhadra 13 movement and after walking over the blood of those killed and the ashes of destroyed property to reach the “burnt Singha Durbar” (seat of power), has failed to release this report—a severe assault on democracy, transparency, and accountability. Concealing the voices of citizens and the state’s failures is a grossly undemocratic act. Suppressing the right to information and protecting the guilty is an outrageous arrogance that deserves all possible condemnation.</p>\n<p class=\"article-para\">Former NHRC Chair and former Chief Justice Kedarnath Upadhyay, former members Mohna Ansari, Sushil Pyakurel, Professor Kapil Shrestha, Gauri Pradhan, Dr. Gaurishankar Lal Das, and former secretary Kedar Paudel have pressed the current NHRC Chair Tap Bahadur Magar to release the full report immediately. It is the state’s mandatory duty to release this report without delay to protect citizens’ rights and justice. When implementing the legal provisions of citizens’ fundamental human rights, the government must not consider costs, benefits, or losses to any party. We must not forget that it was the government’s wrongdoing in the past that led to the decline of our National Human Rights Commission.</p>\n<p class=\"article-para\">In Nepal, the government’s sensitivity toward human rights is best measured by its stance and conduct regarding the Bhadra 23 and 24 events. While all Nepali people want an investigation into the Bhadra 24 events, the current government, which claims to uphold the Janata–Jana Andolan spirit, sometimes appears to demand investigations and accountability only for the Bhadra 23 incident. However, such one-sided and biased demands for action are neither just nor acceptable in any sense.</p>\n<p class=\"article-para\">Human rights and issues directly related to them fall under universal jurisdiction. Therefore, when human rights violations within one country are questioned by another, it is not considered interference in internal affairs. Today, the global consensus is that perpetrators of human rights violations or crimes against humanity cannot be guests in another country. As Meenakshi Ganguly, South Asia Director of Human Rights Watch, rightly said, “Unless the transitional justice process meets basic standards for prosecuting accused persons within Nepal’s judicial system, violators of such rights cannot be exempted from universal jurisdiction and prosecuted as international crimes in other countries.”</p>\n<p class=\"article-para\">Issues such as transitional justice, religious conversion, gender-based violence, women’s and children’s rights, rights of persons with disabilities, rights of Dalits and indigenous peoples, intersectional discrimination, access to justice, and citizenship through the mother’s name are sensitive and long-term concerns that must always be prioritized. These issues are deeply connected to the protection and promotion of human rights.</p>\n<p class=\"article-para\">Today, ten international human rights treaties and resolutions are in force worldwide—the Universal Declaration of Human Rights adopted unanimously by the UN in 1948, the International Covenant on Civil and Political Rights, the International Covenant on Economic, Social and Cultural Rights, the Convention against Torture, the Convention on Genocide, the Geneva Conventions, the Convention on the Rights of the Child, the Convention on the Elimination of All Forms of Discrimination against Women, and the UN Charter. Nepal is a signatory to most of these treaties. Being a signatory to international conventions means committing to their unconditional implementation through necessary institutional structures and national laws and acting accordingly.</p>\n<p class=\"article-para\">It is absurd to seek human rights while lacking a proper, lawful approach and instead embracing lawlessness and anarchy. Human rights increase citizens’ responsibilities and do not allow recklessness. The right to raise one’s voice loudly to sing or listen to music is a human right, but when loud noise harms a neighbor, one cannot claim only one’s own human rights. In such cases, human duties apply, not human rights. Rights without duties can be disastrous and may even become a source of anarchy. Human rights can only sustain and enrich democracy when used appropriately.</p>\n<p class=\"article-para\"><span class=\"highlight-box quoted-highlight-box\">The government’s nearly two-thirds parliamentary majority is not a license to act arbitrarily while in power.</span>The weakness of human rights in Nepal is not due to a lack of legal guarantees or institutional structures for their protection and promotion. Nepal has specific laws such as the Constitution of Nepal (Part 3 guarantees 31 fundamental rights), the National Human Rights Commission Act 2068, the Untouchability and Discrimination Act, the Human Trafficking and Transportation (Control) Act, the Domestic Violence (Control and Punishment) Act, and the Children’s Rights Act. The main administrative body responsible for formulating and implementing the National Action Plan on Human Rights is the government, the Office of the Prime Minister and Council of Ministers.</p>\n<p class=\"article-para\">The status of the National Human Rights Commission established by the Constitution, its reports, or documents cannot be equated with other commissions formed by the government according to its needs and decisions. Therefore, the acceptance or receptiveness of the National Human Rights Commission’s report and the report submitted by the Gauri Bahadur Karki Commission differs from that of the National Human Rights Commission’s report.</p>\n<p class=\"article-para\">The Parliamentary Law, Justice and Human Rights Committee, the Truth and Reconciliation Commission, the Commission of Investigation on Enforced Disappeared Persons, and constitutional bodies such as the National Human Rights Commission, the Women’s Commission, the Dalit Commission, the National Inclusion Commission, the Indigenous Peoples Commission, and the Madhesi Commission work to protect the rights of marginalized groups and promote human rights.</p>\n<p class=\"article-para\">Yet why does Nepal’s human rights situation remain weak and sometimes controversial? Nepal’s transitional justice law does not meet international human rights standards. The government must conduct a self-assessment to arrive at an objective conclusion. In doing so, it may recall the famous cartoonist Pogo’s words: “We have met the enemy, and he is us.”</p>\n<p class=\"article-para\">If the government is to remove signs of meting out punishment based on personal bias rather than the crime and to abandon the path of retribution, it must immediately release the NHRC report and initiate appropriate action. This is being seen as a test of the government’s judicial integrity by all national and international stakeholders. If the government disagrees, it can publish its objections along with the report.</p>\n<p class=\"article-para\">The government’s nearly two-thirds parliamentary majority is not a license to act arbitrarily while in power. Ruling only for personal benefit and convenience is not a measure of a ruler’s legitimacy or relevance. No matter how much deception is employed on such grave matters, the future will certainly uncover the truth.</p>\n<div class=\"key-takeaway\"><strong>Key Takeaways:</strong><p>The government has faced criticism for not releasing the National Human Rights Commission report and attempting to obstruct efforts to bring the guilty to justice; 47 people died in the Bhadra 23 and 24 incidents, and despite legal frameworks for human rights protection, the government has shown no accountability.</p></div>",
+    bodyNpWithAds:  "<p class=\"article-para\">राष्ट्रिय मानवअधिकार आयोगको प्रतिवेदन सार्वजनिक गर्न र दोषीलाई कानुनको कठघरामा पुर्‍याउन सरकारले टाङ अड्याउने चेष्टा गर्नु दुःखद पक्ष हो ।</p>\n<div class=\"ad-unit\" id=\"insection_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_1.png\" alt=\"insection_1.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><div class=\"author-date\"><span translate=\"no\">श्रावण ५, २०८३</span></div>\n<p class=\"article-para\">सार्थक लोकतन्त्र र सुशासनमा प्रतिबद्ध सरकार अनिवार्यतः मानवअधिकारमैत्री हुनैपर्छ । संहिताबद्ध मानवअधिकारको उच्चस्तर त्यो मुलुकको लोकतान्त्रिक सभ्यताको मापक पनि हो । यस विषयमा कुनै पनि बहानाबाजी वा मानवअधिकार कुण्ठित गर्ने जस्तोसुकै शक्तिशाली सरकारसमेत कसरी पतन हुन्छ ? त्यसको ज्वलन्त उदाहरण गत साल भदौ २३ र २४ मा तत्कालीन सरकारले गरेको व्यवहार, त्यसबाट उत्पन्न अप्रिय प्रतिक्रियाका घटना र खतरनाक परिस्थिति सबैसामु ताजै छ । गत साल भदौ १२ मा तत्कालीन सरकारले सामाजिक सञ्जाल प्रयोग निर्देशिका २०८० लाई स्वेच्छाचारीपूर्वक दुरुपयोग गर्दै संविधानप्रदत्त विचार र अभिव्यक्ति स्वतन्त्रतामाथि ठाडै प्रहार हुने गरी चलिरहेका २६ वटा सामाजिक सञ्जालमा पूर्ण प्रतिबन्ध अनि जनतामा चुलिएको असन्तुष्टिको परिणामस्वरूप नै देश जटिल–कठिन अवस्थामा फसेको हो । सामाजिक सञ्जाललाई स्पष्ट कानुनी दायरामा ल्याउन त्यससम्बन्धी विधेयक संसद्मा अलपत्र छाडेर निर्देशिकाका भरमा तह लगाउन खोज्दा परिस्थितिले अकल्पनीय रूप लिएको हो ।</p>\n<div class=\"ad-unit\" id=\"insection_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_2.png\" alt=\"insection_2.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\">२३ भदौमा संसद् भवन घेर्ने तथा सुरक्षाकर्मीको ब्यारिकेड भत्काउने प्रयास हुँदा सुरक्षाकर्मीको गोली प्रहारबाट १९ जनाको सोही दिन स्थलगत र अस्पतालमा थप २३ गरी ४२ को निधन भएको थियो । सुनसरी र झापामा थप ५ गरी कुल ४७ नवयुवाको ज्यान गएको थियो । आन्दोलनकारीको आक्रोशमा परेर कर्तव्यपालनामा खटिएका तीन जना नेपाल प्रहरीका असई मिलन राय, हवल्दार अमृत गुरुङ र प्रहरी जवान उत्तम थापाको कुटीकुटी बीभत्स हत्या गरियो । सरकारी हातहतियारहरू लुटियो, जेलका कैदीहरूलाई भगाइयो, राज्यको ऐतिहासिक पहिचान र धरोहरका रूपमा रहेका सिंहदरबार, सर्वोच्च अदालत, संसद् भवन, महत्त्वपूर्ण सरकारी भवनलगायत औद्योगिक तथा व्यापारिक प्रतिष्ठान, निजी घर, सम्पत्ति तथा गाडीमा लुटपाट, आगजनी, तोडफोड गरी एक खर्बभन्दा बढीको धन–सम्पत्ति क्षति भयो ।</p>\n<div class=\"ad-unit\" id=\"insection_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_3.png\" alt=\"insection_3.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n<p class=\"article-para\"><span class=\"highlight-box quoted-highlight-box\">राष्ट्रिय मानवअधिकार आयोगको प्रतिवेदन सार्वजनिक गर्न र दोषीलाई कानुनको कठघरामा पुर्‍याउन सरकारले टाङ अड्याउने चेष्टा गर्नु दुःखद पक्ष हो ।</span>ती घटना र जनधनको क्षतिबारे राष्ट्रिय मानवअधिकार आयोगका तर्फबाट माननीय सदस्य लिली थापाको संयोजकत्वमा गठित छानबिन समितिले विस्तृत अध्ययन गरी मिहिनेतपूर्वक तयार पारेको सुझावसहितको प्रतिवेदन सार्वजनिक गर्ने र दोषीहरूलाई न्यायिक छानबिन अनि कानुनको कठघरामा पुर्‍याउन टाङ अड्याउने चेष्टा सरकारले गर्नु हुँदैन । गत जेठ १३ गते प्रकाशित उक्त प्रतिवेदन, सोही आन्दोलनको जगमा, मानव मृत्युको रगतदेखि सम्पत्ति नोक्सानीको भग्नावशेष र खरानी टेकेर ‘डढेको सिंहदरबार’ (सत्ता) मा पुगेको वर्तमान सरकारले सो प्रतिवेदन सार्वजनिक नगर्नु लोकतन्त्र, पारदर्शिता र जवाफदेहितामाथि गम्भीर प्रहार हो । नागरिकको थुनिएका आवाज र राज्यका कमजोरी लुकाउने यस्तो कदम घोर अलोकतान्त्रिक छ । सूचनाको हक कुण्ठित गर्ने र दोषीलाई संरक्षण दिने यस्तो बलमिच्याइँको जति विरोध गरे पनि कमै हुन्छ ।</p>\n<p class=\"article-para\">सो प्रतिवेदनको पूर्णपाठ सार्वजनिक गर्न राष्ट्रिय मानवअधिकार आयोगका पूर्वअध्यक्ष तथा पूर्वप्रधानन्यायाधीश केदारनाथ उपाध्याय, पूर्वसदस्यहरू मोहना अन्सारी, सुशील प्याकुरेल, प्राध्यापक कपिल श्रेष्ठ, गौरी प्रधान, डा. गौरीशंकरलाल दास तथा पूर्वसचिव केदार पौडेलले आयोगका अध्यक्ष तपबहादुर मगरलाई भेटी दबाब दिएका छन् । नागरिकको न्याय र अधिकार रक्षाका लागि त्यो पूर्ण प्रतिवेदन तत्काल सार्वजनिक गर्नु राज्यको अनिवार्य दायित्व हो । नागरिकका आधारभूत मानवअधिकारका वैधानिक प्रावधान लागू गर्दा सरकारले लागत, कसैको लाभ र हानिको दृष्टिकोण राख्नु हुँदैन । विगतमा सरकारको गलत रबैयाकै कारण हाम्रो राष्ट्रिय मानवअधिकार आयोगको स्तर अवनति हुन पुगेको तथ्य नबिर्सौं ।</p>\n<p class=\"article-para\">नेपालमा मानवअधिकारप्रति सरकारी संवेदनशीलताको मापदण्ड, गत वर्ष भदौ २३ र २४ गतेका घटनाप्रति सरकारी निष्पक्षता वा रबैयाको स्तरबाट वास्तविकता छर्लङ्ग हुन्छ । सम्पूर्ण नेपाली जनताले भदौ २४ का घटनाको छानबिन होस् भन्ने चाहन्छन् भने जेन–जी आन्दोलनको अपनत्व लिएर वर्तमान सरकार चलाइरहेकामा यदाकदा २३ को घटनामा मात्रै छानबिन र कारबाही हुनुपर्छ भन्ने मत देखिन्छ । तर, यस्तो एकाङ्गी र पक्षपाती कारबाहीको आग्रह कुनै पनि अर्थमा न्यायोचित अनि स्वीकार्य हुँदैन ।</p>\n<p class=\"article-para\">मानवअधिकार र यससँग प्रत्यक्ष सरोकारका विषयहरू विश्वव्यापी क्षेत्राधिकारमा पर्छन् । त्यसैले कुनै मुलुकबाट अर्को मुलुकभित्रको मानवअधिकारबारे प्रश्न उठ्यो भने आन्तरिक मामिलामा हस्तक्षेप भनिँदैन । आजको विश्वमा मानवअधिकार उल्लंघनकर्ता वा मानवताविरुद्धको अपराधमा संलग्न एउटा मुलुकको अपराधी अर्को मुलुकको पाहुना हुन सक्दैन भन्ने मान्यता सर्वव्यापी भइसकेको छ । अन्तर्राष्ट्रिय मानवअधिकारवादी संगठन ह्युमन राइट्स वाचकी दक्षिण एसिया निर्देशक मीनाक्षी गांगुलीले ठीकै भनेकी थिइन्, ‘जबसम्म संक्रमणकालीन न्याय प्रक्रियाले नेपालको अदालती न्यायपद्धतिमा अभियुक्तलाई मुद्दा चलाउनेबारे आधारभूत मानक पूरा गर्दैन, तबसम्म यस्ता अधिकार उल्लंघनकर्ताहरूलाई विश्वव्यापी क्षेत्राधिकारअन्तर्गत अन्तर्राष्ट्रिय अपराधका रूपमा अन्य मुलुकमा पुर्पक्ष गर्नबाट उन्मुक्ति दिन सक्दैन ।’</p>\n<p class=\"article-para\">संक्रमणकालीन न्याय, धर्म परिवर्तन, लैंगिक हिंसा, महिला तथा बालअधिकार, अपांगता भएका व्यक्तिका अधिकार, दलित तथा आदिवासी जनजातिका अधिकार, अन्तरविषयगत भेदभाव, न्यायमा पहुँच तथा आमाको नामबाट नागरिकता जस्ता संवेदनशील र दीर्घकालीन विषय सदैव प्राथमिकतामा पर्छन् । यी मामिलाले मानवअधिकार संरक्षण र प्रवर्द्धनसँग गहिरो सम्बन्ध राख्छन् ।</p>\n<p class=\"article-para\">आज विश्वमा १० वटा मानवअधिकारसम्बन्धी अन्तर्राष्ट्रिय सन्धि तथा संकल्प कार्यान्वयनमा छन्– सन् १९४८ मा राष्ट्रसंघबाट सर्वसम्मतिमा पारित मानवअधिकारको विश्वव्यापी घोषणा, नागरिक तथा राजनीतिक अधिकारसम्बन्धी संकल्प, आर्थिक, सामाजिक र सांस्कृतिक अधिकारसम्बन्धी संकल्प,  यातनाविरुद्धको महासन्धि, आमनरसंहार विरुद्धको महासन्धि, जेनेभा महासन्धि, बालअधिकारसम्बन्धी महासन्धि, महिलाविरुद्ध विद्यमान विभेदको अन्त्यसम्बन्धी महासन्धि र राष्ट्रसंघको बडापत्र । नेपाल यी सबैजसो सन्धिको हस्ताक्षरकर्ता मुलुक हो । अन्तर्राष्ट्रिय संस्थाहरूका महासन्धिको हस्ताक्षरकर्ता हुनु भनेको सो महासन्धिको अकुण्ठित कार्यान्वयनका लागि आवश्यक संस्थागत संरचना अनि राष्ट्रिय कानुनमा प्रतिबद्धता र तदनुरूपको व्यवहार गर्नु हो ।</p>\n<p class=\"article-para\">मानवअधिकारको सही कानुनसम्मत सदुपयोग गर्ने प्रवृत्ति नभई कानुनविहीन र अराजकता बोक्ने मानसिकताले मानवअधिकार खोज्नु हास्यास्पद हो । मानवअधिकारले नागरिकमा उत्तरदायित्व बढाउँछ, छाडा हुन दिँदैन । ठूलो आवाज खोलेर संगीत गाउन वा सुन्न पाउनु मानवअधिकार हो, तर चर्को आवाजले छिमेकीलाई सताउने हदमा आफ्नो मात्रै मानवअधिकार भन्न पाइन्नँ । त्यस्तो हदमा मानवअधिकार होइन, मानवीय कर्तव्य लागू हुन्छ । कर्तव्यबिनाको अधिकार भयावह हुन सक्छ । कर्तव्यरहित अधिकार अराजकताको स्रोत पनि हुन सक्छ । मानवअधिकारको सदुपयोग भए मात्रै लोकतन्त्र सम्पोषित र सार्थक रहन्छ ।</p>\n<p class=\"article-para\"><span class=\"highlight-box quoted-highlight-box\">सरकारलाई झन्डै दुईतिहाइ संसदीय बहुमतको सुविधानजनक जनादेश मिलेको अर्थ सत्तामा बसेर मनपरी गर्न पाउने लाइसेन्स दिइएको होइन</span>नेपालमा मानवअधिकारको संरक्षण र संवर्द्धन गर्ने वैधानिक सुनिश्चितता र संस्थागत संरचनाको कमीले मानवअधिकारको स्थिति दुर्बल भएको होइन । मानवअधिकारको सार्वकालिक स्रोतका रूपमा, नेपालको संविधान (संविधानको भाग ३ मा ३१ वटा मौलिक हकको सुनिश्चितता), राष्ट्रिय मानवअधिकार आयोग ऐन– २०६८, छुवाछूत तथा भेदभावविरुद्धको ऐन, मानव बेचबिखन तथा ओसारपसार (नियन्त्रण) ऐन, घरेलु हिंसा (नियन्त्रण तथा सजाय) ऐन र बालअधिकार ऐन आदि विशिष्ट कानुन हामीकहाँ छन् । मानवअधिकारसम्बन्धी राष्ट्रिय कार्ययोजना तर्जुमा र कार्यान्वयन गर्ने मुख्य प्रशासनिक निकाय सरकार, प्रधानमन्त्री तथा मन्त्रिपरिषद्को कार्यालय हो ।</p>\n<p class=\"article-para\">संविधानले व्यवस्था गरेको राष्ट्रिय मानवअधिकार आयोगको हैसियत, यसका प्रतिवेदन वा दस्तावेजहरू सरकारले आफ्ना आवश्यकता, अनुकूलता र निर्णयअनुरूप गठन गर्ने अन्य आयोग र त्यसका प्रतिवेदन वा दस्तावेजसरह हुन सक्दैन । त्यसैले राष्ट्रिय मानवअधिकार आयोगको प्रतिवेदन र गौरीबहादुर कार्की आयोगले दिएको प्रतिवेदनको स्वीकार्यता वा ग्रहणशीलता राष्ट्रिय मानवअधिकार आयोगको प्रतिवेदनभन्दा फरक हुन्छ ।</p>\n<p class=\"article-para\">संसद्को कानुन, न्याय तथा मानवअधिकार समिति, सत्यनिरूपण तथा मेलमिलाप आयोग, बेपत्ता पारिएका व्यक्तिको छानबिन आयोगलगायत राष्ट्रिय मानवअधिकार आयोग, संवैधानिक आयोगहरूमा महिला आयोग, दलित आयोग, राष्ट्रिय समावेशी आयोग, आदिवासी जनजाति आयोग र मधेशी आयोगजस्ता मानवअधिकारसँग सम्बन्धित संवैधानिक निकायले सम्बन्धित वर्गको अधिकार अनि मानवअधिकारको रक्षाका लागि कार्य गर्छन् ।</p>\n<p class=\"article-para\">तैपनि नेपालमा मानवअधिकारको अवस्था किन कमजोर र बेलाबखत विवादास्पद बन्न पुग्छ ? नेपालको संक्रमणकालीन न्यायसम्बन्धी कानुन अन्तर्राष्ट्रिय मानवअधिकारका मानकसँग मेल खान असफल भएको छ । यसको वस्तुवादी निष्कर्षका लागि सरकारले आत्मसमीक्षा गर्नैपर्छ । आत्मसमीक्षा गर्दा प्रसिद्ध कार्टुनिस्ट पोगोको यो संवादको सम्झना आउन सक्ला, ‘हामीले आफ्नो शत्रु फेला पार्‍यौं, त्यो त हामी नै पो रहेछौं ।’</p>\n<p class=\"article-para\">सरकारले पनि कसुर हेरी दण्डको न्यायिक बाटोबाट च्युत भएर मानिस हेरी दण्ड (दण्डहीनता) र प्रतिशोधको बाटो अपनाउने लक्षण र संकेतलाई मेटाउने हो भने राष्ट्रिय मानवअधिकार आयोगको उक्त प्रतिवेदन तत्काल सार्वजनिक गर्दै तदनुरूप कारबाहीको प्रक्रिया सुरु गर्नुपर्छ । यसलाई राष्ट्रिय–अन्तर्राष्ट्रिय सम्पूर्ण सरोकारवालाबाट सरकारको न्यायिक परीक्षाको कसीको रूपमा हेरिएको छ । सरकारको कतै असहमति छ भने आफ्ना असहमतिसहित सार्वजनिक गरे हुन्छ ।</p>\n<p class=\"article-para\">सरकारलाई झन्डै दुईतिहाइ संसदीय बहुमतको सुविधानजनक जनादेश मिलेको अर्थ सत्तामा बसेर मनपरी गर्न पाउने लाइसेन्स दिएको होइन । आफूलाई मन परेको र हित हुने काम मात्रै गर्नु सत्ताधारीको औचित्य र सान्दर्भिकताको परिसूचक होइन । यस्ता गम्भीर विषयउपर छलछामसहित जति बेइमानी गरे पनि भविष्यले यसको निश्चित रूपमा उत्खनन गर्नेछ ।</p>\n<div class=\"key-takeaway\"><strong>मुख्य बुँदा:</strong><p>सरकारले राष्ट्रिय मानवअधिकार आयोगको प्रतिवेदन सार्वजनिक नगरी दोषीलाई कानुनी कठघरामा ल्याउन टाङ अडाउने प्रयास गरेकोमा आलोचना भएको छ, भदौ २३ र २४ को घटनामा ४७ जनाको मृत्यु भएको थियो र सरकारले मानवअधिकार संरक्षणमा कानुनी संरचना हुँदा पनि जवाफदेहिता देखाएको छैन ।</p></div>",
     sidebarAdsHtml: "<div class=\"sidebar-ads-wrapper\">\n<div class=\"ad-unit\" id=\"sideads_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_3.jpg\" alt=\"sideads_3.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n\n<div class=\"ad-unit\" id=\"sideads_4\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_4.jpg\" alt=\"sideads_4.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div></div>",
     imageUrl:       "../images/the-state-of-human-rights-in-nepal.jpg",
     breadcrumbEn:   "<a href=\"../index.html\">Home</a> / <a href=\"../category/local\">Local</a> / The state of human rights in Nepal",
     breadcrumbNp:   "<a href=\"../index.html\">गृहपृष्ठ</a> / <a href=\"../category/local\">स्थानीय</a> / नेपालमा मानवअधिकारको अवस्था",
-    tagsEn:         "<a href=\"#\" class=\"tag-pill\">National Human Rights Commission</a><a href=\"#\" class=\"tag-pill\">report made public</a><a href=\"#\" class=\"tag-pill\">dock of law</a><a href=\"#\" class=\"tag-pill\">Bhadra 23 and 24</a><a href=\"#\" class=\"tag-pill\">social media directive</a><a href=\"#\" class=\"tag-pill\">democracy</a><a href=\"#\" class=\"tag-pill\">women</a>",
-    tagsNp:         "<a href=\"#\" class=\"tag-pill\">राष्ट्रिय मानवअधिकार आयोग</a><a href=\"#\" class=\"tag-pill\">प्रतिवेदन सार्वजनिक</a><a href=\"#\" class=\"tag-pill\">कानुनको कठघरा</a><a href=\"#\" class=\"tag-pill\">भदौ २३ र २४</a><a href=\"#\" class=\"tag-pill\">सामाजिक सञ्जाल निर्देशिका</a><a href=\"#\" class=\"tag-pill\">लोकतन्त्र</a><a href=\"#\" class=\"tag-pill\">women</a>",
-    relatedHtml:    "<p class=\"no-related lang-en\">No related articles found.</p>\n            <p class=\"no-related lang-np\" style=\"display:none\">कुनै सम्बन्धित लेख फेला परेन।</p>"
+    tagsEn:         "<a href=\"#\" class=\"tag-pill\">National Human Rights Commission</a><a href=\"#\" class=\"tag-pill\">report made public</a><a href=\"#\" class=\"tag-pill\">government</a><a href=\"#\" class=\"tag-pill\">dock of law</a><a href=\"#\" class=\"tag-pill\">Bhadra 23 and 24</a><a href=\"#\" class=\"tag-pill\">human rights</a><a href=\"#\" class=\"tag-pill\">women</a>",
+    tagsNp:         "<a href=\"#\" class=\"tag-pill\">राष्ट्रिय मानवअधिकार आयोग</a><a href=\"#\" class=\"tag-pill\">प्रतिवेदन सार्वजनिक</a><a href=\"#\" class=\"tag-pill\">सरकार</a><a href=\"#\" class=\"tag-pill\">कानुनको कठघरा</a><a href=\"#\" class=\"tag-pill\">भदौ २३ र २४</a><a href=\"#\" class=\"tag-pill\">मानवअधिकार</a><a href=\"#\" class=\"tag-pill\">women</a>",
+    relatedHtml:    "\n      <a href=\"/page/a-woman-from-kavre-attempted-self-immolation-in-kathmandu-50-percent-of-her-body-was-burned.html\" class=\"related-card\">\n        <img src=\"../images/a-woman-from-kavre-attempted-self-immolation-in-kathmandu-50-percent-of-her-body-was-burned.jpg\" alt=\"A woman from Kavre attempted self-immolation in Kathmandu, 50 percent of her body was burned.\" loading=\"lazy\"\n             onerror=\"this.src='https://placehold.co/400x225/1a1a1a/ffffff?text=Related'\">\n        <div class=\"related-content\">\n          <span class=\"related-category lang-en\">Local</span>\n                     <span class=\"related-category lang-np\" style=\"display:none\">स्थानीय</span>\n          <h4 class=\"lang-en\">A woman from Kavre attempted self-immolation in Kathmandu, 50 percent of her body was burned.</h4>\n          <h4 class=\"lang-np\" style=\"display:none\">काठमाडौंमा काभ्रेकी एक महिलाद्वारा आत्मदाह प्रयास, शरीरको ५० प्रतिशत भाग जल्यो</h4>\n          <span class=\"related-meta\" data-date-ad=\"July 21, 2026\">\n            <i class=\"fas fa-clock\" style=\"font-size:.68rem;margin-right:3px;\"></i>\n            <span class=\"date-display\">July 21, 2026</span>\n            <span class=\"lang-en\"></span>\n            <span class=\"lang-np\" style=\"display:none\"></span>\n          </span>\n          <span class=\"related-meta\" style=\"margin-top:3px;\">\n                <span class=\"lang-en\">Source: www.nepalicheli.com · Creator: A Nepali woman from Kavre attempted self-immolation in Kathmandu; 50 percent of her body was burned.</span>\n                <span class=\"lang-np\" style=\"display:none\">स्रोत: www.नेपालिचेलि.कम · सिर्जनाकर्ता: नेपाली चेली :: काठमाडौंमा काभ्रेकी एक महिलाद्वारा आत्मदाह प्रयास, शरीरको ५० प्रतिशत भाग जल्यो</span>\n              </span>\n        </div>\n      </a>\n      <a href=\"/page/on-the-occasion-of-womens-day-an-interaction-on-the-theme-of-search-for-equality-was-organized-by-the-sancharika-group.html\" class=\"related-card\">\n        <img src=\"../images/on-the-occasion-of-womens-day-an-interaction-on-the-theme-of-search-for-equality-was-organized-by-the-sancharika-group.jpg\" alt=\"On the occasion of Women&#39;s Day, an interaction on the theme of &quot;Search for Equality&quot; was organized by the Sancharika Group.\" loading=\"lazy\"\n             onerror=\"this.src='https://placehold.co/400x225/1a1a1a/ffffff?text=Related'\">\n        <div class=\"related-content\">\n          <span class=\"related-category lang-en\">Local</span>\n                     <span class=\"related-category lang-np\" style=\"display:none\">स्थानीय</span>\n          <h4 class=\"lang-en\">On the occasion of Women&#39;s Day, an interaction on the theme of &quot;Search for Equality&quot; was organized by the Sancharika Group.</h4>\n          <h4 class=\"lang-np\" style=\"display:none\">नारी दिवसको अवसरमा सञ्चारिका समूहद्वारा समानताको खोजी विषयक अन्तरक्रिया</h4>\n          <span class=\"related-meta\" data-date-ad=\"July 21, 2026\">\n            <i class=\"fas fa-clock\" style=\"font-size:.68rem;margin-right:3px;\"></i>\n            <span class=\"date-display\">July 21, 2026</span>\n            <span class=\"lang-en\"></span>\n            <span class=\"lang-np\" style=\"display:none\"></span>\n          </span>\n          <span class=\"related-meta\" style=\"margin-top:3px;\">\n                <span class=\"lang-en\">Source: www.nepalicheli.com · Creator: Yamu Subedi :: In the occasion of Women&#39;s Day, an interaction on the theme of &quot;Search for Equality&quot; organized by Sancharika Group</span>\n                <span class=\"lang-np\" style=\"display:none\">स्रोत: www.नेपालिचेलि.कम · सिर्जनाकर्ता: यमु सुवेदी :: नारी दिवसको अवसरमा सञ्चारिका समूहद्वारा समानताको खोजी विषयक अन्तरक्रिया</span>\n              </span>\n        </div>\n      </a>\n      <a href=\"/page/the-cold-storage-of-nawalparasi-neglect-by-the-province-farmers-storage-in-traditional-style.html\" class=\"related-card\">\n        <img src=\"../images/the-cold-storage-of-nawalparasi-neglect-by-the-province-farmers-storage-in-traditional-style.jpg\" alt=\"The cold storage of Nawalparasi, neglect by the province: farmers&#39; storage in traditional style\" loading=\"lazy\"\n             onerror=\"this.src='https://placehold.co/400x225/1a1a1a/ffffff?text=Related'\">\n        <div class=\"related-content\">\n          <span class=\"related-category lang-en\">Local</span>\n                     <span class=\"related-category lang-np\" style=\"display:none\">स्थानीय</span>\n          <h4 class=\"lang-en\">The cold storage of Nawalparasi, neglect by the province: farmers&#39; storage in traditional style</h4>\n          <h4 class=\"lang-np\" style=\"display:none\">नवलपरासीको शीत भण्डार, प्रदेशको बेवास्ता: किसानको भण्डारणमा परम्परागत शैली</h4>\n          <span class=\"related-meta\" data-date-ad=\"July 21, 2026\">\n            <i class=\"fas fa-clock\" style=\"font-size:.68rem;margin-right:3px;\"></i>\n            <span class=\"date-display\">July 21, 2026</span>\n            <span class=\"lang-en\"></span>\n            <span class=\"lang-np\" style=\"display:none\"></span>\n          </span>\n          <span class=\"related-meta\" style=\"margin-top:3px;\">\n                <span class=\"lang-en\">Source: www.nepalicheli.com · Creator: Meghraj Gautam :: Neglect of Province in Cold Storage of Nawalparasi; Farmers Rely on Traditional Methods</span>\n                <span class=\"lang-np\" style=\"display:none\">स्रोत: www.नेपालिचेलि.कम · सिर्जनाकर्ता: मेघराज गौतम :: नवलपरासीको शीत भण्डार, प्रदेशको बेवास्ता: किसानको भण्डारणमा परम्परागत शैली</span>\n              </span>\n        </div>\n      </a>\n      <a href=\"/page/the-inauguration-of-the-agricultural-market-was-done-by-mahadev-agriculture-cooperative-in-parasi.html\" class=\"related-card\">\n        <img src=\"../images/the-inauguration-of-the-agricultural-market-was-done-by-mahadev-agriculture-cooperative-in-parasi.jpg\" alt=\"The inauguration of the agricultural market was done by Mahadev Agriculture Cooperative in Parasi.\" loading=\"lazy\"\n             onerror=\"this.src='https://placehold.co/400x225/1a1a1a/ffffff?text=Related'\">\n        <div class=\"related-content\">\n          <span class=\"related-category lang-en\">Local</span>\n                     <span class=\"related-category lang-np\" style=\"display:none\">स्थानीय</span>\n          <h4 class=\"lang-en\">The inauguration of the agricultural market was done by Mahadev Agriculture Cooperative in Parasi.</h4>\n          <h4 class=\"lang-np\" style=\"display:none\">परासीमा महादेव कृषी सहकारीद्धारा कृषि बजारको शुभारम्भ</h4>\n          <span class=\"related-meta\" data-date-ad=\"July 21, 2026\">\n            <i class=\"fas fa-clock\" style=\"font-size:.68rem;margin-right:3px;\"></i>\n            <span class=\"date-display\">July 21, 2026</span>\n            <span class=\"lang-en\"></span>\n            <span class=\"lang-np\" style=\"display:none\"></span>\n          </span>\n          <span class=\"related-meta\" style=\"margin-top:3px;\">\n                <span class=\"lang-en\">Source: www.nepalicheli.com · Creator: Yamu Suvedi :: Inauguration of agricultural market by Mahadev Agriculture Cooperative in Parasi</span>\n                <span class=\"lang-np\" style=\"display:none\">स्रोत: www.नेपालिचेलि.कम · सिर्जनाकर्ता: यमु सुवेदी :: परासीमा महादेव कृषी सहकारीद्धारा कृषि बजारको शुभारम्भ</span>\n              </span>\n        </div>\n      </a>"
   };
 
   function populate() {

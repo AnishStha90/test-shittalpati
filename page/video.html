@@ -549,11 +549,7 @@
   .lang-en { display:inline; }
 
   /* Global layout resets */
-  * { box-sizing:border-box; }
-  .index-page { background:#FFFFFF; color:#1F1F1F; font-family:Noto Serif, Georgia, serif; min-height:100vh; }
-  .lang-np { display:none; }
-  .lang-en { display:inline; }
-
+  
   /* ─── SECTION LAYOUT — uniform thumbnail-grid style (matches butwaltodayonlinetv.com) ─────
    butwaltodayonlinetv.com does NOT use a "1 big featured card + narrow list" split.
    Every section — including named category sections — renders as a single row/grid of
@@ -569,72 +565,106 @@
 
   /* Section header with accent left-border */
   .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; padding-bottom:8px; border-bottom:2px solid #A31919; }
-  .section-title { font-size:1.15rem; margin:0; color:#A31919; font-family:Noto Serif, Georgia, serif; font-weight:800; display:flex; align-items:center; gap:8px;}
-  .section-title::before { content:'' ; display:inline-block ; width :4px ; height :1.1em ; background :#D4A017 ; border-radius :2px ; flex-shrink :0 ;}
-    view-all-link{font-size:.78rem;font-weight :700;color :#A31919;text-decoration:none;padding :4px12px;border :1px solid #A31919;border-radius :3px ;transition :all .2s:white-space nowrap;}
-    view-all-link:hover{background:#A31919;color:#FFFFFF;}
+  .section-title { font-size:1.15rem; margin:0; color:#A31919; font-family:Noto Serif, Georgia, serif; font-weight:800; display:flex; align-items:center; gap:8px; }
+  .section-title::before { content:''; display:inline-block; width:4px; height:1.1em; background:#D4A017; border-radius:2px; flex-shrink:0; }
+  .view-all-link { font-size:.78rem; font-weight:700; color:#A31919; text-decoration:none; padding:4px 12px; border:1px solid #A31919; border-radius:3px; transition:all .2s; white-space:nowrap;}
+  
+/* Unified thumbnail card — used for every card, "featured" or "latest" alike */
+.news-card.featured,
+.news-card.latest {
+    background:#F8F8F8;
+    border:1px solid rgba(163,25,25,0.18);
+    border-radius:6px;
+    overflow:hidden;
+    display:block;
+    width:100%;
+    transition:;
+}
+.news-card.featured:hover,
+.news-card.latest:hover {
+    box-shadow:;
+    transform:;
+}
+.news-card.featured > a,
+.news-card.latest > a {
+    text-decoration:none;
+    color:#1F1F1F;
+    display:block;
+}
+.news-card.featured .card-img,
+.news-card.latest .card-img {
+    display:block;
+    width:auto;
+    height:auto;
+}
+.news-card.featured img,
+.news-card.latest img {
+position:absolute;
+inset:;
+width:auto;
+height:auto;
 
-    /* ─── UNIFORM GRID (every section, no special "featured" column) ─── */
-    .section-grid,.section-grid.has-featured,.section-grid.latest-grid{
-      display :grid;
-      grid-template-columns :repeat(auto-fill,minmax(220px ,1fr));
-      gap :18px;
-      align-items:start;
-    }/* The "list" wrapper becomes transparent so its cards join the same grid
-       as the "featured" card — instead of being boxed into a separate column. */
-    .section-list{display :contents;}
+object-fit:;
+object-position:center;
 
-    @media(max-width :480px){
-      .section-grid,.section-grid.has-featured,.section-grid.latest-grid{
-        grid-template-columns :repeat(2 ,1fr);
-        gap :12px;
-      }
-    }
+display:block;
 
-    /* Unified thumbnail card — used for every card , "featured" or "latest" alike */
-    .news-card.featured,.news-card.latest{
-      background:#F8F8F8;
-      border :1px solid rgba(163 ,25 ,25 ,0.18);
-      border-radius :6px;
-      overflow:hidden;
-      display:block;
-      width:100%;
-      transition(box-shadow ease transform ease);
-    }/* hover effects */
-    .news-card.featured:hover,.news-card.latest:hover{
-      box-shadow:0 4 px16px rgba(0 ,0 ,0 ,.14);
-      transform translateY(-2px);
-    }/* link styles */
-    .news-card.featured > a,.news-card.latest > a{
-      text-decoration:none;color:#1F1F1F;display:block;
-    }/* image styles */
-    .news-card.featured.card-img,.news-card.latest.card-img{
-      display:block;width:100%;height170 pxposition:relativeoverflow:hidden;background#000;}
-     news-card.featured.card-img img ,.news-card.latest.card-img img {
-       position:absolute ;
-       inset:;
-       width100% ;
-       height100% ;
-       object-fitcover ;
-       object-position:center ;
-       display:block;}
-     /* Play-icon overlay on hover like YouTube-thumbnail-driven news grids */
-     news-card.featured.card-img::after ,.news-card.latest.card-img::after {
-       content:'\f04b';
-       font-family:'Font Awesome6 Free' ;
-       font-weight900 ;
-       position:absolute ;
-       inset:;
-       display:flex ;
-       align-items:center ;
-       justify-content:center ;
-         font-size:.5remcolor#fffbackgroundrgba(00 ,00 ,00 ,.18)opacity00transitionopacity ease;}
-     news-card.featured:hover.card-img::after ,.news-card.latest:hover.card-img::after{opacity11;}
-     /* Card body styles */
-     news-card.featured.card-body ,.news-card.latest.card-body {
-         padding10 px12 px12px}
-     news-card.featured.card-title ,.news-card.latest.card-title {
-         font-size:.9remmargin4 px06line-height145color#1F1F1Ffont-familyNoto SerifGeorgia seriffont-weight700display-webkit-boxwebkit-line-clamp2webkit-box-orientverticaloverflowhidden}
+}
+/* Play-icon overlay on hover */
+.news-card.featured .card-img::after,
+.news-card.latest .card-img::after {
+content:'\f04b';
+font-family:'Font Awesome 6 Free';
+font-weight:;
+position:absolute;
+inset:;
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:;
+color:#fff;
+
+background:;
+opacity:;
+transition:;
+}
+
+/* Unified thumbnail card elements */
+.cat-badge {
+display:inline-block;
+
+background:#A31919;
+
+color:#FFFFFF;
+
+font-size:.62rem;
+
+font-weight:;
+padding:;
+border-radius:;
+margin-bottom:;
+text-transform:;
+letter-spacing:.06em;}
+
+.card-date {
+
+font-size:.72rem;
+
+color:
+
+rgba(31,31,31,.55);
+
+display:flex;
+
+align-items:center;
+
+gap:");
+
+margin-top:]
+
 </style>
 <style>
     /* ALL CSS from PART D */
@@ -1077,9 +1107,7 @@
 
 
 </header>
-  <main><div id="sections-container" class="page-container">
-<!-- injected -->
-</div></main>
+  <main><div id="sections-container" class="page-container"><!-- injected --></div></main>
   <footer id="site-footer">
   
   
