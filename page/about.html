@@ -555,7 +555,10 @@
 
 </style>
   <style>
+    /* ALL CSS from PART D */
     #site-footer { font-family:var(--font-body); }
+
+    /* TOP SECTION */
     .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
     .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
     .footer-col { display:flex; flex-direction:column; gap:10px; }
@@ -566,6 +569,8 @@
     .footer-link-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
     .footer-link-list li a { font-size:.85rem; color:#333; text-decoration:none; transition:color .2s; display:block; padding:2px 0; }
     .footer-link-list li a:hover { color:var(--primary); }
+
+    /* BOTTOM BAR */
     .footer-bottom { background:#d8d8d8; border-top:1px solid #bbb; padding:18px 0; }
     .footer-bottom-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
     .footer-bottom-brand { display:flex; flex-direction:column; gap:3px; flex-shrink:0; }
@@ -582,24 +587,27 @@
     .footer-social-row { display:flex; gap:10px; align-items:center; }
     .footer-social-row a { color:#333; font-size:1.1rem; text-decoration:none; transition:color .2s; }
     .footer-social-row a:hover { color:var(--primary); }
+
+    /* Language */
     .lang-en { display:inline; }
     .lang-np { display:none; }
     body.lang-active .lang-en { display:none; }
     body.lang-active .lang-np { display:inline; }
-    @media(max-width:1000px){ .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; } }
-    @media(max-width:640px){
-      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; text-align:center; }
-      .footer-bottom-inner { flex-direction:column; align-items:center; gap:16px; text-align:center; }
-      .footer-bottom-social { align-items:center; width:100%; }
-      .footer-social-row { justify-content:center; }
-      .footer-col { align-items:center; text-align:center; }
-      .footer-link-list { align-items:center; }
-      .footer-col-heading { text-align:center; width:100%; }
-      .footer-bottom-brand { align-items:center; }
-      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { align-items:center; }
-      .footer-bottom-info { max-width:100%; text-align:center; }
+
+    /* Responsive */
+    @media(max-width:1000px){
+      .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; }
     }
-    @media(max-width:400px){ .footer-top-inner { grid-template-columns:1fr; text-align:center; } }
+    @media(max-width:640px){
+      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; }
+      .footer-bottom-inner { flex-direction:column; align-items:flex-start; gap:12px; }
+      .footer-bottom-social { align-items:flex-start; }
+    }
+    @media(max-width:400px){
+      .footer-top-inner { grid-template-columns:1fr; }
+    }
+
+    /* WhatsApp */
     .wa-widget { position:fixed; bottom:90px; right:24px; z-index:9999; display:flex; align-items:center; gap:10px; flex-direction:row; }
     .wa-fab { width:52px; height:52px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.7rem; text-decoration:none; box-shadow:0 4px 16px rgba(37,211,102,.4),0 2px 8px rgba(0,0,0,.2); transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; animation:waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both; position:relative; }
     .wa-fab:hover { transform:scale(1.12) rotate(-6deg); }
@@ -609,6 +617,55 @@
     @keyframes waIn { from{opacity:0;transform:scale(.4) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
     @keyframes waRing { 0%{transform:scale(1);opacity:.8} 70%,100%{transform:scale(1.5);opacity:0} }
     @media(max-width:480px){ .wa-widget{bottom:90px;right:14px;} .wa-fab{width:46px;height:46px;font-size:1.5rem;} }
+
+    /* Add these responsive styles for footer mobile view */
+    @media(max-width:640px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-inner { 
+        flex-direction: column; 
+        align-items: center;
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-social { 
+        align-items: center;
+        width: 100%;
+      }
+      .footer-social-row {
+        justify-content: center;
+      }
+      .footer-col {
+        align-items: center;
+        text-align: center;
+      }
+      .footer-link-list {
+        align-items: center;
+      }
+      .footer-col-heading {
+        text-align: center;
+        width: 100%;
+      }
+      .footer-bottom-brand {
+        align-items: center;
+      }
+      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq {
+        align-items: center;
+      }
+      .footer-bottom-info {
+        max-width: 100%;
+        text-align: center;
+      }
+    }
+    @media(max-width:400px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr; 
+        text-align: center;
+      }
+    }
   </style>
   <style>
     *, *::before, *::after { box-sizing: border-box }
@@ -1115,39 +1172,39 @@ Shitalpati.com, which was started as a trial from Tansen, the headquarters of Pa
     <li style="display:flex;gap:.75rem;align-items:flex-start;
                padding-bottom:1rem;border-bottom:1px solid var(--border);
                margin-bottom:0.5rem;">
-      <a href="../page/the-new-economic-act-of-kathmandu-metropolitan-city-businesses-registered-by-the-end-of-ashoj-will-have-their-business-taxes-waived-for-previous-years.html" style="flex-shrink:0;text-decoration:none;"><img src="../images/the-new-economic-act-of-kathmandu-metropolitan-city-businesses-registered-by-the-end-of-ashoj-will-have-their-business-taxes-waived-for-previous-years.jpg" alt="The new economic act of Kathmandu Metropolitan City: Businesses registered by the end of Ashoj will have their business taxes waived for previous years."
+      <a href="../page/the-decision-on-how-to-implement-the-tax-refund-will-be-made-how.html" style="flex-shrink:0;text-decoration:none;"><img src="../images/the-decision-on-how-to-implement-the-tax-refund-will-be-made-how.jpg" alt="The decision on how to implement the tax refund will be made how?"
            style="width:72px;height:60px;object-fit:cover;border-radius:6px;flex-shrink:0;"></a>
       <div style="display:flex;flex-direction:column;gap:.25rem;min-width:0;">
         <span style="font-size:.7rem;font-weight:700;text-transform:uppercase;color:var(--accent);">
           <span class="lang-en">Economy</span>
           <span class="lang-np">अर्थतन्त्र</span>
         </span>
-        <a href="../page/the-new-economic-act-of-kathmandu-metropolitan-city-businesses-registered-by-the-end-of-ashoj-will-have-their-business-taxes-waived-for-previous-years.html" style="font-size:.85rem;font-weight:600;color:var(--text);
+        <a href="../page/the-decision-on-how-to-implement-the-tax-refund-will-be-made-how.html" style="font-size:.85rem;font-weight:600;color:var(--text);
            text-decoration:none;line-height:1.35;display:-webkit-box;
            -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">
-          <span class="lang-en">The new economic act of Kathmandu Metropolitan City: Businesses registered by the end of Ashoj will have their business taxes waived for previous years.</span>
-          <span class="lang-np">काठमाडौं महानगरको नयाँ आर्थिक ऐन : असोज मसान्तभित्र व्यवसाय दर्ता गरे अघिल्ला वर्षको व्यवसाय कर मिनाहा हुने</span>
+          <span class="lang-en">The decision on how to implement the tax refund will be made how?</span>
+          <span class="lang-np">अर्थमन्त्रीलाई प्रश्न : कर फिर्ताको निर्णय कसरी हुन्छ कार्यान्वयन&amp;nbsp;?</span>
         </a>
         <span style="font-size:.72rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:.2rem .3rem;align-items:center;">
-          <span class="date-display" data-date-ad="July 21, 2026">July 21, 2026</span> · <span class="lang-en">Source: nagariknews.nagariknetwork.com</span><span class="lang-np" style="display:none;">स्रोत: नगरिकन्यूज.नगरिकनेटवर्क.कम</span>
+          <span class="date-display" data-date-ad="July 21, 2026">July 21, 2026</span> · <span class="lang-en">Source: Kantipur</span><span class="lang-np" style="display:none;">स्रोत: कान्तिपुर</span>
         </span>
       </div>
     </li>
     <li style="display:flex;gap:.75rem;align-items:flex-start;
                padding-bottom:1rem;border-bottom:1px solid var(--border);
                margin-bottom:0.5rem;">
-      <a href="../page/the-government-has-withdrawn-the-3-percent-tax-imposed-on-education-and-health.html" style="flex-shrink:0;text-decoration:none;"><img src="../images/the-government-has-withdrawn-the-3-percent-tax-imposed-on-education-and-health.jpg" alt="The government has withdrawn the 3 percent tax imposed on education and health."
+      <a href="../page/the-past-10-years-were-black-days-for-the-congress-and-the-nation-gagan-thapa.html" style="flex-shrink:0;text-decoration:none;"><img src="../images/the-past-10-years-were-black-days-for-the-congress-and-the-nation-gagan-thapa.jpg" alt="The past 10 years were black days for the Congress and the nation: Gagan Thapa"
            style="width:72px;height:60px;object-fit:cover;border-radius:6px;flex-shrink:0;"></a>
       <div style="display:flex;flex-direction:column;gap:.25rem;min-width:0;">
         <span style="font-size:.7rem;font-weight:700;text-transform:uppercase;color:var(--accent);">
           <span class="lang-en">Politics</span>
           <span class="lang-np">राजनीति</span>
         </span>
-        <a href="../page/the-government-has-withdrawn-the-3-percent-tax-imposed-on-education-and-health.html" style="font-size:.85rem;font-weight:600;color:var(--text);
+        <a href="../page/the-past-10-years-were-black-days-for-the-congress-and-the-nation-gagan-thapa.html" style="font-size:.85rem;font-weight:600;color:var(--text);
            text-decoration:none;line-height:1.35;display:-webkit-box;
            -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">
-          <span class="lang-en">The government has withdrawn the 3 percent tax imposed on education and health.</span>
-          <span class="lang-np">सरकारले फिर्ता लियो शिक्षा र स्वास्थ्यमा लगाएको ३ प्रतिशत कर</span>
+          <span class="lang-en">The past 10 years were black days for the Congress and the nation: Gagan Thapa</span>
+          <span class="lang-np">बितेका १० वर्ष कांग्रेस र राष्ट्रका लागि काला दिन थिए : गगन थापा</span>
         </a>
         <span style="font-size:.72rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:.2rem .3rem;align-items:center;">
           <span class="date-display" data-date-ad="July 21, 2026">July 21, 2026</span> · <span class="lang-en">Source: Kantipur</span><span class="lang-np" style="display:none;">स्रोत: कान्तिपुर</span>
@@ -1240,17 +1297,36 @@ Shitalpati.com, which was started as a trial from Tansen, the headquarters of Pa
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
 
+  <!-- TOP SECTION: multi-column links -->
   <div class="footer-top">
     <div class="footer-top-inner">
+
+      <!-- Col 1: Contact -->
       <div class="footer-col footer-contact-col">
-        <h4 class="footer-col-heading"><span class="lang-en">Contact Address</span><span class="lang-np">सम्पर्क ठेगाना</span></h4>
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Contact Address</span>
+          <span class="lang-np">सम्पर्क ठेगाना</span>
+        </h4>
         <p class="footer-company-name">Shittal Pati</p>
-        <p class="footer-addr"><span class="lang-en">Bhagwati Tole-3, Tansen Palpa, Nepal</span><span class="lang-np">भगवती टोल-३, तानसेन पाल्पा, नेपाल</span></p>
-        <p class="footer-contact-line"><span class="lang-en">Phone: +977 9847492226</span><span class="lang-np">फोन: +९७७ ९८४७४९२२२६</span></p>
-        <p class="footer-contact-line"><span class="lang-en">Email:</span><span class="lang-np">इमेल:</span> njdnews@gmail.com</p>
+        <p class="footer-addr">
+          <span class="lang-en">Bhagwati Tole-3, Tansen Palpa, Nepal</span>
+          <span class="lang-np">भगवती टोल-३, तानसेन पाल्पा, नेपाल</span>
+        </p>
+        <p class="footer-contact-line">
+          <span class="lang-en">Phone: +977 9847492226</span>
+          <span class="lang-np">फोन: +९७७ ९८४७४९२२२६</span>
+        </p>
+        <p class="footer-contact-line">
+          <span class="lang-en">Email:</span><span class="lang-np">इमेल:</span> njdnews@gmail.com
+        </p>
       </div>
+
+      <!-- Col 2: News links -->
       <div class="footer-col">
-        <h4 class="footer-col-heading"><span class="lang-en">News</span><span class="lang-np">समाचार</span></h4>
+        <h4 class="footer-col-heading">
+          <span class="lang-en">News</span>
+          <span class="lang-np">समाचार</span>
+        </h4>
         <ul class="footer-link-list">
           <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
           <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
@@ -1259,39 +1335,62 @@ Shitalpati.com, which was started as a trial from Tansen, the headquarters of Pa
           <li><a href="../index.html#education-section"><span class="lang-en">Education</span><span class="lang-np">शिक्षा</span></a></li>
         </ul>
       </div>
+
+      <!-- Col 3: Entertainment -->
       <div class="footer-col">
-        <h4 class="footer-col-heading"><span class="lang-en">Entertainment</span><span class="lang-np">मनोरञ्जन</span></h4>
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Entertainment</span>
+          <span class="lang-np">मनोरञ्जन</span>
+        </h4>
         <ul class="footer-link-list">
-          <li><a href="#entertainment-section"><span class="lang-en">Movies &amp; Music</span><span class="lang-np">चलचित्र र संगीत</span></a></li>
+          <li><a href="#entertainment-section"><span class="lang-en">Movies & Music</span><span class="lang-np">चलचित्र र संगीत</span></a></li>
           <li><a href="#entertainment-section"><span class="lang-en">Arts</span><span class="lang-np">कला</span></a></li>
           <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
         </ul>
       </div>
+
+      <!-- Col 4: Feature -->
       <div class="footer-col">
-        <h4 class="footer-col-heading"><span class="lang-en">Feature</span><span class="lang-np">विशेष</span></h4>
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Feature</span>
+          <span class="lang-np">विशेष</span>
+        </h4>
         <ul class="footer-link-list">
           <li><a href="../index.html#feature-section"><span class="lang-en">Feature News</span><span class="lang-np">विशेष समाचार</span></a></li>
           <li><a href="../index.html#latest-section"><span class="lang-en">Latest</span><span class="lang-np">ताजा</span></a></li>
         </ul>
       </div>
+
+      <!-- Col 5: Specials -->
       <div class="footer-col">
-        <h4 class="footer-col-heading"><span class="lang-en">Specials</span><span class="lang-np">विशेष</span></h4>
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Specials</span>
+          <span class="lang-np">विशेष</span>
+        </h4>
         <ul class="footer-link-list">
           <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
         </ul>
       </div>
+
+      <!-- Col 6: About -->
       <div class="footer-col">
-        <h4 class="footer-col-heading"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></h4>
+        <h4 class="footer-col-heading">
+          <span class="lang-en">About Us</span>
+          <span class="lang-np">हाम्रोबारे</span>
+        </h4>
         <ul class="footer-link-list">
           <li><a href="about.html"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></a></li>
           <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
         </ul>
       </div>
+
     </div>
   </div>
 
+  <!-- BOTTOM BAR -->
   <div class="footer-bottom">
     <div class="footer-bottom-inner">
+
       <div class="footer-bottom-brand">
         <span class="footer-site-name">Shittal Pati</span>
         <span class="footer-copy">
@@ -1303,24 +1402,44 @@ Shitalpati.com, which was started as a trial from Tansen, the headquarters of Pa
           <span class="lang-np">सर्वाधिकार सुरक्षित।</span>
         </span>
       </div>
+
       <div class="footer-bottom-editor">
         <span class="editor-label"><span class="lang-en">Editor</span><span class="lang-np">सम्पादक</span></span>
-        <span class="editor-name"><span class="lang-en">Jagdish Bhattarai</span><span class="lang-np">जगदीश भट्टराई</span></span>
-        <span class="editor-phone"><span class="lang-en">9857060301</span><span class="lang-np">९८५७०६०३०१</span></span>
+        <span class="editor-name">
+          <span class="lang-en">Jagdish Bhattarai</span>
+          <span class="lang-np">जगदीश भट्टराई</span>
+        </span>
+        <span class="editor-phone">
+          <span class="lang-en">9857060301</span>
+          <span class="lang-np">९८५७०६०३०१</span>
+        </span>
       </div>
+
       <div class="footer-bottom-sub">
         <span class="editor-label"><span class="lang-en">Sub-Editor</span><span class="lang-np">सह-सम्पादक</span></span>
-        <span class="editor-name"><span class="lang-en">Ramchandra Rayamajhi</span><span class="lang-np">रामचन्द्र रायमाझी</span></span>
-        <span class="editor-phone"><span class="lang-en">9847492226</span><span class="lang-np">९८४७४९२२२६</span></span>
+        <span class="editor-name">
+          <span class="lang-en">Ramchandra Rayamajhi</span>
+          <span class="lang-np">रामचन्द्र रायमाझी</span>
+        </span>
+        <span class="editor-phone">
+          <span class="lang-en">9847492226</span>
+          <span class="lang-np">९८४७४९२२२६</span>
+        </span>
       </div>
+
       <div class="footer-bottom-freq">
         <span class="editor-label"><span class="lang-en">Frequency</span><span class="lang-np">फ्रिक्वेन्सी</span></span>
-        <span class="editor-name"><span class="lang-en">103.5 MHZ FM</span><span class="lang-np">१०३.५ मेगाहर्ज एफएम</span></span>
+        <span class="editor-name">
+          <span class="lang-en">103.5 MHZ FM</span>
+          <span class="lang-np">१०३.५ मेगाहर्ज एफएम</span>
+        </span>
       </div>
+
       <div class="footer-bottom-info">
         <span class="lang-en">Official Website of Janavedana Daily</span>
         <span class="lang-np">जनवेदना दैनिकको आधिकारिक वेबसाइट</span>
       </div>
+
       <div class="footer-bottom-social">
         <span class="connect-label"><span class="lang-en">Connect with Us</span><span class="lang-np">जोडिनुहोस्</span></span>
         <div class="footer-social-row">
@@ -1328,15 +1447,17 @@ Shitalpati.com, which was started as a trial from Tansen, the headquarters of Pa
           <a href="https://www.instagram.com/shittalpationline/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
         </div>
       </div>
+
     </div>
   </div>
 
   
+
+  <div class="wa-widget">
+    <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
+    <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  </div>
 </footer>
-<div class="wa-widget">
-  <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
-  <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
-</div>
   <script>
 (function () {
   'use strict';

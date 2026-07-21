@@ -771,7 +771,10 @@
   body.lang-active p.lang-np, body.lang-active span.lang-np { display: inline !important; }
 </style>
 <style>
+    /* ALL CSS from PART D */
     #site-footer { font-family:var(--font-body); }
+
+    /* TOP SECTION */
     .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
     .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
     .footer-col { display:flex; flex-direction:column; gap:10px; }
@@ -782,6 +785,8 @@
     .footer-link-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
     .footer-link-list li a { font-size:.85rem; color:#333; text-decoration:none; transition:color .2s; display:block; padding:2px 0; }
     .footer-link-list li a:hover { color:var(--primary); }
+
+    /* BOTTOM BAR */
     .footer-bottom { background:#d8d8d8; border-top:1px solid #bbb; padding:18px 0; }
     .footer-bottom-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
     .footer-bottom-brand { display:flex; flex-direction:column; gap:3px; flex-shrink:0; }
@@ -798,24 +803,27 @@
     .footer-social-row { display:flex; gap:10px; align-items:center; }
     .footer-social-row a { color:#333; font-size:1.1rem; text-decoration:none; transition:color .2s; }
     .footer-social-row a:hover { color:var(--primary); }
+
+    /* Language */
     .lang-en { display:inline; }
     .lang-np { display:none; }
     body.lang-active .lang-en { display:none; }
     body.lang-active .lang-np { display:inline; }
-    @media(max-width:1000px){ .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; } }
-    @media(max-width:640px){
-      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; text-align:center; }
-      .footer-bottom-inner { flex-direction:column; align-items:center; gap:16px; text-align:center; }
-      .footer-bottom-social { align-items:center; width:100%; }
-      .footer-social-row { justify-content:center; }
-      .footer-col { align-items:center; text-align:center; }
-      .footer-link-list { align-items:center; }
-      .footer-col-heading { text-align:center; width:100%; }
-      .footer-bottom-brand { align-items:center; }
-      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { align-items:center; }
-      .footer-bottom-info { max-width:100%; text-align:center; }
+
+    /* Responsive */
+    @media(max-width:1000px){
+      .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; }
     }
-    @media(max-width:400px){ .footer-top-inner { grid-template-columns:1fr; text-align:center; } }
+    @media(max-width:640px){
+      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; }
+      .footer-bottom-inner { flex-direction:column; align-items:flex-start; gap:12px; }
+      .footer-bottom-social { align-items:flex-start; }
+    }
+    @media(max-width:400px){
+      .footer-top-inner { grid-template-columns:1fr; }
+    }
+
+    /* WhatsApp */
     .wa-widget { position:fixed; bottom:90px; right:24px; z-index:9999; display:flex; align-items:center; gap:10px; flex-direction:row; }
     .wa-fab { width:52px; height:52px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.7rem; text-decoration:none; box-shadow:0 4px 16px rgba(37,211,102,.4),0 2px 8px rgba(0,0,0,.2); transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; animation:waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both; position:relative; }
     .wa-fab:hover { transform:scale(1.12) rotate(-6deg); }
@@ -825,6 +833,55 @@
     @keyframes waIn { from{opacity:0;transform:scale(.4) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
     @keyframes waRing { 0%{transform:scale(1);opacity:.8} 70%,100%{transform:scale(1.5);opacity:0} }
     @media(max-width:480px){ .wa-widget{bottom:90px;right:14px;} .wa-fab{width:46px;height:46px;font-size:1.5rem;} }
+
+    /* Add these responsive styles for footer mobile view */
+    @media(max-width:640px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-inner { 
+        flex-direction: column; 
+        align-items: center;
+        gap: 16px;
+        text-align: center;
+      }
+      .footer-bottom-social { 
+        align-items: center;
+        width: 100%;
+      }
+      .footer-social-row {
+        justify-content: center;
+      }
+      .footer-col {
+        align-items: center;
+        text-align: center;
+      }
+      .footer-link-list {
+        align-items: center;
+      }
+      .footer-col-heading {
+        text-align: center;
+        width: 100%;
+      }
+      .footer-bottom-brand {
+        align-items: center;
+      }
+      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq {
+        align-items: center;
+      }
+      .footer-bottom-info {
+        max-width: 100%;
+        text-align: center;
+      }
+    }
+    @media(max-width:400px){
+      .footer-top-inner { 
+        grid-template-columns: 1fr; 
+        text-align: center;
+      }
+    }
   </style>
 
   <style>
@@ -1059,17 +1116,36 @@
   
   
 
+  <!-- TOP SECTION: multi-column links -->
   <div class="footer-top">
     <div class="footer-top-inner">
+
+      <!-- Col 1: Contact -->
       <div class="footer-col footer-contact-col">
-        <h4 class="footer-col-heading"><span class="lang-en">Contact Address</span><span class="lang-np">सम्पर्क ठेगाना</span></h4>
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Contact Address</span>
+          <span class="lang-np">सम्पर्क ठेगाना</span>
+        </h4>
         <p class="footer-company-name">Shittal Pati</p>
-        <p class="footer-addr"><span class="lang-en">Bhagwati Tole-3, Tansen Palpa, Nepal</span><span class="lang-np">भगवती टोल-३, तानसेन पाल्पा, नेपाल</span></p>
-        <p class="footer-contact-line"><span class="lang-en">Phone: +977 9847492226</span><span class="lang-np">फोन: +९७७ ९८४७४९२२२६</span></p>
-        <p class="footer-contact-line"><span class="lang-en">Email:</span><span class="lang-np">इमेल:</span> njdnews@gmail.com</p>
+        <p class="footer-addr">
+          <span class="lang-en">Bhagwati Tole-3, Tansen Palpa, Nepal</span>
+          <span class="lang-np">भगवती टोल-३, तानसेन पाल्पा, नेपाल</span>
+        </p>
+        <p class="footer-contact-line">
+          <span class="lang-en">Phone: +977 9847492226</span>
+          <span class="lang-np">फोन: +९७७ ९८४७४९२२२६</span>
+        </p>
+        <p class="footer-contact-line">
+          <span class="lang-en">Email:</span><span class="lang-np">इमेल:</span> njdnews@gmail.com
+        </p>
       </div>
+
+      <!-- Col 2: News links -->
       <div class="footer-col">
-        <h4 class="footer-col-heading"><span class="lang-en">News</span><span class="lang-np">समाचार</span></h4>
+        <h4 class="footer-col-heading">
+          <span class="lang-en">News</span>
+          <span class="lang-np">समाचार</span>
+        </h4>
         <ul class="footer-link-list">
           <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
           <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
@@ -1078,39 +1154,62 @@
           <li><a href="../index.html#education-section"><span class="lang-en">Education</span><span class="lang-np">शिक्षा</span></a></li>
         </ul>
       </div>
+
+      <!-- Col 3: Entertainment -->
       <div class="footer-col">
-        <h4 class="footer-col-heading"><span class="lang-en">Entertainment</span><span class="lang-np">मनोरञ्जन</span></h4>
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Entertainment</span>
+          <span class="lang-np">मनोरञ्जन</span>
+        </h4>
         <ul class="footer-link-list">
-          <li><a href="#entertainment-section"><span class="lang-en">Movies &amp; Music</span><span class="lang-np">चलचित्र र संगीत</span></a></li>
+          <li><a href="#entertainment-section"><span class="lang-en">Movies & Music</span><span class="lang-np">चलचित्र र संगीत</span></a></li>
           <li><a href="#entertainment-section"><span class="lang-en">Arts</span><span class="lang-np">कला</span></a></li>
           <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
         </ul>
       </div>
+
+      <!-- Col 4: Feature -->
       <div class="footer-col">
-        <h4 class="footer-col-heading"><span class="lang-en">Feature</span><span class="lang-np">विशेष</span></h4>
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Feature</span>
+          <span class="lang-np">विशेष</span>
+        </h4>
         <ul class="footer-link-list">
           <li><a href="../index.html#feature-section"><span class="lang-en">Feature News</span><span class="lang-np">विशेष समाचार</span></a></li>
           <li><a href="../index.html#latest-section"><span class="lang-en">Latest</span><span class="lang-np">ताजा</span></a></li>
         </ul>
       </div>
+
+      <!-- Col 5: Specials -->
       <div class="footer-col">
-        <h4 class="footer-col-heading"><span class="lang-en">Specials</span><span class="lang-np">विशेष</span></h4>
+        <h4 class="footer-col-heading">
+          <span class="lang-en">Specials</span>
+          <span class="lang-np">विशेष</span>
+        </h4>
         <ul class="footer-link-list">
           <li><a href="../page/video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
         </ul>
       </div>
+
+      <!-- Col 6: About -->
       <div class="footer-col">
-        <h4 class="footer-col-heading"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></h4>
+        <h4 class="footer-col-heading">
+          <span class="lang-en">About Us</span>
+          <span class="lang-np">हाम्रोबारे</span>
+        </h4>
         <ul class="footer-link-list">
           <li><a href="../page/about.html"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></a></li>
           <li><a href="../page/contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
         </ul>
       </div>
+
     </div>
   </div>
 
+  <!-- BOTTOM BAR -->
   <div class="footer-bottom">
     <div class="footer-bottom-inner">
+
       <div class="footer-bottom-brand">
         <span class="footer-site-name">Shittal Pati</span>
         <span class="footer-copy">
@@ -1122,24 +1221,44 @@
           <span class="lang-np">सर्वाधिकार सुरक्षित।</span>
         </span>
       </div>
+
       <div class="footer-bottom-editor">
         <span class="editor-label"><span class="lang-en">Editor</span><span class="lang-np">सम्पादक</span></span>
-        <span class="editor-name"><span class="lang-en">Jagdish Bhattarai</span><span class="lang-np">जगदीश भट्टराई</span></span>
-        <span class="editor-phone"><span class="lang-en">9857060301</span><span class="lang-np">९८५७०६०३०१</span></span>
+        <span class="editor-name">
+          <span class="lang-en">Jagdish Bhattarai</span>
+          <span class="lang-np">जगदीश भट्टराई</span>
+        </span>
+        <span class="editor-phone">
+          <span class="lang-en">9857060301</span>
+          <span class="lang-np">९८५७०६०३०१</span>
+        </span>
       </div>
+
       <div class="footer-bottom-sub">
         <span class="editor-label"><span class="lang-en">Sub-Editor</span><span class="lang-np">सह-सम्पादक</span></span>
-        <span class="editor-name"><span class="lang-en">Ramchandra Rayamajhi</span><span class="lang-np">रामचन्द्र रायमाझी</span></span>
-        <span class="editor-phone"><span class="lang-en">9847492226</span><span class="lang-np">९८४७४९२२२६</span></span>
+        <span class="editor-name">
+          <span class="lang-en">Ramchandra Rayamajhi</span>
+          <span class="lang-np">रामचन्द्र रायमाझी</span>
+        </span>
+        <span class="editor-phone">
+          <span class="lang-en">9847492226</span>
+          <span class="lang-np">९८४७४९२२२६</span>
+        </span>
       </div>
+
       <div class="footer-bottom-freq">
         <span class="editor-label"><span class="lang-en">Frequency</span><span class="lang-np">फ्रिक्वेन्सी</span></span>
-        <span class="editor-name"><span class="lang-en">103.5 MHZ FM</span><span class="lang-np">१०३.५ मेगाहर्ज एफएम</span></span>
+        <span class="editor-name">
+          <span class="lang-en">103.5 MHZ FM</span>
+          <span class="lang-np">१०३.५ मेगाहर्ज एफएम</span>
+        </span>
       </div>
+
       <div class="footer-bottom-info">
         <span class="lang-en">Official Website of Janavedana Daily</span>
         <span class="lang-np">जनवेदना दैनिकको आधिकारिक वेबसाइट</span>
       </div>
+
       <div class="footer-bottom-social">
         <span class="connect-label"><span class="lang-en">Connect with Us</span><span class="lang-np">जोडिनुहोस्</span></span>
         <div class="footer-social-row">
@@ -1147,19 +1266,20 @@
           <a href="https://www.instagram.com/shittalpationline/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
         </div>
       </div>
+
     </div>
   </div>
 
   
+
+  
 </footer>
-
-
 
   <!-- ════ WHATSAPP WIDGET ════ -->
   <div class="wa-widget">
-  <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
-  <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
-</div>
+    <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
+    <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  </div>
 
   <!-- ════ LANG CAPTURE — installed first, cancels all competing handlers ════ -->
   <script>
@@ -1604,7 +1724,7 @@
     descEn:       "Latest News — Latest news and updates.",
     descNp:       "ताजा समाचार — नवीनतम समाचार र अपडेटहरू।",
     totalCount:   8,
-    allArticles:  [{"newsIndex":0,"recordId":"","title":"A fire broke out in a car in Kirtipur; the police removed the body.","titleNe":"कीर्तिपुरमा कारमा आगो लाग्यो, प्रहरीले निकाल्यो शव","slug":"a-fire-broke-out-in-a-car-in-kirtipur-the-police-removed-the-body","category":"Feature News","categoryNe":"विशेष समाचार","metaDesc":"A man's body was found completely charred when a car caught fire in Kirtipur.","metaDescNe":"कीर्तिपुरमा कारमा आगलागी हुँदा एक पुरुषको शव पूर्ण रूपमा जलेको अवस्थामा फेला परेको छ।","readTime":"1 min read","readTimeNe":"2 मिनेट पढाइ","date":"2026-07-21T00:00:00.000Z","time":"4:36 PM","creator":"RAS","creatorNp":"रासस","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/a-fire-broke-out-in-a-car-in-kirtipur-the-police-removed-the-body.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":1,"recordId":"","title":"The servers and systems teasing the digital services","titleNe":"डिजिटल सेवालाई गिज्याइरहेका सर्भर र सिस्टम","slug":"the-servers-and-systems-teasing-the-digital-services","category":"Technology","categoryNe":"प्रविधि","metaDesc":"The frequent shutdowns of the digital system cause problems for service seekers who have to wait for a long time in the land administration, transport, and national identity card departments.","metaDescNe":"डिजिटल प्रणाली बारम्बार बन्द हुँदा भूमि प्रशासन, यातायात र राष्ट्रिय परिचयपत्र विभागमा सेवाग्राहीले लामो समय कुर्नुपर्ने समस्या।","readTime":"7 min read","readTimeNe":"7 मिनेट पढाइ","date":"2026-07-19T00:00:00.000Z","time":"1:12 PM","creator":"Nature Dahal","creatorNp":"प्रकृति दाहाल","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/the-servers-and-systems-teasing-the-digital-services.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":2,"recordId":"","title":"The Delhi CJI's 'Chalo Sansad' march was lathi-charged by security personnel.","titleNe":"दिल्लीमा सीजेपीको 'चलो संसद्' मार्च, सुरक्षाकर्मीले गरे लाठीचार्ज","slug":"the-delhi-cjis-chalo-sansad-march-was-lathi-charged-by-security-personnel","category":"International","categoryNe":"अन्तर्राष्ट्रिय","metaDesc":"New Delhi, India, has seen the start of the 'Chalo Sansad' march, with police reporting around 8,000 participants, including artists and opposition leaders.","metaDescNe":"भारतको नयाँ दिल्लीमा 'चलो संसद्' मार्च सुरु भएको छ, जहाँ कलाकार र विपक्षी नेताहरू सहित करिब ८ हजार सहभागी रहेको प्रहरीले जनाएको छ।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"2026-07-20T00:00:00.000Z","time":"2:22 PM","creator":"Kantipur correspondent","creatorNp":"कान्तिपुर संवाददाता","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/the-delhi-cjis-chalo-sansad-march-was-lathi-charged-by-security-personnel.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":3,"recordId":"","title":"FIFA World Cup 2026: Slavko from Slovakia to be the referee for the final","titleNe":"फिफा विश्वकप २०२६ : फाइनलको रेफ्रीमा स्लोभाकियाका स्लाभ्को","slug":"fifa-world-cup-2026-slavko-from-slovakia-to-be-the-referee-for-the-final","category":"Sports","categoryNe":"खेलकुद","metaDesc":"The 2026 World Cup final will be refereed by Slovakia's Slavko Vinčić, where Argentina and Spain will compete.","metaDescNe":"विश्वकप २०२६ को फाइनलमा स्लोभाकियाका स्लाभ्को भिनिसिचले रेफ्री गर्नेछन् जहाँ अर्जेन्टिना र स्पेनबीच प्रतिस्पर्धा हुँदैछ।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"2026-07-19T00:00:00.000Z","time":"11:50 AM","creator":"Himesh","creatorNp":"हिमेश","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/fifa-world-cup-2026-slavko-from-slovakia-to-be-the-referee-for-the-final.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":4,"recordId":"","title":"Sushil Koirala Cancer Hospital's liquid oxygen plant is operational.","titleNe":"सुशील कोइराला क्यान्सर अस्पतालमा लिक्विड अक्सिजन प्लान्ट सञ्चालन","slug":"sushil-koirala-cancer-hospitals-liquid-oxygen-plant-is-operational","category":"Feature News","categoryNe":"विशेष समाचार","metaDesc":"The operation of a 20 kilolitre capacity liquid oxygen plant at Banke's Susheel Koirala Pradhan Cancer Hospital has eliminated the hassle of transporting oxygen.","metaDescNe":"बाँकेको सुशील कोइराला प्रखर क्यान्सर अस्पतालमा २० किलोलिटर क्षमताको लिक्विड अक्सिजन प्लान्ट सञ्चालनमा आएसँगै अक्सिजन ढुवानीको झन्झट हटेको छ।","readTime":"1 min read","readTimeNe":"2 मिनेट पढाइ","date":"2026-07-21T00:00:00.000Z","time":"4:36 PM","creator":"Rupa Gahatraj","creatorNp":"रुपा गहतराज","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/sushil-koirala-cancer-hospitals-liquid-oxygen-plant-is-operational.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":5,"recordId":"","title":"I will not translate the text.","titleNe":"दक्षिणपन्थीसँग सहकार्य नगर्न वाम एकतालाई झलनाथ खनालको सुझाव","slug":"i-will-not-translate-the-text","category":"Politics","categoryNe":"राजनीति","metaDesc":"Jhalanath Khanal has stated that political, economic, and social crises in the country are deepening and that unity among leftist forces is necessary.","metaDescNe":"झलनाथ खनालले देशमा राजनीतिक, आर्थिक र सामाजिक संकट गहिरिँदै गएको र वामपन्थी शक्तिहरूबीच एकता आवश्यक रहेको बताएका छन्।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"2026-07-19T00:00:00.000Z","time":"1:48 PM","creator":"Citizen","creatorNp":"नागरिक","source":"nagariknews.nagariknetwork.com","sourceNp":"नगरिकन्यूज.नगरिकनेटवर्क.कम","imageUrls":"../images/i-will-not-translate-the-text.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":6,"recordId":"","title":"The new passport system has disrupted services in Dolpa.","titleNe":"नयाँ राहदानी प्रणालीले काम नगर्दा डोल्पामा सेवा प्रभावित","slug":"the-new-passport-system-has-disrupted-services-in-dolpa","category":"Feature News","categoryNe":"विशेष समाचार","metaDesc":"The service has been affected due to technical issues in the new passport system in Dolpa.","metaDescNe":"डोल्पामा नयाँ राहदानी प्रणालीमा आएको प्राविधिक समस्याका कारण सेवा प्रभावित भएको छ।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"2026-07-19T00:00:00.000Z","time":"11:50 AM","creator":"Ramchandra Nyaupane","creatorNp":"रामचन्द्र न्यौपाने","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/the-new-passport-system-has-disrupted-services-in-dolpa.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":7,"recordId":"","title":"After the new passport system was implemented in Ramechhap, the problems that had appeared were resolved, and the service became regular.","titleNe":"रामेछापमा नयाँ राहदानी प्रणाली लागू भएपछि देखिएको समस्या हट्यो, सेवा नियमित","slug":"after-the-new-passport-system-was-implemented-in-ramechhap-the-problems-that-had-appeared-were-resolved-and-the-service-became-regular","category":"Feature News","categoryNe":"विशेष समाचार","metaDesc":"The new passport system has been implemented in Ramechhap, and despite some initial technical issues, services are now operating regularly and smoothly.","metaDescNe":"रामेछापमा नयाँ राहदानी प्रणाली लागू हुँदा केही प्राविधिक समस्या आए पनि हाल सेवा नियमित र सहज रूपमा सञ्चालन भइरहेको छ।","readTime":"2 min read","readTimeNe":"2 मिनेट पढाइ","date":"2026-07-19T00:00:00.000Z","time":"11:50 AM","creator":"","creatorNp":"नवराज श्रेष्ठ","source":"Kantipur","sourceNp":"","imageUrls":"../images/after-the-new-passport-system-was-implemented-in-ramechhap-the-problems-that-had-appeared-were-resolved-and-the-service-became-regular.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"}],
+    allArticles:  [{"newsIndex":0,"recordId":"","title":"The servers and systems teasing the digital services","titleNe":"डिजिटल सेवालाई गिज्याइरहेका सर्भर र सिस्टम","slug":"the-servers-and-systems-teasing-the-digital-services","category":"Technology","categoryNe":"प्रविधि","metaDesc":"The frequent shutdowns of the digital system cause problems for service seekers who have to wait for a long time in the land administration, transport, and national identity card departments.","metaDescNe":"डिजिटल प्रणाली बारम्बार बन्द हुँदा भूमि प्रशासन, यातायात र राष्ट्रिय परिचयपत्र विभागमा सेवाग्राहीले लामो समय कुर्नुपर्ने समस्या।","readTime":"7 min read","readTimeNe":"7 मिनेट पढाइ","date":"2026-07-19T00:00:00.000Z","time":"1:12 PM","creator":"Nature Dahal","creatorNp":"प्रकृति दाहाल","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/the-servers-and-systems-teasing-the-digital-services.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":1,"recordId":"","title":"The Delhi CJI's 'Chalo Sansad' march was lathi-charged by security personnel.","titleNe":"दिल्लीमा सीजेपीको 'चलो संसद्' मार्च, सुरक्षाकर्मीले गरे लाठीचार्ज","slug":"the-delhi-cjis-chalo-sansad-march-was-lathi-charged-by-security-personnel","category":"International","categoryNe":"अन्तर्राष्ट्रिय","metaDesc":"New Delhi, India, has seen the start of the 'Chalo Sansad' march, with police reporting around 8,000 participants, including artists and opposition leaders.","metaDescNe":"भारतको नयाँ दिल्लीमा 'चलो संसद्' मार्च सुरु भएको छ, जहाँ कलाकार र विपक्षी नेताहरू सहित करिब ८ हजार सहभागी रहेको प्रहरीले जनाएको छ।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"2026-07-20T00:00:00.000Z","time":"2:22 PM","creator":"Kantipur correspondent","creatorNp":"कान्तिपुर संवाददाता","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/the-delhi-cjis-chalo-sansad-march-was-lathi-charged-by-security-personnel.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":2,"recordId":"","title":"FIFA World Cup 2026: Slavko from Slovakia to be the referee for the final","titleNe":"फिफा विश्वकप २०२६ : फाइनलको रेफ्रीमा स्लोभाकियाका स्लाभ्को","slug":"fifa-world-cup-2026-slavko-from-slovakia-to-be-the-referee-for-the-final","category":"Sports","categoryNe":"खेलकुद","metaDesc":"The 2026 World Cup final will be refereed by Slovakia's Slavko Vinčić, where Argentina and Spain will compete.","metaDescNe":"विश्वकप २०२६ को फाइनलमा स्लोभाकियाका स्लाभ्को भिनिसिचले रेफ्री गर्नेछन् जहाँ अर्जेन्टिना र स्पेनबीच प्रतिस्पर्धा हुँदैछ।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"2026-07-19T00:00:00.000Z","time":"11:50 AM","creator":"Himesh","creatorNp":"हिमेश","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/fifa-world-cup-2026-slavko-from-slovakia-to-be-the-referee-for-the-final.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":3,"recordId":"","title":"I will not translate the text.","titleNe":"दक्षिणपन्थीसँग सहकार्य नगर्न वाम एकतालाई झलनाथ खनालको सुझाव","slug":"i-will-not-translate-the-text","category":"Politics","categoryNe":"राजनीति","metaDesc":"Jhalanath Khanal has stated that political, economic, and social crises in the country are deepening and that unity among leftist forces is necessary.","metaDescNe":"झलनाथ खनालले देशमा राजनीतिक, आर्थिक र सामाजिक संकट गहिरिँदै गएको र वामपन्थी शक्तिहरूबीच एकता आवश्यक रहेको बताएका छन्।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"2026-07-19T00:00:00.000Z","time":"1:48 PM","creator":"Citizen","creatorNp":"नागरिक","source":"nagariknews.nagariknetwork.com","sourceNp":"नगरिकन्यूज.नगरिकनेटवर्क.कम","imageUrls":"../images/i-will-not-translate-the-text.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":4,"recordId":"","title":"The new passport system has disrupted services in Dolpa.","titleNe":"नयाँ राहदानी प्रणालीले काम नगर्दा डोल्पामा सेवा प्रभावित","slug":"the-new-passport-system-has-disrupted-services-in-dolpa","category":"Feature News","categoryNe":"विशेष समाचार","metaDesc":"The service has been affected due to technical issues in the new passport system in Dolpa.","metaDescNe":"डोल्पामा नयाँ राहदानी प्रणालीमा आएको प्राविधिक समस्याका कारण सेवा प्रभावित भएको छ।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"2026-07-19T00:00:00.000Z","time":"11:50 AM","creator":"Ramchandra Nyaupane","creatorNp":"रामचन्द्र न्यौपाने","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/the-new-passport-system-has-disrupted-services-in-dolpa.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":5,"recordId":"","title":"After the new passport system was implemented in Ramechhap, the problems that had appeared were resolved, and the service became regular.","titleNe":"रामेछापमा नयाँ राहदानी प्रणाली लागू भएपछि देखिएको समस्या हट्यो, सेवा नियमित","slug":"after-the-new-passport-system-was-implemented-in-ramechhap-the-problems-that-had-appeared-were-resolved-and-the-service-became-regular","category":"Feature News","categoryNe":"विशेष समाचार","metaDesc":"The new passport system has been implemented in Ramechhap, and despite some initial technical issues, services are now operating regularly and smoothly.","metaDescNe":"रामेछापमा नयाँ राहदानी प्रणाली लागू हुँदा केही प्राविधिक समस्या आए पनि हाल सेवा नियमित र सहज रूपमा सञ्चालन भइरहेको छ।","readTime":"2 min read","readTimeNe":"2 मिनेट पढाइ","date":"2026-07-19T00:00:00.000Z","time":"11:50 AM","creator":"","creatorNp":"नवराज श्रेष्ठ","source":"Kantipur","sourceNp":"","imageUrls":"../images/after-the-new-passport-system-was-implemented-in-ramechhap-the-problems-that-had-appeared-were-resolved-and-the-service-became-regular.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":6,"recordId":"","title":"Who does South America support?","titleNe":"दक्षिण अमेरिकाले कसलाई गर्छ समर्थन&nbsp;?","slug":"who-does-south-america-support","category":"International","categoryNe":"अन्तर्राष्ट्रिय","metaDesc":"This time, in the World Cup final, many South American supporters are backing Spain instead of Argentina.","metaDescNe":"यसपटकको विश्वकप फाइनलमा दक्षिण अमेरिकाका धेरै समर्थकहरूले अर्जेन्टिनाको सट्टा स्पेनलाई समर्थन गरिरहेका छन्।","readTime":"3 min read","readTimeNe":"3 मिनेट पढाइ","date":"2026-07-19T00:00:00.000Z","time":"12:58 PM","creator":"AFP","creatorNp":"एएफपी","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/who-does-south-america-support.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":7,"recordId":"","title":"I broke the fast of the founder of the Cockroach People's Party, Abhijit Dipke.","titleNe":"कक्रोच जनता पार्टीका संस्थापक अभिजित दिपकेले तोडे अनशन","slug":"i-broke-the-fast-of-the-founder-of-the-cockroach-peoples-party-abhijit-dipke","category":"International","categoryNe":"अन्तर्राष्ट्रिय","metaDesc":"Central ministers JP Nadda met with CJP spokespersons to discuss the ongoing indefinite hunger strike demanding NEET exam reforms have broken their fast and reported that police lathi-charged the 'Chalo Parliament' march in New Delhi.","metaDescNe":"केन्द्रीय मन्त्री जेपी नड्डासँग वार्ताका लागि गएका सीजेपी प्रवक्ताहरूले नीट परीक्षा सुधारको मागमा चलेको आमरण अनशन तोडेको र नयाँदिल्लीमा 'चलो संसद्' मार्चमा प्रहरीले लाठीचार्ज गरेको जनाएका छन्।","readTime":"2 min read","readTimeNe":"2 मिनेट पढाइ","date":"2026-07-20T00:00:00.000Z","time":"2:24 PM","creator":"Kantipur correspondent","creatorNp":"कान्तिपुर संवाददाता","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/i-broke-the-fast-of-the-founder-of-the-cockroach-peoples-party-abhijit-dipke.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"}],
     itemsPerPage: 6
   };
 
@@ -1870,7 +1990,7 @@
 })();
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded', function(){
+    document.addEventListener('DOMContentLoaded',function(){
       var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
       var adYear=new Date().getFullYear();
       var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
