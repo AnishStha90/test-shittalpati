@@ -538,6 +538,8 @@
 
 </style>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap');
+
   :root {
     --accent:       #D4A017;
     --primary:      #A31919;
@@ -590,6 +592,9 @@
   .social-link[data-social="facebook"]:hover { background:#1877F2;color:#fff;border-color:#1877F2 }
   .social-link[data-social="instagram"]:hover { background:#E4405F;color:#fff;border-color:#E4405F }
 
+  .stream-link { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.25rem; padding: .7rem 1.5rem; background: var(--primary); color: var(--primary-on); border-radius: 8px; text-decoration: none; font-weight: 600; font-size: .95rem; letter-spacing: .03em; transition: opacity .2s ease, transform .2s ease; align-self: center; }
+  .stream-link:hover { opacity: .85; transform: translateX(3px) }
+
   .contact-form { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem 2.25rem }
   .form-group   { margin-bottom: 1.3rem }
   .form-group label { display: block; margin-bottom: .45rem; font-weight: 600; font-size: .9rem; letter-spacing: .03em; text-transform: uppercase }
@@ -598,6 +603,8 @@
   .form-group input,
   .form-group textarea { width: 100%; padding: .7rem 1rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 1rem; line-height: 1.5; transition: border-color .2s ease, box-shadow .2s ease; -webkit-appearance: none }
   .form-group textarea { resize: vertical; min-height: 120px }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--muted) }
   .form-group input:focus,
   .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(192,160,48,0.18) }
 
@@ -605,6 +612,7 @@
 
   .submit-btn { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 2.25rem; background: var(--primary); color: var(--primary-on); border: none; border-radius: 6px; font-family: var(--font-body); font-size: 1rem; font-weight: 700; letter-spacing: .04em; cursor: pointer; transition: opacity .2s ease, transform .15s ease }
   .submit-btn:hover:not(:disabled) { opacity: .88; transform: translateY(-1px) }
+  .submit-btn:active:not(:disabled) { transform: translateY(0) }
   .submit-btn:disabled { opacity: .45; cursor: not-allowed }
 
   .form-status { margin-top: 1rem; padding: .8rem 1rem; border-radius: 6px; text-align: center; font-size: .95rem; line-height: 1.5; display: none }
@@ -617,12 +625,19 @@
   .map-placeholder { width: 100%; height: 100%; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; color: var(--muted); font-style: italic }
   .map-placeholder i { font-size: 2.5rem; color: var(--border) }
 
+  .contact-anim { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease }
+  .contact-anim.visible { opacity: 1; transform: translateY(0) }
+  .contact-anim:nth-child(2) { transition-delay: .08s }
+  .contact-anim:nth-child(3) { transition-delay: .16s }
+  .contact-anim:nth-child(4) { transition-delay: .24s }
+
   .lang-np { display: none }
   .lang-en { display: inline }
 
   @media (max-width: 1024px) {
     .contact-content { grid-template-columns: 1fr; align-items: start; padding: 2rem 1.25rem }
-    .contact-info, .contact-form-wrapper { display: block }
+    .contact-info         { order: 1; display: block; text-align: center; }
+    .contact-form-wrapper { order: 2; display: block }
     .info-cards-grid { flex: none }
     .map-section { flex: none; display: block }
     .contact-map-container { height: 320px }
@@ -1083,8 +1098,14 @@
 <div class="contact-container">
 
   <div class="contact-hero">
-    <h1><span class="lang-en">Contact Us</span><span class="lang-np">सम्पर्क गर्नुहोस्</span></h1>
-    <p><span class="lang-en">Get in touch with our team</span><span class="lang-np">हाम्रो टोलीसँग सम्पर्क गर्नुहोस्</span></p>
+    <h1>
+      <span class="lang-en">Contact Us</span>
+      <span class="lang-np">सम्पर्क गर्नुहोस्</span>
+    </h1>
+    <p>
+      <span class="lang-en">Get in touch with our team</span>
+      <span class="lang-np">हाम्रो टोलीसँग सम्पर्क गर्नुहोस्</span>
+    </p>
   </div>
 
   <div class="contact-content">
@@ -1092,7 +1113,7 @@
     <div class="contact-info">
       <div class="info-cards-grid">
 
-        <div class="info-card">
+        <div class="info-card contact-anim">
           <i class="fas fa-clock"></i>
           <h3 class="lang-en">Hours of Operation</h3>
           <h3 class="lang-np">सञ्चालन समय</h3>
@@ -1101,34 +1122,34 @@
           <p><span class="lang-en">Sunday: Closed</span><span class="lang-np">आइतबार: बन्द</span></p>
         </div>
 
-        <div class="info-card">
+        <div class="info-card contact-anim">
           <i class="fas fa-phone"></i>
           <h3 class="lang-en">Phone</h3>
           <h3 class="lang-np">फोन</h3>
           <p>
-            <span id="contact-phone-en" class="lang-en">+977 9847492226</span>
-            <span id="contact-phone-np" class="lang-np">+९७७ ९८४७४९२२२६</span>
+            <span id="contact-phone-en" class="lang-en">—</span>
+            <span id="contact-phone-np" class="lang-np">—</span>
           </p>
           <small class="lang-en">Available during business hours</small>
           <small class="lang-np">व्यापारिक समयमा उपलब्ध</small>
         </div>
 
-        <div class="info-card">
+        <div class="info-card contact-anim">
           <i class="fas fa-envelope"></i>
           <h3 class="lang-en">Email</h3>
           <h3 class="lang-np">इमेल</h3>
-          <p><span id="contact-email">njdnews@gmail.com</span></p>
+          <p><span id="contact-email">—</span></p>
           <small class="lang-en">We'll respond within 24 hours</small>
           <small class="lang-np">हामी २४ घण्टा भित्र जवाफ दिनेछौं</small>
         </div>
 
-        <div class="info-card">
+        <div class="info-card contact-anim">
           <i class="fas fa-location-dot"></i>
           <h3 class="lang-en">Address</h3>
           <h3 class="lang-np">ठेगाना</h3>
           <p>
-            <span id="contact-addr-en" class="lang-en">Bhagwati Tole-3, Tansen Palpa, Nepal</span>
-            <span id="contact-addr-np" class="lang-np">भगवती टोल-३, तानसेन पाल्पा, नेपाल</span>
+            <span id="contact-addr-en" class="lang-en">—</span>
+            <span id="contact-addr-np" class="lang-np">—</span>
           </p>
         </div>
 
@@ -1146,7 +1167,7 @@
 
     <div class="contact-form-wrapper">
 
-      <form id="contact-form" class="contact-form"
+      <form id="contact-form" class="contact-form contact-anim"
             action="https://formsubmit.co/njdnews@gmail.com"
             method="POST"
             novalidate>
@@ -1156,27 +1177,42 @@
         </div>
 
         <div class="form-group">
-          <label for="form-name"><span class="lang-en">Full Name</span><span class="lang-np">पुरा नाम</span><span class="required"> *</span></label>
+          <label for="form-name">
+            <span class="lang-en">Full Name</span><span class="lang-np">पुरा नाम</span>
+            <span class="required"> *</span>
+          </label>
           <input type="text" id="form-name" name="name" autocomplete="name" required placeholder="John Doe">
         </div>
 
         <div class="form-group">
-          <label for="form-email"><span class="lang-en">Email Address</span><span class="lang-np">इमेल ठेगाना</span><span class="required"> *</span></label>
+          <label for="form-email">
+            <span class="lang-en">Email Address</span><span class="lang-np">इमेल ठेगाना</span>
+            <span class="required"> *</span>
+          </label>
           <input type="email" id="form-email" name="email" autocomplete="email" required placeholder="you@example.com">
         </div>
 
         <div class="form-group">
-          <label for="form-phone"><span class="lang-en">Phone Number</span><span class="lang-np">फोन नम्बर</span><span class="optional">(<span class="lang-en">Optional</span><span class="lang-np">वैकल्पिक</span>)</span></label>
+          <label for="form-phone">
+            <span class="lang-en">Phone Number</span><span class="lang-np">फोन नम्बर</span>
+            <span class="optional">(<span class="lang-en">Optional</span><span class="lang-np">वैकल्पिक</span>)</span>
+          </label>
           <input type="tel" id="form-phone" name="phone" autocomplete="tel" placeholder="+977 98XXXXXXXX">
         </div>
 
         <div class="form-group">
-          <label for="form-subject"><span class="lang-en">Subject</span><span class="lang-np">विषय</span><span class="required"> *</span></label>
+          <label for="form-subject">
+            <span class="lang-en">Subject</span><span class="lang-np">विषय</span>
+            <span class="required"> *</span>
+          </label>
           <input type="text" id="form-subject" name="subject" required>
         </div>
 
         <div class="form-group">
-          <label for="form-message"><span class="lang-en">Message</span><span class="lang-np">सन्देश</span><span class="required"> *</span></label>
+          <label for="form-message">
+            <span class="lang-en">Message</span><span class="lang-np">सन्देश</span>
+            <span class="required"> *</span>
+          </label>
           <textarea id="form-message" name="message" rows="5" required></textarea>
         </div>
 
@@ -1189,7 +1225,7 @@
         <div id="form-status" class="form-status" role="alert"></div>
       </form>
 
-      <div class="map-section">
+      <div class="map-section contact-anim">
         <h3 class="lang-en">Find Us</h3>
         <h3 class="lang-np">हामीलाई भेट्नुहोस्</h3>
         <div id="contact-map" class="contact-map-container">
@@ -1204,6 +1240,8 @@
     </div>
   </div>
 </div>
+
+
 
 <!-- DATA-DEBUG: phone=+977 9847492226 email=njdnews@gmail.com addr=Bhagwati Tole-3, Tansen Palpa, Nepal -->
 </main>
@@ -1594,6 +1632,93 @@
 
 })();
 
+</script>
+<script>
+(function () {
+  'use strict';
+
+  var INLINE_TAGS = new Set(['SPAN','A','I','B','STRONG','SMALL','EM','BUTTON']);
+
+  window.setContactLang = function (lang) {
+    lang = (lang === 'np') ? 'np' : 'en';
+    document.querySelectorAll('.lang-en').forEach(function (el) {
+      el.style.display = (lang === 'en') ? (INLINE_TAGS.has(el.tagName) ? 'inline' : 'block') : 'none';
+    });
+    document.querySelectorAll('.lang-np').forEach(function (el) {
+      el.style.display = (lang === 'np') ? (INLINE_TAGS.has(el.tagName) ? 'inline' : 'block') : 'none';
+    });
+    try { localStorage.setItem('fm_lang', lang); } catch (e) {}
+  };
+
+  window.populateContactData = function (data) {
+    if (!data) return;
+
+    function setText(id, val) {
+      var el = document.getElementById(id);
+      if (el && val) el.textContent = val;
+    }
+    setText('contact-phone-en', data.phoneEn);
+    setText('contact-phone-np', data.phoneNp);
+    setText('contact-email',    data.email);
+    setText('contact-addr-en',  data.addrEn);
+    setText('contact-addr-np',  data.addrNp);
+
+    // Map
+    var mapEl = document.getElementById('contact-map');
+    if (mapEl && data.mapUrl) {
+      var raw = data.mapUrl.trim();
+      if (raw.toLowerCase().startsWith('<iframe')) {
+        mapEl.innerHTML = raw;
+        var fi = mapEl.querySelector('iframe');
+        if (fi) { fi.style.cssText = 'width:100%;height:100%;border:0;display:block'; fi.removeAttribute('width'); fi.removeAttribute('height'); }
+      } else if (raw) {
+        mapEl.innerHTML = '<iframe src="' + raw + '" width="100%" height="100%" frameborder="0" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+      }
+    }
+
+    // Stream link
+    var sl = document.getElementById('stream-link');
+    if (sl && data.streamUrl && data.streamUrl.trim()) {
+      sl.href = data.streamUrl.trim();
+      sl.style.display = 'inline-flex';
+    }
+
+    var lang = 'en';
+    try { lang = localStorage.getItem('fm_lang') || 'en'; } catch (e) {}
+    window.setContactLang(lang);
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+
+    var lang = 'en';
+    try { lang = localStorage.getItem('fm_lang') || 'en'; } catch (e) {}
+    window.setContactLang(lang);
+
+    window.addEventListener('langChange', function (e) {
+      if (e && e.detail && e.detail.lang) window.setContactLang(e.detail.lang);
+    });
+
+    // Intersection Observer — fade-in
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+      document.querySelectorAll('.contact-anim').forEach(function (el) { io.observe(el); });
+    } else {
+      document.querySelectorAll('.contact-anim').forEach(function (el) { el.classList.add('visible'); });
+    }
+
+    // Social link guard — prevent navigation if href still #
+    document.querySelectorAll('.social-link').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        if (!link.getAttribute('href') || link.getAttribute('href') === '#') e.preventDefault();
+      });
+    });
+
+  });
+})();
 </script>
 <script>
 (function () {
