@@ -700,270 +700,78 @@
     --text:         #1F1F1F;
     --muted:        rgba(31,31,31,0.55);
     --border:       rgba(163,25,25,0.18);
-    --font-body:    Arial, sans-serif;
-    --font-heading: Arial, sans-serif;
+    --font-body:    Noto Serif, Georgia, serif;
+    --font-heading: Noto Serif, Georgia, serif;
   }
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  html {
-    scroll-behavior: smooth;
-  }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
-  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); }
 
-  .category-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-    min-height: 100vh;
-  }
+  .category-container { max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem; min-height: 100vh; }
 
-  .category-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
-  }
+  .category-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+  .breadcrumb { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+  .breadcrumb a { color: var(--accent); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
 
-  .breadcrumb {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-bottom: 1rem;
-  }
-  .breadcrumb a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-  .breadcrumb a:hover {
-    text-decoration: underline;
-  }
+  h1 { font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--primary); margin-bottom: 1rem; line-height: 1.2; }
 
-  h1 {
-    font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    color: var(--primary);
-    margin-bottom: 1rem;
-    line-height: 1.2;
-  }
-
-  .category-description {
-    font-size: 1rem;
-    color: var(--muted);
-    max-width: 700px;
-    margin: 0 auto 1rem;
-    line-height: 1.6;
-  }
+  .category-description { font-size: 1rem; color: var(--muted); max-width: 700px; margin: 0 auto 1rem; line-height: 1.6; }
 
   .category-meta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--surface);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    color: var(--text);
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--surface); padding: 0.5rem 1rem;
+    border-radius: 20px; font-size: 0.85rem; color: var(--text);
   }
 
-  .news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
-  }
+  .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
 
-  .article-card {
-    background: var(--surface);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid var(--border);
-  }
-  .article-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  }
+  .article-card { background: var(--surface); border-radius: 12px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid var(--border); }
+  .article-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
 
-  .card-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    background: var(--border);
-  }
-  .card-image:empty {
-    background: linear-gradient(135deg, var(--border) 0%, var(--surface) 100%);
-  }
+  .card-image { width: 100%; height: 200px; object-fit: cover; background: var(--border); }
+  .card-image.no-image { background: linear-gradient(135deg, var(--border) 0%, var(--surface) 100%); }
 
-  .card-content {
-    padding: 1.25rem;
-  }
+  .card-content { padding: 1.25rem; }
+  .card-category { display: inline-block; background: var(--accent); color: var(--accent-on); font-size: 0.7rem; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; margin-bottom: 0.75rem; letter-spacing: 0.05em; font-weight: 600; text-decoration: none; }
+  .card-title { font-family: var(--font-heading); font-size: 1.2rem; line-height: 1.4; margin: 0 0 0.75rem; color: var(--text); text-decoration: none; transition: color 0.2s; }
+  .card-title:hover { color: var(--accent); }
+  .card-excerpt { font-size: 0.88rem; color: var(--muted); line-height: 1.5; margin-bottom: 1rem; }
+  .card-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--muted); }
+  .card-meta i { margin-right: 0.2rem; }
+  .read-more { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: opacity 0.2s; }
+  .read-more:hover { opacity: 0.8; }
 
-  .card-category {
-    display: inline-block;
-    background: var(--accent);
-    color: var(--accent-on);
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.05em;
-    font-weight: 600;
-    text-decoration: none;
-  }
+  .load-more-container { text-align: center; margin-top: 2rem; }
+  .load-more-btn { background: var(--accent); color: var(--accent-on); border: none; padding: 0.9rem 2rem; border-radius: 50px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: transform 0.2s, opacity 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
+  .load-more-btn:hover { opacity: 0.9; transform: scale(1.02); }
+  .load-more-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  .card-title {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    line-height: 1.4;
-    margin: 0 0 0.75rem;
-    color: var(--text);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .card-title:hover {
-    color: var(--accent);
-  }
+  #back-to-top { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent); color: var(--accent-on); border: none; border-radius: 50%; width: 42px; height: 42px; cursor: pointer; font-size: 1rem; display: none; align-items: center; justify-content: center; z-index: 999; transition: opacity 0.2s; }
+  #back-to-top:hover { opacity: 0.9; }
 
-  .card-excerpt {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.5;
-    margin-bottom: 1rem;
-  }
-
-  .card-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.78rem;
-    color: var(--muted);
-  }
-  .card-meta i {
-    margin-right: 0.2rem;
-  }
-
-  .read-more {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: opacity 0.2s;
-  }
-  .read-more:hover {
-    opacity: 0.8;
-  }
-
-  .load-more-container {
-    text-align: center;
-    margin-top: 2rem;
-  }
-
-  .load-more-btn {
-    background: var(--accent);
-    color: var(--accent-on);
-    border: none;
-    padding: 0.9rem 2rem;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: transform 0.2s, opacity 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .load-more-btn:hover {
-    opacity: 0.9;
-    transform: scale(1.02);
-  }
-  .load-more-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  #back-to-top {
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    background: var(--accent);
-    color: var(--accent-on);
-    border: none;
-    border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    cursor: pointer;
-    font-size: 1rem;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-    transition: opacity 0.2s;
-  }
-
-  .empty-state {
-    text-align: center;
-    padding: 4rem 2rem;
-    background: var(--surface);
-    border-radius: 12px;
-    color: var(--muted);
-  }
-  .empty-state i {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    opacity: 0.5;
-  }
+  .empty-state { text-align: center; padding: 4rem 2rem; background: var(--surface); border-radius: 12px; color: var(--muted); }
+  .empty-state i { font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; }
 
   @media (max-width: 768px) {
-    .category-container {
-      padding: 1rem;
-    }
-    .news-grid {
-      gap: 1rem;
-      grid-template-columns: 1fr;
-    }
-    .card-image {
-      height: 180px;
-    }
+    .category-container { padding: 1rem; }
+    .news-grid { gap: 1rem; grid-template-columns: 1fr; }
+    .card-image { height: 180px; }
   }
-
   @media (max-width: 480px) {
-    h1 {
-      font-size: 1.5rem;
-    }
-    .card-title {
-      font-size: 1rem;
-    }
+    h1 { font-size: 1.5rem; }
+    .card-title { font-size: 1rem; }
   }
 
-  .lang-np {
-    display: none;
-  }
-  .lang-en {
-    display: inline;
-  }
-  body.lang-active .lang-en {
-    display: none !important;
-  }
-  body.lang-active .lang-np {
-    display: inline !important;
-  }
-  body.lang-active p.lang-np, body.lang-active span.lang-np {
-    display: inline !important;
-  }
+  .lang-np { display: none; }
+  .lang-en { display: inline; }
+  body.lang-active .lang-en { display: none !important; }
+  body.lang-active .lang-np { display: inline !important; }
+  body.lang-active p.lang-np, body.lang-active span.lang-np { display: inline !important; }
 </style>
 <style>
-    /* ALL CSS from PART D */
     #site-footer { font-family:var(--font-body); }
-
-    /* TOP SECTION */
     .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
     .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
     .footer-col { display:flex; flex-direction:column; gap:10px; }
@@ -974,8 +782,6 @@
     .footer-link-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
     .footer-link-list li a { font-size:.85rem; color:#333; text-decoration:none; transition:color .2s; display:block; padding:2px 0; }
     .footer-link-list li a:hover { color:var(--primary); }
-
-    /* BOTTOM BAR */
     .footer-bottom { background:#d8d8d8; border-top:1px solid #bbb; padding:18px 0; }
     .footer-bottom-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
     .footer-bottom-brand { display:flex; flex-direction:column; gap:3px; flex-shrink:0; }
@@ -992,27 +798,24 @@
     .footer-social-row { display:flex; gap:10px; align-items:center; }
     .footer-social-row a { color:#333; font-size:1.1rem; text-decoration:none; transition:color .2s; }
     .footer-social-row a:hover { color:var(--primary); }
-
-    /* Language */
     .lang-en { display:inline; }
     .lang-np { display:none; }
     body.lang-active .lang-en { display:none; }
     body.lang-active .lang-np { display:inline; }
-
-    /* Responsive */
-    @media(max-width:1000px){
-      .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; }
-    }
+    @media(max-width:1000px){ .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; } }
     @media(max-width:640px){
-      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; }
-      .footer-bottom-inner { flex-direction:column; align-items:flex-start; gap:12px; }
-      .footer-bottom-social { align-items:flex-start; }
+      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; text-align:center; }
+      .footer-bottom-inner { flex-direction:column; align-items:center; gap:16px; text-align:center; }
+      .footer-bottom-social { align-items:center; width:100%; }
+      .footer-social-row { justify-content:center; }
+      .footer-col { align-items:center; text-align:center; }
+      .footer-link-list { align-items:center; }
+      .footer-col-heading { text-align:center; width:100%; }
+      .footer-bottom-brand { align-items:center; }
+      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { align-items:center; }
+      .footer-bottom-info { max-width:100%; text-align:center; }
     }
-    @media(max-width:400px){
-      .footer-top-inner { grid-template-columns:1fr; }
-    }
-
-    /* WhatsApp */
+    @media(max-width:400px){ .footer-top-inner { grid-template-columns:1fr; text-align:center; } }
     .wa-widget { position:fixed; bottom:90px; right:24px; z-index:9999; display:flex; align-items:center; gap:10px; flex-direction:row; }
     .wa-fab { width:52px; height:52px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.7rem; text-decoration:none; box-shadow:0 4px 16px rgba(37,211,102,.4),0 2px 8px rgba(0,0,0,.2); transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; animation:waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both; position:relative; }
     .wa-fab:hover { transform:scale(1.12) rotate(-6deg); }
@@ -1022,55 +825,6 @@
     @keyframes waIn { from{opacity:0;transform:scale(.4) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
     @keyframes waRing { 0%{transform:scale(1);opacity:.8} 70%,100%{transform:scale(1.5);opacity:0} }
     @media(max-width:480px){ .wa-widget{bottom:90px;right:14px;} .wa-fab{width:46px;height:46px;font-size:1.5rem;} }
-
-    /* Add these responsive styles for footer mobile view */
-    @media(max-width:640px){
-      .footer-top-inner { 
-        grid-template-columns: 1fr 1fr; 
-        gap: 16px;
-        text-align: center;
-      }
-      .footer-bottom-inner { 
-        flex-direction: column; 
-        align-items: center;
-        gap: 16px;
-        text-align: center;
-      }
-      .footer-bottom-social { 
-        align-items: center;
-        width: 100%;
-      }
-      .footer-social-row {
-        justify-content: center;
-      }
-      .footer-col {
-        align-items: center;
-        text-align: center;
-      }
-      .footer-link-list {
-        align-items: center;
-      }
-      .footer-col-heading {
-        text-align: center;
-        width: 100%;
-      }
-      .footer-bottom-brand {
-        align-items: center;
-      }
-      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq {
-        align-items: center;
-      }
-      .footer-bottom-info {
-        max-width: 100%;
-        text-align: center;
-      }
-    }
-    @media(max-width:400px){
-      .footer-top-inner { 
-        grid-template-columns: 1fr; 
-        text-align: center;
-      }
-    }
   </style>
 
   <style>
@@ -1244,33 +998,29 @@
 
 <div class="category-page-grid">
        <div class="category-main-col"><div class="category-container">
-
-  <!-- Category Header Section -->
   <div class="category-header">
     <div class="breadcrumb">
       <span id="breadcrumb-en" class="lang-en"></span>
       <span id="breadcrumb-np" class="lang-np"></span>
     </div>
-    
+
     <h1>
       <span id="category-title-en" class="lang-en"></span>
       <span id="category-title-np" class="lang-np"></span>
     </h1>
-    
+
     <p class="category-description">
       <span id="category-description-en" class="lang-en"></span>
       <span id="category-description-np" class="lang-np"></span>
     </p>
-    
+
     <div class="category-meta">
       <span><i class="fa-regular fa-newspaper"></i> <span id="news-count"></span> <span class="lang-en">Articles</span><span class="lang-np">लेखहरू</span></span>
     </div>
   </div>
 
-  <!-- News Grid Section -->
   <div id="news-grid" class="news-grid"></div>
 
-  <!-- Load More Section -->
   <div class="load-more-container">
     <button id="load-more-btn" class="load-more-btn">
       <span class="lang-en"><i class="fas fa-chevron-down"></i> Load More</span>
@@ -1278,12 +1028,13 @@
     </button>
   </div>
 
-  <!-- Back to Top Button -->
   
 
-</div>
-
-</div>
+  <div id="empty-state" class="empty-state" style="display:none">
+    <i class="fa-regular fa-newspaper"></i>
+    <p>No articles found in this category.</p>
+  </div>
+</div></div>
        <aside class="category-ads-col">
          <div class="ads-label">
            <span class="lang-en">Advertisement</span>
@@ -1308,36 +1059,17 @@
   
   
 
-  <!-- TOP SECTION: multi-column links -->
   <div class="footer-top">
     <div class="footer-top-inner">
-
-      <!-- Col 1: Contact -->
       <div class="footer-col footer-contact-col">
-        <h4 class="footer-col-heading">
-          <span class="lang-en">Contact Address</span>
-          <span class="lang-np">सम्पर्क ठेगाना</span>
-        </h4>
+        <h4 class="footer-col-heading"><span class="lang-en">Contact Address</span><span class="lang-np">सम्पर्क ठेगाना</span></h4>
         <p class="footer-company-name">Shittal Pati</p>
-        <p class="footer-addr">
-          <span class="lang-en">Bhagwati Tole-3, Tansen Palpa, Nepal</span>
-          <span class="lang-np">भगवती टोल-३, तानसेन पाल्पा, नेपाल</span>
-        </p>
-        <p class="footer-contact-line">
-          <span class="lang-en">Phone: +977 9847492226</span>
-          <span class="lang-np">फोन: +९७७ ९८४७४९२२२६</span>
-        </p>
-        <p class="footer-contact-line">
-          <span class="lang-en">Email:</span><span class="lang-np">इमेल:</span> njdnews@gmail.com
-        </p>
+        <p class="footer-addr"><span class="lang-en">Bhagwati Tole-3, Tansen Palpa, Nepal</span><span class="lang-np">भगवती टोल-३, तानसेन पाल्पा, नेपाल</span></p>
+        <p class="footer-contact-line"><span class="lang-en">Phone: +977 9847492226</span><span class="lang-np">फोन: +९७७ ९८४७४९२२२६</span></p>
+        <p class="footer-contact-line"><span class="lang-en">Email:</span><span class="lang-np">इमेल:</span> njdnews@gmail.com</p>
       </div>
-
-      <!-- Col 2: News links -->
       <div class="footer-col">
-        <h4 class="footer-col-heading">
-          <span class="lang-en">News</span>
-          <span class="lang-np">समाचार</span>
-        </h4>
+        <h4 class="footer-col-heading"><span class="lang-en">News</span><span class="lang-np">समाचार</span></h4>
         <ul class="footer-link-list">
           <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
           <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
@@ -1346,62 +1078,39 @@
           <li><a href="../index.html#education-section"><span class="lang-en">Education</span><span class="lang-np">शिक्षा</span></a></li>
         </ul>
       </div>
-
-      <!-- Col 3: Entertainment -->
       <div class="footer-col">
-        <h4 class="footer-col-heading">
-          <span class="lang-en">Entertainment</span>
-          <span class="lang-np">मनोरञ्जन</span>
-        </h4>
+        <h4 class="footer-col-heading"><span class="lang-en">Entertainment</span><span class="lang-np">मनोरञ्जन</span></h4>
         <ul class="footer-link-list">
-          <li><a href="#entertainment-section"><span class="lang-en">Movies & Music</span><span class="lang-np">चलचित्र र संगीत</span></a></li>
+          <li><a href="#entertainment-section"><span class="lang-en">Movies &amp; Music</span><span class="lang-np">चलचित्र र संगीत</span></a></li>
           <li><a href="#entertainment-section"><span class="lang-en">Arts</span><span class="lang-np">कला</span></a></li>
           <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
         </ul>
       </div>
-
-      <!-- Col 4: Feature -->
       <div class="footer-col">
-        <h4 class="footer-col-heading">
-          <span class="lang-en">Feature</span>
-          <span class="lang-np">विशेष</span>
-        </h4>
+        <h4 class="footer-col-heading"><span class="lang-en">Feature</span><span class="lang-np">विशेष</span></h4>
         <ul class="footer-link-list">
           <li><a href="../index.html#feature-section"><span class="lang-en">Feature News</span><span class="lang-np">विशेष समाचार</span></a></li>
           <li><a href="../index.html#latest-section"><span class="lang-en">Latest</span><span class="lang-np">ताजा</span></a></li>
         </ul>
       </div>
-
-      <!-- Col 5: Specials -->
       <div class="footer-col">
-        <h4 class="footer-col-heading">
-          <span class="lang-en">Specials</span>
-          <span class="lang-np">विशेष</span>
-        </h4>
+        <h4 class="footer-col-heading"><span class="lang-en">Specials</span><span class="lang-np">विशेष</span></h4>
         <ul class="footer-link-list">
           <li><a href="../page/video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
         </ul>
       </div>
-
-      <!-- Col 6: About -->
       <div class="footer-col">
-        <h4 class="footer-col-heading">
-          <span class="lang-en">About Us</span>
-          <span class="lang-np">हाम्रोबारे</span>
-        </h4>
+        <h4 class="footer-col-heading"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></h4>
         <ul class="footer-link-list">
           <li><a href="../page/about.html"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></a></li>
           <li><a href="../page/contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
         </ul>
       </div>
-
     </div>
   </div>
 
-  <!-- BOTTOM BAR -->
   <div class="footer-bottom">
     <div class="footer-bottom-inner">
-
       <div class="footer-bottom-brand">
         <span class="footer-site-name">Shittal Pati</span>
         <span class="footer-copy">
@@ -1413,44 +1122,24 @@
           <span class="lang-np">सर्वाधिकार सुरक्षित।</span>
         </span>
       </div>
-
       <div class="footer-bottom-editor">
         <span class="editor-label"><span class="lang-en">Editor</span><span class="lang-np">सम्पादक</span></span>
-        <span class="editor-name">
-          <span class="lang-en">Jagdish Bhattarai</span>
-          <span class="lang-np">जगदीश भट्टराई</span>
-        </span>
-        <span class="editor-phone">
-          <span class="lang-en">9857060301</span>
-          <span class="lang-np">९८५७०६०३०१</span>
-        </span>
+        <span class="editor-name"><span class="lang-en">Jagdish Bhattarai</span><span class="lang-np">जगदीश भट्टराई</span></span>
+        <span class="editor-phone"><span class="lang-en">9857060301</span><span class="lang-np">९८५७०६०३०१</span></span>
       </div>
-
       <div class="footer-bottom-sub">
         <span class="editor-label"><span class="lang-en">Sub-Editor</span><span class="lang-np">सह-सम्पादक</span></span>
-        <span class="editor-name">
-          <span class="lang-en">Ramchandra Rayamajhi</span>
-          <span class="lang-np">रामचन्द्र रायमाझी</span>
-        </span>
-        <span class="editor-phone">
-          <span class="lang-en">9847492226</span>
-          <span class="lang-np">९८४७४९२२२६</span>
-        </span>
+        <span class="editor-name"><span class="lang-en">Ramchandra Rayamajhi</span><span class="lang-np">रामचन्द्र रायमाझी</span></span>
+        <span class="editor-phone"><span class="lang-en">9847492226</span><span class="lang-np">९८४७४९२२२६</span></span>
       </div>
-
       <div class="footer-bottom-freq">
         <span class="editor-label"><span class="lang-en">Frequency</span><span class="lang-np">फ्रिक्वेन्सी</span></span>
-        <span class="editor-name">
-          <span class="lang-en">103.5 MHZ FM</span>
-          <span class="lang-np">१०३.५ मेगाहर्ज एफएम</span>
-        </span>
+        <span class="editor-name"><span class="lang-en">103.5 MHZ FM</span><span class="lang-np">१०३.५ मेगाहर्ज एफएम</span></span>
       </div>
-
       <div class="footer-bottom-info">
         <span class="lang-en">Official Website of Janavedana Daily</span>
         <span class="lang-np">जनवेदना दैनिकको आधिकारिक वेबसाइट</span>
       </div>
-
       <div class="footer-bottom-social">
         <span class="connect-label"><span class="lang-en">Connect with Us</span><span class="lang-np">जोडिनुहोस्</span></span>
         <div class="footer-social-row">
@@ -1458,20 +1147,19 @@
           <a href="https://www.instagram.com/shittalpationline/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
         </div>
       </div>
-
     </div>
   </div>
 
   
-
-  
 </footer>
+
+
 
   <!-- ════ WHATSAPP WIDGET ════ -->
   <div class="wa-widget">
-    <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
-    <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
-  </div>
+  <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
+  <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</div>
 
   <!-- ════ LANG CAPTURE — installed first, cancels all competing handlers ════ -->
   <script>
@@ -2182,7 +1870,7 @@
 })();
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded',function(){
+    document.addEventListener('DOMContentLoaded', function(){
       var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
       var adYear=new Date().getFullYear();
       var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');

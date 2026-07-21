@@ -622,190 +622,81 @@
     --accent:       #D4A017;
     --primary:      #A31919;
     --primary-on:   #FFFFFF;
-    --accent-on:    #000000;
+    --accent-on:    #1F1F1F;
     --bg:           #FFFFFF;
     --surface:      #F8F8F8;
     --text:         #1F1F1F;
     --muted:        rgba(31,31,31,0.55);
     --border:       rgba(163,25,25,0.18);
-    --font-body:    Arial, sans-serif;
-    --font-heading: Arial, sans-serif;
+    --font-body:    Noto Serif, Georgia, serif;
+    --font-heading: Noto Serif, Georgia, serif;
   }
-  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text); font-family: var(--font-body); margin: 0; padding: 0; }
-  .article-container {
-    max-width: 1100px; margin: 0 auto; padding: 1.5rem; background: var(--bg);
-  }
-  .article-header {
-    margin-bottom: 1.5rem;
-  }
-  h1 {
-    font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.3;
-    margin: 0.5rem 0 0.75rem; color: var(--primary);
-  }
-  .breadcrumb {
-    font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem;
-  }
-  .breadcrumb a {
-    color: var(--accent); text-decoration: none;
-  }
-  .breadcrumb a:hover {
-    text-decoration: underline;
-  }
-  .category-badge span {
-    display: inline-block; background: var(--accent); color: var(--accent-on);
-    padding: 3px 10px; border-radius: 4px; font-size: 0.78rem; font-weight: 700;
-    margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.04em;
-  }
-  .meta {
-    display: flex; gap: 1.2rem; color: var(--muted); font-size: 0.88rem;
-    margin-bottom: 0.75rem; flex-wrap: wrap; align-items: center;
-  }
-  .meta i {
-    margin-right: 4px;
-  }
-  .share-buttons {
-    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 0.5rem;
-  }
-  .share-btn {
-    display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px;
-    border-radius: 5px; border: 1px solid var(--border); background: var(--surface);
-    color: var(--text); cursor: pointer; font-size: 0.85rem;
-    font-family: var(--font-body); transition: all 0.2s ease;
-  }
-  .share-btn:hover {
-    background: var(--accent); color: var(--accent-on); border-color: var(--accent);
-  }
-  .share-btn.facebook:hover {
-    background: #1877F2; color: #fff; border-color: #1877F2;
-  }
-  .share-btn.twitter:hover {
-    background: #1DA1F2; color: #fff; border-color: #1DA1F2;
-  }
-  .copy-link {
-    position: relative;
-  }
-  .tooltip {
-    display: none; position: absolute; background: var(--primary); color: var(--primary-on);
-    padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; white-space: nowrap;
-    bottom: 110%; left: 50%; transform: translateX(-50%); z-index: 10; pointer-events: none;
-  }
-  .tooltip.visible {
-    display: block;
-  }
-  .article-content {
-    display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start;
-  }
-  @media (max-width: 1023px) {
-    .article-content { grid-template-columns: 1fr; }
-  }
-  .main-column {
-    min-width: 0;
-  }
-  .image-wrapper {
-    margin-bottom: 1.5rem;
-  }
-  .image-wrapper img {
-    width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; display: block;
-  }
-  .image-wrapper.hidden {
-    display: none;
-  }
-  .article-body {
-    font-size: 1rem; line-height: 1.8; color: var(--text);
-  }
-  .article-body p {
-    margin-bottom: 1.1rem;
-  }
-  .article-body h2 {
-    font-family: var(--font-heading); margin: 1.8rem 0 0.8rem; font-size: 1.3rem;
-  }
-  .article-body img {
-    max-width: 100%; border-radius: 6px;
-  }
-  .tags-wrapper {
-    margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--border);
-  }
-  .tags-wrapper h3 {
-    font-size: 0.95rem; margin: 0 0 0.6rem; font-family: var(--font-heading);
-    display: flex; align-items: center; gap: 6px;
-  }
-  .tags-list {
-    display: flex; flex-wrap: wrap; gap: 8px;
-  }
-  .tags-list a {
-    background: var(--surface); border: 1px solid var(--border); padding: 4px 12px;
-    border-radius: 20px; font-size: 0.82rem; text-decoration: none; color: var(--text);
-    transition: 0.2s;
-  }
-  .tags-list a:hover {
-    background: var(--accent); color: var(--accent-on); border-color: var(--accent);
-  }
-  .sidebar {
-    position: sticky; top: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;
-  }
-  .widget {
-    background: var(--surface); padding: 1.4rem; border-radius: 10px; border: 1px solid var(--border);
-  }
-  .widget h3 {
-    font-family: var(--font-heading); font-size: 1.05rem; margin: 0 0 1rem;
-    padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); color: var(--primary);
-    display: flex; align-items: center; gap: 8px;
-  }
-  .widget p {
-    font-size: 0.88rem; color: var(--muted); margin-bottom: 0.6rem; line-height: 1.5;
-  }
-  #newsletter-email {
-    width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px;
-    background: var(--bg); color: var(--text); font-size: 0.88rem;
-    box-sizing: border-box; margin-bottom: 8px; outline: none;
-  }
-  #newsletter-email:focus {
-    border-color: var(--accent);
-  }
-  #newsletter-subscribe {
-    width: 100%; padding: 9px; background: var(--accent); color: var(--accent-on);
-    border: none; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 0.9rem;
-    transition: opacity 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px;
-  }
-  #newsletter-subscribe:hover {
-    opacity: 0.85;
-  }
-  #back-to-top {
-    position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent);
-    color: var(--accent-on); border: none; border-radius: 50%; width: 42px; height: 42px;
-    cursor: pointer; font-size: 1rem; display: none; align-items: center; justify-content: center;
-    z-index: 999; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: opacity 0.2s;
-  }
-  #back-to-top:hover {
-    opacity: 0.85;
-  }
-  .related-card {
-    display: flex; gap: 10px; text-decoration: none; color: var(--text);
-    padding: 0.7rem 0; border-bottom: 1px solid var(--border); align-items: flex-start;
-  }
-  .related-card:last-child {
-    border-bottom: none;
-  }
-  .related-card img {
-    width: 72px; height: 52px; object-fit: cover; border-radius: 5px; flex-shrink: 0;
-  }
-  .related-content {
-    flex: 1; min-width: 0;
-  }
-  .related-category {
-    display: block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-    color: var(--accent); letter-spacing: 0.05em; margin-bottom: 2px;
-  }
-  .related-content h4 {
-    margin: 0 0 3px; font-size: 0.85rem; line-height: 1.3; font-family: var(--font-heading);
-    overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-  }
-  .related-meta {
-    font-size: 0.75rem; color: var(--muted);
-  }
+
+  .article-container { max-width: 1100px; margin: 0 auto; padding: 1.5rem; background: var(--bg); }
+  .article-header { margin-bottom: 1.5rem; }
+  h1 { font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.3; margin: 0.5rem 0 0.75rem; color: var(--primary); }
+
+  .breadcrumb { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem; }
+  .breadcrumb a { color: var(--accent); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .category-badge span { display: inline-block; background: var(--accent); color: var(--accent-on); padding: 3px 10px; border-radius: 4px; font-size: 0.78rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  .meta { display: flex; gap: 1.2rem; color: var(--muted); font-size: 0.88rem; margin-bottom: 0.75rem; flex-wrap: wrap; align-items: center; }
+  .meta i { margin-right: 4px; }
+
+  .share-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 0.5rem; }
+  .share-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 5px; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; font-size: 0.85rem; font-family: var(--font-body); transition: all 0.2s ease; }
+  .share-btn:hover { background: var(--accent); color: var(--accent-on); border-color: var(--accent); }
+  .share-btn.facebook:hover { background: #1877F2; color: #fff; border-color: #1877F2; }
+  .share-btn.twitter:hover { background: #1DA1F2; color: #fff; border-color: #1DA1F2; }
+  .copy-link { position: relative; }
+  .tooltip { display: none; position: absolute; background: var(--primary); color: var(--primary-on); padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; white-space: nowrap; bottom: 110%; left: 50%; transform: translateX(-50%); z-index: 10; pointer-events: none; }
+  .tooltip.visible { display: block; }
+
+  .article-content { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start; }
+  @media (max-width: 1023px) { .article-content { grid-template-columns: 1fr; } }
+  .main-column { min-width: 0; }
+
+  .image-wrapper { margin-bottom: 1.5rem; }
+  .image-wrapper img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; display: block; }
+  .image-wrapper.hidden { display: none; }
+
+  .article-body { font-size: 1rem; line-height: 1.8; color: var(--text); }
+  .article-body p { margin-bottom: 1.1rem; }
+  .article-body h2 { font-family: var(--font-heading); margin: 1.8rem 0 0.8rem; font-size: 1.3rem; }
+  .article-body img { max-width: 100%; border-radius: 6px; }
+
+  .tags-wrapper { margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--border); }
+  .tags-wrapper h3 { font-size: 0.95rem; margin: 0 0 0.6rem; font-family: var(--font-heading); display: flex; align-items: center; gap: 6px; }
+  .tags-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tags-list a { background: var(--surface); border: 1px solid var(--border); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; text-decoration: none; color: var(--text); transition: 0.2s; }
+  .tags-list a:hover { background: var(--accent); color: var(--accent-on); border-color: var(--accent); }
+
+  .sidebar { position: sticky; top: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .widget { background: var(--surface); padding: 1.4rem; border-radius: 10px; border: 1px solid var(--border); }
+  .widget h3 { font-family: var(--font-heading); font-size: 1.05rem; margin: 0 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); color: var(--primary); display: flex; align-items: center; gap: 8px; }
+  .widget p { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.6rem; line-height: 1.5; }
+
+  #newsletter-email { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font-size: 0.88rem; box-sizing: border-box; margin-bottom: 8px; outline: none; }
+  #newsletter-email:focus { border-color: var(--accent); }
+  #newsletter-subscribe { width: 100%; padding: 9px; background: var(--accent); color: var(--accent-on); border: none; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 0.9rem; transition: opacity 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+  #newsletter-subscribe:hover { opacity: 0.85; }
+
+  #back-to-top { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent); color: var(--accent-on); border: none; border-radius: 50%; width: 42px; height: 42px; cursor: pointer; font-size: 1rem; display: none; align-items: center; justify-content: center; z-index: 999; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: opacity 0.2s; }
+  #back-to-top:hover { opacity: 0.85; }
+
+  .related-card { display: flex; gap: 10px; text-decoration: none; color: var(--text); padding: 0.7rem 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .related-card:last-child { border-bottom: none; }
+  .related-card img { width: 72px; height: 52px; object-fit: cover; border-radius: 5px; flex-shrink: 0; }
+  .related-content { flex: 1; min-width: 0; }
+  .related-category { display: block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 2px; }
+  .related-content h4 { margin: 0 0 3px; font-size: 0.85rem; line-height: 1.3; font-family: var(--font-heading); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .related-meta { font-size: 0.75rem; color: var(--muted); }
+
   .lang-np { display: none; }
   .lang-en { display: inline; }
   div.lang-en, p.lang-en, h3.lang-en, .article-body.lang-en { display: block; }
@@ -816,10 +707,7 @@
   #article-body-en, #article-body-np { min-height: 2rem; }
 </style>
 <style>
-    /* ALL CSS from PART D */
     #site-footer { font-family:var(--font-body); }
-
-    /* TOP SECTION */
     .footer-top { background:#f0f0f0; padding:40px 0 32px; border-top:3px solid var(--primary); }
     .footer-top-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr; gap:24px; }
     .footer-col { display:flex; flex-direction:column; gap:10px; }
@@ -830,8 +718,6 @@
     .footer-link-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
     .footer-link-list li a { font-size:.85rem; color:#333; text-decoration:none; transition:color .2s; display:block; padding:2px 0; }
     .footer-link-list li a:hover { color:var(--primary); }
-
-    /* BOTTOM BAR */
     .footer-bottom { background:#d8d8d8; border-top:1px solid #bbb; padding:18px 0; }
     .footer-bottom-inner { max-width:1280px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
     .footer-bottom-brand { display:flex; flex-direction:column; gap:3px; flex-shrink:0; }
@@ -848,27 +734,24 @@
     .footer-social-row { display:flex; gap:10px; align-items:center; }
     .footer-social-row a { color:#333; font-size:1.1rem; text-decoration:none; transition:color .2s; }
     .footer-social-row a:hover { color:var(--primary); }
-
-    /* Language */
     .lang-en { display:inline; }
     .lang-np { display:none; }
     body.lang-active .lang-en { display:none; }
     body.lang-active .lang-np { display:inline; }
-
-    /* Responsive */
-    @media(max-width:1000px){
-      .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; }
-    }
+    @media(max-width:1000px){ .footer-top-inner { grid-template-columns:1fr 1fr 1fr; gap:20px; } }
     @media(max-width:640px){
-      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; }
-      .footer-bottom-inner { flex-direction:column; align-items:flex-start; gap:12px; }
-      .footer-bottom-social { align-items:flex-start; }
+      .footer-top-inner { grid-template-columns:1fr 1fr; gap:16px; text-align:center; }
+      .footer-bottom-inner { flex-direction:column; align-items:center; gap:16px; text-align:center; }
+      .footer-bottom-social { align-items:center; width:100%; }
+      .footer-social-row { justify-content:center; }
+      .footer-col { align-items:center; text-align:center; }
+      .footer-link-list { align-items:center; }
+      .footer-col-heading { text-align:center; width:100%; }
+      .footer-bottom-brand { align-items:center; }
+      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq { align-items:center; }
+      .footer-bottom-info { max-width:100%; text-align:center; }
     }
-    @media(max-width:400px){
-      .footer-top-inner { grid-template-columns:1fr; }
-    }
-
-    /* WhatsApp */
+    @media(max-width:400px){ .footer-top-inner { grid-template-columns:1fr; text-align:center; } }
     .wa-widget { position:fixed; bottom:90px; right:24px; z-index:9999; display:flex; align-items:center; gap:10px; flex-direction:row; }
     .wa-fab { width:52px; height:52px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.7rem; text-decoration:none; box-shadow:0 4px 16px rgba(37,211,102,.4),0 2px 8px rgba(0,0,0,.2); transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; animation:waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both; position:relative; }
     .wa-fab:hover { transform:scale(1.12) rotate(-6deg); }
@@ -878,55 +761,6 @@
     @keyframes waIn { from{opacity:0;transform:scale(.4) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
     @keyframes waRing { 0%{transform:scale(1);opacity:.8} 70%,100%{transform:scale(1.5);opacity:0} }
     @media(max-width:480px){ .wa-widget{bottom:90px;right:14px;} .wa-fab{width:46px;height:46px;font-size:1.5rem;} }
-
-    /* Add these responsive styles for footer mobile view */
-    @media(max-width:640px){
-      .footer-top-inner { 
-        grid-template-columns: 1fr 1fr; 
-        gap: 16px;
-        text-align: center;
-      }
-      .footer-bottom-inner { 
-        flex-direction: column; 
-        align-items: center;
-        gap: 16px;
-        text-align: center;
-      }
-      .footer-bottom-social { 
-        align-items: center;
-        width: 100%;
-      }
-      .footer-social-row {
-        justify-content: center;
-      }
-      .footer-col {
-        align-items: center;
-        text-align: center;
-      }
-      .footer-link-list {
-        align-items: center;
-      }
-      .footer-col-heading {
-        text-align: center;
-        width: 100%;
-      }
-      .footer-bottom-brand {
-        align-items: center;
-      }
-      .footer-bottom-editor, .footer-bottom-sub, .footer-bottom-freq {
-        align-items: center;
-      }
-      .footer-bottom-info {
-        max-width: 100%;
-        text-align: center;
-      }
-    }
-    @media(max-width:400px){
-      .footer-top-inner { 
-        grid-template-columns: 1fr; 
-        text-align: center;
-      }
-    }
   </style>
 
   <style>
@@ -1133,6 +967,12 @@
       <span><i class="fas fa-calendar"></i> <span id="date"></span></span>
       <span><i class="fas fa-clock"></i> <span id="readtime-en" class="lang-en"></span><span id="readtime-np" class="lang-np"></span></span>
     </div>
+    <div class="meta">
+      <span id="source-en" class="lang-en"></span>
+      <span id="source-np" class="lang-np"></span>
+      <span id="creator-en" class="lang-en"></span>
+      <span id="creator-np" class="lang-np"></span>
+    </div>
     <div class="share-buttons">
       <button class="share-btn facebook"><i class="fab fa-facebook"></i> Facebook</button>
       <button class="share-btn twitter"><i class="fab fa-twitter"></i> Twitter</button>
@@ -1141,7 +981,7 @@
   </div>
   <div class="article-content">
     <div class="main-column">
-      <div class="image-wrapper">
+      <div class="image-wrapper hidden">
         <img id="featured-image" src="" alt="" loading="lazy">
       </div>
       <div id="article-body-en" class="lang-en article-body"></div>
@@ -1152,6 +992,7 @@
         <div id="tags-en" class="lang-en tags-list"></div>
         <div id="tags-np" class="lang-np tags-list"></div>
       </div>
+      <div id="comments-section"></div>
     </div>
     <aside class="sidebar">
       <div class="widget related">
@@ -1178,41 +1019,22 @@
 
   </main>
 
-  <!-- ════ FOOTER (6795 chars) ════ -->
+  <!-- ════ FOOTER (6107 chars) ════ -->
   <footer id="site-footer">
   
   
 
-  <!-- TOP SECTION: multi-column links -->
   <div class="footer-top">
     <div class="footer-top-inner">
-
-      <!-- Col 1: Contact -->
       <div class="footer-col footer-contact-col">
-        <h4 class="footer-col-heading">
-          <span class="lang-en">Contact Address</span>
-          <span class="lang-np">सम्पर्क ठेगाना</span>
-        </h4>
+        <h4 class="footer-col-heading"><span class="lang-en">Contact Address</span><span class="lang-np">सम्पर्क ठेगाना</span></h4>
         <p class="footer-company-name">Shittal Pati</p>
-        <p class="footer-addr">
-          <span class="lang-en">Bhagwati Tole-3, Tansen Palpa, Nepal</span>
-          <span class="lang-np">भगवती टोल-३, तानसेन पाल्पा, नेपाल</span>
-        </p>
-        <p class="footer-contact-line">
-          <span class="lang-en">Phone: +977 9847492226</span>
-          <span class="lang-np">फोन: +९७७ ९८४७४९२२२६</span>
-        </p>
-        <p class="footer-contact-line">
-          <span class="lang-en">Email:</span><span class="lang-np">इमेल:</span> njdnews@gmail.com
-        </p>
+        <p class="footer-addr"><span class="lang-en">Bhagwati Tole-3, Tansen Palpa, Nepal</span><span class="lang-np">भगवती टोल-३, तानसेन पाल्पा, नेपाल</span></p>
+        <p class="footer-contact-line"><span class="lang-en">Phone: +977 9847492226</span><span class="lang-np">फोन: +९७७ ९८४७४९२२२६</span></p>
+        <p class="footer-contact-line"><span class="lang-en">Email:</span><span class="lang-np">इमेल:</span> njdnews@gmail.com</p>
       </div>
-
-      <!-- Col 2: News links -->
       <div class="footer-col">
-        <h4 class="footer-col-heading">
-          <span class="lang-en">News</span>
-          <span class="lang-np">समाचार</span>
-        </h4>
+        <h4 class="footer-col-heading"><span class="lang-en">News</span><span class="lang-np">समाचार</span></h4>
         <ul class="footer-link-list">
           <li><a href="../index.html#politics-section"><span class="lang-en">Politics</span><span class="lang-np">राजनीति</span></a></li>
           <li><a href="../index.html#sports-section"><span class="lang-en">Sports</span><span class="lang-np">खेलकुद</span></a></li>
@@ -1221,62 +1043,39 @@
           <li><a href="../index.html#education-section"><span class="lang-en">Education</span><span class="lang-np">शिक्षा</span></a></li>
         </ul>
       </div>
-
-      <!-- Col 3: Entertainment -->
       <div class="footer-col">
-        <h4 class="footer-col-heading">
-          <span class="lang-en">Entertainment</span>
-          <span class="lang-np">मनोरञ्जन</span>
-        </h4>
+        <h4 class="footer-col-heading"><span class="lang-en">Entertainment</span><span class="lang-np">मनोरञ्जन</span></h4>
         <ul class="footer-link-list">
-          <li><a href="#entertainment-section"><span class="lang-en">Movies & Music</span><span class="lang-np">चलचित्र र संगीत</span></a></li>
+          <li><a href="#entertainment-section"><span class="lang-en">Movies &amp; Music</span><span class="lang-np">चलचित्र र संगीत</span></a></li>
           <li><a href="#entertainment-section"><span class="lang-en">Arts</span><span class="lang-np">कला</span></a></li>
           <li><a href="../index.html#technology-section"><span class="lang-en">Technology</span><span class="lang-np">प्रविधि</span></a></li>
         </ul>
       </div>
-
-      <!-- Col 4: Feature -->
       <div class="footer-col">
-        <h4 class="footer-col-heading">
-          <span class="lang-en">Feature</span>
-          <span class="lang-np">विशेष</span>
-        </h4>
+        <h4 class="footer-col-heading"><span class="lang-en">Feature</span><span class="lang-np">विशेष</span></h4>
         <ul class="footer-link-list">
           <li><a href="../index.html#feature-section"><span class="lang-en">Feature News</span><span class="lang-np">विशेष समाचार</span></a></li>
           <li><a href="../index.html#latest-section"><span class="lang-en">Latest</span><span class="lang-np">ताजा</span></a></li>
         </ul>
       </div>
-
-      <!-- Col 5: Specials -->
       <div class="footer-col">
-        <h4 class="footer-col-heading">
-          <span class="lang-en">Specials</span>
-          <span class="lang-np">विशेष</span>
-        </h4>
+        <h4 class="footer-col-heading"><span class="lang-en">Specials</span><span class="lang-np">विशेष</span></h4>
         <ul class="footer-link-list">
           <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
         </ul>
       </div>
-
-      <!-- Col 6: About -->
       <div class="footer-col">
-        <h4 class="footer-col-heading">
-          <span class="lang-en">About Us</span>
-          <span class="lang-np">हाम्रोबारे</span>
-        </h4>
+        <h4 class="footer-col-heading"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></h4>
         <ul class="footer-link-list">
           <li><a href="about.html"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></a></li>
           <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
         </ul>
       </div>
-
     </div>
   </div>
 
-  <!-- BOTTOM BAR -->
   <div class="footer-bottom">
     <div class="footer-bottom-inner">
-
       <div class="footer-bottom-brand">
         <span class="footer-site-name">Shittal Pati</span>
         <span class="footer-copy">
@@ -1288,44 +1087,24 @@
           <span class="lang-np">सर्वाधिकार सुरक्षित।</span>
         </span>
       </div>
-
       <div class="footer-bottom-editor">
         <span class="editor-label"><span class="lang-en">Editor</span><span class="lang-np">सम्पादक</span></span>
-        <span class="editor-name">
-          <span class="lang-en">Jagdish Bhattarai</span>
-          <span class="lang-np">जगदीश भट्टराई</span>
-        </span>
-        <span class="editor-phone">
-          <span class="lang-en">9857060301</span>
-          <span class="lang-np">९८५७०६०३०१</span>
-        </span>
+        <span class="editor-name"><span class="lang-en">Jagdish Bhattarai</span><span class="lang-np">जगदीश भट्टराई</span></span>
+        <span class="editor-phone"><span class="lang-en">9857060301</span><span class="lang-np">९८५७०६०३०१</span></span>
       </div>
-
       <div class="footer-bottom-sub">
         <span class="editor-label"><span class="lang-en">Sub-Editor</span><span class="lang-np">सह-सम्पादक</span></span>
-        <span class="editor-name">
-          <span class="lang-en">Ramchandra Rayamajhi</span>
-          <span class="lang-np">रामचन्द्र रायमाझी</span>
-        </span>
-        <span class="editor-phone">
-          <span class="lang-en">9847492226</span>
-          <span class="lang-np">९८४७४९२२२६</span>
-        </span>
+        <span class="editor-name"><span class="lang-en">Ramchandra Rayamajhi</span><span class="lang-np">रामचन्द्र रायमाझी</span></span>
+        <span class="editor-phone"><span class="lang-en">9847492226</span><span class="lang-np">९८४७४९२२२६</span></span>
       </div>
-
       <div class="footer-bottom-freq">
         <span class="editor-label"><span class="lang-en">Frequency</span><span class="lang-np">फ्रिक्वेन्सी</span></span>
-        <span class="editor-name">
-          <span class="lang-en">103.5 MHZ FM</span>
-          <span class="lang-np">१०३.५ मेगाहर्ज एफएम</span>
-        </span>
+        <span class="editor-name"><span class="lang-en">103.5 MHZ FM</span><span class="lang-np">१०३.५ मेगाहर्ज एफएम</span></span>
       </div>
-
       <div class="footer-bottom-info">
         <span class="lang-en">Official Website of Janavedana Daily</span>
         <span class="lang-np">जनवेदना दैनिकको आधिकारिक वेबसाइट</span>
       </div>
-
       <div class="footer-bottom-social">
         <span class="connect-label"><span class="lang-en">Connect with Us</span><span class="lang-np">जोडिनुहोस्</span></span>
         <div class="footer-social-row">
@@ -1333,20 +1112,19 @@
           <a href="https://www.instagram.com/shittalpationline/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
         </div>
       </div>
-
     </div>
   </div>
 
   
-
-  
 </footer>
+
+
 
   <!-- ════ WhatsApp widget — pulled directly from footer, no hardcoding ════ -->
   <div class="wa-widget">
-    <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
-    <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
-  </div>
+  <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
+  <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</div>
 
   <!-- ════ LANG CAPTURE — installed first, cancels all competing handlers ════ -->
   <script>
@@ -1703,7 +1481,7 @@
     dateAd:         "July 21, 2026",
     dateEn:         "July 21, 2026",
     readTimeEn:     "5 min read",
-    readTimeNp:     "5 मिनेट पढाइ",
+    readTimeNp:     "6 मिनेट पढाइ",
     sourceEn:       "Kantipur",
     sourceNp:       "कान्तिपुर",
     creatorEn:      "Agency",
@@ -1989,7 +1767,7 @@
 })();
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded',function(){
+    document.addEventListener('DOMContentLoaded', function(){
       var NP_NUMS=['०','१','२','३','४','५','६','७','८','९'];
       var adYear=new Date().getFullYear();
       var npYear=String(adYear).split('').map(function(d){return NP_NUMS[parseInt(d,10)];}).join('');
