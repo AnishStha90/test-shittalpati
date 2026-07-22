@@ -694,7 +694,7 @@
     --accent:       #D4A017;
     --primary:      #A31919;
     --primary-on:   #FFFFFF;
-    --accent-on:    #1F1F1F;
+    --accent-on:    #FFFFFF;
     --bg:           #FFFFFF;
     --surface:      #F8F8F8;
     --text:         #1F1F1F;
@@ -704,45 +704,105 @@
     --font-heading: Arial, sans-serif;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--font-body); }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-  .province-container { max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem; min-height: 100vh; }
+  html {
+    scroll-behavior: smooth;
+  }
 
-  .province-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+  }
 
-  .breadcrumb { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
-  .breadcrumb a { color: var(--accent); text-decoration: none; }
-  .breadcrumb a:hover { text-decoration: underline; }
+  .province-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    min-height: 100vh;
+  }
 
-  h1 { font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--primary); margin-bottom: 1rem; line-height: 1.2; }
+  .province-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
 
-  .province-description { font-size: 1rem; color: var(--muted); max-width: 700px; margin: 0 auto 1rem; line-height: 1.6; }
+  .breadcrumb {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .breadcrumb a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--primary);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .province-description {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 700px;
+    margin: 0 auto 1rem;
+    line-height: 1.6;
+  }
 
   .province-meta {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    background: var(--surface); padding: 0.5rem 1rem;
-    border-radius: 20px; font-size: 0.85rem; color: var(--text);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--surface);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text);
   }
 
   .news-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem; margin-bottom: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
   }
 
   .article-card {
-    background: var(--surface); border-radius: 12px; overflow: hidden;
+    background: var(--surface);
+    border-radius: 12px;
+    overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid var(--border);
   }
+
   .article-card:hover {
-    transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   }
 
   .card-image {
-    width: 100%; height: 200px; object-fit: cover; background: var(--border);
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: var(--border);
   }
+
   .card-image.no-image {
     background: linear-gradient(135deg, var(--border) 0%, var(--surface) 100%);
   }
@@ -752,91 +812,168 @@
   }
 
   .card-province {
-    display: inline-block; background: var(--accent); color: var(--accent-on);
-    font-size: 0.7rem; text-transform: uppercase; padding: 0.2rem 0.6rem;
-    border-radius: 4px; margin-bottom: 0.75rem; letter-spacing: 0.05em;
-    font-weight: 600; text-decoration: none;
+    display: inline-block;
+    background: var(--accent);
+    color: var(--accent-on);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    text-decoration: none;
   }
 
   .card-title {
-    font-family: var(--font-heading); font-size: 1.2rem; line-height: 1.4;
-    margin: 0 0 0.75rem; color: var(--text); text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    line-height: 1.4;
+    margin: 0 0 0.75rem;
+    color: var(--text);
+    text-decoration: none;
     transition: color 0.2s;
   }
+
   .card-title:hover {
     color: var(--accent);
   }
 
   .card-excerpt {
-    font-size: 0.88rem; color: var(--muted); line-height: 1.5;
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.5;
     margin-bottom: 1rem;
   }
 
   .card-meta {
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 0.78rem; color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--muted);
   }
+
   .card-meta i {
     margin-right: 0.2rem;
   }
 
   .read-more {
-    color: var(--accent); text-decoration: none; font-size: 0.85rem;
-    font-weight: 600; transition: opacity 0.2s;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: opacity 0.2s;
   }
+
   .read-more:hover {
     opacity: 0.8;
   }
 
   .load-more-container {
-    text-align: center; margin-top: 2rem;
+    text-align: center;
+    margin-top: 2rem;
   }
 
   .load-more-btn {
-    background: var(--accent); color: var(--accent-on); border: none;
-    padding: 0.9rem 2rem; border-radius: 50px; cursor: pointer;
-    font-size: 1rem; font-weight: 600; transition: transform 0.2s, opacity 0.2s;
-    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--accent);
+    color: var(--accent-on);
+    border: none;
+    padding: 0.9rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: transform 0.2s, opacity 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
   }
+
   .load-more-btn:hover {
-    opacity: 0.9; transform: scale(1.02);
+    opacity: 0.9;
+    transform: scale(1.02);
   }
+
   .load-more-btn:disabled {
-    opacity: 0.5; cursor: not-allowed;
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 
   #back-to-top {
-    position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent);
-    color: var(--accent-on); border: none; border-radius: 50%; width: 42px;
-    height: 42px; cursor: pointer; font-size: 1rem; display: none;
-    align-items: center; justify-content: center; z-index: 999;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: var(--accent);
+    color: var(--accent-on);
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
     transition: opacity 0.2s;
   }
 
   .empty-state {
-    text-align: center; padding: 4rem 2rem; background: var(--surface);
-    border-radius: 12px; color: var(--muted);
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--surface);
+    border-radius: 12px;
+    color: var(--muted);
   }
+
   .empty-state i {
-    font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
   }
 
   @media (max-width: 768px) {
-    .province-container { padding: 1rem; }
-    .news-grid { gap: 1rem; grid-template-columns: 1fr; }
-    .card-image { height: 180px; }
+    .province-container {
+      padding: 1rem;
+    }
+    .news-grid {
+      gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+    .card-image {
+      height: 180px;
+    }
   }
 
   @media (max-width: 480px) {
-    h1 { font-size: 1.5rem; }
-    .card-title { font-size: 1rem; }
+    h1 {
+      font-size: 1.5rem;
+    }
+    .card-title {
+      font-size: 1rem;
+    }
   }
 
-  .lang-np { display: none; }
-  .lang-en { display: inline; }
-  body.lang-active .lang-en { display: none !important; }
-  body.lang-active .lang-np { display: inline !important; }
-  body.lang-active p.lang-np, body.lang-active span.lang-np { display: inline !important; }
+  .lang-np {
+    display: none;
+  }
+
+  .lang-en {
+    display: inline;
+  }
+
+  body.lang-active .lang-en {
+    display: none !important;
+  }
+
+  body.lang-active .lang-np {
+    display: inline !important;
+  }
+
+  body.lang-active p.lang-np, body.lang-active span.lang-np {
+    display: inline !important;
+  }
 </style>
 <style>
     #site-footer { font-family:var(--font-body); }
@@ -1667,8 +1804,8 @@
     nameNp:       "लुम्बिनी",
     descEn:       "Lumbini — Latest news and updates from this province.",
     descNp:       "लुम्बिनी — यस प्रदेशका नवीनतम समाचार र अपडेटहरू।",
-    totalCount:   6,
-    allArticles:  [{"newsIndex":0,"recordId":1871,"title":"Sushil Koirala Cancer Hospital's liquid oxygen plant is operational.","titleNe":"सुशील कोइराला क्यान्सर अस्पतालमा लिक्विड अक्सिजन प्लान्ट सञ्चालन","slug":"sushil-koirala-cancer-hospitals-liquid-oxygen-plant-is-operational","province":"Lumbini","provinceNe":"लुम्बिनी","category":"Local","categoryNe":"स्थानीय","metaDesc":"The operation of a 20 kilolitre capacity liquid oxygen plant at Banke's Susheel Koirala Pradhan Cancer Hospital has eliminated the hassle of transporting oxygen.","metaDescNe":"बाँकेको सुशील कोइराला प्रखर क्यान्सर अस्पतालमा २० किलोलिटर क्षमताको लिक्विड अक्सिजन प्लान्ट सञ्चालनमा आएसँगै अक्सिजन ढुवानीको झन्झट हटेको छ।","readTime":"1 min read","readTimeNe":"2 मिनेट पढाइ","date":"2026-07-21T00:00:00.000Z","time":"4:36 PM","creator":"Rupa Gahatraj","creatorNp":"रुपा गहतराज","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/sushil-koirala-cancer-hospitals-liquid-oxygen-plant-is-operational.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":1,"recordId":1866,"title":"The performance in Palpa court is second nationwide.","titleNe":"कार्यसम्पादनमा पाल्पा अदालत देशभरमै दोस्रो","slug":"the-performance-in-palpa-court-is-second-nationwide","province":"Lumbini","provinceNe":"लुम्बिनी","category":"Local","categoryNe":"स्थानीय","metaDesc":"The Palpa District Court has secured the second-best position nationwide by disposing of 987 cases in the last fiscal year.","metaDescNe":"पाल्पा जिल्ला अदालतले गत आर्थिक वर्षमा ९ सय ८७ मुद्दा फर्छ्यौट गरी देशभरमै दोस्रो उत्कृष्ट स्थान हासिल गरेको छ।","readTime":"1 min read","readTimeNe":"3 मिनेट पढाइ","date":"2026-07-21T00:00:00.000Z","time":"3:25 PM","creator":"Madhav Aryal","creatorNp":"माधव अर्याल","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/the-performance-in-palpa-court-is-second-nationwide.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":2,"recordId":1863,"title":"The fridge broke down, and for three days the corpse has been lying unattended at Rolpa Hospital.","titleNe":"फ्रिज बिग्रिँदा रोल्पा अस्पतालमा तीन दिनदेखि शव अलपत्र","slug":"the-fridge-broke-down-and-for-three-days-the-corpse-has-been-lying-unattended-at-rolpa-hospital","province":"Lumbini","provinceNe":"लुम्बिनी","category":"Local","categoryNe":"स्थानीय","metaDesc":"The fridge at the mortuary in Rolpa broke down, and for the past three days, there has been a problem keeping the body of Tilasari Pun Dangi safely in the hospital.","metaDescNe":"रोल्पाको शवगृहको फ्रिज बिग्रिएपछि तीन दिनदेखि अलपत्र तिलसरी पुन डाँगीको शव अस्पतालमा सुरक्षित राख्न समस्या भएको छ।","readTime":"2 min read","readTimeNe":"2 मिनेट पढाइ","date":"2026-07-21T00:00:00.000Z","time":"3:23 PM","creator":"Kashiram Dangi","creatorNp":"काशीराम डाँगी","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/the-fridge-broke-down-and-for-three-days-the-corpse-has-been-lying-unattended-at-rolpa-hospital.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":3,"recordId":1842,"title":"The third session of the Domestic Federation of Lumbini Province has been completed.","titleNe":"घरेलु महासंघ लुम्बिनी प्रदेशको तेश्रो अधिवेशन सम्पन्न","slug":"the-third-session-of-the-domestic-federation-of-lumbini-province-has-been-completed","province":"Lumbini","provinceNe":"लुम्बिनी","category":"Local","categoryNe":"स्थानीय","metaDesc":"Judges from 77 districts have been appointed as Chief Election Officers, and an orientation program has been conducted in Ramgram under the campaign against gender-based violence.","metaDescNe":"७७ जिल्लाका न्यायाधीशलाई मुख्य निर्वाचन अधिकृतमा नियुक्त गरिएको र रामग्राममा लैङ्गिक हिंसा विरुद्धको अभियान अन्तर्गत अभिमुखिकरण गरिएको।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"2026-07-21T00:00:00.000Z","time":"1:06 PM","creator":"Nepali sisters :: The third convention of the Domestic Federation of Lumbini Province has been completed","creatorNp":"नेपाली चेली :: घरेलु महासंघ लुम्बिनी प्रदेशको तेश्रो अधिवेशन सम्पन्न","source":"www.nepalicheli.com","sourceNp":"www.नेपालिचेलि.कम","imageUrls":"../images/the-third-session-of-the-domestic-federation-of-lumbini-province-has-been-completed.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":4,"recordId":1841,"title":"The coordination chiefs of the 12 districts of Lumbini Province held a mobile meeting in Parasi.","titleNe":"लुम्बिनी प्रदेशका १२ जिल्लाका समन्वय प्रमुखहरूको घुम्ति बैठक परासीमा","slug":"the-coordination-chiefs-of-the-12-districts-of-lumbini-province-held-a-mobile-meeting-in-parasi","province":"Lumbini","provinceNe":"लुम्बिनी","category":"Local","categoryNe":"स्थानीय","metaDesc":"Judges from 77 districts have been appointed as Chief Election Officers, and an orientation has been conducted in Ramgram under the campaign against gender-based violence.","metaDescNe":"७७ जिल्लाका न्यायाधीशलाई मुख्य निर्वाचन अधिकृतमा नियुक्त गरिएको र रामग्राममा लैङ्गिक हिंसा विरुद्धको अभियान अन्तर्गत अभिमुखिकरण गरिएको।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"2026-07-21T00:00:00.000Z","time":"1:06 PM","creator":"Nepali sisters :: The mobile meeting of the coordination chiefs of the 12 districts of Lumbini Province was held in Parasi","creatorNp":"नेपाली चेली :: लुम्बिनी प्रदेशका १२ जिल्लाका समन्वय प्रमुखहरूको घुम्ति बैठक परासीमा","source":"www.nepalicheli.com","sourceNp":"www.नेपालिचेलि.कम","imageUrls":"../images/the-coordination-chiefs-of-the-12-districts-of-lumbini-province-held-a-mobile-meeting-in-parasi.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":5,"recordId":1767,"title":"In Lumbini, 20 percent of the farmland remains to be planted.","titleNe":"लुम्बिनीमा २० प्रतिशत खेत रोप्न बाँकी","slug":"in-lumbini-20-percent-of-the-farmland-remains-to-be-planted","province":"Lumbini","provinceNe":"लुम्बिनी","category":"Local","categoryNe":"स्थानीय","metaDesc":"The paddy transplantation in Lumbini Province has been completed up to 80.64 percent by Shrawan 1, and it would have reached 90 percent if there had been timely rainfall.","metaDescNe":"लुम्बिनी प्रदेशमा साउन १ सम्म ८०.६४ प्रतिशत धान रोपाइँ सकिएको, समयमै वर्षा भएको भए ९० प्रतिशत पुग्ने थियो।","readTime":"2 min read","readTimeNe":"2 मिनेट पढाइ","date":"2026-07-19T00:00:00.000Z","time":"1:52 PM","creator":"Madhav Aryal","creatorNp":"माधव अर्याल","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/in-lumbini-20-percent-of-the-farmland-remains-to-be-planted.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"}],
+    totalCount:   7,
+    allArticles:  [{"newsIndex":0,"recordId":1884,"title":"Declaration online, service offline","titleNe":"घोषणा अनलाइन, सेवा अफलाइन","slug":"declaration-online-service-offline","province":"Lumbini","provinceNe":"लुम्बिनी","category":"World","categoryNe":"विश्व","metaDesc":"Government offices have faced problems when online services are disrupted, affecting the elderly and service seekers.","metaDescNe":"सरकारी कार्यालयहरूमा अनलाइन सेवा अवरुद्ध हुँदा वृद्धवृद्धा तथा सेवाग्राही समस्यामा परेका छन्।","readTime":"9 min read","readTimeNe":"9 मिनेट पढाइ","date":"2026-07-22T00:00:00.000Z","time":"11:57 AM","creator":"Nature Dahal","creatorNp":"प्रकृति दाहाल","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/declaration-online-service-offline.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":1,"recordId":1871,"title":"Sushil Koirala Cancer Hospital's liquid oxygen plant is operational.","titleNe":"सुशील कोइराला क्यान्सर अस्पतालमा लिक्विड अक्सिजन प्लान्ट सञ्चालन","slug":"sushil-koirala-cancer-hospitals-liquid-oxygen-plant-is-operational","province":"Lumbini","provinceNe":"लुम्बिनी","category":"Local","categoryNe":"स्थानीय","metaDesc":"The operation of a 20 kilolitre capacity liquid oxygen plant at Banke's Susheel Koirala Pradhan Cancer Hospital has eliminated the hassle of transporting oxygen.","metaDescNe":"बाँकेको सुशील कोइराला प्रखर क्यान्सर अस्पतालमा २० किलोलिटर क्षमताको लिक्विड अक्सिजन प्लान्ट सञ्चालनमा आएसँगै अक्सिजन ढुवानीको झन्झट हटेको छ।","readTime":"1 min read","readTimeNe":"2 मिनेट पढाइ","date":"2026-07-21T00:00:00.000Z","time":"4:36 PM","creator":"Rupa Gahatraj","creatorNp":"रुपा गहतराज","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/sushil-koirala-cancer-hospitals-liquid-oxygen-plant-is-operational.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":2,"recordId":1866,"title":"The performance in Palpa court is second nationwide.","titleNe":"कार्यसम्पादनमा पाल्पा अदालत देशभरमै दोस्रो","slug":"the-performance-in-palpa-court-is-second-nationwide","province":"Lumbini","provinceNe":"लुम्बिनी","category":"Local","categoryNe":"स्थानीय","metaDesc":"The Palpa District Court has secured the second-best position nationwide by disposing of 987 cases in the last fiscal year.","metaDescNe":"पाल्पा जिल्ला अदालतले गत आर्थिक वर्षमा ९ सय ८७ मुद्दा फर्छ्यौट गरी देशभरमै दोस्रो उत्कृष्ट स्थान हासिल गरेको छ।","readTime":"1 min read","readTimeNe":"3 मिनेट पढाइ","date":"2026-07-21T00:00:00.000Z","time":"3:25 PM","creator":"Madhav Aryal","creatorNp":"माधव अर्याल","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/the-performance-in-palpa-court-is-second-nationwide.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":3,"recordId":1863,"title":"The fridge broke down, and for three days the corpse has been lying unattended at Rolpa Hospital.","titleNe":"फ्रिज बिग्रिँदा रोल्पा अस्पतालमा तीन दिनदेखि शव अलपत्र","slug":"the-fridge-broke-down-and-for-three-days-the-corpse-has-been-lying-unattended-at-rolpa-hospital","province":"Lumbini","provinceNe":"लुम्बिनी","category":"Local","categoryNe":"स्थानीय","metaDesc":"The fridge at the mortuary in Rolpa broke down, and for the past three days, there has been a problem keeping the body of Tilasari Pun Dangi safely in the hospital.","metaDescNe":"रोल्पाको शवगृहको फ्रिज बिग्रिएपछि तीन दिनदेखि अलपत्र तिलसरी पुन डाँगीको शव अस्पतालमा सुरक्षित राख्न समस्या भएको छ।","readTime":"2 min read","readTimeNe":"2 मिनेट पढाइ","date":"2026-07-21T00:00:00.000Z","time":"3:23 PM","creator":"Kashiram Dangi","creatorNp":"काशीराम डाँगी","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/the-fridge-broke-down-and-for-three-days-the-corpse-has-been-lying-unattended-at-rolpa-hospital.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":4,"recordId":1842,"title":"The third session of the Domestic Federation of Lumbini Province has been completed.","titleNe":"घरेलु महासंघ लुम्बिनी प्रदेशको तेश्रो अधिवेशन सम्पन्न","slug":"the-third-session-of-the-domestic-federation-of-lumbini-province-has-been-completed","province":"Lumbini","provinceNe":"लुम्बिनी","category":"Local","categoryNe":"स्थानीय","metaDesc":"Judges from 77 districts have been appointed as Chief Election Officers, and an orientation program has been conducted in Ramgram under the campaign against gender-based violence.","metaDescNe":"७७ जिल्लाका न्यायाधीशलाई मुख्य निर्वाचन अधिकृतमा नियुक्त गरिएको र रामग्राममा लैङ्गिक हिंसा विरुद्धको अभियान अन्तर्गत अभिमुखिकरण गरिएको।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"2026-07-21T00:00:00.000Z","time":"1:06 PM","creator":"Nepali sisters :: The third convention of the Domestic Federation of Lumbini Province has been completed","creatorNp":"नेपाली चेली :: घरेलु महासंघ लुम्बिनी प्रदेशको तेश्रो अधिवेशन सम्पन्न","source":"www.nepalicheli.com","sourceNp":"www.नेपालिचेलि.कम","imageUrls":"../images/the-third-session-of-the-domestic-federation-of-lumbini-province-has-been-completed.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":5,"recordId":1841,"title":"The coordination chiefs of the 12 districts of Lumbini Province held a mobile meeting in Parasi.","titleNe":"लुम्बिनी प्रदेशका १२ जिल्लाका समन्वय प्रमुखहरूको घुम्ति बैठक परासीमा","slug":"the-coordination-chiefs-of-the-12-districts-of-lumbini-province-held-a-mobile-meeting-in-parasi","province":"Lumbini","provinceNe":"लुम्बिनी","category":"Local","categoryNe":"स्थानीय","metaDesc":"Judges from 77 districts have been appointed as Chief Election Officers, and an orientation has been conducted in Ramgram under the campaign against gender-based violence.","metaDescNe":"७७ जिल्लाका न्यायाधीशलाई मुख्य निर्वाचन अधिकृतमा नियुक्त गरिएको र रामग्राममा लैङ्गिक हिंसा विरुद्धको अभियान अन्तर्गत अभिमुखिकरण गरिएको।","readTime":"1 min read","readTimeNe":"1 मिनेट पढाइ","date":"2026-07-21T00:00:00.000Z","time":"1:06 PM","creator":"Nepali sisters :: The mobile meeting of the coordination chiefs of the 12 districts of Lumbini Province was held in Parasi","creatorNp":"नेपाली चेली :: लुम्बिनी प्रदेशका १२ जिल्लाका समन्वय प्रमुखहरूको घुम्ति बैठक परासीमा","source":"www.nepalicheli.com","sourceNp":"www.नेपालिचेलि.कम","imageUrls":"../images/the-coordination-chiefs-of-the-12-districts-of-lumbini-province-held-a-mobile-meeting-in-parasi.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"},{"newsIndex":6,"recordId":1767,"title":"In Lumbini, 20 percent of the farmland remains to be planted.","titleNe":"लुम्बिनीमा २० प्रतिशत खेत रोप्न बाँकी","slug":"in-lumbini-20-percent-of-the-farmland-remains-to-be-planted","province":"Lumbini","provinceNe":"लुम्बिनी","category":"Local","categoryNe":"स्थानीय","metaDesc":"The paddy transplantation in Lumbini Province has been completed up to 80.64 percent by Shrawan 1, and it would have reached 90 percent if there had been timely rainfall.","metaDescNe":"लुम्बिनी प्रदेशमा साउन १ सम्म ८०.६४ प्रतिशत धान रोपाइँ सकिएको, समयमै वर्षा भएको भए ९० प्रतिशत पुग्ने थियो।","readTime":"2 min read","readTimeNe":"2 मिनेट पढाइ","date":"2026-07-19T00:00:00.000Z","time":"1:52 PM","creator":"Madhav Aryal","creatorNp":"माधव अर्याल","source":"Kantipur","sourceNp":"कान्तिपुर","imageUrls":"../images/in-lumbini-20-percent-of-the-farmland-remains-to-be-planted.jpg","theme":"{\"themeName\":\"Shittalpati\",\"recordId\":2,\"newsBg\":\"#FFFFFF\",\"newsSurface\":\"#F8F8F8\",\"newsPrimary\":\"#A31919\",\"newsAccent\":\"#D4A017\",\"newsText\":\"#1F1F1F\",\"newsBorder\":\"rgba(163,25,25,0.18)\",\"newsMuted\":\"rgba(31,31,31,0.55)\",\"newsPrimaryContrast\":\"#FFFFFF\",\"newsAccentContrast\":\"#1F1F1F\",\"layout\":\"\",\"layoutHome\":\"\",\"layoutDetail\":\"\",\"layoutAbout\":\"\",\"layoutContact\":\"\",\"frontHeading\":\"Noto Serif, Georgia, serif\",\"fontBody\":\"Noto Serif, Georgia, serif\",\"loadFont\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"rawTheme\":{\"id\":2,\"name\":\"Shittalpati\",\"bg\":\"#FFFFFF\",\"surface\":\"#F8F8F8\",\"primary\":\"#A31919\",\"accent\":\"#D4A017\",\"text\":\"#1F1F1F\",\"front_heading\":\"Noto Serif, Georgia, serif\",\"font_body\":\"Noto Serif, Georgia, serif\",\"primary_on\":\"#FFFFFF\",\"accent_on\":\"#1F1F1F\",\"border\":\"rgba(163,25,25,0.18)\",\"muted\":\"rgba(31,31,31,0.55)\",\"load_font\":\"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')\",\"layout_home\":null,\"layout_detail\":null,\"layout_about\":null,\"layout_contact\":null,\"layout_header\":null,\"layout_footer\":null,\"updated_at\":null}}","themeName":"Shittalpati","themeNewsBg":"#FFFFFF","themeNewsSurface":"#F8F8F8","themeNewsPrimary":"#A31919","themeNewsAccent":"#D4A017","themeNewsText":"#1F1F1F","themeNewsBorder":"rgba(163,25,25,0.18)","themeNewsMuted":"rgba(31,31,31,0.55)","themeNewsPrimaryContrast":"#FFFFFF","themeNewsAccentContrast":"#1F1F1F","themeLayoutHome":"","themeLayoutDetail":"","themeLayoutAbout":"","themeLayoutContact":"","themeFrontHeading":"Noto Serif, Georgia, serif","themeFontBody":"Noto Serif, Georgia, serif","themeLoadFont":"@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap')"}],
     itemsPerPage: 6
   };
 
