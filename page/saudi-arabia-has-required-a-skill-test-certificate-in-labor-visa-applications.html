@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Radio  - Education Category</title>
+  <title>Radio  - News</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -544,316 +544,475 @@
 <style>
   .lang-np { display: none !important; }
   .lang-en { display: inline; }
-  div.lang-en, p.lang-en, h3.lang-en { display: block !important; }
-  div.lang-np, p.lang-np, h3.lang-np { display: none !important; }
+  div.lang-en, p.lang-en, h3.lang-en, .article-body.lang-en,
+  section.lang-en, aside.lang-en { display: block !important; }
+  div.lang-np, p.lang-np, h3.lang-np, .article-body.lang-np,
+  section.lang-np, aside.lang-np { display: none !important; }
 
-  .article-card {
-    background: var(--surface);
-    border-radius: 12px;
+  .meta { display: flex !important; flex-wrap: wrap; align-items: center !important; gap: 1rem; }
+  .meta > span { display: inline-flex !important; align-items: center; gap: 5px; white-space: nowrap; }
+  .meta i { display: inline-flex !important; align-items: center; line-height: 1; font-size: 0.85rem; flex-shrink: 0; }
+
+  /* ── Section ads (between paragraphs) ── */
+  .ad-unit {
+    margin: 1.6rem 0;
+    padding: 0.5rem;
+    border: 1px dashed var(--border, rgba(0,0,0,0.15));
+    border-radius: 6px;
+    background: var(--surface, rgba(0,0,0,0.02));
+    text-align: center;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid var(--border);
   }
-  .article-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  .ad-label {
+    display: block;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted, rgba(0,0,0,0.3));
+    margin-bottom: 0.35rem;
   }
-  .card-image {
-    width: 100%; height: 200px; object-fit: cover;
-    background: var(--border); display: block;
-  }
-  .card-image.no-image {
-    background: linear-gradient(135deg, var(--border) 0%, var(--surface) 100%);
-  }
-  .card-content { padding: 1.25rem; }
-  .card-category {
-    display: inline-block;
-    background: var(--accent); color: var(--accent-on);
-    font-size: 0.7rem; text-transform: uppercase;
-    padding: 0.2rem 0.6rem; border-radius: 4px;
-    margin-bottom: 0.75rem; letter-spacing: 0.05em; font-weight: 600;
-  }
-  .card-title {
-    font-family: var(--font-heading, serif);
-    font-size: 1.2rem; line-height: 1.4;
-    margin: 0 0 0.75rem; color: var(--text);
-  }
-  .card-title-link { text-decoration: none; }
-  .card-title-link:hover .card-title { color: var(--accent); }
-  .card-excerpt {
-    font-size: 0.88rem; color: var(--muted);
-    line-height: 1.5; margin-bottom: 1rem;
-  }
-  .card-meta {
-    display: flex; justify-content: space-between;
-    align-items: center; font-size: 0.78rem; color: var(--muted);
-    flex-wrap: wrap; gap: 0.5rem;
-  }
-  .card-meta i { margin-right: 0.2rem; }
-  .card-source-creator {
-    font-size: 0.72rem; color: var(--muted);
-    margin-top: 4px;
-  }
-  .load-more-btn {
-    background: var(--accent); color: var(--accent-on);
-    border: none; padding: 0.9rem 2rem; border-radius: 50px;
-    cursor: pointer; font-size: 1rem; font-weight: 600;
-    transition: opacity 0.2s, transform 0.2s;
-    display: inline-flex; align-items: center; gap: 0.5rem;
-  }
-  .load-more-btn:hover:not(:disabled) { opacity: 0.9; transform: scale(1.02); }
-  .load-more-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-  #back-to-top {
-    position: fixed; bottom: 1.5rem; right: 1.5rem;
-    background: var(--accent); color: var(--accent-on);
-    border: none; border-radius: 50%;
-    width: 42px; height: 42px; cursor: pointer;
-    font-size: 1rem; display: none;
-    align-items: center; justify-content: center; z-index: 999;
-  }
-  #back-to-top:hover { opacity: 0.85; }
-  .news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem; margin-bottom: 3rem;
-  }
-  @media (max-width: 768px) {
-    .news-grid { gap: 1rem; grid-template-columns: 1fr; }
-    .card-image { height: 180px; }
-  }
-
-  /* ── In-grid section ad — banner style, matches index page ── */
-  .ad-card-inline {
-    /* no border/background box — reads as a full-width banner, not a card */
-  }
-  .ad-card-inline img { cursor: pointer; }
-
-  /* ── Sidebar ads layout ─────────────────────────────────── */
-  .category-page-grid {
-    display: grid;
-    grid-template-columns: 1fr 240px;
-    gap: 20px;
-    max-width: 1280px;
+  .ad-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
     margin: 0 auto;
-    align-items: start;
   }
-  .category-main-col .category-container { max-width: none; margin: 0; }
-  .category-ads-col {
-    position: sticky;
-    top: 16px;
+  .ad-link { display: inline-block; line-height: 0; }
+
+  /* ── Sidebar ads (above related articles) ── */
+  .sidebar-ads-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
   }
-  .ads-label {
-    font-size: .68rem;
-    font-weight: 700;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    text-align: center;
-    padding-bottom: 6px;
-    border-bottom: 1px solid var(--border);
-  }
-  .ad-card {
-    background: var(--surface);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,.07);
-  }
-  .ad-card img { width: 100%; height: auto; display: block; }
-  .ad-card a { display: block; }
-  .ad-card a:hover img { opacity: .88; }
+  .sidebar-ads-wrapper .ad-unit { margin: 0; }
 
-  /* FIX 2: mobile — stack vertically, label on top, full-width ad cards below */
-  @media (max-width: 900px) {
-    .category-page-grid {
-      grid-template-columns: 1fr;
-    }
-    .category-ads-col {
-      position: relative;
-      top: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      width: 100%;
-      margin-top: 20px;
-    }
-    .ads-label {
-      order: -1;
-      width: 100%;
-    }
-    .ad-card {
-      flex: none;
-      width: 100%;
-    }
+  .related-card {
+    display: flex; gap: 12px; margin-bottom: 14px;
+    text-decoration: none; color: inherit;
+    padding: 8px; border-radius: 8px;
+    transition: background 0.2s, transform 0.2s;
   }
+  .related-card:hover { background: rgba(128,128,128,0.08); transform: translateX(3px); }
+  .related-card img { width: 80px; height: 58px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+  .related-content { flex: 1; min-width: 0; }
+  .related-category { display: block; font-size: 0.68rem; color: var(--accent, #D4A017); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 3px; }
+  .related-card h4 { margin: 0 0 4px; font-size: 0.85rem; line-height: 1.35; font-family: var(--font-heading, serif); color: var(--text, #1F1F1F); }
+  .related-meta { font-size: 0.7rem; color: var(--muted, rgba(0,0,0,0.45)); }
+  .no-related { text-align: center; padding: 1rem; color: var(--muted); font-size: 0.88rem; }
+
+  .tag-pill {
+    display: inline-block; background: var(--surface); border: 1px solid var(--border);
+    padding: 4px 12px; border-radius: 20px; font-size: 0.82rem;
+    text-decoration: none; color: var(--text); margin: 3px 2px; transition: background 0.2s, color 0.2s;
+  }
+  .tag-pill:hover { background: var(--accent); color: var(--accent-on); }
+
+  .tooltip {
+    display: none; position: absolute; background: var(--primary); color: var(--primary-on);
+    padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; white-space: nowrap;
+    bottom: 110%; left: 50%; transform: translateX(-50%); z-index: 10; pointer-events: none;
+  }
+  .tooltip.visible { display: block; }
 </style>
 <style>
   :root {
     --accent:       #D4A017;
     --primary:      #A31919;
     --primary-on:   #FFFFFF;
-    --accent-on:    #1F1F1F;
+    --accent-on:    #000000;
     --bg:           #FFFFFF;
     --surface:      #F8F8F8;
     --text:         #1F1F1F;
     --muted:        rgba(31,31,31,0.55);
     --border:       rgba(163,25,25,0.18);
-    --font-body:    Arial, sans-serif;
-    --font-heading: Arial, sans-serif;
+    --font-body:    'Open Sans', sans-serif;
+    --font-heading: 'Montserrat', sans-serif;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--font-body); }
-
-  .category-container {
-    max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem; min-height: 100vh;
+  * {
+    box-sizing: border-box;
   }
 
-  .category-header {
-    text-align: center; margin-bottom: 3rem; padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+  }
+
+  .article-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background: var(--bg);
+  }
+
+  .article-header {
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    line-height: 1.3;
+    margin: 0.5rem 0 0.75rem;
+    color: var(--primary);
   }
 
   .breadcrumb {
-    font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
   }
+
   .breadcrumb a {
-    color: var(--accent); text-decoration: none;
+    color: var(--accent);
+    text-decoration: none;
   }
+
   .breadcrumb a:hover {
     text-decoration: underline;
   }
 
-  h1 {
-    font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.8rem);
-    color: var(--primary); margin-bottom: 1rem; line-height: 1.2;
+  .category-badge span {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--accent-on);
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
 
-  .category-description {
-    font-size: 1rem; color: var(--muted); max-width: 700px;
-    margin: 0 auto 1rem; line-height: 1.6;
+  .meta {
+    display: flex;
+    gap: 1.2rem;
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
   }
 
-  .category-meta {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    background: var(--surface); padding: 0.5rem 1rem;
-    border-radius: 20px; font-size: 0.85rem; color: var(--text);
+  .meta i {
+    margin-right: 4px;
   }
 
-  .news-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem; margin-bottom: 3rem;
+  .share-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
   }
 
-  .article-card {
-    background: var(--surface); border-radius: 12px; overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: var(--font-body);
+    transition: all 0.2s ease;
+  }
+
+  .share-btn:hover {
+    background: var(--accent);
+    color: var(--accent-on);
+    border-color: var(--accent);
+  }
+
+  .share-btn.facebook:hover {
+    background: #1877F2;
+    color: #fff;
+    border-color: #1877F2;
+  }
+
+  .share-btn.twitter:hover {
+    background: #1DA1F2;
+    color: #fff;
+    border-color: #1DA1F2;
+  }
+
+  .copy-link {
+    position: relative;
+  }
+
+  .tooltip {
+    display: none;
+    position: absolute;
+    background: var(--primary);
+    color: var(--primary-on);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    white-space: nowrap;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .tooltip.visible {
+    display: block;
+  }
+
+  .article-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  @media (max-width: 1023px) {
+    .article-content {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .main-column {
+    min-width: 0;
+  }
+
+  .image-wrapper {
+    margin-bottom: 1.5rem;
+  }
+
+  .image-wrapper img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+  }
+
+  .image-wrapper.hidden {
+    display: none;
+  }
+
+  .article-body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  .article-body p {
+    margin-bottom: 1.1rem;
+  }
+
+  .article-body h2 {
+    font-family: var(--font-heading);
+    margin: 1.8rem 0 0.8rem;
+    font-size: 1.3rem;
+  }
+
+  .article-body img {
+    max-width: 100%;
+    border-radius: 6px;
+  }
+
+  .tags-wrapper {
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .tags-wrapper h3 {
+    font-size: 0.95rem;
+    margin: 0 0 0.6rem;
+    font-family: var(--font-heading);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tags-list a {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: 0.2s;
+  }
+
+  .tags-list a:hover {
+    background: var(--accent);
+    color: var(--accent-on);
+    border-color: var(--accent);
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .widget {
+    background: var(--surface);
+    padding: 1.4rem;
+    border-radius: 10px;
     border: 1px solid var(--border);
   }
-  .article-card:hover {
-    transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+
+  .widget h3 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
-  .card-image {
-    width: 100%; height: 200px; object-fit: cover; background: var(--border);
-  }
-  .card-image:empty {
-    background: linear-gradient(135deg, var(--border) 0%, var(--surface) 100%);
-  }
-
-  .card-content {
-    padding: 1.25rem;
+  .widget p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
   }
 
-  .card-category {
-    display: inline-block; background: var(--accent); color: var(--accent-on);
-    font-size: 0.7rem; text-transform: uppercase; padding: 0.2rem 0.6rem;
-    border-radius: 4px; margin-bottom: 0.75rem; letter-spacing: 0.05em;
-    font-weight: 600; text-decoration: none;
+  #newsletter-email {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 0.88rem;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    outline: none;
   }
 
-  .card-title {
-    font-family: var(--font-heading); font-size: 1.2rem; line-height: 1.4;
-    margin: 0 0 0.75rem; color: var(--text); text-decoration: none;
-    transition: color 0.2s;
-  }
-  .card-title:hover {
-    color: var(--accent);
+  #newsletter-email:focus {
+    border-color: var(--accent);
   }
 
-  .card-excerpt {
-    font-size: 0.88rem; color: var(--muted); line-height: 1.5;
-    margin-bottom: 1rem;
+  #newsletter-subscribe {
+    width: 100%;
+    padding: 9px;
+    background: var(--accent);
+    color: var(--accent-on);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
   }
 
-  .card-meta {
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 0.78rem; color: var(--muted);
-  }
-  .card-meta i {
-    margin-right: 0.2rem;
-  }
-
-  .read-more {
-    color: var(--accent); text-decoration: none; font-size: 0.85rem;
-    font-weight: 600; transition: opacity 0.2s;
-  }
-  .read-more:hover {
-    opacity: 0.8;
-  }
-
-  .load-more-container {
-    text-align: center; margin-top: 2rem;
-  }
-
-  .load-more-btn {
-    background: var(--accent); color: var(--accent-on); border: none;
-    padding: 0.9rem 2rem; border-radius: 50px; cursor: pointer;
-    font-size: 1rem; font-weight: 600; transition: transform 0.2s, opacity 0.2s;
-    display: inline-flex; align-items: center; gap: 0.5rem;
-  }
-  .load-more-btn:hover {
-    opacity: 0.9; transform: scale(1.02);
-  }
-  .load-more-btn:disabled {
-    opacity: 0.5; cursor: not-allowed;
+  #newsletter-subscribe:hover {
+    opacity: 0.85;
   }
 
   #back-to-top {
-    position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent);
-    color: var(--accent-on); border: none; border-radius: 50%; width: 42px;
-    height: 42px; cursor: pointer; font-size: 1rem; display: none;
-    align-items: center; justify-content: center; z-index: 999;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: var(--accent);
+    color: var(--accent-on);
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     transition: opacity 0.2s;
   }
 
-  .empty-state {
-    text-align: center; padding: 4rem 2rem; background: var(--surface);
-    border-radius: 12px; color: var(--muted);
-  }
-  .empty-state i {
-    font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;
+  #back-to-top:hover {
+    opacity: 0.85;
   }
 
-  @media (max-width: 768px) {
-    .category-container { padding: 1rem; }
-    .news-grid { gap: 1rem; grid-template-columns: 1fr; }
-    .card-image { height: 180px; }
+  .related-card {
+    display: flex;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text);
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
   }
 
-  @media (max-width: 480px) {
-    h1 { font-size: 1.5rem; }
-    .card-title { font-size: 1rem; }
+  .related-card:last-child {
+    border-bottom: none;
   }
 
-  .lang-np { display: none; }
-  .lang-en { display: inline; }
-  body.lang-active .lang-en { display: none !important; }
-  body.lang-active .lang-np { display: inline !important; }
-  body.lang-active p.lang-np, body.lang-active span.lang-np { display: inline !important; }
+  .related-card img {
+    width: 72px;
+    height: 52px;
+    object-fit: cover;
+    border-radius: 5px;
+    flex-shrink: 0;
+  }
+
+  .related-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .related-category {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+  }
+
+  .related-content h4 {
+    margin: 0 0 3px;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    font-family: var(--font-heading);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .related-meta {
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
 </style>
 <style>
     #site-footer { font-family:var(--font-body); }
@@ -920,39 +1079,58 @@
       min-height: 100vh;
       display: flex; flex-direction: column;
       overflow-x: hidden;
-      background: var(--bg, #ffffff);
-      color: var(--text, #0f172a);
-      font-family: var(--font-body, 'Inter', sans-serif);
+      background: var(--bg, #1C1C1C);
+      color: var(--text, #F0EBE0);
+      font-family: var(--font-body, 'Cormorant Garamond', serif);
     }
     main.main-content { flex: 1; }
     img, video, iframe { max-width: 100%; height: auto; }
 
-    /* ── Language visibility — body.lang-active is the single source of truth ── */
+    header, .site-header, #site-header {
+      max-height: none !important;
+      overflow: visible !important;
+    }
+
+    /* Language system */
+    .lang-en { display: inline !important; }
     .lang-np { display: none !important; }
-    .lang-en { display: inline; }
     div.lang-en, p.lang-en, section.lang-en,
     h1.lang-en, h2.lang-en, h3.lang-en, h4.lang-en,
+    li.lang-en, span.lang-en,
     .article-body.lang-en { display: block !important; }
     div.lang-np, p.lang-np, section.lang-np,
     h1.lang-np, h2.lang-np, h3.lang-np, h4.lang-np,
+    li.lang-np, span.lang-np,
     .article-body.lang-np { display: none !important; }
 
     body.lang-active .lang-en { display: none !important; }
     body.lang-active .lang-np { display: inline !important; }
-    body.lang-active div.lang-np,
-    body.lang-active p.lang-np,
-    body.lang-active section.lang-np,
-    body.lang-active h1.lang-np,
-    body.lang-active h2.lang-np,
-    body.lang-active h3.lang-np,
-    body.lang-active h4.lang-np,
+    body.lang-active div.lang-np, body.lang-active p.lang-np,
+    body.lang-active section.lang-np, body.lang-active h1.lang-np,
+    body.lang-active h2.lang-np, body.lang-active h3.lang-np,
+    body.lang-active h4.lang-np, body.lang-active li.lang-np,
     body.lang-active .article-body.lang-np { display: block !important; }
+    body.lang-active div.lang-en, body.lang-active p.lang-en,
+    body.lang-active section.lang-en, body.lang-active h1.lang-en,
+    body.lang-active h2.lang-en, body.lang-active h3.lang-en,
+    body.lang-active h4.lang-en, body.lang-active li.lang-en,
+    body.lang-active .article-body.lang-en { display: none !important; }
 
+    /* Category badge */
+    .category-badge,
+    .category-label,
+    .article-category,
+    .cat-badge,
+    [class*="category"] {
+      display: inline-block !important;
+      width: auto !important;
+      max-width: fit-content !important;
+    }
   </style>
 </head>
 <body>
 
-  <!-- ════ HEADER ════ -->
+  <!-- ════ HEADER (9070 chars) ════ -->
   <header id="site-header">
 
 
@@ -1026,10 +1204,10 @@
             <li><a href="../province/sudurpashchim.html"><span class="lang-en">Sudurpashchim Province</span><span class="lang-np">सुदूरपश्चिम प्रदेश</span></a></li>
           </ul>
         </li>
-        <li><a href="../page/epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
-        <li><a href="../page/about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
-        <li><a href="../page/contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
-        <li><a href="../page/video.html"><span class="lang-en">Video</span><span class="lang-np">भिडिय</span></a></li>
+        <li><a href="epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
+        <li><a href="about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
+        <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+        <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडिय</span></a></li>
       </ul>
       <div class="nav-actions">
         <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -1063,86 +1241,108 @@
           <li><a href="../province/sudurpashchim.html"><span class="lang-en">Sudurpashchim Province</span><span class="lang-np">सुदूरपश्चिम प्रदेश</span></a></li>
         </ul>
       </li>
-      <li><a href="../page/epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
-      <li><a href="../page/about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
-      <li><a href="../page/contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
-     <li><a href="../page/video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
+      <li><a href="epaper.html"><span class="lang-en">E-Paper</span><span class="lang-np">ई-पेपर</span></a></li>
+      <li><a href="about.html"><span class="lang-en">About</span><span class="lang-np">हाम्रोबारे</span></a></li>
+      <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+     <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
     </ul>
   </div>
 
 
 </header>
 
-  <!-- ════ CATEGORY PAGE CONTENT ════ -->
+  <!-- ════ ARTICLE (1 item) ════ -->
   <main class="main-content">
     
 
 
 
 
+<div class="article-container">
 
-<div class="category-page-grid">
-       <div class="category-main-col"><div class="category-container">
-
-  <!-- Category Header Section -->
-  <div class="category-header">
+  <!-- ZONE 1: full-width article header -->
+  <div class="article-header">
     <div class="breadcrumb">
       <span id="breadcrumb-en" class="lang-en"></span>
       <span id="breadcrumb-np" class="lang-np"></span>
     </div>
-    
+
+    <div class="category-badge">
+      <span id="category-en" class="lang-en"></span>
+      <span id="category-np" class="lang-np"></span>
+    </div>
+
     <h1>
-      <span id="category-title-en" class="lang-en"></span>
-      <span id="category-title-np" class="lang-np"></span>
+      <span id="title-en" class="lang-en"></span>
+      <span id="title-np" class="lang-np"></span>
     </h1>
-    
-    <p class="category-description">
-      <span id="category-description-en" class="lang-en"></span>
-      <span id="category-description-np" class="lang-np"></span>
-    </p>
-    
-    <div class="category-meta">
-      <span><i class="fa-regular fa-newspaper"></i> <span id="news-count"></span> <span class="lang-en">Articles</span><span class="lang-np">लेखहरू</span></span>
+
+    <div class="meta">
+      <span><i class="fas fa-calendar"></i> <span id="date"></span></span>
+      <span><i class="fas fa-clock"></i> <span id="readtime-en" class="lang-en"></span><span id="readtime-np" class="lang-np"></span></span>
+    </div>
+
+    <div class="share-buttons">
+      <button class="share-btn facebook"><i class="fab fa-facebook"></i> Facebook</button>
+      <button class="share-btn twitter"><i class="fab fa-twitter"></i> Twitter</button>
+      <button class="share-btn copy-link"><i class="fas fa-link"></i> Copy Link<span class="tooltip">Copied!</span></button>
     </div>
   </div>
 
-  <!-- News Grid Section -->
-  <div id="news-grid" class="news-grid"></div>
+  <!-- ZONE 2: two-column body -->
+  <div class="article-content">
 
-  <!-- Load More Section -->
-  <div class="load-more-container">
-    <button id="load-more-btn" class="load-more-btn">
-      <span class="lang-en"><i class="fas fa-chevron-down"></i> Load More</span>
-      <span class="lang-np"><i class="fas fa-chevron-down"></i> थप लोड गर्नुहोस्</span>
-    </button>
+    <!-- LEFT column -->
+    <div class="main-column">
+
+      <div class="image-wrapper">
+        <img id="featured-image" src="" alt="" loading="lazy">
+      </div>
+
+      <div id="article-body-en" class="lang-en article-body"></div>
+      <div id="article-body-np" class="lang-np article-body"></div>
+
+      <div class="tags-wrapper">
+        <h3 class="lang-en"><i class="fas fa-tags"></i> Tags</h3>
+        <h3 class="lang-np"><i class="fas fa-tags"></i> ट्यागहरू</h3>
+        <div id="tags-en" class="lang-en tags-list"></div>
+        <div id="tags-np" class="lang-np tags-list"></div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT column / sidebar -->
+    <aside class="sidebar">
+      <div class="widget related">
+        <h3 class="lang-en"><i class="fas fa-newspaper"></i> Related Articles</h3>
+        <h3 class="lang-np"><i class="fas fa-newspaper"></i> सम्बन्धित लेखहरू</h3>
+        <div id="related-articles"></div>
+      </div>
+
+      <div class="widget newsletter">
+        <h3 class="lang-en"><i class="fas fa-envelope"></i> Newsletter</h3>
+        <h3 class="lang-np"><i class="fas fa-envelope"></i> समाचारपत्र</h3>
+        <p class="lang-en">Stay updated — subscribe to our free newsletter and get the latest news delivered to your inbox.</p>
+        <p class="lang-np">अपडेट रहनुहोस् — हाम्रो नि:शुल्क समाचारपत्र सदस्यता लिनुहोस् र नवीनतम समाचार आफ्नो इनबक्समा पाउनुहोस्।</p>
+        <input type="email" id="newsletter-email" placeholder="Enter your email address">
+        <button id="newsletter-subscribe"><i class="fas fa-paper-plane"></i> <span class="lang-en">Subscribe</span><span class="lang-np">सदस्यता लिनुहोस्</span></button>
+      </div>
+    </aside>
+
   </div>
 
-  <!-- Back to Top Button -->
   
 
 </div>
 
-</div>
-       <aside class="category-ads-col">
-         <div class="ads-label">
-           <span class="lang-en">Advertisement</span>
-           <span class="lang-np" style="display:none">विज्ञापन</span>
-         </div>
-         
-    <div class="ad-card" data-ad-number="1">
-      <img src="../images/sideads_3.jpg" alt="sideads_3.jpg" loading="lazy" style="pointer-events:none;" onerror="this.closest('.ad-card').style.display='none'">
-    </div>
 
-    <div class="ad-card" data-ad-number="2">
-      <img src="../images/sideads_4.jpg" alt="sideads_4.jpg" loading="lazy" style="pointer-events:none;" onerror="this.closest('.ad-card').style.display='none'">
-    </div>
-       </aside>
-     </div>
+
+
 
 
   </main>
 
-  <!-- ════ FOOTER ════ -->
+  <!-- ════ FOOTER (6107 chars) ════ -->
   <footer id="site-footer">
   
   
@@ -1184,14 +1384,14 @@
       <div class="footer-col">
         <h4 class="footer-col-heading"><span class="lang-en">Specials</span><span class="lang-np">विशेष</span></h4>
         <ul class="footer-link-list">
-          <li><a href="../page/video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
+          <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडियो</span></a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4 class="footer-col-heading"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></h4>
         <ul class="footer-link-list">
-          <li><a href="../page/about.html"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></a></li>
-          <li><a href="../page/contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
+          <li><a href="about.html"><span class="lang-en">About Us</span><span class="lang-np">हाम्रोबारे</span></a></li>
+          <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-np">सम्पर्क</span></a></li>
         </ul>
       </div>
     </div>
@@ -1243,7 +1443,7 @@
 
 
 
-  <!-- ════ WHATSAPP WIDGET ════ -->
+  <!-- ════ WhatsApp widget — pulled directly from footer, no hardcoding ════ -->
   <div class="wa-widget">
   <div class="wa-tooltip"><span class="lang-en">Chat on WhatsApp</span><span class="lang-np">WhatsApp मा सम्पर्क</span></div>
   <a href="https://wa.me/9779847492226?text=Hello!%20I%20have%20a%20query%20about%20Shittal%20Pati" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -1274,14 +1474,7 @@
     var hdr = document.getElementById('site-header');
     if (hdr) hdr.classList.toggle('hdr-np', isNp);
 
-    var dtEl = document.getElementById('np-datetime');
-    if (dtEl) {
-      dtEl.textContent = isNp
-        ? (dtEl.getAttribute('data-np') || dtEl.textContent)
-        : (dtEl.getAttribute('data-en') || dtEl.textContent);
-    }
-
-    ['fm_lang', 'language', 'siteLang', 'categoryLang'].forEach(function(k) {
+    ['fm_lang', 'language', 'siteLang', 'articleLang'].forEach(function(k) {
       try { localStorage.setItem(k, lang); } catch(e) {}
     });
 
@@ -1297,13 +1490,12 @@
     var btn = document.getElementById('lang-toggle');
     if (!btn || btn._capturebound) return;
     btn._capturebound = true;
-    // Mark guards used by header/category scripts so they skip binding
     btn._langBound = true;
     btn._hdrBound  = true;
     btn.addEventListener('click', function(e) {
       e.stopImmediatePropagation();
       broadcast(getCurrentLang() === 'en' ? 'np' : 'en');
-    }, true); // useCapture = true — fires before ALL bubbling handlers
+    }, true); // useCapture = true — fires before any other bound handler
   }
 
   window.addEventListener('langChange', function(e) {
@@ -1553,14 +1745,246 @@
 (function() {
   'use strict';
 
-  // ── AD → BS Converter ────────────────────────────────────
   var BS_MONTHS_NP = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
   var NP_DIGITS    = ['०','१','२','३','४','५','६','७','८','९'];
-
-  // ── EN months for UTC-safe AD date formatting ────────────
   var EN_MONTHS_FULL = ['January','February','March','April','May','June',
                         'July','August','September','October','November','December'];
 
+  var BS = {
+  2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2004:[366,30,32,31,32,31,30,30,30,29,30,29,31],2005:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2006:[365,31,31,32,32,31,30,30,29,30,29,30,30],2007:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2008:[365,31,31,32,31,31,31,30,29,30,29,30,30],2009:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2010:[365,31,31,32,32,31,30,30,29,30,29,30,30],2011:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2012:[365,31,31,32,31,31,31,30,29,30,29,30,30],2013:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2014:[365,31,31,32,32,31,30,30,29,30,29,30,30],2015:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2016:[366,31,31,32,31,31,31,30,29,30,29,30,31],2017:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2018:[365,31,31,32,32,31,30,30,29,30,29,30,30],2019:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2020:[366,31,31,32,31,31,30,30,29,30,29,30,31],2021:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2022:[365,31,31,32,32,31,30,30,29,30,29,30,30],2023:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2024:[366,31,31,32,31,31,30,30,29,30,29,30,31],2025:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2026:[365,31,31,32,32,31,30,30,29,30,29,30,30],2027:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2028:[366,31,32,31,32,31,30,30,30,29,30,29,31],2029:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2030:[365,31,31,32,31,31,31,30,29,30,29,30,30]
+  };
+
+  var AD_EPOCH_MS = Date.UTC(1943, 2, 31);
+
+  function toNpDigits(n) {
+    return String(n).split('').map(function(d) {
+      var i = parseInt(d, 10); return isNaN(i) ? d : NP_DIGITS[i];
+    }).join('');
+  }
+
+  function adToBs(dateStr) {
+    if (!dateStr) return '';
+    var d = new Date(dateStr);
+    if (isNaN(d.getTime())) return dateStr;
+    var adMidnight = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+    var totalDays  = Math.floor((adMidnight - AD_EPOCH_MS) / 86400000);
+    if (totalDays < 0) return dateStr;
+    var bsYear = 2000;
+    while (true) {
+      var yd = BS[bsYear]; if (!yd) break; if (totalDays < yd[0]) break; totalDays -= yd[0]; bsYear++;
+    }
+    var yd2 = BS[bsYear]; if (!yd2) return dateStr;
+    var bsMonth = 1, bsDay = 1;
+    for (var m = 1; m <= 12; m++) {
+      if (totalDays < yd2[m]) { bsMonth = m; bsDay = totalDays + 1; break; } totalDays -= yd2[m];
+    }
+    return toNpDigits(bsYear) + ' ' + BS_MONTHS_NP[bsMonth - 1] + ' ' + toNpDigits(bsDay);
+  }
+
+  var DATA = {
+    titleEn:        "Saudi Arabia has required a skill test certificate in labor visa applications",
+    titleNp:        "साउदीले श्रम भिसा आवेदनमै सीप परीक्षण प्रमाणपत्र माग्यो",
+    categoryEn:     "Economy",
+    categoryNp:     "अर्थतन्त्र",
+    dateAd:         "July 22, 2026",
+    dateEn:         "July 22, 2026",
+    readTimeEn:     "5 min read",
+    readTimeNp:     "5 मिनेट पढाइ",
+    sourceEn:       "Kantipur",
+    sourceNp:       "कान्तिपुर",
+    creatorEn:      "Home Karki",
+    creatorNp:      "होम कार्की",
+    bodyEnWithAds:  "<p class=\"article-para\"><body class=\"article-detail-page\"> <section class=\"news-section-wrap\" data-link=\"news/2026/07/22/saudi-arabia-asks-for-skills-test-certificate-in-work-visa-application-22-25.html\"><p class=\"\">Diplomatic Note Seeking Review of Skills Test Program Imposing Economic Burden on Workers</p>\n<div class=\"ad-unit\" id=\"insection_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_1.png\" alt=\"insection_1.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><div class=\"author-date\"><span translate=\"no\">Shrawan 6, 2083</span></div></section><section class=\"image-section-wrap\"></section><section class=\"utility-section\"></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>Kathmandu — Saudi Arabia has unilaterally implemented the Skills Test Program (STP), imposing an economic burden on workers in Nepal. Now, workers without an STP certificate will not be able to work in Saudi Arabia.</p>\n<div class=\"ad-unit\" id=\"insection_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_2.png\" alt=\"insection_2.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p>The Saudi Embassy in Kathmandu has made it mandatory that visa applications from workers without an STP certificate will not be accepted. Previously, Saudi Arabia had begun preparations to implement the program starting Ashad 3. However, it was immediately suspended after manpower entrepreneurs damaged the training centers assigned responsibility for implementing the STP.</p>\n<div class=\"ad-unit\" id=\"insection_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_3.png\" alt=\"insection_3.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p>The Ministry of Labor, Employment and Social Security has sent a diplomatic note to Saudi Arabia through the Ministry of Foreign Affairs seeking a review of implementing the STP in Nepal. “This is a bilateral issue. We have sent a diplomatic note seeking a review,” said Labor Ministry spokesperson Pitambar Ghimire.</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>Saudi Arabia has implemented the skills test for five occupations: loading and unloading goods, rickshaw pullers, cart pushers, and construction sector workers. However, it has not clearly specified what types of work in the construction sector are covered.</p><p>The Saudi Ministry of Human Resources and Social Development has announced that it is implementing a Skills Certification Program for workers seeking labor visas in Saudi Arabia. Saudi Arabia has stated that it is initiating skills certification to grant professional recognition.</p><p>According to the notice issued by the embassy, workers must first register online on Saudi Arabia’s “Professional Certification Portal” to take the skills test. After registration, they must pay the fee in dollars via visa or Mastercard. Applicants must select their occupation from the list of available professions under the program. Then, they must select an approved examination center and available examination date. The test will last three hours. The results are expected to be available within 24 hours to one week.</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>According to Saudi Arabia’s notification, workers are given up to three attempts to pass the skills test. If they fail, they will not be allowed to travel to Saudi Arabia. Saudi Arabia has stated that it is implementing this program in all source countries.</p><p>The Nepal Foreign Employment Business Association has stated that the STP has been implemented with digital control. A fee of $50 (NPR 7,000) must be paid for the STP examination. However, there is no legal provision allowing workers or manpower entrepreneurs to pay directly. For this purpose, SIEV (SIEV) charges NPR 10,000 including service fees. A fee of $50 has been set for Prior Skill Recognition (PSR). However, the matter of Prior Skill Recognition has not yet been clearly clarified.</p><p>“The application has been designed to require the STP certificate at the visa application stage. Without presenting the certificate, the visa application process cannot proceed,” said President of the Nepal Foreign Employment Business Association, Dik Bahadur Khatri, to Kantipur, “Digital control has been introduced. There is no alternative for visa processing.”</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>Entrepreneurs said they have started sending 1,700 workers for the STP because the medical examination validity for these workers is about to expire. Saudi Arabia has entrusted the Industrial Training Institute Nepal located in Balsundar, Kathmandu, with implementing the STP program. “When employers have already selected workers, if the visa application is not submitted immediately, the medical examination validity expires. Once expired, workers must undergo medical examination again,” he said, “This has trapped the workers.”</p><p>According to President Khatri, discussions are ongoing among entrepreneurs regarding halting the new demand letter certification. “The government has not demonstrated effective diplomacy. This issue should have been resolved promptly through diplomatic means,” he said.</p><p>On Ashad 12, Minister for Youth, Labor and Employment Ramji Yadav met Saudi Ambassador Fahad Mohammad Al Mneekhar and urged immediate suspension of the Nepali workers’ skills certification process.</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>Nepal has emphasized that all matters related to skills certification must be resolved through the established bilateral consultation and agreement mechanism. Nepal requests that visa procedures continue as usual until progress is made through the established mechanism. The Nepal-Saudi Arabia labor agreement signed in Poush mentioned that the Joint Technical Committee would determine matters related to the recruitment of Nepali workers. However, there is no bilateral agreement between Nepal and Saudi Arabia regarding the implementation of the skills certification program. This technical committee includes senior officials from both Nepal and Saudi Arabia.</p><p>“Nepal wishes that the visa process for Nepali workers is not affected by the STP process and that the visa procedure continues as usual,” said the Secretary’s Office of the Minister of Labor, “The Ministry of Labor seeks to ensure an environment free of obstacles to workers’ employment.”</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>Saudi Ambassador Mneekhar stated that he would provide further information on this matter after necessary consultations with the Saudi government. However, Saudi Arabia implemented the STP without prior consultation. Previously, Saudi Arabia also began collecting biometric data (fingerprints) from workers without Nepal’s consent starting 13 Poush 2081. A biometric collection facility has been established in Thapathali, Kathmandu. Workers must pay NPR 730 for biometric collection. The embassy has refused to accept workers without biometric data.</p><p>During a meeting with foreign employment entrepreneurs, Saudi Ambassador Mneekhar stated that the fees should be paid by the employers. “If employers had paid the STP fee at the time of certification (quota certification), workers would not have been required to pay. However, since the fee was not paid then, workers in Nepal are now obligated to pay,” said Association President Khatri, “This appears to be an attempt to exploit workers under the guise of a skills test by selling certificates.”</p></div></section><section class=\"news-section-wrap-story\"><div class=\"news-inner-wrapper\"><p>Every year, 80,000 Nepali workers travel to Saudi Arabia. Among them, 67 percent go on general labor visas, 8 percent in the service sector, and 12 percent in the driver and operator sectors.</p></div></section> <section class=\"author-list news-wrap-sec\"><p class=\"inter\"><span><a href=\"https://ekantipur.com/author/author-9360\">Hom</a></span> Karki, who has been working as a journalist for two decades, focuses on labor and migration issues. He has reported on migrant workers in the Gulf region and Malaysia. His non-fiction book on labor and migration, “Sanaiya,” has been published. </p></section></p><p class=\"article-para\"></body></p>",
+    bodyNpWithAds:  "<p class=\"article-para\"><body class=\"article-detail-page\">  <section class=\"news-section-wrap\" data-link=\"news/2026/07/22/saudi-arabia-asks-for-skills-test-certificate-in-work-visa-application-22-25.html\"><p class=\"\">श्रमिकलाई आर्थिक भार पर्ने सीप परीक्षण कार्यक्रममाथि पुनर्विचार गर्न कूटनीतिक नोट</p>\n<div class=\"ad-unit\" id=\"insection_1\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_1.png\" alt=\"insection_1.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><div class=\"author-date\"><span translate=\"no\">श्रावण ६, २०८३</span></div></section><section class=\"image-section-wrap\"></section><section class=\"utility-section\"></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>काठमाडौँ — साउदी अरबले नेपालमा श्रमिकलाई आर्थिक भार पार्ने गरी एकतर्फी रूपमा सीप परीक्षण कार्यक्रम (एसभीपी) कार्यान्वयनमा ल्याएको छ । अब एसभीपी प्रमाणपत्र नभएका श्रमिकले साउदीमा काम गर्न जान पाउने छैनन् ।</p>\n<div class=\"ad-unit\" id=\"insection_2\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_2.png\" alt=\"insection_2.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p>काठमाडौंस्थित साउदी दूतावासले एसभीपीको प्रमाणपत्र नभएका श्रमिकको भिसा आवेदन नै दिन नमिल्ने बनाएको छ । यसअघि साउदीले गत असार ३ गतेबाटै कार्यान्वयनमा ल्याउने तयारी थालेको थियो । तर, म्यानपावर व्यवसायीहरूले एसभीपी कार्यान्वयन गर्ने जिम्मेवारी पाएको तालिम केन्द्रमा तोडफोड गरेपछि तत्काल रोकिएको थियो ।</p>\n<div class=\"ad-unit\" id=\"insection_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/insection_3.png\" alt=\"insection_3.png\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div><p>श्रम, रोजगार तथा सामाजिक सुरक्षा मन्त्रालयले एसभीपीलाई नेपालमा लागू गर्ने विषयमा पुनर्विचार गर्न परराष्ट्र मन्त्रालयमार्फत साउदीलाई कूटनीतिक नोट पठाएको छ । ‘यो विषय द्विपक्षीय छलफलको विषय हो । यसलाई पुनर्विचार गर्न हामीले कूटनीतिक नोट पठाएका छौं,’ श्रम मन्त्रालयका प्रवक्ता पिताम्बर घिमिरेले बताए ।</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>साउदीले सीप परीक्षण पाँचवटा पेसामा क्रमशः सामान लोड तथा अनलोड गर्ने, भरिया, ठेला चलाउने र निर्माण क्षेत्रका श्रमिकलाई लागू गरेको छ । निर्माण क्षेत्रमा के काम गर्ने श्रमिक भन्नेबारे भने स्पष्ट खुलाइएको छैन ।</p><p>साउदीको मानव संसाधन तथा सामाजिक विकास मन्त्रालयले साउदी अरबमा श्रम भिसा प्राप्त गर्न सीप प्रमाणीकरण कार्यक्रम सञ्चालन गरिएको जनाएको छ । साउदीले व्यावसायिक मान्यता दिनका लागि सीप प्रमाणीकरण गर्न लागेको जनाएको छ ।</p><p>दूतावासद्वारा जारी सूचनाअनुसार सीप परीक्षणका लागि श्रमिकले पहिले नै साउदीको ‘व्यावसायिक प्रमाणीकरण पोर्टल’मा अनलाइन दर्ता गर्नुपर्छ । दर्ता गरेपछि मात्र भिसा वा मास्टरकार्डमार्फत डलरमा शुल्क भुक्तानी गर्नुपर्छ । आवेदकले कार्यक्रमअन्तर्गत उपलब्ध पेशामध्ये आफ्नो पेसा छनोट गर्नुपर्छ । त्यसपछि स्वीकृत परीक्षा केन्द्र र उपलब्ध परीक्षाको मिति छनोट गर्नुपर्नेछ । परीक्षण तीन घण्टाको हुनेछ । यसको नतिजा २४ घण्टादेखि एक साताभित्र आउने जनाएको छ ।</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>साउदीको सूचनाअनुसार सीप परीक्षणका लागि श्रमिकलाई तीन पटकसम्म मौका दिइनेछ । यसमा अनुत्तीर्ण भएमा श्रमिक साउदी जान पाउनेछैन । साउदीले यो कार्यक्रम सबै स्रोत देशमा लागू गरेको जनाएको छ ।</p><p>नेपाल वैदेशिक रोजगार व्यवसायी संघले ‘डिजिटल कन्ट्रोल’ गरी एसभीपी कार्यान्वयनमा ल्याएको जनाएको छ । एसभीपीको परीक्षणका लागि परीक्षा शुल्कबापत ५० डलर (७ हजार रुपैयाँ) बुझाउनुपर्छ । तर, श्रमिक वा म्यानपावर व्यवसायीले सिधै बुझाउन पाउने कानुनी व्यवस्था छैन । यसका लागि साइ भिजन प्रालिले सेवा शुल्कसहित १० हजार रुपैयाँ लिने गरेको छ । पूर्वसिकाइ मान्यता (आरपीएल) बापत ५० डलर तोकिएको छ । तर, पूर्वसिकाइ मान्यताको विषय अझै स्पष्ट खुलेको छैन ।</p><p>‘भिसाको आवेदनमा नै एसभीपी प्रमाणपत्र लिएको हुनुपर्ने बटन राखेको छ। त्यसमा प्रमाणपत्र पेश नगरेसम्म भिसा आवेदन प्रक्रिया नै अगाडि बढ्दैन,’ नेपाल वैदेशिक रोजगार व्यवसायी संघका अध्यक्ष डिकबहादुर खत्रीले कान्तिपुरसँग भने, ‘यसमा डिजिटल कन्ट्रोल भयो । भिसाका लागि दोस्रो उपाय नै भएन ।’</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>व्यवसायीहरूले १७ सय जना श्रमिकको मेडिकल परीक्षणको म्याद समाप्त हुन लागेकाले एसभीपीमा पठाउन थालेको बताए। एसभीपी कार्यक्रम सञ्चालन गर्न साउदीले काठमाडौंको बसुन्धरास्थित इन्डस्ट्रियल ट्रेनिङ इन्स्टिच्युट नेपाल प्रालिलाई जिम्मा दिएको छ । ‘रोजगारदाताले छनोट गरिसकेको अवस्थामा तुरुन्तै भिसा आवेदन नलिए श्रमिकको मेडिकल परीक्षणको समय गुज्रने भयो । मेडिकल परीक्षणको समय सकिए फेरि मेडिकल परीक्षण गर्नुपर्छ,’ उनले भने, ‘श्रमिकलाई ट्र्यापमा पार्ने काम भयो ।’</p><p>अध्यक्ष खत्रीका अनुसार नयाँ मागपत्र प्रमाणीकरण रोक्ने सन्दर्भमा व्यवसायीबीच छलफल भइरहेको छ । ‘सरकारको प्रभावकारी कूटनीति भएन । यसलाई समयमै कूटनीतिक ढंगबाट समाधान गर्नुपर्थ्यो,’ उनले भने ।</p><p>गत असार १२ गते युवा, श्रम तथा रोजगारमन्त्री रामजी यादवले नेपालका लागि साउदी अरबका राजदूत फहद मोहम्मद अल म्नीखरलाई भेटी नेपाली श्रमिकको सीप प्रमाणीकरण प्रक्रियालाई तत्काल स्थगन गर्न आग्रह गरेका थिए ।</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>नेपालले सीप प्रमाणीकरण प्रक्रियासँग सम्बन्धित सबै विषय द्विपक्षीय परामर्श र सहमतिका आधारमा स्थापित संयन्त्रमार्फत समाधान गरिनुपर्नेमा जोड दिएको छ। स्थापित संयन्त्रमार्फत अगाडि नबढेसम्म भिसा प्रक्रियालाई यथावत् रूपमा जारी गर्नुपर्ने पक्षमा नेपालको अनुरोध छ । गत पुसमा नेपाल र साउदी अरबबीच भएको श्रम सम्झौतामा नेपाली श्रमिकको भर्ना प्रक्रियासँग सम्बन्धित विषय संयुक्त प्राविधिक कार्य समितिले तय गर्ने उल्लेख छ । तर, सीप प्रमाणीकरण कार्यक्रम लागू गर्ने विषयमा नेपाल र साउदीबीच द्विपक्षीय सहमति भएको छैन । यो प्राविधिक समितिमा नेपाल र साउदी पक्षका उच्च अधिकारी छन् ।</p><p>‘एसभीपी प्रक्रियाका कारण नेपाली श्रमिकहरूको भिसा प्रक्रिया प्रभावित नहोस् र भिसा प्रक्रिया यथावत् अगाडि बढाइयोस् भन्ने नेपालको चाहना छ,’ श्रममन्त्रीको सचिवालयले भनेको छ, ‘श्रम मन्त्रालय श्रमिकहरूको रोजगारीमा कुनै अवरोध नआउने वातावरण सुनिश्चित गर्न चाहन्छ ।’</p></div></section><section class=\"news-section-wrap-story news-wrap-sec\"><div class=\"news-inner-wrapper\"><p>साउदी राजदूत म्नीखरले साउदी सरकारसँग आवश्यक परामर्शपछि यस सम्बन्धमा थप जानकारी उपलब्ध गराइने बताएका थिए । तर, साउदीले बिना परामर्श एसभीपी कार्यान्वयनमा ल्याएको हो । यसअघि पनि साउदी अरबले नेपालको सहमतिबिना १३ पुस २०८१ देखि श्रमिकको बायोमेट्रिक (औंठाछाप) लिन थालेको हो । यसका लागि काठमाडौंको थापाथलीमा बायोमेट्रिक लिने संयन्त्र खडा गरेको छ । बायोमेट्रिकका लागि कामदारले ७ सय ३० रुपैयाँ शुल्क बुझाउनुपर्छ । बायोमेट्रिक नभएको श्रमिकको राहदानी दूतावासले लिने गरेको छैन ।</p><p>साउदी राजदूत म्नीखरले वैदेशिक रोजगार व्यवसायीहरूसँगको भेटमा शुल्क रोजगारदाताले नै भुक्तानी गर्ने बताएका थिए । ‘रोजगारदाताले वकला (कोटा प्रमाणीकरण) गर्ने बेला नै एसभीपीबापतको शुल्क बुझाउन लगाएको भए श्रमिकले बुझाउनुपर्ने थिएन । तर, त्यतिखेर शुल्क नलिएपछि नेपालमा श्रमिकले बुझाउनुपर्ने बाध्यता आएको छ,’ संघका अध्यक्ष खत्रीले भने, ‘यो नितान्त सीप परीक्षणको नाममा प्रमाणपत्र बेचेर श्रमिकमाथि रकम असुल गर्न खोजिएको हो ।’</p></div></section><section class=\"news-section-wrap-story\"><div class=\"news-inner-wrapper\"><p>साउदीमा हरेक वर्ष ८० हजार नेपाली श्रमिक जाने गरेका छन् । जसमध्ये ६७ प्रतिशत सामान्य श्रमिक भिसामा, ८ प्रतिशत सेवा क्षेत्रमा र १२ प्रतिशत चालक तथा अपरेटर क्षेत्रमा जाने गरेका छन् ।</p></div></section> <section class=\"author-list news-wrap-sec\"><p class=\"inter\"><span><a href=\"https://ekantipur.com/author/author-9360\">होम</a></span> दुई दशकदेखि पत्रकारिता गरिरहेका कार्कीले श्रम तथा आप्रवासन मामिलामा दख्खल राख्छन् । उनले खाडी क्षेत्र तथा मलेसियामा कार्यरत आप्रवासी श्रमिकमाथि रिपोटिङ गर्दै आएका छन् । उनकाे श्रम र आप्रवासनमा केन्द्रीत गैरआख्यान पुस्तक 'सनैया' प्रकाशित छ । </p></section></p><p class=\"article-para\"></body></p>",
+    sidebarAdsHtml: "<div class=\"sidebar-ads-wrapper\">\n<div class=\"ad-unit\" id=\"sideads_3\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_3.jpg\" alt=\"sideads_3.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div>\n\n<div class=\"ad-unit\" id=\"sideads_4\" aria-label=\"Advertisement\">\n  <span class=\"ad-label lang-en\">Advertisement</span>\n  <span class=\"ad-label lang-np\">विज्ञापन</span>\n  <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" class=\"ad-link\">\n    <img src=\"../images/sideads_4.jpg\" alt=\"sideads_4.jpg\" class=\"ad-image\" loading=\"lazy\"\n         onerror=\"this.closest('.ad-unit').style.display='none'\">\n  </a>\n</div></div>",
+    imageUrl:       "../images/saudi-arabia-has-required-a-skill-test-certificate-in-labor-visa-applications.jpg",
+    breadcrumbEn:   "<a href=\"../index.html\">Home</a> / <a href=\"../category/economy\">Economy</a> / Saudi Arabia has required a skill test certificate...",
+    breadcrumbNp:   "<a href=\"../index.html\">गृहपृष्ठ</a> / <a href=\"../category/economy\">अर्थतन्त्र</a> / साउदीले श्रम भिसा आवेदनमै सीप परीक्षण प्रमाणपत्र म...",
+    tagsEn:         "<a href=\"#\" class=\"tag-pill\">Saudi Arabia</a><a href=\"#\" class=\"tag-pill\">Nepal</a><a href=\"#\" class=\"tag-pill\">CIP test</a><a href=\"#\" class=\"tag-pill\">worker</a><a href=\"#\" class=\"tag-pill\">visa</a><a href=\"#\" class=\"tag-pill\">bilateral agreement</a><a href=\"#\" class=\"tag-pill\">काठमाडौं</a>",
+    tagsNp:         "<a href=\"#\" class=\"tag-pill\">साउदी अरब</a><a href=\"#\" class=\"tag-pill\">नेपाल</a><a href=\"#\" class=\"tag-pill\">सीप परीक्षण</a><a href=\"#\" class=\"tag-pill\">श्रमिक</a><a href=\"#\" class=\"tag-pill\">भिसा</a><a href=\"#\" class=\"tag-pill\">द्विपक्षीय सहमति</a><a href=\"#\" class=\"tag-pill\">काठमाडौं</a>",
+    relatedHtml:    "<p class=\"no-related lang-en\">No related articles found.</p>\n            <p class=\"no-related lang-np\" style=\"display:none\">कुनै सम्बन्धित लेख फेला परेन।</p>"
+  };
+
+  function populate() {
+    var el = function(id) { return document.getElementById(id); };
+    if (el('breadcrumb-en'))    el('breadcrumb-en').innerHTML    = DATA.breadcrumbEn;
+    if (el('breadcrumb-np'))    el('breadcrumb-np').innerHTML    = DATA.breadcrumbNp;
+    if (el('category-en'))      el('category-en').textContent    = DATA.categoryEn;
+    if (el('category-np'))      el('category-np').textContent    = DATA.categoryNp;
+    if (el('title-en'))         el('title-en').textContent       = DATA.titleEn;
+    if (el('title-np'))         el('title-np').textContent       = DATA.titleNp;
+    if (el('readtime-en'))      el('readtime-en').textContent    = DATA.readTimeEn;
+    if (el('readtime-np'))      el('readtime-np').textContent    = DATA.readTimeNp;
+    if (el('tags-en'))          el('tags-en').innerHTML          = DATA.tagsEn;
+    if (el('tags-np'))          el('tags-np').innerHTML          = DATA.tagsNp;
+    if (el('article-body-en'))  el('article-body-en').innerHTML  = DATA.bodyEnWithAds;
+    if (el('article-body-np'))  el('article-body-np').innerHTML  = DATA.bodyNpWithAds;
+
+    var relatedContainer = el('related-articles');
+    if (relatedContainer) {
+      var sidebarWidget = relatedContainer.closest('.widget.related') || relatedContainer.parentElement;
+      if (sidebarWidget && DATA.sidebarAdsHtml) {
+        sidebarWidget.insertAdjacentHTML('beforebegin', DATA.sidebarAdsHtml);
+      }
+      relatedContainer.innerHTML = DATA.relatedHtml;
+    }
+
+    var dateEl = el('date');
+    if (dateEl) {
+      dateEl.setAttribute('data-date-ad', DATA.dateAd);
+      var span = dateEl.querySelector('.date-display');
+      if (!span) { dateEl.innerHTML = '<span class="date-display">' + DATA.dateEn + '</span>'; }
+      else { span.textContent = DATA.dateEn; }
+    }
+
+    var img = el('featured-image');
+    if (img) {
+      if (DATA.imageUrl) {
+        img.src = DATA.imageUrl; img.alt = DATA.titleEn;
+        img.onerror = function() { this.src = 'https://placehold.co/1200x675/1a1a1a/ffffff?text=Image+Not+Found'; };
+      } else {
+        var wrapper = img.closest('.image-wrapper');
+        if (wrapper) wrapper.style.display = 'none';
+      }
+    }
+
+    var dateEl2 = el('date');
+    if (dateEl2 && (DATA.sourceEn || DATA.creatorEn)) {
+      var metaBar = dateEl2.closest('.meta') || dateEl2.parentElement;
+      if (metaBar && !metaBar.querySelector('#meta-source')) {
+        var enParts = [DATA.sourceEn ? 'Source: ' + DATA.sourceEn : '', DATA.creatorEn ? 'Creator: ' + DATA.creatorEn : ''].filter(Boolean).join(' · ');
+        var npParts = [DATA.sourceNp ? 'स्रोत: ' + DATA.sourceNp : '', DATA.creatorNp ? 'सिर्जनाकर्ता: ' + DATA.creatorNp : ''].filter(Boolean).join(' · ');
+        var srcSpan = document.createElement('span');
+        srcSpan.id = 'meta-source';
+        srcSpan.style.cssText = 'font-size:0.78rem;display:inline-flex;align-items:center;gap:4px;';
+        srcSpan.innerHTML =
+          '<i class="fas fa-pen-nib" style="font-size:.7rem;opacity:.6;flex-shrink:0;"></i>' +
+          '<span class="lang-en">' + enParts + '</span>' +
+          '<span class="lang-np" style="display:none">' + npParts + '</span>';
+        metaBar.appendChild(srcSpan);
+      }
+    }
+  }
+
+  function updateDates(isNp) {
+    document.querySelectorAll('[data-date-ad]').forEach(function(el) {
+      var adStr = el.getAttribute('data-date-ad');
+      var display = el.querySelector('.date-display');
+      if (!display) return;
+      if (isNp) { display.textContent = adToBs(adStr); }
+      else {
+        var d = new Date(adStr);
+        if (!isNaN(d.getTime())) {
+          display.textContent = EN_MONTHS_FULL[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
+        } else { display.textContent = adStr; }
+      }
+    });
+  }
+
+  function getDisplay(el, active) {
+    if (!active) return 'none';
+    var tag = el.tagName.toLowerCase();
+    return (tag === 'span' || tag === 'a' || tag === 'i' || tag === 'b' || tag === 'strong') ? 'inline' : 'block';
+  }
+
+  window.setArticleLang = function(lang) {
+    var isEn = (lang === 'en');
+    document.querySelectorAll('.lang-en').forEach(function(el) { el.style.display = getDisplay(el, isEn); });
+    document.querySelectorAll('.lang-np').forEach(function(el) { el.style.display = getDisplay(el, !isEn); });
+    updateDates(!isEn);
+    try { localStorage.setItem('articleLang', lang); } catch(e) {}
+    window.__articleLang = lang;
+    if (!isEn) { document.body.classList.add('lang-active'); }
+    else        { document.body.classList.remove('lang-active'); }
+  };
+
+  function applyStoredLang() {
+    var stored; try { stored = localStorage.getItem('articleLang'); } catch(e) {}
+    window.setArticleLang(stored || 'en');
+  }
+
+  function initShareButtons() {
+    document.querySelectorAll('.share-btn.facebook').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank', 'width=600,height=400');
+      });
+    });
+    document.querySelectorAll('.share-btn.twitter').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var text = document.getElementById('title-en') ? document.getElementById('title-en').textContent : document.title;
+        window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(text), '_blank', 'width=600,height=400');
+      });
+    });
+  }
+
+  function initCopyButtons() {
+    document.querySelectorAll('.copy-link').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        navigator.clipboard.writeText(window.location.href).catch(function() {
+          var ta = document.createElement('textarea'); ta.value = window.location.href;
+          document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+        });
+        var tooltip = btn.querySelector('.tooltip');
+        if (tooltip) { tooltip.classList.add('visible'); setTimeout(function() { tooltip.classList.remove('visible'); }, 2000); }
+      });
+    });
+  }
+
+  function initBackToTop() {
+    var btn = document.getElementById('back-to-top'); if (!btn) return;
+    window.addEventListener('scroll', function() { btn.style.display = window.scrollY > 300 ? 'flex' : 'none'; });
+    btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  }
+
+  function initNewsletter() {
+    var btn = document.getElementById('newsletter-subscribe'); if (!btn) return;
+    btn.addEventListener('click', function() {
+      var emailEl = document.getElementById('newsletter-email');
+      var val = emailEl ? emailEl.value.trim() : '';
+      if (!val || !/^[^s@]+@[^s@]+.[^s@]+$/.test(val)) {
+        alert(window.__articleLang === 'np' ? 'कृपया मान्य इमेल ठेगाना प्रविष्ट गर्नुहोस्।' : 'Please enter a valid email address.');
+        return;
+      }
+      alert(window.__articleLang === 'np' ? 'सदस्यता लिनुभएकोमा धन्यवाद!' : 'Thank you for subscribing!');
+    });
+  }
+
+  window.addEventListener('langChange', function(e) {
+    if (e && e.detail && e.detail.lang) window.setArticleLang(e.detail.lang);
+  });
+
+  function init() {
+    populate(); applyStoredLang(); initShareButtons(); initCopyButtons(); initBackToTop(); initNewsletter();
+    window.dispatchEvent(new CustomEvent('articleContentLoaded'));
+  }
+
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); }
+  else { init(); }
+
+  window.refreshArticleContent = function() { populate(); applyStoredLang(); };
+})();
+</script>
+<script>
+(function() {
+  'use strict';
+  var NP_DIGITS    = ['०','१','२','३','४','५','६','७','८','९'];
+  var BS_MONTHS_NP = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
+  var EN_MONTHS    = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   var BS_DATA = {
     2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],
     2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],
@@ -1594,366 +2018,74 @@
     2058:[365,30,32,31,32,31,30,30,30,29,29,30,30],2059:[366,31,32,31,32,31,30,30,30,29,30,29,31],
     2060:[365,31,31,32,31,31,31,30,29,30,29,30,30],2061:[365,31,31,32,31,31,31,30,29,30,29,30,30],
     2062:[365,31,31,32,32,31,30,30,29,30,29,30,30],2063:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-    2064:[366,31,31,32,31,31,30,30,29,30,29,30,31],
-    2065:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-    2066:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-    2067:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-    2068:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-    2069:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-    2070:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-    2071:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-    2072:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-    2073:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-    2074:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-    2075:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-    2076:[365,31,32,31,32,31,30,30,30,29,30,29,31],
-    2077:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-    2078:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-    2079:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-    2080:[365,31,32,31,32,31,30,30,30,29,30,29,31],
-    2081:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-    2082:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-    2083:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-    2084:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-    2085:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-    2086:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-    2087:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-    2088:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-    2089:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2064:[366,31,31,32,31,31,30,30,29,30,29,30,31],2065:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2066:[365,31,31,32,31,31,31,30,29,30,29,30,30],2067:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2068:[366,31,32,31,32,31,30,30,30,29,30,29,31],2069:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2070:[365,31,31,32,32,31,30,30,29,30,29,30,30],2071:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2072:[366,31,32,31,32,31,30,30,30,29,30,29,31],2073:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2074:[365,31,31,32,32,31,30,30,29,30,29,30,30],2075:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2076:[365,31,32,31,32,31,30,30,30,29,30,29,31],2077:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2078:[365,31,31,32,31,31,31,30,29,30,29,30,30],2079:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2080:[365,31,32,31,32,31,30,30,30,29,30,29,31],2081:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2082:[365,31,31,32,32,31,30,30,29,30,29,30,30],2083:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2084:[366,31,32,31,32,31,30,30,30,29,30,29,31],2085:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+    2086:[365,31,31,32,32,31,30,30,29,30,29,30,30],2087:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+    2088:[366,31,32,31,32,31,30,30,30,29,30,29,31],2089:[365,31,31,32,31,31,31,30,29,30,29,30,30],
     2090:[365,31,31,32,32,31,30,30,29,30,29,30,30]
   };
-
   var AD_EPOCH_MS = Date.UTC(1943, 2, 31);
 
   function toNpDigits(n) {
     return String(n).split('').map(function(d) {
-      var i = parseInt(d, 10);
-      return isNaN(i) ? d : NP_DIGITS[i];
+      var i = parseInt(d, 10); return isNaN(i) ? d : NP_DIGITS[i];
     }).join('');
   }
-
-  // ── UTC-safe epoch math — avoids Nepal UTC+5:45 off-by-one ──
   function adToBs(dateStr) {
     if (!dateStr) return '';
     var d = new Date(dateStr);
     if (isNaN(d.getTime())) return dateStr;
-
-    var totalDays = Math.floor(
-      (Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()) - AD_EPOCH_MS) / 86400000
-    );
+    var totalDays = Math.floor((Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()) - AD_EPOCH_MS) / 86400000);
     if (totalDays < 0) return dateStr;
-
     var bsYear = 2000;
-    while (true) {
-      var yd = BS_DATA[bsYear];
-      if (!yd || totalDays < yd[0]) break;
-      totalDays -= yd[0];
-      bsYear++;
-    }
-    var yd2 = BS_DATA[bsYear];
-    if (!yd2) return dateStr;
+    while (true) { var yd = BS_DATA[bsYear]; if (!yd || totalDays < yd[0]) break; totalDays -= yd[0]; bsYear++; }
+    var yd2 = BS_DATA[bsYear]; if (!yd2) return dateStr;
     var bsMonth = 1, bsDay = 1;
     for (var m = 1; m <= 12; m++) {
-      if (totalDays < yd2[m]) { bsMonth = m; bsDay = totalDays + 1; break; }
-      totalDays -= yd2[m];
+      if (totalDays < yd2[m]) { bsMonth = m; bsDay = totalDays + 1; break; } totalDays -= yd2[m];
     }
     return toNpDigits(bsYear) + ' ' + BS_MONTHS_NP[bsMonth - 1] + ' ' + toNpDigits(bsDay);
   }
-
-  // ── UTC-safe EN date formatter ────────────────────
   function formatDateEn(dateStr) {
     if (!dateStr) return '';
     var d = new Date(dateStr);
     if (isNaN(d.getTime())) return dateStr;
-    return EN_MONTHS_FULL[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
+    return EN_MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
   }
 
-  // ── France 24 category override (client-side) ────────────
-  function applyFrance24Override(source, category) {
-    if ((source || '').trim().toLowerCase() === 'france 24' && category !== 'Sports') {
-      return { category: 'World', categoryNe: 'विश्व' };
-    }
-    return { category: category, categoryNe: null };
-  }
-
-  // ── Category data ─────────────────────────────────────────
-  var CATEGORY_NP_MAP = {
-    'Politics':     'राजनीति',
-    'Sports':       'खेलकुद',
-    'Entertainment':'मनोरञ्जन',
-    'Economy':      'अर्थतन्त्र',
-    'World':        'विश्व',
-    'Feature News': 'विशेष समाचार'
-  };
-
-  var CATEGORY_DATA = {
-    nameEn:       "Education",
-    nameNp:       "शिक्षा",
-    descEn:       "Education — Latest news and updates.",
-    descNp:       "शिक्षा — नवीनतम समाचार र अपडेटहरू।",
-    totalCount:   0,
-    allArticles:  [],
-    itemsPerPage: 6
-  };
-
-  // ── Section ads: cycle through these, one every N real articles ──
-  var SECTION_ADS = [{"img":"../images/section_1.jpg","link":""},{"img":"../images/insection_1.png","link":""},{"img":"../images/section_2.jpg","link":""},{"img":"../images/insection_2.png","link":""},{"img":"../images/insection_3.png","link":""}];
-  var AD_EVERY_N  = 6;
-  var adCycleIndex = 0; // persists across load-more calls
-
-  // FIX 1: section ad card now spans the full grid width and uses the
-  // same "banner" presentation style as the index page ad (no fixed
-  // card-image height, no article-card box treatment).
-  function buildSectionAdCardHtml() {
-    if (!SECTION_ADS.length) return '';
-    var ad = SECTION_ADS[adCycleIndex % SECTION_ADS.length];
-    adCycleIndex++;
+  function updateAllDates() {
     var isNp = document.body.classList.contains('lang-active');
-    var inner = '<img src="' + ad.img + '" alt="Advertisement" loading="lazy" ' +
-      'style="width:100%;height:auto;max-height:220px;object-fit:cover;border-radius:4px;display:block;" ' +
-      'onerror="this.closest(\'.ad-card-inline\').style.display=\'none\'">';
-    var wrapped = ad.link
-      ? '<a href="' + ad.link + '" target="_blank" rel="noopener noreferrer sponsored" style="display:block;">' + inner + '</a>'
-      : inner;
-    return '<div class="ad-card-inline" style="grid-column:1 / -1;width:100%;margin:12px 0;text-align:center;">' +
-      wrapped +
-      '<span class="lang-en" style="display:' + (isNp ? 'none' : 'block') + ';margin-top:6px;font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;">Advertisement</span>' +
-      '<span class="lang-np" style="display:' + (isNp ? 'block' : 'none') + ';margin-top:6px;font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;">विज्ञापन</span>' +
-      '</div>';
-  }
-
-  var currentPage = 1;
-  var isLoading   = false;
-  var articlesRenderedCount = 0; // tracks real articles rendered so far, for ad cadence
-
-  // ── Render articles ───────────────────────────────────────
-  function renderArticles(articles, append) {
-    var grid = document.getElementById('news-grid');
-    if (!grid) return;
-
-    var isNp = document.body.classList.contains('lang-active');
-    var html = '';
-
-    articles.forEach(function(article, idx) {
-      var title      = article.title      || 'Untitled';
-      var titleNe    = article.titleNe    || title;
-      var slug       = article.slug       || '#';
-      var date       = article.date       || '';
-      var time       = article.time       || '';
-      var readTime   = article.readTime   || '';
-      var readTimeNe = article.readTimeNe || readTime;
-      var imageUrl   = article.imageUrls  || '';
-      var excerpt    = article.metaDesc   || '';
-      var excerptNe  = article.metaDescNe || excerpt;
-      var creator    = article.creator    || '';
-      var creatorNp  = article.creatorNp  || '';
-      var source     = article.source     || '';
-      var sourceNp   = article.sourceNp   || '';
-
-      // ── Apply France 24 override ────────────────────────
-      var rawCategory   = article.category   || CATEGORY_DATA.nameEn;
-      var rawCategoryNe = article.categoryNe || CATEGORY_NP_MAP[rawCategory] || rawCategory;
-      var overridden    = applyFrance24Override(source, rawCategory);
-      var category      = overridden.category;
-      var categoryNe    = overridden.categoryNe || CATEGORY_NP_MAP[category] || rawCategoryNe;
-
-      var dateTimeEn = date ? formatDateEn(date) + (time ? ', ' + time : '') : '';
-      var dateTimeNp = date ? adToBs(date)        + (time ? ', ' + time : '') : '';
-
-      // ── Source / Creator row ──────────────────────────────
-      var sourceCreatorHtml = '';
-      if (source || creator) {
-        var enText = source && creator
-          ? 'Source: ' + source + ' · Creator: ' + creator
-          : source
-            ? 'Source: ' + source
-            : 'Creator: ' + creator;
-        var npText = source && creator
-          ? 'स्रोत: ' + (sourceNp || source) + ' · सिर्जनाकर्ता: ' + (creatorNp || creator)
-          : source
-            ? 'स्रोत: ' + (sourceNp || source)
-            : 'सिर्जनाकर्ता: ' + (creatorNp || creator);
-
-        sourceCreatorHtml =
-          `<div class="card-source-creator" style="font-size:.72rem;color:var(--muted);margin-top:4px;display:flex;align-items:center;gap:4px;flex-wrap:wrap;">` +
-          `<span class="lang-en" style="${isNp ? 'display:none' : ''}">${enText}</span>` +
-          `<span class="lang-np"  style="${isNp ? '' : 'display:none'}">${npText}</span>` +
-          `</div>`;
-      }
-
-      html += `
-  <article class="article-card" data-slug="${slug}" data-index="${idx}" onclick="window.location.href='/page/${slug}.html'" style="cursor:pointer;">
-        ${imageUrl
-          ? `<img class="card-image" src="${imageUrl}" alt="${title.replace(/"/g,'&quot;')}" loading="lazy" onerror="this.style.display='none'">`
-          : '<div class="card-image no-image"></div>'}
-        <div class="card-content">
-          <div class="card-category-wrapper">
-            <span class="card-category lang-en" style="${isNp?'display:none':''}">${category}</span>
-            <span class="card-category lang-np"  style="${isNp?'':'display:none'}">${categoryNe}</span>
-          </div>
-          <a href="/page/${slug}.html" class="card-title-link">
-            <h3 class="card-title lang-en" style="${isNp?'display:none':''}">${title}</h3>
-            <h3 class="card-title lang-np"  style="${isNp?'':'display:none'}">${titleNe}</h3>
-          </a>
-          <p class="card-excerpt lang-en" style="${isNp?'display:none':''}">${(excerpt||'').substring(0,120)}${(excerpt||'').length>120?'...':''}</p>
-          <p class="card-excerpt lang-np"  style="${isNp?'':'display:none'}">${(excerptNe||'').substring(0,120)}${(excerptNe||'').length>120?'...':''}</p>
-          <div class="card-meta">
-            <span>
-              <i class="fa-regular fa-calendar"></i>
-              <span class="date-display lang-en" data-date-ad="${date}" data-time="${time}" style="${isNp?'display:none':''}">${dateTimeEn}</span>
-              <span class="date-display lang-np"  data-date-ad="${date}" data-time="${time}" style="${isNp?'':'display:none'}">${dateTimeNp}</span>
-            </span>
-            <span>
-              <i class="fa-regular fa-clock"></i>
-              <span class="lang-en" style="${isNp?'display:none':''}">${readTime}</span>
-              <span class="lang-np"  style="${isNp?'':'display:none'}">${readTimeNe}</span>
-            </span>
-          </div>
-          ${sourceCreatorHtml}
-        </div>
-      </article>
-      `;
-
-      // ── Insert a section ad after every AD_EVERY_N real articles ──
-      articlesRenderedCount++;
-      if (SECTION_ADS.length && (articlesRenderedCount % AD_EVERY_N === 0)) {
-        html += buildSectionAdCardHtml();
-      }
-    });
-
-    if (append) {
-      grid.insertAdjacentHTML('beforeend', html);
-    } else {
-      grid.innerHTML = html;
-    }
-  }
-
-  // ── UTC-safe date update on lang switch ────────────
-  function updateDates(isNp) {
-    document.querySelectorAll('.date-display[data-date-ad]').forEach(function(el) {
+    document.querySelectorAll('[data-date-ad]').forEach(function(el) {
       var adStr   = el.getAttribute('data-date-ad') || '';
-      var timeStr = el.getAttribute('data-time')    || '';
+      var timeStr = el.getAttribute('data-time') || '';
       if (!adStr) return;
-
-      var isNpEl = el.classList.contains('lang-np');
-      if (isNp && isNpEl) {
-        el.textContent = adToBs(adStr) + (timeStr ? ', ' + timeStr : '');
-      } else if (!isNp && !isNpEl) {
-        el.textContent = formatDateEn(adStr) + (timeStr ? ', ' + timeStr : '');
-      }
+      var display = el.classList.contains('date-display') ? el : el.querySelector('.date-display');
+      if (!display) return;
+      display.textContent = isNp
+        ? adToBs(adStr) + (timeStr ? ', ' + timeStr : '')
+        : formatDateEn(adStr) + (timeStr ? ', ' + timeStr : '');
     });
   }
 
-  // ── Load more ─────────────────────────────────────────────
-  function loadMore() {
-    if (isLoading) return;
-    var start = currentPage * CATEGORY_DATA.itemsPerPage;
-    var end   = start + CATEGORY_DATA.itemsPerPage;
-    var next  = CATEGORY_DATA.allArticles.slice(start, end);
-
-    if (next.length === 0) {
-      var btn = document.getElementById('load-more-btn');
-      if (btn) {
-        btn.disabled = true;
-        btn.innerHTML = document.body.classList.contains('lang-active')
-          ? 'थप लेखहरू छैनन्'
-          : 'No more articles';
-      }
-      return;
-    }
-
-    renderArticles(next, true);
-    currentPage++;
-  }
-
-  // ── Back to top ───────────────────────────────────────────
-  function initBackToTop() {
-    var btn = document.getElementById('back-to-top');
-    if (!btn) return;
-    window.addEventListener('scroll', function() {
-      btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
-    });
-    btn.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  // ── Language apply ────────────────────────────────────────
-  function applyLang(lang) {
-    var isNp = (lang === 'np');
-
-    document.querySelectorAll('.lang-en, .lang-np').forEach(function(el) {
-      var isNpEl = el.classList.contains('lang-np');
-      var show   = isNp ? isNpEl : !isNpEl;
-      if (!show) { el.style.display = 'none'; return; }
-
-      var tag = (el.tagName || '').toLowerCase();
-      var inlineTags = ['span','a','i','b','strong','em','label','button','small'];
-      if (el.classList.contains('card-excerpt')) {
-        el.style.display = 'block';
-      } else if (inlineTags.indexOf(tag) !== -1) {
-        el.style.display = 'inline';
-      } else {
-        el.style.display = 'block';
-      }
-    });
-
-    updateDates(isNp);
-    document.body.classList.toggle('lang-active', isNp);
-  }
-
-  // ── Init ─────────────────────────────────────────────────
-  function init() {
-    var titleEn      = document.getElementById('category-title-en');
-    var titleNp      = document.getElementById('category-title-np');
-    var countSpan    = document.getElementById('news-count');
-    var descEn       = document.getElementById('category-description-en');
-    var descNp       = document.getElementById('category-description-np');
-    var breadcrumbEn = document.getElementById('breadcrumb-en');
-    var breadcrumbNp = document.getElementById('breadcrumb-np');
-
-    if (titleEn)      titleEn.textContent    = CATEGORY_DATA.nameEn;
-    if (titleNp)      titleNp.textContent    = CATEGORY_DATA.nameNp;
-    if (countSpan)    countSpan.textContent  = CATEGORY_DATA.totalCount;
-    if (descEn)       descEn.textContent     = CATEGORY_DATA.descEn;
-    if (descNp)       descNp.textContent     = CATEGORY_DATA.descNp;
-    if (breadcrumbEn) breadcrumbEn.innerHTML = '<a href="../index.html">Home</a> / ' + CATEGORY_DATA.nameEn;
-    if (breadcrumbNp) breadcrumbNp.innerHTML = '<a href="../index.html">गृहपृष्ठ</a> / ' + CATEGORY_DATA.nameNp;
-
-    // Render first page
-    var first = CATEGORY_DATA.allArticles.slice(0, CATEGORY_DATA.itemsPerPage);
-    renderArticles(first, false);
-    currentPage = 1;
-
-    // Hide load-more if all articles already shown
-    var loadBtn = document.getElementById('load-more-btn');
-    if (loadBtn) {
-      if (CATEGORY_DATA.allArticles.length <= CATEGORY_DATA.itemsPerPage) {
-        loadBtn.style.display = 'none';
-      } else {
-        loadBtn.addEventListener('click', loadMore);
-      }
-    }
-
-    initBackToTop();
-
-    // Sync with global lang state
-    var storedLang;
-    try { storedLang = localStorage.getItem('fm_lang') || localStorage.getItem('categoryLang'); } catch(e) {}
-    applyLang(storedLang || 'en');
-  }
-
-  // Listen for global lang changes from header toggle
-  window.addEventListener('langChange', function(e) {
-    if (e && e.detail && e.detail.lang) {
-      applyLang(e.detail.lang);
-    }
-  });
+  // Run on every langChange, on DOM ready, and again shortly after
+  // (covers the case where populate() re-renders #date/.related-articles
+  // AFTER this script first runs, e.g. race with POPULATION_SCRIPT).
+  window.addEventListener('langChange', function() { setTimeout(updateAllDates, 30); });
+  window.addEventListener('articleContentLoaded', function() { setTimeout(updateAllDates, 30); });
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', function() { setTimeout(updateAllDates, 50); });
   } else {
-    init();
+    setTimeout(updateAllDates, 50);
   }
 })();
 </script>
@@ -1974,98 +2106,23 @@
     });
   </script>
 
-  <!-- ════ Category card AD→BS date conversion ════ -->
+  <!-- ════ WhatsApp tooltip controller ════ -->
   <script>
-  (function() {
-    'use strict';
-    var NP_DIGITS    = ['०','१','२','३','४','५','६','७','८','९'];
-    var BS_MONTHS_NP = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
-    var BS_DATA = {
-      2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2004:[366,30,32,31,32,31,30,30,30,29,30,29,31],2005:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2006:[365,31,31,32,32,31,30,30,29,30,29,30,30],2007:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2008:[365,31,31,32,31,31,31,30,29,30,29,30,30],2009:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2010:[365,31,31,32,32,31,30,30,29,30,29,30,30],2011:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2012:[365,31,31,32,31,31,31,30,29,30,29,30,30],2013:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2014:[365,31,31,32,32,31,30,30,29,30,29,30,30],2015:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2016:[366,31,31,32,31,31,31,30,29,30,29,30,31],2017:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2018:[365,31,31,32,32,31,30,30,29,30,29,30,30],2019:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2020:[366,31,31,32,31,31,30,30,29,30,29,30,31],2021:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2022:[365,31,31,32,32,31,30,30,29,30,29,30,30],2023:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2024:[366,31,31,32,31,31,30,30,29,30,29,30,31],2025:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2026:[365,31,31,32,32,31,30,30,29,30,29,30,30],2027:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2028:[366,31,32,31,32,31,30,30,30,29,30,29,31],2029:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2030:[365,31,31,32,31,31,31,30,29,30,29,30,30],2031:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-      2032:[366,31,32,31,32,31,30,30,30,29,29,30,31],2033:[366,31,31,32,31,31,30,30,29,30,29,30,31],
-      2034:[365,31,31,32,31,31,31,30,29,30,29,30,30],2035:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-      2036:[366,31,32,31,32,31,30,30,30,29,29,30,31],2037:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-      2038:[365,31,31,32,31,31,31,30,29,30,29,30,30],2039:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2040:[365,31,31,32,32,31,30,30,29,30,29,30,30],2041:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2042:[366,31,31,32,31,31,30,30,29,30,29,30,31],2043:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2044:[365,31,31,32,31,31,31,30,29,30,29,30,30],2045:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2046:[366,31,32,31,32,31,30,30,30,29,30,29,31],2047:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2048:[365,31,31,32,32,31,30,30,29,30,29,30,30],2049:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2050:[366,31,32,31,32,31,30,30,30,29,30,29,31],2051:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2052:[365,31,31,32,32,31,30,30,29,30,29,30,30],2053:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2054:[366,31,32,31,32,31,30,30,30,29,30,29,31],2055:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2056:[366,31,31,32,31,31,31,30,29,30,29,30,31],2057:[366,31,31,32,32,31,30,30,29,30,29,30,31],
-      2058:[365,30,32,31,32,31,30,30,30,29,29,30,30],2059:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-      2060:[365,31,31,32,31,31,31,30,29,30,29,30,30],2061:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2062:[365,31,31,32,32,31,30,30,29,30,29,30,30],2063:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2064:[366,31,31,32,31,31,30,30,29,30,29,30,31],2065:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2066:[365,31,31,32,31,31,31,30,29,30,29,30,30],2067:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2068:[366,31,32,31,32,31,30,30,30,29,30,29,31],2069:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2070:[365,31,31,32,32,31,30,30,29,30,29,30,30],2071:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2072:[366,31,32,31,32,31,30,30,30,29,30,29,31],2073:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2074:[365,31,31,32,32,31,30,30,29,30,29,30,30],2075:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2076:[365,31,32,31,32,31,30,30,30,29,30,29,31],2077:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2078:[365,31,31,32,31,31,31,30,29,30,29,30,30],2079:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2080:[365,31,32,31,32,31,30,30,30,29,30,29,31],2081:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2082:[365,31,31,32,32,31,30,30,29,30,29,30,30],2083:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2084:[366,31,32,31,32,31,30,30,30,29,30,29,31],2085:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2086:[365,31,31,32,32,31,30,30,29,30,29,30,30],2087:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-      2088:[366,31,32,31,32,31,30,30,30,29,30,29,31],2089:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-      2090:[365,31,31,32,32,31,30,30,29,30,29,30,30]
-    };
-    var AD_EPOCH_MS = Date.UTC(1943, 2, 31);
-    function toNpDigits(n) {
-      return String(n).split('').map(function(d){var i=parseInt(d,10);return isNaN(i)?d:NP_DIGITS[i];}).join('');
-    }
-    function adToBs(dateStr) {
-      if (!dateStr) return '';
-      var d = new Date(dateStr);
-      if (isNaN(d.getTime())) return dateStr;
-      var totalDays = Math.floor((Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate())-AD_EPOCH_MS)/86400000);
-      if (totalDays < 0) return dateStr;
-      var bsYear = 2000;
-      while (true) { var yd=BS_DATA[bsYear]; if(!yd||totalDays<yd[0])break; totalDays-=yd[0]; bsYear++; }
-      var yd2=BS_DATA[bsYear]; var bsMonth=1,bsDay=1;
-      for(var m=1;m<=12;m++){if(totalDays<yd2[m]){bsMonth=m;bsDay=totalDays+1;break;}totalDays-=yd2[m];}
-      return toNpDigits(bsYear)+' '+BS_MONTHS_NP[bsMonth-1]+' '+toNpDigits(bsDay);
-    }
-    function formatDateEn(dateStr) {
-      if (!dateStr) return '';
-      try { var d=new Date(dateStr); if(isNaN(d.getTime()))return dateStr;
-        return d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-      } catch(e){return dateStr;}
-    }
-    function updateCategoryDates() {
-      var isNp = document.body.classList.contains('lang-active');
-      document.querySelectorAll('.date-display[data-date-ad]').forEach(function(el) {
-        var adStr=el.getAttribute('data-date-ad')||'';
-        var timeStr=el.getAttribute('data-time')||'';
-        if (!adStr) return;
-        var isNpEl=el.classList.contains('lang-np');
-        if(isNp&&isNpEl) el.textContent=adToBs(adStr)+(timeStr?', '+timeStr:'');
-        else if(!isNp&&!isNpEl) el.textContent=formatDateEn(adStr)+(timeStr?', '+timeStr:'');
-      });
-    }
-    window.addEventListener('langChange', function(){ setTimeout(updateCategoryDates, 50); });
-    if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',updateCategoryDates);}
-    else{updateCategoryDates();}
-  })();
-  </script>
+(function() {
+  var tip = document.getElementById('waTooltip');
+  if (tip && !sessionStorage.getItem('waTip')) {
+    setTimeout(function() {
+      tip.style.opacity = '1';
+      tip.style.transform = 'translateX(0)';
+      setTimeout(function() {
+        tip.style.opacity = '';
+        tip.style.transform = '';
+        sessionStorage.setItem('waTip', '1');
+      }, 3000);
+    }, 2500);
+  }
+})();
+</script>
 
 </body>
 </html>
