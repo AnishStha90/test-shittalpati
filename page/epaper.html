@@ -785,6 +785,7 @@
         <li><a href="video.html"><span class="lang-en">Video</span><span class="lang-np">भिडिय</span></a></li>
       </ul>
       <div class="nav-actions">
+        <div id="engagement-search"></div>
         <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
           <span class="bar"></span><span class="bar"></span><span class="bar"></span>
         </button>
@@ -1057,10 +1058,34 @@
         <i class="fas fa-newspaper"></i>
         <span class="lang-en">E-Paper Archive</span>
         <span class="lang-np">ई-पेपर संग्रह</span>
-        <span class="count-badge">4 <span class="lang-en">Editions</span><span class="lang-np">संस्करण</span></span>
+        <span class="count-badge">7 <span class="lang-en">Editions</span><span class="lang-np">संस्करण</span></span>
       </div>
       <div class="pdf-list" id="pdfList">
         
+      <div class="pdf-card"
+           data-title="July 14, 2026"
+           onclick="openPDF('https://drive.google.com/file/d/1MLYYDCckRaavJ6LPUOtrJtMfMxcnnMi7/preview', 'July 14, 2026', 'file_1')">
+        <div class="pdf-thumb"><i class="fas fa-file-pdf pdf-icon-fallback"></i></div>
+        <div class="pdf-meta">
+          <div class="pdf-title" data-date-ad="2026-07-14">
+            <span class="date-display">July 14, 2026</span>
+          </div>
+          <div class="pdf-date-label">file_1</div>
+        </div>
+        <div class="pdf-chevron"><i class="fas fa-chevron-right"></i></div>
+      </div>
+      <div class="pdf-card"
+           data-title="July 2, 2026"
+           onclick="openPDF('https://drive.google.com/file/d/11_bL5ZxUqLYCyd8nD1FxRvy1f6EPz5sn/preview', 'July 2, 2026', 'inf0.pdf')">
+        <div class="pdf-thumb"><i class="fas fa-file-pdf pdf-icon-fallback"></i></div>
+        <div class="pdf-meta">
+          <div class="pdf-title" data-date-ad="2026-07-02">
+            <span class="date-display">July 2, 2026</span>
+          </div>
+          <div class="pdf-date-label">inf0.pdf</div>
+        </div>
+        <div class="pdf-chevron"><i class="fas fa-chevron-right"></i></div>
+      </div>
       <div class="pdf-card"
            data-title="July 1, 2026"
            onclick="openPDF('https://drive.google.com/file/d/1ZHhuuCIcAIpdj-ikKT7ufxJkQ9OAj8nB/preview', 'July 1, 2026', '2026-july-01.pdf')">
@@ -1109,6 +1134,18 @@
         </div>
         <div class="pdf-chevron"><i class="fas fa-chevron-right"></i></div>
       </div>
+      <div class="pdf-card"
+           data-title="June 26, 2026"
+           onclick="openPDF('https://drive.google.com/file/d/18biC4j3Lo9_ZIWLSZElAjmn1U2achuj-/preview', 'June 26, 2026', 'today')">
+        <div class="pdf-thumb"><i class="fas fa-file-pdf pdf-icon-fallback"></i></div>
+        <div class="pdf-meta">
+          <div class="pdf-title" data-date-ad="2026-06-26">
+            <span class="date-display">June 26, 2026</span>
+          </div>
+          <div class="pdf-date-label">today</div>
+        </div>
+        <div class="pdf-chevron"><i class="fas fa-chevron-right"></i></div>
+      </div>
       </div>
       <div class="pdf-pagination" id="pdfPagination"></div>
     </div>
@@ -1140,24 +1177,12 @@
     <aside class="ads-panel" id="adsPanel">
       <div class="ads-label"><span class="lang-en">Advertisement</span><span class="lang-np">विज्ञापन</span></div>
       
-          <div class="ad-card" data-ad-number="1">
-            <img src="../images/sideads_1.jpg" alt="sideads_1.jpg" loading="lazy" style="pointer-events:none;"
-                 onerror="this.closest('.ad-card').style.display='none'">
+          <d<img src="../images/sideads_3.jpg" alt="sideads_3.jpg" data-ad-id="sideads_3" loading="lazy" style="pointer-events:none;"
+                 onerror="this.closest('.ad-card').style.displa                onerror="this.closest('.ad-card').style.display='none'">
           </div>
 
-          <div class="ad-card" data-ad-number="2">
-            <img src="../images/sideads_2.jpg" alt="sideads_2.jpg" loading="lazy" style="pointer-events:none;"
-                 onerror="this.closest('.ad-card').style.display='none'">
-          </div>
-
-          <div class="ad-card" data-ad-number="3">
-            <img src="../images/sideads_3.jpg" alt="sideads_3.jpg" loading="lazy" style="pointer-events:none;"
-                 onerror="this.closest('.ad-card').style.display='none'">
-          </div>
-
-          <div class="ad-card" data-ad-number="4">
-            <img src="../images/sideads_4.jpg" alt="sideads_4.jpg" loading="lazy" style="pointer-events:none;"
-                 onerror="this.closest('.ad-card').style.display='none'">
+          <d<img src="../images/sideads_4.jpg" alt="sideads_4.jpg" data-ad-id="sideads_4" loading="lazy" style="pointer-events:none;"
+                 onerror="this.closest('.ad-card').style.displa                onerror="this.closest('.ad-card').style.display='none'">
           </div>
     </aside>
 
@@ -1165,9 +1190,9 @@
 
   <!-- ADS DEBUG
   fetchError:        (none)
-  totalRowsFetched:  12
-  allRowNames:       ["popup.jpg","section_2.jpg","sideads_2.jpg","sideads_1.jpg","section_3.jpg","section_1.jpg","sideads_3.jpg","sideads_4.jpg","section_10.jpg","insection_1.png","insection_2.png","insection_3.png"]
-  sideadsMatched:    4
+  totalRowsFetched:  8
+  allRowNames:       ["section_2.jpg","section_1.jpg","sideads_3.jpg","sideads_4.jpg","popup.jpg","insection_1.png","insection_2.png","insection_3.png"]
+  sideadsMatched:    2
   hasAds:            true
 -->
 
@@ -1179,7 +1204,7 @@
 </div>
 
 <script>
-  var pdfData = [{"id":4,"pdf_name":"2026-july-01.pdf","pdf_url":"https://drive.google.com/uc?id=1ZHhuuCIcAIpdj-ikKT7ufxJkQ9OAj8nB&export=download","deploy_status":"pending","created_at":"2026-07-01T05:36:50.650Z","upload_date":"2026-07-01T00:00:00.000Z","uploaded_at":"2026-07-01T11:21:50.772Z","updated_at":"2026-07-01T11:21:50.772Z"},{"id":5,"pdf_name":"setup.pdf","pdf_url":"https://drive.google.com/uc?id=1E05MbqceHeDE1y_aMMYzuv_Xp14sOulV&export=download","deploy_status":"pending","created_at":"2026-07-01T05:46:17.614Z","upload_date":"2026-07-01T00:00:00.000Z","uploaded_at":"2026-07-01T11:31:17.660Z","updated_at":"2026-07-01T11:31:17.660Z"},{"id":1,"pdf_name":"2026-june-26.pdf","pdf_url":"https://drive.google.com/uc?id=1Fy3QnpruHrOmt8tLQAsmW9rCEfi6MV1K&export=download","deploy_status":"pending","created_at":"2026-06-26T11:37:26.246Z","upload_date":"2026-06-26T00:00:00.000Z","uploaded_at":"2026-06-26T17:29:12.963Z","updated_at":"2026-06-26T17:29:12.963Z"},{"id":2,"pdf_name":"2026-june-26.pdf","pdf_url":"https://drive.google.com/uc?id=18biC4j3Lo9_ZIWLSZElAjmn1U2achuj-&export=download","deploy_status":"pending","created_at":"2026-06-26T11:53:35.743Z","upload_date":"2026-06-26T00:00:00.000Z","uploaded_at":"2026-06-26T17:38:35.794Z","updated_at":"2026-06-26T17:38:35.794Z"}];
+  var pdfData = [{"id":7,"pdf_name":"file_1","pdf_url":"https://drive.google.com/uc?id=1MLYYDCckRaavJ6LPUOtrJtMfMxcnnMi7&export=download","deploy_status":"pending","created_at":"2026-07-14T12:58:00.539Z","upload_date":"2026-07-14T00:00:00.000Z","uploaded_at":"2026-07-14T12:58:00.539Z","updated_at":"2026-07-14T12:58:00.539Z"},{"id":6,"pdf_name":"inf0.pdf","pdf_url":"https://drive.google.com/uc?id=11_bL5ZxUqLYCyd8nD1FxRvy1f6EPz5sn&export=download","deploy_status":"pending","created_at":"2026-07-02T05:35:39.926Z","upload_date":"2026-07-02T00:00:00.000Z","uploaded_at":"2026-07-02T11:20:39.988Z","updated_at":"2026-07-10T17:15:59.269Z"},{"id":4,"pdf_name":"2026-july-01.pdf","pdf_url":"https://drive.google.com/uc?id=1ZHhuuCIcAIpdj-ikKT7ufxJkQ9OAj8nB&export=download","deploy_status":"pending","created_at":"2026-07-01T05:36:50.650Z","upload_date":"2026-07-01T00:00:00.000Z","uploaded_at":"2026-07-01T11:21:50.772Z","updated_at":"2026-07-01T11:21:50.772Z"},{"id":5,"pdf_name":"setup.pdf","pdf_url":"https://drive.google.com/uc?id=1E05MbqceHeDE1y_aMMYzuv_Xp14sOulV&export=download","deploy_status":"pending","created_at":"2026-07-01T05:46:17.614Z","upload_date":"2026-07-01T00:00:00.000Z","uploaded_at":"2026-07-01T11:31:17.660Z","updated_at":"2026-07-01T11:31:17.660Z"},{"id":1,"pdf_name":"2026-june-26.pdf","pdf_url":"https://drive.google.com/uc?id=1Fy3QnpruHrOmt8tLQAsmW9rCEfi6MV1K&export=download","deploy_status":"pending","created_at":"2026-06-26T11:37:26.246Z","upload_date":"2026-06-26T00:00:00.000Z","uploaded_at":"2026-06-26T17:29:12.963Z","updated_at":"2026-06-26T17:29:12.963Z"},{"id":0,"pdf_name":"2026-june-26.pdf","pdf_url":"https://drive.google.com/file/d/18biC4j3Lo9_ZIWLSZElAjmn1U2achuj-/view?usp=drivesdk","deploy_status":"pending","created_at":"2026-06-26T11:56:22.618Z","upload_date":"2026-06-26T00:00:00.000Z","uploaded_at":"2026-06-26T17:41:28.206Z","updated_at":"2026-06-26T17:41:28.206Z"},{"id":2,"pdf_name":"today","pdf_url":"https://drive.google.com/uc?id=18biC4j3Lo9_ZIWLSZElAjmn1U2achuj-&export=download","deploy_status":"pending","created_at":"2026-06-26T11:53:35.743Z","upload_date":"2026-06-26T00:00:00.000Z","uploaded_at":"2026-06-26T17:38:35.794Z","updated_at":"2026-07-12T15:15:13.455Z"}];
 
   function getEmbeddableUrl(url) {
     if (!url) return '';
