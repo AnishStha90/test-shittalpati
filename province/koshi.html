@@ -971,8 +971,7 @@
     display: inline !important;
   }
 
-  body.lang-active p.lang-np,
-  body.lang-active span.lang-np {
+  body.lang-active p.lang-np, body.lang-active span.lang-np {
     display: inline !important;
   }
 </style>
@@ -1252,11 +1251,11 @@
          </div>
          
     <div class="ad-card" data-ad-number="1">
-      <img src="../images/sideads_3.jpg" alt="sideads_3.jpg" data-ad-id="sideads_3" loading="lazy" style="pointer-events:none;" onerror="this.closest('.ad-card').style.display='none'">
+      <img src="../images/sideads_3.jpg" alt="sideads_3.jpg" data-ad-id="10" loading="lazy" style="pointer-events:none;" onerror="this.closest('.ad-card').style.display='none'">
     </div>
 
     <div class="ad-card" data-ad-number="2">
-      <img src="../images/sideads_4.jpg" alt="sideads_4.jpg" data-ad-id="sideads_4" loading="lazy" style="pointer-events:none;" onerror="this.closest('.ad-card').style.display='none'">
+      <img src="../images/sideads_4.jpg" alt="sideads_4.jpg" data-ad-id="11" loading="lazy" style="pointer-events:none;" onerror="this.closest('.ad-card').style.display='none'">
     </div>
        </aside>
      </div>
@@ -1812,7 +1811,7 @@
   };
 
   // ── Section ads: cycle through these, one every N real articles ──
-  var SECTION_ADS = [{"img":"../images/section_1.jpg","link":""},{"img":"../images/insection_1.png","link":""},{"img":"../images/section_2.jpg","link":""},{"img":"../images/insection_2.png","link":""},{"img":"../images/insection_3.png","link":""}];
+  var SECTION_ADS = [{"img":"../images/insection_1.png","link":"","id":24},{"img":"../images/section_1.jpg","link":"https://fmautomation.xyz/","id":9},{"img":"../images/insection_2.png","link":"","id":25},{"img":"../images/section_2.jpg","link":"","id":3},{"img":"../images/insection_3.png","link":"https://fmautomation.xyz/","id":26}];
   var AD_EVERY_N  = 6;
   var adCycleIndex = 0; // persists across load-more calls
 
@@ -1822,7 +1821,7 @@
     var ad = SECTION_ADS[adCycleIndex % SECTION_ADS.length];
     adCycleIndex++;
     var isNp = document.body.classList.contains('lang-active');
-    var inner = '<img src="' + ad.img + '" alt="Advertisement" loading="lazy" ' +
+    var inner = '<img src="' + ad.img + '" alt="Advertisement" data-ad-id="' + ad.id + '" loading="lazy" ' +
       'style="width:100%;height:auto;max-height:220px;object-fit:cover;border-radius:4px;display:block;" ' +
       'onerror="this.closest(\'.ad-card-inline\').style.display=\'none\'">';
     var wrapped = ad.link
